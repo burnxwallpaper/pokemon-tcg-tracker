@@ -2,6 +2,7 @@
   "id": "sealed-white-flare",
   "name_zh": "白炎 BOX（未開封）",
   "name_jp": "ホワイトフレア BOX 未開封",
+  "name_en": "White Flare Booster Box",
   "kind": "sealed",
   "set": "SV11W",
   "search_jp": "ホワイトフレア BOX 未開封",
@@ -15,5 +16,5 @@
   "history_points": 58,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

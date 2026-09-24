@@ -2,6 +2,7 @@
   "id": "psa10-leafeon-ex-sar",
   "name_zh": "葉伊布 ex SAR PSA10",
   "name_jp": "リーフィアex SAR PSA10",
+  "name_en": "Leafeon ex SAR PSA10",
   "kind": "psa10",
   "set": "SV8a / 200",
   "search_jp": "リーフィアex SAR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 73,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

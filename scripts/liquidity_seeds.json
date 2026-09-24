@@ -3,13 +3,13 @@
   "candidates": [
     {
       "id": "psa10-pikachu-ex-sar-151",
-      "name_zh": "皮卡丘 ex SAR PSA10",
-      "name_jp": "ピカチュウex SAR PSA10",
-      "name_en": "Pikachu ex SAR PSA10 151",
+      "name_zh": "皮卡丘 AR PSA10",
+      "name_jp": "ピカチュウ AR PSA10",
+      "name_en": "Pikachu AR PSA10 151",
       "kind": "psa10",
-      "set": "sv2a / 198/165",
-      "search_jp": "ピカチュウex SAR PSA10 198/165",
-      "search_hk": "皮卡丘 SAR PSA10 151",
+      "set": "sv2a / 173/165",
+      "search_jp": "ピカチュウ AR PSA10 173/165",
+      "search_hk": "皮卡丘 AR PSA10 151",
       "tcgdex_id": "SV2a-173",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/173/high.webp",
       "image_note": "official_card SV2a-173 ピカチュウ AR (config 198/165 was ナナミの手助け)"

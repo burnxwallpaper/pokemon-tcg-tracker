@@ -2,6 +2,7 @@
   "id": "psa10-gengar-ex-sar",
   "name_zh": "耿鬼 ex SAR PSA10",
   "name_jp": "ゲンガーex SAR PSA10",
+  "name_en": "Gengar ex SAR PSA10",
   "kind": "psa10",
   "set": "sv5a / 099/071",
   "search_jp": "ゲンガーex SAR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 89,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

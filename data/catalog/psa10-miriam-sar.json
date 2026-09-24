@@ -2,6 +2,7 @@
   "id": "psa10-miriam-sar",
   "name_zh": "米莫莎 SAR PSA10",
   "name_jp": "ミモザ SAR PSA10",
+  "name_en": "Miriam SAR PSA10",
   "kind": "psa10",
   "set": "SV1V / 105",
   "search_jp": "ミモザ SAR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 54,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

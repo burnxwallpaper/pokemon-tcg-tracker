@@ -2,6 +2,7 @@
   "id": "sealed-mega-symphonia",
   "name_zh": "超級協奏 BOX（未開封）",
   "name_jp": "メガシンフォニア BOX 未開封",
+  "name_en": "Mega Symphonia Booster Box",
   "kind": "sealed",
   "set": "M1S",
   "search_jp": "メガシンフォニア BOX 未開封",
@@ -15,5 +16,5 @@
   "history_points": 85,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

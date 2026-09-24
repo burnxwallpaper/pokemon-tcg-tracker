@@ -2,6 +2,7 @@
   "id": "psa10-serena-sr",
   "name_zh": "莎莉娜 SR PSA10",
   "name_jp": "セレナ SR PSA10",
+  "name_en": "Serena SR PSA10",
   "kind": "psa10",
   "set": "S11a / 081",
   "search_jp": "セレナ SR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 57,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

@@ -2,6 +2,7 @@
   "id": "psa10-iono-sar",
   "name_zh": "奇樹 SAR PSA10",
   "name_jp": "ナンジャモ SAR PSA10",
+  "name_en": "Iono SAR PSA10",
   "kind": "psa10",
   "set": "sv2a / 350/165",
   "search_jp": "ナンジャモ SAR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 90,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

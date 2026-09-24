@@ -2,6 +2,7 @@
   "id": "psa10-pikachu-ex-sar-terastal",
   "name_zh": "皮卡丘 ex SAR（超電）PSA10",
   "name_jp": "ピカチュウex SAR 超電ブレイカー PSA10",
+  "name_en": "Pikachu ex SAR Surging Sparks PSA10",
   "kind": "psa10",
   "set": "sv8 / 132/106",
   "search_jp": "ピカチュウex SAR 超電ブレイカー PSA10",
@@ -15,5 +16,5 @@
   "history_points": 60,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

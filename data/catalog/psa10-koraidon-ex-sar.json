@@ -2,6 +2,7 @@
   "id": "psa10-koraidon-ex-sar",
   "name_zh": "故勒頓 ex SAR PSA10",
   "name_jp": "コライドンex SAR PSA10",
+  "name_en": "Koraidon ex SAR PSA10",
   "kind": "psa10",
   "set": "SV4a / 360",
   "search_jp": "コライドンex SAR PSA10 シャイニートレジャー",
@@ -15,5 +16,5 @@
   "history_points": 86,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }

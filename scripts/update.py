@@ -294,17 +294,6 @@ def merge_and_compute(
             history = merge_history_by_date(
                 prev_hist, incoming, prefer_incoming=True, history_days=hist_days
             )
-            today_point = next((p for p in history if p.get("date") == today), None)
-            if today_point and today_point.get("price_hkd") is not None:
-                price = float(today_point["price_hkd"])
-                vol_today = int(today_point.get("volume") or 0)
-                if fx:
-                    price_jpy = int(round(price / fx))
-            elif history and history[-1].get("price_hkd") is not None:
-                price = float(history[-1]["price_hkd"])
-                if fx:
-                    price_jpy = int(round(price / fx))
-                vol_today = int(today_point.get("volume") or 0) if today_point else 0
             if hk_ask is not None:
                 history = merge_history_by_date(
                     history,
@@ -317,15 +306,40 @@ def merge_and_compute(
                     history_days=hist_days,
                 )
         else:
-            today_point = {
+            incoming = comps_to_daily_history(
+                jp.get("comps") or [],
+                fx=fx,
+                days=hist_days,
+                today_hk_ask=hk_ask,
+            )
+            incoming.append({
                 "date": today,
                 "price_hkd": price,
                 "hk_ask_hkd": hk_ask,
                 "volume": float(vol_today),
-            }
+            })
             history = merge_history_by_date(
-                prev_hist, [today_point], prefer_incoming=True, history_days=hist_days
+                prev_hist, incoming, prefer_incoming=True, history_days=hist_days
             )
+
+        # Fresh sold quote wins, including null when nothing matched.
+        # merge_history_by_date keeps the previous price when incoming is null.
+        stamped = False
+        for point in history:
+            if point.get("date") != today:
+                continue
+            point["price_hkd"] = price
+            point["volume"] = float(vol_today)
+            stamped = True
+            break
+        if not stamped:
+            history.append({
+                "date": today,
+                "price_hkd": price,
+                "hk_ask_hkd": hk_ask,
+                "volume": float(vol_today),
+            })
+            history.sort(key=lambda p: str(p.get("date") or ""))
 
         prev_1 = price_on_or_before(history[:-1], day_1) if len(history) > 1 else None
         prev_7 = price_on_or_before(history[:-1], day_7) if len(history) > 1 else None
@@ -381,11 +395,24 @@ def merge_and_compute(
             "spread_jp_hk_pct": spread_pct,
             "sources": srcs,
             "is_sample": False,
-            "jp_comps_n": len(jp.get("comps") or []),
-            "hk_listings_n": len(hk.get("listings") or []),
+            "jp_comps_n": (
+                int(jp["jp_debug"]["matched_n"])
+                if isinstance(jp.get("jp_debug"), dict) and isinstance(jp["jp_debug"].get("matched_n"), int)
+                else len(jp.get("comps") or [])
+            ),
+            "hk_listings_n": (
+                int(hk["listings_n"])
+                if hk.get("listings_n") is not None
+                else len(hk.get("listings") or [])
+            ),
             "hk_backend": hk.get("backend"),
             "history": history,
         }
+        if jp.get("query"):
+            row["jp_query"] = jp["query"]
+        debug = jp.get("jp_debug")
+        if isinstance(debug, dict):
+            row["jp_debug"] = debug
         if wl.get("name_en"):
             row["name_en"] = wl["name_en"]
         if iid in pins:
@@ -600,7 +627,52 @@ def _yahoo_preserved_status() -> dict[str, Any]:
     return yahoo
 
 
-def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
+def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
+    """Reuse the last HK asks so a JP accuracy refresh does not re-hit HK shops."""
+    preserved_status: dict[str, Any] = {
+        "enabled": True,
+        "status": "preserved",
+        "ok_items": 0,
+        "errors": [],
+        "note": "Preserved HK asks; this run refreshed JP sold only",
+    }
+    if not LATEST_PATH.exists():
+        return {}, {"carousell_hk": preserved_status}
+    try:
+        prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}, {"carousell_hk": preserved_status}
+    out: dict[str, dict] = {}
+    for it in prior.get("items") or []:
+        if not isinstance(it, dict) or not it.get("id"):
+            continue
+        backends = [
+            s for s in (it.get("sources") or []) if s != "yahoo_auctions_jp"
+        ]
+        out[str(it["id"])] = {
+            "median_hkd": it.get("hk_ask_hkd"),
+            "lowest_hkd": it.get("hk_ask_low_hkd"),
+            "bid_hkd": it.get("hk_bid_hkd"),
+            "listings": [],
+            "listings_n": it.get("hk_listings_n") or 0,
+            "bid_listings": [],
+            "backends": backends,
+            "backend": it.get("hk_backend"),
+        }
+    prev = (prior.get("meta") or {}).get("source_status") or {}
+    status: dict[str, Any] = {}
+    for key, bucket in prev.items():
+        if key == "yahoo_auctions_jp" or not isinstance(bucket, dict):
+            continue
+        kept = dict(bucket)
+        kept["note"] = "Preserved HK asks; this run refreshed JP sold only"
+        status[key] = kept
+    if "carousell_hk" not in status:
+        status["carousell_hk"] = preserved_status
+    return out, status
+
+
+def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) -> dict:
     now = datetime.now(HK_TZ)
     if hk_only:
         sources_cfg = cfg.get("sources") or {}
@@ -623,6 +695,21 @@ def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
         jp_by_id = _jp_preserved_from_latest()
         source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
         source_status.update(hk_status)
+    elif jp_only:
+        jp_by_id, _hk_unused, source_status = fetch_all(
+            {
+                **cfg,
+                "sources": {
+                    **(cfg.get("sources") or {}),
+                    "carousell_hk": {"enabled": False},
+                    "hk_card_shops": {"enabled": False},
+                    "facebook_hk": {"enabled": False},
+                },
+            }
+        )
+        hk_by_id, hk_status = _hk_preserved_from_latest()
+        source_status.update(hk_status)
+        print("[fetch] JP-only refresh (HK asks preserved)", flush=True)
     else:
         jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
@@ -721,7 +808,11 @@ def main() -> None:
             file=sys.stderr,
         )
         sys.exit(1)
-    payload = build_payload(cfg, hk_only=("--hk-only" in sys.argv))
+    payload = build_payload(
+        cfg,
+        hk_only=("--hk-only" in sys.argv),
+        jp_only=("--jp-only" in sys.argv),
+    )
     write_outputs(payload)
     # Print source_status summary
     ss = payload["meta"].get("source_status") or {}

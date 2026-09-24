@@ -118,7 +118,12 @@ def build_reference_links(
         _add(links, seen, _listing_label(row), str(row.get("url")))
 
     jp = str(
-        watch.get("search_jp") or item.get("search_jp") or item.get("name_jp") or item.get("name_zh") or ""
+        item.get("jp_query")
+        or watch.get("search_jp")
+        or item.get("search_jp")
+        or item.get("name_jp")
+        or item.get("name_zh")
+        or ""
     ).strip()
     hk = str(
         watch.get("search_hk") or item.get("search_hk") or item.get("name_zh") or item.get("name_jp") or ""

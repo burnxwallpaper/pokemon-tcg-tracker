@@ -2,6 +2,7 @@
   "id": "psa10-n-sar",
   "name_zh": "N SAR PSA10",
   "name_jp": "N SAR PSA10",
+  "name_en": "N SAR PSA10",
   "kind": "psa10",
   "set": "sv6a",
   "search_jp": "N SAR PSA10 ポケモン",
@@ -15,5 +16,5 @@
   "history_points": 76,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:12:27+08:00"
 }
