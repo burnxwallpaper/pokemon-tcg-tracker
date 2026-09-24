@@ -15,6 +15,16 @@
   },
   "sync_path_note": "C:\\Users\\leosiu\\Documents\\pokemonTCG (synced later by daily bot; do not sync from this box scaffold)",
   "request_min_interval_sec": 1.6,
+  "discovery": {
+    "enabled": true,
+    "refresh_hours": 20,
+    "window_days": 14,
+    "psa10_slots": 32,
+    "sealed_slots": 18,
+    "min_closed": 1,
+    "shallow_series_days": 14,
+    "backfill_max_pages": 6
+  },
   "sources": {
     "yahoo_auctions_jp": {
       "enabled": true,

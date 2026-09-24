@@ -21,8 +21,7 @@ python -m http.server 8080
 
 然後瀏覽：
 
-- http://localhost:8080/dashboard/
-- 或 http://127.0.0.1:8080/dashboard/index.html
+- http://localhost:8080/ （GitHub Pages 同樣讀根目錄 `index.html` 同 `./data/latest.json`）
 
 ### 方式 B（Windows 雙擊前先開 server）
 
@@ -40,7 +39,10 @@ python -m http.server 8080
 python scripts/update.py
 ```
 
-讀取 `config.json` watchlist → 抓 JP sold／HK asks → 寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
+先按 Yahoo 結束拍賣筆數重排 PSA10／未開封種子（約 Top 50，見 `data/catalog/liquidity_rank.json`），再抓 JP sold／HK asks。新卡若 series 未夠深，會用 closedsearch 回填每日點（按 date merge，唔會洗走舊歷史）。寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
+
+只重排名單：`python scripts/discover_watchlist.py --force`  
+跳過重排：`python scripts/update.py --no-discover`
 
 ## 重新產生範例資料
 

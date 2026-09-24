@@ -118,6 +118,43 @@ def _fetch_page(
         return [], 0, f"{type(e).__name__}: {e}", "error"
 
 
+def probe_closed_count(
+    keyword: str,
+    *,
+    min_interval: float = 1.6,
+    window_days: int = 14,
+    per_page: int = 20,
+) -> dict[str, Any]:
+    """One closedsearch page: indexed comps count + recent-window sample.
+
+    ``total_available`` is Yahoo's ``totalResultsAvailable`` for this keyword
+    (closed lots still in the index, typically about 120 days). It does not
+    saturate with page size, so it is the v1 liquidity rank key.
+
+    ``window_count`` is how many lots on this first page ended within
+    ``window_days``. It caps at ``per_page`` and is only a tie-break.
+    """
+    items, total, err, status = _fetch_page(
+        keyword, start=1, per_page=per_page, min_interval=min_interval
+    )
+    now = datetime.now(JST)
+    window = 0
+    if not err:
+        for it in items:
+            dt = _parse_end_time(it.get("endTime"))
+            if dt and (now - dt) <= timedelta(days=window_days):
+                window += 1
+    return {
+        "ok": err is None and status == "ok",
+        "keyword": keyword,
+        "total_available": int(total or 0),
+        "window_count": window,
+        "sample_n": len(items),
+        "error": err,
+        "status": status if err else "ok",
+    }
+
+
 def search_sold(
     keyword: str,
     *,

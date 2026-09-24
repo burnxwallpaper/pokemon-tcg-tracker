@@ -14,3 +14,4 @@
 2. 官方圖：本地已有就跳過下載
 3. 唔好用 sample 覆蓋已有真實點
 4. `latest.json` 係當日快照；歷史真相喺 series／catalog
+5. 流動性重排（`discover_watchlist.py`）只改 `config.json` 嘅 active watchlist。跌出名單嘅 id **唔刪** series、官方圖、`data/catalog/{id}.json`

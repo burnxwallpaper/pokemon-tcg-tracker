@@ -398,7 +398,7 @@
   </nav>
 
   <main>
-    <div id="status" class="loading">正在讀取 <code>../data/latest.json</code>…</div>
+    <div id="status" class="loading">正在讀取 <code>./data/latest.json</code>…</div>
 
     <section id="sec-moves" class="section active" aria-label="大異動">
       <div class="section-head">
@@ -426,7 +426,7 @@
   </main>
 
   <footer>
-    本機靜態儀表板 · 資料由 <code>scripts/update_stub.py</code> 產生 · 日後由 bot 每日同步 · 非正式投資建議
+    靜態儀表板 · 資料 <code>./data/latest.json</code> · <code>scripts/update.py</code> 每日更新 · 非正式投資建議
   </footer>
 
   <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
@@ -450,9 +450,9 @@
     ];
 
     const SERIES_URLS = (id) => [
-      `../data/history/series/${id}.json`,
       `./data/history/series/${id}.json`,
       `/data/history/series/${id}.json`,
+      `../data/history/series/${id}.json`,
     ];
 
     const DEFAULTS = {
@@ -951,7 +951,7 @@
         document.getElementById("status").innerHTML = `
           無法載入資料。<br/>
           請在專案根目錄執行 <code>python3 -m http.server 8080</code>，
-          然後開啟 <code>http://localhost:8080/dashboard/</code>。<br/>
+          然後開啟 <code>http://localhost:8080/</code>。<br/>
           <small>${escapeHtml(String(e))}</small>
         `;
         renderMeta({
