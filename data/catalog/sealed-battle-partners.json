@@ -1,0 +1,19 @@
+{
+  "id": "sealed-battle-partners",
+  "name_zh": "對戰夥伴 BOX（未開封）",
+  "name_jp": "バトルパートナーズ BOX 未開封",
+  "kind": "sealed",
+  "set": "SV9",
+  "search_jp": "バトルパートナーズ BOX 未開封",
+  "search_hk": "對戰夥伴 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-battle-partners.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv9/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com SV9 OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-battle-partners.json",
+  "history_points": 79,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

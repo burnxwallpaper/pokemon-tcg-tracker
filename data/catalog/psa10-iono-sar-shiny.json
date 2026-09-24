@@ -1,0 +1,19 @@
+{
+  "id": "psa10-iono-sar-shiny",
+  "name_zh": "奇樹 SAR（閃）PSA10",
+  "name_jp": "ナンジャモ SAR シャイニートレジャー PSA10",
+  "kind": "psa10",
+  "set": "SV4a / 350",
+  "search_jp": "ナンジャモ SAR PSA10 シャイニートレジャー",
+  "search_hk": "奇樹 SAR PSA10 閃",
+  "tcgdex_id": "SV4a-350",
+  "image": "images/psa10-iono-sar-shiny.webp",
+  "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/350/high.webp",
+  "image_note": "official_card TCGdex high.webp",
+  "image_source": "official",
+  "series_path": "history/series/psa10-iono-sar-shiny.json",
+  "history_points": 50,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

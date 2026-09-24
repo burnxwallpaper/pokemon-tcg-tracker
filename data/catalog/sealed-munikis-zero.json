@@ -1,0 +1,19 @@
+{
+  "id": "sealed-munikis-zero",
+  "name_zh": "尼比斯零 BOX（未開封）",
+  "name_jp": "ムニキスゼロ BOX 未開封",
+  "kind": "sealed",
+  "set": "M3",
+  "search_jp": "ムニキスゼロ BOX 未開封",
+  "search_hk": "尼比斯零 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-munikis-zero.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/m3/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com M3 OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-munikis-zero.json",
+  "history_points": 86,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

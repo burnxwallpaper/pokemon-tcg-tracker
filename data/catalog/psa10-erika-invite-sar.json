@@ -1,0 +1,19 @@
+{
+  "id": "psa10-erika-invite-sar",
+  "name_zh": "莉佳的邀請 SAR PSA10",
+  "name_jp": "エリカの招待 SAR PSA10",
+  "kind": "psa10",
+  "set": "SV2a / 206",
+  "search_jp": "エリカの招待 SAR PSA10",
+  "search_hk": "莉佳的邀請 SAR PSA10",
+  "tcgdex_id": "SV2a-206",
+  "image": "images/psa10-erika-invite-sar.webp",
+  "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/206/high.webp",
+  "image_note": "official_card TCGdex high.webp",
+  "image_source": "official",
+  "series_path": "history/series/psa10-erika-invite-sar.json",
+  "history_points": 45,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}
