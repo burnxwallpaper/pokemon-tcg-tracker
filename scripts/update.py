@@ -9,7 +9,9 @@ Pipeline:
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
-HK PRIMARY → hk_ask_hkd; JP REFERENCE → price_jpy / price_hkd.
+最近成交價 → price_hkd (Yahoo JP sold, HKD).
+香港最新賣出價 → hk_ask_hkd (median of matched HK sell asks).
+最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd (HKCardLink WTB only; else null).
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
 from __future__ import annotations
@@ -27,6 +29,7 @@ SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
 from sources import hk_asks, yahoo_auctions_jp  # noqa: E402
+from sources.reference_links import attach_public_quotes  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
@@ -270,6 +273,9 @@ def merge_and_compute(
         hk_ask = hk.get("median_hkd")
         if hk_ask is not None:
             hk_ask = round(float(hk_ask), 2)
+        hk_low = hk.get("lowest_hkd")
+        hk_bid = hk.get("bid_hkd")
+        quote_listings = list(hk.get("listings") or []) + list(hk.get("bid_listings") or [])
 
         prev_hist = load_series(iid)
         vol_today = int(jp.get("volume_24h") or 0)
@@ -352,33 +358,39 @@ def merge_and_compute(
                 vol_today, vol_7d, int(jp.get("total_available") or 0)
             )
 
-        items.append(
-            {
-                "id": iid,
-                "name_zh": wl.get("name_zh"),
-                "name_jp": wl.get("name_jp"),
-                "kind": wl.get("kind"),
-                "set": wl.get("set"),
-                "image": image,
-                "tcgdex_id": wl.get("tcgdex_id"),
-                "price_hkd": price,
-                "price_jpy": price_jpy,
-                "short_change_pct": short_pct,
-                "medium_change_pct": med_pct,
-                "volume_today": vol_today,
-                "volume_7d_avg": vol_7d,
-                "volume_ratio": vol_ratio,
-                "liquidity_score": liq,
-                "hk_ask_hkd": hk_ask,
-                "spread_jp_hk_pct": spread_pct,
-                "sources": srcs,
-                "is_sample": False,
-                "jp_comps_n": len(jp.get("comps") or []),
-                "hk_listings_n": len(hk.get("listings") or []),
-                "hk_backend": hk.get("backend"),
-                "history": history,
-            }
+        row = {
+            "id": iid,
+            "name_zh": wl.get("name_zh"),
+            "name_jp": wl.get("name_jp"),
+            "kind": wl.get("kind"),
+            "set": wl.get("set"),
+            "image": image,
+            "tcgdex_id": wl.get("tcgdex_id"),
+            "price_hkd": price,
+            "price_jpy": price_jpy,
+            "short_change_pct": short_pct,
+            "medium_change_pct": med_pct,
+            "volume_today": vol_today,
+            "volume_7d_avg": vol_7d,
+            "volume_ratio": vol_ratio,
+            "liquidity_score": liq,
+            "hk_ask_hkd": hk_ask,
+            "spread_jp_hk_pct": spread_pct,
+            "sources": srcs,
+            "is_sample": False,
+            "jp_comps_n": len(jp.get("comps") or []),
+            "hk_listings_n": len(hk.get("listings") or []),
+            "hk_backend": hk.get("backend"),
+            "history": history,
+        }
+        attach_public_quotes(
+            row,
+            watch=wl,
+            listings=quote_listings,
+            lowest_hkd=hk_low,
+            bid_hkd=hk_bid,
         )
+        items.append(row)
     return items
 
 
@@ -474,6 +486,8 @@ def write_outputs(payload: dict) -> None:
                 "volume_today": it["volume_today"],
                 "liquidity_score": it["liquidity_score"],
                 "hk_ask_hkd": it.get("hk_ask_hkd"),
+                "hk_ask_low_hkd": it.get("hk_ask_low_hkd"),
+                "hk_bid_hkd": it.get("hk_bid_hkd"),
             }
             for it in payload["items"]
         ],

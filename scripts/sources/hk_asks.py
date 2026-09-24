@@ -4,7 +4,15 @@ from __future__ import annotations
 from typing import Any
 
 from . import carousell_hk, hk_shops
-from .hk_match import broad_query, english_query, extra_queries, primary_query, robust_median
+from .hk_match import (
+    broad_query,
+    english_query,
+    extra_queries,
+    lowest_ask,
+    primary_query,
+    robust_median,
+)
+from .reference_links import best_bid, is_wtb
 
 
 def _empty_source() -> dict[str, Any]:
@@ -105,25 +113,38 @@ def collect_hk(
         if shops_on:
             parts["lono"] = hk_shops.match_shop("lono", item, min_interval=min_interval)
             parts["zenox"] = hk_shops.match_shop("zenox", item, min_interval=min_interval)
+        wtb = carousell_hk.search_hkcardlink_wtb(item, min_interval=min_interval)
 
         asks: list[float] = []
         listings: list[dict] = []
+        bid_listings: list[dict] = []
         backends: list[str] = []
         for name, part in parts.items():
             bucket = status[name]
-            if part.get("ok"):
+            sell_rows = [
+                row for row in (part.get("listings") or []) if not is_wtb(row)
+            ]
+            if part.get("ok") and sell_rows:
                 bucket["ok_items"] += 1
-                bucket["listings"] += len(part.get("asks_hkd") or [])
-                asks.extend(part.get("asks_hkd") or [])
-                listings.extend(part.get("listings") or [])
+                bucket["listings"] += len(sell_rows)
+                asks.extend(float(row["price_hkd"]) for row in sell_rows if row.get("price_hkd"))
+                listings.extend(sell_rows)
                 backends.append(name)
             elif part.get("error") and len(bucket["errors"]) < 12:
                 bucket["errors"].append(f"{item.get('id')}: {part.get('error')}")
+        for row in wtb.get("listings") or []:
+            if is_wtb(row):
+                bid_listings.append(row)
         median_hkd = robust_median(asks)
+        low_hkd = lowest_ask(asks)
+        bid_hkd, _bid_row = best_bid(bid_listings)
         hk_by_id[item["id"]] = {
             "ok": median_hkd is not None,
             "median_hkd": median_hkd,
+            "lowest_hkd": low_hkd,
+            "bid_hkd": bid_hkd,
             "listings": listings[:20],
+            "bid_listings": bid_listings[:8],
             "backends": backends,
             "backend": "+".join(backends) if backends else None,
             "error": None if median_hkd is not None else "no title-matched HK ask",

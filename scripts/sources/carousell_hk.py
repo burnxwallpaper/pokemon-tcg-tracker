@@ -14,6 +14,7 @@ import requests
 
 from ._http import BROWSER_UA, is_cloudflare_block, polite_get
 from .hk_match import match_item
+from .reference_links import hkcardlink_listing_url, is_wtb
 
 HKCARDLINK_JS = "https://hkcardlink.com/assets/index-WOdeJcRN.js"
 HKCARDLINK_HOME = "https://hkcardlink.com/"
@@ -22,7 +23,11 @@ SUPABASE_BASE = "https://nhkbjdeidlavovimjueh.supabase.co"
 _anon_cache: str | None = None
 _js_asset_cache: str | None = None
 _catalog_cache: list[dict] | None = None
+_wtb_cache: list[dict] | None = None
 _search_cache: dict[str, dict[str, Any]] = {}
+_HKCARDLINK_LISTING_SELECT = (
+    "id,card_name,price,grade_company,grade_score,status,listing_type,created_at"
+)
 
 
 def _parse_hkd(raw: str) -> float | None:
@@ -36,6 +41,19 @@ def _parse_hkd(raw: str) -> float | None:
     if value <= 0:
         return None
     return value
+
+
+def _tag_hkcardlink(row: dict) -> dict:
+    tagged = dict(row)
+    tagged["source"] = "hkcardlink"
+    url = hkcardlink_listing_url(row.get("card_name"), row.get("id"))
+    if url:
+        tagged["url"] = url
+    return tagged
+
+
+def _sell_hits(hits: list[dict]) -> list[dict]:
+    return [hit for hit in hits if not is_wtb(hit)]
 
 
 def parse_listing_cards(html: str) -> list[dict]:
@@ -235,31 +253,35 @@ def fetch_hkcardlink_catalog(*, min_interval: float) -> tuple[list[dict], str | 
     rows: list[dict] = []
     queries = [
         {
-            "select": "id,card_name,price,grade_company,grade_score,status,listing_type,created_at",
+            "select": _HKCARDLINK_LISTING_SELECT,
             "or": "(card_name.ilike.%PSA 10%,card_name.ilike.%PSA10%)",
             "status": "eq.active",
+            "listing_type": "neq.wtb",
             "limit": "120",
             "order": "created_at.desc",
         },
         {
-            "select": "id,card_name,price,grade_company,grade_score,status,listing_type,created_at",
+            "select": _HKCARDLINK_LISTING_SELECT,
             "grade_company": "eq.PSA",
             "grade_score": "eq.10",
             "status": "eq.active",
+            "listing_type": "neq.wtb",
             "limit": "120",
             "order": "created_at.desc",
         },
         {
-            "select": "id,card_name,price,grade_company,grade_score,status,listing_type,created_at",
+            "select": _HKCARDLINK_LISTING_SELECT,
             "status": "eq.active",
             "under_review": "eq.false",
+            "listing_type": "neq.wtb",
             "limit": "150",
             "order": "created_at.desc",
         },
         {
-            "select": "id,card_name,price,grade_company,grade_score,status,listing_type,created_at",
+            "select": _HKCARDLINK_LISTING_SELECT,
             "or": "(card_name.ilike.%BOX%,card_name.ilike.%未開封%,card_name.ilike.%原盒%)",
             "status": "eq.active",
+            "listing_type": "neq.wtb",
             "limit": "80",
             "order": "created_at.desc",
         },
@@ -292,9 +314,78 @@ def fetch_hkcardlink_catalog(*, min_interval: float) -> tuple[list[dict], str | 
     return _catalog_cache, err
 
 
+def fetch_hkcardlink_wtb(*, min_interval: float) -> tuple[list[dict], str | None]:
+    """Public HKCardLink 徵收 rows only. Cached for the process."""
+    global _wtb_cache
+    if _wtb_cache is not None:
+        return _wtb_cache, None
+    anon = _hkcardlink_anon_key(min_interval=min_interval)
+    if not anon:
+        return [], "could not load HKCardLink anon key"
+    headers = {
+        "User-Agent": BROWSER_UA,
+        "apikey": anon,
+        "Authorization": f"Bearer {anon}",
+        "Accept": "application/json",
+    }
+    rows: list[dict] = []
+    err = None
+    for offset in (0, 200):
+        try:
+            resp = polite_get(
+                f"{SUPABASE_BASE}/rest/v1/listings",
+                params={
+                    "select": _HKCARDLINK_LISTING_SELECT,
+                    "listing_type": "eq.wtb",
+                    "status": "eq.active",
+                    "limit": "200",
+                    "offset": str(offset),
+                    "order": "created_at.desc",
+                },
+                headers=headers,
+                min_interval=min_interval,
+                timeout=40,
+            )
+        except Exception as e:  # noqa: BLE001
+            err = f"{type(e).__name__}: {e}"
+            break
+        if resp.status_code != 200:
+            err = f"HTTP {resp.status_code}: {resp.text[:120]}"
+            break
+        batch = resp.json()
+        if not isinstance(batch, list) or not batch:
+            break
+        rows.extend(batch)
+        if len(batch) < 200:
+            break
+    if err and not rows:
+        return [], err
+    by_id: dict[str, dict] = {}
+    for row in rows:
+        rid = row.get("id")
+        if rid and rid not in by_id:
+            by_id[str(rid)] = row
+    _wtb_cache = list(by_id.values())
+    return _wtb_cache, None
+
+
+def search_hkcardlink_wtb(item: dict, *, min_interval: float) -> dict[str, Any]:
+    catalog, err = fetch_hkcardlink_wtb(min_interval=min_interval)
+    tagged = [_tag_hkcardlink(row) for row in catalog]
+    hits = [hit for hit in match_item(tagged, item) if is_wtb(hit)]
+    return {
+        "ok": bool(hits),
+        "listings": hits[:12],
+        "error": None if hits else err,
+        "status": "ok" if hits else ("empty" if catalog else "error"),
+        "catalog_size": len(catalog),
+    }
+
+
 def search_hkcardlink_item(item: dict, *, min_interval: float) -> dict[str, Any]:
     catalog, err = fetch_hkcardlink_catalog(min_interval=min_interval)
-    hits = match_item(catalog, item)
+    tagged = [_tag_hkcardlink(row) for row in catalog]
+    hits = _sell_hits(match_item(tagged, item))
     return {
         "ok": bool(hits),
         "asks_hkd": [h["price_hkd"] for h in hits],

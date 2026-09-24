@@ -415,29 +415,44 @@ def match_listings(
             continue
         if not _title_charizard_x_ok(title_n, query):
             continue
-        hits.append(
-            {
-                "id": row.get("id"),
-                "title": title,
-                "price_hkd": price,
-                "source": row.get("source"),
-            }
-        )
+        hit = {
+            "id": row.get("id"),
+            "title": title,
+            "price_hkd": price,
+            "source": row.get("source"),
+        }
+        for key in ("url", "listing_type", "created_at", "slug"):
+            if row.get(key):
+                hit[key] = row.get(key)
+        hits.append(hit)
     hits.sort(key=lambda h: h["price_hkd"])
     return hits
 
 
-def robust_median(prices: list[float]) -> float | None:
+def trimmed_asks(prices: list[float]) -> list[float]:
+    """Drop far outliers once there are enough asks. Shared by median and lowest."""
     vals = [float(p) for p in prices if p and p > 0]
-    if not vals:
-        return None
     if len(vals) >= 4:
         mid = median(vals)
         if mid:
             kept = [p for p in vals if mid / 3 <= p <= mid * 3]
             if kept:
                 vals = kept
+    return vals
+
+
+def robust_median(prices: list[float]) -> float | None:
+    vals = trimmed_asks(prices)
+    if not vals:
+        return None
     mid = median(vals)
     if mid is None:
         return None
     return round(mid, 2)
+
+
+def lowest_ask(prices: list[float]) -> float | None:
+    vals = trimmed_asks(prices)
+    if not vals:
+        return None
+    return round(min(vals), 2)

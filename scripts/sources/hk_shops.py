@@ -142,14 +142,16 @@ def _fetch_zenox(min_interval: float) -> tuple[list[dict], str | None]:
                         break
             if price is None or not title:
                 continue
-            rows.append(
-                {
-                    "card_name": title,
-                    "price": price,
-                    "source": "zenox",
-                    "id": product.get("id"),
-                }
-            )
+            handle = str(product.get("handle") or "").strip()
+            row = {
+                "card_name": title,
+                "price": price,
+                "source": "zenox",
+                "id": product.get("id"),
+            }
+            if handle:
+                row["url"] = f"https://www.zenoxstore.com/products/{handle}"
+            rows.append(row)
     _zenox_cache = rows
     _zenox_error = None if rows else "empty Zenox JP box catalog"
     return _zenox_cache, _zenox_error

@@ -17,10 +17,15 @@ from __future__ import annotations
 
 import json
 import math
+import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(SCRIPTS))
+
+from sources.reference_links import attach_public_quotes  # noqa: E402
 CONFIG_PATH = ROOT / "config.json"
 LATEST_PATH = ROOT / "data" / "latest.json"
 HISTORY_DIR = ROOT / "data" / "history"
@@ -275,8 +280,15 @@ def generate_sample_items(cfg: dict, now: datetime) -> list[dict]:
                 "sources": ["yahoo_auctions_jp", "mercari_jp"]
                 + (["carousell_hk"] if hk_jpy is not None else []),
                 "is_sample": True,
+                "hk_listings_n": 1 if hk_hkd is not None else 0,
                 "history": history,
             }
+        )
+        attach_public_quotes(
+            items[-1],
+            watch={"search_jp": name_jp, "search_hk": name_zh, "kind": kind},
+            lowest_hkd=hk_hkd,
+            bid_hkd=None,
         )
     return items
 
@@ -415,6 +427,8 @@ def write_outputs(payload: dict) -> None:
                 "volume_today": it["volume_today"],
                 "liquidity_score": it["liquidity_score"],
                 "hk_ask_hkd": it.get("hk_ask_hkd"),
+                "hk_ask_low_hkd": it.get("hk_ask_low_hkd"),
+                "hk_bid_hkd": it.get("hk_bid_hkd"),
             }
             for it in payload["items"]
         ],

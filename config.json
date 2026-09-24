@@ -64,10 +64,16 @@
     }
   },
   "display": {
-    "primary_market": "hk",
-    "primary_label": "香港價",
-    "reference_label": "日本參考",
-    "currency": "HKD"
+    "currency": "HKD",
+    "primary_view": "流動性",
+    "labels": {
+      "price_hkd": "最近成交價",
+      "hk_ask_hkd": "香港最新賣出價",
+      "hk_ask_low_hkd": "最低賣出價",
+      "hk_bid_hkd": "買入價／徵求"
+    },
+    "hk_ask_note": "hk_ask_hkd 係已核對香港賣盤的穩健中位數；只有一筆時與最低賣出價相同。",
+    "hk_bid_note": "買入價／徵求只採用 HKCardLink 公開徵收（listing_type=wtb）而且有正數預算的刊登。Carousell、LONO、Zenox 公開頁沒有結構化徵求價，對不到就保持 null，畫面顯示暫無，不會估算。"
   },
   "watchlist": [
     {
