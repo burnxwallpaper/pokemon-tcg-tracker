@@ -3,7 +3,7 @@
 個人用、投機導向的日版 PSA10 鑑定卡＋未開封商品行情儀表板。顯示貨幣僅 **HKD**。  
 本目錄為本機 scaffold；之後會由 bot **每日同步**到你的 PC：`C:\Users\leosiu\Documents\pokemonTCG`。
 
-> `scripts/update.py` 會以溫和公開抓取更新真實行情（Yahoo Auctions JP 成交作參考；香港叫價來自標題核對後的 Carousell、HKCardLink、LONO、Zenox）。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
+> `scripts/update.py` 會以溫和公開抓取更新真實行情。日本最近成交價以 SNKRDUNK 公開成交為主，Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。香港最新賣出價來自 Carousell、HKCardLink、LONO、ShipMyToy、Zenox：多筆相符取中位數，偏離 SNKRDUNK 日圓市價（約 10%–300%）或對不上的刊登留空。詳情頁連到 SNKRDUNK。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
 
 ---
 

@@ -8,9 +8,8 @@ from .hk_match import (
     broad_query,
     english_query,
     extra_queries,
-    lowest_ask,
     primary_query,
-    robust_median,
+    publish_ask,
 )
 from .reference_links import best_bid, is_wtb
 
@@ -32,6 +31,7 @@ def collect_hk(
     carousell_on: bool,
     shops_on: bool,
     facebook_on: bool,
+    jp_hkd_by_id: dict[str, float] | None = None,
 ) -> tuple[dict[str, dict], dict[str, Any]]:
     status: dict[str, Any] = {
         "carousell_hk": {
@@ -54,7 +54,13 @@ def collect_hk(
             **_empty_source(),
             "enabled": shops_on,
             "status": "disabled" if not shops_on else "pending",
-            "note": "zenoxstore.com Shopify JP booster boxes",
+            "note": "zenoxstore.com JP booster boxes and in-stock PSA10 slabs",
+        },
+        "shipmytoy": {
+            **_empty_source(),
+            "enabled": shops_on,
+            "status": "disabled" if not shops_on else "pending",
+            "note": "shipmytoy.com.hk Pokémon category; box price, not the pack price",
         },
         "facebook_hk": {
             **_empty_source(),
@@ -81,10 +87,13 @@ def collect_hk(
         shops = hk_shops.prefetch_shops(min_interval=min_interval)
         status["lono"]["catalog_size"] = shops["lono"]["catalog_size"]
         status["zenox"]["catalog_size"] = shops["zenox"]["catalog_size"]
+        status["shipmytoy"]["catalog_size"] = shops["shipmytoy"]["catalog_size"]
         if shops["lono"]["error"]:
             status["lono"]["errors"].append(shops["lono"]["error"])
         if shops["zenox"]["error"]:
             status["zenox"]["errors"].append(shops["zenox"]["error"])
+        if shops["shipmytoy"]["error"]:
+            status["shipmytoy"]["errors"].append(shops["shipmytoy"]["error"])
 
     if facebook_on:
         status["facebook_hk"] = hk_shops.probe_facebook(min_interval=min_interval)
@@ -96,6 +105,7 @@ def collect_hk(
             queries = []
             for query in (
                 primary_query(item),
+                str(item.get("search_hk") or ""),
                 *extra_queries(item),
                 english_query(item),
                 broad_query(item),
@@ -113,12 +123,9 @@ def collect_hk(
         if shops_on:
             parts["lono"] = hk_shops.match_shop("lono", item, min_interval=min_interval)
             parts["zenox"] = hk_shops.match_shop("zenox", item, min_interval=min_interval)
-        wtb = carousell_hk.search_hkcardlink_wtb(item, min_interval=min_interval)
+            parts["shipmytoy"] = hk_shops.match_shop("shipmytoy", item, min_interval=min_interval)
 
-        asks: list[float] = []
         listings: list[dict] = []
-        bid_listings: list[dict] = []
-        backends: list[str] = []
         for name, part in parts.items():
             bucket = status[name]
             sell_rows = [
@@ -127,27 +134,46 @@ def collect_hk(
             if part.get("ok") and sell_rows:
                 bucket["ok_items"] += 1
                 bucket["listings"] += len(sell_rows)
-                asks.extend(float(row["price_hkd"]) for row in sell_rows if row.get("price_hkd"))
-                listings.extend(sell_rows)
-                backends.append(name)
+                for row in sell_rows:
+                    copied = dict(row)
+                    if not copied.get("source"):
+                        copied["source"] = name
+                    listings.append(copied)
             elif part.get("error") and len(bucket["errors"]) < 12:
                 bucket["errors"].append(f"{item.get('id')}: {part.get('error')}")
-        for row in wtb.get("listings") or []:
-            if is_wtb(row):
-                bid_listings.append(row)
-        median_hkd = robust_median(asks)
-        low_hkd = lowest_ask(asks)
+        wtb = carousell_hk.search_hkcardlink_wtb(item, min_interval=min_interval)
+        bid_listings = [row for row in (wtb.get("listings") or []) if is_wtb(row)]
         bid_hkd, _bid_row = best_bid(bid_listings)
+        jp_hkd = (jp_hkd_by_id or {}).get(str(item.get("id") or ""))
+        decision = publish_ask(listings, jp_hkd)
+        published = decision.get("hkd")
+        used = decision.get("listings") or []
+        lows: list[float] = []
+        for row in used:
+            try:
+                price = float(row.get("price_hkd"))
+            except (TypeError, ValueError):
+                continue
+            if price > 0:
+                lows.append(price)
+        backends: list[str] = []
+        for row in used:
+            source = str(row.get("source") or "")
+            if source and source not in backends:
+                backends.append(source)
         hk_by_id[item["id"]] = {
-            "ok": median_hkd is not None,
-            "median_hkd": median_hkd,
-            "lowest_hkd": low_hkd,
+            "ok": published is not None,
+            "median_hkd": published,
+            "published_hkd": published,
+            "lowest_hkd": round(min(lows), 2) if lows else None,
             "bid_hkd": bid_hkd,
-            "listings": listings[:20],
+            "match_count": decision.get("match_count") or 0,
+            "example_url": decision.get("example_url"),
+            "listings": used[:20],
             "bid_listings": bid_listings[:8],
             "backends": backends,
             "backend": "+".join(backends) if backends else None,
-            "error": None if median_hkd is not None else "no title-matched HK ask",
+            "error": None if published is not None else "no confident HK sell ask",
         }
 
     if hkcardlink_size is not None:

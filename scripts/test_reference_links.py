@@ -102,7 +102,7 @@ def test_match_listings_keeps_url_and_wtb_type() -> None:
     hits = match_listings(
         [
             {
-                "card_name": "PSA10 噴火龍ex SAR",
+                "card_name": "PSA10 噴火龍ex SAR Pokemon 151 201/165",
                 "price": 5100,
                 "source": "hkcardlink",
                 "listing_type": "wtb",
@@ -110,9 +110,11 @@ def test_match_listings_keeps_url_and_wtb_type() -> None:
                 "id": "1",
             }
         ],
-        keyword="噴火龍 SAR PSA10",
+        keyword="噴火龍 SAR PSA10 sv2a",
         kind="psa10",
         name_zh="噴火龍ex SAR PSA10",
+        card_number="201",
+        card_denom="165",
     )
     assert len(hits) == 1
     assert hits[0]["listing_type"] == "wtb"

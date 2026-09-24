@@ -509,7 +509,7 @@
         <h2>流動性</h2>
         <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
       </div>
-      <p class="legend">最近成交價＝日本 Yahoo 已結束拍賣（換算 HKD）。香港最新賣出價＝目前對到的香港賣盤叫價（穩健中位數；只有一筆時即該賣價）。最低賣出價＝呢批賣盤入面最低；未保存逐筆賣價就顯示 —。買入價／徵求只顯示 HKCardLink 公開徵收預算；Carousell、LONO、Zenox 冇結構化徵求，對唔到就顯示暫無，唔會估算。</p>
+      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和 SNKRDUNK 叫價接近才保留；換算 HKD）。香港最新賣出價＝對到的香港賣盤中位數；偏離 SNKRDUNK 日圓市價太遠，或只有一筆又對不上卡號，就留空。最低賣出價＝呢批賣盤入面最低。買入價／徵求只顯示 HKCardLink 公開徵收預算；對唔到就顯示暫無，唔會估算。詳情有 SNKRDUNK 連結。</p>
       <div class="liq-search">
         <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
         <span id="liqSearchCount" class="hint"></span>
@@ -816,7 +816,7 @@
               </div>
             </div>
           </td>
-          <td class="num" title="日本 Yahoo 已結束拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
+          <td class="num" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
           <td class="num" title="目前對到的香港賣盤叫價（穩健中位數）">${fmtAsk(it)}</td>
           <td class="num" title="對到的香港賣盤入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
           <td class="num" title="只顯示 HKCardLink 公開徵收預算；否則暫無">${fmtBid(it)}</td>

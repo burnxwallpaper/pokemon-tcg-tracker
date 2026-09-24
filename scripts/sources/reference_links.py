@@ -94,6 +94,8 @@ def _listing_label(listing: dict) -> str:
         return "LONO"
     if source == "zenox":
         return "Zenox"
+    if source == "shipmytoy":
+        return "ShipMyToy"
     if source == "yahoo_auctions_jp":
         return "Yahoo 拍賣"
     return "來源刊登"

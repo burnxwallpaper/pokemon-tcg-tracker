@@ -285,7 +285,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
         "status": "disabled" if not snkr_on else "pending",
         "ok_items": 0,
         "errors": [],
-        "note": "Primary JP reference: public catalog match, last sale, PSA10 lowest ask",
+        "note": "Primary JP reference: catalog match, last sale, PSA10 lowest ask. HK band uses the PSA10 ask median.",
     }
     if snkr_on:
         print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
@@ -308,7 +308,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
     if hk_on or shops_on or facebook_on:
         print(
             f"[fetch] HK asks × {len(watchlist)} "
-            "(Carousell titles, HKCardLink, LONO, Zenox)"
+            "(Carousell titles, HKCardLink, LONO, ShipMyToy, Zenox)"
         )
         hk_by_id, hk_status = hk_asks.collect_hk(
             watchlist,
@@ -316,6 +316,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             carousell_on=hk_on,
             shops_on=shops_on,
             facebook_on=facebook_on,
+            jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id),
         )
         source_status.update(hk_status)
         for name, bucket in hk_status.items():
@@ -359,7 +360,12 @@ def merge_and_compute(
                 "backends": [],
             }
         snkr = jp.get("snkrdunk") if isinstance(jp.get("snkrdunk"), dict) else {}
-        price_jpy, price_source = snkrdunk.choose_jp_price(jp.get("median_jpy"), snkr)
+        if jp.get("status") == "preserved":
+            raw_price = jp.get("price_jpy")
+            price_jpy = int(raw_price) if isinstance(raw_price, (int, float)) and raw_price > 0 else None
+            price_source = str(jp.get("price_source") or "preserved")
+        else:
+            price_jpy, price_source = snkrdunk.choose_jp_price(jp.get("median_jpy"), snkr)
         price = hkd(price_jpy, fx)
         hk_ask = hk.get("median_hkd")
         if hk_ask is not None:
@@ -521,6 +527,8 @@ def merge_and_compute(
             row["snkrdunk_url"] = snkr["url"]
         if isinstance(snkr.get("ask_jpy"), int):
             row["snkrdunk_ask_jpy"] = snkr["ask_jpy"]
+        if isinstance(snkr.get("market_jpy"), int):
+            row["snkrdunk_jpy"] = snkr["market_jpy"]
         if isinstance(snkr.get("last_sale_jpy"), int):
             row["snkrdunk_last_sale_jpy"] = snkr["last_sale_jpy"]
         if snkr_image.startswith("https://") and not wl.get("image_official_url"):
@@ -707,13 +715,53 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
         out[str(it["id"])] = {
             "ok": it.get("price_jpy") is not None,
             "median_jpy": it.get("price_jpy"),
+            "price_jpy": it.get("price_jpy"),
+            "price_source": it.get("price_source"),
             "volume_24h": it.get("volume_today") or 0,
             "volume_7d_est": it.get("volume_7d_avg") or 0,
             "total_available": 0,
             "liquidity_score": it.get("liquidity_score"),
             "comps": [],
+            "query": it.get("jp_query"),
+            "jp_debug": it.get("jp_debug"),
             "status": "preserved",
+            "snkrdunk": {
+                "ok": bool(it.get("snkrdunk_url")),
+                "url": it.get("snkrdunk_url"),
+                "name": it.get("snkrdunk_name"),
+                "ask_jpy": it.get("snkrdunk_ask_jpy"),
+                "market_jpy": it.get("snkrdunk_jpy"),
+                "last_sale_jpy": it.get("snkrdunk_last_sale_jpy"),
+                "image_url": it.get("snkrdunk_image_url"),
+            },
         }
+    return out
+
+
+def _band_yen(jp: dict) -> int | None:
+    """SNKRDUNK PSA10 median (or BOX ask), then the lowest PSA10 ask, then the JP price."""
+    snkr = jp.get("snkrdunk") if isinstance(jp.get("snkrdunk"), dict) else {}
+    for key in ("market_jpy", "ask_jpy"):
+        value = snkr.get(key)
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            continue
+        if value > 0:
+            return int(value)
+    median = jp.get("median_jpy")
+    if isinstance(median, bool) or not isinstance(median, (int, float)):
+        return None
+    if median <= 0:
+        return None
+    return int(median)
+
+
+def _band_hkd_map(cfg: dict, jp_by_id: dict[str, dict]) -> dict[str, float]:
+    fx = float(cfg["fx_jpy_to_hkd"])
+    out: dict[str, float] = {}
+    for iid, jp in jp_by_id.items():
+        converted = hkd(_band_yen(jp), fx)
+        if converted:
+            out[str(iid)] = float(converted)
     return out
 
 
@@ -791,12 +839,48 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
         interval = float(cfg.get("request_min_interval_sec") or 1.6)
         watchlist = cfg.get("watchlist") or []
         print(f"[fetch] HK-only refresh × {len(watchlist)} (JP reference preserved)")
+        jp_by_id = _jp_preserved_from_latest()
+        snkr_on = bool(sources_cfg.get("snkrdunk", {}).get("enabled"))
+        snkr_status: dict[str, Any] = {
+            "enabled": snkr_on,
+            "status": "disabled" if not snkr_on else "pending",
+            "ok_items": 0,
+            "errors": [],
+            "note": "HK band refreshed from the matched SNKRDUNK PSA10 median or BOX ask",
+        }
+        if snkr_on:
+            print(f"[fetch] SNKRDUNK market band × {len(watchlist)} (interval≥{interval}s)")
+            for item in watchlist:
+                slot = jp_by_id.setdefault(item["id"], {"status": "preserved", "snkrdunk": {}})
+                snkr = slot.get("snkrdunk") if isinstance(slot.get("snkrdunk"), dict) else {}
+                if item.get("identity_review"):
+                    continue
+                apparel_id = snkrdunk.apparel_id_from_url(str(snkr.get("url") or ""))
+                if not apparel_id:
+                    continue
+                try:
+                    market = snkrdunk.market_jpy_for_id(
+                        apparel_id,
+                        kind=str(item.get("kind") or ""),
+                        min_interval=interval,
+                    )
+                except Exception as exc:  # noqa: BLE001
+                    snkr_status["errors"].append(f"{item['id']}: {type(exc).__name__}")
+                    continue
+                refreshed = dict(snkr)
+                if market is not None:
+                    refreshed["market_jpy"] = market
+                    refreshed["ok"] = True
+                    snkr_status["ok_items"] += 1
+                slot["snkrdunk"] = refreshed
+            snkr_status["status"] = "ok" if snkr_status["ok_items"] else "empty"
         hk_by_id, hk_status = hk_asks.collect_hk(
             watchlist,
             min_interval=interval,
             carousell_on=bool(sources_cfg.get("carousell_hk", {}).get("enabled")),
             shops_on=bool(sources_cfg.get("hk_card_shops", {}).get("enabled")),
             facebook_on=bool(sources_cfg.get("facebook_hk", {}).get("enabled")),
+            jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id),
         )
         for name, bucket in hk_status.items():
             print(
@@ -804,8 +888,10 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
                 f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
                 flush=True,
             )
-        jp_by_id = _jp_preserved_from_latest()
-        source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
+        source_status = {
+            "yahoo_auctions_jp": _yahoo_preserved_status(),
+            "snkrdunk": snkr_status,
+        }
         source_status.update(hk_status)
     elif jp_only:
         jp_by_id, _hk_unused, source_status = fetch_all(

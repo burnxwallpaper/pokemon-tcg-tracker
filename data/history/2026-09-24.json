@@ -2,7 +2,7 @@
   "date": "2026-09-24",
   "note": "每日快照：meta + items（真實抓取）。保留約 history_days 天。",
   "meta": {
-    "updated_at": "2026-09-24T18:59:50+08:00",
+    "updated_at": "2026-09-24T20:27:07+08:00",
     "fx_jpy_to_hkd": 0.0495,
     "is_sample": false,
     "item_count": 51,
@@ -12,38 +12,73 @@
         "status": "ok",
         "ok_items": 48,
         "errors": [],
-        "note": "JP sold closedsearch via __NEXT_DATA__ (reference only)"
+        "note": "Preserved JP reference; this run refreshed HK asks only"
       },
       "snkrdunk": {
         "enabled": true,
         "status": "ok",
         "ok_items": 42,
-        "errors": [
-          "sealed-battle-partners: no catalog match",
-          "psa10-umbreon-ex-sar: no catalog match",
-          "sealed-stellar-miracle: no catalog match",
-          "sealed-rulers-black-flame: no catalog match",
-          "sealed-black-bolt: no catalog match",
-          "sealed-white-flare: no catalog match",
-          "psa10-van-gogh-pikachu: no catalog match"
-        ],
-        "note": "Primary JP reference: public catalog match, last sale, PSA10 lowest ask"
+        "errors": [],
+        "note": "HK band refreshed from the matched SNKRDUNK PSA10 median or BOX ask"
       },
       "carousell_hk": {
         "enabled": true,
         "status": "ok",
-        "ok_items": 49,
-        "backend_counts": {
-          "carousell_hk": 49
-        },
+        "ok_items": 43,
+        "listings": 318,
         "errors": [
-          "sealed-munikis-zero: no prices parsed from Carousell HTML"
+          "psa10-n-sar: no listingCards parsed"
         ],
-        "note": "Preserved HK asks; this run refreshed JP sold only",
-        "carousell_probe": {
+        "note": "Title-matched listingCards from Carousell HK search",
+        "probe": {
           "status": "ok",
-          "error": null
+          "error": null,
+          "listing_count": 47
         }
+      },
+      "hkcardlink": {
+        "enabled": true,
+        "status": "empty",
+        "ok_items": 0,
+        "listings": 0,
+        "errors": [],
+        "note": "Public Supabase listings matched by title",
+        "catalog_size": 99
+      },
+      "lono": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 2,
+        "listings": 2,
+        "errors": [],
+        "note": "lono.com.hk PSA + Pokémon category prices",
+        "catalog_size": 306
+      },
+      "zenox": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 24,
+        "listings": 31,
+        "errors": [],
+        "note": "zenoxstore.com JP booster boxes and in-stock PSA10 slabs",
+        "catalog_size": 204
+      },
+      "shipmytoy": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 1,
+        "listings": 1,
+        "errors": [],
+        "note": "shipmytoy.com.hk Pokémon category; box price, not the pack price",
+        "catalog_size": 19
+      },
+      "facebook_hk": {
+        "enabled": true,
+        "status": "unreachable",
+        "ok_items": 0,
+        "listings": 0,
+        "http_status": 400,
+        "note": "Facebook Marketplace/login HTML is not reachable from this worker (no logged-in browser; login walls are not bypassed)."
       }
     }
   },
@@ -56,7 +91,7 @@
       "price_jpy": null,
       "volume_today": 0,
       "liquidity_score": 10,
-      "hk_ask_hkd": 300.0,
+      "hk_ask_hkd": null,
       "hk_ask_low_hkd": null,
       "hk_bid_hkd": null
     },
@@ -68,8 +103,8 @@
       "price_jpy": 14000,
       "volume_today": 3,
       "liquidity_score": 21,
-      "hk_ask_hkd": 1240.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 930.0,
+      "hk_ask_low_hkd": 542.4,
       "hk_bid_hkd": null
     },
     {
@@ -80,8 +115,8 @@
       "price_jpy": 8250,
       "volume_today": 1,
       "liquidity_score": 37,
-      "hk_ask_hkd": 428.85,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 550.0,
+      "hk_ask_low_hkd": 425.0,
       "hk_bid_hkd": null
     },
     {
@@ -92,8 +127,8 @@
       "price_jpy": 11000,
       "volume_today": 23,
       "liquidity_score": 95,
-      "hk_ask_hkd": 559.5,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 980.0,
+      "hk_ask_low_hkd": 600.0,
       "hk_bid_hkd": null
     },
     {
@@ -104,8 +139,8 @@
       "price_jpy": 12300,
       "volume_today": 4,
       "liquidity_score": 44,
-      "hk_ask_hkd": 635.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 820.0,
+      "hk_ask_low_hkd": 470.0,
       "hk_bid_hkd": null
     },
     {
@@ -116,8 +151,8 @@
       "price_jpy": 8500,
       "volume_today": 1,
       "liquidity_score": 33,
-      "hk_ask_hkd": 380.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 610.0,
+      "hk_ask_low_hkd": 430.0,
       "hk_bid_hkd": null
     },
     {
@@ -128,8 +163,8 @@
       "price_jpy": 17999,
       "volume_today": 1,
       "liquidity_score": 34,
-      "hk_ask_hkd": 459.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 975.0,
+      "hk_ask_low_hkd": 750.0,
       "hk_bid_hkd": null
     },
     {
@@ -152,8 +187,8 @@
       "price_jpy": 8000,
       "volume_today": 6,
       "liquidity_score": 61,
-      "hk_ask_hkd": 520.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 650.0,
+      "hk_ask_low_hkd": 400.0,
       "hk_bid_hkd": null
     },
     {
@@ -164,8 +199,8 @@
       "price_jpy": 7439,
       "volume_today": 7,
       "liquidity_score": 59,
-      "hk_ask_hkd": 1000.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 600.0,
+      "hk_ask_low_hkd": 580.0,
       "hk_bid_hkd": null
     },
     {
@@ -176,8 +211,8 @@
       "price_jpy": 16000,
       "volume_today": 2,
       "liquidity_score": 34,
-      "hk_ask_hkd": null,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 495.0,
+      "hk_ask_low_hkd": 400.0,
       "hk_bid_hkd": null
     },
     {
@@ -188,7 +223,7 @@
       "price_jpy": 17900,
       "volume_today": 1,
       "liquidity_score": 16,
-      "hk_ask_hkd": 3075.0,
+      "hk_ask_hkd": null,
       "hk_ask_low_hkd": null,
       "hk_bid_hkd": null
     },
@@ -200,8 +235,8 @@
       "price_jpy": 63000,
       "volume_today": 2,
       "liquidity_score": 28,
-      "hk_ask_hkd": 1649.5,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 5200.0,
+      "hk_ask_low_hkd": 2900.0,
       "hk_bid_hkd": null
     },
     {
@@ -212,8 +247,8 @@
       "price_jpy": 77777,
       "volume_today": 1,
       "liquidity_score": 15,
-      "hk_ask_hkd": 740.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 3000.0,
+      "hk_ask_low_hkd": 3000.0,
       "hk_bid_hkd": null
     },
     {
@@ -224,8 +259,8 @@
       "price_jpy": 48350,
       "volume_today": 0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 880.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 3925.0,
+      "hk_ask_low_hkd": 2000.0,
       "hk_bid_hkd": null
     },
     {
@@ -236,8 +271,8 @@
       "price_jpy": 74300,
       "volume_today": 2,
       "liquidity_score": 27,
-      "hk_ask_hkd": 1715.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 5000.0,
+      "hk_ask_low_hkd": 4000.0,
       "hk_bid_hkd": null
     },
     {
@@ -248,8 +283,8 @@
       "price_jpy": 16888,
       "volume_today": 0,
       "liquidity_score": 17,
-      "hk_ask_hkd": 1080.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1110.0,
+      "hk_ask_low_hkd": 600.0,
       "hk_bid_hkd": null
     },
     {
@@ -260,8 +295,8 @@
       "price_jpy": 45600,
       "volume_today": 1,
       "liquidity_score": 27,
-      "hk_ask_hkd": 865.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 2600.0,
+      "hk_ask_low_hkd": 1700.0,
       "hk_bid_hkd": null
     },
     {
@@ -272,8 +307,8 @@
       "price_jpy": 14999,
       "volume_today": 0,
       "liquidity_score": 16,
-      "hk_ask_hkd": 470.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 840.0,
+      "hk_ask_low_hkd": 420.0,
       "hk_bid_hkd": null
     },
     {
@@ -284,8 +319,8 @@
       "price_jpy": 9500,
       "volume_today": 3,
       "liquidity_score": 24,
-      "hk_ask_hkd": 330.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 590.0,
+      "hk_ask_low_hkd": 480.0,
       "hk_bid_hkd": null
     },
     {
@@ -296,8 +331,8 @@
       "price_jpy": 116000,
       "volume_today": 3,
       "liquidity_score": 17,
-      "hk_ask_hkd": 2944.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 7000.0,
+      "hk_ask_low_hkd": 7000.0,
       "hk_bid_hkd": null
     },
     {
@@ -308,8 +343,8 @@
       "price_jpy": 71000,
       "volume_today": 1,
       "liquidity_score": 18,
-      "hk_ask_hkd": 1000.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 4300.0,
+      "hk_ask_low_hkd": 3250.0,
       "hk_bid_hkd": null
     },
     {
@@ -320,7 +355,7 @@
       "price_jpy": 11111,
       "volume_today": 1,
       "liquidity_score": 6,
-      "hk_ask_hkd": 1840.0,
+      "hk_ask_hkd": null,
       "hk_ask_low_hkd": null,
       "hk_bid_hkd": null
     },
@@ -332,8 +367,8 @@
       "price_jpy": 19800,
       "volume_today": 1,
       "liquidity_score": 16,
-      "hk_ask_hkd": 999.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1219.0,
+      "hk_ask_low_hkd": 1150.0,
       "hk_bid_hkd": null
     },
     {
@@ -344,8 +379,8 @@
       "price_jpy": 10600,
       "volume_today": 1,
       "liquidity_score": 14,
-      "hk_ask_hkd": 230.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 500.0,
+      "hk_ask_low_hkd": 230.0,
       "hk_bid_hkd": null
     },
     {
@@ -356,8 +391,8 @@
       "price_jpy": 22250,
       "volume_today": 0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 1325.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1300.0,
+      "hk_ask_low_hkd": 477.7,
       "hk_bid_hkd": null
     },
     {
@@ -368,8 +403,8 @@
       "price_jpy": 17100,
       "volume_today": 0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 599.5,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 800.0,
+      "hk_ask_low_hkd": 300.0,
       "hk_bid_hkd": null
     },
     {
@@ -380,8 +415,8 @@
       "price_jpy": 15800,
       "volume_today": 7,
       "liquidity_score": 35,
-      "hk_ask_hkd": 475.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1520.0,
+      "hk_ask_low_hkd": 900.0,
       "hk_bid_hkd": null
     },
     {
@@ -392,8 +427,8 @@
       "price_jpy": 10500,
       "volume_today": 0,
       "liquidity_score": 10,
-      "hk_ask_hkd": 960.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 825.0,
+      "hk_ask_low_hkd": 825.0,
       "hk_bid_hkd": null
     },
     {
@@ -416,8 +451,8 @@
       "price_jpy": 127500,
       "volume_today": 3,
       "liquidity_score": 21,
-      "hk_ask_hkd": 6950.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 7000.0,
+      "hk_ask_low_hkd": 5000.0,
       "hk_bid_hkd": null
     },
     {
@@ -428,8 +463,8 @@
       "price_jpy": 21500,
       "volume_today": 0,
       "liquidity_score": 10,
-      "hk_ask_hkd": 865.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1100.0,
+      "hk_ask_low_hkd": 710.0,
       "hk_bid_hkd": null
     },
     {
@@ -440,8 +475,8 @@
       "price_jpy": 14550,
       "volume_today": 3,
       "liquidity_score": 19,
-      "hk_ask_hkd": 2050.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1110.0,
+      "hk_ask_low_hkd": 1030.0,
       "hk_bid_hkd": null
     },
     {
@@ -452,8 +487,8 @@
       "price_jpy": 21300,
       "volume_today": 0,
       "liquidity_score": 10,
-      "hk_ask_hkd": 675.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1120.0,
+      "hk_ask_low_hkd": 985.0,
       "hk_bid_hkd": null
     },
     {
@@ -464,8 +499,8 @@
       "price_jpy": 9700,
       "volume_today": 1,
       "liquidity_score": 12,
-      "hk_ask_hkd": 518.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 520.0,
+      "hk_ask_low_hkd": 380.0,
       "hk_bid_hkd": null
     },
     {
@@ -476,7 +511,7 @@
       "price_jpy": 63000,
       "volume_today": 3,
       "liquidity_score": 18,
-      "hk_ask_hkd": 1865.0,
+      "hk_ask_hkd": null,
       "hk_ask_low_hkd": null,
       "hk_bid_hkd": null
     },
@@ -489,7 +524,7 @@
       "volume_today": 2,
       "liquidity_score": 14,
       "hk_ask_hkd": 2300.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_low_hkd": 1800.0,
       "hk_bid_hkd": null
     },
     {
@@ -500,8 +535,8 @@
       "price_jpy": 14125,
       "volume_today": 0,
       "liquidity_score": 9,
-      "hk_ask_hkd": 575.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1065.0,
+      "hk_ask_low_hkd": 1000.0,
       "hk_bid_hkd": null
     },
     {
@@ -512,8 +547,8 @@
       "price_jpy": 16999,
       "volume_today": 2,
       "liquidity_score": 15,
-      "hk_ask_hkd": 716.8,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1235.0,
+      "hk_ask_low_hkd": 1100.0,
       "hk_bid_hkd": null
     },
     {
@@ -524,8 +559,8 @@
       "price_jpy": 72000,
       "volume_today": 2,
       "liquidity_score": 15,
-      "hk_ask_hkd": 7280.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 5500.0,
+      "hk_ask_low_hkd": 5500.0,
       "hk_bid_hkd": null
     },
     {
@@ -536,8 +571,8 @@
       "price_jpy": 42000,
       "volume_today": 0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 1479.6,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 2500.0,
+      "hk_ask_low_hkd": 2200.0,
       "hk_bid_hkd": null
     },
     {
@@ -548,8 +583,8 @@
       "price_jpy": 23750,
       "volume_today": 0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 1168.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1600.0,
+      "hk_ask_low_hkd": 950.0,
       "hk_bid_hkd": null
     },
     {
@@ -560,8 +595,8 @@
       "price_jpy": 78000,
       "volume_today": 4,
       "liquidity_score": 19,
-      "hk_ask_hkd": 830.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 5612.5,
+      "hk_ask_low_hkd": 4800.0,
       "hk_bid_hkd": null
     },
     {
@@ -572,8 +607,8 @@
       "price_jpy": 159500,
       "volume_today": 0,
       "liquidity_score": 4,
-      "hk_ask_hkd": 4224.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 9757.5,
+      "hk_ask_low_hkd": 8800.0,
       "hk_bid_hkd": null
     },
     {
@@ -584,8 +619,8 @@
       "price_jpy": 22750,
       "volume_today": 1,
       "liquidity_score": 10,
-      "hk_ask_hkd": 1374.5,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 1600.0,
+      "hk_ask_low_hkd": 1600.0,
       "hk_bid_hkd": null
     },
     {
@@ -596,8 +631,8 @@
       "price_jpy": 34800,
       "volume_today": 0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 750.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 2010.0,
+      "hk_ask_low_hkd": 1250.0,
       "hk_bid_hkd": null
     },
     {
@@ -608,8 +643,8 @@
       "price_jpy": 66250,
       "volume_today": 1,
       "liquidity_score": 8,
-      "hk_ask_hkd": 950.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 3490.0,
+      "hk_ask_low_hkd": 3200.0,
       "hk_bid_hkd": null
     },
     {
@@ -620,8 +655,8 @@
       "price_jpy": 82000,
       "volume_today": 0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 3900.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 7415.0,
+      "hk_ask_low_hkd": 7310.0,
       "hk_bid_hkd": null
     },
     {
@@ -632,8 +667,8 @@
       "price_jpy": 20350,
       "volume_today": 0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 720.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 940.0,
+      "hk_ask_low_hkd": 800.0,
       "hk_bid_hkd": null
     },
     {
@@ -644,8 +679,8 @@
       "price_jpy": 9038,
       "volume_today": 0,
       "liquidity_score": 4,
-      "hk_ask_hkd": 650.0,
-      "hk_ask_low_hkd": null,
+      "hk_ask_hkd": 600.0,
+      "hk_ask_low_hkd": 600.0,
       "hk_bid_hkd": null
     },
     {

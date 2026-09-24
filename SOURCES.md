@@ -6,7 +6,7 @@
 - Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅ **次要交叉檢查**
 - Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的叫價；Cloudflare 403 就停，不繞過
 - HKCardLink → 公開 Supabase listings，與 Carousell 合併
-- LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價；Zenox `zenoxstore.com` → Shopify 日版補充包 BOX
+- LONO `lono.com.hk`、ShipMyToy `shipmytoy.com.hk`、Zenox `zenoxstore.com`（日版 BOX 與有貨 PSA10）→ 香港賣出價。偏離 SNKRDUNK 日圓市價 10%–300% 的叫價留空
 - Facebook HK → 無登入探測失敗，**未接入**。見 §9
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
@@ -66,7 +66,9 @@
 - **提供什麼**：公開目錄頁的卡名、系列、編號、商品圖，以及市價。密封品 `sales-history` 有最近成交。單卡 PSA10 公開的是該評級最低叫價（last sale 陣列常是空的）。參考連結用英文商品頁 `https://snkrdunk.com/en/trading-cards/{id}`。
 - **身份**：搜尋結果的 `[系列 編號]` 必須和 watchlist 是同一張卡。對不上就不貼連結、不拿來改價。待核對的列不猜。
 - **價格**：有公開成交就用成交中位數當最近成交價，Yahoo 只作對照。只有 PSA10 最低叫價時，Yahoo 成交中位數要落在叫價的 1.75 倍以內才保留；差更遠就留空，不用那個 Yahoo 數字，也不把叫價標成成交。
-- **抓取**：免登入 GET，沿用全站 ≥1.6 秒間隔。搜尋頁 `https://snkrdunk.com/search`、商品頁 `https://snkrdunk.com/apparels/{id}`、`/v1/apparels/{id}/sales-history`。不登入、不繞過。
+- **香港市價帶**：同一商品的 used 列表裡，PSA10 叫價取中位數（少於兩筆才把已售 PSA10 補進）。未開封用 `minPrice`，沒有才用 `usedMinPrice`。換算 HKD 後，香港賣出價落在這條市價的 10%–300% 外就丢掉；寧可留空，也不顯示一個離譜數字。標題帶 `EN` 的英文再版不算同一張卡。151 BOX 不會採用單包、ETB 或其他卡的叫價。
+- **連結**：詳情頁參考連結第一條是 `https://snkrdunk.com/en/trading-cards/{id}`。
+- **抓取**：免登入 GET，沿用全站 ≥1.6 秒間隔。搜尋頁 `https://snkrdunk.com/search`、商品頁 `https://snkrdunk.com/apparels/{id}`、`/v1/apparels/{id}/sales-history`，PSA10 中位數另讀 `/v1/apparels/{id}/used`。不登入、不繞過。
 - **ToS**：服務條款可限制自動化；只讀公開頁、低頻、可在 `config.json` 關掉 `sources.snkrdunk`。
 
 ### 5. Cardrush（cardrush.jp / cardrush.media）— **P1**
@@ -97,14 +99,15 @@
 
 ### 8. 香港本地叫價（已接入）
 
-只收**標題對得上** watchlist 的公開標價，再取中位數寫入 `hk_ask_hkd`。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
+只收**標題對得上** watchlist 的公開**賣出價**（求購／WTB 另計買入價，不混進賣出價）。多筆相符取中位數寫入 `hk_ask_hkd`。只有一筆時，標題要自帶 set code 或卡號，而且價錢要落在 SNKRDUNK 市價的 10%–300% 內，否則留空。拒絕英文再版、151 盒對上單包／ETB／卡、以及 PSA10 對上其他評級。`meta.source_status` 分開計數。
 
 | 來源 | 怎麼拿 | 用什麼 |
 |---|---|---|
 | **Carousell HK** | `https://www.carousell.com.hk/search/{關鍵字}/` 頁內 `listingCards`（`title` + `price`） | PSA10 與未開封 BOX。住宅網路可 200；遇 Cloudflare 403 就停，不繞過 |
 | **HKCardLink** | 前端 anon key → Supabase `listings` | 近期 PSA10／BOX 目錄，客戶端對標題 |
 | **LONO** | `https://www.lono.com.hk/categories/psa-ptcg` 與 `/categories/pokemon-tcg` 公開分類頁（Shopline HTML，`HK$` 標價） | 店內 PSA10 與盒子。略過繁中盒，避免拿來標日版 |
-| **Zenox** | `https://www.zenoxstore.com/collections/booster-packs-collection-box-jp/products.json` | 日版 Booster Box。略過 Case（整箱）與 DX 小盒 |
+| **Zenox** | `.../booster-packs-collection-box-jp/products.json` 與 `.../pokemon-psa/products.json` | 日版 Booster Box，以及有貨的 PSA10 變體。略過 Case、DX、PSA9、售罄 |
+| **ShipMyToy** | `https://www.shipmytoy.com.hk/categories/pokemon-tcg` | 日版 BOX。同一商品若同時有單包與整盒價，丢掉低於盒價四成的那個 |
 | **Facebook** | 公開 Marketplace URL 探一次 | 此 worker 回 HTTP 400，沒有可用列表。不用登入瀏覽器，也不繞登入牆 |
 
 試過但未當價格源：`cardland.com.hk` products.json 403；`hkpokemon.com` 不是可用目錄；Price.com.hk 搜尋結果不是穩定的卡牌標價。
@@ -132,7 +135,7 @@
 3. 只為那個**具體公開 URL** 寫 parser（例如某店免登入的 Shopify `products.json` 或 Shopline 分類頁）。不要做 Marketplace 關鍵字搜尋，也不要抓社團。
 4. 官方另一條路：Meta App 通過 Page Public Content Access，且只讀已授權專頁。那不是 Marketplace 成交／叫價；此 repo 沒有這組憑證，每日 job 不要等它。
 
-在上述條件出現之前，香港叫價維持 Carousell／HKCardLink／LONO／Zenox。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
+在上述條件出現之前，香港叫價維持 Carousell／HKCardLink／LONO／ShipMyToy／Zenox。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
 
 ### 其他提及（非優先）
 
@@ -147,8 +150,8 @@
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
 2. **JP**：先對 SNKRDUNK 目錄（身份＋成交或 PSA10 叫價）。ヤフオク ended median 只在和 SNKRDUNK 同一張卡、價差不離譜時留下；否則留空。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
-4. **HK**：Carousell／HKCardLink／LONO／Zenox 標題命中的叫價 → 價差。Yahoo 只作日本參考。
-5. **校準**：SNKRDUNK 是主參考。Cardrush 仍只作店價錨點，不覆蓋成交。
+4. **HK**：Carousell／HKCardLink／LONO／ShipMyToy／Zenox 標題命中、並通過拒絕規則的賣出價 → `hk_ask_hkd`（多筆用中位數）。對不上或超出 SNKRDUNK 市價帶就留空。不把求購算成賣出價。
+5. **校準**：SNKRDUNK 是日本主參考，也是香港賣出價的市價帶。Cardrush 仍只作店價錨點，不覆蓋成交。
 
 ---
 

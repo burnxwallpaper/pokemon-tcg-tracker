@@ -39,7 +39,7 @@
     },
     "snkrdunk": {
       "enabled": true,
-      "note": "Primary JP reference. Public https://snkrdunk.com/en/ catalog, last sale, PSA10 lowest ask."
+      "note": "Primary JP reference. Public https://snkrdunk.com/en/ catalog, last sale, PSA10 lowest ask. HK asks outside 10–300% of the SNKRDUNK PSA10 median (or BOX ask) are dropped."
     },
     "cardrush": {
       "enabled": false,
@@ -59,7 +59,7 @@
     },
     "hk_card_shops": {
       "enabled": true,
-      "note": "LONO category pages (lono.com.hk) and Zenox Shopify JP booster boxes (zenoxstore.com)."
+      "note": "LONO (lono.com.hk), ShipMyToy box prices (shipmytoy.com.hk), Zenox JP boxes and in-stock PSA10 slabs (zenoxstore.com). Sell asks only."
     },
     "facebook_hk": {
       "enabled": true,
