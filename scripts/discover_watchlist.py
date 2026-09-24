@@ -13,8 +13,10 @@ Rank key (v1):
 
 Membership: take up to psa10_slots PSA10 and sealed_slots sealed, then fill
 toward top_n from the other kind if one side is short. Raw singles are never
-eligible. Series files, images, and per-id catalog JSON for ids that drop out
-are left on disk (merge-by-date; this script does not delete history).
+eligible. Ids listed in config.pinned are appended after that cut, so a
+notable card stays on the watchlist even when it is outside the top 50.
+Series files, images, and per-id catalog JSON for ids that drop out are left
+on disk (merge-by-date; this script does not delete history).
 
 Writes config.json watchlist + data/catalog/liquidity_rank.json.
 """
@@ -206,11 +208,65 @@ def probe_candidates(
     return rows, None
 
 
+def pinned_ids(cfg: dict) -> list[str]:
+    """Config pins, in order. Strings or ``{"id": ...}`` objects."""
+    raw = cfg.get("pinned") or []
+    if not isinstance(raw, list):
+        return []
+    ids: list[str] = []
+    for row in raw:
+        if isinstance(row, str) and row:
+            ids.append(row)
+        elif isinstance(row, dict) and row.get("id"):
+            ids.append(str(row["id"]))
+    return ids
+
+
+def append_pinned(chosen: list[dict], pool: dict[str, dict], pins: list[str]) -> list[dict]:
+    """Keep the ranked selection, then add pinned ids that missed the cut."""
+    have = {c.get("id") for c in chosen}
+    out = list(chosen)
+    for pid in pins:
+        if not pid or pid in have:
+            continue
+        cand = pool.get(pid)
+        if not isinstance(cand, dict):
+            continue
+        if cand.get("kind") not in ALLOWED_KINDS:
+            continue
+        out.append(dict(cand))
+        have.add(pid)
+    return out
+
+
+def include_pinned_rows(ranked: list[dict], pins: list[str], top_n: int) -> list[dict]:
+    """Liquidity table: top_n by score, plus pinned rows that fell outside it."""
+    cap = max(0, int(top_n))
+    head = list(ranked[:cap])
+    have = {row.get("id") for row in head}
+    out = head
+    by_id: dict[str, dict] = {}
+    for row in ranked:
+        iid = row.get("id")
+        if iid and iid not in by_id:
+            by_id[str(iid)] = row
+    for pid in pins:
+        if not pid or pid in have:
+            continue
+        row = by_id.get(pid)
+        if row is None:
+            continue
+        out.append(row)
+        have.add(pid)
+    return out
+
+
 def watchlist_entry(cand: dict) -> dict:
     keys = (
         "id",
         "name_zh",
         "name_jp",
+        "name_en",
         "kind",
         "set",
         "search_jp",
@@ -267,6 +323,7 @@ def write_rank_file(
             "window_count is the number of those comps on the first page (n=20) whose "
             "endTime falls inside window_days; it caps at 20 and only breaks ties. "
             "Membership takes psa10_slots + sealed_slots, then fills toward top_n if one kind is short. "
+            "config.pinned ids are kept even when they rank outside top_n. "
             "Ids that leave the active watchlist keep series, images, and per-id catalog files."
         ),
         "window_days": settings["window_days"],
@@ -283,6 +340,31 @@ def write_rank_file(
     RANK_PATH.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def persist_missing_pins(cfg: dict) -> dict:
+    """Append config.pinned cards that are not already on the watchlist."""
+    pins = pinned_ids(cfg)
+    if not pins:
+        return cfg
+    current = [w for w in (cfg.get("watchlist") or []) if isinstance(w, dict) and w.get("id")]
+    have = {w["id"] for w in current}
+    if all(pid in have for pid in pins):
+        return cfg
+    pool = {c["id"]: c for c in merge_candidates(cfg, load_seeds())}
+    for row in cfg.get("pinned") or []:
+        if isinstance(row, dict) and row.get("id"):
+            base = dict(pool.get(row["id"]) or {})
+            for key, val in row.items():
+                if val is not None and val != "":
+                    base[key] = val
+            pool[str(row["id"])] = base
+    merged = append_pinned(current, pool, pins)
+    if [w.get("id") for w in merged] == [w.get("id") for w in current]:
+        return cfg
+    write_config_watchlist(cfg, merged)
+    print(f"[discover] pinned watchlist={len(merged)}", flush=True)
+    return load_config()
+
+
 def refresh_watchlist(cfg: dict | None = None, *, force: bool = False) -> dict:
     """Probe seeds and rewrite config watchlist when a full ranking succeeds."""
     _stdout_utf8()
@@ -290,10 +372,10 @@ def refresh_watchlist(cfg: dict | None = None, *, force: bool = False) -> dict:
     settings = discovery_settings(cfg)
     if not settings["enabled"] and not force:
         print("[discover] disabled in config", flush=True)
-        return cfg
+        return persist_missing_pins(cfg)
     if not force and _rank_is_fresh(settings):
         print("[discover] liquidity rank is fresh; keeping watchlist", flush=True)
-        return cfg
+        return persist_missing_pins(cfg)
 
     seeds = load_seeds()
     candidates = merge_candidates(cfg, seeds)
@@ -330,6 +412,8 @@ def refresh_watchlist(cfg: dict | None = None, *, force: bool = False) -> dict:
             cand["liquidity_total"] = row["total_available"]
             cand["liquidity_window"] = row["window_count"]
             chosen.append(cand)
+        chosen = append_pinned(chosen, by_id, pinned_ids(cfg))
+        selected_ids = [c["id"] for c in chosen]
         write_config_watchlist(cfg, chosen)
         n_psa = sum(1 for c in chosen if c.get("kind") == "psa10")
         n_sealed = sum(1 for c in chosen if c.get("kind") == "sealed")
@@ -343,6 +427,7 @@ def refresh_watchlist(cfg: dict | None = None, *, force: bool = False) -> dict:
             "config watchlist unchanged",
             flush=True,
         )
+        cfg = persist_missing_pins(cfg)
     write_rank_file(
         settings=settings,
         rows=rows,
