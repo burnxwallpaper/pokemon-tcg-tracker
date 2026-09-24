@@ -439,7 +439,7 @@
 <body>
   <header>
     <h1>寶可夢 TCG 行情追蹤</h1>
-    <p class="subtitle">個人投機用 · 卡（PSA10）同盒（未開封）分開睇 · 香港價為主 · 日本價參考 · HKD</p>
+    <p class="subtitle">個人投機用 · 卡（PSA10）同盒（未開封）分開睇 · 香港最新賣出價為主 · 日本價參考 · HKD</p>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
     </div>
@@ -478,7 +478,7 @@
     <section id="sec-spreads" class="section" aria-label="價差">
       <div class="section-head">
         <h2>價差</h2>
-        <span class="hint">香港價 vs 日本參考（正值 = 香港較貴）· 卡同盒分開列 · 點擊卡片看詳情</span>
+        <span class="hint">香港最新賣出價 vs 日本參考（正值 = 香港較貴）· 卡同盒分開列 · 點擊卡片看詳情</span>
       </div>
       <div id="spreadsGrid"></div>
     </section>
@@ -601,7 +601,7 @@
               </div>
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kind}</span>
             </div>
-            <div class="price">${fmtHkd(it.hk_ask_hkd != null ? it.hk_ask_hkd : it.price_hkd)}<span>香港價</span></div>
+            <div class="price">${fmtHkd(it.hk_ask_hkd)}<span>香港最新賣出價</span></div>
             <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}${it.spread_jp_hk_pct != null ? ` · 價差 ${fmtPct(it.spread_jp_hk_pct)}` : ""}</div>
             <div class="row">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
@@ -609,7 +609,7 @@
               <span>量能 vs 7日均 ${it.volume_ratio != null ? it.volume_ratio.toFixed(1) + "×" : "—"}</span>
             </div>
             <div class="row">
-              ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無香港價</span>` : ""}
+              ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無香港賣出價</span>` : ""}
               ${it.is_sample ? `<span class="badge" style="font-size:0.65rem">範例</span>` : ""}
             </div>
             ${reasons ? `<div class="reasons">${reasons}</div>` : ""}
@@ -673,7 +673,7 @@
               </div>
             </div>
           </td>
-          <td><strong>${fmtHkd(it.hk_ask_hkd != null ? it.hk_ask_hkd : it.price_hkd)}</strong></td>
+          <td><strong>${fmtHkd(it.hk_ask_hkd)}</strong></td>
           <td class="hide-sm">${fmtHkd(it.price_hkd)}</td>
           <td class="hide-sm">${it.volume_today ?? "—"} / ${it.volume_7d_avg ?? "—"}</td>
           <td><strong>${it.liquidity_score ?? "—"}</strong></td>
@@ -687,7 +687,7 @@
             <tr>
               <th>#</th>
               <th>品項</th>
-              <th>香港價</th>
+              <th>香港最新賣出價</th>
               <th class="hide-sm">日本參考</th>
               <th class="hide-sm">今日量 / 7日均</th>
               <th>流動性</th>
@@ -714,7 +714,7 @@
       el.innerHTML = groupsFor(list).map((group) => {
         const body = group.items.length
           ? `<div class="card-grid">${group.items.map((it) => cardHtml(it)).join("")}</div>`
-          : `<p class="cat-empty">這個分類暫無香港價可比對。</p>`;
+          : `<p class="cat-empty">這個分類暫無香港賣出價可比對。</p>`;
         return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
       }).join("");
       wireCardClicks(el);
@@ -794,7 +794,7 @@
       const priceDatasets = [];
       if (hasHk) {
         priceDatasets.push({
-          label: "香港價 (ask)",
+          label: "香港最新賣出價",
           data: hkAsk,
           borderColor: "#5b9fd4",
           backgroundColor: "rgba(91,159,212,0.12)",
@@ -926,7 +926,7 @@
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kindLabel(it.kind)}</span>
               ${sampleBadge}
             </div>
-            <div class="price" style="margin:0.2rem 0">${fmtHkd(it.hk_ask_hkd != null ? it.hk_ask_hkd : it.price_hkd)}<span>香港價</span></div>
+            <div class="price" style="margin:0.2rem 0">${fmtHkd(it.hk_ask_hkd)}<span>香港最新賣出價</span></div>
             <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}</div>
             <div class="row" style="margin-top:0.5rem">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
@@ -936,7 +936,7 @@
         </div>
         <div class="detail-stats">
           <div class="stat primary">
-            <div class="label">香港價 (ask)</div>
+            <div class="label">香港最新賣出價</div>
             <div class="value">${fmtHkd(it.hk_ask_hkd)}</div>
           </div>
           <div class="stat">

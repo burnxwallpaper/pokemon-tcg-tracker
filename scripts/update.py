@@ -9,7 +9,8 @@ Pipeline:
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
-HK PRIMARY → hk_ask_hkd; JP REFERENCE → price_jpy / price_hkd.
+HK PRIMARY → hk_ask_hkd is the lowest title-matched sell ask (香港最新賣出價).
+JP REFERENCE → price_jpy / price_hkd. Buy/seek posts are not asks.
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
 from __future__ import annotations
@@ -267,7 +268,7 @@ def merge_and_compute(
         hk = hk_by_id.get(iid) or {}
         price_jpy = jp.get("median_jpy")
         price = hkd(price_jpy, fx)
-        hk_ask = hk.get("median_hkd")
+        hk_ask = hk.get("lowest_hkd")
         if hk_ask is not None:
             hk_ask = round(float(hk_ask), 2)
 

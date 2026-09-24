@@ -15,7 +15,14 @@ _GROUPS: list[dict[str, Any]] = [
     {"id": "gengar", "terms": ["耿鬼", "gengar", "ゲンガー"]},
     {"id": "iono", "terms": ["奇樹", "iono", "ナンジャモ", "奇树"]},
     {"id": "greninja", "terms": ["甲賀忍蛙", "greninja", "ゲッコウガ"]},
-    {"id": "mewtwo", "terms": ["火箭隊超夢", "超夢", "mewtwo", "ミュウツー"]},
+    {
+        "id": "mewtwo",
+        "terms": ["火箭隊超夢", "超夢", "mewtwo", "ミュウツー"],
+        "specific": [[
+            "火箭隊超夢", "火箭隊的超夢", "team rocket mewtwo", "rocket mewtwo",
+            "teamrocketsmewtwo", "rocketsmewtwo", "ロケット団のミュウツー", "ロケット団ミュウツー",
+        ]],
+    },
     {"id": "mew", "terms": ["夢幻", "mew", "ミュウ"], "excludes": ["mewtwo", "ミュウツー", "超夢"]},
     {"id": "umbreon", "terms": ["月亮伊布", "umbreon", "ブラッキー"]},
     {"id": "leafeon", "terms": ["葉伊布", "leafeon", "リーフィア"]},
@@ -27,18 +34,38 @@ _GROUPS: list[dict[str, Any]] = [
     {"id": "gardevoir", "terms": ["沙奈朵", "gardevoir", "サーナイト"]},
     {"id": "lucario", "terms": ["路卡利歐", "lucario", "ルカリオ"]},
     {"id": "lugia", "terms": ["洛奇亞", "lugia", "ルギア"]},
-    {"id": "erika", "terms": ["莉佳的邀請", "莉佳", "erika", "エリカ"]},
+    {
+        "id": "erika",
+        "terms": ["莉佳的邀請", "莉佳", "erika", "エリカ"],
+        "specific": [["莉佳的邀請", "エリカの招待", "erika's invitation", "招待", "邀請"]],
+    },
     {"id": "miriam", "terms": ["米莫莎", "miriam", "ミモザ"]},
     {"id": "serena", "terms": ["莎莉娜", "serena", "セレナ"]},
-    {"id": "acerola", "terms": ["阿塞蘿拉", "acerola", "アセロラ"]},
-    {"id": "cynthia", "terms": ["竹蘭的霸氣", "竹蘭", "cynthia", "シロナ"]},
-    {"id": "lisia", "terms": ["露琪亞", "lisia", "ルチア"]},
+    {
+        "id": "acerola",
+        "terms": ["阿塞蘿拉", "acerola", "アセロラ"],
+        "specific": [["阿塞蘿拉的預感", "アセロラの予感", "預感", "予感", "premonition"]],
+    },
+    {
+        "id": "cynthia",
+        "terms": ["竹蘭的霸氣", "竹蘭", "cynthia", "シロナ"],
+        "specific": [["竹蘭的霸氣", "シロナの覇気", "霸氣", "覇気", "ambition"]],
+    },
+    {
+        "id": "lisia",
+        "terms": ["露琪亞", "lisia", "ルチア"],
+        "specific": [["露琪亞的吸引力", "ルチアのアピール", "吸引力", "アピール", "appeal"]],
+    },
     {"id": "carmine", "terms": ["丹瑜", "carmine", "ゼイユ"]},
-    {"id": "hooh", "terms": ["阿響的鳳王", "鳳王", "ホウオウ", "hooh", "ho-oh"]},
-    {"id": "nsar", "terms": ["nsar", "エヌ"]},
+    {
+        "id": "hooh",
+        "terms": ["阿響的鳳王", "鳳王", "ホウオウ", "hooh", "ho-oh"],
+        "specific": [["阿響的鳳王", "阿響", "ヒビキのホウオウ", "ヒビキ", "ethan"]],
+    },
+    {"id": "nsar", "terms": ["nsar"]},
     {"id": "abyss", "terms": ["深淵之眼", "abysseye", "アビスアイ", "abyss eye"]},
     {"id": "storm", "terms": ["風暴翡翠", "stormemeralda", "stormemerald", "ストームエメラルダ", "storm emeralda"]},
-    {"id": "dream", "terms": ["超級夢想", "megadream", "メガドリーム", "mega dream"]},
+    {"id": "dream", "terms": ["超級夢想", "megadream", "メガドリーム", "mega dream", "ドリームex", "dream ex"]},
     {"id": "ninja", "terms": ["忍者陀螺", "忍者飛旋", "ninjaspinner", "ニンジャスピナー", "ninja spinner"]},
     {"id": "inferno", "terms": ["烈焰x", "烈焰", "インフェルノ", "inferno"]},
     {"id": "brave", "terms": ["超級勇氣", "megabrave", "メガブレイブ", "mega brave"]},
@@ -60,8 +87,8 @@ _GROUPS: list[dict[str, Any]] = [
 # Disambiguators. Exclusive ones must not appear on a title unless the query has them.
 _MARKERS: list[dict[str, Any]] = [
     {"id": "mega", "exclusive": True, "needles": ["超級", "mega", "メガ"]},
-    {"id": "shiny", "exclusive": True, "needles": ["閃色寶藏", "シャイニートレジャー", "shiny treasure", "sv4a", "閃"]},
-    {"id": "sv151", "exclusive": True, "needles": ["151", "sv2a"]},
+    {"id": "shiny", "exclusive": True, "needles": ["閃色寶藏", "シャイニートレジャー", "shiny treasure", "sv4a"]},
+    {"id": "sv151", "exclusive": True, "needles": ["sv2a"]},
     {"id": "obsidian", "exclusive": True, "needles": ["黑炎", "黒炎", "blackflame", "obsidian", "sv3"]},
     {"id": "electric", "exclusive": True, "needles": ["超電", "superelectric", "super electric"]},
     {"id": "heroes", "exclusive": True, "needles": ["伊布英雄", "イーブイヒーローズ", "eevee heroes", "eeveeheroes"]},
@@ -70,8 +97,10 @@ _MARKERS: list[dict[str, Any]] = [
 
 _NON_JP = (
     "繁中", "繁體", "繁体", "中文版", "港版", "台版", "台灣版", "简中", "簡中",
-    "韓版", "korean", "英文版", "(cn)", "(hk)", "(tw)", "(kr)",
+    "韓版", "korean", "英文版", "美版", "英版", "歐版", "(cn)", "(hk)", "(tw)", "(kr)",
 )
+_SEEK = ("求購", "收購", "高價收", "wtb", "wanted", "looking for", "求卡", "想收", "收卡")
+_CODE_RE = re.compile(r"(?<![a-z])((?:sv|s|m)\d+[a-z]*)(?![a-z])")
 _JP_OK = ("日版", "日文", "japanese", "(jp)", "日本", " jp")
 
 _LOT = ("十連", "連號", "sequential", "set of", "lot of", "一套")
@@ -106,10 +135,39 @@ def _needle_in(text_n: str, needle: str) -> bool:
     return needle_n in text_n
 
 
+def _has_set_151(text: str) -> bool:
+    """151 as a set name, not the left or right side of a collector number."""
+    stripped = re.sub(r"\d{1,3}\s*/\s*\d{1,3}", " ", text)
+    n = _norm(stripped)
+    return "sv2a" in n or "151" in n
+
+
+def _has_shiny_set(text: str) -> bool:
+    n = _norm(text)
+    if any(bit in n for bit in ("sv4a", "閃色寶藏", "shinytreasure", "シャイニートレジャー")):
+        return True
+    return re.search(r"閃(?!卡)", text) is not None
+
+
+def _hits_n_sar(text_n: str) -> bool:
+    """N SAR, not the 'n'+'sar' inside a longer Latin name."""
+    if re.search(r"(?<![a-z])ns+ar", text_n):
+        return True
+    return "エヌ" in text_n and "sar" in text_n
+
+
 def _marker_ids(text: str) -> set[str]:
     n = _norm(text)
     found: set[str] = set()
     for marker in _MARKERS:
+        if marker["id"] == "sv151":
+            if _has_set_151(text):
+                found.add("sv151")
+            continue
+        if marker["id"] == "shiny":
+            if _has_shiny_set(text):
+                found.add("shiny")
+            continue
         if any(_needle_in(n, needle) for needle in marker["needles"]):
             found.add(marker["id"])
     return found
@@ -134,14 +192,55 @@ def _groups_in(text: str) -> list[dict[str, Any]]:
                         shadowed = True
         if not shadowed:
             kept.append(group)
+    if _has_set_151(text) and all(group["id"] != "sv151" for group in kept):
+        kept.append(next(group for group in _GROUPS if group["id"] == "sv151"))
     return kept
 
 
-def _title_hits_group(title_n: str, group: dict[str, Any]) -> bool:
+_SEALED_SET_MEGA = (
+    "超級夢想", "超級勇氣", "超級協奏",
+    "mega dream", "mega brave", "mega symphonia", "mega siphonia",
+    "メガドリーム", "メガブレイブ", "メガシンフォニア",
+)
+
+
+def _required_markers(query: str) -> set[str]:
+    """Mega Dream / Brave / Symphonia use 超級 in the set name, not as a slab mechanic."""
+    found = _marker_ids(query)
+    if "mega" not in found:
+        return found
+    stripped = query
+    for bit in _SEALED_SET_MEGA:
+        stripped = re.sub(re.escape(bit), " ", stripped, flags=re.I)
+    if "mega" not in _marker_ids(stripped):
+        found = set(found)
+        found.discard("mega")
+    return found
+
+
+def _title_hits_group(
+    title_n: str,
+    group: dict[str, Any],
+    query_n: str,
+    title: str = "",
+    card_number: str | None = None,
+) -> bool:
+    if group["id"] == "sv151":
+        if _has_set_151(title or title_n):
+            return True
+        return bool(card_number and card_number in _frac_nums(title))
+    if group["id"] == "nsar":
+        return _hits_n_sar(title_n)
     excludes = [_norm(x) for x in group.get("excludes") or []]
     if any(x and x in title_n for x in excludes):
         return False
-    return any(_norm(t) and _norm(t) in title_n for t in group["terms"])
+    if not any(_norm(t) and _norm(t) in title_n for t in group["terms"]):
+        return False
+    for aliases in group.get("specific") or []:
+        norms = [_norm(a) for a in aliases]
+        if any(a and a in query_n for a in norms) and not any(a and a in title_n for a in norms):
+            return False
+    return True
 
 
 def _wants_charizard_x(text: str) -> bool:
@@ -187,26 +286,85 @@ def _non_jp(title: str) -> bool:
     return False
 
 
-def _is_psa10(title: str, row: dict | None) -> bool:
-    if "psa10" in _norm(title):
-        return True
-    if not row:
-        return False
-    company = str(row.get("grade_company") or "").upper()
+def _grade_score(row: dict | None) -> float | None:
+    if not row or row.get("grade_score") is None:
+        return None
     try:
-        score = float(row["grade_score"]) if row.get("grade_score") is not None else None
+        return float(row["grade_score"])
     except (TypeError, ValueError):
-        score = None
-    return company == "PSA" and score is not None and score >= 10
+        return None
+
+
+def _is_seek(title: str) -> bool:
+    low = title.lower()
+    if any(bit in low for bit in _SEEK):
+        return True
+    return re.search(r"(^|\s)收(?!納|藏)", title) is not None
+
+
+def _wrong_grade(title: str) -> bool:
+    """PSA 9 / BGS / raw, or a title that mixes PSA10 with another grade."""
+    if re.search(r"\b(bgs|cgc|ars|sgc)\b|裸卡|未評", title, re.I):
+        return True
+    other = re.search(r"psa\s*[1-9](?!\d)", title, re.I) is not None
+    if other:
+        return True
+    return False
+
+
+def _is_psa10(title: str, row: dict | None) -> bool:
+    if _wrong_grade(title):
+        return False
+    score = _grade_score(row)
+    company = str((row or {}).get("grade_company") or "").upper()
+    if score is not None:
+        if company and company != "PSA":
+            return False
+        return score >= 10
+    return "psa10" in _norm(title)
 
 
 def _is_box(title: str) -> bool:
-    low = title.lower()
-    return any(bit in low for bit in ("box", "原盒", "未開封", "ボックス", "盒"))
+    return re.search(r"booster\s*box|\bbox\b|原盒|未開封|ボックス", title, re.I) is not None
+
+
+def _sealed_side_product(title: str) -> bool:
+    """Packs, decks, ETBs, and gift sets are not the booster box ask."""
+    if re.search(r"elite trainer|\betb\b|collection|收藏箱|禮盒|礼盒|構築|牌組|新手|預組|入門|deck", title, re.I):
+        return True
+    if re.search(r"booster\s*box|原盒", title, re.I):
+        return False
+    return re.search(r"補充包|單包|\bpack\b|卡包", title, re.I) is not None
+
+
+def _code_conflict(query_n: str, title_n: str) -> bool:
+    """M2 vs M2a, SV4 vs SV4a: a longer code on the other side is a different product."""
+    query_codes = set(_CODE_RE.findall(query_n))
+    title_codes = set(_CODE_RE.findall(title_n))
+    for left in query_codes:
+        for right in title_codes:
+            if left == right:
+                continue
+            if len(left) >= 2 and len(right) >= 2 and (right.startswith(left) or left.startswith(right)):
+                return True
+    return False
+
+
+def _frac_nums(title: str) -> list[str]:
+    return re.findall(r"(\d{2,3})\s*/\s*\d{2,3}", title)
 
 
 def _has_token(text: str, token: str) -> bool:
     return re.search(rf"(^|[^a-z0-9]){token}([^a-z0-9]|$)", text.lower()) is not None
+
+
+def _stated_rarity_conflict(title: str, query: str) -> bool:
+    """A title that names a lower rarity is not the SAR even if the collector number matches."""
+    if not (_has_token(query, "sar") or "special art" in query.lower()):
+        return False
+    if _has_token(title, "sar") or "special art" in title.lower():
+        return False
+    return any(_has_token(title, tok) for tok in ("ar", "sr", "ur", "hr", "rr"))
 
 
 def _rarity_ok(title: str, query: str) -> bool:
@@ -335,16 +493,40 @@ def english_query(item: dict) -> str | None:
     return f"{label} {extra} PSA10".strip()
 
 
+def _identity_codes(item: dict) -> set[str]:
+    """Prefer tcgdex when `set` names a different product."""
+    tcg_codes = {c.lower() for c in _CODE_RE.findall(_norm(str(item.get("tcgdex_id") or "")))}
+    set_codes = {c.lower() for c in _CODE_RE.findall(_norm(str(item.get("set") or "")))}
+    if tcg_codes and set_codes and not (tcg_codes & set_codes):
+        return tcg_codes
+    return tcg_codes | set_codes
+
+
+def _card_number(item: dict) -> str | None:
+    match = re.search(r"-(\d{2,3})\b", str(item.get("tcgdex_id") or ""))
+    if not match:
+        return None
+    return match.group(1)
+
+
 def match_item(rows: list[dict], item: dict) -> list[dict]:
+    codes = _identity_codes(item)
+    keyword_parts = [str(item.get("search_hk") or "")]
+    if codes:
+        keyword_parts.append(" ".join(sorted(codes)))
+    elif item.get("set"):
+        keyword_parts.append(str(item.get("set")))
     return match_listings(
         rows,
-        keyword=" ".join(
-            str(item.get(key) or "") for key in ("search_hk", "set", "tcgdex_id")
-        ),
+        keyword=" ".join(part for part in keyword_parts if part),
         kind=item.get("kind") or "psa10",
         name_jp=item.get("name_jp"),
         name_zh=item.get("name_zh"),
+        card_number=_card_number(item),
     )
+
+
+_BUY_LISTING_TYPES = {"want", "wanted", "wtb", "buy", "bid", "seek", "demand", "buying"}
 
 
 def match_listings(
@@ -354,17 +536,22 @@ def match_listings(
     kind: str,
     name_jp: str | None = None,
     name_zh: str | None = None,
+    card_number: str | None = None,
 ) -> list[dict]:
     query = " ".join(x for x in (keyword, name_jp or "", name_zh or "") if x)
     query_n = _norm(query)
     groups = _groups_in(query)
     if not groups:
         return []
-    query_markers = _marker_ids(query)
+    query_markers_all = _marker_ids(query)
+    query_markers = _required_markers(query)
     hits: list[dict] = []
     for row in rows:
         title = str(row.get("card_name") or row.get("title") or "")
-        if not title or _non_jp(title) or _is_lot(title, _norm(title)):
+        if not title or _non_jp(title) or _is_seek(title) or _is_lot(title, _norm(title)):
+            continue
+        listing_type = str(row.get("listing_type") or "").lower()
+        if listing_type in _BUY_LISTING_TYPES:
             continue
         if any(bit in title.lower() for bit in _JUNK):
             continue
@@ -375,17 +562,23 @@ def match_listings(
             price = float(row.get("price"))
         except (TypeError, ValueError):
             continue
+        number_hit = bool(card_number and card_number in _frac_nums(title))
         if kind == "psa10":
             if (
                 not _is_psa10(title, row)
                 or _is_product_not_slab(title)
-                or not _rarity_ok(title, query)
+                or _stated_rarity_conflict(title, query)
+                or (not number_hit and not _rarity_ok(title, query))
                 or price < 80
                 or price > 200_000
             ):
                 continue
+            if card_number and _frac_nums(title) and not number_hit:
+                continue
         elif kind == "sealed":
-            if re.search(r"deck build|新手|構築|牌組|原箱", title, re.I):
+            if _sealed_side_product(title):
+                continue
+            if re.search(r"原箱", title):
                 continue
             multi = re.search(r"(\d+)\s*盒", title)
             if multi and int(multi.group(1)) >= 2:
@@ -394,22 +587,25 @@ def match_listings(
                 continue
         else:
             continue
-        if not all(_title_hits_group(title_n, group) for group in groups):
+        if not all(
+            _title_hits_group(title_n, group, query_n, title, card_number) for group in groups
+        ):
             continue
         query_chars = {g["id"] for g in groups if g["id"] not in _SET_IDS}
         title_chars = [g["id"] for g in _groups_in(title) if g["id"] not in _SET_IDS]
         if any(gid not in query_chars for gid in title_chars):
             continue
-        if "m2a" in query_n:
-            if "m2a" not in title_n:
-                continue
-        elif re.search(r"m2(?![a-z])", query_n) and "m2a" in title_n:
+        if _code_conflict(query_n, title_n):
             continue
         title_markers = _marker_ids(title)
+        if number_hit:
+            for waived in ("sv151", "shiny", "obsidian", "electric"):
+                if waived in query_markers:
+                    title_markers.add(waived)
         if any(marker not in title_markers for marker in query_markers):
             continue
         if any(
-            m["exclusive"] and m["id"] in title_markers and m["id"] not in query_markers
+            m["exclusive"] and m["id"] in title_markers and m["id"] not in query_markers_all
             for m in _MARKERS
         ):
             continue
@@ -427,17 +623,30 @@ def match_listings(
     return hits
 
 
-def robust_median(prices: list[float]) -> float | None:
+def trimmed_asks(prices: list[float]) -> list[float]:
+    """Drop far outliers once there are enough asks. Shared by median and lowest."""
     vals = [float(p) for p in prices if p and p > 0]
-    if not vals:
-        return None
     if len(vals) >= 4:
         mid = median(vals)
         if mid:
             kept = [p for p in vals if mid / 3 <= p <= mid * 3]
             if kept:
                 vals = kept
+    return vals
+
+
+def robust_median(prices: list[float]) -> float | None:
+    vals = trimmed_asks(prices)
+    if not vals:
+        return None
     mid = median(vals)
     if mid is None:
         return None
     return round(mid, 2)
+
+
+def lowest_ask(prices: list[float]) -> float | None:
+    vals = trimmed_asks(prices)
+    if not vals:
+        return None
+    return round(min(vals), 2)

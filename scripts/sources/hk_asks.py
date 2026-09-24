@@ -4,7 +4,14 @@ from __future__ import annotations
 from typing import Any
 
 from . import carousell_hk, hk_shops
-from .hk_match import broad_query, english_query, extra_queries, primary_query, robust_median
+from .hk_match import (
+    broad_query,
+    english_query,
+    extra_queries,
+    lowest_ask,
+    primary_query,
+    robust_median,
+)
 
 
 def _empty_source() -> dict[str, Any]:
@@ -46,7 +53,13 @@ def collect_hk(
             **_empty_source(),
             "enabled": shops_on,
             "status": "disabled" if not shops_on else "pending",
-            "note": "zenoxstore.com Shopify JP booster boxes",
+            "note": "zenoxstore.com JP booster boxes and in-stock PSA10 slabs",
+        },
+        "shipmytoy": {
+            **_empty_source(),
+            "enabled": shops_on,
+            "status": "disabled" if not shops_on else "pending",
+            "note": "shipmytoy.com.hk Pokémon category; box price, not the pack price",
         },
         "facebook_hk": {
             **_empty_source(),
@@ -73,10 +86,13 @@ def collect_hk(
         shops = hk_shops.prefetch_shops(min_interval=min_interval)
         status["lono"]["catalog_size"] = shops["lono"]["catalog_size"]
         status["zenox"]["catalog_size"] = shops["zenox"]["catalog_size"]
+        status["shipmytoy"]["catalog_size"] = shops["shipmytoy"]["catalog_size"]
         if shops["lono"]["error"]:
             status["lono"]["errors"].append(shops["lono"]["error"])
         if shops["zenox"]["error"]:
             status["zenox"]["errors"].append(shops["zenox"]["error"])
+        if shops["shipmytoy"]["error"]:
+            status["shipmytoy"]["errors"].append(shops["shipmytoy"]["error"])
 
     if facebook_on:
         status["facebook_hk"] = hk_shops.probe_facebook(min_interval=min_interval)
@@ -105,6 +121,7 @@ def collect_hk(
         if shops_on:
             parts["lono"] = hk_shops.match_shop("lono", item, min_interval=min_interval)
             parts["zenox"] = hk_shops.match_shop("zenox", item, min_interval=min_interval)
+            parts["shipmytoy"] = hk_shops.match_shop("shipmytoy", item, min_interval=min_interval)
 
         asks: list[float] = []
         listings: list[dict] = []
@@ -120,13 +137,15 @@ def collect_hk(
             elif part.get("error") and len(bucket["errors"]) < 12:
                 bucket["errors"].append(f"{item.get('id')}: {part.get('error')}")
         median_hkd = robust_median(asks)
+        low_hkd = lowest_ask(asks)
         hk_by_id[item["id"]] = {
-            "ok": median_hkd is not None,
+            "ok": low_hkd is not None,
             "median_hkd": median_hkd,
+            "lowest_hkd": low_hkd,
             "listings": listings[:20],
             "backends": backends,
             "backend": "+".join(backends) if backends else None,
-            "error": None if median_hkd is not None else "no title-matched HK ask",
+            "error": None if low_hkd is not None else "no title-matched HK ask",
         }
 
     if hkcardlink_size is not None:

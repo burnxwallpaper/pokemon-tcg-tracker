@@ -7,8 +7,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sources.carousell_hk import parse_listing_cards  # noqa: E402
-from sources.hk_match import match_listings, primary_query, robust_median  # noqa: E402
-from sources.hk_shops import parse_lono_cards  # noqa: E402
+from sources.hk_match import lowest_ask, match_item, match_listings, primary_query, robust_median  # noqa: E402
+from sources.hk_shops import parse_lono_cards, parse_shopline_cards, parse_zenox_products, sell_price  # noqa: E402
 
 
 def _item(kind: str, zh: str, jp: str, hk: str) -> dict:
@@ -171,6 +171,110 @@ def test_primary_query_and_median() -> None:
     item = _item("psa10", "超級噴火龍X ex SAR PSA10", "メガリザードンXex SAR PSA10", "超級噴火龍X SAR PSA10")
     assert "噴火龍" in primary_query(item)
     assert robust_median([100, 120, 110, 5000]) == 110
+    assert lowest_ask([100, 120, 110, 5000]) == 100
+
+
+def test_specific_names_seek_grade_and_card_number() -> None:
+    rows = [
+        {"card_name": "PSA10 超夢 ex SAR", "price": 900},
+        {"card_name": "PSA10 火箭隊超夢 ex SAR", "price": 3200},
+        {"card_name": "收 PSA10 火箭隊超夢 SAR 預算", "price": 2500},
+        {"card_name": "PSA9 火箭隊超夢 ex SAR", "price": 1800},
+        {"card_name": "PSA10 噴火龍ex SAR 151/165", "price": 4000},
+        {"card_name": "PSA10 噴火龍ex SAR Pokemon 151 201/165", "price": 7800},
+        {"card_name": "PSA10 噴火龍ex SAR Pokemon 151 185/165", "price": 2100},
+        {"card_name": "WTB Charizard 151 PSA10", "price": 5000, "listing_type": "want"},
+    ]
+    rocket = match_listings(
+        rows,
+        keyword="火箭隊超夢 SAR PSA10",
+        kind="psa10",
+        name_zh="火箭隊超夢 ex SAR PSA10",
+        name_jp="ロケット団のミュウツーex SAR PSA10",
+    )
+    assert [h["price_hkd"] for h in rocket] == [3200]
+    z151 = match_listings(
+        rows,
+        keyword="噴火龍 SAR PSA10 151",
+        kind="psa10",
+        name_zh="噴火龍 ex SAR PSA10",
+        card_number="201",
+    )
+    assert [h["price_hkd"] for h in z151] == [7800]
+    ar = match_listings(
+        [{"card_name": "PSA10 Pikachu AR Holo 173/165", "price": 930}],
+        keyword="皮卡丘 SAR PSA10 151",
+        kind="psa10",
+        name_zh="皮卡丘 ex SAR PSA10",
+        card_number="173",
+    )
+    assert ar == []
+
+
+def test_mega_dream_box_does_not_need_set_code_on_the_title() -> None:
+    rows = [
+        {"card_name": "Pokemon TCG日版 M2A ドリームEX Booster Box", "price": 780},
+        {"card_name": "Pokemon TCG日版 超級夢想 Booster Box", "price": 760},
+        {"card_name": "Pokemon TCG日版 M2 MEGA烈焰 Booster Box", "price": 900},
+    ]
+    hits = match_listings(
+        rows,
+        keyword="超級夢想 BOX 未開封 M2a",
+        kind="sealed",
+        name_zh="超級夢想 ex BOX（未開封）",
+        name_jp="メガドリームex BOX 未開封",
+    )
+    assert [h["price_hkd"] for h in hits] == [760, 780]
+
+
+def test_pack_price_is_not_the_box_ask() -> None:
+    assert sell_price("Booster Box", [25, 700]) == 700
+    assert sell_price("Booster Box", [1150, 1350]) == 1150
+    html = """
+    <div class="title text-primary-color ">Pokemon TCG日版 M5 深淵之瞳 Booster Box</div>
+    HK$20.00 HK$550.00
+    <div class="title text-primary-color ">Pokemon TCG日版 M6 綠寶石風暴 Booster Box</div>
+    售完 HK$1,199.00
+    """
+    rows = parse_shopline_cards(html, "shipmytoy")
+    assert [(r["card_name"], r["price"]) for r in rows] == [
+        ("Pokemon TCG日版 M5 深淵之瞳 Booster Box", 550),
+    ]
+
+
+def test_zenox_psa10_skips_psa9_and_sold_out() -> None:
+    payload = {
+        "products": [
+            {
+                "id": 1,
+                "title": "Pokemon - Charizard ex (JP) 201/165",
+                "variants": [
+                    {"title": "PSA 9", "available": True, "price": "4200.00"},
+                    {"title": "PSA 10", "available": True, "price": "7520.00"},
+                    {"title": "PSA 10", "available": False, "price": "1000.00"},
+                ],
+            },
+            {
+                "id": 2,
+                "title": "Pokemon - Pikachu (CN) 171/151",
+                "variants": [{"title": "PSA 10", "available": True, "price": "300.00"}],
+            },
+        ]
+    }
+    rows = parse_zenox_products(payload, graded=True)
+    assert len(rows) == 2
+    assert rows[0]["price"] == 7520
+    assert "PSA10" in rows[0]["card_name"]
+    item = {
+        "kind": "psa10",
+        "name_zh": "噴火龍 ex SAR PSA10",
+        "name_jp": "リザードンex SAR PSA10",
+        "search_hk": "噴火龍 SAR PSA10 151",
+        "set": "sv2a / 201/165",
+        "tcgdex_id": "SV2a-201",
+    }
+    hits = match_item(rows, item)
+    assert [h["price_hkd"] for h in hits] == [7520]
 
 
 if __name__ == "__main__":
@@ -179,5 +283,12 @@ if __name__ == "__main__":
     test_sealed_skips_case_dx_and_traditional_chinese()
     test_base_gengar_skips_mega_and_eevee_skips_umbreon()
     test_lono_card_html()
+    test_shiny_mew_rejects_151_listing()
+    test_black_flame_box_skips_gift_set()
+    test_multi_card_menu_and_m2a_are_rejected()
     test_primary_query_and_median()
+    test_specific_names_seek_grade_and_card_number()
+    test_mega_dream_box_does_not_need_set_code_on_the_title()
+    test_pack_price_is_not_the_box_ask()
+    test_zenox_psa10_skips_psa9_and_sold_out()
     print("ok")

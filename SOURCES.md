@@ -3,9 +3,11 @@
 研究日期：2026-09-24（HK）。
 **已實作溫和 scraper**（`scripts/update.py`）：
 - Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅
-- Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的叫價
-- HKCardLink → 公開 Supabase listings，與 Carousell 合併（不再被未核對價格短路）
-- LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價；Zenox `zenoxstore.com` → Shopify 日版補充包 BOX
+- Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的**賣出叫價**（略過求購／WTB）
+- HKCardLink → 公開 Supabase listings，與 Carousell 合併；`listing_type` 為求購的不計
+- LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價
+- ShipMyToy `shipmytoy.com.hk` → 日版補充包 BOX；同一卡上的低價是單包，只留盒價
+- Zenox `zenoxstore.com` → Shopify 日版補充包 BOX，以及有貨的 PSA10 變體（略過 PSA9）
 - Facebook Marketplace → 此環境 HTTP 400，無登入、不繞牆
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
@@ -97,14 +99,15 @@
 
 ### 8. 香港本地叫價（已接入）
 
-只收**標題對得上** watchlist 的公開標價，再取中位數寫入 `hk_ask_hkd`。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
+只收**標題對得上** watchlist 的公開**賣出價**（不是收卡／求購），再取最低價寫入 `hk_ask_hkd`（香港最新賣出價）。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
 
 | 來源 | 怎麼拿 | 用什麼 |
 |---|---|---|
 | **Carousell HK** | `https://www.carousell.com.hk/search/{關鍵字}/` 頁內 `listingCards`（`title` + `price`） | PSA10 與未開封 BOX。住宅網路可 200；遇 Cloudflare 403 就停，不繞過 |
 | **HKCardLink** | 前端 anon key → Supabase `listings` | 近期 PSA10／BOX 目錄，客戶端對標題 |
 | **LONO** | `https://www.lono.com.hk/categories/psa-ptcg` 與 `/categories/pokemon-tcg` 公開分類頁（Shopline HTML，`HK$` 標價） | 店內 PSA10 與盒子。略過繁中盒，避免拿來標日版 |
-| **Zenox** | `https://www.zenoxstore.com/collections/booster-packs-collection-box-jp/products.json` | 日版 Booster Box。略過 Case（整箱）與 DX 小盒 |
+| **Zenox** | `.../booster-packs-collection-box-jp/products.json` 與 `.../pokemon-psa/products.json` | 日版 Booster Box，以及**有貨**的 PSA10 變體。略過 Case、DX、PSA9、售罄變體 |
+| **ShipMyToy** | `https://www.shipmytoy.com.hk/categories/pokemon-tcg` Shopline 分類頁 | 日版 BOX。同一商品若同時有單包與整盒價，丢掉低於盒價四成的那個 |
 | **Facebook** | 公開 Marketplace URL 探一次 | 此 worker 回 HTTP 400，沒有可用列表。不用登入瀏覽器，也不繞登入牆 |
 
 試過但未當價格源：`cardland.com.hk` products.json 403；`hkpokemon.com` 不是可用目錄；Price.com.hk 搜尋結果不是穩定的卡牌標價。
@@ -122,7 +125,7 @@
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
 2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
-4. **HK**：Carousell／HKCardLink／LONO／Zenox 標題命中的叫價 → 價差。Yahoo 只作日本參考。
+4. **HK**：Carousell／HKCardLink／LONO／ShipMyToy／Zenox 標題命中的最低賣出價 → `hk_ask_hkd`。Yahoo 只作日本參考。不編造買價。
 5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
 
 ---

@@ -56,7 +56,7 @@
     },
     "hk_card_shops": {
       "enabled": true,
-      "note": "LONO category pages (lono.com.hk) and Zenox Shopify JP booster boxes (zenoxstore.com)."
+      "note": "LONO (lono.com.hk), ShipMyToy box prices (shipmytoy.com.hk), Zenox JP boxes and in-stock PSA10 slabs (zenoxstore.com). Sell asks only."
     },
     "facebook_hk": {
       "enabled": true,
@@ -65,7 +65,7 @@
   },
   "display": {
     "primary_market": "hk",
-    "primary_label": "香港價",
+    "primary_label": "香港最新賣出價",
     "reference_label": "日本參考",
     "currency": "HKD"
   },
