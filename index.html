@@ -484,14 +484,14 @@
 <body>
   <header>
     <h1>寶可夢 TCG 行情追蹤</h1>
-    <p class="subtitle">個人投機用 · 卡（PSA10）同盒（未開封）分開睇 · 全部以 HKD 顯示 · 成交、賣出價、徵求分開標</p>
+    <p class="subtitle">個人投機用 · 首頁係卡（PSA10）流動性 · 盒係次要 · 全部以 HKD 顯示 · 成交、賣出價、徵求分開標</p>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
     </div>
     <nav class="cat-bar" role="tablist" aria-label="大類">
-      <button class="cat active" type="button" data-kind="all" aria-pressed="true">兩邊 <span class="count"></span></button>
-      <button class="cat" type="button" data-kind="psa10" aria-pressed="false">卡 <span class="sub">PSA10</span> <span class="count"></span></button>
+      <button class="cat active" type="button" data-kind="psa10" aria-pressed="true">卡 <span class="sub">PSA10</span> <span class="count"></span></button>
       <button class="cat" type="button" data-kind="sealed" aria-pressed="false">盒 <span class="sub">未開封</span> <span class="count"></span></button>
+      <button class="cat" type="button" data-kind="all" aria-pressed="false">兩邊 <span class="count"></span></button>
     </nav>
   </header>
 
@@ -507,7 +507,7 @@
     <section id="sec-liquidity" class="section active" aria-label="流動性">
       <div class="section-head">
         <h2>流動性</h2>
-        <span class="hint">卡同盒各自按流動性分數排序 · 點擊列看詳情 · 參考連結另開來源頁</span>
+        <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
       </div>
       <p class="legend">最近成交價＝日本 Yahoo 已結束拍賣（換算 HKD）。香港最新賣出價＝目前對到的香港賣盤叫價（穩健中位數；只有一筆時即該賣價）。最低賣出價＝呢批賣盤入面最低；未保存逐筆賣價就顯示 —。買入價／徵求只顯示 HKCardLink 公開徵收預算；Carousell、LONO、Zenox 冇結構化徵求，對唔到就顯示暫無，唔會估算。</p>
       <div class="liq-search">
@@ -574,7 +574,7 @@
     /** @type {object|null} */
     let currentMeta = null;
     /** @type {"all"|"psa10"|"sealed"} */
-    let category = "all";
+    let category = "psa10";
     let viewData = { moves: [], liquidity: [], spreads: [] };
     let liqQuery = "";
     /** @type {import('chart.js').Chart[]} */
@@ -900,7 +900,7 @@
           if (next !== "all" && next !== "psa10" && next !== "sealed") return;
           category = next;
           const url = new URL(location.href);
-          if (category === "all") url.searchParams.delete("kind");
+          if (category === "psa10") url.searchParams.delete("kind");
           else url.searchParams.set("kind", category);
           history.replaceState(null, "", url);
           renderViews();
