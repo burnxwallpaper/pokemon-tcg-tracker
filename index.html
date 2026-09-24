@@ -152,6 +152,29 @@
     }
     .section-head h2 { margin: 0; font-size: 1.15rem; }
     .section-head .hint { color: var(--muted); font-size: 0.8rem; }
+    .liq-search {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 0.85rem;
+    }
+    .liq-search input[type="search"] {
+      flex: 1 1 220px;
+      max-width: 420px;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.5rem 0.9rem;
+      font: inherit;
+      font-size: 0.9rem;
+    }
+    .liq-search input[type="search"]::placeholder { color: var(--muted); }
+    .liq-search input[type="search"]:focus {
+      outline: 2px solid var(--accent);
+      border-color: var(--accent);
+    }
+    .liq-names { color: var(--muted); font-size: 0.75rem; }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -472,6 +495,10 @@
         <h2>流動性</h2>
         <span class="hint">卡同盒各自按流動性分數排序 · 點擊列看詳情</span>
       </div>
+      <div class="liq-search">
+        <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
+        <span id="liqSearchCount" class="hint"></span>
+      </div>
       <div id="liquidityWrap"></div>
     </section>
 
@@ -526,6 +553,7 @@
     /** @type {"all"|"psa10"|"sealed"} */
     let category = "all";
     let viewData = { moves: [], liquidity: [], spreads: [] };
+    let liqQuery = "";
     /** @type {import('chart.js').Chart[]} */
     let activeCharts = [];
 
@@ -658,6 +686,35 @@
       wireCardClicks(el);
     }
 
+    function englishName(it) {
+      return String((it && it.name_en) || "");
+    }
+
+    function nameHaystack(it) {
+      return [it.name_zh, it.name_jp, englishName(it)].filter(Boolean).join(" ");
+    }
+
+    function matchesNameQuery(it, query) {
+      const q = String(query || "").trim().toLowerCase();
+      if (!q) return true;
+      const blob = nameHaystack(it).toLowerCase();
+      if (blob.includes(q)) return true;
+      const compact = blob.replace(/\s+/g, "");
+      const qCompact = q.replace(/\s+/g, "");
+      return qCompact.length > 0 && compact.includes(qCompact);
+    }
+
+    function visibleLiquidity() {
+      return (viewData.liquidity || []).filter((it) => matchesNameQuery(it, liqQuery));
+    }
+
+    function updateLiqSearchCount() {
+      const countEl = document.getElementById("liqSearchCount");
+      if (!countEl) return;
+      const total = (viewData.liquidity || []).length;
+      countEl.textContent = liqQuery.trim() ? `${visibleLiquidity().length} / ${total}` : "";
+    }
+
     function liquidityTable(items) {
       const rows = items
         .map(
@@ -669,7 +726,8 @@
               ${imgHtml(it, "thumb")}
               <div>
                 <strong>${escapeHtml(it.name_zh)}</strong>
-                <div style="color:var(--muted);font-size:0.75rem">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
+                <div class="liq-names">${escapeHtml([it.name_jp, englishName(it)].filter(Boolean).join(" · "))}</div>
+                <div class="liq-names">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
               </div>
             </div>
           </td>
@@ -700,13 +758,15 @@
 
     function renderLiquidity(list) {
       const el = document.getElementById("liquidityWrap");
+      const empty = liqQuery.trim() ? "沒有符合搜尋的品項。" : "這個分類暫無資料。";
       el.innerHTML = groupsFor(list).map((group) => {
         const body = group.items.length
           ? liquidityTable(group.items)
-          : `<p class="cat-empty">這個分類暫無資料。</p>`;
+          : `<p class="cat-empty">${empty}</p>`;
         return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
       }).join("");
       wireCardClicks(el);
+      updateLiqSearchCount();
     }
 
     function renderSpreads(list) {
@@ -722,7 +782,7 @@
 
     function renderViews() {
       renderMoves(viewData.moves);
-      renderLiquidity(viewData.liquidity);
+      renderLiquidity(visibleLiquidity());
       renderSpreads(viewData.spreads);
       const items = Object.values(itemsById);
       const nPsa = items.filter((it) => it.kind === "psa10").length;
@@ -909,7 +969,7 @@
       const body = document.getElementById("detailBody");
 
       title.textContent = it.name_zh;
-      sub.textContent = `${it.name_jp || ""} · ${it.set || ""}`;
+      sub.textContent = [it.name_jp, englishName(it), it.set].filter(Boolean).join(" · ");
 
       const sampleBadge = it.is_sample
         ? `<span class="badge">範例資料</span>`
@@ -1006,6 +1066,15 @@
       });
     }
 
+    function wireLiquiditySearch() {
+      const input = document.getElementById("liqSearch");
+      if (!input) return;
+      input.addEventListener("input", () => {
+        liqQuery = input.value || "";
+        renderLiquidity(visibleLiquidity());
+      });
+    }
+
     function wireTabs() {
       const tabs = document.querySelectorAll(".tab");
       const map = {
@@ -1057,6 +1126,7 @@
     async function init() {
       wireTabs();
       wireCategories();
+      wireLiquiditySearch();
       wireDetail();
       try {
         const data = await loadData();
