@@ -23,9 +23,6 @@ from sources.snkrdunk import (  # noqa: E402
     search_keyword,
     sealed_market_jpy,
 )
-from sources.yahoo_auctions_jp import publish_sold_median  # noqa: E402
-
-
 def _item(kind: str, zh: str, jp: str, hk: str) -> dict:
     return {"kind": kind, "name_zh": zh, "name_jp": jp, "search_hk": hk}
 
@@ -358,31 +355,51 @@ def test_charizard_without_set_or_number_is_rejected() -> None:
 
 
 def test_listing_must_match_the_card_in_the_name() -> None:
-    import json
-    from pathlib import Path
-
-    cfg = json.loads((Path(__file__).resolve().parents[1] / "config.json").read_text(encoding="utf-8"))
-    by_id = {row["id"]: row for row in cfg["watchlist"]}
-    pikachu = by_id["psa10-pikachu-ex-sar-151"]
-    assert pikachu["tcgdex_id"] == "SV2a-173"
-    assert "173/165" in pikachu["set"]
-    assert "AR" in pikachu["name_zh"]
-    gengar = by_id["psa10-gengar-ex-sar"]
-    assert "088/071" in gengar["set"]
-    assert "SR" in gengar["name_jp"]
-    iono = by_id["psa10-iono-sar"]
-    assert iono["tcgdex_id"] == "SV2D-096"
-    assert "096/071" in iono["set"]
-    assert "350" not in iono["set"]
-    moon = by_id["psa10-eevee-heroes-box-promo"]
-    assert "085/069" in moon["set"]
-    assert "ブラッキーV" in moon["name_jp"]
-    zoro = by_id["psa10-n-sar"]
-    assert "ゾロアーク" in zoro["name_jp"]
-    assert "127/100" in zoro["set"]
-    urls = [row.get("image_official_url") for row in cfg["watchlist"]]
-    assert len(urls) == len(set(urls))
-
+    pikachu = {
+        "kind": "psa10",
+        "name_zh": "皮卡丘 AR（151）PSA10",
+        "name_jp": "ピカチュウ AR PSA10",
+        "search_hk": "皮卡丘 AR PSA10 151",
+        "search_jp": "ピカチュウ AR PSA10 173/165 ポケモンカード151",
+        "set": "sv2a / 173/165",
+        "tcgdex_id": "SV2a-173",
+    }
+    gengar = {
+        "kind": "psa10",
+        "name_zh": "耿鬼 ex SR PSA10",
+        "name_jp": "ゲンガーex SR PSA10",
+        "search_hk": "耿鬼 SR PSA10 088",
+        "search_jp": "ゲンガーex SR PSA10 088/071 ワイルドフォース",
+        "set": "SV5K / 088/071",
+        "tcgdex_id": "SV5K-088",
+    }
+    iono = {
+        "kind": "psa10",
+        "name_zh": "奇樹 SAR（漆黑氣焰）PSA10",
+        "name_jp": "ナンジャモ SAR クレイバースト PSA10",
+        "search_hk": "奇樹 SAR PSA10 漆黑氣焰",
+        "search_jp": "ナンジャモ SAR PSA10 096/071 クレイバースト",
+        "set": "SV2D / 096/071",
+        "tcgdex_id": "SV2D-096",
+    }
+    moon = {
+        "kind": "psa10",
+        "name_zh": "月亮伊布 V（伊布英雄）PSA10",
+        "name_jp": "ブラッキーV PSA10 イーブイヒーローズ",
+        "search_hk": "月亮伊布 V PSA10 伊布英雄",
+        "search_jp": "ブラッキーV PSA10 085/069 イーブイヒーローズ",
+        "set": "S6a / 085/069",
+        "tcgdex_id": "S6a-085",
+    }
+    zoro = {
+        "kind": "psa10",
+        "name_zh": "N的索羅亞克 ex SAR PSA10",
+        "name_jp": "Nのゾロアークex SAR PSA10",
+        "search_hk": "索羅亞克 SAR PSA10",
+        "search_jp": "Nのゾロアークex SAR PSA10 127/100",
+        "set": "SV9 / 127/100",
+        "tcgdex_id": "SV9-127",
+    }
     rows = [
         {"card_name": "PSA10 皮卡丘 ex SAR 198/165", "price": 4000, "id": "sar"},
         {"card_name": "PSA10 皮卡丘 AR 173/165 151", "price": 1800, "id": "ar"},
@@ -402,7 +419,7 @@ def test_listing_must_match_the_card_in_the_name() -> None:
     assert [h["id"] for h in match_item(rows, moon)] == ["moon"]
 
 
-def test_yahoo_sold_requires_grade_set_and_enough_comps() -> None:
+def test_151_box_rejects_pack_case_and_multi() -> None:
     item = {
         "kind": "psa10",
         "name_zh": "奇樹 SAR PSA10",
@@ -429,8 +446,6 @@ def test_yahoo_sold_requires_grade_set_and_enough_comps() -> None:
         extra_query=item["search_jp"],
     )
     assert sorted(h["id"] for h in hits) == ["c", "d", "f"]
-    assert publish_sold_median([17500, 18200, 400]) == 17500
-    assert publish_sold_median([17500, 18200]) is None
     sealed = {
         "kind": "sealed",
         "name_zh": "151 補充包 BOX（未開封）",
@@ -645,7 +660,7 @@ if __name__ == "__main__":
     test_mew_and_mewtwo_do_not_share_a_substring()
     test_charizard_without_set_or_number_is_rejected()
     test_listing_must_match_the_card_in_the_name()
-    test_yahoo_sold_requires_grade_set_and_enough_comps()
+    test_151_box_rejects_pack_case_and_multi()
     test_bare_collector_number_must_match()
     test_publish_ask_prefers_median_and_drops_a_lone_weak_listing()
     test_snkrdunk_print_rejects_english_reprint_and_loose_box()

@@ -735,9 +735,6 @@ def match_item(
     )
 
 
-_BUY_LISTING_TYPES = {"want", "wanted", "wtb", "buy", "bid", "seek", "demand", "buying"}
-
-
 def match_listings(
     rows: list[dict],
     *,
@@ -761,9 +758,6 @@ def match_listings(
     for row in rows:
         title = str(row.get("card_name") or row.get("title") or "")
         if not title or _non_jp(title) or _is_seek(title) or _is_lot(title, _norm(title)):
-            continue
-        listing_type = str(row.get("listing_type") or "").lower()
-        if listing_type in _BUY_LISTING_TYPES:
             continue
         if any(bit in title.lower() for bit in _JUNK):
             continue
@@ -856,16 +850,17 @@ def match_listings(
             continue
         code_hit = bool(_set_codes(query) & _set_codes(title))
         url = row.get("url")
-        hits.append(
-            {
-                "id": row.get("id"),
-                "title": title,
-                "price_hkd": price,
-                "source": row.get("source"),
-                "url": str(url) if url else None,
-                "strong": bool(number_hit or code_hit),
-            }
-        )
+        hit = {
+            "id": row.get("id"),
+            "title": title,
+            "price_hkd": price,
+            "source": row.get("source"),
+            "url": str(url) if url else None,
+            "strong": bool(number_hit or code_hit),
+        }
+        if row.get("listing_type"):
+            hit["listing_type"] = row.get("listing_type")
+        hits.append(hit)
     hits.sort(key=lambda h: h["price_hkd"])
     return hits
 

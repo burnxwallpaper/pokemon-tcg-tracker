@@ -11,6 +11,7 @@ from .hk_match import (
     primary_query,
     publish_ask,
 )
+from .reference_links import best_bid, is_wtb
 
 
 def _empty_source() -> dict[str, Any]:
@@ -127,20 +128,34 @@ def collect_hk(
         listings: list[dict] = []
         for name, part in parts.items():
             bucket = status[name]
-            if part.get("ok"):
+            sell_rows = [
+                row for row in (part.get("listings") or []) if not is_wtb(row)
+            ]
+            if part.get("ok") and sell_rows:
                 bucket["ok_items"] += 1
-                bucket["listings"] += len(part.get("asks_hkd") or [])
-                for row in part.get("listings") or []:
+                bucket["listings"] += len(sell_rows)
+                for row in sell_rows:
                     copied = dict(row)
                     if not copied.get("source"):
                         copied["source"] = name
                     listings.append(copied)
             elif part.get("error") and len(bucket["errors"]) < 12:
                 bucket["errors"].append(f"{item.get('id')}: {part.get('error')}")
+        wtb = carousell_hk.search_hkcardlink_wtb(item, min_interval=min_interval)
+        bid_listings = [row for row in (wtb.get("listings") or []) if is_wtb(row)]
+        bid_hkd, _bid_row = best_bid(bid_listings)
         jp_hkd = (jp_hkd_by_id or {}).get(str(item.get("id") or ""))
         decision = publish_ask(listings, jp_hkd)
         published = decision.get("hkd")
         used = decision.get("listings") or []
+        lows: list[float] = []
+        for row in used:
+            try:
+                price = float(row.get("price_hkd"))
+            except (TypeError, ValueError):
+                continue
+            if price > 0:
+                lows.append(price)
         backends: list[str] = []
         for row in used:
             source = str(row.get("source") or "")
@@ -150,9 +165,12 @@ def collect_hk(
             "ok": published is not None,
             "median_hkd": published,
             "published_hkd": published,
+            "lowest_hkd": round(min(lows), 2) if lows else None,
+            "bid_hkd": bid_hkd,
             "match_count": decision.get("match_count") or 0,
             "example_url": decision.get("example_url"),
             "listings": used[:20],
+            "bid_listings": bid_listings[:8],
             "backends": backends,
             "backend": "+".join(backends) if backends else None,
             "error": None if published is not None else "no confident HK sell ask",

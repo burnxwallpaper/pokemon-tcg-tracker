@@ -1,19 +1,20 @@
 {
   "id": "psa10-iono-sar",
-  "name_zh": "奇樹 SAR（漆黑氣焰）PSA10",
+  "name_zh": "奇樹 SAR（粘土爆發）PSA10",
   "name_jp": "ナンジャモ SAR クレイバースト PSA10",
+  "name_en": "Iono SAR Clay Burst PSA10",
   "kind": "psa10",
-  "set": "SV2D / 096/071",
-  "search_jp": "ナンジャモ SAR PSA10 096/071 クレイバースト",
-  "search_hk": "奇樹 SAR PSA10 漆黑氣焰",
+  "set": "SV2D / 096",
+  "search_jp": "ナンジャモ SAR PSA10 クレイバースト",
+  "search_hk": "奇樹 SAR PSA10 粘土爆發",
   "tcgdex_id": "SV2D-096",
   "image": "images/psa10-iono-sar.webp",
   "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2D/096/high.webp",
-  "image_note": "official_card SV2D-096 ナンジャモ SAR 096/071",
+  "image_note": "official_card SV2D-096 ナンジャモ SAR Clay Burst (not 151 350/165)",
   "image_source": "official",
   "series_path": "history/series/psa10-iono-sar.json",
   "history_points": 90,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T19:48:15+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

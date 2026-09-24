@@ -13,14 +13,18 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from ._http import median, polite_get
-from .hk_match import match_item, robust_median
+from .jp_match import (
+    build_queries,
+    debug_from_comps,
+    filter_comps,
+    is_fuzzy_closedsearch,
+    quote_comps,
+    robust_median_jpy,
+)
 
 JST = timezone(timedelta(hours=9))
 HKT = timezone(timedelta(hours=8))
 CLOSED_URL = "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
-AUCTION_URL = "https://auctions.yahoo.co.jp/jp/auction/{auction_id}"
-# Fewer than this many title-matched comps → do not publish a sold price.
-MIN_SOLD_COMPS = 3
 
 
 def _parse_next_data(html: str) -> dict | None:
@@ -76,16 +80,14 @@ def _item_to_comp(it: dict) -> dict | None:
         return None
     if price_i <= 0:
         return None
-    auction_id = it.get("auctionId")
     return {
-        "auction_id": auction_id,
+        "auction_id": it.get("auctionId"),
         "title": title,
         "price_jpy": price_i,
         "bid_count": it.get("bidCount"),
         "end_time": it.get("endTime"),
         "image_url": it.get("imageUrl"),
         "is_fixed": bool(it.get("isFixedPrice")),
-        "url": AUCTION_URL.format(auction_id=auction_id) if auction_id else None,
     }
 
 
@@ -95,18 +97,23 @@ def _fetch_page(
     start: int,
     per_page: int,
     min_interval: float,
-) -> tuple[list[dict], int, str | None, str]:
-    """One closedsearch page. Returns (raw items, total, error, status)."""
+    select: str = "01",
+) -> tuple[list[dict], int, str | None, str, str]:
+    """One closedsearch page.
+
+    Returns (raw items, total, error, status, wand query).
+    ``select=01`` is end-time descending. ``select=22`` is start-time on
+    WAND-expanded queries and must not be used for sold prices.
+    """
     try:
         resp = polite_get(
             CLOSED_URL,
             params={
                 "p": keyword,
                 "b": start,
-                "n": min(per_page, 100),
+                "n": min(per_page, 50),
                 "ei": "UTF-8",
-                # recent end order (works for closedsearch Next.js)
-                "select": "22",
+                "select": select,
             },
             headers={"Accept-Language": "ja,en;q=0.8"},
             min_interval=min_interval,
@@ -114,14 +121,22 @@ def _fetch_page(
         )
         if resp.status_code != 200:
             status = "blocked" if resp.status_code in (403, 429) else "error"
-            return [], 0, f"HTTP {resp.status_code}", status
+            return [], 0, f"HTTP {resp.status_code}", status, ""
         next_data = _parse_next_data(resp.text)
         if not next_data:
-            return [], 0, "no __NEXT_DATA__", "parse_error"
+            return [], 0, "no __NEXT_DATA__", "parse_error", ""
         items, total = _extract_listing(next_data)
-        return items, total, None, "ok"
+        wand = ""
+        try:
+            listing = next_data["props"]["pageProps"]["initialState"]["search"]["items"]["listing"]
+            meta = listing.get("metadata") if isinstance(listing, dict) else None
+            if isinstance(meta, dict):
+                wand = str(meta.get("wandQuery") or "")
+        except (KeyError, TypeError):
+            wand = ""
+        return items, total, None, "ok", wand
     except Exception as e:  # noqa: BLE001
-        return [], 0, f"{type(e).__name__}: {e}", "error"
+        return [], 0, f"{type(e).__name__}: {e}", "error", ""
 
 
 def probe_closed_count(
@@ -140,8 +155,12 @@ def probe_closed_count(
     ``window_count`` is how many lots on this first page ended within
     ``window_days``. It caps at ``per_page`` and is only a tie-break.
     """
-    items, total, err, status = _fetch_page(
-        keyword, start=1, per_page=per_page, min_interval=min_interval
+    items, total, err, status, _wand = _fetch_page(
+        keyword,
+        start=1,
+        per_page=per_page,
+        min_interval=min_interval,
+        select="22",
     )
     now = datetime.now(JST)
     window = 0
@@ -200,8 +219,8 @@ def search_sold(
 
     # Single-page path (daily update default)
     if days is None:
-        items, total, err, status = _fetch_page(
-            keyword, start=1, per_page=min(limit, 100), min_interval=min_interval
+        items, total, err, status, _wand = _fetch_page(
+            keyword, start=1, per_page=min(limit, 50), min_interval=min_interval
         )
         result["pages_fetched"] = 1
         if err:
@@ -219,7 +238,7 @@ def search_sold(
 
     for page in range(max_pages):
         start = 1 + page * per_page
-        items, total, err, status = _fetch_page(
+        items, total, err, status, _wand = _fetch_page(
             keyword, start=start, per_page=per_page, min_interval=min_interval
         )
         pages += 1
@@ -343,8 +362,10 @@ def comps_to_daily_history(
     history: list[dict] = []
     for d in sorted(by_date.keys()):
         prices = by_date[d]
-        med = median(prices)
-        price_hkd = round(float(med) * fx, 2) if med is not None else None
+        med = robust_median_jpy(prices)
+        if med is None:
+            continue
+        price_hkd = round(float(med) * fx, 2)
         point = {
             "date": d,
             "price_hkd": price_hkd,
@@ -359,49 +380,26 @@ def comps_to_daily_history(
     return history
 
 
-def _match_sold_comps(comps: list[dict], item: dict) -> list[dict]:
-    """PSA10 needs the grade. Sealed needs a box. Set code or card number must agree."""
-    rows = [
-        {
-            "card_name": comp.get("title") or "",
-            "price": comp.get("price_jpy"),
-            "id": comp.get("auction_id"),
-            "url": comp.get("url"),
-            "source": "yahoo_auctions_jp",
-        }
-        for comp in comps
-    ]
-    hits = match_item(
-        rows,
-        item,
-        apply_price_band=False,
-        require_print=item.get("kind") != "sealed",
-        extra_query=str(item.get("search_jp") or item.get("name_jp") or ""),
-    )
-    allowed = {str(hit.get("id")) for hit in hits if hit.get("id")}
-    return [comp for comp in comps if str(comp.get("auction_id") or "") in allowed]
-
-
-def _samples_near(comps: list[dict], median_jpy: float | None, limit: int = 3) -> list[dict]:
-    if median_jpy is None:
-        picked = comps[:limit]
-    else:
-        picked = sorted(comps, key=lambda comp: abs(int(comp["price_jpy"]) - median_jpy))[:limit]
-    return [
-        {
-            "title": comp.get("title"),
-            "price_jpy": comp.get("price_jpy"),
-            "url": comp.get("url"),
-        }
-        for comp in picked
-    ]
-
-
-def publish_sold_median(prices: list[float], *, minimum: int = MIN_SOLD_COMPS) -> float | None:
-    """Robust median once enough comps agree. Too few matches publish nothing."""
-    if len(prices) < minimum:
-        return None
-    return robust_median(prices)
+def _empty_sold(item: dict, query: str, *, error: str | None, status: str) -> dict[str, Any]:
+    return {
+        "ok": False,
+        "source": "yahoo_auctions_jp",
+        "keyword": query,
+        "query": query,
+        "item_id": item.get("id"),
+        "comps": [],
+        "median_jpy": None,
+        "volume_24h": 0,
+        "volume_7d_est": 0,
+        "total_available": 0,
+        "image_url": None,
+        "error": error,
+        "status": status,
+        "pages_fetched": 0,
+        "days_requested": None,
+        "fuzzy": status == "fuzzy",
+        "jp_debug": debug_from_comps([], query=query),
+    }
 
 
 def fetch_watchlist_item(
@@ -411,43 +409,137 @@ def fetch_watchlist_item(
     days: int | None = None,
     max_pages: int = 8,
 ) -> dict[str, Any]:
-    """Fetch JP sold summary for one watchlist entry."""
-    kw = item.get("search_jp") or item.get("name_jp") or ""
-    out = search_sold(
-        kw, min_interval=min_interval, days=days, max_pages=max_pages
-    )
-    raw_n = len(out.get("comps") or [])
-    matched = _match_sold_comps(list(out.get("comps") or []), item)
-    prices = [int(comp["price_jpy"]) for comp in matched]
-    mid = publish_sold_median(prices)
-    now = datetime.now(JST)
-    vol_24 = 0
-    vol_7d = 0
-    for comp in matched:
-        end = _parse_end_time(comp.get("end_time"))
-        if not end:
+    """Closedsearch sold quote for one watchlist SKU.
+
+    Refuses WAND-expanded result sets. Title filter drops raw, other grades,
+    other sets, other card numbers, and multi-box lots. Median uses the
+    matched comps only; no match leaves the price empty.
+    """
+    queries = build_queries(item)
+    if not queries:
+        return _empty_sold(item, "", error="no query", status="empty")
+
+    page_cap = max_pages if days else 3
+    per_page = 50
+    chosen_query = queries[0]
+    raw_items: list[dict] = []
+    total = 0
+    pages = 0
+    fuzzy = False
+    last_err: str | None = None
+    last_status = "empty"
+
+    for query in queries:
+        items, total, err, status, wand = _fetch_page(
+            query, start=1, per_page=per_page, min_interval=min_interval
+        )
+        pages = 1
+        chosen_query = query
+        if err:
+            last_err = err
+            last_status = status
+            if status == "blocked":
+                out = _empty_sold(item, query, error=err, status="blocked")
+                out["pages_fetched"] = pages
+                return out
             continue
-        age = now - end
+        fuzzy = is_fuzzy_closedsearch(total, wand)
+        if fuzzy or not items:
+            last_status = "fuzzy" if fuzzy else "empty"
+            continue
+        raw_items = list(items)
+        last_err = None
+        last_status = "ok"
+        break
+
+    if not raw_items:
+        status = "fuzzy" if fuzzy and not last_err else last_status
+        note = "fuzzy closedsearch refused" if status == "fuzzy" else last_err
+        out = _empty_sold(item, chosen_query, error=note, status=status if status != "ok" else "empty")
+        out["pages_fetched"] = pages
+        out["total_available"] = total
+        out["fuzzy"] = fuzzy
+        return out
+
+    while pages < page_cap:
+        matched_now = filter_comps(
+            [c for it in raw_items if (c := _item_to_comp(it))],
+            item,
+        )
+        if len(matched_now) >= 3:
+            break
+        if total and (1 + (pages - 1) * per_page + len(raw_items)) > total and pages == 1:
+            # first page already covered the index
+            if len(raw_items) >= total:
+                break
+        if total and pages * per_page >= total:
+            break
+        start = 1 + pages * per_page
+        more, total, err, status, wand = _fetch_page(
+            chosen_query, start=start, per_page=per_page, min_interval=min_interval
+        )
+        pages += 1
+        if err or not more or is_fuzzy_closedsearch(total, wand):
+            break
+        raw_items.extend(more)
+
+    comps_all: list[dict] = []
+    seen: set[str] = set()
+    for it in raw_items:
+        comp = _item_to_comp(it)
+        if not comp:
+            continue
+        aid = str(comp.get("auction_id") or "")
+        if aid and aid in seen:
+            continue
+        if aid:
+            seen.add(aid)
+        comps_all.append(comp)
+
+    matched = filter_comps(comps_all, item)
+    if days is not None and days > 0:
+        cutoff = datetime.now(HKT) - timedelta(days=days)
+        windowed: list[dict] = []
+        for comp in matched:
+            dt = _parse_end_time(comp.get("end_time"))
+            if dt is None or dt.astimezone(HKT) < cutoff:
+                continue
+            windowed.append(comp)
+        matched = windowed
+
+    median_jpy, used = quote_comps(matched)
+    vol_24 = 0
+    vol_7 = 0
+    now = datetime.now(JST)
+    for comp in matched:
+        dt = _parse_end_time(comp.get("end_time"))
+        if not dt:
+            continue
+        age = now - dt
         if age <= timedelta(hours=24):
             vol_24 += 1
         if age <= timedelta(days=7):
-            vol_7d += 1
-    out["item_id"] = item.get("id")
-    out["raw_comps_n"] = raw_n
-    out["matched_n"] = len(matched)
-    out["comps"] = matched
-    out["median_jpy"] = int(round(mid)) if mid is not None else None
-    out["sold_samples"] = _samples_near(matched, mid)
-    out["volume_24h"] = vol_24
-    out["volume_7d_est"] = round(vol_7d / 7.0, 2) if vol_7d else 0
-    fetch_error = out.get("error") if out.get("status") in ("blocked", "error", "parse_error") else None
-    out["ok"] = mid is not None
-    if mid is not None:
-        out["status"] = "ok"
-        out["error"] = None
-    elif fetch_error:
-        out["error"] = fetch_error
-    else:
-        out["status"] = "thin" if matched else "empty"
-        out["error"] = None
-    return out
+            vol_7 += 1
+
+    debug = debug_from_comps(used, query=chosen_query)
+    return {
+        "ok": median_jpy is not None,
+        "source": "yahoo_auctions_jp",
+        "keyword": chosen_query,
+        "query": chosen_query,
+        "item_id": item.get("id"),
+        "comps": matched,
+        "median_jpy": median_jpy,
+        "volume_24h": vol_24,
+        "volume_7d_est": round(vol_7 / 7.0, 2) if vol_7 else 0,
+        "total_available": total,
+        "image_url": None,
+        "error": None,
+        "status": "ok" if median_jpy is not None else "empty",
+        "pages_fetched": pages,
+        "days_requested": days,
+        "fuzzy": False,
+        "jp_debug": debug,
+        "oldest_end": None,
+        "newest_end": None,
+    }

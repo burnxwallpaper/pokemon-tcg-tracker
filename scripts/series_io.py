@@ -163,8 +163,9 @@ def write_catalog_item(
 ) -> Path:
     """Upsert durable per-id catalog entry (names, official image, tcgdex ids).
 
-    Never clears prior fields when the new value is missing. Image path only
-    updates when a non-empty path is provided (local official file).
+    Missing keys keep the previous value. An explicit null or empty official
+    URL, tcgdex id, or search alias clears that field so a wrong face or
+    alias cannot stick.
     """
     CATALOG_DIR.mkdir(parents=True, exist_ok=True)
     iid = wl["id"]
@@ -172,16 +173,29 @@ def write_catalog_item(
     it = item or {}
     meta = meta or {}
 
-    image = it.get("image") or old.get("image")
-    image_url = (
-        wl.get("image_official_url")
-        or wl.get("official_image")
-        or old.get("image_official_url")
-    )
-    tcgdex_id = wl.get("tcgdex_id") or old.get("tcgdex_id")
+    def field(key: str):
+        if key in wl:
+            value = wl.get(key)
+            if value is None or value == "":
+                return None
+            return value
+        return old.get(key)
+
+    blank_face = "image_official_url" in wl and not wl.get("image_official_url")
+    snkr_image = it.get("snkrdunk_image_url") if isinstance(it.get("snkrdunk_image_url"), str) else ""
+    if blank_face and it.get("image") and snkr_image.startswith("https://"):
+        image = it.get("image")
+        image_url = snkr_image
+    elif blank_face:
+        image = None
+        image_url = None
+    else:
+        image = it.get("image") or old.get("image")
+        image_url = field("image_official_url") or field("official_image")
+    tcgdex_id = field("tcgdex_id")
 
     # Infer image_source: local official file wins
-    image_source = old.get("image_source") or "none"
+    image_source = "none" if blank_face else (old.get("image_source") or "none")
     if image and Path(str(image)).name:
         # treat any stored images/{id}.* as official after migration
         image_source = "official"
@@ -204,16 +218,17 @@ def write_catalog_item(
 
     doc = {
         "id": iid,
-        "name_zh": wl.get("name_zh") or old.get("name_zh"),
-        "name_jp": wl.get("name_jp") or old.get("name_jp"),
-        "kind": wl.get("kind") or old.get("kind"),
-        "set": wl.get("set") or old.get("set"),
-        "search_jp": wl.get("search_jp") or old.get("search_jp"),
-        "search_hk": wl.get("search_hk") or old.get("search_hk"),
+        "name_zh": field("name_zh"),
+        "name_jp": field("name_jp"),
+        "name_en": field("name_en"),
+        "kind": field("kind"),
+        "set": field("set"),
+        "search_jp": field("search_jp"),
+        "search_hk": field("search_hk"),
         "tcgdex_id": tcgdex_id,
         "image": image,
         "image_official_url": image_url,
-        "image_note": wl.get("image_note") or old.get("image_note"),
+        "image_note": field("image_note"),
         "image_source": image_source,
         "series_path": f"history/series/{iid}.json",
         "history_points": history_points,
@@ -221,6 +236,8 @@ def write_catalog_item(
         "last_seen": (dates[-1] if dates else old.get("last_seen")),
         "updated_at": meta.get("updated_at") or old.get("updated_at"),
     }
+    if wl.get("identity_review"):
+        doc["identity_review"] = True
     path = CATALOG_DIR / f"{iid}.json"
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path

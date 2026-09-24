@@ -2,8 +2,9 @@
   "id": "psa10-miraidon-ex-sar",
   "name_zh": "密勒頓 ex SAR PSA10",
   "name_jp": "ミライドンex SAR PSA10",
+  "name_en": "Miraidon ex SAR PSA10",
   "kind": "psa10",
-  "set": "SV1V / 102",
+  "set": "SV1V / 102/078",
   "search_jp": "ミライドンex SAR PSA10",
   "search_hk": "密勒頓 SAR PSA10",
   "tcgdex_id": "SV1V-102",
@@ -15,5 +16,5 @@
   "history_points": 38,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T19:48:15+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

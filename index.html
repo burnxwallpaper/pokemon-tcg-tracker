@@ -152,6 +152,29 @@
     }
     .section-head h2 { margin: 0; font-size: 1.15rem; }
     .section-head .hint { color: var(--muted); font-size: 0.8rem; }
+    .liq-search {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 0.85rem;
+    }
+    .liq-search input[type="search"] {
+      flex: 1 1 220px;
+      max-width: 420px;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.5rem 0.9rem;
+      font: inherit;
+      font-size: 0.9rem;
+    }
+    .liq-search input[type="search"]::placeholder { color: var(--muted); }
+    .liq-search input[type="search"]:focus {
+      outline: 2px solid var(--accent);
+      border-color: var(--accent);
+    }
+    .liq-names { color: var(--muted); font-size: 0.75rem; }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -274,14 +297,36 @@
       font-size: 0.75rem;
       border-top: 1px solid var(--border);
     }
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
     table.compact {
       width: 100%;
+      min-width: 920px;
       border-collapse: collapse;
       font-size: 0.85rem;
       background: var(--panel);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
+    }
+    .num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .ref-links { display: flex; flex-wrap: wrap; gap: 0.28rem 0.55rem; min-width: 9.5rem; }
+    .ref-links a {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .ref-links a:hover { border-bottom-color: var(--accent); }
+    .legend {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      margin: 0 0 0.85rem;
+      max-width: 78rem;
     }
     table.compact th, table.compact td {
       padding: 0.65rem 0.75rem;
@@ -439,46 +484,51 @@
 <body>
   <header>
     <h1>寶可夢 TCG 行情追蹤</h1>
-    <p class="subtitle">個人投機用 · 卡（PSA10）同盒（未開封）分開睇 · 香港最新賣出價為主 · 日本價參考 · HKD</p>
+    <p class="subtitle">個人投機用 · 首頁係卡（PSA10）流動性 · 盒係次要 · 全部以 HKD 顯示 · 成交、賣出價、徵求分開標</p>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
     </div>
     <nav class="cat-bar" role="tablist" aria-label="大類">
-      <button class="cat active" type="button" data-kind="all" aria-pressed="true">兩邊 <span class="count"></span></button>
-      <button class="cat" type="button" data-kind="psa10" aria-pressed="false">卡 <span class="sub">PSA10</span> <span class="count"></span></button>
+      <button class="cat active" type="button" data-kind="psa10" aria-pressed="true">卡 <span class="sub">PSA10</span> <span class="count"></span></button>
       <button class="cat" type="button" data-kind="sealed" aria-pressed="false">盒 <span class="sub">未開封</span> <span class="count"></span></button>
+      <button class="cat" type="button" data-kind="all" aria-pressed="false">兩邊 <span class="count"></span></button>
     </nav>
   </header>
 
   <nav class="tabs" role="tablist">
-    <button class="tab active" data-section="moves" type="button">大異動</button>
-    <button class="tab" data-section="liquidity" type="button">流動性</button>
+    <button class="tab active" data-section="liquidity" type="button">流動性</button>
+    <button class="tab" data-section="moves" type="button">大異動</button>
     <button class="tab" data-section="spreads" type="button">價差</button>
   </nav>
 
   <main>
     <div id="status" class="loading">正在讀取 <code>./data/latest.json</code>…</div>
 
-    <section id="sec-moves" class="section active" aria-label="大異動">
-      <div class="section-head">
-        <h2>大異動</h2>
-        <span class="hint">1日／7日價格變動或量能異常 · 卡同盒分開列 · 點擊卡片看詳情</span>
-      </div>
-      <div id="movesGrid"></div>
-    </section>
-
-    <section id="sec-liquidity" class="section" aria-label="流動性">
+    <section id="sec-liquidity" class="section active" aria-label="流動性">
       <div class="section-head">
         <h2>流動性</h2>
-        <span class="hint">卡同盒各自按流動性分數排序 · 點擊列看詳情</span>
+        <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
+      </div>
+      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和 SNKRDUNK 叫價接近才保留；換算 HKD）。香港最新賣出價＝對到的香港賣盤中位數；偏離 SNKRDUNK 日圓市價太遠，或只有一筆又對不上卡號，就留空。最低賣出價＝呢批賣盤入面最低。買入價／徵求只顯示 HKCardLink 公開徵收預算；對唔到就顯示暫無，唔會估算。詳情有 SNKRDUNK 連結。</p>
+      <div class="liq-search">
+        <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
+        <span id="liqSearchCount" class="hint"></span>
       </div>
       <div id="liquidityWrap"></div>
+    </section>
+
+    <section id="sec-moves" class="section" aria-label="大異動">
+      <div class="section-head">
+        <h2>大異動</h2>
+        <span class="hint">1日／7日最近成交價變動或量能異常 · 卡同盒分開列 · 點擊卡片看詳情</span>
+      </div>
+      <div id="movesGrid"></div>
     </section>
 
     <section id="sec-spreads" class="section" aria-label="價差">
       <div class="section-head">
         <h2>價差</h2>
-        <span class="hint">香港最新賣出價 vs 日本參考（正值 = 香港較貴）· 卡同盒分開列 · 點擊卡片看詳情</span>
+        <span class="hint">香港最新賣出價 vs 最近成交價（正值 = 香港賣價較高）· 卡同盒分開列 · 點擊卡片看詳情</span>
       </div>
       <div id="spreadsGrid"></div>
     </section>
@@ -524,8 +574,9 @@
     /** @type {object|null} */
     let currentMeta = null;
     /** @type {"all"|"psa10"|"sealed"} */
-    let category = "all";
+    let category = "psa10";
     let viewData = { moves: [], liquidity: [], spreads: [] };
+    let liqQuery = "";
     /** @type {import('chart.js').Chart[]} */
     let activeCharts = [];
 
@@ -585,6 +636,61 @@
       return `<img class="${cls}" src="${escapeHtml(src)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} placeholder',textContent:'無圖'}))" />`;
     }
 
+    function fmtAsk(it) {
+      return it.hk_ask_hkd == null ? "—" : fmtHkd(it.hk_ask_hkd);
+    }
+
+    function fmtLow(it) {
+      if (it.hk_ask_low_hkd != null) return fmtHkd(it.hk_ask_low_hkd);
+      if (it.hk_listings_n === 1 && it.hk_ask_hkd != null) return fmtHkd(it.hk_ask_hkd);
+      return "—";
+    }
+
+    function fmtBid(it) {
+      return it.hk_bid_hkd == null ? "暫無" : fmtHkd(it.hk_bid_hkd);
+    }
+
+    function referenceLinks(it) {
+      if (Array.isArray(it.links) && it.links.length) {
+        return it.links.filter((link) => link && link.href && link.label);
+      }
+      const links = [];
+      const jp = it.search_jp || it.name_jp || it.name_zh;
+      const hk = it.search_hk || it.name_zh || it.name_jp;
+      if (jp) {
+        links.push({
+          label: "Yahoo 已結束拍賣",
+          href: "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=" + encodeURIComponent(jp) + "&ei=UTF-8",
+        });
+      }
+      if (hk) {
+        links.push({
+          label: "Carousell 搜尋",
+          href: "https://www.carousell.com.hk/search/" + encodeURIComponent(hk) + "/",
+        });
+        links.push({
+          label: "HKCardLink 搜尋",
+          href: "https://www.hkcardlink.com/marketplace?q=" + encodeURIComponent(hk),
+        });
+        links.push({
+          label: "HKCardLink 徵求",
+          href: "https://www.hkcardlink.com/marketplace?mode=wtb&q=" + encodeURIComponent(hk),
+        });
+      }
+      return links;
+    }
+
+    function linksHtml(it) {
+      const links = referenceLinks(it);
+      if (!links.length) return `<span class="price-sub">暫無參考連結</span>`;
+      return `<div class="ref-links">${links
+        .map(
+          (link) =>
+            `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`
+        )
+        .join("")}</div>`;
+    }
+
     function cardHtml(it) {
       const kind = kindLabel(it.kind);
       const reasons = (it.move_reasons || [])
@@ -601,8 +707,10 @@
               </div>
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kind}</span>
             </div>
-            <div class="price">${fmtHkd(it.hk_ask_hkd)}<span>香港最新賣出價</span></div>
-            <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}${it.spread_jp_hk_pct != null ? ` · 價差 ${fmtPct(it.spread_jp_hk_pct)}` : ""}</div>
+            <div class="price">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
+            <div class="price-sub">香港最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
+            <div class="price-sub">買入價／徵求 ${fmtBid(it)}${it.spread_jp_hk_pct != null ? ` · 價差 ${fmtPct(it.spread_jp_hk_pct)}` : ""}</div>
+            ${linksHtml(it)}
             <div class="row">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
               <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
@@ -610,6 +718,7 @@
             </div>
             <div class="row">
               ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無香港賣出價</span>` : ""}
+              ${it.identity_review ? `<span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
               ${it.is_sample ? `<span class="badge" style="font-size:0.65rem">範例</span>` : ""}
             </div>
             ${reasons ? `<div class="reasons">${reasons}</div>` : ""}
@@ -621,7 +730,11 @@
     function wireCardClicks(container) {
       container.querySelectorAll("[data-id]").forEach((el) => {
         const open = () => openDetail(el.getAttribute("data-id"));
-        el.addEventListener("click", open);
+        el.addEventListener("click", (e) => {
+          const node = e.target instanceof Element ? e.target : e.target.parentElement;
+          if (node && node.closest("a")) return;
+          open();
+        });
         el.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -658,6 +771,35 @@
       wireCardClicks(el);
     }
 
+    function englishName(it) {
+      return String((it && it.name_en) || "");
+    }
+
+    function nameHaystack(it) {
+      return [it.name_zh, it.name_jp, englishName(it)].filter(Boolean).join(" ");
+    }
+
+    function matchesNameQuery(it, query) {
+      const q = String(query || "").trim().toLowerCase();
+      if (!q) return true;
+      const blob = nameHaystack(it).toLowerCase();
+      if (blob.includes(q)) return true;
+      const compact = blob.replace(/\s+/g, "");
+      const qCompact = q.replace(/\s+/g, "");
+      return qCompact.length > 0 && compact.includes(qCompact);
+    }
+
+    function visibleLiquidity() {
+      return (viewData.liquidity || []).filter((it) => matchesNameQuery(it, liqQuery));
+    }
+
+    function updateLiqSearchCount() {
+      const countEl = document.getElementById("liqSearchCount");
+      if (!countEl) return;
+      const total = (viewData.liquidity || []).length;
+      countEl.textContent = liqQuery.trim() ? `${visibleLiquidity().length} / ${total}` : "";
+    }
+
     function liquidityTable(items) {
       const rows = items
         .map(
@@ -668,45 +810,52 @@
             <div style="display:flex;align-items:center">
               ${imgHtml(it, "thumb")}
               <div>
-                <strong>${escapeHtml(it.name_zh)}</strong>
-                <div style="color:var(--muted);font-size:0.75rem">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
+                <strong>${escapeHtml(it.name_zh)}</strong>${it.identity_review ? ` <span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
+                <div class="liq-names">${escapeHtml([it.name_jp, englishName(it)].filter(Boolean).join(" · "))}</div>
+                <div class="liq-names">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
               </div>
             </div>
           </td>
-          <td><strong>${fmtHkd(it.hk_ask_hkd)}</strong></td>
-          <td class="hide-sm">${fmtHkd(it.price_hkd)}</td>
-          <td class="hide-sm">${it.volume_today ?? "—"} / ${it.volume_7d_avg ?? "—"}</td>
-          <td><strong>${it.liquidity_score ?? "—"}</strong></td>
-          <td class="hide-sm"><span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></td>
+          <td class="num" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
+          <td class="num" title="目前對到的香港賣盤叫價（穩健中位數）">${fmtAsk(it)}</td>
+          <td class="num" title="對到的香港賣盤入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
+          <td class="num" title="只顯示 HKCardLink 公開徵收預算；否則暫無">${fmtBid(it)}</td>
+          <td class="num"><strong>${it.liquidity_score ?? "—"}</strong></td>
+          <td>${linksHtml(it)}</td>
         </tr>`
         )
         .join("");
       return `
+        <div class="table-scroll">
         <table class="compact">
           <thead>
             <tr>
               <th>#</th>
               <th>品項</th>
+              <th>最近成交價</th>
               <th>香港最新賣出價</th>
-              <th class="hide-sm">日本參考</th>
-              <th class="hide-sm">今日量 / 7日均</th>
+              <th>最低賣出價</th>
+              <th>買入價／徵求</th>
               <th>流動性</th>
-              <th class="hide-sm">1日</th>
+              <th>參考連結</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
-        </table>`;
+        </table>
+        </div>`;
     }
 
     function renderLiquidity(list) {
       const el = document.getElementById("liquidityWrap");
+      const empty = liqQuery.trim() ? "沒有符合搜尋的品項。" : "這個分類暫無資料。";
       el.innerHTML = groupsFor(list).map((group) => {
         const body = group.items.length
           ? liquidityTable(group.items)
-          : `<p class="cat-empty">這個分類暫無資料。</p>`;
+          : `<p class="cat-empty">${empty}</p>`;
         return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
       }).join("");
       wireCardClicks(el);
+      updateLiqSearchCount();
     }
 
     function renderSpreads(list) {
@@ -722,7 +871,7 @@
 
     function renderViews() {
       renderMoves(viewData.moves);
-      renderLiquidity(viewData.liquidity);
+      renderLiquidity(visibleLiquidity());
       renderSpreads(viewData.spreads);
       const items = Object.values(itemsById);
       const nPsa = items.filter((it) => it.kind === "psa10").length;
@@ -752,7 +901,7 @@
           if (next !== "all" && next !== "psa10" && next !== "sealed") return;
           category = next;
           const url = new URL(location.href);
-          if (category === "all") url.searchParams.delete("kind");
+          if (category === "psa10") url.searchParams.delete("kind");
           else url.searchParams.set("kind", category);
           history.replaceState(null, "", url);
           renderViews();
@@ -805,7 +954,7 @@
         });
       }
       priceDatasets.push({
-        label: "日本參考",
+        label: "最近成交價",
         data: jpRef,
         borderColor: hasHk ? "#8b9bb0" : "#5b9fd4",
         backgroundColor: "transparent",
@@ -909,7 +1058,7 @@
       const body = document.getElementById("detailBody");
 
       title.textContent = it.name_zh;
-      sub.textContent = `${it.name_jp || ""} · ${it.set || ""}`;
+      sub.textContent = [it.name_jp, englishName(it), it.set].filter(Boolean).join(" · ");
 
       const sampleBadge = it.is_sample
         ? `<span class="badge">範例資料</span>`
@@ -925,10 +1074,10 @@
             <div class="detail-meta-row">
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kindLabel(it.kind)}</span>
               ${sampleBadge}
+              ${it.identity_review ? `<span class="badge">待核對</span>` : ""}
             </div>
-            <div class="price" style="margin:0.2rem 0">${fmtHkd(it.hk_ask_hkd)}<span>香港最新賣出價</span></div>
-            <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}</div>
-            ${it.snkrdunk_url ? `<div class="price-sub"><a href="${escapeHtml(it.snkrdunk_url)}" target="_blank" rel="noopener">SNKRDUNK</a>${it.snkrdunk_jpy ? ` · ¥${Number(it.snkrdunk_jpy).toLocaleString("en-HK")}` : ""}</div>` : ""}
+            <div class="price" style="margin:0.2rem 0">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
+            <div class="price-sub">香港最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)} · 買入價／徵求 ${fmtBid(it)}</div>
             <div class="row" style="margin-top:0.5rem">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
               <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
@@ -937,12 +1086,20 @@
         </div>
         <div class="detail-stats">
           <div class="stat primary">
-            <div class="label">香港最新賣出價</div>
-            <div class="value">${fmtHkd(it.hk_ask_hkd)}</div>
+            <div class="label">最近成交價</div>
+            <div class="value">${fmtHkd(it.price_hkd)}</div>
           </div>
           <div class="stat">
-            <div class="label">日本參考</div>
-            <div class="value">${fmtHkd(it.price_hkd)}</div>
+            <div class="label">香港最新賣出價</div>
+            <div class="value">${fmtAsk(it)}</div>
+          </div>
+          <div class="stat">
+            <div class="label">最低賣出價</div>
+            <div class="value">${fmtLow(it)}</div>
+          </div>
+          <div class="stat">
+            <div class="label">買入價／徵求</div>
+            <div class="value">${fmtBid(it)}</div>
           </div>
           <div class="stat">
             <div class="label">價差 JP↔HK</div>
@@ -969,7 +1126,9 @@
           <h3>成交量（約 90 日）</h3>
           <div class="chart-wrap"><canvas id="volChart"></canvas></div>
         </div>
-        <div class="sources-list">來源：${sources || "—"}</div>
+        <div class="sources-list"><div style="margin-bottom:0.35rem">參考連結</div>${linksHtml(it)}</div>
+        <p style="font-size:0.75rem;color:var(--muted);margin:0.65rem 0 0">${it.hk_bid_hkd == null ? "買入價／徵求顯示暫無：Carousell、LONO、Zenox 冇結構化徵求價；HKCardLink 徵收對不到正數預算時亦唔會估算。" : "買入價／徵求來自 HKCardLink 公開徵收預算。"}</p>
+        <div class="sources-list">抓取來源：${sources || "—"}</div>
         <p style="font-size:0.72rem;color:var(--muted);margin:0.75rem 0 0">id: <code>${escapeHtml(it.id)}</code>${it.is_sample ? " · 範例序列（非正式行情）" : ""}</p>
       `;
 
@@ -1007,21 +1166,42 @@
       });
     }
 
-    function wireTabs() {
-      const tabs = document.querySelectorAll(".tab");
+    function wireLiquiditySearch() {
+      const input = document.getElementById("liqSearch");
+      if (!input) return;
+      input.addEventListener("input", () => {
+        liqQuery = input.value || "";
+        renderLiquidity(visibleLiquidity());
+      });
+    }
+
+    function activateSection(name) {
       const map = {
         moves: "sec-moves",
         liquidity: "sec-liquidity",
         spreads: "sec-spreads",
       };
-      tabs.forEach((btn) => {
+      if (!map[name]) name = "liquidity";
+      document.querySelectorAll(".tab").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.section === name);
+      });
+      Object.entries(map).forEach(([key, id]) => {
+        document.getElementById(id).classList.toggle("active", key === name);
+      });
+      return name;
+    }
+
+    function wireTabs() {
+      const params = new URLSearchParams(location.search);
+      const initial = params.get("section");
+      activateSection(initial || "liquidity");
+      document.querySelectorAll(".tab").forEach((btn) => {
         btn.addEventListener("click", () => {
-          tabs.forEach((t) => t.classList.remove("active"));
-          btn.classList.add("active");
-          Object.values(map).forEach((id) =>
-            document.getElementById(id).classList.remove("active")
-          );
-          document.getElementById(map[btn.dataset.section]).classList.add("active");
+          const name = activateSection(btn.dataset.section);
+          const url = new URL(location.href);
+          if (name === "liquidity") url.searchParams.delete("section");
+          else url.searchParams.set("section", name);
+          history.replaceState(null, "", url);
         });
       });
     }
@@ -1058,6 +1238,7 @@
     async function init() {
       wireTabs();
       wireCategories();
+      wireLiquiditySearch();
       wireDetail();
       try {
         const data = await loadData();
