@@ -202,13 +202,33 @@ def test_specific_names_seek_grade_and_card_number() -> None:
     )
     assert [h["price_hkd"] for h in z151] == [7800]
     ar = match_listings(
-        [{"card_name": "PSA10 Pikachu AR Holo 173/165", "price": 930}],
-        keyword="皮卡丘 SAR PSA10 151",
+        [{"card_name": "PSA10 Pikachu AR Holo 173/165 promo sar", "price": 930}],
+        keyword="皮卡丘 SAR PSA10 151 sv2a",
         kind="psa10",
         name_zh="皮卡丘 ex SAR PSA10",
-        card_number="173",
+        card_number="198",
+        card_denom="165",
     )
     assert ar == []
+    wrong_set = match_listings(
+        [{"card_name": "PSA10 PTCG M2a 奇樹 SAR", "price": 500}],
+        keyword="奇樹 SAR PSA10 sv2d",
+        kind="psa10",
+        name_zh="奇樹 SAR PSA10",
+    )
+    assert wrong_set == []
+    menu = match_listings(
+        [
+            {"card_name": "原盒日文英文Pokemon booster box , sv9a, s8, fusion strike", "price": 900},
+            {"card_name": "Pokémon Chinese Exclusive 151 Figurine Box Set", "price": 150},
+            {"card_name": "日版原盒 Pokémon Card 151 Booster Box Japanese", "price": 2400},
+        ],
+        keyword="151 BOX 未開封 sv2a",
+        kind="sealed",
+        name_zh="151 補充包 BOX（未開封）",
+        name_jp="ポケモンカード151 BOX 未開封",
+    )
+    assert [h["price_hkd"] for h in menu] == [2400]
 
 
 def test_mega_dream_box_does_not_need_set_code_on_the_title() -> None:

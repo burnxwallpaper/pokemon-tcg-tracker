@@ -108,10 +108,17 @@ _JUNK = ("福袋", "oripa", "抽池", "刮卡", "mezastar", "明耀之星", "pla
 
 
 def _item_blob(item: dict) -> str:
-    return " ".join(
+    """Names plus the set code that agrees with tcgdex. A stale set field is left out."""
+    parts = [
         str(item.get(key) or "")
-        for key in ("search_hk", "name_zh", "name_jp", "set", "tcgdex_id", "search_jp")
-    )
+        for key in ("search_hk", "name_zh", "name_jp", "search_jp")
+    ]
+    codes = _identity_codes(item)
+    if codes:
+        parts.append(" ".join(sorted(codes)))
+    elif item.get("set"):
+        parts.append(str(item.get("set")))
+    return " ".join(part for part in parts if part)
 
 
 def _norm(s: str) -> str:
@@ -329,25 +336,30 @@ def _is_box(title: str) -> bool:
 
 
 def _sealed_side_product(title: str) -> bool:
-    """Packs, decks, ETBs, and gift sets are not the booster box ask."""
-    if re.search(r"elite trainer|\betb\b|collection|收藏箱|禮盒|礼盒|構築|牌組|新手|預組|入門|deck", title, re.I):
+    """Packs, decks, ETBs, figurines, and gift sets are not the booster box ask."""
+    if re.search(
+        r"elite trainer|\betb\b|collection|收藏箱|禮盒|礼盒|構築|牌組|新手|預組|入門|deck|figurine|\bchinese\b",
+        title,
+        re.I,
+    ):
         return True
     if re.search(r"booster\s*box|原盒", title, re.I):
         return False
     return re.search(r"補充包|單包|\bpack\b|卡包", title, re.I) is not None
 
 
-def _code_conflict(query_n: str, title_n: str) -> bool:
-    """M2 vs M2a, SV4 vs SV4a: a longer code on the other side is a different product."""
-    query_codes = set(_CODE_RE.findall(query_n))
-    title_codes = set(_CODE_RE.findall(title_n))
-    for left in query_codes:
-        for right in title_codes:
-            if left == right:
-                continue
-            if len(left) >= 2 and len(right) >= 2 and (right.startswith(left) or left.startswith(right)):
-                return True
-    return False
+def _set_codes(text: str) -> set[str]:
+    """Set codes from the raw title so 'PTCG M2a' is not glued into 'ptcgm2a'."""
+    return {code.lower() for code in _CODE_RE.findall(text.lower())}
+
+
+def _code_conflict(query: str, title: str) -> bool:
+    """Different set codes are different products (M2 vs M2a, SV2a vs M2a, SV2a vs SV9a)."""
+    query_codes = _set_codes(query)
+    title_codes = _set_codes(title)
+    if not query_codes or not title_codes:
+        return False
+    return not (query_codes & title_codes)
 
 
 def _frac_nums(title: str) -> list[str]:
@@ -362,9 +374,11 @@ def _stated_rarity_conflict(title: str, query: str) -> bool:
     """A title that names a lower rarity is not the SAR even if the collector number matches."""
     if not (_has_token(query, "sar") or "special art" in query.lower()):
         return False
+    if _has_token(title, "ar"):
+        return True
     if _has_token(title, "sar") or "special art" in title.lower():
         return False
-    return any(_has_token(title, tok) for tok in ("ar", "sr", "ur", "hr", "rr"))
+    return any(_has_token(title, tok) for tok in ("sr", "ur", "hr", "rr"))
 
 
 def _rarity_ok(title: str, query: str) -> bool:
@@ -502,11 +516,31 @@ def _identity_codes(item: dict) -> set[str]:
     return tcg_codes | set_codes
 
 
-def _card_number(item: dict) -> str | None:
-    match = re.search(r"-(\d{2,3})\b", str(item.get("tcgdex_id") or ""))
+def _card_print(item: dict) -> tuple[str, str | None] | None:
+    """Full set fraction when it belongs to the same set code as tcgdex; else the tcgdex number."""
+    tcg = str(item.get("tcgdex_id") or "")
+    set_field = str(item.get("set") or "")
+    tcg_codes = {c.lower() for c in _CODE_RE.findall(_norm(tcg))}
+    set_codes = {c.lower() for c in _CODE_RE.findall(_norm(set_field))}
+    conflict = bool(tcg_codes and set_codes and not (tcg_codes & set_codes))
+    if not conflict:
+        found = re.findall(r"(\d{2,3})\s*/\s*(\d{2,3})", set_field)
+        if found:
+            num, den = found[-1]
+            return num, den
+    match = re.search(r"-(\d{2,3})\b", tcg)
     if not match:
         return None
-    return match.group(1)
+    return match.group(1), None
+
+
+def _print_hit(title: str, card_number: str | None, card_denom: str | None) -> bool:
+    if not card_number:
+        return False
+    pairs = re.findall(r"(\d{2,3})\s*/\s*(\d{2,3})", title)
+    if card_denom:
+        return any(num == card_number and den == card_denom for num, den in pairs)
+    return any(num == card_number for num, _ in pairs)
 
 
 def match_item(rows: list[dict], item: dict) -> list[dict]:
@@ -516,13 +550,16 @@ def match_item(rows: list[dict], item: dict) -> list[dict]:
         keyword_parts.append(" ".join(sorted(codes)))
     elif item.get("set"):
         keyword_parts.append(str(item.get("set")))
+    printed = _card_print(item)
+    number, denom = printed if printed else (None, None)
     return match_listings(
         rows,
         keyword=" ".join(part for part in keyword_parts if part),
         kind=item.get("kind") or "psa10",
         name_jp=item.get("name_jp"),
         name_zh=item.get("name_zh"),
-        card_number=_card_number(item),
+        card_number=number,
+        card_denom=denom,
     )
 
 
@@ -537,6 +574,7 @@ def match_listings(
     name_jp: str | None = None,
     name_zh: str | None = None,
     card_number: str | None = None,
+    card_denom: str | None = None,
 ) -> list[dict]:
     query = " ".join(x for x in (keyword, name_jp or "", name_zh or "") if x)
     query_n = _norm(query)
@@ -562,7 +600,7 @@ def match_listings(
             price = float(row.get("price"))
         except (TypeError, ValueError):
             continue
-        number_hit = bool(card_number and card_number in _frac_nums(title))
+        number_hit = _print_hit(title, card_number, card_denom)
         if kind == "psa10":
             if (
                 not _is_psa10(title, row)
@@ -595,7 +633,7 @@ def match_listings(
         title_chars = [g["id"] for g in _groups_in(title) if g["id"] not in _SET_IDS]
         if any(gid not in query_chars for gid in title_chars):
             continue
-        if _code_conflict(query_n, title_n):
+        if _code_conflict(query, title):
             continue
         title_markers = _marker_ids(title)
         if number_hit:
