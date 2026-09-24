@@ -4,6 +4,7 @@
 **已實作溫和 scraper**（`scripts/update.py`）：
 - Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅
 - Carousell HK → 目前 Cloudflare 403；fallback HKCardLink 公開 Supabase listings ✅（部分命中）
+- Facebook HK（Marketplace／專頁／社團）→ 2026-09-24 無登入探測失敗，**未接入**。見 §8
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
 
@@ -22,7 +23,8 @@
 | **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
 | **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |
 | **P2** | 遊々亭 (Yuyu-tei) | 單卡店價 | raw／店售為主；PSA10 次要 |
-| **P3** | 香港卡店官網／Facebook | 本地零售 | MVP 後；FB 需登入／反爬，先記清單 |
+| **P3** | 香港卡店官網 | 本地零售 | 只接免登入目錄（Shopify `products.json`、Shopline 分類頁） |
+| **不做** | Facebook HK | 本地叫價 | 2026-09-24 無登入探測無標價。見 §8 下一步 |
 
 ---
 
@@ -54,7 +56,7 @@
 - **流動性**：刊登數＋「聊過／想要」可粗估；**成交價多半不可見** → 價差用 ask vs JP sold。
 - **抓取難度**：中。列表／搜尋頁；地區選 HK；反爬與登入牆可能出現。
 - **ToS**：平台禁止未授權 scraping 的機率高；個人低頻搜尋較務實。
-- **MVP 用法**：對 Top 流動性品項搜 HK 關鍵字 → 取合理 ask 中位數 → `spread_jp_hk_pct`。Facebook 稍後再接。
+- **MVP 用法**：對 Top 流動性品項搜 HK 關鍵字 → 取合理 ask 中位數 → `spread_jp_hk_pct`。香港 Facebook 叫價見 §8，目前不能接。
 
 ### 4. SNKRDUNK（snkrdunk.com）— **P1**
 
@@ -92,13 +94,30 @@
 - **Sealed**：低。
 - **MVP 用法**：非本產品核心；若日後擴 raw 再升優先。
 
-### 8. 香港本地卡店網站 — **P3**
+### 8. Facebook HK 叫價 — **公開探測失敗，不接入**
 
-- **提供什麼**：零售標價、偶爾預購 BOX；店家分散（獨立站、Shopify、IG／FB）。
-- **適配**：sealed 零售價；PSA10 較少系統上架。
-- **難度**：每店一爬蟲；維護成本高。
-- **Facebook**：社團／專頁流動性高但登入牆、ToS、反爬嚴重 → **明確延後**。
-- **MVP**：先人工維護 3～5 間常看店的 URL 清單於 config；自動抓之後再做。
+2026-09-24 從本 worker 探測。一般瀏覽器 User-Agent、無 cookie、無登入、不解 challenge、不打需 `fb_dtsg` 的 GraphQL。
+
+| 表面 | 結果 |
+|------|------|
+| `www.facebook.com/marketplace/hongkong/search?query=pokemon+PSA10` | HTTP 400，標題 Error，「Sorry, something went wrong」。無 listing、無 HK$ |
+| 同上路徑的 `m.facebook.com`、`touch.facebook.com` | 轉到 www，同樣 HTTP 400 |
+| `mbasic.facebook.com/marketplace/...`、專頁、`/groups/` | HTTP 400，或首頁 HTTP 200 但只顯示「目前無法在此瀏覽器上使用 Facebook」。`og:title` 為「登入或註冊即可查看」 |
+| `www.facebook.com/`、`/Pokemon/`、`/zenoxstore/` | 同樣 HTTP 400，沒有貼文或標價 |
+| Ads Library（`country=HK`） | HTTP 403，頁內是 JS challenge。不解 |
+| `graph.facebook.com` search，空 token | OAuth 錯誤。Marketplace 沒有免 token 的公開列表 |
+| `robots.txt` | 開頭寫明未經 Facebook 書面許可禁止自動化蒐集；對所有 user-agent `Disallow: /` |
+
+沒有可解析的標題＋HKD。因此**不加** `scripts/sources`、不開 `config.json` 開關、不把個人 session 放進 `update.py`。
+
+**下一步（重試條件，要同時成立）：**
+
+1. 同一個無 cookie GET 回到 **HTTP 200**。
+2. 本文已含商品標題與 HKD 標價。登入頁、「Sorry, something went wrong」、「目前無法在此瀏覽器上使用」、Ads Library challenge 都算失敗，停。
+3. 只為那個**具體公開 URL** 寫 parser（例如某店免登入的 Shopify `products.json` 或 Shopline 分類頁）。不要做 Marketplace 關鍵字搜尋，也不要抓社團。
+4. 官方另一條路：Meta App 通過 Page Public Content Access，且只讀已授權專頁。那不是 Marketplace 成交／叫價；此 repo 沒有這組憑證，每日 job 不要等它。
+
+在上述條件出現之前，香港叫價維持 Carousell／HKCardLink。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
 
 ### 其他提及（非優先）
 
