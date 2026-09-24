@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-24T19:00:35+08:00",
+  "updated_at": "2026-09-24T19:18:46+08:00",
   "timezone": "Asia/Hong_Kong",
   "note": "Stable card identity + official image refs. Series history under history/series/.",
   "image_source": "official",
@@ -22,26 +22,26 @@
       "history_points": 86,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
-      "name_zh": "皮卡丘 ex SAR PSA10",
-      "name_jp": "ピカチュウex SAR PSA10",
+      "name_zh": "皮卡丘 AR（151）PSA10",
+      "name_jp": "ピカチュウ AR PSA10",
       "kind": "psa10",
-      "set": "sv2a / 198/165",
-      "search_jp": "ピカチュウex SAR PSA10 198/165",
-      "search_hk": "皮卡丘 SAR PSA10 151",
+      "set": "sv2a / 173/165",
+      "search_jp": "ピカチュウ AR PSA10 173/165 ポケモンカード151",
+      "search_hk": "皮卡丘 AR PSA10 151",
       "tcgdex_id": "SV2a-173",
       "image": "images/psa10-pikachu-ex-sar-151.webp",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/173/high.webp",
-      "image_note": "official_card SV2a-173 ピカチュウ AR (config 198/165 was ナナミの手助け)",
+      "image_note": "official_card SV2a-173 ピカチュウ AR 173/165",
       "image_source": "official",
       "series_path": "history/series/psa10-pikachu-ex-sar-151.json",
       "history_points": 88,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-abyss-eye",
@@ -60,7 +60,7 @@
       "history_points": 58,
       "first_seen": "2026-07-29",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-storm-emerald",
@@ -79,7 +79,7 @@
       "history_points": 15,
       "first_seen": "2026-09-10",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-mega-dream",
@@ -98,7 +98,7 @@
       "history_points": 58,
       "first_seen": "2026-07-29",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-ninja-spinner",
@@ -117,7 +117,7 @@
       "history_points": 78,
       "first_seen": "2026-07-09",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-inferno-x",
@@ -136,26 +136,26 @@
       "history_points": 87,
       "first_seen": "2026-06-30",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
-      "name_zh": "伊布英雄 特別卡盒相關 PSA10",
-      "name_jp": "イーブイヒーローズ PSA10",
+      "name_zh": "月亮伊布 V（伊布英雄）PSA10",
+      "name_jp": "ブラッキーV PSA10 イーブイヒーローズ",
       "kind": "psa10",
-      "set": "S6a",
-      "search_jp": "イーブイヒーローズ PSA10",
-      "search_hk": "伊布英雄 PSA10",
-      "tcgdex_id": "swsh7-189",
+      "set": "S6a / 085/069",
+      "search_jp": "ブラッキーV PSA10 085/069 イーブイヒーローズ",
+      "search_hk": "月亮伊布 V PSA10 伊布英雄",
+      "tcgdex_id": "S6a-085",
       "image": "images/psa10-eevee-heroes-box-promo.webp",
       "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/189/high.webp",
-      "image_note": "official_card Umbreon V SR art (Eevee Heroes related PSA10)",
+      "image_note": "same illustration as S6a 085/069 ブラッキーV; TCGdex hosts it as swsh7-189",
       "image_source": "official",
       "series_path": "history/series/psa10-eevee-heroes-box-promo.json",
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-mega-brave",
@@ -167,14 +167,14 @@
       "search_hk": "超級勇氣 BOX 未開封",
       "tcgdex_id": null,
       "image": "images/sealed-mega-brave.png",
-      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)",
+      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/product-img-1.png",
+      "image_note": "official pack art pokemon-card.com M1 メガブレイブ",
       "image_source": "official",
       "series_path": "history/series/sealed-mega-brave.json",
       "history_points": 72,
       "first_seen": "2026-07-11",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-mega-symphonia",
@@ -186,14 +186,14 @@
       "search_hk": "超級協奏 BOX 未開封",
       "tcgdex_id": null,
       "image": "images/sealed-mega-symphonia.png",
-      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)",
+      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/product-img-2.png",
+      "image_note": "official pack art pokemon-card.com M1 メガシンフォニア",
       "image_source": "official",
       "series_path": "history/series/sealed-mega-symphonia.json",
       "history_points": 85,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-munikis-zero",
@@ -212,26 +212,26 @@
       "history_points": 86,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-gengar-ex-sar",
-      "name_zh": "耿鬼 ex SAR PSA10",
-      "name_jp": "ゲンガーex SAR PSA10",
+      "name_zh": "耿鬼 ex SR PSA10",
+      "name_jp": "ゲンガーex SR PSA10",
       "kind": "psa10",
-      "set": "sv5a / 099/071",
-      "search_jp": "ゲンガーex SAR PSA10",
-      "search_hk": "耿鬼 SAR PSA10",
+      "set": "SV5K / 088/071",
+      "search_jp": "ゲンガーex SR PSA10 088/071 ワイルドフォース",
+      "search_hk": "耿鬼 SR PSA10 088",
       "tcgdex_id": "SV5K-088",
       "image": "images/psa10-gengar-ex-sar.webp",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV5K/088/high.webp",
-      "image_note": "official_card SV5K-088 ゲンガーex SR",
+      "image_note": "official_card SV5K-088 ゲンガーex SR 088/071",
       "image_source": "official",
       "series_path": "history/series/psa10-gengar-ex-sar.json",
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -250,26 +250,26 @@
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-iono-sar",
-      "name_zh": "奇樹 SAR PSA10",
-      "name_jp": "ナンジャモ SAR PSA10",
+      "name_zh": "奇樹 SAR（漆黑氣焰）PSA10",
+      "name_jp": "ナンジャモ SAR クレイバースト PSA10",
       "kind": "psa10",
-      "set": "sv2a / 350/165",
-      "search_jp": "ナンジャモ SAR PSA10",
-      "search_hk": "奇樹 SAR PSA10",
+      "set": "SV2D / 096/071",
+      "search_jp": "ナンジャモ SAR PSA10 096/071 クレイバースト",
+      "search_hk": "奇樹 SAR PSA10 漆黑氣焰",
       "tcgdex_id": "SV2D-096",
       "image": "images/psa10-iono-sar.webp",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2D/096/high.webp",
-      "image_note": "official_card SV2D-096 ナンジャモ SAR",
+      "image_note": "official_card SV2D-096 ナンジャモ SAR 096/071",
       "image_source": "official",
       "series_path": "history/series/psa10-iono-sar.json",
       "history_points": 90,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-greninja-ex-sar",
@@ -288,7 +288,7 @@
       "history_points": 88,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-rocket-mewtwo-ex-sar",
@@ -307,7 +307,7 @@
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-terastal-fest",
@@ -326,7 +326,7 @@
       "history_points": 83,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-151-box",
@@ -345,7 +345,7 @@
       "history_points": 79,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-shiny-treasure",
@@ -364,7 +364,7 @@
       "history_points": 83,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-battle-partners",
@@ -383,26 +383,26 @@
       "history_points": 79,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-mew-ex-sar",
-      "name_zh": "夢幻 ex SAR PSA10",
-      "name_jp": "ミュウex SAR PSA10",
+      "name_zh": "夢幻 ex SAR（閃）PSA10",
+      "name_jp": "ミュウex SAR シャイニートレジャー PSA10",
       "kind": "psa10",
-      "set": "sv3a / 205/187",
-      "search_jp": "ミュウex SAR PSA10",
-      "search_hk": "夢幻 SAR PSA10",
+      "set": "SV4a / 347/190",
+      "search_jp": "ミュウex SAR PSA10 347/190 シャイニートレジャー",
+      "search_hk": "夢幻 SAR PSA10 閃",
       "tcgdex_id": "SV4a-347",
       "image": "images/psa10-mew-ex-sar.webp",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/347/high.webp",
-      "image_note": "official_card SV4a-347 ミュウex SAR (Shiny Treasure)",
+      "image_note": "official_card SV4a-347 ミュウex SAR 347/190",
       "image_source": "official",
       "series_path": "history/series/psa10-mew-ex-sar.json",
       "history_points": 84,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-umbreon-ex-sar",
@@ -421,7 +421,7 @@
       "history_points": 86,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-giratina-vstar-ur",
@@ -440,7 +440,7 @@
       "history_points": 71,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-mega-gardevoir-ex",
@@ -459,7 +459,7 @@
       "history_points": 74,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-stellar-miracle",
@@ -478,7 +478,7 @@
       "history_points": 64,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-team-rocket-glory",
@@ -497,7 +497,7 @@
       "history_points": 55,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-rulers-black-flame",
@@ -516,7 +516,7 @@
       "history_points": 73,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-mega-lucario-ex",
@@ -535,7 +535,7 @@
       "history_points": 63,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-eevee-ex-sar",
@@ -554,26 +554,26 @@
       "history_points": 76,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-n-sar",
-      "name_zh": "N SAR PSA10",
-      "name_jp": "N SAR PSA10",
+      "name_zh": "N的索羅亞克 ex SAR PSA10",
+      "name_jp": "Nのゾロアークex SAR PSA10",
       "kind": "psa10",
-      "set": "sv6a",
-      "search_jp": "N SAR PSA10 ポケモン",
-      "search_hk": "N SAR PSA10",
+      "set": "SV9 / 127/100",
+      "search_jp": "Nのゾロアークex SAR PSA10 127/100",
+      "search_hk": "索羅亞克 SAR PSA10",
       "tcgdex_id": "SV9-127",
       "image": "images/psa10-n-sar.webp",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV9/127/high.webp",
-      "image_note": "official_card SV9-127 Nのゾロアークex SAR",
+      "image_note": "official_card SV9-127 Nのゾロアークex SAR 127/100",
       "image_source": "official",
       "series_path": "history/series/psa10-n-sar.json",
       "history_points": 76,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-mega-charizard-x-ex",
@@ -592,7 +592,7 @@
       "history_points": 66,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-black-bolt",
@@ -604,14 +604,14 @@
       "search_hk": "黑雷 BOX 未開封",
       "tcgdex_id": null,
       "image": "images/sealed-black-bolt.png",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/infoProduct-img-1.png",
+      "image_note": "official pack art pokemon-card.com SV11 ブラックボルト",
       "image_source": "official",
       "series_path": "history/series/sealed-black-bolt.json",
       "history_points": 67,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-leafeon-ex-sar",
@@ -630,7 +630,7 @@
       "history_points": 73,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-white-flare",
@@ -642,14 +642,14 @@
       "search_hk": "白炎 BOX 未開封",
       "tcgdex_id": null,
       "image": "images/sealed-white-flare.png",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/infoProduct-img-2.png",
+      "image_note": "official pack art pokemon-card.com SV11 ホワイトフレア",
       "image_source": "official",
       "series_path": "history/series/sealed-white-flare.json",
       "history_points": 58,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "sealed-ancient-roar",
@@ -660,15 +660,15 @@
       "search_jp": "古代の咆哮 BOX 未開封",
       "search_hk": "古代咆哮 BOX 未開封",
       "tcgdex_id": null,
-      "image": "images/sealed-ancient-roar.jpg",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/hero-visual.jpg",
-      "image_note": "official_product hero art pokemon-card.com SV4 (古代の咆哮)",
+      "image": "images/sealed-ancient-roar.png",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/product-image-1.png",
+      "image_note": "official pack art pokemon-card.com SV4 古代の咆哮",
       "image_source": "official",
       "series_path": "history/series/sealed-ancient-roar.json",
       "history_points": 58,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-shiny",
@@ -687,7 +687,7 @@
       "history_points": 61,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -706,7 +706,7 @@
       "history_points": 61,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-acerola-premonition",
@@ -725,7 +725,7 @@
       "history_points": 56,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-serena-sr",
@@ -744,7 +744,7 @@
       "history_points": 57,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-obsidian",
@@ -763,7 +763,7 @@
       "history_points": 70,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-miriam-sar",
@@ -782,7 +782,7 @@
       "history_points": 54,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-erika-invite-sar",
@@ -801,7 +801,7 @@
       "history_points": 45,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-pikachu-ex-sar-terastal",
@@ -820,7 +820,7 @@
       "history_points": 60,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-lugia-v-sa",
@@ -839,7 +839,7 @@
       "history_points": 49,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-iono-sar-shiny",
@@ -858,7 +858,7 @@
       "history_points": 50,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-hooh-ex-sar",
@@ -877,7 +877,7 @@
       "history_points": 52,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-carmine-sar",
@@ -896,12 +896,12 @@
       "history_points": 46,
       "first_seen": "2026-07-03",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-151",
-      "name_zh": "噴火龍 ex SAR PSA10",
-      "name_jp": "リザードンex SAR PSA10",
+      "name_zh": "噴火龍 ex SAR（151）PSA10",
+      "name_jp": "リザードンex SAR PSA10 151",
       "kind": "psa10",
       "set": "sv2a / 201/165",
       "search_jp": "リザードンex SAR PSA10 201/165",
@@ -915,7 +915,7 @@
       "history_points": 52,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-cynthia-ambition-sar",
@@ -934,7 +934,7 @@
       "history_points": 45,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     },
     {
       "id": "psa10-miraidon-ex-sar",
@@ -953,7 +953,7 @@
       "history_points": 38,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:00:35+08:00"
+      "updated_at": "2026-09-24T19:18:46+08:00"
     }
   ]
 }

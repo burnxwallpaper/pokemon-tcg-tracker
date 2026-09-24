@@ -2,7 +2,7 @@
   "date": "2026-09-24",
   "note": "每日快照：meta + items（真實抓取）。保留約 history_days 天。",
   "meta": {
-    "updated_at": "2026-09-24T19:00:35+08:00",
+    "updated_at": "2026-09-24T19:18:46+08:00",
     "fx_jpy_to_hkd": 0.0495,
     "is_sample": false,
     "item_count": 50,
@@ -10,15 +10,66 @@
       "yahoo_auctions_jp": {
         "enabled": true,
         "status": "ok",
-        "ok_items": 41,
+        "ok_items": 45,
         "errors": [],
-        "note": "JP sold closedsearch via __NEXT_DATA__ (reference only)"
+        "note": "Preserved JP reference; this run refreshed HK asks only"
       },
-      "hk_preserved": {
+      "carousell_hk": {
         "enabled": true,
-        "status": "preserved",
-        "ok_items": 43,
-        "note": "Preserved HK asks; this run refreshed Japan sold comps only"
+        "status": "ok",
+        "ok_items": 40,
+        "listings": 277,
+        "errors": [],
+        "note": "Title-matched listingCards from Carousell HK search",
+        "probe": {
+          "status": "ok",
+          "error": null,
+          "listing_count": 47
+        }
+      },
+      "hkcardlink": {
+        "enabled": true,
+        "status": "empty",
+        "ok_items": 0,
+        "listings": 0,
+        "errors": [],
+        "note": "Public Supabase listings matched by title",
+        "catalog_size": 103
+      },
+      "lono": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 2,
+        "listings": 2,
+        "errors": [],
+        "note": "lono.com.hk PSA + Pokémon category prices",
+        "catalog_size": 306
+      },
+      "zenox": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 24,
+        "listings": 31,
+        "errors": [],
+        "note": "zenoxstore.com JP booster boxes and in-stock PSA10 slabs",
+        "catalog_size": 204
+      },
+      "shipmytoy": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 1,
+        "listings": 1,
+        "errors": [],
+        "note": "shipmytoy.com.hk Pokémon category; box price, not the pack price",
+        "catalog_size": 19
+      },
+      "facebook_hk": {
+        "enabled": true,
+        "status": "unreachable",
+        "ok_items": 0,
+        "listings": 0,
+        "http_status": 400,
+        "note": "Facebook Marketplace/login HTML is not reachable from this worker (no logged-in browser; login walls are not bypassed)."
       }
     }
   },
@@ -35,13 +86,13 @@
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
-      "name_zh": "皮卡丘 ex SAR PSA10",
+      "name_zh": "皮卡丘 AR（151）PSA10",
       "kind": "psa10",
-      "price_hkd": null,
-      "price_jpy": null,
-      "volume_today": 0,
-      "liquidity_score": 41,
-      "hk_ask_hkd": null
+      "price_hkd": 737.55,
+      "price_jpy": 14900,
+      "volume_today": 2,
+      "liquidity_score": 28,
+      "hk_ask_hkd": 930.0
     },
     {
       "id": "sealed-abyss-eye",
@@ -81,7 +132,7 @@
       "price_jpy": null,
       "volume_today": 0,
       "liquidity_score": 39,
-      "hk_ask_hkd": 605.0
+      "hk_ask_hkd": 610.0
     },
     {
       "id": "sealed-inferno-x",
@@ -95,13 +146,13 @@
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
-      "name_zh": "伊布英雄 特別卡盒相關 PSA10",
+      "name_zh": "月亮伊布 V（伊布英雄）PSA10",
       "kind": "psa10",
-      "price_hkd": null,
-      "price_jpy": null,
+      "price_hkd": 4851.0,
+      "price_jpy": 98000,
       "volume_today": 0,
-      "liquidity_score": 36,
-      "hk_ask_hkd": 2640.0
+      "liquidity_score": 13,
+      "hk_ask_hkd": null
     },
     {
       "id": "sealed-mega-brave",
@@ -109,8 +160,8 @@
       "kind": "sealed",
       "price_hkd": 386.1,
       "price_jpy": 7800,
-      "volume_today": 4,
-      "liquidity_score": 64,
+      "volume_today": 3,
+      "liquidity_score": 61,
       "hk_ask_hkd": 650.0
     },
     {
@@ -119,8 +170,8 @@
       "kind": "sealed",
       "price_hkd": 364.57,
       "price_jpy": 7365,
-      "volume_today": 4,
-      "liquidity_score": 62,
+      "volume_today": 3,
+      "liquidity_score": 59,
       "hk_ask_hkd": 600.0
     },
     {
@@ -131,17 +182,17 @@
       "price_jpy": null,
       "volume_today": 0,
       "liquidity_score": 31,
-      "hk_ask_hkd": 480.0
+      "hk_ask_hkd": 495.0
     },
     {
       "id": "psa10-gengar-ex-sar",
-      "name_zh": "耿鬼 ex SAR PSA10",
+      "name_zh": "耿鬼 ex SR PSA10",
       "kind": "psa10",
-      "price_hkd": null,
-      "price_jpy": null,
-      "volume_today": 0,
-      "liquidity_score": 38,
-      "hk_ask_hkd": null
+      "price_hkd": 980.1,
+      "price_jpy": 19800,
+      "volume_today": 2,
+      "liquidity_score": 19,
+      "hk_ask_hkd": 1600.0
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -151,17 +202,17 @@
       "price_jpy": 63500,
       "volume_today": 1,
       "liquidity_score": 40,
-      "hk_ask_hkd": 4750.0
+      "hk_ask_hkd": 5200.0
     },
     {
       "id": "psa10-iono-sar",
-      "name_zh": "奇樹 SAR PSA10",
+      "name_zh": "奇樹 SAR（漆黑氣焰）PSA10",
       "kind": "psa10",
-      "price_hkd": 3343.73,
-      "price_jpy": 67550,
+      "price_hkd": 4207.5,
+      "price_jpy": 85000,
       "volume_today": 1,
-      "liquidity_score": 38,
-      "hk_ask_hkd": null
+      "liquidity_score": 18,
+      "hk_ask_hkd": 3000.0
     },
     {
       "id": "psa10-greninja-ex-sar",
@@ -171,7 +222,7 @@
       "price_jpy": 45000,
       "volume_today": 0,
       "liquidity_score": 33,
-      "hk_ask_hkd": 3500.0
+      "hk_ask_hkd": 3925.0
     },
     {
       "id": "psa10-rocket-mewtwo-ex-sar",
@@ -191,7 +242,7 @@
       "price_jpy": 17750,
       "volume_today": 0,
       "liquidity_score": 19,
-      "hk_ask_hkd": 1110.0
+      "hk_ask_hkd": 1200.0
     },
     {
       "id": "sealed-151-box",
@@ -211,7 +262,7 @@
       "price_jpy": 18500,
       "volume_today": 0,
       "liquidity_score": 17,
-      "hk_ask_hkd": 800.0
+      "hk_ask_hkd": 840.0
     },
     {
       "id": "sealed-battle-partners",
@@ -225,13 +276,13 @@
     },
     {
       "id": "psa10-mew-ex-sar",
-      "name_zh": "夢幻 ex SAR PSA10",
+      "name_zh": "夢幻 ex SAR（閃）PSA10",
       "kind": "psa10",
-      "price_hkd": 5494.5,
-      "price_jpy": 111000,
+      "price_hkd": 6138.0,
+      "price_jpy": 124000,
       "volume_today": 3,
-      "liquidity_score": 27,
-      "hk_ask_hkd": 5400.0
+      "liquidity_score": 18,
+      "hk_ask_hkd": 7000.0
     },
     {
       "id": "psa10-umbreon-ex-sar",
@@ -241,7 +292,7 @@
       "price_jpy": 70000,
       "volume_today": 0,
       "liquidity_score": 16,
-      "hk_ask_hkd": 3800.0
+      "hk_ask_hkd": 4300.0
     },
     {
       "id": "psa10-giratina-vstar-ur",
@@ -261,7 +312,7 @@
       "price_jpy": 19900,
       "volume_today": 0,
       "liquidity_score": 14,
-      "hk_ask_hkd": 1544.0
+      "hk_ask_hkd": 1219.0
     },
     {
       "id": "sealed-stellar-miracle",
@@ -301,7 +352,7 @@
       "price_jpy": 15000,
       "volume_today": 7,
       "liquidity_score": 36,
-      "hk_ask_hkd": 1440.0
+      "hk_ask_hkd": 1520.0
     },
     {
       "id": "psa10-eevee-ex-sar",
@@ -311,16 +362,16 @@
       "price_jpy": 13750,
       "volume_today": 0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 837.5
+      "hk_ask_hkd": 825.0
     },
     {
       "id": "psa10-n-sar",
-      "name_zh": "N SAR PSA10",
+      "name_zh": "N的索羅亞克 ex SAR PSA10",
       "kind": "psa10",
-      "price_hkd": null,
-      "price_jpy": null,
+      "price_hkd": 707.85,
+      "price_jpy": 14300,
       "volume_today": 0,
-      "liquidity_score": 11,
+      "liquidity_score": 5,
       "hk_ask_hkd": null
     },
     {
@@ -341,7 +392,7 @@
       "price_jpy": 23000,
       "volume_today": 0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 1025.0
+      "hk_ask_hkd": 1100.0
     },
     {
       "id": "psa10-leafeon-ex-sar",
@@ -351,7 +402,7 @@
       "price_jpy": 14500,
       "volume_today": 3,
       "liquidity_score": 20,
-      "hk_ask_hkd": 1030.0
+      "hk_ask_hkd": 1110.0
     },
     {
       "id": "sealed-white-flare",
@@ -361,7 +412,7 @@
       "price_jpy": 21800,
       "volume_today": 1,
       "liquidity_score": 13,
-      "hk_ask_hkd": 1050.0
+      "hk_ask_hkd": 1120.0
     },
     {
       "id": "sealed-ancient-roar",
@@ -381,7 +432,7 @@
       "price_jpy": 69500,
       "volume_today": 2,
       "liquidity_score": 16,
-      "hk_ask_hkd": 5200.0
+      "hk_ask_hkd": null
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -397,8 +448,8 @@
       "id": "psa10-acerola-premonition",
       "name_zh": "阿塞蘿拉的預感 SR PSA10",
       "kind": "psa10",
-      "price_hkd": 792.0,
-      "price_jpy": 16000,
+      "price_hkd": 680.62,
+      "price_jpy": 13750,
       "volume_today": 0,
       "liquidity_score": 11,
       "hk_ask_hkd": 1065.0
@@ -407,11 +458,11 @@
       "id": "psa10-serena-sr",
       "name_zh": "莎莉娜 SR PSA10",
       "kind": "psa10",
-      "price_hkd": 935.55,
-      "price_jpy": 18900,
-      "volume_today": 2,
-      "liquidity_score": 15,
-      "hk_ask_hkd": 1200.0
+      "price_hkd": 866.25,
+      "price_jpy": 17500,
+      "volume_today": 3,
+      "liquidity_score": 18,
+      "hk_ask_hkd": 1270.0
     },
     {
       "id": "psa10-charizard-ex-sar-obsidian",
@@ -427,8 +478,8 @@
       "id": "psa10-miriam-sar",
       "name_zh": "米莫莎 SAR PSA10",
       "kind": "psa10",
-      "price_hkd": 1881.0,
-      "price_jpy": 38000,
+      "price_hkd": 1819.12,
+      "price_jpy": 36750,
       "volume_today": 0,
       "liquidity_score": 7,
       "hk_ask_hkd": 2500.0
@@ -471,7 +522,7 @@
       "price_jpy": 25000,
       "volume_today": 1,
       "liquidity_score": 10,
-      "hk_ask_hkd": 1440.0
+      "hk_ask_hkd": 1600.0
     },
     {
       "id": "psa10-hooh-ex-sar",
@@ -495,23 +546,23 @@
     },
     {
       "id": "psa10-charizard-ex-sar-151",
-      "name_zh": "噴火龍 ex SAR PSA10",
+      "name_zh": "噴火龍 ex SAR（151）PSA10",
       "kind": "psa10",
-      "price_hkd": 5049.0,
-      "price_jpy": 102000,
-      "volume_today": 0,
-      "liquidity_score": 7,
-      "hk_ask_hkd": 7500.0
+      "price_hkd": 4999.5,
+      "price_jpy": 101000,
+      "volume_today": 1,
+      "liquidity_score": 10,
+      "hk_ask_hkd": 7415.0
     },
     {
       "id": "psa10-cynthia-ambition-sar",
       "name_zh": "竹蘭的霸氣 SAR PSA10",
       "kind": "psa10",
-      "price_hkd": 990.0,
-      "price_jpy": 20000,
+      "price_hkd": 947.93,
+      "price_jpy": 19150,
       "volume_today": 0,
       "liquidity_score": 6,
-      "hk_ask_hkd": 900.0
+      "hk_ask_hkd": 940.0
     },
     {
       "id": "psa10-miraidon-ex-sar",

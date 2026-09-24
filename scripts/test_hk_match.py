@@ -350,6 +350,51 @@ def test_charizard_without_set_or_number_is_rejected() -> None:
     assert hits[0]["strong"] is True
 
 
+def test_listing_must_match_the_card_in_the_name() -> None:
+    import json
+    from pathlib import Path
+
+    cfg = json.loads((Path(__file__).resolve().parents[1] / "config.json").read_text(encoding="utf-8"))
+    by_id = {row["id"]: row for row in cfg["watchlist"]}
+    pikachu = by_id["psa10-pikachu-ex-sar-151"]
+    assert pikachu["tcgdex_id"] == "SV2a-173"
+    assert "173/165" in pikachu["set"]
+    assert "AR" in pikachu["name_zh"]
+    gengar = by_id["psa10-gengar-ex-sar"]
+    assert "088/071" in gengar["set"]
+    assert "SR" in gengar["name_jp"]
+    iono = by_id["psa10-iono-sar"]
+    assert iono["tcgdex_id"] == "SV2D-096"
+    assert "096/071" in iono["set"]
+    assert "350" not in iono["set"]
+    moon = by_id["psa10-eevee-heroes-box-promo"]
+    assert "085/069" in moon["set"]
+    assert "ブラッキーV" in moon["name_jp"]
+    zoro = by_id["psa10-n-sar"]
+    assert "ゾロアーク" in zoro["name_jp"]
+    assert "127/100" in zoro["set"]
+    urls = [row.get("image_official_url") for row in cfg["watchlist"]]
+    assert len(urls) == len(set(urls))
+
+    rows = [
+        {"card_name": "PSA10 皮卡丘 ex SAR 198/165", "price": 4000, "id": "sar"},
+        {"card_name": "PSA10 皮卡丘 AR 173/165 151", "price": 1800, "id": "ar"},
+        {"card_name": "PSA10 ゲンガーex SAR 088/071", "price": 900, "id": "gsar"},
+        {"card_name": "PSA10 ゲンガーex SR 088/071", "price": 2200, "id": "gsr"},
+        {"card_name": "PSA10 N SAR 350", "price": 500, "id": "n"},
+        {"card_name": "PSA10 Nのゾロアークex SAR 127/100", "price": 1600, "id": "zoro"},
+        {"card_name": "PSA10 ナンジャモ SAR 350/190 シャイニートレジャー", "price": 1400, "id": "shiny"},
+        {"card_name": "PSA10 ナンジャモ SAR 096/071 クレイバースト", "price": 3200, "id": "clay"},
+        {"card_name": "PSA10 ブラッキーex SAR 217/187", "price": 3600, "id": "ex"},
+        {"card_name": "PSA10 ブラッキーV 085/069 イーブイヒーローズ", "price": 8000, "id": "moon"},
+    ]
+    assert [h["id"] for h in match_item(rows, pikachu)] == ["ar"]
+    assert [h["id"] for h in match_item(rows, gengar)] == ["gsr"]
+    assert [h["id"] for h in match_item(rows, zoro)] == ["zoro"]
+    assert [h["id"] for h in match_item(rows, iono)] == ["clay"]
+    assert [h["id"] for h in match_item(rows, moon)] == ["moon"]
+
+
 def test_yahoo_sold_requires_grade_set_and_enough_comps() -> None:
     item = {
         "kind": "psa10",
@@ -471,6 +516,7 @@ if __name__ == "__main__":
     test_zenox_psa10_skips_psa9_and_sold_out()
     test_mew_and_mewtwo_do_not_share_a_substring()
     test_charizard_without_set_or_number_is_rejected()
+    test_listing_must_match_the_card_in_the_name()
     test_yahoo_sold_requires_grade_set_and_enough_comps()
     test_bare_collector_number_must_match()
     test_publish_ask_prefers_median_and_drops_a_lone_weak_listing()

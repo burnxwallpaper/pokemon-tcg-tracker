@@ -1,16 +1,16 @@
 {
   "id": "psa10-eevee-heroes-box-promo",
-  "name_zh": "伊布英雄 特別卡盒相關 PSA10",
-  "name_jp": "イーブイヒーローズ PSA10",
+  "name_zh": "月亮伊布 V（伊布英雄）PSA10",
+  "name_jp": "ブラッキーV PSA10 イーブイヒーローズ",
   "kind": "psa10",
-  "set": "S6a",
+  "set": "S6a / 085/069",
   "image": "images/psa10-eevee-heroes-box-promo.webp",
   "image_source": "official",
-  "tcgdex_id": "swsh7-189",
+  "tcgdex_id": "S6a-085",
   "is_sample": false,
   "real_points": true,
   "history_days": 89,
-  "updated_at": "2026-09-24T19:00:35+08:00",
+  "updated_at": "2026-09-24T19:18:46+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -542,8 +542,8 @@
     },
     {
       "date": "2026-09-24",
-      "price_hkd": null,
-      "hk_ask_hkd": 2640.0,
+      "price_hkd": 4851.0,
+      "hk_ask_hkd": null,
       "volume": 0.0
     }
   ],

@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 50,
-  "updated_at": "2026-09-24T19:00:35+08:00",
+  "updated_at": "2026-09-24T19:18:46+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -308,7 +308,7 @@
     },
     {
       "date": "2026-09-24",
-      "hk_ask_hkd": 1440.0,
+      "hk_ask_hkd": 1600.0,
       "volume": 1.0,
       "price_hkd": 1237.5
     }

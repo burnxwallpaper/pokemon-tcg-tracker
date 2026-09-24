@@ -84,15 +84,15 @@
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
-      "name_zh": "皮卡丘 ex SAR PSA10",
-      "name_jp": "ピカチュウex SAR PSA10",
+      "name_zh": "皮卡丘 AR（151）PSA10",
+      "name_jp": "ピカチュウ AR PSA10",
       "kind": "psa10",
-      "set": "sv2a / 198/165",
-      "search_jp": "ピカチュウex SAR PSA10 198/165",
-      "search_hk": "皮卡丘 SAR PSA10 151",
+      "set": "sv2a / 173/165",
+      "search_jp": "ピカチュウ AR PSA10 173/165 ポケモンカード151",
+      "search_hk": "皮卡丘 AR PSA10 151",
       "tcgdex_id": "SV2a-173",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/173/high.webp",
-      "image_note": "official_card SV2a-173 ピカチュウ AR (config 198/165 was ナナミの手助け)"
+      "image_note": "official_card SV2a-173 ピカチュウ AR 173/165"
     },
     {
       "id": "sealed-abyss-eye",
@@ -151,15 +151,15 @@
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
-      "name_zh": "伊布英雄 特別卡盒相關 PSA10",
-      "name_jp": "イーブイヒーローズ PSA10",
+      "name_zh": "月亮伊布 V（伊布英雄）PSA10",
+      "name_jp": "ブラッキーV PSA10 イーブイヒーローズ",
       "kind": "psa10",
-      "set": "S6a",
-      "search_jp": "イーブイヒーローズ PSA10",
-      "search_hk": "伊布英雄 PSA10",
-      "tcgdex_id": "swsh7-189",
+      "set": "S6a / 085/069",
+      "search_jp": "ブラッキーV PSA10 085/069 イーブイヒーローズ",
+      "search_hk": "月亮伊布 V PSA10 伊布英雄",
+      "tcgdex_id": "S6a-085",
       "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/189/high.webp",
-      "image_note": "official_card Umbreon V SR art (Eevee Heroes related PSA10)"
+      "image_note": "same illustration as S6a 085/069 ブラッキーV; TCGdex hosts it as swsh7-189"
     },
     {
       "id": "sealed-mega-brave",
@@ -169,8 +169,8 @@
       "set": "M1L",
       "search_jp": "メガブレイブ BOX 未開封",
       "search_hk": "超級勇氣 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)"
+      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/product-img-1.png",
+      "image_note": "official pack art pokemon-card.com M1 メガブレイブ"
     },
     {
       "id": "sealed-mega-symphonia",
@@ -180,8 +180,8 @@
       "set": "M1S",
       "search_jp": "メガシンフォニア BOX 未開封",
       "search_hk": "超級協奏 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)"
+      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/product-img-2.png",
+      "image_note": "official pack art pokemon-card.com M1 メガシンフォニア"
     },
     {
       "id": "sealed-munikis-zero",
@@ -196,15 +196,15 @@
     },
     {
       "id": "psa10-gengar-ex-sar",
-      "name_zh": "耿鬼 ex SAR PSA10",
-      "name_jp": "ゲンガーex SAR PSA10",
+      "name_zh": "耿鬼 ex SR PSA10",
+      "name_jp": "ゲンガーex SR PSA10",
       "kind": "psa10",
-      "set": "sv5a / 099/071",
-      "search_jp": "ゲンガーex SAR PSA10",
-      "search_hk": "耿鬼 SAR PSA10",
+      "set": "SV5K / 088/071",
+      "search_jp": "ゲンガーex SR PSA10 088/071 ワイルドフォース",
+      "search_hk": "耿鬼 SR PSA10 088",
       "tcgdex_id": "SV5K-088",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV5K/088/high.webp",
-      "image_note": "official_card SV5K-088 ゲンガーex SR"
+      "image_note": "official_card SV5K-088 ゲンガーex SR 088/071"
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -220,15 +220,15 @@
     },
     {
       "id": "psa10-iono-sar",
-      "name_zh": "奇樹 SAR PSA10",
-      "name_jp": "ナンジャモ SAR PSA10",
+      "name_zh": "奇樹 SAR（漆黑氣焰）PSA10",
+      "name_jp": "ナンジャモ SAR クレイバースト PSA10",
       "kind": "psa10",
-      "set": "sv2a / 350/165",
-      "search_jp": "ナンジャモ SAR PSA10",
-      "search_hk": "奇樹 SAR PSA10",
+      "set": "SV2D / 096/071",
+      "search_jp": "ナンジャモ SAR PSA10 096/071 クレイバースト",
+      "search_hk": "奇樹 SAR PSA10 漆黑氣焰",
       "tcgdex_id": "SV2D-096",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2D/096/high.webp",
-      "image_note": "official_card SV2D-096 ナンジャモ SAR"
+      "image_note": "official_card SV2D-096 ナンジャモ SAR 096/071"
     },
     {
       "id": "psa10-greninja-ex-sar",
@@ -300,15 +300,15 @@
     },
     {
       "id": "psa10-mew-ex-sar",
-      "name_zh": "夢幻 ex SAR PSA10",
-      "name_jp": "ミュウex SAR PSA10",
+      "name_zh": "夢幻 ex SAR（閃）PSA10",
+      "name_jp": "ミュウex SAR シャイニートレジャー PSA10",
       "kind": "psa10",
-      "set": "sv3a / 205/187",
-      "search_jp": "ミュウex SAR PSA10",
-      "search_hk": "夢幻 SAR PSA10",
+      "set": "SV4a / 347/190",
+      "search_jp": "ミュウex SAR PSA10 347/190 シャイニートレジャー",
+      "search_hk": "夢幻 SAR PSA10 閃",
       "tcgdex_id": "SV4a-347",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/347/high.webp",
-      "image_note": "official_card SV4a-347 ミュウex SAR (Shiny Treasure)"
+      "image_note": "official_card SV4a-347 ミュウex SAR 347/190"
     },
     {
       "id": "psa10-umbreon-ex-sar",
@@ -405,15 +405,15 @@
     },
     {
       "id": "psa10-n-sar",
-      "name_zh": "N SAR PSA10",
-      "name_jp": "N SAR PSA10",
+      "name_zh": "N的索羅亞克 ex SAR PSA10",
+      "name_jp": "Nのゾロアークex SAR PSA10",
       "kind": "psa10",
-      "set": "sv6a",
-      "search_jp": "N SAR PSA10 ポケモン",
-      "search_hk": "N SAR PSA10",
+      "set": "SV9 / 127/100",
+      "search_jp": "Nのゾロアークex SAR PSA10 127/100",
+      "search_hk": "索羅亞克 SAR PSA10",
       "tcgdex_id": "SV9-127",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV9/127/high.webp",
-      "image_note": "official_card SV9-127 Nのゾロアークex SAR"
+      "image_note": "official_card SV9-127 Nのゾロアークex SAR 127/100"
     },
     {
       "id": "psa10-mega-charizard-x-ex",
@@ -435,8 +435,8 @@
       "set": "SV11B",
       "search_jp": "ブラックボルト BOX 未開封",
       "search_hk": "黑雷 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)"
+      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/infoProduct-img-1.png",
+      "image_note": "official pack art pokemon-card.com SV11 ブラックボルト"
     },
     {
       "id": "psa10-leafeon-ex-sar",
@@ -458,8 +458,8 @@
       "set": "SV11W",
       "search_jp": "ホワイトフレア BOX 未開封",
       "search_hk": "白炎 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)"
+      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/infoProduct-img-2.png",
+      "image_note": "official pack art pokemon-card.com SV11 ホワイトフレア"
     },
     {
       "id": "sealed-ancient-roar",
@@ -469,8 +469,8 @@
       "set": "SV4K",
       "search_jp": "古代の咆哮 BOX 未開封",
       "search_hk": "古代咆哮 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/hero-visual.jpg",
-      "image_note": "official_product hero art pokemon-card.com SV4 (古代の咆哮)"
+      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/product-image-1.png",
+      "image_note": "official pack art pokemon-card.com SV4 古代の咆哮"
     },
     {
       "id": "psa10-charizard-ex-sar-shiny",
@@ -618,8 +618,8 @@
     },
     {
       "id": "psa10-charizard-ex-sar-151",
-      "name_zh": "噴火龍 ex SAR PSA10",
-      "name_jp": "リザードンex SAR PSA10",
+      "name_zh": "噴火龍 ex SAR（151）PSA10",
+      "name_jp": "リザードンex SAR PSA10 151",
       "kind": "psa10",
       "set": "sv2a / 201/165",
       "search_jp": "リザードンex SAR PSA10 201/165",

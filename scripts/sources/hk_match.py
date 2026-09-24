@@ -62,6 +62,7 @@ _GROUPS: list[dict[str, Any]] = [
         "terms": ["阿響的鳳王", "鳳王", "ホウオウ", "hooh", "ho-oh"],
         "specific": [["阿響的鳳王", "阿響", "ヒビキのホウオウ", "ヒビキ", "ethan"]],
     },
+    {"id": "zoroark", "terms": ["索羅亞克", "zoroark", "ゾロアーク"]},
     {"id": "nsar", "terms": ["nsar"]},
     {"id": "abyss", "terms": ["深淵之眼", "abysseye", "アビスアイ", "abyss eye"]},
     {"id": "storm", "terms": ["風暴翡翠", "stormemeralda", "stormemerald", "ストームエメラルダ", "storm emeralda"]},
@@ -452,7 +453,9 @@ def _has_token(text: str, token: str) -> bool:
 
 
 def _stated_rarity_conflict(title: str, query: str) -> bool:
-    """A title that names a lower rarity is not the SAR even if the collector number matches."""
+    """A title that names a different rarity is not this card, even with the same number."""
+    if _has_token(query, "sr") and not _has_token(query, "sar"):
+        return _has_token(title, "sar") or _has_token(title, "ar")
     if not (_has_token(query, "sar") or "special art" in query.lower()):
         return False
     if _has_token(title, "ar"):
@@ -460,6 +463,47 @@ def _stated_rarity_conflict(title: str, query: str) -> bool:
     if _has_token(title, "sar") or "special art" in title.lower():
         return False
     return any(_has_token(title, tok) for tok in ("sr", "ur", "hr", "rr"))
+
+
+def _without_set_ex(text: str) -> str:
+    """シャイニートレジャーex is the set name, not a Pokémon ex."""
+    cleaned = text
+    for phrase in (
+        "シャイニートレジャーex",
+        "テラスタルフェスex",
+        "メガドリームex",
+        "shiny treasure ex",
+        "terastal fest ex",
+    ):
+        cleaned = re.sub(re.escape(phrase), phrase[:-2], cleaned, flags=re.I)
+    return cleaned
+
+
+def _stage_conflict(title: str, query: str) -> bool:
+    """A title that names a different stage is another card. Omitting ex is allowed."""
+    title = _without_set_ex(title)
+    query = _without_set_ex(query)
+    title_n = _norm(title)
+    query_n = _norm(query)
+    for token in ("vmax", "vstar"):
+        if token in title_n and token not in query_n:
+            return True
+    return _has_token(title, "ex") and not _has_token(query, "ex")
+
+
+def _wants_illustration_rare(query: str) -> bool:
+    if _has_token(query, "sar") or "special art" in query.lower():
+        return False
+    return bool(_has_token(query, "ar") or "イラストレア" in query or "アートレア" in query)
+
+
+def _is_illustration_rare(title: str) -> bool:
+    return bool(
+        _has_token(title, "ar")
+        or "イラストレア" in title
+        or "アートレア" in title
+        or "illustration rare" in title.lower()
+    )
 
 
 def _rarity_ok(title: str, query: str) -> bool:
@@ -670,6 +714,8 @@ def match_item(
         keyword_parts.append(str(item.get("set")))
     printed = _card_print(item)
     number, denom = printed if printed else (None, None)
+    if (item.get("kind") or "psa10") == "psa10":
+        require_print = True
     return match_listings(
         rows,
         keyword=" ".join(part for part in keyword_parts if part),
@@ -732,6 +778,12 @@ def match_listings(
             ):
                 continue
             if apply_price_band and (price < 80 or price > 200_000):
+                continue
+            if _stage_conflict(title, query):
+                continue
+            if _wants_illustration_rare(query) and (
+                not _is_illustration_rare(title) or _has_token(title, "sar")
+            ):
                 continue
             if card_number and _frac_nums(title) and not number_hit:
                 continue

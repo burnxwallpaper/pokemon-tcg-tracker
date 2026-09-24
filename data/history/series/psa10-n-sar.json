@@ -1,16 +1,16 @@
 {
   "id": "psa10-n-sar",
-  "name_zh": "N SAR PSA10",
-  "name_jp": "N SAR PSA10",
+  "name_zh": "N的索羅亞克 ex SAR PSA10",
+  "name_jp": "Nのゾロアークex SAR PSA10",
   "kind": "psa10",
-  "set": "sv6a",
+  "set": "SV9 / 127/100",
   "image": "images/psa10-n-sar.webp",
   "image_source": "official",
   "tcgdex_id": "SV9-127",
   "is_sample": false,
   "real_points": true,
   "history_days": 76,
-  "updated_at": "2026-09-24T19:00:35+08:00",
+  "updated_at": "2026-09-24T19:18:46+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -464,7 +464,7 @@
     },
     {
       "date": "2026-09-24",
-      "price_hkd": null,
+      "price_hkd": 707.85,
       "hk_ask_hkd": null,
       "volume": 0.0
     }

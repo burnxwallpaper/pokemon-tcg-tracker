@@ -8,12 +8,12 @@
   "search_hk": "黑雷 BOX 未開封",
   "tcgdex_id": null,
   "image": "images/sealed-black-bolt.png",
-  "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-  "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/infoProduct-img-1.png",
+  "image_note": "official pack art pokemon-card.com SV11 ブラックボルト",
   "image_source": "official",
   "series_path": "history/series/sealed-black-bolt.json",
   "history_points": 67,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T19:00:35+08:00"
+  "updated_at": "2026-09-24T19:18:46+08:00"
 }
