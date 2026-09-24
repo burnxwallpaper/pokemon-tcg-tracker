@@ -354,23 +354,16 @@ def main() -> None:
     n_hk = sum(1 for it in items_out if it.get("hk_ask_hkd") is not None)
     n_jp = sum(1 for it in items_out if it.get("price_jpy") is not None)
 
-    # Preserve prior source_status for carousell; refresh yahoo note
+    # Refresh Yahoo; keep every HK source count from the prior snapshot.
     prior_ss = (prior_latest.get("meta") or {}).get("source_status") or {}
-    source_status = {
-        "yahoo_auctions_jp": {
-            "enabled": True,
-            "status": "ok" if jp_ok else "empty",
-            "ok_items": jp_ok,
-            "errors": errors[:20],
-            "note": f"JP sold closedsearch backfill ≤{hist_days}d via __NEXT_DATA__",
-            "backfill": True,
-        },
-        "carousell_hk": prior_ss.get("carousell_hk")
-        or {
-            "enabled": bool((cfg.get("sources") or {}).get("carousell_hk", {}).get("enabled")),
-            "status": "preserved",
-            "note": "Preserved from prior latest (backfill did not re-fetch HK)",
-        },
+    source_status = dict(prior_ss) if isinstance(prior_ss, dict) else {}
+    source_status["yahoo_auctions_jp"] = {
+        "enabled": True,
+        "status": "ok" if jp_ok else "empty",
+        "ok_items": jp_ok,
+        "errors": errors[:20],
+        "note": f"JP sold closedsearch backfill ≤{hist_days}d via __NEXT_DATA__",
+        "backfill": True,
     }
 
     payload = {

@@ -2,7 +2,7 @@
   "date": "2026-09-24",
   "note": "每日快照：meta + items（真實抓取）。保留約 history_days 天。",
   "meta": {
-    "updated_at": "2026-09-24T16:19:35+08:00",
+    "updated_at": "2026-09-24T16:54:52+08:00",
     "fx_jpy_to_hkd": 0.0495,
     "is_sample": false,
     "item_count": 50,
@@ -12,23 +12,58 @@
         "status": "ok",
         "ok_items": 50,
         "errors": [],
-        "note": "JP sold closedsearch via __NEXT_DATA__"
+        "note": "Preserved JP reference; this run refreshed HK asks only"
       },
       "carousell_hk": {
         "enabled": true,
         "status": "ok",
-        "ok_items": 49,
-        "backend_counts": {
-          "carousell_hk": 49
-        },
+        "ok_items": 43,
+        "listings": 256,
         "errors": [
-          "sealed-munikis-zero: no prices parsed from Carousell HTML"
+          "psa10-n-sar: no listingCards parsed",
+          "sealed-white-flare: no listingCards parsed"
         ],
-        "note": "HK asks; HKCardLink fallback if Cloudflare blocks Carousell",
-        "carousell_probe": {
+        "note": "Title-matched listingCards from Carousell HK search",
+        "probe": {
           "status": "ok",
-          "error": null
+          "error": null,
+          "listing_count": 48
         }
+      },
+      "hkcardlink": {
+        "enabled": true,
+        "status": "empty",
+        "ok_items": 0,
+        "listings": 0,
+        "errors": [],
+        "note": "Public Supabase listings matched by title",
+        "catalog_size": 103
+      },
+      "lono": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 1,
+        "listings": 1,
+        "errors": [],
+        "note": "lono.com.hk PSA + Pokémon category prices",
+        "catalog_size": 302
+      },
+      "zenox": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 14,
+        "listings": 14,
+        "errors": [],
+        "note": "zenoxstore.com Shopify JP booster boxes",
+        "catalog_size": 33
+      },
+      "facebook_hk": {
+        "enabled": true,
+        "status": "unreachable",
+        "ok_items": 0,
+        "listings": 0,
+        "http_status": 400,
+        "note": "Facebook Marketplace/login HTML is not reachable from this worker (no logged-in browser; login walls are not bypassed)."
       }
     }
   },
@@ -41,7 +76,7 @@
       "price_jpy": 55000,
       "volume_today": 1,
       "liquidity_score": 37,
-      "hk_ask_hkd": 300.0
+      "hk_ask_hkd": 800.0
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
@@ -51,7 +86,7 @@
       "price_jpy": 86250,
       "volume_today": 1,
       "liquidity_score": 44,
-      "hk_ask_hkd": 1240.0
+      "hk_ask_hkd": null
     },
     {
       "id": "sealed-abyss-eye",
@@ -61,7 +96,7 @@
       "price_jpy": 16000,
       "volume_today": 1,
       "liquidity_score": 42,
-      "hk_ask_hkd": 428.85
+      "hk_ask_hkd": 550.0
     },
     {
       "id": "sealed-storm-emerald",
@@ -71,7 +106,7 @@
       "price_jpy": 16000,
       "volume_today": 21,
       "liquidity_score": 95,
-      "hk_ask_hkd": 559.5
+      "hk_ask_hkd": 964.5
     },
     {
       "id": "sealed-mega-dream",
@@ -81,7 +116,7 @@
       "price_jpy": 27850,
       "volume_today": 6,
       "liquidity_score": 59,
-      "hk_ask_hkd": 635.0
+      "hk_ask_hkd": 775.0
     },
     {
       "id": "sealed-ninja-spinner",
@@ -91,7 +126,7 @@
       "price_jpy": 26875,
       "volume_today": 0,
       "liquidity_score": 39,
-      "hk_ask_hkd": 380.0
+      "hk_ask_hkd": 615.0
     },
     {
       "id": "sealed-inferno-x",
@@ -101,7 +136,7 @@
       "price_jpy": 17250,
       "volume_today": 2,
       "liquidity_score": 40,
-      "hk_ask_hkd": 459.0
+      "hk_ask_hkd": 1359.5
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
@@ -111,7 +146,7 @@
       "price_jpy": 59750,
       "volume_today": 8,
       "liquidity_score": 60,
-      "hk_ask_hkd": 2400.0
+      "hk_ask_hkd": 2580.0
     },
     {
       "id": "sealed-mega-brave",
@@ -121,7 +156,7 @@
       "price_jpy": 14000,
       "volume_today": 7,
       "liquidity_score": 73,
-      "hk_ask_hkd": 520.0
+      "hk_ask_hkd": 655.0
     },
     {
       "id": "sealed-mega-symphonia",
@@ -131,7 +166,7 @@
       "price_jpy": 14000,
       "volume_today": 5,
       "liquidity_score": 65,
-      "hk_ask_hkd": 1000.0
+      "hk_ask_hkd": 590.0
     },
     {
       "id": "sealed-munikis-zero",
@@ -141,7 +176,7 @@
       "price_jpy": 6811,
       "volume_today": 1,
       "liquidity_score": 34,
-      "hk_ask_hkd": null
+      "hk_ask_hkd": 510.0
     },
     {
       "id": "psa10-gengar-ex-sar",
@@ -151,7 +186,7 @@
       "price_jpy": 63500,
       "volume_today": 2,
       "liquidity_score": 44,
-      "hk_ask_hkd": 3075.0
+      "hk_ask_hkd": 3900.0
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -161,7 +196,7 @@
       "price_jpy": 62500,
       "volume_today": 2,
       "liquidity_score": 43,
-      "hk_ask_hkd": 1649.5
+      "hk_ask_hkd": 4750.0
     },
     {
       "id": "psa10-iono-sar",
@@ -171,7 +206,7 @@
       "price_jpy": 17500,
       "volume_today": 7,
       "liquidity_score": 56,
-      "hk_ask_hkd": 740.0
+      "hk_ask_hkd": 1500.0
     },
     {
       "id": "psa10-greninja-ex-sar",
@@ -181,7 +216,7 @@
       "price_jpy": 28900,
       "volume_today": 2,
       "liquidity_score": 39,
-      "hk_ask_hkd": 880.0
+      "hk_ask_hkd": 3780.0
     },
     {
       "id": "psa10-rocket-mewtwo-ex-sar",
@@ -191,7 +226,7 @@
       "price_jpy": 22000,
       "volume_today": 1,
       "liquidity_score": 31,
-      "hk_ask_hkd": 1715.0
+      "hk_ask_hkd": 3500.0
     },
     {
       "id": "sealed-terastal-fest",
@@ -201,7 +236,7 @@
       "price_jpy": 19400,
       "volume_today": 1,
       "liquidity_score": 22,
-      "hk_ask_hkd": 1080.0
+      "hk_ask_hkd": 1124.5
     },
     {
       "id": "sealed-151-box",
@@ -211,7 +246,7 @@
       "price_jpy": 50250,
       "volume_today": 1,
       "liquidity_score": 22,
-      "hk_ask_hkd": 865.0
+      "hk_ask_hkd": 3684.5
     },
     {
       "id": "sealed-shiny-treasure",
@@ -221,7 +256,7 @@
       "price_jpy": 43200,
       "volume_today": 1,
       "liquidity_score": 20,
-      "hk_ask_hkd": 470.0
+      "hk_ask_hkd": 750.0
     },
     {
       "id": "sealed-battle-partners",
@@ -231,7 +266,7 @@
       "price_jpy": 9500,
       "volume_today": 1,
       "liquidity_score": 19,
-      "hk_ask_hkd": 330.0
+      "hk_ask_hkd": 380.0
     },
     {
       "id": "psa10-mew-ex-sar",
@@ -241,7 +276,7 @@
       "price_jpy": 106500,
       "volume_today": 4,
       "liquidity_score": 30,
-      "hk_ask_hkd": 2944.0
+      "hk_ask_hkd": null
     },
     {
       "id": "psa10-umbreon-ex-sar",
@@ -251,7 +286,7 @@
       "price_jpy": 69999,
       "volume_today": 0,
       "liquidity_score": 16,
-      "hk_ask_hkd": 1000.0
+      "hk_ask_hkd": 5600.0
     },
     {
       "id": "psa10-giratina-vstar-ur",
@@ -261,17 +296,17 @@
       "price_jpy": 11111,
       "volume_today": 1,
       "liquidity_score": 16,
-      "hk_ask_hkd": 1840.0
+      "hk_ask_hkd": 2600.0
     },
     {
       "id": "psa10-mega-gardevoir-ex",
       "name_zh": "超級沙奈朵 ex SAR PSA10",
       "kind": "psa10",
-      "price_hkd": 1596.35,
+      "price_hkd": 1596.33,
       "price_jpy": 32249,
       "volume_today": 0,
       "liquidity_score": 14,
-      "hk_ask_hkd": 999.0
+      "hk_ask_hkd": 1150.0
     },
     {
       "id": "sealed-stellar-miracle",
@@ -281,7 +316,7 @@
       "price_jpy": 10500,
       "volume_today": 0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 230.0
+      "hk_ask_hkd": 350.0
     },
     {
       "id": "sealed-team-rocket-glory",
@@ -291,7 +326,7 @@
       "price_jpy": 49000,
       "volume_today": 1,
       "liquidity_score": 16,
-      "hk_ask_hkd": 1325.0
+      "hk_ask_hkd": 1390.0
     },
     {
       "id": "sealed-rulers-black-flame",
@@ -301,7 +336,7 @@
       "price_jpy": 16840,
       "volume_today": 1,
       "liquidity_score": 15,
-      "hk_ask_hkd": 599.5
+      "hk_ask_hkd": null
     },
     {
       "id": "psa10-mega-lucario-ex",
@@ -311,7 +346,7 @@
       "price_jpy": 15250,
       "volume_today": 2,
       "liquidity_score": 21,
-      "hk_ask_hkd": 475.0
+      "hk_ask_hkd": 1600.0
     },
     {
       "id": "psa10-eevee-ex-sar",
@@ -321,7 +356,7 @@
       "price_jpy": 9800,
       "volume_today": 0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 960.0
+      "hk_ask_hkd": 1000.0
     },
     {
       "id": "psa10-n-sar",
@@ -331,7 +366,7 @@
       "price_jpy": 12850,
       "volume_today": 3,
       "liquidity_score": 20,
-      "hk_ask_hkd": 775.0
+      "hk_ask_hkd": null
     },
     {
       "id": "psa10-mega-charizard-x-ex",
@@ -341,7 +376,7 @@
       "price_jpy": 130000,
       "volume_today": 1,
       "liquidity_score": 16,
-      "hk_ask_hkd": 6950.0
+      "hk_ask_hkd": 5500.0
     },
     {
       "id": "sealed-black-bolt",
@@ -351,7 +386,7 @@
       "price_jpy": 20000,
       "volume_today": 0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 865.0
+      "hk_ask_hkd": 1604.5
     },
     {
       "id": "psa10-leafeon-ex-sar",
@@ -361,7 +396,7 @@
       "price_jpy": 14700,
       "volume_today": 1,
       "liquidity_score": 14,
-      "hk_ask_hkd": 2050.0
+      "hk_ask_hkd": 1200.0
     },
     {
       "id": "sealed-white-flare",
@@ -371,7 +406,7 @@
       "price_jpy": 16500,
       "volume_today": 1,
       "liquidity_score": 13,
-      "hk_ask_hkd": 675.0
+      "hk_ask_hkd": 1449.0
     },
     {
       "id": "sealed-ancient-roar",
@@ -381,7 +416,7 @@
       "price_jpy": 12100,
       "volume_today": 1,
       "liquidity_score": 12,
-      "hk_ask_hkd": 518.0
+      "hk_ask_hkd": 522.5
     },
     {
       "id": "psa10-charizard-ex-sar-shiny",
@@ -391,7 +426,7 @@
       "price_jpy": 55000,
       "volume_today": 1,
       "liquidity_score": 13,
-      "hk_ask_hkd": 1865.0
+      "hk_ask_hkd": 4040.0
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -401,7 +436,7 @@
       "price_jpy": 33000,
       "volume_today": 1,
       "liquidity_score": 12,
-      "hk_ask_hkd": 2300.0
+      "hk_ask_hkd": 2350.0
     },
     {
       "id": "psa10-acerola-premonition",
@@ -411,7 +446,7 @@
       "price_jpy": 13300,
       "volume_today": 0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 575.0
+      "hk_ask_hkd": 1000.0
     },
     {
       "id": "psa10-serena-sr",
@@ -421,7 +456,7 @@
       "price_jpy": 13500,
       "volume_today": 0,
       "liquidity_score": 9,
-      "hk_ask_hkd": 716.8
+      "hk_ask_hkd": 1299.0
     },
     {
       "id": "psa10-charizard-ex-sar-obsidian",
@@ -431,7 +466,7 @@
       "price_jpy": 65000,
       "volume_today": 1,
       "liquidity_score": 12,
-      "hk_ask_hkd": 7280.0
+      "hk_ask_hkd": null
     },
     {
       "id": "psa10-miriam-sar",
@@ -441,7 +476,7 @@
       "price_jpy": 28000,
       "volume_today": 1,
       "liquidity_score": 10,
-      "hk_ask_hkd": 1479.6
+      "hk_ask_hkd": 2200.0
     },
     {
       "id": "psa10-erika-invite-sar",
@@ -451,7 +486,7 @@
       "price_jpy": 19500,
       "volume_today": 0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 1168.0
+      "hk_ask_hkd": 1118.0
     },
     {
       "id": "psa10-pikachu-ex-sar-terastal",
@@ -461,7 +496,7 @@
       "price_jpy": 94500,
       "volume_today": 3,
       "liquidity_score": 17,
-      "hk_ask_hkd": 830.0
+      "hk_ask_hkd": 4800.0
     },
     {
       "id": "psa10-lugia-v-sa",
@@ -471,7 +506,7 @@
       "price_jpy": 200000,
       "volume_today": 1,
       "liquidity_score": 10,
-      "hk_ask_hkd": 4224.0
+      "hk_ask_hkd": 8800.0
     },
     {
       "id": "psa10-iono-sar-shiny",
@@ -481,7 +516,7 @@
       "price_jpy": 20500,
       "volume_today": 0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 1374.5
+      "hk_ask_hkd": 2880.0
     },
     {
       "id": "psa10-hooh-ex-sar",
@@ -491,7 +526,7 @@
       "price_jpy": 32500,
       "volume_today": 0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 750.0
+      "hk_ask_hkd": 2100.0
     },
     {
       "id": "psa10-carmine-sar",
@@ -501,7 +536,7 @@
       "price_jpy": 54450,
       "volume_today": 0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 950.0
+      "hk_ask_hkd": 3840.0
     },
     {
       "id": "psa10-charizard-ex-sar-151",
@@ -511,7 +546,7 @@
       "price_jpy": 102000,
       "volume_today": 1,
       "liquidity_score": 10,
-      "hk_ask_hkd": 3900.0
+      "hk_ask_hkd": null
     },
     {
       "id": "psa10-cynthia-ambition-sar",
@@ -521,7 +556,7 @@
       "price_jpy": 15000,
       "volume_today": 0,
       "liquidity_score": 6,
-      "hk_ask_hkd": 720.0
+      "hk_ask_hkd": 949.0
     },
     {
       "id": "psa10-miraidon-ex-sar",
@@ -531,7 +566,7 @@
       "price_jpy": 9500,
       "volume_today": 0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 650.0
+      "hk_ask_hkd": 600.0
     }
   ]
 }

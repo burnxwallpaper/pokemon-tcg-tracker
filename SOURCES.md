@@ -3,8 +3,10 @@
 研究日期：2026-09-24（HK）。
 **已實作溫和 scraper**（`scripts/update.py`）：
 - Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅
-- Carousell HK → 目前 Cloudflare 403；fallback HKCardLink 公開 Supabase listings ✅（部分命中）
-- Facebook HK（Marketplace／專頁／社團）→ 2026-09-24 無登入探測失敗，**未接入**。見 §8
+- Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的叫價；Cloudflare 403 就停，不繞過
+- HKCardLink → 公開 Supabase listings，與 Carousell 合併
+- LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價；Zenox `zenoxstore.com` → Shopify 日版補充包 BOX
+- Facebook HK → 無登入探測失敗，**未接入**。見 §9
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
 
@@ -94,7 +96,21 @@
 - **Sealed**：低。
 - **MVP 用法**：非本產品核心；若日後擴 raw 再升優先。
 
-### 8. Facebook HK 叫價 — **公開探測失敗，不接入**
+### 8. 香港本地叫價（已接入）
+
+只收**標題對得上** watchlist 的公開標價，再取中位數寫入 `hk_ask_hkd`。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
+
+| 來源 | 怎麼拿 | 用什麼 |
+|---|---|---|
+| **Carousell HK** | `https://www.carousell.com.hk/search/{關鍵字}/` 頁內 `listingCards`（`title` + `price`） | PSA10 與未開封 BOX。住宅網路可 200；遇 Cloudflare 403 就停，不繞過 |
+| **HKCardLink** | 前端 anon key → Supabase `listings` | 近期 PSA10／BOX 目錄，客戶端對標題 |
+| **LONO** | `https://www.lono.com.hk/categories/psa-ptcg` 與 `/categories/pokemon-tcg` 公開分類頁（Shopline HTML，`HK$` 標價） | 店內 PSA10 與盒子。略過繁中盒，避免拿來標日版 |
+| **Zenox** | `https://www.zenoxstore.com/collections/booster-packs-collection-box-jp/products.json` | 日版 Booster Box。略過 Case（整箱）與 DX 小盒 |
+| **Facebook** | 公開 Marketplace URL 探一次 | 此 worker 回 HTTP 400，沒有可用列表。不用登入瀏覽器，也不繞登入牆 |
+
+試過但未當價格源：`cardland.com.hk` products.json 403；`hkpokemon.com` 不是可用目錄；Price.com.hk 搜尋結果不是穩定的卡牌標價。
+
+### 9. Facebook HK 叫價 — **公開探測失敗，不接入**
 
 2026-09-24 從本 worker 探測。一般瀏覽器 User-Agent、無 cookie、無登入、不解 challenge、不打需 `fb_dtsg` 的 GraphQL。
 
@@ -117,7 +133,7 @@
 3. 只為那個**具體公開 URL** 寫 parser（例如某店免登入的 Shopify `products.json` 或 Shopline 分類頁）。不要做 Marketplace 關鍵字搜尋，也不要抓社團。
 4. 官方另一條路：Meta App 通過 Page Public Content Access，且只讀已授權專頁。那不是 Marketplace 成交／叫價；此 repo 沒有這組憑證，每日 job 不要等它。
 
-在上述條件出現之前，香港叫價維持 Carousell／HKCardLink。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
+在上述條件出現之前，香港叫價維持 Carousell／HKCardLink／LONO／Zenox。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
 
 ### 其他提及（非優先）
 
@@ -132,7 +148,7 @@
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
 2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
-4. **HK**：Carousell ask → 價差。
+4. **HK**：Carousell／HKCardLink／LONO／Zenox 標題命中的叫價 → 價差。Yahoo 只作日本參考。
 5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
 
 ---

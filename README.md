@@ -3,7 +3,7 @@
 個人用、投機導向的日版 PSA10 鑑定卡＋未開封商品行情儀表板。顯示貨幣僅 **HKD**。  
 本目錄為本機 scaffold；之後會由 bot **每日同步**到你的 PC：`C:\Users\leosiu\Documents\pokemonTCG`。
 
-> `scripts/update.py` 會以溫和公開抓取更新真實行情（Yahoo Auctions JP 成交 + Carousell HK／HKCardLink 叫價）。若來源被擋，見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
+> `scripts/update.py` 會以溫和公開抓取更新真實行情（Yahoo Auctions JP 成交作參考；香港叫價來自標題核對後的 Carousell、HKCardLink、LONO、Zenox）。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
 
 ---
 
@@ -28,8 +28,17 @@ python -m http.server 8080
 1. 雙擊或在終端執行 `python -m http.server 8080`（工作目錄須為本專案根目錄）
 2. 再開瀏覽器連到上述網址
 
-儀表板首頁先分 **卡（PSA10）**／**盒（未開封）**，再睇 **大異動**／**流動性**／**價差**。讀取 `./data/latest.json`。
-點擊卡片或流動性列可開啟同頁詳情面板（約 90 日價格／量能圖）；亦可 `?id=sample-001`。
+儀表板一打開就係 **卡（PSA10）流動性** 表。盒（未開封）要撳「盒」先至出現。大異動同價差係次要分頁。讀取 `./data/latest.json`。
+點擊列可開啟同頁詳情；參考連結會另開來源頁。亦可 `?id=` 直達一張卡，`?section=moves` 或 `?section=spreads` 切去次要頁。
+
+價格欄（全部 HKD）：
+
+| 畫面 | 欄位 | 意思 |
+|------|------|------|
+| 最近成交價 | `price_hkd` | 日本 Yahoo 已結束拍賣，換算 HKD |
+| 香港最新賣出價 | `hk_ask_hkd` | 對到的香港賣盤叫價（穩健中位數；只有一筆時即該賣價） |
+| 最低賣出價 | `hk_ask_low_hkd` | 對到賣盤入面最低。快照若未保存逐筆賣價，而且唔止一筆，就留空（畫面 —） |
+| 買入價／徵求 | `hk_bid_hkd` | 只採用 HKCardLink 公開徵收（`listing_type=wtb`）而且有正數預算。Carousell、LONO、Zenox 冇結構化徵求，對不到就係 `null`（畫面 **暫無**），不會估算 |
 
 ---
 
