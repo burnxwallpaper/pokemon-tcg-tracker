@@ -3,7 +3,10 @@
 研究日期：2026-09-24（HK）。
 **已實作溫和 scraper**（`scripts/update.py`）：
 - Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅
-- Carousell HK → 目前 Cloudflare 403；fallback HKCardLink 公開 Supabase listings ✅（部分命中）
+- Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的叫價
+- HKCardLink → 公開 Supabase listings，與 Carousell 合併（不再被未核對價格短路）
+- LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價；Zenox `zenoxstore.com` → Shopify 日版補充包 BOX
+- Facebook Marketplace → 此環境 HTTP 400，無登入、不繞牆
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
 
@@ -92,13 +95,19 @@
 - **Sealed**：低。
 - **MVP 用法**：非本產品核心；若日後擴 raw 再升優先。
 
-### 8. 香港本地卡店網站 — **P3**
+### 8. 香港本地叫價（已接入）
 
-- **提供什麼**：零售標價、偶爾預購 BOX；店家分散（獨立站、Shopify、IG／FB）。
-- **適配**：sealed 零售價；PSA10 較少系統上架。
-- **難度**：每店一爬蟲；維護成本高。
-- **Facebook**：社團／專頁流動性高但登入牆、ToS、反爬嚴重 → **明確延後**。
-- **MVP**：先人工維護 3～5 間常看店的 URL 清單於 config；自動抓之後再做。
+只收**標題對得上** watchlist 的公開標價，再取中位數寫入 `hk_ask_hkd`。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
+
+| 來源 | 怎麼拿 | 用什麼 |
+|---|---|---|
+| **Carousell HK** | `https://www.carousell.com.hk/search/{關鍵字}/` 頁內 `listingCards`（`title` + `price`） | PSA10 與未開封 BOX。住宅網路可 200；遇 Cloudflare 403 就停，不繞過 |
+| **HKCardLink** | 前端 anon key → Supabase `listings` | 近期 PSA10／BOX 目錄，客戶端對標題 |
+| **LONO** | `https://www.lono.com.hk/categories/psa-ptcg` 與 `/categories/pokemon-tcg` 公開分類頁（Shopline HTML，`HK$` 標價） | 店內 PSA10 與盒子。略過繁中盒，避免拿來標日版 |
+| **Zenox** | `https://www.zenoxstore.com/collections/booster-packs-collection-box-jp/products.json` | 日版 Booster Box。略過 Case（整箱）與 DX 小盒 |
+| **Facebook** | 公開 Marketplace URL 探一次 | 此 worker 回 HTTP 400，沒有可用列表。不用登入瀏覽器，也不繞登入牆 |
+
+試過但未當價格源：`cardland.com.hk` products.json 403；`hkpokemon.com` 不是可用目錄；Price.com.hk 搜尋結果不是穩定的卡牌標價。
 
 ### 其他提及（非優先）
 
@@ -113,7 +122,7 @@
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
 2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
-4. **HK**：Carousell ask → 價差。
+4. **HK**：Carousell／HKCardLink／LONO／Zenox 標題命中的叫價 → 價差。Yahoo 只作日本參考。
 5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
 
 ---

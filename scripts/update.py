@@ -3,7 +3,7 @@
 update.py — Pokémon TCG price tracker (REAL mild scrapers)
 
 Pipeline:
-  1. fetch   — Yahoo Auctions JP sold + Carousell HK asks (HKCardLink fallback)
+  1. fetch   — Yahoo Auctions JP sold + title-matched HK asks
   2. merge   — attach JP/HK prices onto watchlist items
   3. compute — 1日/7日 movers, liquidity, JP↔HK spreads (from history)
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
-from sources import carousell_hk, yahoo_auctions_jp  # noqa: E402
+from sources import hk_asks, yahoo_auctions_jp  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
@@ -169,6 +169,8 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
     sources_cfg = cfg.get("sources") or {}
     jp_on = bool(sources_cfg.get("yahoo_auctions_jp", {}).get("enabled"))
     hk_on = bool(sources_cfg.get("carousell_hk", {}).get("enabled"))
+    shops_on = bool(sources_cfg.get("hk_card_shops", {}).get("enabled"))
+    facebook_on = bool(sources_cfg.get("facebook_hk", {}).get("enabled"))
 
     jp_by_id: dict[str, dict] = {}
     hk_by_id: dict[str, dict] = {}
@@ -178,15 +180,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             "status": "disabled" if not jp_on else "pending",
             "ok_items": 0,
             "errors": [],
-            "note": "JP sold closedsearch via __NEXT_DATA__",
-        },
-        "carousell_hk": {
-            "enabled": hk_on,
-            "status": "disabled" if not hk_on else "pending",
-            "ok_items": 0,
-            "backend_counts": {},
-            "errors": [],
-            "note": "HK asks; HKCardLink fallback if Cloudflare blocks Carousell",
+            "note": "JP sold closedsearch via __NEXT_DATA__ (reference only)",
         },
     }
 
@@ -231,45 +225,25 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             "ok" if any_ok else ("blocked" if blocked else "empty")
         )
 
-    if hk_on:
-        print(f"[fetch] Carousell HK probe + HKCardLink catalog match × {len(watchlist)}")
-        probe = carousell_hk.prefetch_carousell_status(min_interval=interval)
-        try_carousell = bool(probe.get("ok"))
-        source_status["carousell_hk"]["carousell_probe"] = {
-            "status": probe.get("status"),
-            "error": probe.get("error"),
-        }
-        if not try_carousell:
+    if hk_on or shops_on or facebook_on:
+        print(
+            f"[fetch] HK asks × {len(watchlist)} "
+            "(Carousell titles, HKCardLink, LONO, Zenox)"
+        )
+        hk_by_id, hk_status = hk_asks.collect_hk(
+            watchlist,
+            min_interval=interval,
+            carousell_on=hk_on,
+            shops_on=shops_on,
+            facebook_on=facebook_on,
+        )
+        source_status.update(hk_status)
+        for name, bucket in hk_status.items():
             print(
-                f"  Carousell unreachable ({probe.get('status')}: {probe.get('error')}); "
-                "using HKCardLink catalog only",
+                f"  {name}: status={bucket.get('status')} "
+                f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
                 flush=True,
             )
-        any_ok = False
-        backends: dict[str, int] = {}
-        for i, item in enumerate(watchlist, 1):
-            print(f"  HK {i}/{len(watchlist)} {item['id']} …", flush=True)
-            res = carousell_hk.fetch_watchlist_item(
-                item, min_interval=interval, try_carousell=try_carousell
-            )
-            hk_by_id[item["id"]] = res
-            if res.get("ok"):
-                any_ok = True
-                source_status["carousell_hk"]["ok_items"] += 1
-                b = res.get("backend") or "unknown"
-                backends[b] = backends.get(b, 0) + 1
-            elif res.get("error"):
-                source_status["carousell_hk"]["errors"].append(
-                    f"{item['id']}: {res.get('error')}"
-                )
-            if res.get("fallback_note") and i == 1:
-                source_status["carousell_hk"]["fallback_note"] = res.get("fallback_note")
-        source_status["carousell_hk"]["backend_counts"] = backends
-        source_status["carousell_hk"]["status"] = (
-            "ok_fallback"
-            if any_ok and backends.get("carousell_hk", 0) == 0
-            else ("ok" if any_ok else "blocked")
-        )
 
     return jp_by_id, hk_by_id, source_status
 
@@ -364,18 +338,19 @@ def merge_and_compute(
         srcs = []
         if jp.get("ok"):
             srcs.append("yahoo_auctions_jp")
-        if hk.get("ok"):
-            # Attribute under carousell_hk even when backend is hkcardlink
-            srcs.append("carousell_hk")
-            if hk.get("backend") == "hkcardlink":
-                srcs.append("hkcardlink")
+        for backend in hk.get("backends") or []:
+            if backend not in srcs:
+                srcs.append(backend)
 
         # Image: official art only (TCGdex / pokemon-card.com). Never Yahoo listing photos.
         image = resolve_official_image(wl)
 
-        liq = liquidity_score(
-            vol_today, vol_7d, int(jp.get("total_available") or 0)
-        )
+        if jp.get("status") == "preserved" and jp.get("liquidity_score") is not None:
+            liq = int(jp["liquidity_score"])
+        else:
+            liq = liquidity_score(
+                vol_today, vol_7d, int(jp.get("total_available") or 0)
+            )
 
         items.append(
             {
@@ -557,9 +532,76 @@ def write_outputs(payload: dict) -> None:
     )
 
 
-def build_payload(cfg: dict) -> dict:
+def _jp_preserved_from_latest() -> dict[str, dict]:
+    """Reuse the last JP reference so an HK refresh does not re-hit Yahoo."""
+    if not LATEST_PATH.exists():
+        return {}
+    try:
+        prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+    out: dict[str, dict] = {}
+    for it in prior.get("items") or []:
+        if not isinstance(it, dict) or not it.get("id"):
+            continue
+        out[str(it["id"])] = {
+            "ok": it.get("price_jpy") is not None,
+            "median_jpy": it.get("price_jpy"),
+            "volume_24h": it.get("volume_today") or 0,
+            "volume_7d_est": it.get("volume_7d_avg") or 0,
+            "total_available": 0,
+            "liquidity_score": it.get("liquidity_score"),
+            "comps": [],
+            "status": "preserved",
+        }
+    return out
+
+
+def _yahoo_preserved_status() -> dict[str, Any]:
+    yahoo: dict[str, Any] = {
+        "enabled": True,
+        "status": "preserved",
+        "ok_items": 0,
+        "errors": [],
+    }
+    if LATEST_PATH.exists():
+        try:
+            prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+            prev = (prior.get("meta") or {}).get("source_status") or {}
+            if isinstance(prev.get("yahoo_auctions_jp"), dict):
+                yahoo = dict(prev["yahoo_auctions_jp"])
+        except (json.JSONDecodeError, OSError):
+            pass
+    yahoo["note"] = "Preserved JP reference; this run refreshed HK asks only"
+    yahoo["status"] = yahoo.get("status") or "preserved"
+    return yahoo
+
+
+def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
     now = datetime.now(HK_TZ)
-    jp_by_id, hk_by_id, source_status = fetch_all(cfg)
+    if hk_only:
+        sources_cfg = cfg.get("sources") or {}
+        interval = float(cfg.get("request_min_interval_sec") or 1.6)
+        watchlist = cfg.get("watchlist") or []
+        print(f"[fetch] HK-only refresh × {len(watchlist)} (JP reference preserved)")
+        hk_by_id, hk_status = hk_asks.collect_hk(
+            watchlist,
+            min_interval=interval,
+            carousell_on=bool(sources_cfg.get("carousell_hk", {}).get("enabled")),
+            shops_on=bool(sources_cfg.get("hk_card_shops", {}).get("enabled")),
+            facebook_on=bool(sources_cfg.get("facebook_hk", {}).get("enabled")),
+        )
+        for name, bucket in hk_status.items():
+            print(
+                f"  {name}: status={bucket.get('status')} "
+                f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
+                flush=True,
+            )
+        jp_by_id = _jp_preserved_from_latest()
+        source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
+        source_status.update(hk_status)
+    else:
+        jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
     sections = compute_sections(items, cfg)
 
@@ -591,7 +633,7 @@ def build_payload(cfg: dict) -> dict:
             },
             "pipeline": [
                 "discover: rank PSA10 + sealed seeds by Yahoo closedsearch totalResultsAvailable",
-                "fetch yahoo_auctions_jp sold + carousell_hk asks (hkcardlink fallback)",
+                "fetch yahoo_auctions_jp sold (reference) + title-matched HK asks",
                 "backfill shallow series from closed comps (merge by date; never wipe)",
                 "normalize HKD via fx_jpy_to_hkd",
                 "compute movers / liquidity / spreads from history",
@@ -656,7 +698,7 @@ def main() -> None:
             file=sys.stderr,
         )
         sys.exit(1)
-    payload = build_payload(cfg)
+    payload = build_payload(cfg, hk_only=("--hk-only" in sys.argv))
     write_outputs(payload)
     # Print source_status summary
     ss = payload["meta"].get("source_status") or {}

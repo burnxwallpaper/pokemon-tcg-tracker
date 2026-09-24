@@ -52,11 +52,15 @@
     },
     "carousell_hk": {
       "enabled": true,
-      "note": "HK MVP local asks (PRIMARY HK). Falls back to HKCardLink public JSON if Cloudflare blocks."
+      "note": "HK primary asks. Search HTML listingCards, title-matched. HKCardLink catalog is always merged in."
     },
     "hk_card_shops": {
-      "enabled": false,
-      "note": "Local shop sites; Facebook later"
+      "enabled": true,
+      "note": "LONO category pages (lono.com.hk) and Zenox Shopify JP booster boxes (zenoxstore.com)."
+    },
+    "facebook_hk": {
+      "enabled": true,
+      "note": "Probe only. Marketplace returns HTTP 400 without a session; no login bypass."
     }
   },
   "display": {

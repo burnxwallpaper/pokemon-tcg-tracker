@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-09-24T16:19:35+08:00",
+    "updated_at": "2026-09-24T16:54:52+08:00",
     "timezone": "Asia/Hong_Kong",
     "is_sample": false,
     "sample_label": null,
@@ -16,11 +16,11 @@
     "item_count": 50,
     "counts": {
       "with_jp_price": 50,
-      "with_hk_ask": 49
+      "with_hk_ask": 44
     },
     "pipeline": [
       "discover: rank PSA10 + sealed seeds by Yahoo closedsearch totalResultsAvailable",
-      "fetch yahoo_auctions_jp sold + carousell_hk asks (hkcardlink fallback)",
+      "fetch yahoo_auctions_jp sold (reference) + title-matched HK asks",
       "backfill shallow series from closed comps (merge by date; never wipe)",
       "normalize HKD via fx_jpy_to_hkd",
       "compute movers / liquidity / spreads from history",
@@ -47,7 +47,8 @@
       "yuyu_tei": false,
       "magi": false,
       "carousell_hk": true,
-      "hk_card_shops": false
+      "hk_card_shops": true,
+      "facebook_hk": true
     },
     "source_status": {
       "yahoo_auctions_jp": {
@@ -55,23 +56,58 @@
         "status": "ok",
         "ok_items": 50,
         "errors": [],
-        "note": "JP sold closedsearch via __NEXT_DATA__"
+        "note": "Preserved JP reference; this run refreshed HK asks only"
       },
       "carousell_hk": {
         "enabled": true,
         "status": "ok",
-        "ok_items": 49,
-        "backend_counts": {
-          "carousell_hk": 49
-        },
+        "ok_items": 43,
+        "listings": 256,
         "errors": [
-          "sealed-munikis-zero: no prices parsed from Carousell HTML"
+          "psa10-n-sar: no listingCards parsed",
+          "sealed-white-flare: no listingCards parsed"
         ],
-        "note": "HK asks; HKCardLink fallback if Cloudflare blocks Carousell",
-        "carousell_probe": {
+        "note": "Title-matched listingCards from Carousell HK search",
+        "probe": {
           "status": "ok",
-          "error": null
+          "error": null,
+          "listing_count": 48
         }
+      },
+      "hkcardlink": {
+        "enabled": true,
+        "status": "empty",
+        "ok_items": 0,
+        "listings": 0,
+        "errors": [],
+        "note": "Public Supabase listings matched by title",
+        "catalog_size": 103
+      },
+      "lono": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 1,
+        "listings": 1,
+        "errors": [],
+        "note": "lono.com.hk PSA + Pokémon category prices",
+        "catalog_size": 302
+      },
+      "zenox": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 14,
+        "listings": 14,
+        "errors": [],
+        "note": "zenoxstore.com Shopify JP booster boxes",
+        "catalog_size": 33
+      },
+      "facebook_hk": {
+        "enabled": true,
+        "status": "unreachable",
+        "ok_items": 0,
+        "listings": 0,
+        "http_status": 400,
+        "note": "Facebook Marketplace/login HTML is not reachable from this worker (no logged-in browser; login walls are not bypassed)."
       }
     },
     "display": {
@@ -98,15 +134,15 @@
       "volume_7d_avg": 4.71,
       "volume_ratio": 0.21,
       "liquidity_score": 37,
-      "hk_ask_hkd": 300.0,
-      "spread_jp_hk_pct": -88.98,
+      "hk_ask_hkd": 800.0,
+      "spread_jp_hk_pct": -70.62,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 345,
-      "hk_listings_n": 19,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -622,7 +658,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 2722.5,
-          "hk_ask_hkd": 300.0,
+          "hk_ask_hkd": 800.0,
           "volume": 1.0
         }
       ]
@@ -643,16 +679,15 @@
       "volume_7d_avg": 8.14,
       "volume_ratio": 0.12,
       "liquidity_score": 44,
-      "hk_ask_hkd": 1240.0,
-      "spread_jp_hk_pct": -70.96,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp",
-        "carousell_hk"
+        "yahoo_auctions_jp"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 40,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 0,
+      "hk_backend": null,
       "history": [
         {
           "date": "2026-06-27",
@@ -1200,16 +1235,17 @@
       "volume_7d_avg": 7.14,
       "volume_ratio": 0.14,
       "liquidity_score": 42,
-      "hk_ask_hkd": 428.85,
-      "spread_jp_hk_pct": -45.85,
+      "hk_ask_hkd": 550.0,
+      "spread_jp_hk_pct": -30.56,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 600,
-      "hk_listings_n": 10,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 12,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-07-29",
@@ -1556,7 +1592,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 792.0,
-          "hk_ask_hkd": 428.85,
+          "hk_ask_hkd": 550.0,
           "volume": 1.0
         }
       ]
@@ -1577,16 +1613,17 @@
       "volume_7d_avg": 47.14,
       "volume_ratio": 0.45,
       "liquidity_score": 95,
-      "hk_ask_hkd": 559.5,
-      "spread_jp_hk_pct": -29.36,
+      "hk_ask_hkd": 964.5,
+      "spread_jp_hk_pct": 21.78,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 600,
-      "hk_listings_n": 4,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 2,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-09-10",
@@ -1675,7 +1712,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 792.0,
-          "hk_ask_hkd": 559.5,
+          "hk_ask_hkd": 964.5,
           "volume": 21.0
         }
       ]
@@ -1696,16 +1733,18 @@
       "volume_7d_avg": 7.86,
       "volume_ratio": 0.76,
       "liquidity_score": 59,
-      "hk_ask_hkd": 635.0,
-      "spread_jp_hk_pct": -53.94,
+      "hk_ask_hkd": 775.0,
+      "spread_jp_hk_pct": -43.78,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "lono",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 600,
-      "hk_listings_n": 38,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 14,
+      "hk_backend": "carousell_hk+lono+zenox",
       "history": [
         {
           "date": "2026-07-29",
@@ -2052,7 +2091,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 1378.58,
-          "hk_ask_hkd": 635.0,
+          "hk_ask_hkd": 775.0,
           "volume": 6.0
         }
       ]
@@ -2073,16 +2112,17 @@
       "volume_7d_avg": 7.0,
       "volume_ratio": 0.0,
       "liquidity_score": 39,
-      "hk_ask_hkd": 380.0,
-      "spread_jp_hk_pct": -71.44,
+      "hk_ask_hkd": 615.0,
+      "spread_jp_hk_pct": -53.77,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 600,
-      "hk_listings_n": 15,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 13,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-07-09",
@@ -2548,8 +2588,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 380.0,
-          "volume": null
+          "hk_ask_hkd": 615.0,
+          "volume": 0.0,
+          "price_hkd": 1330.31
         }
       ]
     },
@@ -2569,16 +2610,17 @@
       "volume_7d_avg": 4.29,
       "volume_ratio": 0.47,
       "liquidity_score": 40,
-      "hk_ask_hkd": 459.0,
-      "spread_jp_hk_pct": -46.25,
+      "hk_ask_hkd": 1359.5,
+      "spread_jp_hk_pct": 59.21,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 600,
-      "hk_listings_n": 35,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 2,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-30",
@@ -3099,7 +3141,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 853.88,
-          "hk_ask_hkd": 459.0,
+          "hk_ask_hkd": 1359.5,
           "volume": 2.0
         }
       ]
@@ -3120,15 +3162,15 @@
       "volume_7d_avg": 5.71,
       "volume_ratio": 1.4,
       "liquidity_score": 60,
-      "hk_ask_hkd": 2400.0,
-      "spread_jp_hk_pct": -18.85,
+      "hk_ask_hkd": 2580.0,
+      "spread_jp_hk_pct": -12.77,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 17,
+      "jp_comps_n": 0,
+      "hk_listings_n": 12,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -3662,7 +3704,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 2957.62,
-          "hk_ask_hkd": 2400.0,
+          "hk_ask_hkd": 2580.0,
           "volume": 8.0
         }
       ]
@@ -3683,16 +3725,17 @@
       "volume_7d_avg": 13.71,
       "volume_ratio": 0.51,
       "liquidity_score": 73,
-      "hk_ask_hkd": 520.0,
-      "spread_jp_hk_pct": -24.96,
+      "hk_ask_hkd": 655.0,
+      "spread_jp_hk_pct": -5.48,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 600,
-      "hk_listings_n": 20,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 9,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-07-11",
@@ -4123,7 +4166,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 693.0,
-          "hk_ask_hkd": 520.0,
+          "hk_ask_hkd": 655.0,
           "volume": 7.0
         }
       ]
@@ -4144,16 +4187,17 @@
       "volume_7d_avg": 12.57,
       "volume_ratio": 0.4,
       "liquidity_score": 65,
-      "hk_ask_hkd": 1000.0,
-      "spread_jp_hk_pct": 44.3,
+      "hk_ask_hkd": 590.0,
+      "spread_jp_hk_pct": -14.86,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 565,
-      "hk_listings_n": 3,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 13,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-27",
@@ -4662,7 +4706,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 693.0,
-          "hk_ask_hkd": 1000.0,
+          "hk_ask_hkd": 590.0,
           "volume": 5.0
         }
       ]
@@ -4683,15 +4727,17 @@
       "volume_7d_avg": 2.86,
       "volume_ratio": 0.35,
       "liquidity_score": 34,
-      "hk_ask_hkd": null,
-      "spread_jp_hk_pct": null,
+      "hk_ask_hkd": 510.0,
+      "spread_jp_hk_pct": 51.27,
       "sources": [
-        "yahoo_auctions_jp"
+        "yahoo_auctions_jp",
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 356,
-      "hk_listings_n": 0,
-      "hk_backend": "hkcardlink",
+      "jp_comps_n": 0,
+      "hk_listings_n": 5,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-27",
@@ -5206,7 +5252,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 337.14,
-          "hk_ask_hkd": null,
+          "hk_ask_hkd": 510.0,
           "volume": 1.0
         }
       ]
@@ -5227,15 +5273,15 @@
       "volume_7d_avg": 6.29,
       "volume_ratio": 0.32,
       "liquidity_score": 44,
-      "hk_ask_hkd": 3075.0,
-      "spread_jp_hk_pct": -2.17,
+      "hk_ask_hkd": 3900.0,
+      "spread_jp_hk_pct": 24.08,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 28,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -5769,7 +5815,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 3143.25,
-          "hk_ask_hkd": 3075.0,
+          "hk_ask_hkd": 3900.0,
           "volume": 2.0
         }
       ]
@@ -5790,15 +5836,15 @@
       "volume_7d_avg": 6.14,
       "volume_ratio": 0.33,
       "liquidity_score": 43,
-      "hk_ask_hkd": 1649.5,
-      "spread_jp_hk_pct": -46.68,
+      "hk_ask_hkd": 4750.0,
+      "spread_jp_hk_pct": 53.54,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 553,
-      "hk_listings_n": 38,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -6332,7 +6378,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 3093.75,
-          "hk_ask_hkd": 1649.5,
+          "hk_ask_hkd": 4750.0,
           "volume": 2.0
         }
       ]
@@ -6353,15 +6399,15 @@
       "volume_7d_avg": 5.57,
       "volume_ratio": 1.26,
       "liquidity_score": 56,
-      "hk_ask_hkd": 740.0,
-      "spread_jp_hk_pct": -14.57,
+      "hk_ask_hkd": 1500.0,
+      "spread_jp_hk_pct": 73.16,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 40,
+      "jp_comps_n": 0,
+      "hk_listings_n": 11,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -6901,7 +6947,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 866.25,
-          "hk_ask_hkd": 740.0,
+          "hk_ask_hkd": 1500.0,
           "volume": 7.0
         }
       ]
@@ -6922,15 +6968,15 @@
       "volume_7d_avg": 5.71,
       "volume_ratio": 0.35,
       "liquidity_score": 39,
-      "hk_ask_hkd": 880.0,
-      "spread_jp_hk_pct": -38.49,
+      "hk_ask_hkd": 3780.0,
+      "spread_jp_hk_pct": 164.23,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 482,
-      "hk_listings_n": 31,
+      "jp_comps_n": 0,
+      "hk_listings_n": 12,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -7458,7 +7504,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 1430.55,
-          "hk_ask_hkd": 880.0,
+          "hk_ask_hkd": 3780.0,
           "volume": 2.0
         }
       ]
@@ -7479,15 +7525,15 @@
       "volume_7d_avg": 4.86,
       "volume_ratio": 0.21,
       "liquidity_score": 31,
-      "hk_ask_hkd": 1715.0,
-      "spread_jp_hk_pct": 57.48,
+      "hk_ask_hkd": 3500.0,
+      "spread_jp_hk_pct": 221.4,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 443,
-      "hk_listings_n": 40,
+      "jp_comps_n": 0,
+      "hk_listings_n": 6,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -8021,7 +8067,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 1089.0,
-          "hk_ask_hkd": 1715.0,
+          "hk_ask_hkd": 3500.0,
           "volume": 1.0
         }
       ]
@@ -8042,16 +8088,17 @@
       "volume_7d_avg": 2.43,
       "volume_ratio": 0.41,
       "liquidity_score": 22,
-      "hk_ask_hkd": 1080.0,
-      "spread_jp_hk_pct": 12.46,
+      "hk_ask_hkd": 1124.5,
+      "spread_jp_hk_pct": 17.1,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 35,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 2,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-28",
@@ -8548,7 +8595,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 960.3,
-          "hk_ask_hkd": 1080.0,
+          "hk_ask_hkd": 1124.5,
           "volume": 1.0
         }
       ]
@@ -8569,16 +8616,17 @@
       "volume_7d_avg": 2.57,
       "volume_ratio": 0.39,
       "liquidity_score": 22,
-      "hk_ask_hkd": 865.0,
-      "spread_jp_hk_pct": -65.22,
+      "hk_ask_hkd": 3684.5,
+      "spread_jp_hk_pct": 48.13,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 40,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-27",
@@ -9051,7 +9099,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 2487.38,
-          "hk_ask_hkd": 865.0,
+          "hk_ask_hkd": 3684.5,
           "volume": 1.0
         }
       ]
@@ -9072,16 +9120,17 @@
       "volume_7d_avg": 1.57,
       "volume_ratio": 0.64,
       "liquidity_score": 20,
-      "hk_ask_hkd": 470.0,
-      "spread_jp_hk_pct": -78.02,
+      "hk_ask_hkd": 750.0,
+      "spread_jp_hk_pct": -64.93,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 242,
-      "hk_listings_n": 21,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 10,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-27",
@@ -9578,7 +9627,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 2138.4,
-          "hk_ask_hkd": 470.0,
+          "hk_ask_hkd": 750.0,
           "volume": 1.0
         }
       ]
@@ -9599,16 +9648,17 @@
       "volume_7d_avg": 2.0,
       "volume_ratio": 0.5,
       "liquidity_score": 19,
-      "hk_ask_hkd": 330.0,
-      "spread_jp_hk_pct": -29.82,
+      "hk_ask_hkd": 380.0,
+      "spread_jp_hk_pct": -19.19,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 226,
+      "jp_comps_n": 0,
       "hk_listings_n": 7,
-      "hk_backend": "carousell_hk",
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-27",
@@ -10081,7 +10131,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 470.25,
-          "hk_ask_hkd": 330.0,
+          "hk_ask_hkd": 380.0,
           "volume": 1.0
         }
       ]
@@ -10102,16 +10152,15 @@
       "volume_7d_avg": 3.29,
       "volume_ratio": 1.22,
       "liquidity_score": 30,
-      "hk_ask_hkd": 2944.0,
-      "spread_jp_hk_pct": -44.16,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp",
-        "carousell_hk"
+        "yahoo_auctions_jp"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 38,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 0,
+      "hk_backend": null,
       "history": [
         {
           "date": "2026-06-27",
@@ -10635,15 +10684,15 @@
       "volume_7d_avg": 3.0,
       "volume_ratio": 0.0,
       "liquidity_score": 16,
-      "hk_ask_hkd": 1000.0,
-      "spread_jp_hk_pct": -71.14,
+      "hk_ask_hkd": 5600.0,
+      "spread_jp_hk_pct": 61.62,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 246,
-      "hk_listings_n": 33,
+      "jp_comps_n": 0,
+      "hk_listings_n": 8,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -11158,8 +11207,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 1000.0,
-          "volume": null
+          "hk_ask_hkd": 5600.0,
+          "volume": 0.0,
+          "price_hkd": 3464.95
         }
       ]
     },
@@ -11179,15 +11229,15 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.7,
       "liquidity_score": 16,
-      "hk_ask_hkd": 1840.0,
-      "spread_jp_hk_pct": 234.55,
+      "hk_ask_hkd": 2600.0,
+      "spread_jp_hk_pct": 372.74,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 173,
-      "hk_listings_n": 40,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -11613,7 +11663,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 549.99,
-          "hk_ask_hkd": 1840.0,
+          "hk_ask_hkd": 2600.0,
           "volume": 1.0
         }
       ]
@@ -11626,23 +11676,23 @@
       "set": "M1S",
       "image": "images/psa10-mega-gardevoir-ex.jpg",
       "tcgdex_id": "M1S-087",
-      "price_hkd": 1596.35,
+      "price_hkd": 1596.33,
       "price_jpy": 32249,
-      "short_change_pct": 0.0,
+      "short_change_pct": -0.0,
       "medium_change_pct": -43.42,
       "volume_today": 0,
       "volume_7d_avg": 2.0,
       "volume_ratio": 0.0,
       "liquidity_score": 14,
-      "hk_ask_hkd": 999.0,
-      "spread_jp_hk_pct": -37.42,
+      "hk_ask_hkd": 1150.0,
+      "spread_jp_hk_pct": -27.96,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 172,
-      "hk_listings_n": 33,
+      "jp_comps_n": 0,
+      "hk_listings_n": 3,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -12085,8 +12135,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 999.0,
-          "volume": null
+          "hk_ask_hkd": 1150.0,
+          "volume": 0.0,
+          "price_hkd": 1596.33
         }
       ]
     },
@@ -12106,15 +12157,15 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 230.0,
-      "spread_jp_hk_pct": -55.75,
+      "hk_ask_hkd": 350.0,
+      "spread_jp_hk_pct": -32.66,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 150,
-      "hk_listings_n": 5,
+      "jp_comps_n": 0,
+      "hk_listings_n": 3,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -12497,8 +12548,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 230.0,
-          "volume": null
+          "hk_ask_hkd": 350.0,
+          "volume": 0.0,
+          "price_hkd": 519.75
         }
       ]
     },
@@ -12518,15 +12570,15 @@
       "volume_7d_avg": 2.0,
       "volume_ratio": 0.5,
       "liquidity_score": 16,
-      "hk_ask_hkd": 1325.0,
-      "spread_jp_hk_pct": -45.37,
+      "hk_ask_hkd": 1390.0,
+      "spread_jp_hk_pct": -42.69,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 99,
-      "hk_listings_n": 14,
+      "jp_comps_n": 0,
+      "hk_listings_n": 5,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -12856,7 +12908,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 2425.5,
-          "hk_ask_hkd": 1325.0,
+          "hk_ask_hkd": 1390.0,
           "volume": 1.0
         }
       ]
@@ -12877,16 +12929,15 @@
       "volume_7d_avg": 1.71,
       "volume_ratio": 0.58,
       "liquidity_score": 15,
-      "hk_ask_hkd": 599.5,
-      "spread_jp_hk_pct": -28.08,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp",
-        "carousell_hk"
+        "yahoo_auctions_jp"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 40,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 0,
+      "hk_backend": null,
       "history": [
         {
           "date": "2026-06-27",
@@ -13344,15 +13395,15 @@
       "volume_7d_avg": 3.43,
       "volume_ratio": 0.58,
       "liquidity_score": 21,
-      "hk_ask_hkd": 475.0,
-      "spread_jp_hk_pct": -37.08,
+      "hk_ask_hkd": 1600.0,
+      "spread_jp_hk_pct": 111.95,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 145,
-      "hk_listings_n": 34,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -13730,7 +13781,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 754.88,
-          "hk_ask_hkd": 475.0,
+          "hk_ask_hkd": 1600.0,
           "volume": 2.0
         }
       ]
@@ -13751,15 +13802,15 @@
       "volume_7d_avg": 1.86,
       "volume_ratio": 0.0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 960.0,
-      "spread_jp_hk_pct": 97.9,
+      "hk_ask_hkd": 1000.0,
+      "spread_jp_hk_pct": 106.14,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 158,
-      "hk_listings_n": 39,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -14214,8 +14265,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 960.0,
-          "volume": null
+          "hk_ask_hkd": 1000.0,
+          "volume": 0.0,
+          "price_hkd": 485.1
         }
       ]
     },
@@ -14235,16 +14287,15 @@
       "volume_7d_avg": 1.71,
       "volume_ratio": 1.75,
       "liquidity_score": 20,
-      "hk_ask_hkd": 775.0,
-      "spread_jp_hk_pct": 21.84,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp",
-        "carousell_hk"
+        "yahoo_auctions_jp"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 20,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 0,
+      "hk_backend": null,
       "history": [
         {
           "date": "2026-06-27",
@@ -14720,15 +14771,15 @@
       "volume_7d_avg": 2.71,
       "volume_ratio": 0.37,
       "liquidity_score": 16,
-      "hk_ask_hkd": 6950.0,
-      "spread_jp_hk_pct": 8.0,
+      "hk_ask_hkd": 5500.0,
+      "spread_jp_hk_pct": -14.53,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 138,
-      "hk_listings_n": 38,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -15124,7 +15175,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 6435.0,
-          "hk_ask_hkd": 6950.0,
+          "hk_ask_hkd": 5500.0,
           "volume": 1.0
         }
       ]
@@ -15145,16 +15196,17 @@
       "volume_7d_avg": 1.57,
       "volume_ratio": 0.0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 865.0,
-      "spread_jp_hk_pct": -12.63,
+      "hk_ask_hkd": 1604.5,
+      "spread_jp_hk_pct": 62.07,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 125,
-      "hk_listings_n": 40,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 2,
+      "hk_backend": "carousell_hk+zenox",
       "history": [
         {
           "date": "2026-06-28",
@@ -15554,8 +15606,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 865.0,
-          "volume": null
+          "hk_ask_hkd": 1604.5,
+          "volume": 0.0,
+          "price_hkd": 990.0
         }
       ]
     },
@@ -15575,15 +15628,15 @@
       "volume_7d_avg": 2.0,
       "volume_ratio": 0.5,
       "liquidity_score": 14,
-      "hk_ask_hkd": 2050.0,
-      "spread_jp_hk_pct": 181.73,
+      "hk_ask_hkd": 1200.0,
+      "spread_jp_hk_pct": 64.91,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 152,
-      "hk_listings_n": 40,
+      "jp_comps_n": 0,
+      "hk_listings_n": 2,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -16021,7 +16074,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 727.65,
-          "hk_ask_hkd": 2050.0,
+          "hk_ask_hkd": 1200.0,
           "volume": 1.0
         }
       ]
@@ -16042,16 +16095,16 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.7,
       "liquidity_score": 13,
-      "hk_ask_hkd": 675.0,
-      "spread_jp_hk_pct": -17.36,
+      "hk_ask_hkd": 1449.0,
+      "spread_jp_hk_pct": 77.41,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "zenox"
       ],
       "is_sample": false,
-      "jp_comps_n": 91,
-      "hk_listings_n": 38,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
+      "hk_backend": "zenox",
       "history": [
         {
           "date": "2026-06-28",
@@ -16398,7 +16451,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 816.75,
-          "hk_ask_hkd": 675.0,
+          "hk_ask_hkd": 1449.0,
           "volume": 1.0
         }
       ]
@@ -16419,15 +16472,15 @@
       "volume_7d_avg": 1.29,
       "volume_ratio": 0.78,
       "liquidity_score": 12,
-      "hk_ask_hkd": 518.0,
-      "spread_jp_hk_pct": -13.52,
+      "hk_ask_hkd": 522.5,
+      "spread_jp_hk_pct": -12.76,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 5,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -16775,7 +16828,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 598.95,
-          "hk_ask_hkd": 518.0,
+          "hk_ask_hkd": 522.5,
           "volume": 1.0
         }
       ]
@@ -16796,15 +16849,15 @@
       "volume_7d_avg": 2.29,
       "volume_ratio": 0.44,
       "liquidity_score": 13,
-      "hk_ask_hkd": 1865.0,
-      "spread_jp_hk_pct": -31.5,
+      "hk_ask_hkd": 4040.0,
+      "spread_jp_hk_pct": 48.39,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 124,
-      "hk_listings_n": 40,
+      "jp_comps_n": 0,
+      "hk_listings_n": 2,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -17170,7 +17223,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 2722.5,
-          "hk_ask_hkd": 1865.0,
+          "hk_ask_hkd": 4040.0,
           "volume": 1.0
         }
       ]
@@ -17191,15 +17244,15 @@
       "volume_7d_avg": 1.71,
       "volume_ratio": 0.58,
       "liquidity_score": 12,
-      "hk_ask_hkd": 2300.0,
-      "spread_jp_hk_pct": 40.8,
+      "hk_ask_hkd": 2350.0,
+      "spread_jp_hk_pct": 43.86,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 103,
-      "hk_listings_n": 11,
+      "jp_comps_n": 0,
+      "hk_listings_n": 7,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -17565,7 +17618,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 1633.5,
-          "hk_ask_hkd": 2300.0,
+          "hk_ask_hkd": 2350.0,
           "volume": 1.0
         }
       ]
@@ -17586,15 +17639,15 @@
       "volume_7d_avg": 2.71,
       "volume_ratio": 0.0,
       "liquidity_score": 11,
-      "hk_ask_hkd": 575.0,
-      "spread_jp_hk_pct": -12.66,
+      "hk_ask_hkd": 1000.0,
+      "spread_jp_hk_pct": 51.89,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 119,
-      "hk_listings_n": 24,
+      "jp_comps_n": 0,
+      "hk_listings_n": 5,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -17929,8 +17982,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 575.0,
-          "volume": null
+          "hk_ask_hkd": 1000.0,
+          "volume": 0.0,
+          "price_hkd": 658.35
         }
       ]
     },
@@ -17950,15 +18004,15 @@
       "volume_7d_avg": 2.0,
       "volume_ratio": 0.0,
       "liquidity_score": 9,
-      "hk_ask_hkd": 716.8,
-      "spread_jp_hk_pct": 7.27,
+      "hk_ask_hkd": 1299.0,
+      "spread_jp_hk_pct": 94.39,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 105,
-      "hk_listings_n": 27,
+      "jp_comps_n": 0,
+      "hk_listings_n": 5,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -18299,8 +18353,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 716.8,
-          "volume": null
+          "hk_ask_hkd": 1299.0,
+          "volume": 0.0,
+          "price_hkd": 668.25
         }
       ]
     },
@@ -18320,16 +18375,15 @@
       "volume_7d_avg": 2.14,
       "volume_ratio": 0.47,
       "liquidity_score": 12,
-      "hk_ask_hkd": 7280.0,
-      "spread_jp_hk_pct": 126.26,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp",
-        "carousell_hk"
+        "yahoo_auctions_jp"
       ],
       "is_sample": false,
-      "jp_comps_n": 133,
-      "hk_listings_n": 35,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 0,
+      "hk_backend": null,
       "history": [
         {
           "date": "2026-06-27",
@@ -18769,15 +18823,15 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.7,
       "liquidity_score": 10,
-      "hk_ask_hkd": 1479.6,
-      "spread_jp_hk_pct": 6.75,
+      "hk_ask_hkd": 2200.0,
+      "spread_jp_hk_pct": 58.73,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 91,
-      "hk_listings_n": 36,
+      "jp_comps_n": 0,
+      "hk_listings_n": 3,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -19101,7 +19155,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 1386.0,
-          "hk_ask_hkd": 1479.6,
+          "hk_ask_hkd": 2200.0,
           "volume": 1.0
         }
       ]
@@ -19122,15 +19176,15 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 1168.0,
-      "spread_jp_hk_pct": 21.0,
+      "hk_ask_hkd": 1118.0,
+      "spread_jp_hk_pct": 15.82,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 89,
-      "hk_listings_n": 12,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -19399,8 +19453,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 1168.0,
-          "volume": null
+          "hk_ask_hkd": 1118.0,
+          "volume": 0.0,
+          "price_hkd": 965.25
         }
       ]
     },
@@ -19420,15 +19475,15 @@
       "volume_7d_avg": 2.14,
       "volume_ratio": 1.4,
       "liquidity_score": 17,
-      "hk_ask_hkd": 830.0,
-      "spread_jp_hk_pct": -82.26,
+      "hk_ask_hkd": 4800.0,
+      "spread_jp_hk_pct": 2.61,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 36,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -19788,7 +19843,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 4677.75,
-          "hk_ask_hkd": 830.0,
+          "hk_ask_hkd": 4800.0,
           "volume": 3.0
         }
       ]
@@ -19809,15 +19864,15 @@
       "volume_7d_avg": 1.57,
       "volume_ratio": 0.64,
       "liquidity_score": 10,
-      "hk_ask_hkd": 4224.0,
-      "spread_jp_hk_pct": -57.33,
+      "hk_ask_hkd": 8800.0,
+      "spread_jp_hk_pct": -11.11,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 22,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -20111,7 +20166,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 9900.0,
-          "hk_ask_hkd": 4224.0,
+          "hk_ask_hkd": 8800.0,
           "volume": 1.0
         }
       ]
@@ -20132,15 +20187,15 @@
       "volume_7d_avg": 1.57,
       "volume_ratio": 0.0,
       "liquidity_score": 7,
-      "hk_ask_hkd": 1374.5,
-      "spread_jp_hk_pct": 35.45,
+      "hk_ask_hkd": 2880.0,
+      "spread_jp_hk_pct": 183.81,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 88,
-      "hk_listings_n": 38,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -20439,8 +20494,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 1374.5,
-          "volume": null
+          "hk_ask_hkd": 2880.0,
+          "volume": 0.0,
+          "price_hkd": 1014.75
         }
       ]
     },
@@ -20460,15 +20516,15 @@
       "volume_7d_avg": 1.14,
       "volume_ratio": 0.0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 750.0,
-      "spread_jp_hk_pct": -53.38,
+      "hk_ask_hkd": 2100.0,
+      "spread_jp_hk_pct": 30.54,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 77,
-      "hk_listings_n": 17,
+      "jp_comps_n": 0,
+      "hk_listings_n": 3,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -20779,8 +20835,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 750.0,
-          "volume": null
+          "hk_ask_hkd": 2100.0,
+          "volume": 0.0,
+          "price_hkd": 1608.75
         }
       ]
     },
@@ -20800,15 +20857,15 @@
       "volume_7d_avg": 1.14,
       "volume_ratio": 0.0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 950.0,
-      "spread_jp_hk_pct": -64.75,
+      "hk_ask_hkd": 3840.0,
+      "spread_jp_hk_pct": 42.47,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 77,
-      "hk_listings_n": 36,
+      "jp_comps_n": 0,
+      "hk_listings_n": 4,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -21083,8 +21140,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 950.0,
-          "volume": null
+          "hk_ask_hkd": 3840.0,
+          "volume": 0.0,
+          "price_hkd": 2695.28
         }
       ]
     },
@@ -21104,16 +21162,15 @@
       "volume_7d_avg": 1.86,
       "volume_ratio": 0.54,
       "liquidity_score": 10,
-      "hk_ask_hkd": 3900.0,
-      "spread_jp_hk_pct": -22.76,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp",
-        "carousell_hk"
+        "yahoo_auctions_jp"
       ],
       "is_sample": false,
-      "jp_comps_n": 40,
-      "hk_listings_n": 38,
-      "hk_backend": "carousell_hk",
+      "jp_comps_n": 0,
+      "hk_listings_n": 0,
+      "hk_backend": null,
       "history": [
         {
           "date": "2026-06-28",
@@ -21445,15 +21502,15 @@
       "volume_7d_avg": 1.71,
       "volume_ratio": 0.0,
       "liquidity_score": 6,
-      "hk_ask_hkd": 720.0,
-      "spread_jp_hk_pct": -3.03,
+      "hk_ask_hkd": 949.0,
+      "spread_jp_hk_pct": 27.81,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 62,
-      "hk_listings_n": 31,
+      "jp_comps_n": 0,
+      "hk_listings_n": 6,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -21722,8 +21779,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 720.0,
-          "volume": null
+          "hk_ask_hkd": 949.0,
+          "volume": 0.0,
+          "price_hkd": 742.5
         }
       ]
     },
@@ -21743,15 +21801,15 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.0,
       "liquidity_score": 5,
-      "hk_ask_hkd": 650.0,
-      "spread_jp_hk_pct": 38.22,
+      "hk_ask_hkd": 600.0,
+      "spread_jp_hk_pct": 27.59,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk"
       ],
       "is_sample": false,
-      "jp_comps_n": 59,
-      "hk_listings_n": 29,
+      "jp_comps_n": 0,
+      "hk_listings_n": 1,
       "hk_backend": "carousell_hk",
       "history": [
         {
@@ -21978,8 +22036,9 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 650.0,
-          "volume": null
+          "hk_ask_hkd": 600.0,
+          "volume": 0.0,
+          "price_hkd": 470.25
         }
       ]
     }
@@ -22002,15 +22061,15 @@
         "volume_7d_avg": 4.71,
         "volume_ratio": 0.21,
         "liquidity_score": 37,
-        "hk_ask_hkd": 300.0,
-        "spread_jp_hk_pct": -88.98,
+        "hk_ask_hkd": 800.0,
+        "spread_jp_hk_pct": -70.62,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 345,
-        "hk_listings_n": 19,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 -5.0%",
@@ -22033,16 +22092,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 0.58,
         "liquidity_score": 15,
-        "hk_ask_hkd": 599.5,
-        "spread_jp_hk_pct": -28.08,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
         "move_reasons": [
           "1日 +198.1%",
           "7日 -29.1%"
@@ -22064,16 +22122,17 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.64,
         "liquidity_score": 20,
-        "hk_ask_hkd": 470.0,
-        "spread_jp_hk_pct": -78.02,
+        "hk_ask_hkd": 750.0,
+        "spread_jp_hk_pct": -64.93,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 242,
-        "hk_listings_n": 21,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 10,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 +110.7%",
           "7日 +191.9%"
@@ -22095,16 +22154,18 @@
         "volume_7d_avg": 7.86,
         "volume_ratio": 0.76,
         "liquidity_score": 59,
-        "hk_ask_hkd": 635.0,
-        "spread_jp_hk_pct": -53.94,
+        "hk_ask_hkd": 775.0,
+        "spread_jp_hk_pct": -43.78,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "lono",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 14,
+        "hk_backend": "carousell_hk+lono+zenox",
         "move_reasons": [
           "1日 +132.1%",
           "7日 -46.4%"
@@ -22126,15 +22187,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 12,
-        "hk_ask_hkd": 230.0,
-        "spread_jp_hk_pct": -55.75,
+        "hk_ask_hkd": 350.0,
+        "spread_jp_hk_pct": -32.66,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 150,
-        "hk_listings_n": 5,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 +118.8%"
@@ -22156,16 +22217,17 @@
         "volume_7d_avg": 2.43,
         "volume_ratio": 0.41,
         "liquidity_score": 22,
-        "hk_ask_hkd": 1080.0,
-        "spread_jp_hk_pct": 12.46,
+        "hk_ask_hkd": 1124.5,
+        "spread_jp_hk_pct": 17.1,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 -87.0%",
           "7日 +21.2%"
@@ -22187,16 +22249,16 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 13,
-        "hk_ask_hkd": 675.0,
-        "spread_jp_hk_pct": -17.36,
+        "hk_ask_hkd": 1449.0,
+        "spread_jp_hk_pct": 77.41,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 91,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
+        "hk_backend": "zenox",
         "move_reasons": [
           "1日 -8.3%",
           "7日 -86.2%"
@@ -22218,16 +22280,17 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.0,
         "liquidity_score": 11,
-        "hk_ask_hkd": 865.0,
-        "spread_jp_hk_pct": -12.63,
+        "hk_ask_hkd": 1604.5,
+        "spread_jp_hk_pct": 62.07,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 125,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "7日 -83.3%"
         ]
@@ -22248,15 +22311,17 @@
         "volume_7d_avg": 2.86,
         "volume_ratio": 0.35,
         "liquidity_score": 34,
-        "hk_ask_hkd": null,
-        "spread_jp_hk_pct": null,
+        "hk_ask_hkd": 510.0,
+        "spread_jp_hk_pct": 51.27,
         "sources": [
-          "yahoo_auctions_jp"
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 356,
-        "hk_listings_n": 0,
-        "hk_backend": "hkcardlink",
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 -13.6%",
           "7日 -75.1%"
@@ -22278,16 +22343,15 @@
         "volume_7d_avg": 3.29,
         "volume_ratio": 1.22,
         "liquidity_score": 30,
-        "hk_ask_hkd": 2944.0,
-        "spread_jp_hk_pct": -44.16,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
         "move_reasons": [
           "1日 +38.9%",
           "7日 +74.6%"
@@ -22309,15 +22373,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 16,
-        "hk_ask_hkd": 1840.0,
-        "spread_jp_hk_pct": 234.55,
+        "hk_ask_hkd": 2600.0,
+        "spread_jp_hk_pct": 372.74,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 173,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 -72.9%",
@@ -22340,15 +22404,15 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.5,
         "liquidity_score": 16,
-        "hk_ask_hkd": 1325.0,
-        "spread_jp_hk_pct": -45.37,
+        "hk_ask_hkd": 1390.0,
+        "spread_jp_hk_pct": -42.69,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 99,
-        "hk_listings_n": 14,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +28.9%",
@@ -22371,16 +22435,15 @@
         "volume_7d_avg": 8.14,
         "volume_ratio": 0.12,
         "liquidity_score": 44,
-        "hk_ask_hkd": 1240.0,
-        "spread_jp_hk_pct": -70.96,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
         "move_reasons": [
           "1日 +42.1%",
           "7日 -61.6%"
@@ -22402,16 +22465,17 @@
         "volume_7d_avg": 13.71,
         "volume_ratio": 0.51,
         "liquidity_score": 73,
-        "hk_ask_hkd": 520.0,
-        "spread_jp_hk_pct": -24.96,
+        "hk_ask_hkd": 655.0,
+        "spread_jp_hk_pct": -5.48,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 20,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 9,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 -46.1%",
           "7日 -53.3%"
@@ -22433,16 +22497,17 @@
         "volume_7d_avg": 4.29,
         "volume_ratio": 0.47,
         "liquidity_score": 40,
-        "hk_ask_hkd": 459.0,
-        "spread_jp_hk_pct": -46.25,
+        "hk_ask_hkd": 1359.5,
+        "spread_jp_hk_pct": 59.21,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 -52.1%"
         ]
@@ -22463,15 +22528,15 @@
         "volume_7d_avg": 5.71,
         "volume_ratio": 1.4,
         "liquidity_score": 60,
-        "hk_ask_hkd": 2400.0,
-        "spread_jp_hk_pct": -18.85,
+        "hk_ask_hkd": 2580.0,
+        "spread_jp_hk_pct": -12.77,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 17,
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +47.5%",
@@ -22494,16 +22559,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 1.75,
         "liquidity_score": 20,
-        "hk_ask_hkd": 775.0,
-        "spread_jp_hk_pct": 21.84,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 20,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
         "move_reasons": [
           "1日 +46.0%",
           "量能 1.8×7日均"
@@ -22517,23 +22581,23 @@
         "set": "M1S",
         "image": "images/psa10-mega-gardevoir-ex.jpg",
         "tcgdex_id": "M1S-087",
-        "price_hkd": 1596.35,
+        "price_hkd": 1596.33,
         "price_jpy": 32249,
-        "short_change_pct": 0.0,
+        "short_change_pct": -0.0,
         "medium_change_pct": -43.42,
         "volume_today": 0,
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.0,
         "liquidity_score": 14,
-        "hk_ask_hkd": 999.0,
-        "spread_jp_hk_pct": -37.42,
+        "hk_ask_hkd": 1150.0,
+        "spread_jp_hk_pct": -27.96,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 172,
-        "hk_listings_n": 33,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 -43.4%"
@@ -22555,16 +22619,17 @@
         "volume_7d_avg": 7.0,
         "volume_ratio": 0.0,
         "liquidity_score": 39,
-        "hk_ask_hkd": 380.0,
-        "spread_jp_hk_pct": -71.44,
+        "hk_ask_hkd": 615.0,
+        "spread_jp_hk_pct": -53.77,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 15,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 13,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "7日 +42.6%"
         ]
@@ -22585,16 +22650,17 @@
         "volume_7d_avg": 7.14,
         "volume_ratio": 0.14,
         "liquidity_score": 42,
-        "hk_ask_hkd": 428.85,
-        "spread_jp_hk_pct": -45.85,
+        "hk_ask_hkd": 550.0,
+        "spread_jp_hk_pct": -30.56,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 10,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 -34.7%",
           "7日 -39.6%"
@@ -22616,16 +22682,17 @@
         "volume_7d_avg": 12.57,
         "volume_ratio": 0.4,
         "liquidity_score": 65,
-        "hk_ask_hkd": 1000.0,
-        "spread_jp_hk_pct": 44.3,
+        "hk_ask_hkd": 590.0,
+        "spread_jp_hk_pct": -14.86,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 565,
-        "hk_listings_n": 3,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 13,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 -39.1%",
           "7日 -12.5%"
@@ -22647,15 +22714,15 @@
         "volume_7d_avg": 1.29,
         "volume_ratio": 0.78,
         "liquidity_score": 12,
-        "hk_ask_hkd": 518.0,
-        "spread_jp_hk_pct": -13.52,
+        "hk_ask_hkd": 522.5,
+        "spread_jp_hk_pct": -12.76,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 5,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +30.8%",
@@ -22678,15 +22745,15 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.64,
         "liquidity_score": 10,
-        "hk_ask_hkd": 4224.0,
-        "spread_jp_hk_pct": -57.33,
+        "hk_ask_hkd": 8800.0,
+        "spread_jp_hk_pct": -11.11,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 22,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +33.4%",
@@ -22709,16 +22776,15 @@
         "volume_7d_avg": 1.86,
         "volume_ratio": 0.54,
         "liquidity_score": 10,
-        "hk_ask_hkd": 3900.0,
-        "spread_jp_hk_pct": -22.76,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
         "move_reasons": [
           "1日 +27.2%",
           "7日 +30.4%"
@@ -22740,15 +22806,15 @@
         "volume_7d_avg": 2.14,
         "volume_ratio": 1.4,
         "liquidity_score": 17,
-        "hk_ask_hkd": 830.0,
-        "spread_jp_hk_pct": -82.26,
+        "hk_ask_hkd": 4800.0,
+        "spread_jp_hk_pct": 2.61,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +24.3%",
@@ -22771,15 +22837,15 @@
         "volume_7d_avg": 5.57,
         "volume_ratio": 1.26,
         "liquidity_score": 56,
-        "hk_ask_hkd": 740.0,
-        "spread_jp_hk_pct": -14.57,
+        "hk_ask_hkd": 1500.0,
+        "spread_jp_hk_pct": 73.16,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 11,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 -12.5%",
@@ -22802,15 +22868,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 0.0,
         "liquidity_score": 6,
-        "hk_ask_hkd": 720.0,
-        "spread_jp_hk_pct": -3.03,
+        "hk_ask_hkd": 949.0,
+        "spread_jp_hk_pct": 27.81,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 62,
-        "hk_listings_n": 31,
+        "jp_comps_n": 0,
+        "hk_listings_n": 6,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 -25.9%"
@@ -22832,15 +22898,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 10,
-        "hk_ask_hkd": 1479.6,
-        "spread_jp_hk_pct": 6.75,
+        "hk_ask_hkd": 2200.0,
+        "spread_jp_hk_pct": 58.73,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 91,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 -21.1%",
@@ -22863,15 +22929,15 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.5,
         "liquidity_score": 14,
-        "hk_ask_hkd": 2050.0,
-        "spread_jp_hk_pct": 181.73,
+        "hk_ask_hkd": 1200.0,
+        "spread_jp_hk_pct": 64.91,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 152,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +19.5%",
@@ -22894,16 +22960,17 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.5,
         "liquidity_score": 19,
-        "hk_ask_hkd": 330.0,
-        "spread_jp_hk_pct": -29.82,
+        "hk_ask_hkd": 380.0,
+        "spread_jp_hk_pct": -19.19,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 226,
+        "jp_comps_n": 0,
         "hk_listings_n": 7,
-        "hk_backend": "carousell_hk",
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "7日 +19.5%"
         ]
@@ -22924,15 +22991,15 @@
         "volume_7d_avg": 1.14,
         "volume_ratio": 0.0,
         "liquidity_score": 5,
-        "hk_ask_hkd": 950.0,
-        "spread_jp_hk_pct": -64.75,
+        "hk_ask_hkd": 3840.0,
+        "spread_jp_hk_pct": 42.47,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 77,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 -19.3%"
@@ -22954,15 +23021,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 7,
-        "hk_ask_hkd": 1168.0,
-        "spread_jp_hk_pct": 21.0,
+        "hk_ask_hkd": 1118.0,
+        "spread_jp_hk_pct": 15.82,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 89,
-        "hk_listings_n": 12,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 -15.2%"
@@ -22984,15 +23051,15 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.0,
         "liquidity_score": 7,
-        "hk_ask_hkd": 1374.5,
-        "spread_jp_hk_pct": 35.45,
+        "hk_ask_hkd": 2880.0,
+        "spread_jp_hk_pct": 183.81,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 88,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 -14.6%"
@@ -23014,16 +23081,15 @@
         "volume_7d_avg": 2.14,
         "volume_ratio": 0.47,
         "liquidity_score": 12,
-        "hk_ask_hkd": 7280.0,
-        "spread_jp_hk_pct": 126.26,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 133,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
         "move_reasons": [
           "7日 -14.5%"
         ]
@@ -23044,15 +23110,15 @@
         "volume_7d_avg": 4.86,
         "volume_ratio": 0.21,
         "liquidity_score": 31,
-        "hk_ask_hkd": 1715.0,
-        "spread_jp_hk_pct": 57.48,
+        "hk_ask_hkd": 3500.0,
+        "spread_jp_hk_pct": 221.4,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 443,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 6,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 -8.0%",
@@ -23075,16 +23141,17 @@
         "volume_7d_avg": 2.57,
         "volume_ratio": 0.39,
         "liquidity_score": 22,
-        "hk_ask_hkd": 865.0,
-        "spread_jp_hk_pct": -65.22,
+        "hk_ask_hkd": 3684.5,
+        "spread_jp_hk_pct": 48.13,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 +12.9%"
         ]
@@ -23105,15 +23172,15 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.0,
         "liquidity_score": 9,
-        "hk_ask_hkd": 716.8,
-        "spread_jp_hk_pct": 7.27,
+        "hk_ask_hkd": 1299.0,
+        "spread_jp_hk_pct": 94.39,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 105,
-        "hk_listings_n": 27,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "7日 -12.9%"
@@ -23135,15 +23202,15 @@
         "volume_7d_avg": 2.29,
         "volume_ratio": 0.44,
         "liquidity_score": 13,
-        "hk_ask_hkd": 1865.0,
-        "spread_jp_hk_pct": -31.5,
+        "hk_ask_hkd": 4040.0,
+        "spread_jp_hk_pct": 48.39,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 124,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 -5.2%"
@@ -23165,15 +23232,15 @@
         "volume_7d_avg": 2.71,
         "volume_ratio": 0.37,
         "liquidity_score": 16,
-        "hk_ask_hkd": 6950.0,
-        "spread_jp_hk_pct": 8.0,
+        "hk_ask_hkd": 5500.0,
+        "spread_jp_hk_pct": -14.53,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 138,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk",
         "move_reasons": [
           "1日 +8.3%"
@@ -23195,16 +23262,17 @@
         "volume_7d_avg": 47.14,
         "volume_ratio": 0.45,
         "liquidity_score": 95,
-        "hk_ask_hkd": 559.5,
-        "spread_jp_hk_pct": -29.36,
+        "hk_ask_hkd": 964.5,
+        "spread_jp_hk_pct": 21.78,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 4,
-        "hk_backend": "carousell_hk",
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox",
         "move_reasons": [
           "1日 +6.7%"
         ]
@@ -23227,16 +23295,17 @@
         "volume_7d_avg": 47.14,
         "volume_ratio": 0.45,
         "liquidity_score": 95,
-        "hk_ask_hkd": 559.5,
-        "spread_jp_hk_pct": -29.36,
+        "hk_ask_hkd": 964.5,
+        "spread_jp_hk_pct": 21.78,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 4,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "sealed-mega-brave",
@@ -23254,16 +23323,17 @@
         "volume_7d_avg": 13.71,
         "volume_ratio": 0.51,
         "liquidity_score": 73,
-        "hk_ask_hkd": 520.0,
-        "spread_jp_hk_pct": -24.96,
+        "hk_ask_hkd": 655.0,
+        "spread_jp_hk_pct": -5.48,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 20,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 9,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "sealed-mega-symphonia",
@@ -23281,16 +23351,17 @@
         "volume_7d_avg": 12.57,
         "volume_ratio": 0.4,
         "liquidity_score": 65,
-        "hk_ask_hkd": 1000.0,
-        "spread_jp_hk_pct": 44.3,
+        "hk_ask_hkd": 590.0,
+        "spread_jp_hk_pct": -14.86,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 565,
-        "hk_listings_n": 3,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 13,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-eevee-heroes-box-promo",
@@ -23308,15 +23379,15 @@
         "volume_7d_avg": 5.71,
         "volume_ratio": 1.4,
         "liquidity_score": 60,
-        "hk_ask_hkd": 2400.0,
-        "spread_jp_hk_pct": -18.85,
+        "hk_ask_hkd": 2580.0,
+        "spread_jp_hk_pct": -12.77,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 17,
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23335,16 +23406,18 @@
         "volume_7d_avg": 7.86,
         "volume_ratio": 0.76,
         "liquidity_score": 59,
-        "hk_ask_hkd": 635.0,
-        "spread_jp_hk_pct": -53.94,
+        "hk_ask_hkd": 775.0,
+        "spread_jp_hk_pct": -43.78,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "lono",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 14,
+        "hk_backend": "carousell_hk+lono+zenox"
       },
       {
         "id": "psa10-iono-sar",
@@ -23362,15 +23435,15 @@
         "volume_7d_avg": 5.57,
         "volume_ratio": 1.26,
         "liquidity_score": 56,
-        "hk_ask_hkd": 740.0,
-        "spread_jp_hk_pct": -14.57,
+        "hk_ask_hkd": 1500.0,
+        "spread_jp_hk_pct": 73.16,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 11,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23389,16 +23462,15 @@
         "volume_7d_avg": 8.14,
         "volume_ratio": 0.12,
         "liquidity_score": 44,
-        "hk_ask_hkd": 1240.0,
-        "spread_jp_hk_pct": -70.96,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null
       },
       {
         "id": "psa10-gengar-ex-sar",
@@ -23416,15 +23488,15 @@
         "volume_7d_avg": 6.29,
         "volume_ratio": 0.32,
         "liquidity_score": 44,
-        "hk_ask_hkd": 3075.0,
-        "spread_jp_hk_pct": -2.17,
+        "hk_ask_hkd": 3900.0,
+        "spread_jp_hk_pct": 24.08,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 28,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23443,15 +23515,15 @@
         "volume_7d_avg": 6.14,
         "volume_ratio": 0.33,
         "liquidity_score": 43,
-        "hk_ask_hkd": 1649.5,
-        "spread_jp_hk_pct": -46.68,
+        "hk_ask_hkd": 4750.0,
+        "spread_jp_hk_pct": 53.54,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 553,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23470,16 +23542,17 @@
         "volume_7d_avg": 7.14,
         "volume_ratio": 0.14,
         "liquidity_score": 42,
-        "hk_ask_hkd": 428.85,
-        "spread_jp_hk_pct": -45.85,
+        "hk_ask_hkd": 550.0,
+        "spread_jp_hk_pct": -30.56,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 10,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "sealed-inferno-x",
@@ -23497,16 +23570,17 @@
         "volume_7d_avg": 4.29,
         "volume_ratio": 0.47,
         "liquidity_score": 40,
-        "hk_ask_hkd": 459.0,
-        "spread_jp_hk_pct": -46.25,
+        "hk_ask_hkd": 1359.5,
+        "spread_jp_hk_pct": 59.21,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "sealed-ninja-spinner",
@@ -23524,16 +23598,17 @@
         "volume_7d_avg": 7.0,
         "volume_ratio": 0.0,
         "liquidity_score": 39,
-        "hk_ask_hkd": 380.0,
-        "spread_jp_hk_pct": -71.44,
+        "hk_ask_hkd": 615.0,
+        "spread_jp_hk_pct": -53.77,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 15,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 13,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-greninja-ex-sar",
@@ -23551,15 +23626,15 @@
         "volume_7d_avg": 5.71,
         "volume_ratio": 0.35,
         "liquidity_score": 39,
-        "hk_ask_hkd": 880.0,
-        "spread_jp_hk_pct": -38.49,
+        "hk_ask_hkd": 3780.0,
+        "spread_jp_hk_pct": 164.23,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 482,
-        "hk_listings_n": 31,
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23578,15 +23653,15 @@
         "volume_7d_avg": 4.71,
         "volume_ratio": 0.21,
         "liquidity_score": 37,
-        "hk_ask_hkd": 300.0,
-        "spread_jp_hk_pct": -88.98,
+        "hk_ask_hkd": 800.0,
+        "spread_jp_hk_pct": -70.62,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 345,
-        "hk_listings_n": 19,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23605,15 +23680,17 @@
         "volume_7d_avg": 2.86,
         "volume_ratio": 0.35,
         "liquidity_score": 34,
-        "hk_ask_hkd": null,
-        "spread_jp_hk_pct": null,
+        "hk_ask_hkd": 510.0,
+        "spread_jp_hk_pct": 51.27,
         "sources": [
-          "yahoo_auctions_jp"
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 356,
-        "hk_listings_n": 0,
-        "hk_backend": "hkcardlink"
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-rocket-mewtwo-ex-sar",
@@ -23631,15 +23708,15 @@
         "volume_7d_avg": 4.86,
         "volume_ratio": 0.21,
         "liquidity_score": 31,
-        "hk_ask_hkd": 1715.0,
-        "spread_jp_hk_pct": 57.48,
+        "hk_ask_hkd": 3500.0,
+        "spread_jp_hk_pct": 221.4,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 443,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 6,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23658,16 +23735,15 @@
         "volume_7d_avg": 3.29,
         "volume_ratio": 1.22,
         "liquidity_score": 30,
-        "hk_ask_hkd": 2944.0,
-        "spread_jp_hk_pct": -44.16,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null
       },
       {
         "id": "sealed-terastal-fest",
@@ -23685,16 +23761,17 @@
         "volume_7d_avg": 2.43,
         "volume_ratio": 0.41,
         "liquidity_score": 22,
-        "hk_ask_hkd": 1080.0,
-        "spread_jp_hk_pct": 12.46,
+        "hk_ask_hkd": 1124.5,
+        "spread_jp_hk_pct": 17.1,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "sealed-151-box",
@@ -23712,16 +23789,17 @@
         "volume_7d_avg": 2.57,
         "volume_ratio": 0.39,
         "liquidity_score": 22,
-        "hk_ask_hkd": 865.0,
-        "spread_jp_hk_pct": -65.22,
+        "hk_ask_hkd": 3684.5,
+        "spread_jp_hk_pct": 48.13,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-mega-lucario-ex",
@@ -23739,15 +23817,15 @@
         "volume_7d_avg": 3.43,
         "volume_ratio": 0.58,
         "liquidity_score": 21,
-        "hk_ask_hkd": 475.0,
-        "spread_jp_hk_pct": -37.08,
+        "hk_ask_hkd": 1600.0,
+        "spread_jp_hk_pct": 111.95,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 145,
-        "hk_listings_n": 34,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23766,16 +23844,17 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.64,
         "liquidity_score": 20,
-        "hk_ask_hkd": 470.0,
-        "spread_jp_hk_pct": -78.02,
+        "hk_ask_hkd": 750.0,
+        "spread_jp_hk_pct": -64.93,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 242,
-        "hk_listings_n": 21,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 10,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-n-sar",
@@ -23793,16 +23872,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 1.75,
         "liquidity_score": 20,
-        "hk_ask_hkd": 775.0,
-        "spread_jp_hk_pct": 21.84,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 20,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null
       },
       {
         "id": "sealed-battle-partners",
@@ -23820,16 +23898,17 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.5,
         "liquidity_score": 19,
-        "hk_ask_hkd": 330.0,
-        "spread_jp_hk_pct": -29.82,
+        "hk_ask_hkd": 380.0,
+        "spread_jp_hk_pct": -19.19,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 226,
+        "jp_comps_n": 0,
         "hk_listings_n": 7,
-        "hk_backend": "carousell_hk"
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-pikachu-ex-sar-terastal",
@@ -23847,15 +23926,15 @@
         "volume_7d_avg": 2.14,
         "volume_ratio": 1.4,
         "liquidity_score": 17,
-        "hk_ask_hkd": 830.0,
-        "spread_jp_hk_pct": -82.26,
+        "hk_ask_hkd": 4800.0,
+        "spread_jp_hk_pct": 2.61,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23874,15 +23953,15 @@
         "volume_7d_avg": 3.0,
         "volume_ratio": 0.0,
         "liquidity_score": 16,
-        "hk_ask_hkd": 1000.0,
-        "spread_jp_hk_pct": -71.14,
+        "hk_ask_hkd": 5600.0,
+        "spread_jp_hk_pct": 61.62,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 246,
-        "hk_listings_n": 33,
+        "jp_comps_n": 0,
+        "hk_listings_n": 8,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23901,15 +23980,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 16,
-        "hk_ask_hkd": 1840.0,
-        "spread_jp_hk_pct": 234.55,
+        "hk_ask_hkd": 2600.0,
+        "spread_jp_hk_pct": 372.74,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 173,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23928,15 +24007,15 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.5,
         "liquidity_score": 16,
-        "hk_ask_hkd": 1325.0,
-        "spread_jp_hk_pct": -45.37,
+        "hk_ask_hkd": 1390.0,
+        "spread_jp_hk_pct": -42.69,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 99,
-        "hk_listings_n": 14,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23955,15 +24034,15 @@
         "volume_7d_avg": 2.71,
         "volume_ratio": 0.37,
         "liquidity_score": 16,
-        "hk_ask_hkd": 6950.0,
-        "spread_jp_hk_pct": 8.0,
+        "hk_ask_hkd": 5500.0,
+        "spread_jp_hk_pct": -14.53,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 138,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -23982,16 +24061,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 0.58,
         "liquidity_score": 15,
-        "hk_ask_hkd": 599.5,
-        "spread_jp_hk_pct": -28.08,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null
       },
       {
         "id": "psa10-mega-gardevoir-ex",
@@ -24001,23 +24079,23 @@
         "set": "M1S",
         "image": "images/psa10-mega-gardevoir-ex.jpg",
         "tcgdex_id": "M1S-087",
-        "price_hkd": 1596.35,
+        "price_hkd": 1596.33,
         "price_jpy": 32249,
-        "short_change_pct": 0.0,
+        "short_change_pct": -0.0,
         "medium_change_pct": -43.42,
         "volume_today": 0,
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.0,
         "liquidity_score": 14,
-        "hk_ask_hkd": 999.0,
-        "spread_jp_hk_pct": -37.42,
+        "hk_ask_hkd": 1150.0,
+        "spread_jp_hk_pct": -27.96,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 172,
-        "hk_listings_n": 33,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24036,15 +24114,15 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.5,
         "liquidity_score": 14,
-        "hk_ask_hkd": 2050.0,
-        "spread_jp_hk_pct": 181.73,
+        "hk_ask_hkd": 1200.0,
+        "spread_jp_hk_pct": 64.91,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 152,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24063,16 +24141,16 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 13,
-        "hk_ask_hkd": 675.0,
-        "spread_jp_hk_pct": -17.36,
+        "hk_ask_hkd": 1449.0,
+        "spread_jp_hk_pct": 77.41,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 91,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
+        "hk_backend": "zenox"
       },
       {
         "id": "psa10-charizard-ex-sar-shiny",
@@ -24090,15 +24168,15 @@
         "volume_7d_avg": 2.29,
         "volume_ratio": 0.44,
         "liquidity_score": 13,
-        "hk_ask_hkd": 1865.0,
-        "spread_jp_hk_pct": -31.5,
+        "hk_ask_hkd": 4040.0,
+        "spread_jp_hk_pct": 48.39,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 124,
-        "hk_listings_n": 40,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24117,15 +24195,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 12,
-        "hk_ask_hkd": 230.0,
-        "spread_jp_hk_pct": -55.75,
+        "hk_ask_hkd": 350.0,
+        "spread_jp_hk_pct": -32.66,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 150,
-        "hk_listings_n": 5,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24144,15 +24222,15 @@
         "volume_7d_avg": 1.86,
         "volume_ratio": 0.0,
         "liquidity_score": 12,
-        "hk_ask_hkd": 960.0,
-        "spread_jp_hk_pct": 97.9,
+        "hk_ask_hkd": 1000.0,
+        "spread_jp_hk_pct": 106.14,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 158,
-        "hk_listings_n": 39,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24171,15 +24249,15 @@
         "volume_7d_avg": 1.29,
         "volume_ratio": 0.78,
         "liquidity_score": 12,
-        "hk_ask_hkd": 518.0,
-        "spread_jp_hk_pct": -13.52,
+        "hk_ask_hkd": 522.5,
+        "spread_jp_hk_pct": -12.76,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 5,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24198,15 +24276,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 0.58,
         "liquidity_score": 12,
-        "hk_ask_hkd": 2300.0,
-        "spread_jp_hk_pct": 40.8,
+        "hk_ask_hkd": 2350.0,
+        "spread_jp_hk_pct": 43.86,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 103,
-        "hk_listings_n": 11,
+        "jp_comps_n": 0,
+        "hk_listings_n": 7,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24225,16 +24303,15 @@
         "volume_7d_avg": 2.14,
         "volume_ratio": 0.47,
         "liquidity_score": 12,
-        "hk_ask_hkd": 7280.0,
-        "spread_jp_hk_pct": 126.26,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 133,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null
       },
       {
         "id": "sealed-black-bolt",
@@ -24252,16 +24329,17 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.0,
         "liquidity_score": 11,
-        "hk_ask_hkd": 865.0,
-        "spread_jp_hk_pct": -12.63,
+        "hk_ask_hkd": 1604.5,
+        "spread_jp_hk_pct": 62.07,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "zenox"
         ],
         "is_sample": false,
-        "jp_comps_n": 125,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-acerola-premonition",
@@ -24279,15 +24357,15 @@
         "volume_7d_avg": 2.71,
         "volume_ratio": 0.0,
         "liquidity_score": 11,
-        "hk_ask_hkd": 575.0,
-        "spread_jp_hk_pct": -12.66,
+        "hk_ask_hkd": 1000.0,
+        "spread_jp_hk_pct": 51.89,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 119,
-        "hk_listings_n": 24,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24306,15 +24384,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 10,
-        "hk_ask_hkd": 1479.6,
-        "spread_jp_hk_pct": 6.75,
+        "hk_ask_hkd": 2200.0,
+        "spread_jp_hk_pct": 58.73,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 91,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24333,15 +24411,15 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.64,
         "liquidity_score": 10,
-        "hk_ask_hkd": 4224.0,
-        "spread_jp_hk_pct": -57.33,
+        "hk_ask_hkd": 8800.0,
+        "spread_jp_hk_pct": -11.11,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 22,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24360,16 +24438,15 @@
         "volume_7d_avg": 1.86,
         "volume_ratio": 0.54,
         "liquidity_score": 10,
-        "hk_ask_hkd": 3900.0,
-        "spread_jp_hk_pct": -22.76,
+        "hk_ask_hkd": null,
+        "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
+          "yahoo_auctions_jp"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null
       },
       {
         "id": "psa10-serena-sr",
@@ -24387,15 +24464,15 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.0,
         "liquidity_score": 9,
-        "hk_ask_hkd": 716.8,
-        "spread_jp_hk_pct": 7.27,
+        "hk_ask_hkd": 1299.0,
+        "spread_jp_hk_pct": 94.39,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 105,
-        "hk_listings_n": 27,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24414,15 +24491,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 7,
-        "hk_ask_hkd": 1168.0,
-        "spread_jp_hk_pct": 21.0,
+        "hk_ask_hkd": 1118.0,
+        "spread_jp_hk_pct": 15.82,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 89,
-        "hk_listings_n": 12,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24441,15 +24518,15 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.0,
         "liquidity_score": 7,
-        "hk_ask_hkd": 1374.5,
-        "spread_jp_hk_pct": 35.45,
+        "hk_ask_hkd": 2880.0,
+        "spread_jp_hk_pct": 183.81,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 88,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24468,15 +24545,15 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 0.0,
         "liquidity_score": 6,
-        "hk_ask_hkd": 720.0,
-        "spread_jp_hk_pct": -3.03,
+        "hk_ask_hkd": 949.0,
+        "spread_jp_hk_pct": 27.81,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 62,
-        "hk_listings_n": 31,
+        "jp_comps_n": 0,
+        "hk_listings_n": 6,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24495,15 +24572,15 @@
         "volume_7d_avg": 1.14,
         "volume_ratio": 0.0,
         "liquidity_score": 5,
-        "hk_ask_hkd": 750.0,
-        "spread_jp_hk_pct": -53.38,
+        "hk_ask_hkd": 2100.0,
+        "spread_jp_hk_pct": 30.54,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 77,
-        "hk_listings_n": 17,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24522,15 +24599,15 @@
         "volume_7d_avg": 1.14,
         "volume_ratio": 0.0,
         "liquidity_score": 5,
-        "hk_ask_hkd": 950.0,
-        "spread_jp_hk_pct": -64.75,
+        "hk_ask_hkd": 3840.0,
+        "spread_jp_hk_pct": 42.47,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 77,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24549,15 +24626,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 5,
-        "hk_ask_hkd": 650.0,
-        "spread_jp_hk_pct": 38.22,
+        "hk_ask_hkd": 600.0,
+        "spread_jp_hk_pct": 27.59,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 59,
-        "hk_listings_n": 29,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       }
     ],
@@ -24578,312 +24655,15 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 16,
-        "hk_ask_hkd": 1840.0,
-        "spread_jp_hk_pct": 234.55,
+        "hk_ask_hkd": 2600.0,
+        "spread_jp_hk_pct": 372.74,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 173,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-leafeon-ex-sar",
-        "name_zh": "葉伊布 ex SAR PSA10",
-        "name_jp": "リーフィアex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV8a / 200",
-        "image": "images/psa10-leafeon-ex-sar.webp",
-        "tcgdex_id": "SV8a-200",
-        "price_hkd": 727.65,
-        "price_jpy": 14700,
-        "short_change_pct": 19.51,
-        "medium_change_pct": 16.57,
-        "volume_today": 1,
-        "volume_7d_avg": 2.0,
-        "volume_ratio": 0.5,
-        "liquidity_score": 14,
-        "hk_ask_hkd": 2050.0,
-        "spread_jp_hk_pct": 181.73,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 152,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-charizard-ex-sar-obsidian",
-        "name_zh": "噴火龍 ex SAR（黑炎）PSA10",
-        "name_jp": "リザードンex SAR 黒炎の支配者 PSA10",
-        "kind": "psa10",
-        "set": "SV3 / 134",
-        "image": "images/psa10-charizard-ex-sar-obsidian.webp",
-        "tcgdex_id": "SV3-134",
-        "price_hkd": 3217.5,
-        "price_jpy": 65000,
-        "short_change_pct": -1.14,
-        "medium_change_pct": -14.47,
-        "volume_today": 1,
-        "volume_7d_avg": 2.14,
-        "volume_ratio": 0.47,
-        "liquidity_score": 12,
-        "hk_ask_hkd": 7280.0,
-        "spread_jp_hk_pct": 126.26,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 133,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-eevee-ex-sar",
-        "name_zh": "伊布 ex SAR PSA10",
-        "name_jp": "イーブイex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV8a / 223",
-        "image": "images/psa10-eevee-ex-sar.webp",
-        "tcgdex_id": "SV8a-223",
-        "price_hkd": 485.1,
-        "price_jpy": 9800,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -2.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.86,
-        "volume_ratio": 0.0,
-        "liquidity_score": 12,
-        "hk_ask_hkd": 960.0,
-        "spread_jp_hk_pct": 97.9,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 158,
-        "hk_listings_n": 39,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-koraidon-ex-sar",
-        "name_zh": "故勒頓 ex SAR PSA10",
-        "name_jp": "コライドンex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV4a / 360",
-        "image": "images/psa10-koraidon-ex-sar.webp",
-        "tcgdex_id": "SV4a-360",
-        "price_hkd": 2722.5,
-        "price_jpy": 55000,
-        "short_change_pct": -5.01,
-        "medium_change_pct": 217.92,
-        "volume_today": 1,
-        "volume_7d_avg": 4.71,
-        "volume_ratio": 0.21,
-        "liquidity_score": 37,
-        "hk_ask_hkd": 300.0,
-        "spread_jp_hk_pct": -88.98,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 345,
-        "hk_listings_n": 19,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-pikachu-ex-sar-terastal",
-        "name_zh": "皮卡丘 ex SAR（超電）PSA10",
-        "name_jp": "ピカチュウex SAR 超電ブレイカー PSA10",
-        "kind": "psa10",
-        "set": "sv8 / 132/106",
-        "image": "images/psa10-pikachu-ex-sar-terastal.webp",
-        "tcgdex_id": "SV8-132",
-        "price_hkd": 4677.75,
-        "price_jpy": 94500,
-        "short_change_pct": 24.34,
-        "medium_change_pct": 28.75,
-        "volume_today": 3,
-        "volume_7d_avg": 2.14,
-        "volume_ratio": 1.4,
-        "liquidity_score": 17,
-        "hk_ask_hkd": 830.0,
-        "spread_jp_hk_pct": -82.26,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 36,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-shiny-treasure",
-        "name_zh": "閃色寶藏 ex BOX（未開封）",
-        "name_jp": "シャイニートレジャーex BOX 未開封",
-        "kind": "sealed",
-        "set": "SV4a",
-        "image": "images/sealed-shiny-treasure.png",
-        "tcgdex_id": null,
-        "price_hkd": 2138.4,
-        "price_jpy": 43200,
-        "short_change_pct": 110.73,
-        "medium_change_pct": 191.89,
-        "volume_today": 1,
-        "volume_7d_avg": 1.57,
-        "volume_ratio": 0.64,
-        "liquidity_score": 20,
-        "hk_ask_hkd": 470.0,
-        "spread_jp_hk_pct": -78.02,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 242,
-        "hk_listings_n": 21,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-ninja-spinner",
-        "name_zh": "忍者陀螺 BOX（未開封）",
-        "name_jp": "ニンジャスピナー BOX 未開封",
-        "kind": "sealed",
-        "set": "M4",
-        "image": "images/sealed-ninja-spinner.png",
-        "tcgdex_id": null,
-        "price_hkd": 1330.31,
-        "price_jpy": 26875,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 42.57,
-        "volume_today": 0,
-        "volume_7d_avg": 7.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 39,
-        "hk_ask_hkd": 380.0,
-        "spread_jp_hk_pct": -71.44,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 15,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-umbreon-ex-sar",
-        "name_zh": "月亮伊布 ex SAR PSA10",
-        "name_jp": "ブラッキーex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV8a / 217",
-        "image": "images/psa10-umbreon-ex-sar.webp",
-        "tcgdex_id": "SV8a-217",
-        "price_hkd": 3464.95,
-        "price_jpy": 69999,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 1.45,
-        "volume_today": 0,
-        "volume_7d_avg": 3.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 16,
-        "hk_ask_hkd": 1000.0,
-        "spread_jp_hk_pct": -71.14,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 246,
-        "hk_listings_n": 33,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-pikachu-ex-sar-151",
-        "name_zh": "皮卡丘 ex SAR PSA10",
-        "name_jp": "ピカチュウex SAR PSA10",
-        "kind": "psa10",
-        "set": "sv2a / 198/165",
-        "image": "images/psa10-pikachu-ex-sar-151.webp",
-        "tcgdex_id": "SV2a-173",
-        "price_hkd": 4269.38,
-        "price_jpy": 86250,
-        "short_change_pct": 42.09,
-        "medium_change_pct": -61.58,
-        "volume_today": 1,
-        "volume_7d_avg": 8.14,
-        "volume_ratio": 0.12,
-        "liquidity_score": 44,
-        "hk_ask_hkd": 1240.0,
-        "spread_jp_hk_pct": -70.96,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-151-box",
-        "name_zh": "151 補充包 BOX（未開封）",
-        "name_jp": "ポケモンカード151 BOX 未開封",
-        "kind": "sealed",
-        "set": "SV2a",
-        "image": "images/sealed-151-box.png",
-        "tcgdex_id": null,
-        "price_hkd": 2487.38,
-        "price_jpy": 50250,
-        "short_change_pct": 12.92,
-        "medium_change_pct": 11.91,
-        "volume_today": 1,
-        "volume_7d_avg": 2.57,
-        "volume_ratio": 0.39,
-        "liquidity_score": 22,
-        "hk_ask_hkd": 865.0,
-        "spread_jp_hk_pct": -65.22,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-carmine-sar",
-        "name_zh": "丹瑜 SAR PSA10",
-        "name_jp": "ゼイユ SAR PSA10",
-        "kind": "psa10",
-        "set": "SV6 / 130",
-        "image": "images/psa10-carmine-sar.webp",
-        "tcgdex_id": "SV6-130",
-        "price_hkd": 2695.28,
-        "price_jpy": 54450,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -19.33,
-        "volume_today": 0,
-        "volume_7d_avg": 1.14,
-        "volume_ratio": 0.0,
-        "liquidity_score": 5,
-        "hk_ask_hkd": 950.0,
-        "spread_jp_hk_pct": -64.75,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 77,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
@@ -24902,420 +24682,15 @@
         "volume_7d_avg": 4.86,
         "volume_ratio": 0.21,
         "liquidity_score": 31,
-        "hk_ask_hkd": 1715.0,
-        "spread_jp_hk_pct": 57.48,
+        "hk_ask_hkd": 3500.0,
+        "spread_jp_hk_pct": 221.4,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 443,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-lugia-v-sa",
-        "name_zh": "洛奇亞 V SA PSA10",
-        "name_jp": "ルギアV SA PSA10",
-        "kind": "psa10",
-        "set": "S12 / 110/098",
-        "image": "images/psa10-lugia-v-sa.webp",
-        "tcgdex_id": "S12-110",
-        "price_hkd": 9900.0,
-        "price_jpy": 200000,
-        "short_change_pct": 33.42,
-        "medium_change_pct": 25.79,
-        "volume_today": 1,
-        "volume_7d_avg": 1.57,
-        "volume_ratio": 0.64,
-        "liquidity_score": 10,
-        "hk_ask_hkd": 4224.0,
-        "spread_jp_hk_pct": -57.33,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 22,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-stellar-miracle",
-        "name_zh": "星晶奇跡 BOX（未開封）",
-        "name_jp": "ステラミラクル BOX 未開封",
-        "kind": "sealed",
-        "set": "SV7",
-        "image": "images/sealed-stellar-miracle.png",
-        "tcgdex_id": null,
-        "price_hkd": 519.75,
-        "price_jpy": 10500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 118.75,
-        "volume_today": 0,
-        "volume_7d_avg": 1.43,
-        "volume_ratio": 0.0,
-        "liquidity_score": 12,
-        "hk_ask_hkd": 230.0,
-        "spread_jp_hk_pct": -55.75,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 150,
-        "hk_listings_n": 5,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-mega-dream",
-        "name_zh": "超級夢想 ex BOX（未開封）",
-        "name_jp": "MEGAドリームex BOX 未開封",
-        "kind": "sealed",
-        "set": "M2a",
-        "image": "images/sealed-mega-dream.png",
-        "tcgdex_id": null,
-        "price_hkd": 1378.58,
-        "price_jpy": 27850,
-        "short_change_pct": 132.08,
-        "medium_change_pct": -46.44,
-        "volume_today": 6,
-        "volume_7d_avg": 7.86,
-        "volume_ratio": 0.76,
-        "liquidity_score": 59,
-        "hk_ask_hkd": 635.0,
-        "spread_jp_hk_pct": -53.94,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-hooh-ex-sar",
-        "name_zh": "阿響的鳳王 ex SAR PSA10",
-        "name_jp": "ヒビキのホウオウex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV9a / 086",
-        "image": "images/psa10-hooh-ex-sar.webp",
-        "tcgdex_id": "SV9a-086",
-        "price_hkd": 1608.75,
-        "price_jpy": 32500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -1.1,
-        "volume_today": 0,
-        "volume_7d_avg": 1.14,
-        "volume_ratio": 0.0,
-        "liquidity_score": 5,
-        "hk_ask_hkd": 750.0,
-        "spread_jp_hk_pct": -53.38,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 77,
-        "hk_listings_n": 17,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-mega-gengar-ex",
-        "name_zh": "超級耿鬼 ex SAR PSA10",
-        "name_jp": "メガゲンガーex SAR PSA10",
-        "kind": "psa10",
-        "set": "M2a",
-        "image": "images/psa10-mega-gengar-ex.jpg",
-        "tcgdex_id": "M2a-240",
-        "price_hkd": 3093.75,
-        "price_jpy": 62500,
-        "short_change_pct": 1.63,
-        "medium_change_pct": -2.34,
-        "volume_today": 2,
-        "volume_7d_avg": 6.14,
-        "volume_ratio": 0.33,
-        "liquidity_score": 43,
-        "hk_ask_hkd": 1649.5,
-        "spread_jp_hk_pct": -46.68,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 553,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-inferno-x",
-        "name_zh": "烈焰X BOX（未開封）",
-        "name_jp": "インフェルノX BOX 未開封",
-        "kind": "sealed",
-        "set": "M2",
-        "image": "images/sealed-inferno-x.png",
-        "tcgdex_id": null,
-        "price_hkd": 853.88,
-        "price_jpy": 17250,
-        "short_change_pct": -52.08,
-        "medium_change_pct": 1.47,
-        "volume_today": 2,
-        "volume_7d_avg": 4.29,
-        "volume_ratio": 0.47,
-        "liquidity_score": 40,
-        "hk_ask_hkd": 459.0,
-        "spread_jp_hk_pct": -46.25,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-abyss-eye",
-        "name_zh": "深淵之眼 BOX（未開封）",
-        "name_jp": "アビスアイ BOX 未開封",
-        "kind": "sealed",
-        "set": "M5",
-        "image": "images/sealed-abyss-eye.png",
-        "tcgdex_id": null,
-        "price_hkd": 792.0,
-        "price_jpy": 16000,
-        "short_change_pct": -34.69,
-        "medium_change_pct": -39.62,
-        "volume_today": 1,
-        "volume_7d_avg": 7.14,
-        "volume_ratio": 0.14,
-        "liquidity_score": 42,
-        "hk_ask_hkd": 428.85,
-        "spread_jp_hk_pct": -45.85,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 10,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-team-rocket-glory",
-        "name_zh": "火箭隊的榮耀 BOX（未開封）",
-        "name_jp": "ロケット団の栄光 BOX 未開封",
-        "kind": "sealed",
-        "set": "SV10",
-        "image": "images/sealed-team-rocket-glory.png",
-        "tcgdex_id": null,
-        "price_hkd": 2425.5,
-        "price_jpy": 49000,
-        "short_change_pct": 28.95,
-        "medium_change_pct": 67.24,
-        "volume_today": 1,
-        "volume_7d_avg": 2.0,
-        "volume_ratio": 0.5,
-        "liquidity_score": 16,
-        "hk_ask_hkd": 1325.0,
-        "spread_jp_hk_pct": -45.37,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 99,
-        "hk_listings_n": 14,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-mega-symphonia",
-        "name_zh": "超級協奏 BOX（未開封）",
-        "name_jp": "メガシンフォニア BOX 未開封",
-        "kind": "sealed",
-        "set": "M1S",
-        "image": "images/sealed-mega-symphonia.png",
-        "tcgdex_id": null,
-        "price_hkd": 693.0,
-        "price_jpy": 14000,
-        "short_change_pct": -39.13,
-        "medium_change_pct": -12.5,
-        "volume_today": 5,
-        "volume_7d_avg": 12.57,
-        "volume_ratio": 0.4,
-        "liquidity_score": 65,
-        "hk_ask_hkd": 1000.0,
-        "spread_jp_hk_pct": 44.3,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 565,
-        "hk_listings_n": 3,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-mew-ex-sar",
-        "name_zh": "夢幻 ex SAR PSA10",
-        "name_jp": "ミュウex SAR PSA10",
-        "kind": "psa10",
-        "set": "sv3a / 205/187",
-        "image": "images/psa10-mew-ex-sar.webp",
-        "tcgdex_id": "SV4a-347",
-        "price_hkd": 5271.75,
-        "price_jpy": 106500,
-        "short_change_pct": 38.94,
-        "medium_change_pct": 74.59,
-        "volume_today": 4,
-        "volume_7d_avg": 3.29,
-        "volume_ratio": 1.22,
-        "liquidity_score": 30,
-        "hk_ask_hkd": 2944.0,
-        "spread_jp_hk_pct": -44.16,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-lisia-appeal-sar",
-        "name_zh": "露琪亞的吸引力 SAR PSA10",
-        "name_jp": "ルチアのアピール SAR PSA10",
-        "kind": "psa10",
-        "set": "SV7a / 091",
-        "image": "images/psa10-lisia-appeal-sar.webp",
-        "tcgdex_id": "SV7a-091",
-        "price_hkd": 1633.5,
-        "price_jpy": 33000,
-        "short_change_pct": 3.12,
-        "medium_change_pct": -5.71,
-        "volume_today": 1,
-        "volume_7d_avg": 1.71,
-        "volume_ratio": 0.58,
-        "liquidity_score": 12,
-        "hk_ask_hkd": 2300.0,
-        "spread_jp_hk_pct": 40.8,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 103,
-        "hk_listings_n": 11,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-greninja-ex-sar",
-        "name_zh": "甲賀忍蛙 ex SAR PSA10",
-        "name_jp": "ゲッコウガex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV5a / 090",
-        "image": "images/psa10-greninja-ex-sar.webp",
-        "tcgdex_id": "SV5a-090",
-        "price_hkd": 1430.55,
-        "price_jpy": 28900,
-        "short_change_pct": 3.58,
-        "medium_change_pct": -2.03,
-        "volume_today": 2,
-        "volume_7d_avg": 5.71,
-        "volume_ratio": 0.35,
-        "liquidity_score": 39,
-        "hk_ask_hkd": 880.0,
-        "spread_jp_hk_pct": -38.49,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 482,
-        "hk_listings_n": 31,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-miraidon-ex-sar",
-        "name_zh": "密勒頓 ex SAR PSA10",
-        "name_jp": "ミライドンex SAR PSA10",
-        "kind": "psa10",
-        "set": "SV1V / 102",
-        "image": "images/psa10-miraidon-ex-sar.webp",
-        "tcgdex_id": "SV1V-102",
-        "price_hkd": 470.25,
-        "price_jpy": 9500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -4.88,
-        "volume_today": 0,
-        "volume_7d_avg": 1.43,
-        "volume_ratio": 0.0,
-        "liquidity_score": 5,
-        "hk_ask_hkd": 650.0,
-        "spread_jp_hk_pct": 38.22,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 59,
-        "hk_listings_n": 29,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-mega-gardevoir-ex",
-        "name_zh": "超級沙奈朵 ex SAR PSA10",
-        "name_jp": "メガサーナイトex SAR PSA10",
-        "kind": "psa10",
-        "set": "M1S",
-        "image": "images/psa10-mega-gardevoir-ex.jpg",
-        "tcgdex_id": "M1S-087",
-        "price_hkd": 1596.35,
-        "price_jpy": 32249,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -43.42,
-        "volume_today": 0,
-        "volume_7d_avg": 2.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 14,
-        "hk_ask_hkd": 999.0,
-        "spread_jp_hk_pct": -37.42,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 172,
-        "hk_listings_n": 33,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-mega-lucario-ex",
-        "name_zh": "超級路卡利歐 ex SAR PSA10",
-        "name_jp": "メガルカリオex SAR PSA10",
-        "kind": "psa10",
-        "set": "M1L",
-        "image": "images/psa10-mega-lucario-ex.jpg",
-        "tcgdex_id": "M1L-088",
-        "price_hkd": 754.88,
-        "price_jpy": 15250,
-        "short_change_pct": 3.39,
-        "medium_change_pct": 8.93,
-        "volume_today": 2,
-        "volume_7d_avg": 3.43,
-        "volume_ratio": 0.58,
-        "liquidity_score": 21,
-        "hk_ask_hkd": 475.0,
-        "spread_jp_hk_pct": -37.08,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 145,
-        "hk_listings_n": 34,
+        "jp_comps_n": 0,
+        "hk_listings_n": 6,
         "hk_backend": "carousell_hk"
       },
       {
@@ -25334,447 +24709,96 @@
         "volume_7d_avg": 1.57,
         "volume_ratio": 0.0,
         "liquidity_score": 7,
-        "hk_ask_hkd": 1374.5,
-        "spread_jp_hk_pct": 35.45,
+        "hk_ask_hkd": 2880.0,
+        "spread_jp_hk_pct": 183.81,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 88,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
-        "id": "psa10-charizard-ex-sar-shiny",
-        "name_zh": "噴火龍 ex SAR（閃）PSA10",
-        "name_jp": "リザードンex SAR シャイニートレジャー PSA10",
+        "id": "psa10-greninja-ex-sar",
+        "name_zh": "甲賀忍蛙 ex SAR PSA10",
+        "name_jp": "ゲッコウガex SAR PSA10",
         "kind": "psa10",
-        "set": "SV4a / 349",
-        "image": "images/psa10-charizard-ex-sar-shiny.webp",
-        "tcgdex_id": "SV4a-349",
-        "price_hkd": 2722.5,
-        "price_jpy": 55000,
-        "short_change_pct": -5.17,
-        "medium_change_pct": -9.09,
-        "volume_today": 1,
-        "volume_7d_avg": 2.29,
-        "volume_ratio": 0.44,
-        "liquidity_score": 13,
-        "hk_ask_hkd": 1865.0,
-        "spread_jp_hk_pct": -31.5,
+        "set": "SV5a / 090",
+        "image": "images/psa10-greninja-ex-sar.webp",
+        "tcgdex_id": "SV5a-090",
+        "price_hkd": 1430.55,
+        "price_jpy": 28900,
+        "short_change_pct": 3.58,
+        "medium_change_pct": -2.03,
+        "volume_today": 2,
+        "volume_7d_avg": 5.71,
+        "volume_ratio": 0.35,
+        "liquidity_score": 39,
+        "hk_ask_hkd": 3780.0,
+        "spread_jp_hk_pct": 164.23,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 124,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-battle-partners",
-        "name_zh": "對戰夥伴 BOX（未開封）",
-        "name_jp": "バトルパートナーズ BOX 未開封",
-        "kind": "sealed",
-        "set": "SV9",
-        "image": "images/sealed-battle-partners.png",
-        "tcgdex_id": null,
-        "price_hkd": 470.25,
-        "price_jpy": 9500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 19.5,
-        "volume_today": 1,
-        "volume_7d_avg": 2.0,
-        "volume_ratio": 0.5,
-        "liquidity_score": 19,
-        "hk_ask_hkd": 330.0,
-        "spread_jp_hk_pct": -29.82,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 226,
-        "hk_listings_n": 7,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-storm-emerald",
-        "name_zh": "風暴翡翠 BOX（未開封）",
-        "name_jp": "ストームエメラルダ BOX 未開封",
-        "kind": "sealed",
-        "set": "M6",
-        "image": "images/sealed-storm-emerald.png",
-        "tcgdex_id": null,
-        "price_hkd": 792.0,
-        "price_jpy": 16000,
-        "short_change_pct": 6.67,
-        "medium_change_pct": 1.59,
-        "volume_today": 21,
-        "volume_7d_avg": 47.14,
-        "volume_ratio": 0.45,
-        "liquidity_score": 95,
-        "hk_ask_hkd": 559.5,
-        "spread_jp_hk_pct": -29.36,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 4,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-rulers-black-flame",
-        "name_zh": "黑炎支配者 BOX（未開封）",
-        "name_jp": "黒炎の支配者 BOX 未開封",
-        "kind": "sealed",
-        "set": "SV3",
-        "image": "images/sealed-rulers-black-flame.png",
-        "tcgdex_id": null,
-        "price_hkd": 833.58,
-        "price_jpy": 16840,
-        "short_change_pct": 198.05,
-        "medium_change_pct": -29.09,
-        "volume_today": 1,
-        "volume_7d_avg": 1.71,
-        "volume_ratio": 0.58,
-        "liquidity_score": 15,
-        "hk_ask_hkd": 599.5,
-        "spread_jp_hk_pct": -28.08,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-mega-brave",
-        "name_zh": "超級勇氣 BOX（未開封）",
-        "name_jp": "メガブレイブ BOX 未開封",
-        "kind": "sealed",
-        "set": "M1L",
-        "image": "images/sealed-mega-brave.png",
-        "tcgdex_id": null,
-        "price_hkd": 693.0,
-        "price_jpy": 14000,
-        "short_change_pct": -46.07,
-        "medium_change_pct": -53.33,
-        "volume_today": 7,
-        "volume_7d_avg": 13.71,
-        "volume_ratio": 0.51,
-        "liquidity_score": 73,
-        "hk_ask_hkd": 520.0,
-        "spread_jp_hk_pct": -24.96,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 600,
-        "hk_listings_n": 20,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-charizard-ex-sar-151",
-        "name_zh": "噴火龍 ex SAR PSA10",
-        "name_jp": "リザードンex SAR PSA10",
-        "kind": "psa10",
-        "set": "sv2a / 201/165",
-        "image": "images/psa10-charizard-ex-sar-151.webp",
-        "tcgdex_id": "SV2a-201",
-        "price_hkd": 5049.0,
-        "price_jpy": 102000,
-        "short_change_pct": 27.18,
-        "medium_change_pct": 30.35,
-        "volume_today": 1,
-        "volume_7d_avg": 1.86,
-        "volume_ratio": 0.54,
-        "liquidity_score": 10,
-        "hk_ask_hkd": 3900.0,
-        "spread_jp_hk_pct": -22.76,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-n-sar",
-        "name_zh": "N SAR PSA10",
-        "name_jp": "N SAR PSA10",
-        "kind": "psa10",
-        "set": "sv6a",
-        "image": "images/psa10-n-sar.webp",
-        "tcgdex_id": "SV9-127",
-        "price_hkd": 636.08,
-        "price_jpy": 12850,
-        "short_change_pct": 46.02,
-        "medium_change_pct": 7.08,
-        "volume_today": 3,
-        "volume_7d_avg": 1.71,
-        "volume_ratio": 1.75,
-        "liquidity_score": 20,
-        "hk_ask_hkd": 775.0,
-        "spread_jp_hk_pct": 21.84,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 20,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-erika-invite-sar",
-        "name_zh": "莉佳的邀請 SAR PSA10",
-        "name_jp": "エリカの招待 SAR PSA10",
-        "kind": "psa10",
-        "set": "SV2a / 206",
-        "image": "images/psa10-erika-invite-sar.webp",
-        "tcgdex_id": "SV2a-206",
-        "price_hkd": 965.25,
-        "price_jpy": 19500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -15.22,
-        "volume_today": 0,
-        "volume_7d_avg": 1.43,
-        "volume_ratio": 0.0,
-        "liquidity_score": 7,
-        "hk_ask_hkd": 1168.0,
-        "spread_jp_hk_pct": 21.0,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 89,
+        "jp_comps_n": 0,
         "hk_listings_n": 12,
         "hk_backend": "carousell_hk"
       },
       {
-        "id": "psa10-eevee-heroes-box-promo",
-        "name_zh": "伊布英雄 特別卡盒相關 PSA10",
-        "name_jp": "イーブイヒーローズ PSA10",
+        "id": "psa10-mega-lucario-ex",
+        "name_zh": "超級路卡利歐 ex SAR PSA10",
+        "name_jp": "メガルカリオex SAR PSA10",
         "kind": "psa10",
-        "set": "S6a",
-        "image": "images/psa10-eevee-heroes-box-promo.webp",
-        "tcgdex_id": "swsh7-189",
-        "price_hkd": 2957.62,
-        "price_jpy": 59750,
-        "short_change_pct": 47.53,
-        "medium_change_pct": -22.4,
-        "volume_today": 8,
-        "volume_7d_avg": 5.71,
-        "volume_ratio": 1.4,
-        "liquidity_score": 60,
-        "hk_ask_hkd": 2400.0,
-        "spread_jp_hk_pct": -18.85,
+        "set": "M1L",
+        "image": "images/psa10-mega-lucario-ex.jpg",
+        "tcgdex_id": "M1L-088",
+        "price_hkd": 754.88,
+        "price_jpy": 15250,
+        "short_change_pct": 3.39,
+        "medium_change_pct": 8.93,
+        "volume_today": 2,
+        "volume_7d_avg": 3.43,
+        "volume_ratio": 0.58,
+        "liquidity_score": 21,
+        "hk_ask_hkd": 1600.0,
+        "spread_jp_hk_pct": 111.95,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 17,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
         "hk_backend": "carousell_hk"
       },
       {
-        "id": "sealed-white-flare",
-        "name_zh": "白炎 BOX（未開封）",
-        "name_jp": "ホワイトフレア BOX 未開封",
-        "kind": "sealed",
-        "set": "SV11W",
-        "image": "images/sealed-white-flare.png",
-        "tcgdex_id": null,
-        "price_hkd": 816.75,
-        "price_jpy": 16500,
-        "short_change_pct": -8.33,
-        "medium_change_pct": -86.25,
-        "volume_today": 1,
-        "volume_7d_avg": 1.43,
-        "volume_ratio": 0.7,
-        "liquidity_score": 13,
-        "hk_ask_hkd": 675.0,
-        "spread_jp_hk_pct": -17.36,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 91,
-        "hk_listings_n": 38,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-iono-sar",
-        "name_zh": "奇樹 SAR PSA10",
-        "name_jp": "ナンジャモ SAR PSA10",
+        "id": "psa10-eevee-ex-sar",
+        "name_zh": "伊布 ex SAR PSA10",
+        "name_jp": "イーブイex SAR PSA10",
         "kind": "psa10",
-        "set": "sv2a / 350/165",
-        "image": "images/psa10-iono-sar.webp",
-        "tcgdex_id": "SV2D-096",
-        "price_hkd": 866.25,
-        "price_jpy": 17500,
-        "short_change_pct": -12.5,
-        "medium_change_pct": -27.08,
-        "volume_today": 7,
-        "volume_7d_avg": 5.57,
-        "volume_ratio": 1.26,
-        "liquidity_score": 56,
-        "hk_ask_hkd": 740.0,
-        "spread_jp_hk_pct": -14.57,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-ancient-roar",
-        "name_zh": "古代咆哮 BOX（未開封）",
-        "name_jp": "古代の咆哮 BOX 未開封",
-        "kind": "sealed",
-        "set": "SV4K",
-        "image": "images/sealed-ancient-roar.jpg",
-        "tcgdex_id": null,
-        "price_hkd": 598.95,
-        "price_jpy": 12100,
-        "short_change_pct": 30.8,
-        "medium_change_pct": 37.48,
-        "volume_today": 1,
-        "volume_7d_avg": 1.29,
-        "volume_ratio": 0.78,
+        "set": "SV8a / 223",
+        "image": "images/psa10-eevee-ex-sar.webp",
+        "tcgdex_id": "SV8a-223",
+        "price_hkd": 485.1,
+        "price_jpy": 9800,
+        "short_change_pct": 0.0,
+        "medium_change_pct": -2.0,
+        "volume_today": 0,
+        "volume_7d_avg": 1.86,
+        "volume_ratio": 0.0,
         "liquidity_score": 12,
-        "hk_ask_hkd": 518.0,
-        "spread_jp_hk_pct": -13.52,
+        "hk_ask_hkd": 1000.0,
+        "spread_jp_hk_pct": 106.14,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 5,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-acerola-premonition",
-        "name_zh": "阿塞蘿拉的預感 SR PSA10",
-        "name_jp": "アセロラの予感 SR PSA10",
-        "kind": "psa10",
-        "set": "S8b / 255",
-        "image": "images/psa10-acerola-premonition.webp",
-        "tcgdex_id": "S8b-255",
-        "price_hkd": 658.35,
-        "price_jpy": 13300,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 3.3,
-        "volume_today": 0,
-        "volume_7d_avg": 2.71,
-        "volume_ratio": 0.0,
-        "liquidity_score": 11,
-        "hk_ask_hkd": 575.0,
-        "spread_jp_hk_pct": -12.66,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 119,
-        "hk_listings_n": 24,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-black-bolt",
-        "name_zh": "黑雷 BOX（未開封）",
-        "name_jp": "ブラックボルト BOX 未開封",
-        "kind": "sealed",
-        "set": "SV11B",
-        "image": "images/sealed-black-bolt.png",
-        "tcgdex_id": null,
-        "price_hkd": 990.0,
-        "price_jpy": 20000,
-        "short_change_pct": 0.0,
-        "medium_change_pct": -83.33,
-        "volume_today": 0,
-        "volume_7d_avg": 1.57,
-        "volume_ratio": 0.0,
-        "liquidity_score": 11,
-        "hk_ask_hkd": 865.0,
-        "spread_jp_hk_pct": -12.63,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 125,
-        "hk_listings_n": 40,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "sealed-terastal-fest",
-        "name_zh": "太晶慶典 ex BOX（未開封）",
-        "name_jp": "テラスタルフェスex BOX 未開封",
-        "kind": "sealed",
-        "set": "SV8a",
-        "image": "images/sealed-terastal-fest.png",
-        "tcgdex_id": null,
-        "price_hkd": 960.3,
-        "price_jpy": 19400,
-        "short_change_pct": -87.04,
-        "medium_change_pct": 21.25,
-        "volume_today": 1,
-        "volume_7d_avg": 2.43,
-        "volume_ratio": 0.41,
-        "liquidity_score": 22,
-        "hk_ask_hkd": 1080.0,
-        "spread_jp_hk_pct": 12.46,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 35,
-        "hk_backend": "carousell_hk"
-      },
-      {
-        "id": "psa10-mega-charizard-x-ex",
-        "name_zh": "超級噴火龍X ex SAR PSA10",
-        "name_jp": "メガリザードンXex SAR PSA10",
-        "kind": "psa10",
-        "set": "M2",
-        "image": "images/psa10-mega-charizard-x-ex.jpg",
-        "tcgdex_id": "M2-110",
-        "price_hkd": 6435.0,
-        "price_jpy": 130000,
-        "short_change_pct": 8.33,
-        "medium_change_pct": 7.08,
-        "volume_today": 1,
-        "volume_7d_avg": 2.71,
-        "volume_ratio": 0.37,
-        "liquidity_score": 16,
-        "hk_ask_hkd": 6950.0,
-        "spread_jp_hk_pct": 8.0,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 138,
-        "hk_listings_n": 38,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -25793,16 +24817,235 @@
         "volume_7d_avg": 2.0,
         "volume_ratio": 0.0,
         "liquidity_score": 9,
-        "hk_ask_hkd": 716.8,
-        "spread_jp_hk_pct": 7.27,
+        "hk_ask_hkd": 1299.0,
+        "spread_jp_hk_pct": 94.39,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 105,
-        "hk_listings_n": 27,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
         "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-white-flare",
+        "name_zh": "白炎 BOX（未開封）",
+        "name_jp": "ホワイトフレア BOX 未開封",
+        "kind": "sealed",
+        "set": "SV11W",
+        "image": "images/sealed-white-flare.png",
+        "tcgdex_id": null,
+        "price_hkd": 816.75,
+        "price_jpy": 16500,
+        "short_change_pct": -8.33,
+        "medium_change_pct": -86.25,
+        "volume_today": 1,
+        "volume_7d_avg": 1.43,
+        "volume_ratio": 0.7,
+        "liquidity_score": 13,
+        "hk_ask_hkd": 1449.0,
+        "spread_jp_hk_pct": 77.41,
+        "sources": [
+          "yahoo_auctions_jp",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
+        "hk_backend": "zenox"
+      },
+      {
+        "id": "psa10-iono-sar",
+        "name_zh": "奇樹 SAR PSA10",
+        "name_jp": "ナンジャモ SAR PSA10",
+        "kind": "psa10",
+        "set": "sv2a / 350/165",
+        "image": "images/psa10-iono-sar.webp",
+        "tcgdex_id": "SV2D-096",
+        "price_hkd": 866.25,
+        "price_jpy": 17500,
+        "short_change_pct": -12.5,
+        "medium_change_pct": -27.08,
+        "volume_today": 7,
+        "volume_7d_avg": 5.57,
+        "volume_ratio": 1.26,
+        "liquidity_score": 56,
+        "hk_ask_hkd": 1500.0,
+        "spread_jp_hk_pct": 73.16,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 11,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-koraidon-ex-sar",
+        "name_zh": "故勒頓 ex SAR PSA10",
+        "name_jp": "コライドンex SAR PSA10",
+        "kind": "psa10",
+        "set": "SV4a / 360",
+        "image": "images/psa10-koraidon-ex-sar.webp",
+        "tcgdex_id": "SV4a-360",
+        "price_hkd": 2722.5,
+        "price_jpy": 55000,
+        "short_change_pct": -5.01,
+        "medium_change_pct": 217.92,
+        "volume_today": 1,
+        "volume_7d_avg": 4.71,
+        "volume_ratio": 0.21,
+        "liquidity_score": 37,
+        "hk_ask_hkd": 800.0,
+        "spread_jp_hk_pct": -70.62,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-shiny-treasure",
+        "name_zh": "閃色寶藏 ex BOX（未開封）",
+        "name_jp": "シャイニートレジャーex BOX 未開封",
+        "kind": "sealed",
+        "set": "SV4a",
+        "image": "images/sealed-shiny-treasure.png",
+        "tcgdex_id": null,
+        "price_hkd": 2138.4,
+        "price_jpy": 43200,
+        "short_change_pct": 110.73,
+        "medium_change_pct": 191.89,
+        "volume_today": 1,
+        "volume_7d_avg": 1.57,
+        "volume_ratio": 0.64,
+        "liquidity_score": 20,
+        "hk_ask_hkd": 750.0,
+        "spread_jp_hk_pct": -64.93,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 10,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-leafeon-ex-sar",
+        "name_zh": "葉伊布 ex SAR PSA10",
+        "name_jp": "リーフィアex SAR PSA10",
+        "kind": "psa10",
+        "set": "SV8a / 200",
+        "image": "images/psa10-leafeon-ex-sar.webp",
+        "tcgdex_id": "SV8a-200",
+        "price_hkd": 727.65,
+        "price_jpy": 14700,
+        "short_change_pct": 19.51,
+        "medium_change_pct": 16.57,
+        "volume_today": 1,
+        "volume_7d_avg": 2.0,
+        "volume_ratio": 0.5,
+        "liquidity_score": 14,
+        "hk_ask_hkd": 1200.0,
+        "spread_jp_hk_pct": 64.91,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-black-bolt",
+        "name_zh": "黑雷 BOX（未開封）",
+        "name_jp": "ブラックボルト BOX 未開封",
+        "kind": "sealed",
+        "set": "SV11B",
+        "image": "images/sealed-black-bolt.png",
+        "tcgdex_id": null,
+        "price_hkd": 990.0,
+        "price_jpy": 20000,
+        "short_change_pct": 0.0,
+        "medium_change_pct": -83.33,
+        "volume_today": 0,
+        "volume_7d_avg": 1.57,
+        "volume_ratio": 0.0,
+        "liquidity_score": 11,
+        "hk_ask_hkd": 1604.5,
+        "spread_jp_hk_pct": 62.07,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-umbreon-ex-sar",
+        "name_zh": "月亮伊布 ex SAR PSA10",
+        "name_jp": "ブラッキーex SAR PSA10",
+        "kind": "psa10",
+        "set": "SV8a / 217",
+        "image": "images/psa10-umbreon-ex-sar.webp",
+        "tcgdex_id": "SV8a-217",
+        "price_hkd": 3464.95,
+        "price_jpy": 69999,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 1.45,
+        "volume_today": 0,
+        "volume_7d_avg": 3.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 16,
+        "hk_ask_hkd": 5600.0,
+        "spread_jp_hk_pct": 61.62,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 8,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-inferno-x",
+        "name_zh": "烈焰X BOX（未開封）",
+        "name_jp": "インフェルノX BOX 未開封",
+        "kind": "sealed",
+        "set": "M2",
+        "image": "images/sealed-inferno-x.png",
+        "tcgdex_id": null,
+        "price_hkd": 853.88,
+        "price_jpy": 17250,
+        "short_change_pct": -52.08,
+        "medium_change_pct": 1.47,
+        "volume_today": 2,
+        "volume_7d_avg": 4.29,
+        "volume_ratio": 0.47,
+        "liquidity_score": 40,
+        "hk_ask_hkd": 1359.5,
+        "spread_jp_hk_pct": 59.21,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
       },
       {
         "id": "psa10-miriam-sar",
@@ -25820,15 +25063,399 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.7,
         "liquidity_score": 10,
-        "hk_ask_hkd": 1479.6,
-        "spread_jp_hk_pct": 6.75,
+        "hk_ask_hkd": 2200.0,
+        "spread_jp_hk_pct": 58.73,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 91,
-        "hk_listings_n": 36,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-ninja-spinner",
+        "name_zh": "忍者陀螺 BOX（未開封）",
+        "name_jp": "ニンジャスピナー BOX 未開封",
+        "kind": "sealed",
+        "set": "M4",
+        "image": "images/sealed-ninja-spinner.png",
+        "tcgdex_id": null,
+        "price_hkd": 1330.31,
+        "price_jpy": 26875,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 42.57,
+        "volume_today": 0,
+        "volume_7d_avg": 7.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 39,
+        "hk_ask_hkd": 615.0,
+        "spread_jp_hk_pct": -53.77,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 13,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-mega-gengar-ex",
+        "name_zh": "超級耿鬼 ex SAR PSA10",
+        "name_jp": "メガゲンガーex SAR PSA10",
+        "kind": "psa10",
+        "set": "M2a",
+        "image": "images/psa10-mega-gengar-ex.jpg",
+        "tcgdex_id": "M2a-240",
+        "price_hkd": 3093.75,
+        "price_jpy": 62500,
+        "short_change_pct": 1.63,
+        "medium_change_pct": -2.34,
+        "volume_today": 2,
+        "volume_7d_avg": 6.14,
+        "volume_ratio": 0.33,
+        "liquidity_score": 43,
+        "hk_ask_hkd": 4750.0,
+        "spread_jp_hk_pct": 53.54,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-acerola-premonition",
+        "name_zh": "阿塞蘿拉的預感 SR PSA10",
+        "name_jp": "アセロラの予感 SR PSA10",
+        "kind": "psa10",
+        "set": "S8b / 255",
+        "image": "images/psa10-acerola-premonition.webp",
+        "tcgdex_id": "S8b-255",
+        "price_hkd": 658.35,
+        "price_jpy": 13300,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 3.3,
+        "volume_today": 0,
+        "volume_7d_avg": 2.71,
+        "volume_ratio": 0.0,
+        "liquidity_score": 11,
+        "hk_ask_hkd": 1000.0,
+        "spread_jp_hk_pct": 51.89,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-munikis-zero",
+        "name_zh": "尼比斯零 BOX（未開封）",
+        "name_jp": "ムニキスゼロ BOX 未開封",
+        "kind": "sealed",
+        "set": "M3",
+        "image": "images/sealed-munikis-zero.png",
+        "tcgdex_id": null,
+        "price_hkd": 337.14,
+        "price_jpy": 6811,
+        "short_change_pct": -13.57,
+        "medium_change_pct": -75.14,
+        "volume_today": 1,
+        "volume_7d_avg": 2.86,
+        "volume_ratio": 0.35,
+        "liquidity_score": 34,
+        "hk_ask_hkd": 510.0,
+        "spread_jp_hk_pct": 51.27,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-charizard-ex-sar-shiny",
+        "name_zh": "噴火龍 ex SAR（閃）PSA10",
+        "name_jp": "リザードンex SAR シャイニートレジャー PSA10",
+        "kind": "psa10",
+        "set": "SV4a / 349",
+        "image": "images/psa10-charizard-ex-sar-shiny.webp",
+        "tcgdex_id": "SV4a-349",
+        "price_hkd": 2722.5,
+        "price_jpy": 55000,
+        "short_change_pct": -5.17,
+        "medium_change_pct": -9.09,
+        "volume_today": 1,
+        "volume_7d_avg": 2.29,
+        "volume_ratio": 0.44,
+        "liquidity_score": 13,
+        "hk_ask_hkd": 4040.0,
+        "spread_jp_hk_pct": 48.39,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-151-box",
+        "name_zh": "151 補充包 BOX（未開封）",
+        "name_jp": "ポケモンカード151 BOX 未開封",
+        "kind": "sealed",
+        "set": "SV2a",
+        "image": "images/sealed-151-box.png",
+        "tcgdex_id": null,
+        "price_hkd": 2487.38,
+        "price_jpy": 50250,
+        "short_change_pct": 12.92,
+        "medium_change_pct": 11.91,
+        "volume_today": 1,
+        "volume_7d_avg": 2.57,
+        "volume_ratio": 0.39,
+        "liquidity_score": 22,
+        "hk_ask_hkd": 3684.5,
+        "spread_jp_hk_pct": 48.13,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-lisia-appeal-sar",
+        "name_zh": "露琪亞的吸引力 SAR PSA10",
+        "name_jp": "ルチアのアピール SAR PSA10",
+        "kind": "psa10",
+        "set": "SV7a / 091",
+        "image": "images/psa10-lisia-appeal-sar.webp",
+        "tcgdex_id": "SV7a-091",
+        "price_hkd": 1633.5,
+        "price_jpy": 33000,
+        "short_change_pct": 3.12,
+        "medium_change_pct": -5.71,
+        "volume_today": 1,
+        "volume_7d_avg": 1.71,
+        "volume_ratio": 0.58,
+        "liquidity_score": 12,
+        "hk_ask_hkd": 2350.0,
+        "spread_jp_hk_pct": 43.86,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 7,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-mega-dream",
+        "name_zh": "超級夢想 ex BOX（未開封）",
+        "name_jp": "MEGAドリームex BOX 未開封",
+        "kind": "sealed",
+        "set": "M2a",
+        "image": "images/sealed-mega-dream.png",
+        "tcgdex_id": null,
+        "price_hkd": 1378.58,
+        "price_jpy": 27850,
+        "short_change_pct": 132.08,
+        "medium_change_pct": -46.44,
+        "volume_today": 6,
+        "volume_7d_avg": 7.86,
+        "volume_ratio": 0.76,
+        "liquidity_score": 59,
+        "hk_ask_hkd": 775.0,
+        "spread_jp_hk_pct": -43.78,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "lono",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 14,
+        "hk_backend": "carousell_hk+lono+zenox"
+      },
+      {
+        "id": "sealed-team-rocket-glory",
+        "name_zh": "火箭隊的榮耀 BOX（未開封）",
+        "name_jp": "ロケット団の栄光 BOX 未開封",
+        "kind": "sealed",
+        "set": "SV10",
+        "image": "images/sealed-team-rocket-glory.png",
+        "tcgdex_id": null,
+        "price_hkd": 2425.5,
+        "price_jpy": 49000,
+        "short_change_pct": 28.95,
+        "medium_change_pct": 67.24,
+        "volume_today": 1,
+        "volume_7d_avg": 2.0,
+        "volume_ratio": 0.5,
+        "liquidity_score": 16,
+        "hk_ask_hkd": 1390.0,
+        "spread_jp_hk_pct": -42.69,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 5,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-carmine-sar",
+        "name_zh": "丹瑜 SAR PSA10",
+        "name_jp": "ゼイユ SAR PSA10",
+        "kind": "psa10",
+        "set": "SV6 / 130",
+        "image": "images/psa10-carmine-sar.webp",
+        "tcgdex_id": "SV6-130",
+        "price_hkd": 2695.28,
+        "price_jpy": 54450,
+        "short_change_pct": 0.0,
+        "medium_change_pct": -19.33,
+        "volume_today": 0,
+        "volume_7d_avg": 1.14,
+        "volume_ratio": 0.0,
+        "liquidity_score": 5,
+        "hk_ask_hkd": 3840.0,
+        "spread_jp_hk_pct": 42.47,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-stellar-miracle",
+        "name_zh": "星晶奇跡 BOX（未開封）",
+        "name_jp": "ステラミラクル BOX 未開封",
+        "kind": "sealed",
+        "set": "SV7",
+        "image": "images/sealed-stellar-miracle.png",
+        "tcgdex_id": null,
+        "price_hkd": 519.75,
+        "price_jpy": 10500,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 118.75,
+        "volume_today": 0,
+        "volume_7d_avg": 1.43,
+        "volume_ratio": 0.0,
+        "liquidity_score": 12,
+        "hk_ask_hkd": 350.0,
+        "spread_jp_hk_pct": -32.66,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-abyss-eye",
+        "name_zh": "深淵之眼 BOX（未開封）",
+        "name_jp": "アビスアイ BOX 未開封",
+        "kind": "sealed",
+        "set": "M5",
+        "image": "images/sealed-abyss-eye.png",
+        "tcgdex_id": null,
+        "price_hkd": 792.0,
+        "price_jpy": 16000,
+        "short_change_pct": -34.69,
+        "medium_change_pct": -39.62,
+        "volume_today": 1,
+        "volume_7d_avg": 7.14,
+        "volume_ratio": 0.14,
+        "liquidity_score": 42,
+        "hk_ask_hkd": 550.0,
+        "spread_jp_hk_pct": -30.56,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-hooh-ex-sar",
+        "name_zh": "阿響的鳳王 ex SAR PSA10",
+        "name_jp": "ヒビキのホウオウex SAR PSA10",
+        "kind": "psa10",
+        "set": "SV9a / 086",
+        "image": "images/psa10-hooh-ex-sar.webp",
+        "tcgdex_id": "SV9a-086",
+        "price_hkd": 1608.75,
+        "price_jpy": 32500,
+        "short_change_pct": 0.0,
+        "medium_change_pct": -1.1,
+        "volume_today": 0,
+        "volume_7d_avg": 1.14,
+        "volume_ratio": 0.0,
+        "liquidity_score": 5,
+        "hk_ask_hkd": 2100.0,
+        "spread_jp_hk_pct": 30.54,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-mega-gardevoir-ex",
+        "name_zh": "超級沙奈朵 ex SAR PSA10",
+        "name_jp": "メガサーナイトex SAR PSA10",
+        "kind": "psa10",
+        "set": "M1S",
+        "image": "images/psa10-mega-gardevoir-ex.jpg",
+        "tcgdex_id": "M1S-087",
+        "price_hkd": 1596.33,
+        "price_jpy": 32249,
+        "short_change_pct": -0.0,
+        "medium_change_pct": -43.42,
+        "volume_today": 0,
+        "volume_7d_avg": 2.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 14,
+        "hk_ask_hkd": 1150.0,
+        "spread_jp_hk_pct": -27.96,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 3,
         "hk_backend": "carousell_hk"
       },
       {
@@ -25847,15 +25474,42 @@
         "volume_7d_avg": 1.71,
         "volume_ratio": 0.0,
         "liquidity_score": 6,
-        "hk_ask_hkd": 720.0,
-        "spread_jp_hk_pct": -3.03,
+        "hk_ask_hkd": 949.0,
+        "spread_jp_hk_pct": 27.81,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 62,
-        "hk_listings_n": 31,
+        "jp_comps_n": 0,
+        "hk_listings_n": 6,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-miraidon-ex-sar",
+        "name_zh": "密勒頓 ex SAR PSA10",
+        "name_jp": "ミライドンex SAR PSA10",
+        "kind": "psa10",
+        "set": "SV1V / 102",
+        "image": "images/psa10-miraidon-ex-sar.webp",
+        "tcgdex_id": "SV1V-102",
+        "price_hkd": 470.25,
+        "price_jpy": 9500,
+        "short_change_pct": 0.0,
+        "medium_change_pct": -4.88,
+        "volume_today": 0,
+        "volume_7d_avg": 1.43,
+        "volume_ratio": 0.0,
+        "liquidity_score": 5,
+        "hk_ask_hkd": 600.0,
+        "spread_jp_hk_pct": 27.59,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       },
       {
@@ -25874,15 +25528,317 @@
         "volume_7d_avg": 6.29,
         "volume_ratio": 0.32,
         "liquidity_score": 44,
-        "hk_ask_hkd": 3075.0,
-        "spread_jp_hk_pct": -2.17,
+        "hk_ask_hkd": 3900.0,
+        "spread_jp_hk_pct": 24.08,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk"
         ],
         "is_sample": false,
-        "jp_comps_n": 40,
-        "hk_listings_n": 28,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-storm-emerald",
+        "name_zh": "風暴翡翠 BOX（未開封）",
+        "name_jp": "ストームエメラルダ BOX 未開封",
+        "kind": "sealed",
+        "set": "M6",
+        "image": "images/sealed-storm-emerald.png",
+        "tcgdex_id": null,
+        "price_hkd": 792.0,
+        "price_jpy": 16000,
+        "short_change_pct": 6.67,
+        "medium_change_pct": 1.59,
+        "volume_today": 21,
+        "volume_7d_avg": 47.14,
+        "volume_ratio": 0.45,
+        "liquidity_score": 95,
+        "hk_ask_hkd": 964.5,
+        "spread_jp_hk_pct": 21.78,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "sealed-battle-partners",
+        "name_zh": "對戰夥伴 BOX（未開封）",
+        "name_jp": "バトルパートナーズ BOX 未開封",
+        "kind": "sealed",
+        "set": "SV9",
+        "image": "images/sealed-battle-partners.png",
+        "tcgdex_id": null,
+        "price_hkd": 470.25,
+        "price_jpy": 9500,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 19.5,
+        "volume_today": 1,
+        "volume_7d_avg": 2.0,
+        "volume_ratio": 0.5,
+        "liquidity_score": 19,
+        "hk_ask_hkd": 380.0,
+        "spread_jp_hk_pct": -19.19,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 7,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "sealed-terastal-fest",
+        "name_zh": "太晶慶典 ex BOX（未開封）",
+        "name_jp": "テラスタルフェスex BOX 未開封",
+        "kind": "sealed",
+        "set": "SV8a",
+        "image": "images/sealed-terastal-fest.png",
+        "tcgdex_id": null,
+        "price_hkd": 960.3,
+        "price_jpy": 19400,
+        "short_change_pct": -87.04,
+        "medium_change_pct": 21.25,
+        "volume_today": 1,
+        "volume_7d_avg": 2.43,
+        "volume_ratio": 0.41,
+        "liquidity_score": 22,
+        "hk_ask_hkd": 1124.5,
+        "spread_jp_hk_pct": 17.1,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 2,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-erika-invite-sar",
+        "name_zh": "莉佳的邀請 SAR PSA10",
+        "name_jp": "エリカの招待 SAR PSA10",
+        "kind": "psa10",
+        "set": "SV2a / 206",
+        "image": "images/psa10-erika-invite-sar.webp",
+        "tcgdex_id": "SV2a-206",
+        "price_hkd": 965.25,
+        "price_jpy": 19500,
+        "short_change_pct": 0.0,
+        "medium_change_pct": -15.22,
+        "volume_today": 0,
+        "volume_7d_avg": 1.43,
+        "volume_ratio": 0.0,
+        "liquidity_score": 7,
+        "hk_ask_hkd": 1118.0,
+        "spread_jp_hk_pct": 15.82,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-mega-symphonia",
+        "name_zh": "超級協奏 BOX（未開封）",
+        "name_jp": "メガシンフォニア BOX 未開封",
+        "kind": "sealed",
+        "set": "M1S",
+        "image": "images/sealed-mega-symphonia.png",
+        "tcgdex_id": null,
+        "price_hkd": 693.0,
+        "price_jpy": 14000,
+        "short_change_pct": -39.13,
+        "medium_change_pct": -12.5,
+        "volume_today": 5,
+        "volume_7d_avg": 12.57,
+        "volume_ratio": 0.4,
+        "liquidity_score": 65,
+        "hk_ask_hkd": 590.0,
+        "spread_jp_hk_pct": -14.86,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 13,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-mega-charizard-x-ex",
+        "name_zh": "超級噴火龍X ex SAR PSA10",
+        "name_jp": "メガリザードンXex SAR PSA10",
+        "kind": "psa10",
+        "set": "M2",
+        "image": "images/psa10-mega-charizard-x-ex.jpg",
+        "tcgdex_id": "M2-110",
+        "price_hkd": 6435.0,
+        "price_jpy": 130000,
+        "short_change_pct": 8.33,
+        "medium_change_pct": 7.08,
+        "volume_today": 1,
+        "volume_7d_avg": 2.71,
+        "volume_ratio": 0.37,
+        "liquidity_score": 16,
+        "hk_ask_hkd": 5500.0,
+        "spread_jp_hk_pct": -14.53,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-eevee-heroes-box-promo",
+        "name_zh": "伊布英雄 特別卡盒相關 PSA10",
+        "name_jp": "イーブイヒーローズ PSA10",
+        "kind": "psa10",
+        "set": "S6a",
+        "image": "images/psa10-eevee-heroes-box-promo.webp",
+        "tcgdex_id": "swsh7-189",
+        "price_hkd": 2957.62,
+        "price_jpy": 59750,
+        "short_change_pct": 47.53,
+        "medium_change_pct": -22.4,
+        "volume_today": 8,
+        "volume_7d_avg": 5.71,
+        "volume_ratio": 1.4,
+        "liquidity_score": 60,
+        "hk_ask_hkd": 2580.0,
+        "spread_jp_hk_pct": -12.77,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 12,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-ancient-roar",
+        "name_zh": "古代咆哮 BOX（未開封）",
+        "name_jp": "古代の咆哮 BOX 未開封",
+        "kind": "sealed",
+        "set": "SV4K",
+        "image": "images/sealed-ancient-roar.jpg",
+        "tcgdex_id": null,
+        "price_hkd": 598.95,
+        "price_jpy": 12100,
+        "short_change_pct": 30.8,
+        "medium_change_pct": 37.48,
+        "volume_today": 1,
+        "volume_7d_avg": 1.29,
+        "volume_ratio": 0.78,
+        "liquidity_score": 12,
+        "hk_ask_hkd": 522.5,
+        "spread_jp_hk_pct": -12.76,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 4,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "psa10-lugia-v-sa",
+        "name_zh": "洛奇亞 V SA PSA10",
+        "name_jp": "ルギアV SA PSA10",
+        "kind": "psa10",
+        "set": "S12 / 110/098",
+        "image": "images/psa10-lugia-v-sa.webp",
+        "tcgdex_id": "S12-110",
+        "price_hkd": 9900.0,
+        "price_jpy": 200000,
+        "short_change_pct": 33.42,
+        "medium_change_pct": 25.79,
+        "volume_today": 1,
+        "volume_7d_avg": 1.57,
+        "volume_ratio": 0.64,
+        "liquidity_score": 10,
+        "hk_ask_hkd": 8800.0,
+        "spread_jp_hk_pct": -11.11,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
+        "hk_backend": "carousell_hk"
+      },
+      {
+        "id": "sealed-mega-brave",
+        "name_zh": "超級勇氣 BOX（未開封）",
+        "name_jp": "メガブレイブ BOX 未開封",
+        "kind": "sealed",
+        "set": "M1L",
+        "image": "images/sealed-mega-brave.png",
+        "tcgdex_id": null,
+        "price_hkd": 693.0,
+        "price_jpy": 14000,
+        "short_change_pct": -46.07,
+        "medium_change_pct": -53.33,
+        "volume_today": 7,
+        "volume_7d_avg": 13.71,
+        "volume_ratio": 0.51,
+        "liquidity_score": 73,
+        "hk_ask_hkd": 655.0,
+        "spread_jp_hk_pct": -5.48,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 9,
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
+        "id": "psa10-pikachu-ex-sar-terastal",
+        "name_zh": "皮卡丘 ex SAR（超電）PSA10",
+        "name_jp": "ピカチュウex SAR 超電ブレイカー PSA10",
+        "kind": "psa10",
+        "set": "sv8 / 132/106",
+        "image": "images/psa10-pikachu-ex-sar-terastal.webp",
+        "tcgdex_id": "SV8-132",
+        "price_hkd": 4677.75,
+        "price_jpy": 94500,
+        "short_change_pct": 24.34,
+        "medium_change_pct": 28.75,
+        "volume_today": 3,
+        "volume_7d_avg": 2.14,
+        "volume_ratio": 1.4,
+        "liquidity_score": 17,
+        "hk_ask_hkd": 4800.0,
+        "spread_jp_hk_pct": 2.61,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 1,
         "hk_backend": "carousell_hk"
       }
     ]
