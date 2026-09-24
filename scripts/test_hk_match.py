@@ -16,6 +16,7 @@ from sources.hk_match import (  # noqa: E402
     robust_median,
 )
 from sources.hk_shops import parse_lono_cards, parse_shopline_cards, parse_zenox_products, sell_price  # noqa: E402
+from sources.yahoo_auctions_jp import publish_sold_median  # noqa: E402
 
 
 def _item(kind: str, zh: str, jp: str, hk: str) -> dict:
@@ -349,6 +350,63 @@ def test_charizard_without_set_or_number_is_rejected() -> None:
     assert hits[0]["strong"] is True
 
 
+def test_yahoo_sold_requires_grade_set_and_enough_comps() -> None:
+    item = {
+        "kind": "psa10",
+        "name_zh": "奇樹 SAR PSA10",
+        "name_jp": "ナンジャモ SAR PSA10",
+        "search_jp": "ナンジャモ SAR PSA10",
+        "set": "sv2a / 350/165",
+        "tcgdex_id": "SV2D-096",
+    }
+    rows = [
+        {"card_name": "ナンジャモ SAR PSA10", "price": 18000, "id": "a"},
+        {"card_name": "ナンジャモ SAR PSA9", "price": 9000, "id": "b"},
+        {"card_name": "ナンジャモ sv2D 096/071 SAR PSA10", "price": 17500, "id": "c"},
+        {"card_name": "ナンジャモ sv2D 096/071 SAR PSA10", "price": 18200, "id": "d"},
+        {"card_name": "ナンジャモ sv2a 350/165 SAR PSA10", "price": 80000, "id": "e"},
+        {"card_name": "ナンジャモ sv2D 096/071 SAR PSA10", "price": 400, "id": "f"},
+    ]
+    from sources.hk_match import match_item
+
+    hits = match_item(
+        rows,
+        item,
+        apply_price_band=False,
+        require_print=True,
+        extra_query=item["search_jp"],
+    )
+    assert sorted(h["id"] for h in hits) == ["c", "d", "f"]
+    assert publish_sold_median([17500, 18200, 400]) == 17500
+    assert publish_sold_median([17500, 18200]) is None
+    sealed = {
+        "kind": "sealed",
+        "name_zh": "151 補充包 BOX（未開封）",
+        "name_jp": "ポケモンカード151 BOX 未開封",
+        "search_jp": "ポケモンカード151 BOX 未開封",
+        "set": "SV2a",
+    }
+    box_rows = [
+        {"card_name": "ポケモンカード151 未開封 BOX シュリンク付き", "price": 48000, "id": "box"},
+        {"card_name": "ポケモンカード151 パック 未開封", "price": 800, "id": "pack"},
+        {"card_name": "ポケモンカード151 カートン 未開封", "price": 500000, "id": "case"},
+        {"card_name": "ピカチュウex SAR PSA10 151", "price": 90000, "id": "card"},
+    ]
+    box_hits = match_item(box_rows, sealed, apply_price_band=False, extra_query=sealed["search_jp"])
+    assert [h["id"] for h in box_hits] == ["box"]
+    lots = match_item(
+        [
+            {"card_name": "ポケモンカード151 2BOX シュリンク付き", "price": 90000, "id": "two"},
+            {"card_name": "メガブレイブ メガシンフォニア 各2BOX", "price": 29000, "id": "combo"},
+            {"card_name": "ポケモンカード151 1BOX 新品未開封 シュリンク付き", "price": 48000, "id": "one"},
+        ],
+        sealed,
+        apply_price_band=False,
+        extra_query=sealed["search_jp"],
+    )
+    assert [h["id"] for h in lots] == ["one"]
+
+
 def test_bare_collector_number_must_match() -> None:
     wrong = match_listings(
         [{"card_name": "寶可夢卡 sv5k 097 耿鬼sar psa10", "price": 2000}],
@@ -413,6 +471,7 @@ if __name__ == "__main__":
     test_zenox_psa10_skips_psa9_and_sold_out()
     test_mew_and_mewtwo_do_not_share_a_substring()
     test_charizard_without_set_or_number_is_rejected()
+    test_yahoo_sold_requires_grade_set_and_enough_comps()
     test_bare_collector_number_must_match()
     test_publish_ask_prefers_median_and_drops_a_lone_weak_listing()
     print("ok")

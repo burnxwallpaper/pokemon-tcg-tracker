@@ -98,13 +98,17 @@ _MARKERS: list[dict[str, Any]] = [
 _NON_JP = (
     "繁中", "繁體", "繁体", "中文版", "港版", "台版", "台灣版", "简中", "簡中",
     "韓版", "korean", "英文版", "美版", "英版", "歐版", "(cn)", "(hk)", "(tw)", "(kr)",
+    "中国語", "中国版", "簡体", "简体", "アジア版", "英語版", "韓国",
 )
 _SEEK = ("求購", "收購", "高價收", "wtb", "wanted", "looking for", "求卡", "想收", "收卡")
 _CODE_RE = re.compile(r"(?<![a-z])((?:sv|s|m)\d+[a-z]*)(?![a-z])")
 _JP_OK = ("日版", "日文", "japanese", "(jp)", "日本", " jp")
 
 _LOT = ("十連", "連號", "sequential", "set of", "lot of", "一套")
-_JUNK = ("福袋", "oripa", "抽池", "刮卡", "mezastar", "明耀之星", "plamo", "組裝模型", "退坑", "禮盒", "礼盒")
+_JUNK = (
+    "福袋", "oripa", "抽池", "刮卡", "mezastar", "明耀之星", "plamo", "組裝模型", "退坑",
+    "禮盒", "礼盒", "まとめ", "大量", "ジャンク", "オリパ",
+)
 
 
 def _item_blob(item: dict) -> str:
@@ -284,6 +288,8 @@ def _is_case_or_dx(title: str, query: str) -> bool:
         return True
     if re.search(r"\bdx\b", low) and not re.search(r"\bdx\b", q):
         return True
+    if "カートン" in title and "カートン" not in query:
+        return True
     return False
 
 
@@ -344,9 +350,11 @@ def _sealed_side_product(title: str) -> bool:
         re.I,
     ):
         return True
-    if re.search(r"booster\s*box|原盒", title, re.I):
+    if re.search(r"booster\s*box|原盒|ボックス|\bbox\b", title, re.I):
         return False
-    return re.search(r"補充包|單包|\bpack\b|卡包", title, re.I) is not None
+    if re.search(r"開封済|開封済み", title) and "未開封" not in title:
+        return True
+    return re.search(r"補充包|單包|\bpack\b|卡包|パック", title, re.I) is not None
 
 
 def _set_codes(text: str) -> set[str]:
@@ -632,9 +640,30 @@ def _print_hit(title: str, card_number: str | None, card_denom: str | None) -> b
     return any(num == card_number for num, _ in pairs)
 
 
-def match_item(rows: list[dict], item: dict) -> list[dict]:
+def _specific_name_hit(title: str, query: str) -> bool:
+    """エリカの招待 / ロケット団のミュウツー, not a shared name like ピカチュウ or ナンジャモ."""
+    title_n = _norm(title)
+    query_n = _norm(query)
+    for group in _groups_in(query):
+        aliases = group.get("specific") or []
+        norms = [_norm(alias) for bundle in aliases for alias in bundle]
+        if any(alias and alias in query_n for alias in norms) and any(
+            alias and alias in title_n for alias in norms
+        ):
+            return True
+    return False
+
+
+def match_item(
+    rows: list[dict],
+    item: dict,
+    *,
+    apply_price_band: bool = True,
+    require_print: bool = False,
+    extra_query: str = "",
+) -> list[dict]:
     codes = _identity_codes(item)
-    keyword_parts = [str(item.get("search_hk") or "")]
+    keyword_parts = [str(item.get("search_hk") or ""), extra_query]
     if codes:
         keyword_parts.append(" ".join(sorted(codes)))
     elif item.get("set"):
@@ -649,6 +678,8 @@ def match_item(rows: list[dict], item: dict) -> list[dict]:
         name_zh=item.get("name_zh"),
         card_number=number,
         card_denom=denom,
+        apply_price_band=apply_price_band,
+        require_print=require_print,
     )
 
 
@@ -664,6 +695,8 @@ def match_listings(
     name_zh: str | None = None,
     card_number: str | None = None,
     card_denom: str | None = None,
+    apply_price_band: bool = True,
+    require_print: bool = False,
 ) -> list[dict]:
     query = " ".join(x for x in (keyword, name_jp or "", name_zh or "") if x)
     query_n = _norm(query)
@@ -696,23 +729,38 @@ def match_listings(
                 or _is_product_not_slab(title)
                 or _stated_rarity_conflict(title, query)
                 or (not number_hit and not _rarity_ok(title, query))
-                or price < 80
-                or price > 200_000
             ):
+                continue
+            if apply_price_band and (price < 80 or price > 200_000):
                 continue
             if card_number and _frac_nums(title) and not number_hit:
                 continue
             if not number_hit and _bare_collector_conflict(title, card_number):
                 continue
+            if require_print and card_number and not number_hit:
+                if not (
+                    _specific_name_hit(title, query)
+                    and not _bare_collector_conflict(title, card_number)
+                ):
+                    continue
         elif kind == "sealed":
             if _sealed_side_product(title):
                 continue
-            if re.search(r"原箱", title):
+            if re.search(r"原箱|カートン", title):
                 continue
             multi = re.search(r"(\d+)\s*盒", title)
             if multi and int(multi.group(1)) >= 2:
                 continue
-            if not _is_box(title) or price < 80 or price > 25_000:
+            multi_box = re.search(r"(\d+)\s*(?:box|ボックス|箱)", title, re.I)
+            if multi_box and int(multi_box.group(1)) >= 2:
+                continue
+            if re.search(r"[×✕]\s*[2-9]", title):
+                continue
+            if "点セット" in title:
+                continue
+            if not _is_box(title):
+                continue
+            if apply_price_band and (price < 80 or price > 25_000):
                 continue
         else:
             continue
@@ -723,6 +771,10 @@ def match_listings(
         query_chars = {g["id"] for g in groups if g["id"] not in _SET_IDS}
         title_chars = [g["id"] for g in _groups_in(title) if g["id"] not in _SET_IDS]
         if any(gid not in query_chars for gid in title_chars):
+            continue
+        query_sets = {g["id"] for g in groups if g["id"] in _SET_IDS}
+        title_sets = [g["id"] for g in _groups_in(title) if g["id"] in _SET_IDS]
+        if query_sets and any(gid not in query_sets for gid in title_sets):
             continue
         if _code_conflict(query, title):
             continue

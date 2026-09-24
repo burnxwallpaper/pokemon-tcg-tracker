@@ -296,7 +296,7 @@ def merge_and_compute(
                 vol_today = int(today_point.get("volume") or 0)
                 if fx:
                     price_jpy = int(round(price / fx))
-            elif history and history[-1].get("price_hkd") is not None:
+            elif jp.get("status") == "preserved" and history and history[-1].get("price_hkd") is not None:
                 price = float(history[-1]["price_hkd"])
                 if fx:
                     price_jpy = int(round(price / fx))
@@ -337,6 +337,8 @@ def merge_and_compute(
         vol_ratio = round(vol_today / vol_7d, 2) if vol_7d else 0.0
 
         _stamp_today_ask(history, today, hk_ask)
+        if jp.get("status") != "preserved":
+            _stamp_today_sold(history, today, price)
 
         spread_pct = None
         if hk_ask is not None and price and price > 0:
@@ -382,12 +384,30 @@ def merge_and_compute(
                 "spread_jp_hk_pct": spread_pct,
                 "sources": srcs,
                 "is_sample": False,
-                "jp_comps_n": len(jp.get("comps") or []),
+                "jp_comps_n": int(jp["matched_n"]) if jp.get("matched_n") is not None else int(jp.get("jp_comps_n") or 0),
+                "jp_sold_samples": list(jp.get("sold_samples") or []),
                 "hk_backend": hk.get("backend"),
                 "history": history,
             }
         )
     return items
+
+
+def _stamp_today_sold(history: list[dict], today: str, price_hkd: float | None) -> None:
+    """Today's Japan sold price is this run's matched median, including a blank."""
+    for point in history:
+        if point.get("date") != today:
+            continue
+        point["price_hkd"] = price_hkd
+        point["price_authoritative"] = True
+        return
+    history.append(
+        {
+            "date": today,
+            "price_hkd": price_hkd,
+            "price_authoritative": True,
+        }
+    )
 
 
 def _stamp_today_ask(history: list[dict], today: str, hk_ask: float | None) -> None:
@@ -424,6 +444,7 @@ def _strip_ask_flags(payload: dict) -> None:
         for point in item.get("history") or []:
             if isinstance(point, dict):
                 point.pop("hk_ask_authoritative", None)
+                point.pop("price_authoritative", None)
 
 
 def compute_sections(items: list[dict], cfg: dict) -> dict:
@@ -596,6 +617,9 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
             "total_available": 0,
             "liquidity_score": it.get("liquidity_score"),
             "comps": [],
+            "matched_n": it.get("jp_comps_n"),
+            "jp_comps_n": it.get("jp_comps_n") or 0,
+            "sold_samples": it.get("jp_sold_samples") or [],
             "status": "preserved",
         }
     return out
@@ -621,7 +645,32 @@ def _yahoo_preserved_status() -> dict[str, Any]:
     return yahoo
 
 
-def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
+def _hk_preserved_from_latest() -> dict[str, dict]:
+    """Reuse the last HK asks so a JP refresh does not re-hit Carousell."""
+    if not LATEST_PATH.exists():
+        return {}
+    try:
+        prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+    out: dict[str, dict] = {}
+    for it in prior.get("items") or []:
+        if not isinstance(it, dict) or not it.get("id"):
+            continue
+        out[str(it["id"])] = {
+            "ok": it.get("hk_ask_hkd") is not None,
+            "published_hkd": it.get("hk_ask_hkd"),
+            "match_count": it.get("hk_listings_n") or 0,
+            "example_url": it.get("hk_listing_url"),
+            "listings": [],
+            "backends": [],
+            "backend": it.get("hk_backend"),
+            "status": "preserved",
+        }
+    return out
+
+
+def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) -> dict:
     now = datetime.now(HK_TZ)
     if hk_only:
         sources_cfg = cfg.get("sources") or {}
@@ -645,6 +694,23 @@ def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
             )
         source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
         source_status.update(hk_status)
+    elif jp_only:
+        cfg_jp = dict(cfg)
+        sources = {key: dict(val) for key, val in (cfg.get("sources") or {}).items()}
+        for key in ("carousell_hk", "hk_card_shops", "facebook_hk"):
+            block = dict(sources.get(key) or {})
+            block["enabled"] = False
+            sources[key] = block
+        cfg_jp["sources"] = sources
+        print("[fetch] JP-only refresh (HK asks preserved)")
+        jp_by_id, _, source_status = fetch_all(cfg_jp)
+        hk_by_id = _hk_preserved_from_latest()
+        source_status["hk_preserved"] = {
+            "enabled": True,
+            "status": "preserved",
+            "ok_items": sum(1 for row in hk_by_id.values() if row.get("published_hkd") is not None),
+            "note": "Preserved HK asks; this run refreshed Japan sold comps only",
+        }
     else:
         jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
@@ -743,7 +809,11 @@ def main() -> None:
             file=sys.stderr,
         )
         sys.exit(1)
-    payload = build_payload(cfg, hk_only=("--hk-only" in sys.argv))
+    payload = build_payload(
+        cfg,
+        hk_only=("--hk-only" in sys.argv),
+        jp_only=("--jp-only" in sys.argv),
+    )
     write_outputs(payload)
     # Print source_status summary
     ss = payload["meta"].get("source_status") or {}

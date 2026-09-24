@@ -72,6 +72,10 @@ def merge_history_by_date(
                     if incoming_authoritative:
                         merged[k] = None
                     continue
+                if k == "price_hkd" and v is None:
+                    if p.get("price_authoritative"):
+                        merged[k] = None
+                    continue
                 if v is not None or k not in merged:
                     merged[k] = v
             # A missed scrape leaves the prior ask. A QA rejection clears it.
@@ -112,6 +116,7 @@ def write_series_merged(
     )
     for point in merged:
         point.pop("hk_ask_authoritative", None)
+        point.pop("price_authoritative", None)
 
     doc = {
         "id": iid,

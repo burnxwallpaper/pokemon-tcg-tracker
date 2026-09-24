@@ -13,10 +13,14 @@ from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from ._http import median, polite_get
+from .hk_match import match_item, robust_median
 
 JST = timezone(timedelta(hours=9))
 HKT = timezone(timedelta(hours=8))
 CLOSED_URL = "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
+AUCTION_URL = "https://auctions.yahoo.co.jp/jp/auction/{auction_id}"
+# Fewer than this many title-matched comps → do not publish a sold price.
+MIN_SOLD_COMPS = 3
 
 
 def _parse_next_data(html: str) -> dict | None:
@@ -72,14 +76,16 @@ def _item_to_comp(it: dict) -> dict | None:
         return None
     if price_i <= 0:
         return None
+    auction_id = it.get("auctionId")
     return {
-        "auction_id": it.get("auctionId"),
+        "auction_id": auction_id,
         "title": title,
         "price_jpy": price_i,
         "bid_count": it.get("bidCount"),
         "end_time": it.get("endTime"),
         "image_url": it.get("imageUrl"),
         "is_fixed": bool(it.get("isFixedPrice")),
+        "url": AUCTION_URL.format(auction_id=auction_id) if auction_id else None,
     }
 
 
@@ -353,6 +359,51 @@ def comps_to_daily_history(
     return history
 
 
+def _match_sold_comps(comps: list[dict], item: dict) -> list[dict]:
+    """PSA10 needs the grade. Sealed needs a box. Set code or card number must agree."""
+    rows = [
+        {
+            "card_name": comp.get("title") or "",
+            "price": comp.get("price_jpy"),
+            "id": comp.get("auction_id"),
+            "url": comp.get("url"),
+            "source": "yahoo_auctions_jp",
+        }
+        for comp in comps
+    ]
+    hits = match_item(
+        rows,
+        item,
+        apply_price_band=False,
+        require_print=item.get("kind") != "sealed",
+        extra_query=str(item.get("search_jp") or item.get("name_jp") or ""),
+    )
+    allowed = {str(hit.get("id")) for hit in hits if hit.get("id")}
+    return [comp for comp in comps if str(comp.get("auction_id") or "") in allowed]
+
+
+def _samples_near(comps: list[dict], median_jpy: float | None, limit: int = 3) -> list[dict]:
+    if median_jpy is None:
+        picked = comps[:limit]
+    else:
+        picked = sorted(comps, key=lambda comp: abs(int(comp["price_jpy"]) - median_jpy))[:limit]
+    return [
+        {
+            "title": comp.get("title"),
+            "price_jpy": comp.get("price_jpy"),
+            "url": comp.get("url"),
+        }
+        for comp in picked
+    ]
+
+
+def publish_sold_median(prices: list[float], *, minimum: int = MIN_SOLD_COMPS) -> float | None:
+    """Robust median once enough comps agree. Too few matches publish nothing."""
+    if len(prices) < minimum:
+        return None
+    return robust_median(prices)
+
+
 def fetch_watchlist_item(
     item: dict,
     *,
@@ -365,5 +416,38 @@ def fetch_watchlist_item(
     out = search_sold(
         kw, min_interval=min_interval, days=days, max_pages=max_pages
     )
+    raw_n = len(out.get("comps") or [])
+    matched = _match_sold_comps(list(out.get("comps") or []), item)
+    prices = [int(comp["price_jpy"]) for comp in matched]
+    mid = publish_sold_median(prices)
+    now = datetime.now(JST)
+    vol_24 = 0
+    vol_7d = 0
+    for comp in matched:
+        end = _parse_end_time(comp.get("end_time"))
+        if not end:
+            continue
+        age = now - end
+        if age <= timedelta(hours=24):
+            vol_24 += 1
+        if age <= timedelta(days=7):
+            vol_7d += 1
     out["item_id"] = item.get("id")
+    out["raw_comps_n"] = raw_n
+    out["matched_n"] = len(matched)
+    out["comps"] = matched
+    out["median_jpy"] = int(round(mid)) if mid is not None else None
+    out["sold_samples"] = _samples_near(matched, mid)
+    out["volume_24h"] = vol_24
+    out["volume_7d_est"] = round(vol_7d / 7.0, 2) if vol_7d else 0
+    fetch_error = out.get("error") if out.get("status") in ("blocked", "error", "parse_error") else None
+    out["ok"] = mid is not None
+    if mid is not None:
+        out["status"] = "ok"
+        out["error"] = None
+    elif fetch_error:
+        out["error"] = fetch_error
+    else:
+        out["status"] = "thin" if matched else "empty"
+        out["error"] = None
     return out
