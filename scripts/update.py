@@ -263,6 +263,9 @@ def merge_and_compute(
     day_1 = (now.date() - timedelta(days=1)).isoformat()
     day_7 = (now.date() - timedelta(days=7)).isoformat()
 
+    from discover_watchlist import pinned_ids
+
+    pins = set(pinned_ids(cfg))
     items: list[dict] = []
     for wl in cfg.get("watchlist") or []:
         iid = wl["id"]
@@ -383,6 +386,10 @@ def merge_and_compute(
             "hk_backend": hk.get("backend"),
             "history": history,
         }
+        if wl.get("name_en"):
+            row["name_en"] = wl["name_en"]
+        if iid in pins:
+            row["pinned"] = True
         attach_public_quotes(
             row,
             watch=wl,
@@ -416,8 +423,10 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
         reverse=True,
     )
 
-    liquidity = sorted(items, key=lambda x: x.get("liquidity_score") or 0, reverse=True)
-    liquidity = liquidity[: int(cfg.get("top_n") or 50)]
+    from discover_watchlist import include_pinned_rows, pinned_ids
+
+    ranked = sorted(items, key=lambda x: x.get("liquidity_score") or 0, reverse=True)
+    liquidity = include_pinned_rows(ranked, pinned_ids(cfg), int(cfg.get("top_n") or 50))
 
     spreads = [it for it in items if it.get("spread_jp_hk_pct") is not None]
     spreads.sort(key=lambda x: abs(x["spread_jp_hk_pct"]), reverse=True)

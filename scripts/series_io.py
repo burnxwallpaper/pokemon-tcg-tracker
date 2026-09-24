@@ -190,6 +190,7 @@ def write_catalog_item(
         "id": iid,
         "name_zh": wl.get("name_zh") or old.get("name_zh"),
         "name_jp": wl.get("name_jp") or old.get("name_jp"),
+        "name_en": wl.get("name_en") or old.get("name_en"),
         "kind": wl.get("kind") or old.get("kind"),
         "set": wl.get("set") or old.get("set"),
         "search_jp": wl.get("search_jp") or old.get("search_jp"),
