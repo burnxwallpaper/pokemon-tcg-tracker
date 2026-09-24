@@ -166,7 +166,11 @@ def write_catalog_item(
         return old.get(key)
 
     blank_face = "image_official_url" in wl and not wl.get("image_official_url")
-    if blank_face:
+    snkr_image = it.get("snkrdunk_image_url") if isinstance(it.get("snkrdunk_image_url"), str) else ""
+    if blank_face and it.get("image") and snkr_image.startswith("https://"):
+        image = it.get("image")
+        image_url = snkr_image
+    elif blank_face:
         image = None
         image_url = None
     else:

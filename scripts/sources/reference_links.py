@@ -109,6 +109,9 @@ def build_reference_links(
     watch = watch or {}
     links: list[dict[str, str]] = []
     seen: set[str] = set()
+    snkr_url = str(item.get("snkrdunk_url") or watch.get("snkrdunk_url") or "").strip()
+    if snkr_url.startswith("https://snkrdunk.com/"):
+        _add(links, seen, "SNKRDUNK", snkr_url)
     sources = set(item.get("sources") or [])
     kind = str(item.get("kind") or watch.get("kind") or "psa10")
 

@@ -8,13 +8,13 @@
   "search_jp": "メガブレイブ BOX 未開封",
   "search_hk": "超級勇氣 BOX 未開封",
   "tcgdex_id": null,
-  "image": null,
-  "image_official_url": null,
+  "image": "images/sealed-mega-brave.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/2336c4f9-181e-4ef6-9741-f1d238a3a1cd.webp",
   "image_note": "shared M1 key art covers メガブレイブ and メガシンフォニア; face left blank",
-  "image_source": "none",
+  "image_source": "official",
   "series_path": "history/series/sealed-mega-brave.json",
   "history_points": 72,
   "first_seen": "2026-07-11",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T18:38:02+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

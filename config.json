@@ -31,15 +31,15 @@
   "sources": {
     "yahoo_auctions_jp": {
       "enabled": true,
-      "note": "JP sold auctions — PSA10 + sealed liquidity (PRIMARY JP reference)"
+      "note": "JP sold auctions — secondary cross-check against SNKRDUNK"
     },
     "mercari_jp": {
       "enabled": false,
       "note": "JP C2C sold comps"
     },
     "snkrdunk": {
-      "enabled": false,
-      "note": "JP marketplace last-sold / ask"
+      "enabled": true,
+      "note": "Primary JP reference. Public https://snkrdunk.com/en/ catalog, last sale, PSA10 lowest ask."
     },
     "cardrush": {
       "enabled": false,

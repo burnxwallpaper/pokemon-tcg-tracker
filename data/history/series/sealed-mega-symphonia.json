@@ -4,13 +4,13 @@
   "name_jp": "メガシンフォニア BOX 未開封",
   "kind": "sealed",
   "set": "M1S",
-  "image": "images/sealed-mega-symphonia.png",
+  "image": "images/sealed-mega-symphonia.webp",
   "image_source": "official",
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
   "history_days": 85,
-  "updated_at": "2026-09-24T18:38:02+08:00",
+  "updated_at": "2026-09-24T18:59:50+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -518,7 +518,7 @@
     },
     {
       "date": "2026-09-24",
-      "price_hkd": 367.79,
+      "price_hkd": 368.23,
       "hk_ask_hkd": 1000.0,
       "volume": 7.0
     }
