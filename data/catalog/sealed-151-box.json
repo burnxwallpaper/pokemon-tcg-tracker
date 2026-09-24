@@ -1,0 +1,19 @@
+{
+  "id": "sealed-151-box",
+  "name_zh": "151 補充包 BOX（未開封）",
+  "name_jp": "ポケモンカード151 BOX 未開封",
+  "kind": "sealed",
+  "set": "SV2a",
+  "search_jp": "ポケモンカード151 BOX 未開封 シュリンク",
+  "search_hk": "151 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-151-box.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv2a/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com SV2a OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-151-box.json",
+  "history_points": 78,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-22",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

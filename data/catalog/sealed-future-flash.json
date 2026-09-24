@@ -1,0 +1,19 @@
+{
+  "id": "sealed-future-flash",
+  "name_zh": "未來閃光 BOX（未開封）",
+  "name_jp": "未来の一閃 BOX 未開封",
+  "kind": "sealed",
+  "set": "SV4M",
+  "search_jp": "未来の一閃 BOX 未開封",
+  "search_hk": "未來閃光 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-future-flash.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com SV4 OGP (未来の一閃)",
+  "image_source": "official",
+  "series_path": "history/series/sealed-future-flash.json",
+  "history_points": 51,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-23",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

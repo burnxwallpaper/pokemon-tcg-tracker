@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>寶可夢 TCG 行情追蹤 — 個人儀表板</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --panel2: #243044;
+      --border: #2e3d52;
+      --text: #e8eef6;
+      --muted: #8b9bb0;
+      --accent: #5b9fd4;
+      --up: #3ecf8e;
+      --down: #f07178;
+      --warn: #e6c07b;
+      --sample: #c792ea;
+      --radius: 12px;
+      --font: "Segoe UI", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+    header {
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #162033 0%, var(--bg) 100%);
+    }
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .subtitle { color: var(--muted); font-size: 0.9rem; margin: 0; }
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.1rem;
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .meta-bar strong { color: var(--text); font-weight: 600; }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #3a2a4a;
+      color: var(--sample);
+      border: 1px solid #5a3d72;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      padding: 1rem 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .tab {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--muted);
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .tab:hover { color: var(--text); border-color: var(--accent); }
+    .tab.active {
+      background: var(--accent);
+      color: #0b1220;
+      border-color: var(--accent);
+    }
+    main { padding: 1rem 1.5rem 2.5rem; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-head h2 { margin: 0; font-size: 1.15rem; }
+    .section-head .hint { color: var(--muted); font-size: 0.8rem; }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.85rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.05rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      cursor: pointer;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(91, 159, 212, 0.25);
+    }
+    .card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .card-img {
+      width: 72px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: var(--panel2);
+      border: 1px solid var(--border);
+    }
+    .card-img.placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.65rem;
+      text-align: center;
+      padding: 0.25rem;
+    }
+    .card-body { min-width: 0; }
+    .price-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 0.15rem;
+    }
+    .thumb {
+      width: 36px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+      background: var(--panel2);
+      border: 1px solid var(--border);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .card-name { font-weight: 700; font-size: 0.98rem; }
+    .card-jp { color: var(--muted); font-size: 0.75rem; margin-top: 0.15rem; }
+    .kind {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      background: var(--panel2);
+      color: var(--accent);
+    }
+    .kind.sealed { color: var(--warn); }
+    .price {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0.55rem 0 0.35rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .price span { font-size: 0.75rem; color: var(--muted); font-weight: 500; margin-left: 0.25rem; }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .chg { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .chg.up { color: var(--up); }
+    .chg.down { color: var(--down); }
+    .chg.flat { color: var(--muted); }
+    .reasons {
+      margin-top: 0.55rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .reason {
+      font-size: 0.72rem;
+      background: var(--panel2);
+      border-radius: 6px;
+      padding: 0.15rem 0.4rem;
+      color: var(--warn);
+    }
+    .error, .loading {
+      padding: 2rem 1.5rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .error { color: var(--down); }
+    footer {
+      padding: 0.75rem 1.5rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    table.compact {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    table.compact th, table.compact td {
+      padding: 0.65rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table.compact th {
+      background: var(--panel2);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: none;
+    }
+    table.compact tr:last-child td { border-bottom: none; }
+    table.compact tbody tr {
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    table.compact tbody tr:hover td { background: rgba(91, 159, 212, 0.08); }
+    table.compact tbody tr:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    @media (max-width: 640px) {
+      table.compact .hide-sm { display: none; }
+    }
+
+    /* Detail panel (same-page overlay) */
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 10, 16, 0.72);
+      z-index: 100;
+      display: none;
+      align-items: stretch;
+      justify-content: flex-end;
+      padding: 0;
+    }
+    .detail-overlay.open { display: flex; }
+    .detail-panel {
+      width: min(560px, 100%);
+      max-width: 100%;
+      height: 100%;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      box-shadow: -12px 0 40px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+    }
+    .detail-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1rem 1.15rem;
+      background: linear-gradient(180deg, #162033 0%, var(--panel) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-head h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+    .detail-close {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel2);
+      color: var(--text);
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .detail-close:hover { border-color: var(--accent); }
+    .detail-body { padding: 1.1rem 1.15rem 2rem; }
+    .detail-hero {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+    .detail-hero img, .detail-hero .card-img {
+      width: 110px;
+      height: 154px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel2);
+    }
+    .detail-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.4rem 0 0.6rem;
+      align-items: center;
+    }
+    .detail-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      margin: 0.85rem 0 1.15rem;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+    }
+    .stat .label { font-size: 0.72rem; color: var(--muted); }
+    .stat .value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      margin-top: 0.15rem;
+    }
+    .stat.primary .value { color: var(--accent); font-size: 1.2rem; }
+    .chart-block {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 0.9rem 0.6rem;
+      margin-bottom: 0.85rem;
+    }
+    .chart-block h3 {
+      margin: 0 0 0.55rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .chart-wrap { position: relative; height: 200px; }
+    .sources-list {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .sources-list code {
+      background: var(--panel2);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    @media (max-width: 520px) {
+      .detail-overlay { justify-content: stretch; }
+      .detail-panel { width: 100%; border-left: none; }
+      .detail-hero { grid-template-columns: 80px 1fr; }
+      .detail-hero img, .detail-hero .card-img { width: 80px; height: 112px; }
+      .detail-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>寶可夢 TCG 行情追蹤</h1>
+    <p class="subtitle">個人投機用 · PSA10／未開封 · 香港價為主 · 日本價參考 · HKD</p>
+    <div class="meta-bar" id="metaBar">
+      <span>載入中…</span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-section="moves" type="button">大異動</button>
+    <button class="tab" data-section="liquidity" type="button">流動性</button>
+    <button class="tab" data-section="spreads" type="button">價差</button>
+  </nav>
+
+  <main>
+    <div id="status" class="loading">正在讀取 <code>../data/latest.json</code>…</div>
+
+    <section id="sec-moves" class="section active" aria-label="大異動">
+      <div class="section-head">
+        <h2>大異動</h2>
+        <span class="hint">1日／7日價格變動或量能異常 · 點擊卡片看詳情</span>
+      </div>
+      <div class="card-grid" id="movesGrid"></div>
+    </section>
+
+    <section id="sec-liquidity" class="section" aria-label="流動性">
+      <div class="section-head">
+        <h2>流動性</h2>
+        <span class="hint">約 Top N 依流動性分數排序 · 點擊列看詳情</span>
+      </div>
+      <div id="liquidityWrap"></div>
+    </section>
+
+    <section id="sec-spreads" class="section" aria-label="價差">
+      <div class="section-head">
+        <h2>價差</h2>
+        <span class="hint">香港價 vs 日本參考（正值 = 香港較貴）· 點擊卡片看詳情</span>
+      </div>
+      <div class="card-grid" id="spreadsGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    本機靜態儀表板 · 資料由 <code>scripts/update_stub.py</code> 產生 · 日後由 bot 每日同步 · 非正式投資建議
+  </footer>
+
+  <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-head">
+        <div>
+          <h2 id="detailTitle">—</h2>
+          <div class="card-jp" id="detailSub"></div>
+        </div>
+        <button type="button" class="detail-close" id="detailClose" aria-label="關閉">×</button>
+      </div>
+      <div class="detail-body" id="detailBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const DATA_URLS = [
+      "./data/latest.json",
+      "./data/latest.json",
+      "/data/latest.json",
+    ];
+
+    const SERIES_URLS = (id) => [
+      `../data/history/series/${id}.json`,
+      `./data/history/series/${id}.json`,
+      `/data/history/series/${id}.json`,
+    ];
+
+    const DEFAULTS = {
+      fx_jpy_to_hkd: 0.0495,
+      thresholds: { short_move_pct: 5, medium_move_pct: 12, volume_vs_7d_avg: 1.5 },
+    };
+
+    /** @type {Record<string, object>} */
+    let itemsById = {};
+    /** @type {object|null} */
+    let currentMeta = null;
+    /** @type {import('chart.js').Chart[]} */
+    let activeCharts = [];
+
+    function fmtHkd(n) {
+      if (n == null || Number.isNaN(n)) return "—";
+      return "HK$" + Number(n).toLocaleString("zh-HK", { maximumFractionDigits: 0 });
+    }
+
+    function chgClass(pct) {
+      if (pct > 0.05) return "up";
+      if (pct < -0.05) return "down";
+      return "flat";
+    }
+
+    function fmtPct(pct) {
+      if (pct == null) return "—";
+      const sign = pct > 0 ? "+" : "";
+      return sign + pct.toFixed(1) + "%";
+    }
+
+    function kindLabel(kind) {
+      return kind === "sealed" ? "未開封" : "PSA10";
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderMeta(meta) {
+      const fx = meta.fx_jpy_to_hkd ?? DEFAULTS.fx_jpy_to_hkd;
+      const th = meta.thresholds || DEFAULTS.thresholds;
+      const sample = meta.is_sample
+        ? `<span class="badge">${escapeHtml(meta.sample_label || "範例資料")}</span>`
+        : "";
+      document.getElementById("metaBar").innerHTML = `
+        ${sample}
+        <span>最後更新：<strong>${escapeHtml(meta.updated_at || "—")}</strong></span>
+        <span>匯率：<strong>1 JPY = ${fx} HKD</strong></span>
+        <span>門檻：1日 ±${th.short_move_pct}% · 7日 ±${th.medium_move_pct}% · 量能 ≥${th.volume_vs_7d_avg}×7日均</span>
+        <span>項目：<strong>${meta.item_count ?? "—"}</strong></span>
+      `;
+    }
+
+    function imageSrc(it) {
+      if (!it.image) return "";
+      if (it.image.startsWith("http")) return it.image;
+      return "./data/" + it.image.replace(/^\/?data\//, "");
+    }
+
+    function imgHtml(it, cls) {
+      const src = imageSrc(it);
+      if (!src) return `<div class="${cls} placeholder">無圖</div>`;
+      return `<img class="${cls}" src="${escapeHtml(src)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} placeholder',textContent:'無圖'}))" />`;
+    }
+
+    function cardHtml(it) {
+      const kind = kindLabel(it.kind);
+      const reasons = (it.move_reasons || [])
+        .map((r) => `<span class="reason">${escapeHtml(r)}</span>`)
+        .join("");
+      return `
+        <article class="card" role="button" tabindex="0" data-id="${escapeHtml(it.id)}" title="點擊查看詳情">
+          ${imgHtml(it, "card-img")}
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <div class="card-name">${escapeHtml(it.name_zh)}</div>
+                <div class="card-jp">${escapeHtml(it.name_jp || "")} · ${escapeHtml(it.set || "")}</div>
+              </div>
+              <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kind}</span>
+            </div>
+            <div class="price">${fmtHkd(it.hk_ask_hkd != null ? it.hk_ask_hkd : it.price_hkd)}<span>香港價</span></div>
+            <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}${it.spread_jp_hk_pct != null ? ` · 價差 ${fmtPct(it.spread_jp_hk_pct)}` : ""}</div>
+            <div class="row">
+              <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
+              <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
+              <span>量能 vs 7日均 ${it.volume_ratio != null ? it.volume_ratio.toFixed(1) + "×" : "—"}</span>
+            </div>
+            <div class="row">
+              ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無香港價</span>` : ""}
+              ${it.is_sample ? `<span class="badge" style="font-size:0.65rem">範例</span>` : ""}
+            </div>
+            ${reasons ? `<div class="reasons">${reasons}</div>` : ""}
+          </div>
+        </article>
+      `;
+    }
+
+    function wireCardClicks(container) {
+      container.querySelectorAll("[data-id]").forEach((el) => {
+        const open = () => openDetail(el.getAttribute("data-id"));
+        el.addEventListener("click", open);
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open();
+          }
+        });
+      });
+    }
+
+    function renderMoves(list) {
+      const el = document.getElementById("movesGrid");
+      if (!list || !list.length) {
+        el.innerHTML = `<p class="hint" style="color:var(--muted)">目前沒有超過門檻的異動。</p>`;
+        return;
+      }
+      el.innerHTML = list.map((it) => cardHtml(it)).join("");
+      wireCardClicks(el);
+    }
+
+    function renderLiquidity(list) {
+      const el = document.getElementById("liquidityWrap");
+      if (!list || !list.length) {
+        el.innerHTML = `<p style="color:var(--muted)">無資料</p>`;
+        return;
+      }
+      const rows = list
+        .map(
+          (it, i) => `
+        <tr data-id="${escapeHtml(it.id)}" tabindex="0" title="點擊查看詳情">
+          <td>${i + 1}</td>
+          <td>
+            <div style="display:flex;align-items:center">
+              ${imgHtml(it, "thumb")}
+              <div>
+                <strong>${escapeHtml(it.name_zh)}</strong>
+                <div style="color:var(--muted);font-size:0.75rem">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
+              </div>
+            </div>
+          </td>
+          <td><strong>${fmtHkd(it.hk_ask_hkd != null ? it.hk_ask_hkd : it.price_hkd)}</strong></td>
+          <td class="hide-sm">${fmtHkd(it.price_hkd)}</td>
+          <td class="hide-sm">${it.volume_today ?? "—"} / ${it.volume_7d_avg ?? "—"}</td>
+          <td><strong>${it.liquidity_score ?? "—"}</strong></td>
+          <td class="hide-sm"><span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></td>
+        </tr>`
+        )
+        .join("");
+      el.innerHTML = `
+        <table class="compact">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>品項</th>
+              <th>香港價</th>
+              <th class="hide-sm">日本參考</th>
+              <th class="hide-sm">今日量 / 7日均</th>
+              <th>流動性</th>
+              <th class="hide-sm">1日</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+      wireCardClicks(el);
+    }
+
+    function renderSpreads(list) {
+      const el = document.getElementById("spreadsGrid");
+      if (!list || !list.length) {
+        el.innerHTML = `<p style="color:var(--muted)">尚無 HK 叫價可比對。</p>`;
+        return;
+      }
+      el.innerHTML = list.map((it) => cardHtml(it)).join("");
+      wireCardClicks(el);
+    }
+
+    function destroyCharts() {
+      activeCharts.forEach((c) => {
+        try { c.destroy(); } catch (_) {}
+      });
+      activeCharts = [];
+    }
+
+    async function loadSeries(id) {
+      const cached = itemsById[id];
+      if (cached && Array.isArray(cached.history) && cached.history.length) {
+        return cached.history;
+      }
+      for (const url of SERIES_URLS(id)) {
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) continue;
+          const doc = await res.json();
+          if (Array.isArray(doc.history)) return doc.history;
+        } catch (_) {}
+      }
+      return [];
+    }
+
+    function buildCharts(history) {
+      destroyCharts();
+      const labels = history.map((p) => p.date);
+      const hkAsk = history.map((p) => (p.hk_ask_hkd != null ? p.hk_ask_hkd : null));
+      const jpRef = history.map((p) => p.price_hkd);
+      const vols = history.map((p) => p.volume);
+
+      const hasHk = hkAsk.some((v) => v != null);
+      const priceDatasets = [];
+      if (hasHk) {
+        priceDatasets.push({
+          label: "香港價 (ask)",
+          data: hkAsk,
+          borderColor: "#5b9fd4",
+          backgroundColor: "rgba(91,159,212,0.12)",
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0.25,
+          spanGaps: true,
+        });
+      }
+      priceDatasets.push({
+        label: "日本參考",
+        data: jpRef,
+        borderColor: hasHk ? "#8b9bb0" : "#5b9fd4",
+        backgroundColor: "transparent",
+        borderWidth: hasHk ? 1.5 : 2,
+        borderDash: hasHk ? [4, 3] : [],
+        pointRadius: 0,
+        tension: 0.25,
+      });
+
+      const priceCtx = document.getElementById("priceChart");
+      const volCtx = document.getElementById("volChart");
+      if (!priceCtx || !volCtx || typeof Chart === "undefined") return;
+
+      const commonOpts = {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: {
+            labels: { color: "#8b9bb0", boxWidth: 12, font: { size: 11 } },
+          },
+          tooltip: {
+            callbacks: {
+              label(ctx) {
+                const v = ctx.parsed.y;
+                if (v == null) return ctx.dataset.label + ": —";
+                if (ctx.dataset.label && ctx.dataset.label.includes("量")) {
+                  return ctx.dataset.label + ": " + v;
+                }
+                return ctx.dataset.label + ": HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 });
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: "#8b9bb0",
+              maxTicksLimit: 6,
+              font: { size: 10 },
+            },
+            grid: { color: "rgba(46,61,82,0.5)" },
+          },
+          y: {
+            ticks: {
+              color: "#8b9bb0",
+              font: { size: 10 },
+              callback: (v) => "HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 }),
+            },
+            grid: { color: "rgba(46,61,82,0.5)" },
+          },
+        },
+      };
+
+      activeCharts.push(
+        new Chart(priceCtx, {
+          type: "line",
+          data: { labels, datasets: priceDatasets },
+          options: commonOpts,
+        })
+      );
+
+      activeCharts.push(
+        new Chart(volCtx, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "成交量",
+                data: vols,
+                backgroundColor: "rgba(230, 192, 123, 0.55)",
+                borderColor: "#e6c07b",
+                borderWidth: 0,
+                borderRadius: 2,
+              },
+            ],
+          },
+          options: {
+            ...commonOpts,
+            scales: {
+              ...commonOpts.scales,
+              y: {
+                ticks: { color: "#8b9bb0", font: { size: 10 } },
+                grid: { color: "rgba(46,61,82,0.5)" },
+                beginAtZero: true,
+              },
+            },
+          },
+        })
+      );
+    }
+
+    async function openDetail(id) {
+      const it = itemsById[id];
+      if (!it) return;
+
+      const overlay = document.getElementById("detailOverlay");
+      const title = document.getElementById("detailTitle");
+      const sub = document.getElementById("detailSub");
+      const body = document.getElementById("detailBody");
+
+      title.textContent = it.name_zh;
+      sub.textContent = `${it.name_jp || ""} · ${it.set || ""}`;
+
+      const sampleBadge = it.is_sample
+        ? `<span class="badge">範例資料</span>`
+        : "";
+      const sources = (it.sources || [])
+        .map((s) => `<code>${escapeHtml(s)}</code>`)
+        .join(" ");
+
+      body.innerHTML = `
+        <div class="detail-hero">
+          ${imgHtml(it, "card-img")}
+          <div>
+            <div class="detail-meta-row">
+              <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kindLabel(it.kind)}</span>
+              ${sampleBadge}
+            </div>
+            <div class="price" style="margin:0.2rem 0">${fmtHkd(it.hk_ask_hkd != null ? it.hk_ask_hkd : it.price_hkd)}<span>香港價</span></div>
+            <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}</div>
+            <div class="row" style="margin-top:0.5rem">
+              <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
+              <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="detail-stats">
+          <div class="stat primary">
+            <div class="label">香港價 (ask)</div>
+            <div class="value">${fmtHkd(it.hk_ask_hkd)}</div>
+          </div>
+          <div class="stat">
+            <div class="label">日本參考</div>
+            <div class="value">${fmtHkd(it.price_hkd)}</div>
+          </div>
+          <div class="stat">
+            <div class="label">價差 JP↔HK</div>
+            <div class="value"><span class="chg ${chgClass(it.spread_jp_hk_pct)}">${fmtPct(it.spread_jp_hk_pct)}</span></div>
+          </div>
+          <div class="stat">
+            <div class="label">量能 vs 7日均</div>
+            <div class="value">${it.volume_ratio != null ? it.volume_ratio.toFixed(1) + "×" : "—"} <span style="font-size:0.75rem;color:var(--muted);font-weight:500">(${it.volume_today ?? "—"} / ${it.volume_7d_avg ?? "—"})</span></div>
+          </div>
+          <div class="stat">
+            <div class="label">流動性分數</div>
+            <div class="value">${it.liquidity_score ?? "—"}</div>
+          </div>
+          <div class="stat">
+            <div class="label">歷史窗口</div>
+            <div class="value">約 ${currentMeta?.history_days ?? 90} 日</div>
+          </div>
+        </div>
+        <div class="chart-block">
+          <h3>價格趨勢（約 90 日）</h3>
+          <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
+        </div>
+        <div class="chart-block">
+          <h3>成交量（約 90 日）</h3>
+          <div class="chart-wrap"><canvas id="volChart"></canvas></div>
+        </div>
+        <div class="sources-list">來源：${sources || "—"}</div>
+        <p style="font-size:0.72rem;color:var(--muted);margin:0.75rem 0 0">id: <code>${escapeHtml(it.id)}</code>${it.is_sample ? " · 範例序列（非正式行情）" : ""}</p>
+      `;
+
+      overlay.hidden = false;
+      overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+
+      const history = await loadSeries(id);
+      if (!history.length) {
+        const blocks = body.querySelectorAll(".chart-block");
+        blocks.forEach((b) => {
+          b.innerHTML = `<p style="color:var(--muted);font-size:0.85rem;margin:0">尚無歷史序列。</p>`;
+        });
+        return;
+      }
+      // Re-query canvases after innerHTML
+      requestAnimationFrame(() => buildCharts(history));
+    }
+
+    function closeDetail() {
+      const overlay = document.getElementById("detailOverlay");
+      overlay.classList.remove("open");
+      overlay.hidden = true;
+      document.body.style.overflow = "";
+      destroyCharts();
+    }
+
+    function wireDetail() {
+      document.getElementById("detailClose").addEventListener("click", closeDetail);
+      document.getElementById("detailOverlay").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closeDetail();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDetail();
+      });
+    }
+
+    function wireTabs() {
+      const tabs = document.querySelectorAll(".tab");
+      const map = {
+        moves: "sec-moves",
+        liquidity: "sec-liquidity",
+        spreads: "sec-spreads",
+      };
+      tabs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          btn.classList.add("active");
+          Object.values(map).forEach((id) =>
+            document.getElementById(id).classList.remove("active")
+          );
+          document.getElementById(map[btn.dataset.section]).classList.add("active");
+        });
+      });
+    }
+
+    async function loadData() {
+      let lastErr = null;
+      for (const url of DATA_URLS) {
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) throw new Error(url + " → " + res.status);
+          return await res.json();
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+      throw lastErr || new Error("無法讀取 latest.json");
+    }
+
+    function indexItems(data) {
+      itemsById = {};
+      const all = [
+        ...(data.items || []),
+        ...((data.sections && data.sections["大異動"]) || []),
+        ...((data.sections && data.sections["流動性"]) || []),
+        ...((data.sections && data.sections["價差"]) || []),
+      ];
+      all.forEach((it) => {
+        if (!it || !it.id) return;
+        const prev = itemsById[it.id] || {};
+        itemsById[it.id] = { ...prev, ...it };
+      });
+    }
+
+    async function init() {
+      wireTabs();
+      wireDetail();
+      try {
+        const data = await loadData();
+        document.getElementById("status").style.display = "none";
+        currentMeta = data.meta || {};
+        renderMeta(currentMeta);
+        indexItems(data);
+        const sec = data.sections || {};
+        renderMoves(sec["大異動"] || []);
+        renderLiquidity(sec["流動性"] || data.items || []);
+        renderSpreads(sec["價差"] || []);
+
+        // Deep-link: ?id=sample-001
+        const q = new URLSearchParams(location.search).get("id");
+        if (q && itemsById[q]) openDetail(q);
+      } catch (e) {
+        document.getElementById("status").className = "error";
+        document.getElementById("status").innerHTML = `
+          無法載入資料。<br/>
+          請在專案根目錄執行 <code>python3 -m http.server 8080</code>，
+          然後開啟 <code>http://localhost:8080/dashboard/</code>。<br/>
+          <small>${escapeHtml(String(e))}</small>
+        `;
+        renderMeta({
+          updated_at: "—",
+          fx_jpy_to_hkd: DEFAULTS.fx_jpy_to_hkd,
+          thresholds: DEFAULTS.thresholds,
+          is_sample: true,
+          sample_label: "載入失敗",
+          item_count: 0,
+        });
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "id": "sealed-ancient-roar",
+  "name_zh": "古代咆哮 BOX（未開封）",
+  "name_jp": "古代の咆哮 BOX 未開封",
+  "kind": "sealed",
+  "set": "SV4K",
+  "search_jp": "古代の咆哮 BOX 未開封",
+  "search_hk": "古代咆哮 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-ancient-roar.jpg",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/hero-visual.jpg",
+  "image_note": "official_product hero art pokemon-card.com SV4 (古代の咆哮)",
+  "image_source": "official",
+  "series_path": "history/series/sealed-ancient-roar.json",
+  "history_points": 57,
+  "first_seen": "2026-06-28",
+  "last_seen": "2026-09-23",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

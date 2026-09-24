@@ -1,0 +1,19 @@
+{
+  "id": "psa10-gengar-ex-sar",
+  "name_zh": "耿鬼 ex SAR PSA10",
+  "name_jp": "ゲンガーex SAR PSA10",
+  "kind": "psa10",
+  "set": "sv5a / 099/071",
+  "search_jp": "ゲンガーex SAR PSA10",
+  "search_hk": "耿鬼 SAR PSA10",
+  "tcgdex_id": "SV5K-088",
+  "image": "images/psa10-gengar-ex-sar.webp",
+  "image_official_url": "https://assets.tcgdex.net/ja/SV/SV5K/088/high.webp",
+  "image_note": "official_card SV5K-088 ゲンガーex SR",
+  "image_source": "official",
+  "series_path": "history/series/psa10-gengar-ex-sar.json",
+  "history_points": 89,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

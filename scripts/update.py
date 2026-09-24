@@ -1,0 +1,578 @@
+#!/usr/bin/env python3
+"""
+update.py — Pokémon TCG price tracker (REAL mild scrapers)
+
+Pipeline:
+  1. fetch   — Yahoo Auctions JP sold + Carousell HK asks (HKCardLink fallback)
+  2. merge   — attach JP/HK prices onto watchlist items
+  3. compute — 1日/7日 movers, liquidity, JP↔HK spreads (from history)
+  4. write   — data/latest.json + data/history/YYYY-MM-DD.json
+               + data/history/series/{id}.json (~90 daily points)
+
+HK PRIMARY → hk_ask_hkd; JP REFERENCE → price_jpy / price_hkd.
+Mild: ≥1–2s between requests, browser UA, graceful failures.
+"""
+from __future__ import annotations
+
+import json
+import sys
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+from urllib.parse import urlparse
+from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS = Path(__file__).resolve().parent
+sys.path.insert(0, str(SCRIPTS))
+
+from sources import carousell_hk, yahoo_auctions_jp  # noqa: E402
+from series_io import (  # noqa: E402
+    load_series_points,
+    merge_history_by_date,
+    write_catalog,
+    write_series_merged,
+)
+
+CONFIG_PATH = ROOT / "config.json"
+LATEST_PATH = ROOT / "data" / "latest.json"
+HISTORY_DIR = ROOT / "data" / "history"
+SERIES_DIR = HISTORY_DIR / "series"
+IMAGES_DIR = ROOT / "data" / "images"
+
+HK_TZ = timezone(timedelta(hours=8))
+
+
+def load_config() -> dict:
+    with CONFIG_PATH.open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def hkd(jpy: float | int | None, fx: float) -> float | None:
+    if jpy is None:
+        return None
+    return round(float(jpy) * fx, 2)
+
+
+def load_series(item_id: str) -> list[dict]:
+    """Prior real points from series/{id}.json (sample-only series ignored)."""
+    return load_series_points(item_id)
+
+
+def pct_change(curr: float | None, prev: float | None) -> float:
+    if curr is None or prev is None or prev == 0:
+        return 0.0
+    return round((curr - prev) / prev * 100.0, 2)
+
+
+def price_on_or_before(history: list[dict], target_date: str, field: str = "price_hkd") -> float | None:
+    """Last known value on or before target_date."""
+    val = None
+    for p in history:
+        d = p.get("date")
+        if not d or d > target_date:
+            break
+        if p.get(field) is not None:
+            val = float(p[field])
+    return val
+
+
+def avg_volume(history: list[dict], days: int = 7) -> float:
+    if not history:
+        return 0.0
+    tail = history[-days:]
+    vols = [float(p.get("volume") or 0) for p in tail]
+    return round(sum(vols) / len(vols), 2) if vols else 0.0
+
+
+def liquidity_score(vol_today: float, vol_7d: float, total_available: int) -> int:
+    """0–100 heuristic from volume + JP market depth."""
+    base = min(70.0, vol_today * 3.0 + vol_7d * 2.0)
+    depth = min(25.0, (total_available or 0) / 40.0)
+    return int(max(1, min(99, round(base + depth))))
+
+
+def download_image(url: str | None, item_id: str) -> str | None:
+    """Download official art into data/images/; returns relative path.
+
+    Never used for Yahoo/Mercari listing photos — only config image_official_url
+    (TCGdex card faces / pokemon-card.com product art / set logos).
+    """
+    if not url:
+        return None
+    from sources._http import BROWSER_UA
+
+    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+    path_part = urlparse(url).path.lower()
+    ext = ".webp"
+    for e in (".webp", ".png", ".jpg", ".jpeg"):
+        if path_part.endswith(e) or e in path_part:
+            ext = e
+            break
+    # Prefer webp/png for official; keep jpg only if source is jpg
+    dest = IMAGES_DIR / f"{item_id}{ext}"
+    try:
+        req = Request(
+            url,
+            headers={
+                "User-Agent": BROWSER_UA,
+                "Accept": "image/webp,image/apng,image/*,*/*;q=0.8",
+                "Referer": "https://www.pokemon-card.com/",
+            },
+        )
+        with urlopen(req, timeout=30) as resp:  # noqa: S310 — public CDN / official site
+            data = resp.read()
+            ctype = (resp.headers.get("Content-Type") or "").lower()
+        if len(data) < 500:
+            return None
+        # Correct extension from content-type when URL had no clear ext
+        if "png" in ctype:
+            ext = ".png"
+        elif "jpeg" in ctype or "jpg" in ctype:
+            ext = ".jpg"
+        elif "webp" in ctype:
+            ext = ".webp"
+        dest = IMAGES_DIR / f"{item_id}{ext}"
+        # Drop other extensions for this id so dashboard never keeps auction leftovers
+        for other in (".webp", ".png", ".jpg", ".jpeg"):
+            p = IMAGES_DIR / f"{item_id}{other}"
+            if p != dest and p.exists():
+                p.unlink()
+        dest.write_bytes(data)
+        return f"images/{item_id}{ext}"
+    except Exception:
+        return None
+
+
+def resolve_official_image(wl: dict) -> str | None:
+    """Resolve official thumbnail; never use Yahoo/Mercari listing photos.
+
+    Order: existing local file (post-migration = official) → download from
+    config image_official_url → None.
+    """
+    iid = wl["id"]
+    for ext in (".webp", ".png", ".jpg", ".jpeg"):
+        p = IMAGES_DIR / f"{iid}{ext}"
+        if p.exists() and p.stat().st_size >= 500:
+            return f"images/{iid}{ext}"
+    url = wl.get("image_official_url") or wl.get("official_image")
+    if url:
+        return download_image(url, iid)
+    return None
+
+
+def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, Any]]:
+    """Fetch JP + HK for each watchlist item. Returns (jp_by_id, hk_by_id, source_status)."""
+    watchlist = cfg.get("watchlist") or []
+    interval = float(cfg.get("request_min_interval_sec") or 1.6)
+    sources_cfg = cfg.get("sources") or {}
+    jp_on = bool(sources_cfg.get("yahoo_auctions_jp", {}).get("enabled"))
+    hk_on = bool(sources_cfg.get("carousell_hk", {}).get("enabled"))
+
+    jp_by_id: dict[str, dict] = {}
+    hk_by_id: dict[str, dict] = {}
+    source_status: dict[str, Any] = {
+        "yahoo_auctions_jp": {
+            "enabled": jp_on,
+            "status": "disabled" if not jp_on else "pending",
+            "ok_items": 0,
+            "errors": [],
+            "note": "JP sold closedsearch via __NEXT_DATA__",
+        },
+        "carousell_hk": {
+            "enabled": hk_on,
+            "status": "disabled" if not hk_on else "pending",
+            "ok_items": 0,
+            "backend_counts": {},
+            "errors": [],
+            "note": "HK asks; HKCardLink fallback if Cloudflare blocks Carousell",
+        },
+    }
+
+    if jp_on:
+        print(f"[fetch] Yahoo Auctions JP × {len(watchlist)} (interval≥{interval}s)")
+        any_ok = False
+        blocked = False
+        for i, item in enumerate(watchlist, 1):
+            print(f"  JP {i}/{len(watchlist)} {item['id']} …", flush=True)
+            res = yahoo_auctions_jp.fetch_watchlist_item(item, min_interval=interval)
+            jp_by_id[item["id"]] = res
+            if res.get("ok"):
+                any_ok = True
+                source_status["yahoo_auctions_jp"]["ok_items"] += 1
+            elif res.get("status") == "blocked":
+                blocked = True
+                source_status["yahoo_auctions_jp"]["errors"].append(
+                    f"{item['id']}: {res.get('error')}"
+                )
+            elif res.get("error"):
+                source_status["yahoo_auctions_jp"]["errors"].append(
+                    f"{item['id']}: {res.get('error')}"
+                )
+        source_status["yahoo_auctions_jp"]["status"] = (
+            "ok" if any_ok else ("blocked" if blocked else "empty")
+        )
+
+    if hk_on:
+        print(f"[fetch] Carousell HK probe + HKCardLink catalog match × {len(watchlist)}")
+        probe = carousell_hk.prefetch_carousell_status(min_interval=interval)
+        try_carousell = bool(probe.get("ok"))
+        source_status["carousell_hk"]["carousell_probe"] = {
+            "status": probe.get("status"),
+            "error": probe.get("error"),
+        }
+        if not try_carousell:
+            print(
+                f"  Carousell unreachable ({probe.get('status')}: {probe.get('error')}); "
+                "using HKCardLink catalog only",
+                flush=True,
+            )
+        any_ok = False
+        backends: dict[str, int] = {}
+        for i, item in enumerate(watchlist, 1):
+            print(f"  HK {i}/{len(watchlist)} {item['id']} …", flush=True)
+            res = carousell_hk.fetch_watchlist_item(
+                item, min_interval=interval, try_carousell=try_carousell
+            )
+            hk_by_id[item["id"]] = res
+            if res.get("ok"):
+                any_ok = True
+                source_status["carousell_hk"]["ok_items"] += 1
+                b = res.get("backend") or "unknown"
+                backends[b] = backends.get(b, 0) + 1
+            elif res.get("error"):
+                source_status["carousell_hk"]["errors"].append(
+                    f"{item['id']}: {res.get('error')}"
+                )
+            if res.get("fallback_note") and i == 1:
+                source_status["carousell_hk"]["fallback_note"] = res.get("fallback_note")
+        source_status["carousell_hk"]["backend_counts"] = backends
+        source_status["carousell_hk"]["status"] = (
+            "ok_fallback"
+            if any_ok and backends.get("carousell_hk", 0) == 0
+            else ("ok" if any_ok else "blocked")
+        )
+
+    return jp_by_id, hk_by_id, source_status
+
+
+def merge_and_compute(
+    cfg: dict,
+    jp_by_id: dict[str, dict],
+    hk_by_id: dict[str, dict],
+    now: datetime,
+) -> list[dict]:
+    fx = float(cfg["fx_jpy_to_hkd"])
+    hist_days = int(cfg.get("history_days", 90))
+    today = now.date().isoformat()
+    day_1 = (now.date() - timedelta(days=1)).isoformat()
+    day_7 = (now.date() - timedelta(days=7)).isoformat()
+
+    items: list[dict] = []
+    for wl in cfg.get("watchlist") or []:
+        iid = wl["id"]
+        jp = jp_by_id.get(iid) or {}
+        hk = hk_by_id.get(iid) or {}
+        price_jpy = jp.get("median_jpy")
+        price = hkd(price_jpy, fx)
+        hk_ask = hk.get("median_hkd")
+        if hk_ask is not None:
+            hk_ask = round(float(hk_ask), 2)
+
+        prev_hist = load_series(iid)
+        # Upsert today only; MERGE into prior real points (never wipe other dates)
+        vol_today = int(jp.get("volume_24h") or 0)
+        today_point = {
+            "date": today,
+            "price_hkd": price,
+            "hk_ask_hkd": hk_ask,
+            "volume": float(vol_today),
+        }
+        history = merge_history_by_date(
+            prev_hist, [today_point], prefer_incoming=True, history_days=hist_days
+        )
+
+        prev_1 = price_on_or_before(history[:-1], day_1) if len(history) > 1 else None
+        prev_7 = price_on_or_before(history[:-1], day_7) if len(history) > 1 else None
+        # If we only have today, changes are 0 (honest — no fake sample drift)
+        short_pct = pct_change(price, prev_1) if price is not None else 0.0
+        med_pct = pct_change(price, prev_7) if price is not None else 0.0
+
+        vol_7d = avg_volume(history[:-1], 7) if len(history) > 1 else float(
+            jp.get("volume_7d_est") or 0
+        )
+        if vol_7d <= 0:
+            vol_7d = float(jp.get("volume_7d_est") or max(vol_today, 1))
+        vol_ratio = round(vol_today / vol_7d, 2) if vol_7d else 0.0
+
+        spread_pct = None
+        if hk_ask is not None and price and price > 0:
+            spread_pct = round((hk_ask - price) / price * 100.0, 2)
+
+        srcs = []
+        if jp.get("ok"):
+            srcs.append("yahoo_auctions_jp")
+        if hk.get("ok"):
+            # Attribute under carousell_hk even when backend is hkcardlink
+            srcs.append("carousell_hk")
+            if hk.get("backend") == "hkcardlink":
+                srcs.append("hkcardlink")
+
+        # Image: official art only (TCGdex / pokemon-card.com). Never Yahoo listing photos.
+        image = resolve_official_image(wl)
+
+        liq = liquidity_score(
+            vol_today, vol_7d, int(jp.get("total_available") or 0)
+        )
+
+        items.append(
+            {
+                "id": iid,
+                "name_zh": wl.get("name_zh"),
+                "name_jp": wl.get("name_jp"),
+                "kind": wl.get("kind"),
+                "set": wl.get("set"),
+                "image": image,
+                "tcgdex_id": wl.get("tcgdex_id"),
+                "price_hkd": price,
+                "price_jpy": price_jpy,
+                "short_change_pct": short_pct,
+                "medium_change_pct": med_pct,
+                "volume_today": vol_today,
+                "volume_7d_avg": vol_7d,
+                "volume_ratio": vol_ratio,
+                "liquidity_score": liq,
+                "hk_ask_hkd": hk_ask,
+                "spread_jp_hk_pct": spread_pct,
+                "sources": srcs,
+                "is_sample": False,
+                "jp_comps_n": len(jp.get("comps") or []),
+                "hk_listings_n": len(hk.get("listings") or []),
+                "hk_backend": hk.get("backend"),
+                "history": history,
+            }
+        )
+    return items
+
+
+def compute_sections(items: list[dict], cfg: dict) -> dict:
+    th = cfg["thresholds"]
+    short_t = th["short_move_pct"]
+    med_t = th["medium_move_pct"]
+    vol_t = th["volume_vs_7d_avg"]
+
+    big_moves = []
+    for it in items:
+        reasons = []
+        if abs(it.get("short_change_pct") or 0) >= short_t:
+            reasons.append(f"1日 {it['short_change_pct']:+.1f}%")
+        if abs(it.get("medium_change_pct") or 0) >= med_t:
+            reasons.append(f"7日 {it['medium_change_pct']:+.1f}%")
+        if (it.get("volume_ratio") or 0) >= vol_t:
+            reasons.append(f"量能 {it['volume_ratio']:.1f}×7日均")
+        if reasons:
+            big_moves.append({**it, "move_reasons": reasons})
+    big_moves.sort(
+        key=lambda x: max(abs(x.get("short_change_pct") or 0), abs(x.get("medium_change_pct") or 0)),
+        reverse=True,
+    )
+
+    liquidity = sorted(items, key=lambda x: x.get("liquidity_score") or 0, reverse=True)
+    liquidity = liquidity[: int(cfg.get("top_n") or 50)]
+
+    spreads = [it for it in items if it.get("spread_jp_hk_pct") is not None]
+    spreads.sort(key=lambda x: abs(x["spread_jp_hk_pct"]), reverse=True)
+
+    def without_history(it: dict) -> dict:
+        return {k: v for k, v in it.items() if k != "history"}
+
+    return {
+        "big_moves": [without_history(it) for it in big_moves],
+        "liquidity": [without_history(it) for it in liquidity],
+        "spreads": [without_history(it) for it in spreads],
+    }
+
+
+def write_series_files(items: list[dict], meta: dict) -> int:
+    SERIES_DIR.mkdir(parents=True, exist_ok=True)
+    written = 0
+    for it in items:
+        doc = {
+            "id": it["id"],
+            "name_zh": it["name_zh"],
+            "name_jp": it.get("name_jp"),
+            "kind": it["kind"],
+            "set": it.get("set"),
+            "is_sample": False,
+            "real_points": True,
+            "history_days": len(it.get("history") or []),
+            "updated_at": meta.get("updated_at"),
+            "history": it.get("history") or [],
+        }
+        path = SERIES_DIR / f"{it['id']}.json"
+        with path.open("w", encoding="utf-8") as f:
+            json.dump(doc, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        written += 1
+    return written
+
+
+def write_outputs(payload: dict) -> None:
+    watchlist = payload.pop("_watchlist", None) or []
+    LATEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+
+    with LATEST_PATH.open("w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+    day = payload["meta"]["updated_at"][:10]
+    history_doc = {
+        "date": day,
+        "note": "每日快照：meta + items（真實抓取）。保留約 history_days 天。",
+        "meta": {
+            "updated_at": payload["meta"]["updated_at"],
+            "fx_jpy_to_hkd": payload["meta"]["fx_jpy_to_hkd"],
+            "is_sample": payload["meta"]["is_sample"],
+            "item_count": payload["meta"]["item_count"],
+            "source_status": payload["meta"].get("source_status"),
+        },
+        "items": [
+            {
+                "id": it["id"],
+                "name_zh": it["name_zh"],
+                "kind": it["kind"],
+                "price_hkd": it["price_hkd"],
+                "price_jpy": it["price_jpy"],
+                "volume_today": it["volume_today"],
+                "liquidity_score": it["liquidity_score"],
+                "hk_ask_hkd": it.get("hk_ask_hkd"),
+            }
+            for it in payload["items"]
+        ],
+    }
+    hist_path = HISTORY_DIR / f"{day}.json"
+    with hist_path.open("w", encoding="utf-8") as f:
+        json.dump(history_doc, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+    # Persist series (merge-by-date) + durable catalog (names / official images / tcgdex)
+    n_series = 0
+    try:
+        from series_io import write_series_merged, write_catalog
+        hist_days = int(payload["meta"].get("history_days") or 90)
+        for it in payload["items"]:
+            write_series_merged(it, payload["meta"], history_days=hist_days)
+            n_series += 1
+        cat_path = write_catalog(
+            watchlist
+            or [
+                {
+                    "id": it["id"],
+                    "name_zh": it.get("name_zh"),
+                    "name_jp": it.get("name_jp"),
+                    "kind": it.get("kind"),
+                    "set": it.get("set"),
+                    "tcgdex_id": it.get("tcgdex_id"),
+                    "image_official_url": None,
+                    "image_note": None,
+                    "search_jp": None,
+                    "search_hk": None,
+                }
+                for it in payload["items"]
+            ],
+            payload["items"],
+            payload["meta"],
+        )
+        print(f"Wrote catalog {cat_path.relative_to(ROOT)}")
+    except Exception as e:
+        # Fallback to legacy series writer
+        print(f"[warn] series_io catalog/series failed: {e}; using write_series_files")
+        n_series = write_series_files(payload["items"], payload["meta"])
+
+    n_hk = sum(1 for it in payload["items"] if it.get("hk_ask_hkd") is not None)
+    n_jp = sum(1 for it in payload["items"] if it.get("price_jpy") is not None)
+    print(f"Wrote {LATEST_PATH.relative_to(ROOT)}")
+    print(f"Wrote {hist_path.relative_to(ROOT)}")
+    print(f"Wrote {n_series} series under data/history/series/")
+    print(
+        f"REAL items={payload['meta']['item_count']} | "
+        f"with_JP={n_jp} | with_HK={n_hk} | "
+        f"is_sample={payload['meta']['is_sample']} | "
+        f"大異動={len(payload['sections']['大異動'])} | "
+        f"流動性={len(payload['sections']['流動性'])} | "
+        f"價差={len(payload['sections']['價差'])}"
+    )
+
+
+def build_payload(cfg: dict) -> dict:
+    now = datetime.now(HK_TZ)
+    jp_by_id, hk_by_id, source_status = fetch_all(cfg)
+    items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
+    sections = compute_sections(items, cfg)
+
+    n_hk = sum(1 for it in items if it.get("hk_ask_hkd") is not None)
+    n_jp = sum(1 for it in items if it.get("price_jpy") is not None)
+    # is_sample only if TOTAL failure (no real JP and no real HK)
+    is_sample = (n_jp == 0 and n_hk == 0)
+
+    return {
+        "_watchlist": cfg.get("watchlist") or [],
+        "meta": {
+            "updated_at": now.isoformat(timespec="seconds"),
+            "timezone": "Asia/Hong_Kong",
+            "is_sample": is_sample,
+            "sample_label": (
+                "範例資料 — 抓取全失敗時保留"
+                if is_sample
+                else None
+            ),
+            "fx_jpy_to_hkd": cfg["fx_jpy_to_hkd"],
+            "display_currency": cfg["display_currency"],
+            "thresholds": cfg["thresholds"],
+            "top_n": cfg["top_n"],
+            "history_days": cfg["history_days"],
+            "item_count": len(items),
+            "counts": {
+                "with_jp_price": n_jp,
+                "with_hk_ask": n_hk,
+            },
+            "pipeline": [
+                "fetch yahoo_auctions_jp sold + carousell_hk asks (hkcardlink fallback)",
+                "normalize HKD via fx_jpy_to_hkd",
+                "compute movers / liquidity / spreads from history",
+                "thumbnails: official TCGdex / pokemon-card.com art only (never auction photos)",
+                "write latest.json + history day file + series",
+            ],
+            "image_source": "official",
+            "image_source_note": "Dashboard thumbnails from TCGdex card faces or pokemon-card.com product art; Yahoo listing photos are never used.",
+            "sources_enabled": {
+                k: v.get("enabled", False) for k, v in cfg.get("sources", {}).items()
+            },
+            "source_status": source_status,
+            "display": cfg.get("display"),
+        },
+        "items": items,
+        "sections": {
+            "大異動": sections["big_moves"],
+            "流動性": sections["liquidity"],
+            "價差": sections["spreads"],
+        },
+    }
+
+
+def main() -> None:
+    cfg = load_config()
+    if not cfg.get("watchlist"):
+        print("ERROR: config.json missing watchlist", file=sys.stderr)
+        sys.exit(1)
+    payload = build_payload(cfg)
+    write_outputs(payload)
+    # Print source_status summary
+    ss = payload["meta"].get("source_status") or {}
+    print("--- source_status ---")
+    print(json.dumps(ss, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

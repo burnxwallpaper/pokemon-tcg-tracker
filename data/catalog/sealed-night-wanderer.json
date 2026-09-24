@@ -1,0 +1,19 @@
+{
+  "id": "sealed-night-wanderer",
+  "name_zh": "黯夜漫遊者 BOX（未開封）",
+  "name_jp": "ナイトワンダラー BOX 未開封",
+  "kind": "sealed",
+  "set": "SV6a",
+  "search_jp": "ナイトワンダラー BOX 未開封",
+  "search_hk": "黯夜漫遊者 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-night-wanderer.png",
+  "image_official_url": "https://www.pokemon-card.com/products/2024/images/SV6a_1.png",
+  "image_note": "official JP pack art pokemon-card.com SV6a",
+  "image_source": "official",
+  "series_path": "history/series/sealed-night-wanderer.json",
+  "history_points": 36,
+  "first_seen": "2026-06-28",
+  "last_seen": "2026-09-15",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

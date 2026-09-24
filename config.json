@@ -1,0 +1,315 @@
+{
+  "fx_jpy_to_hkd": 0.0495,
+  "display_currency": "HKD",
+  "top_n": 50,
+  "history_days": 90,
+  "thresholds": {
+    "short_move_pct": 5.0,
+    "medium_move_pct": 12.0,
+    "volume_vs_7d_avg": 1.5
+  },
+  "track": {
+    "psa10_slabs": true,
+    "sealed_product": true,
+    "raw_singles": false
+  },
+  "sync_path_note": "C:\\Users\\leosiu\\Documents\\pokemonTCG (synced later by daily bot; do not sync from this box scaffold)",
+  "request_min_interval_sec": 1.6,
+  "sources": {
+    "yahoo_auctions_jp": {
+      "enabled": true,
+      "note": "JP sold auctions — PSA10 + sealed liquidity (PRIMARY JP reference)"
+    },
+    "mercari_jp": {
+      "enabled": false,
+      "note": "JP C2C sold comps"
+    },
+    "snkrdunk": {
+      "enabled": false,
+      "note": "JP marketplace last-sold / ask"
+    },
+    "cardrush": {
+      "enabled": false,
+      "note": "JP shop sell + buy prices"
+    },
+    "yuyu_tei": {
+      "enabled": false,
+      "note": "JP singles shop (PSA listings secondary)"
+    },
+    "magi": {
+      "enabled": false,
+      "note": "JP sealed BOX listings"
+    },
+    "carousell_hk": {
+      "enabled": true,
+      "note": "HK MVP local asks (PRIMARY HK). Falls back to HKCardLink public JSON if Cloudflare blocks."
+    },
+    "hk_card_shops": {
+      "enabled": false,
+      "note": "Local shop sites; Facebook later"
+    }
+  },
+  "display": {
+    "primary_market": "hk",
+    "primary_label": "香港價",
+    "reference_label": "日本參考",
+    "currency": "HKD"
+  },
+  "watchlist": [
+    {
+      "id": "psa10-pikachu-ex-sar-151",
+      "name_zh": "皮卡丘 ex SAR PSA10",
+      "name_jp": "ピカチュウex SAR PSA10",
+      "kind": "psa10",
+      "set": "sv2a / 198/165",
+      "search_jp": "ピカチュウex SAR PSA10 198/165",
+      "search_hk": "皮卡丘 SAR PSA10 151",
+      "tcgdex_id": "SV2a-173",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/173/high.webp",
+      "image_note": "official_card SV2a-173 ピカチュウ AR (config 198/165 was ナナミの手助け)"
+    },
+    {
+      "id": "psa10-charizard-ex-sar-151",
+      "name_zh": "噴火龍 ex SAR PSA10",
+      "name_jp": "リザードンex SAR PSA10",
+      "kind": "psa10",
+      "set": "sv2a / 201/165",
+      "search_jp": "リザードンex SAR PSA10 201/165",
+      "search_hk": "噴火龍 SAR PSA10 151",
+      "tcgdex_id": "SV2a-201",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/201/high.webp",
+      "image_note": "official_card SV2a-201 リザードンex SAR"
+    },
+    {
+      "id": "psa10-mew-ex-sar",
+      "name_zh": "夢幻 ex SAR PSA10",
+      "name_jp": "ミュウex SAR PSA10",
+      "kind": "psa10",
+      "set": "sv3a / 205/187",
+      "search_jp": "ミュウex SAR PSA10",
+      "search_hk": "夢幻 SAR PSA10",
+      "tcgdex_id": "SV4a-347",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/347/high.webp",
+      "image_note": "official_card SV4a-347 ミュウex SAR (Shiny Treasure)"
+    },
+    {
+      "id": "psa10-gengar-ex-sar",
+      "name_zh": "耿鬼 ex SAR PSA10",
+      "name_jp": "ゲンガーex SAR PSA10",
+      "kind": "psa10",
+      "set": "sv5a / 099/071",
+      "search_jp": "ゲンガーex SAR PSA10",
+      "search_hk": "耿鬼 SAR PSA10",
+      "tcgdex_id": "SV5K-088",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV5K/088/high.webp",
+      "image_note": "official_card SV5K-088 ゲンガーex SR"
+    },
+    {
+      "id": "psa10-umbreon-vmax-hr",
+      "name_zh": "月亮伊布 VMAX HR PSA10",
+      "name_jp": "ブラッキーVMAX HR PSA10",
+      "kind": "psa10",
+      "set": "S6a / 095/069",
+      "search_jp": "ブラッキーVMAX HR PSA10 095/069",
+      "search_hk": "月亮伊布 VMAX HR PSA10",
+      "tcgdex_id": "swsh7-215",
+      "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/215/high.webp",
+      "image_note": "official_card EN Evolving Skies 215 = JP S6a 095 HR moonbreon art"
+    },
+    {
+      "id": "psa10-leafeon-vmax-hr",
+      "name_zh": "葉伊布 VMAX HR PSA10",
+      "name_jp": "リーフィアVMAX HR PSA10",
+      "kind": "psa10",
+      "set": "S6a / 089/069",
+      "search_jp": "リーフィアVMAX HR PSA10",
+      "search_hk": "葉伊布 VMAX HR PSA10",
+      "tcgdex_id": "swsh7-205",
+      "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/205/high.webp",
+      "image_note": "official_card EN Evolving Skies 205 = JP S6a 089 HR art"
+    },
+    {
+      "id": "psa10-moonbreon-v-sr",
+      "name_zh": "月亮伊布 V SR PSA10",
+      "name_jp": "ブラッキーV SR PSA10",
+      "kind": "psa10",
+      "set": "S6a / 085/069",
+      "search_jp": "ブラッキーV SR PSA10 085/069",
+      "search_hk": "月亮伊布 V SR PSA10",
+      "tcgdex_id": "swsh7-189",
+      "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/189/high.webp",
+      "image_note": "official_card EN Evolving Skies 189 = JP S6a 085 Umbreon V SR"
+    },
+    {
+      "id": "psa10-lugia-v-sa",
+      "name_zh": "洛奇亞 V SA PSA10",
+      "name_jp": "ルギアV SA PSA10",
+      "kind": "psa10",
+      "set": "S12 / 110/098",
+      "search_jp": "ルギアV SA PSA10",
+      "search_hk": "洛奇亞 V SA PSA10",
+      "tcgdex_id": "S12-110",
+      "image_official_url": "https://assets.tcgdex.net/ja/S/S12/110/high.webp",
+      "image_note": "official_card S12-110 ルギアV SA"
+    },
+    {
+      "id": "psa10-rayquaza-v-sa",
+      "name_zh": "烈空坐 V SA PSA10",
+      "name_jp": "レックウザV SA PSA10",
+      "kind": "psa10",
+      "set": "S7R / 076/067",
+      "search_jp": "レックウザV SA PSA10",
+      "search_hk": "烈空坐 V SA PSA10",
+      "tcgdex_id": "swsh7-194",
+      "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/194/high.webp",
+      "image_note": "official_card EN Evolving Skies 194 = JP S7R 076 Rayquaza V SA art"
+    },
+    {
+      "id": "psa10-pikachu-ex-sar-terastal",
+      "name_zh": "皮卡丘 ex SAR（超電）PSA10",
+      "name_jp": "ピカチュウex SAR 超電ブレイカー PSA10",
+      "kind": "psa10",
+      "set": "sv8 / 132/106",
+      "search_jp": "ピカチュウex SAR 超電ブレイカー PSA10",
+      "search_hk": "皮卡丘 超電 SAR PSA10",
+      "tcgdex_id": "SV8-132",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV8/132/high.webp",
+      "image_note": "official_card SV8-132 ピカチュウex SAR"
+    },
+    {
+      "id": "psa10-n-sar",
+      "name_zh": "N SAR PSA10",
+      "name_jp": "N SAR PSA10",
+      "kind": "psa10",
+      "set": "sv6a",
+      "search_jp": "N SAR PSA10 ポケモン",
+      "search_hk": "N SAR PSA10",
+      "tcgdex_id": "SV9-127",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV9/127/high.webp",
+      "image_note": "official_card SV9-127 Nのゾロアークex SAR"
+    },
+    {
+      "id": "psa10-iono-sar",
+      "name_zh": "奇樹 SAR PSA10",
+      "name_jp": "ナンジャモ SAR PSA10",
+      "kind": "psa10",
+      "set": "sv2a / 350/165",
+      "search_jp": "ナンジャモ SAR PSA10",
+      "search_hk": "奇樹 SAR PSA10",
+      "tcgdex_id": "SV2D-096",
+      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2D/096/high.webp",
+      "image_note": "official_card SV2D-096 ナンジャモ SAR"
+    },
+    {
+      "id": "sealed-151-box",
+      "name_zh": "151 補充包 BOX（未開封）",
+      "name_jp": "ポケモンカード151 BOX 未開封",
+      "kind": "sealed",
+      "set": "SV2a",
+      "search_jp": "ポケモンカード151 BOX 未開封 シュリンク",
+      "search_hk": "151 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv2a/assets/images/ogp.png",
+      "image_note": "official_product promo art pokemon-card.com SV2a OGP"
+    },
+    {
+      "id": "sealed-rulers-black-flame",
+      "name_zh": "黑炎支配者 BOX（未開封）",
+      "name_jp": "黒炎の支配者 BOX 未開封",
+      "kind": "sealed",
+      "set": "SV3",
+      "search_jp": "黒炎の支配者 BOX 未開封",
+      "search_hk": "黑炎 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv3/assets/images/ogp.png",
+      "image_note": "official_product promo art pokemon-card.com SV3 OGP"
+    },
+    {
+      "id": "sealed-future-flash",
+      "name_zh": "未來閃光 BOX（未開封）",
+      "name_jp": "未来の一閃 BOX 未開封",
+      "kind": "sealed",
+      "set": "SV4M",
+      "search_jp": "未来の一閃 BOX 未開封",
+      "search_hk": "未來閃光 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/ogp.png",
+      "image_note": "official_product promo art pokemon-card.com SV4 OGP (未来の一閃)"
+    },
+    {
+      "id": "sealed-ancient-roar",
+      "name_zh": "古代咆哮 BOX（未開封）",
+      "name_jp": "古代の咆哮 BOX 未開封",
+      "kind": "sealed",
+      "set": "SV4K",
+      "search_jp": "古代の咆哮 BOX 未開封",
+      "search_hk": "古代咆哮 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/hero-visual.jpg",
+      "image_note": "official_product hero art pokemon-card.com SV4 (古代の咆哮)"
+    },
+    {
+      "id": "sealed-terastal-fest",
+      "name_zh": "太晶慶典 ex BOX（未開封）",
+      "name_jp": "テラスタルフェスex BOX 未開封",
+      "kind": "sealed",
+      "set": "SV8a",
+      "search_jp": "テラスタルフェスex BOX 未開封",
+      "search_hk": "太晶慶典 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv8a/assets/images/ogp.png",
+      "image_note": "official_product promo art pokemon-card.com SV8a OGP"
+    },
+    {
+      "id": "sealed-super-electric",
+      "name_zh": "超電破 BOX（未開封）",
+      "name_jp": "超電ブレイカー BOX 未開封",
+      "kind": "sealed",
+      "set": "SV8",
+      "search_jp": "超電ブレイカー BOX 未開封",
+      "search_hk": "超電破 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/ex/sv8/assets/images/ogp.png",
+      "image_note": "official_product promo art pokemon-card.com SV8 OGP"
+    },
+    {
+      "id": "sealed-night-wanderer",
+      "name_zh": "黯夜漫遊者 BOX（未開封）",
+      "name_jp": "ナイトワンダラー BOX 未開封",
+      "kind": "sealed",
+      "set": "SV6a",
+      "search_jp": "ナイトワンダラー BOX 未開封",
+      "search_hk": "黯夜漫遊者 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/products/2024/images/SV6a_1.png",
+      "image_note": "official JP pack art pokemon-card.com SV6a"
+    },
+    {
+      "id": "sealed-paradise-dragona",
+      "name_zh": "樂園龍 BOX（未開封）",
+      "name_jp": "楽園ドラゴーナ BOX 未開封",
+      "kind": "sealed",
+      "set": "SV7a",
+      "search_jp": "楽園ドラゴーナ BOX 未開封",
+      "search_hk": "樂園龍 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/products/2024/images/sv7a_1.png",
+      "image_note": "official JP pack art pokemon-card.com SV7a"
+    },
+    {
+      "id": "sealed-heat-wave-arena",
+      "name_zh": "熱浪競技場 BOX（未開封）",
+      "name_jp": "熱風アリーナ BOX 未開封",
+      "kind": "sealed",
+      "set": "SV9a",
+      "search_jp": "熱風アリーナ BOX 未開封",
+      "search_hk": "熱浪競技場 BOX 未開封",
+      "image_official_url": "https://www.pokemon-card.com/products/2025/images/sv9a_banner.jpg",
+      "image_note": "official JP product banner pokemon-card.com SV9a"
+    },
+    {
+      "id": "psa10-eevee-heroes-box-promo",
+      "name_zh": "伊布英雄 特別卡盒相關 PSA10",
+      "name_jp": "イーブイヒーローズ PSA10",
+      "kind": "psa10",
+      "set": "S6a",
+      "search_jp": "イーブイヒーローズ PSA10",
+      "search_hk": "伊布英雄 PSA10",
+      "tcgdex_id": "swsh7-189",
+      "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/189/high.webp",
+      "image_note": "official_card Umbreon V SR art (Eevee Heroes related PSA10)"
+    }
+  ]
+}

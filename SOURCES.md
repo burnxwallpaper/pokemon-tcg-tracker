@@ -1,0 +1,126 @@
+# 公開資料源研究筆記（JP / HK · PSA10 + 未開封）
+
+研究日期：2026-09-24（HK）。
+**已實作溫和 scraper**（`scripts/update.py`）：
+- Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅
+- Carousell HK → 目前 Cloudflare 403；fallback HKCardLink 公開 Supabase listings ✅（部分命中）
+狀態見每次更新的 `meta.source_status`。  
+目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
+
+誠實前提：幾乎沒有官方、穩定、免費的「成交 API」。多數是 HTML／內部 JSON、第三方聚合（Apify 等），或商店標價（非成交）。ToS 多禁止未授權爬取；個人研究也應限頻、快取、可識別 User-Agent，並優先 sold／公開列表。
+
+---
+
+## MVP 優先建議（總覽）
+
+| 優先 | 來源 | 角色 | 為何 |
+|------|------|------|------|
+| **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交＋流動性 | 日版 PSA10／BOX 成交樣本最大；可算 median／量 |
+| **P0** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大、PSA10／未開封關鍵字好搜 |
+| **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；價差區塊必要 |
+| **P1** | SNKRDUNK（スニーカーダンク） | JP 市價參考 | 鑑定卡 last-sold／ask 整齊；適合 PSA10 watchlist |
+| **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
+| **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |
+| **P2** | 遊々亭 (Yuyu-tei) | 單卡店價 | raw／店售為主；PSA10 次要 |
+| **P3** | 香港卡店官網／Facebook | 本地零售 | MVP 後；FB 需登入／反爬，先記清單 |
+
+---
+
+## 各源詳述
+
+### 1. Yahoo Auctions Japan（ヤフオク）— **P0**
+
+- **提供什麼**：進行中＋**結束（落札）**拍賣；標題、落札價 JPY、入札數、結束時間、URL。
+- **PSA10 適配**：高。關鍵字如 `ポケモンカード … PSA10`；成交價可用。
+- **Sealed 適配**：高。`未開封`／`シュリンク`／`BOX`。
+- **流動性訊號**：結束筆數、入札數、單位時間成交量 → 很適合 Top-50 by liquidity。
+- **抓取難度**：中高。公開搜尋／結束搜尋頁；結構常變；可能要日文關鍵字＋代理。無官方公開 API。第三方（如 Apify yahoo-auction-sold-comps）有 sold summary。
+- **ToS／限制**：Yahoo 服務條款通常限制自動化；需溫和頻率、尊重 robots。**勿大量並行。**
+- **MVP 用法**：每日關鍵字列表（watchlist）抽 ended sold → median JPY → × FX → HKD；記 `volume_today`。
+
+### 2. Mercari Japan（jp.mercari.com）— **P0**
+
+- **提供什麼**：C2C 上架＋**售出（売り切れ）**；售出價、狀態、標題。
+- **PSA10／Sealed**：高（同關鍵字策略）。售出可作 comps；在售可作 ask。
+- **流動性**：售出速度／筆數佳；與ヤフオク互補（固價 vs 競價）。
+- **抓取難度**：中高。前端多為客戶端渲染；實務常打內部 JSON 或用第三方（Apify mercari sold、ReefAPI 等）。HTML 裸抓困難。
+- **ToS**：禁止未授權爬取／濫用的條款常見；第三方 API 屬灰色、付費、且可能隨時失效。
+- **MVP 用法**：與ヤフオク同一 watchlist 合併 median；量能加總。
+
+### 3. Carousell Hong Kong（hk.carousell.com）— **P0（HK）**
+
+- **提供什麼**：本地二手／收藏叫價（ask）；PSA10、sealed BOX 都有刊登。分類路徑約在 Hobbies → Collectibles → Trading cards。
+- **PSA10／Sealed**：中高（標題品質參差，需正規化）。
+- **流動性**：刊登數＋「聊過／想要」可粗估；**成交價多半不可見** → 價差用 ask vs JP sold。
+- **抓取難度**：中。列表／搜尋頁；地區選 HK；反爬與登入牆可能出現。
+- **ToS**：平台禁止未授權 scraping 的機率高；個人低頻搜尋較務實。
+- **MVP 用法**：對 Top 流動性品項搜 HK 關鍵字 → 取合理 ask 中位數 → `spread_jp_hk_pct`。Facebook 稍後再接。
+
+### 4. SNKRDUNK（snkrdunk.com）— **P1**
+
+- **提供什麼**：球鞋起家的鑑定卡市集；last sold／最低 ask 等（以站上顯示為準）。第三方有卡片搜尋／報價工具與非官方 API 包裝。
+- **PSA10**：很高（市集偏 graded）。
+- **Sealed**：中（以單卡／鑑定為主；BOX 較少）。
+- **流動性**：有成交次數可用；適合 PSA10 核心清單。
+- **抓取難度**：中高。無穩定公開官方 API；第三方 Parse／Spider 等需評估授權與費用。
+- **ToS**：服務條款可限制自動化；**不要假設可自由 bulk scrape**。
+- **MVP 用法**：PSA10 參考價第二來源；與ヤフオク／メルカリ交叉驗證異常跳動。
+
+### 5. Cardrush（cardrush.jp / cardrush.media）— **P1**
+
+- **提供什麼**：大型日系 TCG 店網路；**賣價＋買取價**、庫存、狀態（含鑑定表記）。`cardrush.media` 買取列表曾出現可帶 `to_json_option` 的列表介面（社群／文章有範例）— **非正式 API，隨時可能關**。
+- **PSA10**：中高（店內鑑定品／標註）。
+- **Sealed**：中（BOX／パック買取與販售有，但成交量不如 C2C）。
+- **流動性**：庫存變化可參考；不如拍賣「真成交量」。
+- **抓取難度**：中。商店 HTML／疑似 JSON 列表；Apify 有 CardRush／Pokémon price actor。
+- **ToS**：零售站通常不歡迎 bulk；限頻＋快取。
+- **MVP 用法**：店價錨點、買取下限；不單獨當「市場成交」。
+
+### 6. magi（magi.camp）— **P2**
+
+- **提供什麼**：個人／店家出價市集；**未開封 BOX** 上架多。
+- **PSA10**：中低。
+- **Sealed**：高（ask 密度）。
+- **流動性**：上架數可參考；sold 較難系統化。
+- **抓取難度**：中。
+- **MVP 用法**：sealed 叫價輔助；成交仍以ヤフオク／メルカリ為準。
+
+### 7. 遊々亭 Yuyu-tei（yuyu-tei.jp）— **P2**
+
+- **提供什麼**：大型單卡店賣價／買取、稀有度、庫存；第三方 scraper 可拉 sell+buy spread。
+- **PSA10**：低～中（主戰場是 raw／店況）。
+- **Sealed**：低。
+- **MVP 用法**：非本產品核心；若日後擴 raw 再升優先。
+
+### 8. 香港本地卡店網站 — **P3**
+
+- **提供什麼**：零售標價、偶爾預購 BOX；店家分散（獨立站、Shopify、IG／FB）。
+- **適配**：sealed 零售價；PSA10 較少系統上架。
+- **難度**：每店一爬蟲；維護成本高。
+- **Facebook**：社團／專頁流動性高但登入牆、ToS、反爬嚴重 → **明確延後**。
+- **MVP**：先人工維護 3～5 間常看店的 URL 清單於 config；自動抓之後再做。
+
+### 其他提及（非優先）
+
+- **Suruga-ya / 駿河屋**：二手雜項；TCG 非最強。
+- **HKCardLink 等聚合**：可能快取 SNKRDUNK 等；宜當 UI 靈感，資料請回源站驗證，並注意其免責。
+- **付費 Apify／ReefAPI**：可加速原型，但有費用、依賴第三方、合規仍須自評。
+
+---
+
+## 建議的 MVP 資料流（實作時）
+
+1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
+2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
+3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
+4. **HK**：Carousell ask → 價差。
+5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
+
+---
+
+## 合規備註（請務必閱讀）
+
+- 本檔僅研究筆記，**不構成**鼓勵違反各站 ToS 的指示。
+- 個人、低頻率、公開頁、加快取、可停用開關（`config.json` → `sources.*.enabled`）是務實底線。
+- 若站方提供官方 API／合作再優先改走官方。
+- 顯示與儲存僅供個人研究；轉售或公開再分發第三方數據前請自行確認授權。

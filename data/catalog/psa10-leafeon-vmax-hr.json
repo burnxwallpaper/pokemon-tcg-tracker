@@ -1,0 +1,19 @@
+{
+  "id": "psa10-leafeon-vmax-hr",
+  "name_zh": "葉伊布 VMAX HR PSA10",
+  "name_jp": "リーフィアVMAX HR PSA10",
+  "kind": "psa10",
+  "set": "S6a / 089/069",
+  "search_jp": "リーフィアVMAX HR PSA10",
+  "search_hk": "葉伊布 VMAX HR PSA10",
+  "tcgdex_id": "swsh7-205",
+  "image": "images/psa10-leafeon-vmax-hr.webp",
+  "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/205/high.webp",
+  "image_note": "official_card EN Evolving Skies 205 = JP S6a 089 HR art",
+  "image_source": "official",
+  "series_path": "history/series/psa10-leafeon-vmax-hr.json",
+  "history_points": 39,
+  "first_seen": "2026-07-04",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "sealed-paradise-dragona",
+  "name_zh": "樂園龍 BOX（未開封）",
+  "name_jp": "楽園ドラゴーナ BOX 未開封",
+  "kind": "sealed",
+  "set": "SV7a",
+  "search_jp": "楽園ドラゴーナ BOX 未開封",
+  "search_hk": "樂園龍 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-paradise-dragona.png",
+  "image_official_url": "https://www.pokemon-card.com/products/2024/images/sv7a_1.png",
+  "image_note": "official JP pack art pokemon-card.com SV7a",
+  "image_source": "official",
+  "series_path": "history/series/sealed-paradise-dragona.json",
+  "history_points": 29,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-22",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}

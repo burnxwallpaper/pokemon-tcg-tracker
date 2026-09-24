@@ -1,0 +1,19 @@
+{
+  "id": "sealed-super-electric",
+  "name_zh": "超電破 BOX（未開封）",
+  "name_jp": "超電ブレイカー BOX 未開封",
+  "kind": "sealed",
+  "set": "SV8",
+  "search_jp": "超電ブレイカー BOX 未開封",
+  "search_hk": "超電破 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-super-electric.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv8/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com SV8 OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-super-electric.json",
+  "history_points": 50,
+  "first_seen": "2026-06-29",
+  "last_seen": "2026-09-22",
+  "updated_at": "2026-09-24T15:47:41+08:00"
+}
