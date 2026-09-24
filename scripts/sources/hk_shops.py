@@ -60,7 +60,7 @@ def sell_price(title: str, prices: list[float]) -> float | None:
     return min(vals)
 
 
-def parse_shopline_cards(html: str, source: str) -> list[dict]:
+def parse_shopline_cards(html: str, source: str, *, origin: str = "") -> list[dict]:
     found = list(_SHOPLINE_TITLE.finditer(html))
     rows: list[dict] = []
     for index, match in enumerate(found):
@@ -78,12 +78,35 @@ def parse_shopline_cards(html: str, source: str) -> list[dict]:
         price = sell_price(title, prices)
         if price is None or not title:
             continue
-        rows.append({"card_name": title, "price": price, "source": source, "id": title})
+        url = _product_url_before(html, match.start(), origin)
+        rows.append(
+            {
+                "card_name": title,
+                "price": price,
+                "source": source,
+                "id": title,
+                "url": url,
+            }
+        )
     return rows
 
 
+def _product_url_before(html: str, title_start: int, origin: str) -> str | None:
+    """Product link sits above the title, not in the next card."""
+    window = html[max(0, title_start - 1500):title_start]
+    found = list(re.finditer(r'href="([^"]*?/products/[^"#?]+)', window))
+    if not found:
+        return None
+    path = found[-1].group(1)
+    if path.startswith("http"):
+        return path
+    if not origin:
+        return None
+    return origin.rstrip("/") + "/" + path.lstrip("/")
+
+
 def parse_lono_cards(html: str) -> list[dict]:
-    return parse_shopline_cards(html, "lono")
+    return parse_shopline_cards(html, "lono", origin="https://www.lono.com.hk")
 
 
 def _fetch_lono(min_interval: float) -> tuple[list[dict], str | None]:
@@ -173,12 +196,14 @@ def parse_zenox_products(payload: Any, *, graded: bool) -> list[dict]:
         if chosen is None:
             continue
         card_name = title if not graded or _PSA10_LABEL.search(title) else f"{title} PSA10"
+        handle = str(product.get("handle") or "").strip()
         rows.append(
             {
                 "card_name": card_name,
                 "price": chosen,
                 "source": "zenox",
                 "id": product.get("id"),
+                "url": f"https://www.zenoxstore.com/products/{handle}" if handle else None,
             }
         )
     return rows
@@ -241,7 +266,9 @@ def _fetch_shipmytoy(min_interval: float) -> tuple[list[dict], str | None]:
         if resp.status_code != 200:
             err = f"HTTP {resp.status_code} p{page}"
             break
-        batch = parse_shopline_cards(resp.text, "shipmytoy")
+        batch = parse_shopline_cards(
+            resp.text, "shipmytoy", origin="https://www.shipmytoy.com.hk"
+        )
         added = 0
         for row in batch:
             key = (row["card_name"], float(row["price"]))
@@ -286,7 +313,7 @@ def match_shop(
     return {
         "ok": bool(hits),
         "asks_hkd": [h["price_hkd"] for h in hits],
-        "listings": hits[:12],
+        "listings": hits,
         "error": None if hits else err,
         "status": "ok" if hits else ("empty" if catalog else "error"),
         "catalog_size": len(catalog),

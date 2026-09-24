@@ -95,6 +95,7 @@ def parse_listing_cards(html: str) -> list[dict]:
                 "price": price,
                 "id": listing_id,
                 "source": "carousell_hk",
+                "url": f"https://www.carousell.com.hk/p/{listing_id}/",
             }
         )
     return rows
@@ -158,27 +159,32 @@ def search_carousell_item(
 ) -> dict[str, Any]:
     status = "empty"
     error = None
-    seen: set[str] = set()
+    seen_queries: set[str] = set()
+    seen_ids: set[str] = set()
     hits: list[dict] = []
     for query in queries:
-        if not query or query in seen:
+        if not query or query in seen_queries:
             continue
-        seen.add(query)
+        seen_queries.add(query)
         fetched = _fetch_search_html(query, min_interval=min_interval)
         status = fetched.get("status") or status
         error = fetched.get("error")
         if fetched.get("status") == "blocked":
             break
-        hits = match_item(list(fetched.get("rows") or []), item)
-        if hits:
-            break
+        for hit in match_item(list(fetched.get("rows") or []), item):
+            key = str(hit.get("id") or hit.get("title") or "")
+            if not key or key in seen_ids:
+                continue
+            seen_ids.add(key)
+            hits.append(hit)
+    hits.sort(key=lambda row: float(row["price_hkd"]))
     return {
         "ok": bool(hits),
         "asks_hkd": [h["price_hkd"] for h in hits],
-        "listings": hits[:12],
+        "listings": hits,
         "error": None if hits else error,
         "status": "ok" if hits else ("blocked" if status == "blocked" else "empty"),
-        "searched": len(seen),
+        "searched": len(seen_queries),
     }
 
 
@@ -298,7 +304,7 @@ def search_hkcardlink_item(item: dict, *, min_interval: float) -> dict[str, Any]
     return {
         "ok": bool(hits),
         "asks_hkd": [h["price_hkd"] for h in hits],
-        "listings": hits[:12],
+        "listings": hits,
         "error": None if hits else err,
         "status": "ok" if hits else ("empty" if catalog else "error"),
         "catalog_size": len(catalog),

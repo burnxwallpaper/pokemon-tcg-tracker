@@ -7,7 +7,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sources.carousell_hk import parse_listing_cards  # noqa: E402
-from sources.hk_match import lowest_ask, match_item, match_listings, primary_query, robust_median  # noqa: E402
+from sources.hk_match import (  # noqa: E402
+    lowest_ask,
+    match_item,
+    match_listings,
+    primary_query,
+    publish_ask,
+    robust_median,
+)
 from sources.hk_shops import parse_lono_cards, parse_shopline_cards, parse_zenox_products, sell_price  # noqa: E402
 
 
@@ -297,6 +304,99 @@ def test_zenox_psa10_skips_psa9_and_sold_out() -> None:
     assert [h["price_hkd"] for h in hits] == [7520]
 
 
+def test_mew_and_mewtwo_do_not_share_a_substring() -> None:
+    rows = [
+        {"card_name": "PSA10 超夢 ex SAR ミュウツー", "price": 900},
+        {"card_name": "PSA10 夢幻 ex SAR ミュウ SV4a 347/190", "price": 7000},
+        {"card_name": "PSA10 Mewtwo ex SAR", "price": 1100},
+    ]
+    mew = match_listings(
+        rows,
+        keyword="夢幻 SAR PSA10 sv4a",
+        kind="psa10",
+        name_zh="夢幻 ex SAR PSA10",
+        name_jp="ミュウex SAR PSA10",
+        card_number="347",
+    )
+    assert [h["price_hkd"] for h in mew] == [7000]
+    mewtwo = match_listings(
+        rows,
+        keyword="超夢 SAR PSA10",
+        kind="psa10",
+        name_zh="超夢 ex SAR PSA10",
+        name_jp="ミュウツーex SAR PSA10",
+    )
+    assert [h["price_hkd"] for h in mewtwo] == [900, 1100]
+
+
+def test_charizard_without_set_or_number_is_rejected() -> None:
+    rows = [
+        {"card_name": "PSA10 噴火龍ex SAR", "price": 3000},
+        {"card_name": "PSA10 噴火龍 黑炎 SAR SV3", "price": 4200},
+        {"card_name": "PSA10 Mega Charizard X ex SAR 噴火龍X", "price": 8000},
+        {"card_name": "PSA10 噴火龍ex SAR Pokemon 151 201/165", "price": 5500},
+    ]
+    hits = match_listings(
+        rows,
+        keyword="噴火龍 SAR PSA10 sv2a",
+        kind="psa10",
+        name_zh="噴火龍 ex SAR PSA10",
+        name_jp="リザードンex SAR PSA10",
+        card_number="201",
+        card_denom="165",
+    )
+    assert [h["price_hkd"] for h in hits] == [5500]
+    assert hits[0]["strong"] is True
+
+
+def test_bare_collector_number_must_match() -> None:
+    wrong = match_listings(
+        [{"card_name": "寶可夢卡 sv5k 097 耿鬼sar psa10", "price": 2000}],
+        keyword="耿鬼 SAR PSA10 sv5k",
+        kind="psa10",
+        name_zh="耿鬼 ex SAR PSA10",
+        card_number="088",
+    )
+    assert wrong == []
+    right = match_listings(
+        [{"card_name": "PSA10 耿鬼 sv5k 088 SAR", "price": 3000}],
+        keyword="耿鬼 SAR PSA10 sv5k",
+        kind="psa10",
+        name_zh="耿鬼 ex SAR PSA10",
+        card_number="088",
+    )
+    assert [h["price_hkd"] for h in right] == [3000]
+
+
+def test_publish_ask_prefers_median_and_drops_a_lone_weak_listing() -> None:
+    listings = [
+        {"price_hkd": 1000, "strong": False, "url": "https://example.test/a", "title": "a", "id": "a"},
+        {"price_hkd": 1100, "strong": False, "url": "https://example.test/b", "title": "b", "id": "b"},
+        {"price_hkd": 50, "strong": False, "url": "https://example.test/c", "title": "c", "id": "c"},
+        {"price_hkd": 9000, "strong": False, "url": "https://example.test/d", "title": "d", "id": "d"},
+    ]
+    published = publish_ask(listings, 1000)
+    assert published["hkd"] == 1050
+    assert published["match_count"] == 2
+    assert published["example_url"] in ("https://example.test/a", "https://example.test/b")
+    lone = publish_ask(
+        [{"price_hkd": 900, "strong": False, "url": "https://example.test/z", "id": "z"}],
+        1000,
+    )
+    assert lone["hkd"] is None
+    strong = publish_ask(
+        [{"price_hkd": 900, "strong": True, "url": "https://example.test/s", "id": "s"}],
+        1000,
+    )
+    assert strong["hkd"] == 900
+    assert strong["match_count"] == 1
+    absurd = publish_ask(
+        [{"price_hkd": 50, "strong": True, "url": "https://example.test/bad", "id": "bad"}],
+        1000,
+    )
+    assert absurd["hkd"] is None
+
+
 if __name__ == "__main__":
     test_listing_cards_ignores_empty_price()
     test_charizard_variants_do_not_cross_match()
@@ -311,4 +411,8 @@ if __name__ == "__main__":
     test_mega_dream_box_does_not_need_set_code_on_the_title()
     test_pack_price_is_not_the_box_ask()
     test_zenox_psa10_skips_psa9_and_sold_out()
+    test_mew_and_mewtwo_do_not_share_a_substring()
+    test_charizard_without_set_or_number_is_rejected()
+    test_bare_collector_number_must_match()
+    test_publish_ask_prefers_median_and_drops_a_lone_weak_listing()
     print("ok")

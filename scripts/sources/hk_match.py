@@ -256,11 +256,12 @@ def _wants_charizard_x(text: str) -> bool:
 
 
 def _title_charizard_x_ok(title_n: str, query: str) -> bool:
-    if not _wants_charizard_x(query):
-        return True
+    """X and Y are different cards. A plain 噴火龍 title is not Charizard X."""
     has_x = any(s in title_n for s in ("噴火龍x", "charizardx", "リザードンx"))
     has_y = any(s in title_n for s in ("噴火龍y", "charizardy", "リザードンy"))
-    return has_x and not has_y
+    if _wants_charizard_x(query):
+        return has_x and not has_y
+    return not has_x and not has_y
 
 
 def _is_lot(title: str, title_n: str) -> bool:
@@ -360,6 +361,78 @@ def _code_conflict(query: str, title: str) -> bool:
     if not query_codes or not title_codes:
         return False
     return not (query_codes & title_codes)
+
+
+# Set code → product-name group. A title may say 151 or 黑炎 instead of SV2a / SV3.
+_CODE_FOR_GROUP = {
+    "sv151": "sv2a",
+    "blackflame": "sv3",
+    "shinybox": "sv4a",
+    "electric": "sv8",
+    "fest": "sv8a",
+    "dream": "m2a",
+    "brave": "m1l",
+    "symphonia": "m1s",
+    "inferno": "m2",
+    "ninja": "m4",
+    "abyss": "m5",
+    "storm": "m6",
+    "munikis": "m3",
+    "bolt": "sv11b",
+    "flare": "sv11w",
+    "ancient": "sv4k",
+    "stellar": "sv7",
+    "battle": "sv9",
+    "glory": "sv10",
+    "heroes": "s6a",
+}
+
+
+def _alias_hit(query: str, title: str) -> bool:
+    """True when the title uses the set's name rather than its code."""
+    codes = _set_codes(query)
+    if not codes:
+        return False
+    title_n = _norm(title)
+    if "sv2a" in codes and _has_set_151(title):
+        return True
+    if "sv4a" in codes and _has_shiny_set(title):
+        return True
+    if "sv3" in codes and any(bit in title_n for bit in ("黑炎", "黒炎", "obsidian")):
+        return True
+    if "sv8" in codes and "超電" in title:
+        return True
+    for group in _GROUPS:
+        code = _CODE_FOR_GROUP.get(group["id"])
+        if code not in codes:
+            continue
+        for term in group["terms"]:
+            term_n = _norm(term)
+            if term_n and term_n in title_n:
+                return True
+    return False
+
+
+def _identity_aligned(
+    query: str,
+    title: str,
+    *,
+    number_hit: bool,
+    card_number: str | None,
+) -> bool:
+    """Set code, its public name, or the collector number must show up on the title.
+
+    Name-only hits (噴火龍 with no 151 / SV2a / 201) are rejected once the watchlist
+    item actually has a set code or a collector number.
+    """
+    codes = _set_codes(query)
+    if not codes and not card_number:
+        return True
+    if card_number and number_hit:
+        return True
+    if codes & _set_codes(title):
+        return True
+    return _alias_hit(query, title)
 
 
 def _frac_nums(title: str) -> list[str]:
@@ -534,6 +607,22 @@ def _card_print(item: dict) -> tuple[str, str | None] | None:
     return match.group(1), None
 
 
+def _bare_collector_conflict(title: str, card_number: str | None) -> bool:
+    """sv5k 097 is not SV5K-088. 151 in a set name is not a collector number."""
+    if not card_number:
+        return False
+    stripped = re.sub(r"\d{1,3}\s*/\s*\d{1,3}", " ", title)
+    nums = re.findall(r"(?<!\d)(\d{3})(?!\d)", stripped)
+    collectors = [num for num in nums if not num.startswith(("19", "20"))]
+    if not collectors:
+        return False
+    if card_number in collectors:
+        return False
+    if collectors == ["151"] and _has_set_151(title):
+        return False
+    return True
+
+
 def _print_hit(title: str, card_number: str | None, card_denom: str | None) -> bool:
     if not card_number:
         return False
@@ -613,6 +702,8 @@ def match_listings(
                 continue
             if card_number and _frac_nums(title) and not number_hit:
                 continue
+            if not number_hit and _bare_collector_conflict(title, card_number):
+                continue
         elif kind == "sealed":
             if _sealed_side_product(title):
                 continue
@@ -649,12 +740,20 @@ def match_listings(
             continue
         if not _title_charizard_x_ok(title_n, query):
             continue
+        if not _identity_aligned(
+            query, title, number_hit=number_hit, card_number=card_number
+        ):
+            continue
+        code_hit = bool(_set_codes(query) & _set_codes(title))
+        url = row.get("url")
         hits.append(
             {
                 "id": row.get("id"),
                 "title": title,
                 "price_hkd": price,
                 "source": row.get("source"),
+                "url": str(url) if url else None,
+                "strong": bool(number_hit or code_hit),
             }
         )
     hits.sort(key=lambda h: h["price_hkd"])
@@ -688,3 +787,87 @@ def lowest_ask(prices: list[float]) -> float | None:
     if not vals:
         return None
     return round(min(vals), 2)
+
+
+def _blank_ask() -> dict[str, Any]:
+    return {"hkd": None, "match_count": 0, "example_url": None, "listings": []}
+
+
+def _within_jp_band(price: float, jp_hkd: float | None) -> bool:
+    """Absurd asks are under 10% or over 300% of the JP sold median."""
+    if jp_hkd is None or jp_hkd <= 0:
+        return True
+    ratio = price / float(jp_hkd)
+    return 0.10 <= ratio <= 3.0
+
+
+def _dedupe_listings(rows: list[dict]) -> list[dict]:
+    seen: set[tuple[str, str, str]] = set()
+    out: list[dict] = []
+    for row in rows:
+        key = (
+            str(row.get("source") or ""),
+            str(row.get("id") or row.get("title") or ""),
+            str(row.get("price_hkd") or ""),
+        )
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(row)
+    return out
+
+
+def _closest_url(rows: list[dict], price: float) -> str | None:
+    if not rows:
+        return None
+    best = min(rows, key=lambda row: abs(float(row["price_hkd"]) - price))
+    url = best.get("url")
+    return str(url) if url else None
+
+
+def publish_ask(listings: list[dict], jp_hkd: float | None) -> dict[str, Any]:
+    """Price we are willing to show as 香港最新賣出價.
+
+    Several matches inside 10–300% of the JP sold median publish their median.
+    One listing is kept only when the title carries the set code or collector
+    number and the price is inside that band. Anything else becomes no ask.
+    """
+    banded: list[dict] = []
+    for row in _dedupe_listings(listings):
+        try:
+            price = float(row.get("price_hkd"))
+        except (TypeError, ValueError):
+            continue
+        if price <= 0:
+            continue
+        if _within_jp_band(price, jp_hkd):
+            banded.append(row)
+    pool = banded
+    if len(pool) >= 2:
+        vals = trimmed_asks([float(row["price_hkd"]) for row in pool])
+        kept_keys = {round(val, 2) for val in vals}
+        used = [row for row in pool if round(float(row["price_hkd"]), 2) in kept_keys]
+        mid = robust_median(vals)
+        if mid is None or not used:
+            return _blank_ask()
+        return {
+            "hkd": mid,
+            "match_count": len(used),
+            "example_url": _closest_url(used, mid),
+            "listings": used,
+        }
+    if (
+        len(pool) == 1
+        and pool[0].get("strong")
+        and _within_jp_band(float(pool[0]["price_hkd"]), jp_hkd)
+    ):
+        row = pool[0]
+        price = round(float(row["price_hkd"]), 2)
+        url = row.get("url")
+        return {
+            "hkd": price,
+            "match_count": 1,
+            "example_url": str(url) if url else None,
+            "listings": [row],
+        }
+    return _blank_ask()

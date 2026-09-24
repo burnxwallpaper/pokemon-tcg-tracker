@@ -99,7 +99,15 @@
 
 ### 8. 香港本地叫價（已接入）
 
-只收**標題對得上** watchlist 的公開**賣出價**（不是收卡／求購），再取最低價寫入 `hk_ask_hkd`（香港最新賣出價）。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
+只收**標題對得上** watchlist 的公開**賣出價**（不是收卡／求購）。寫入 `hk_ask_hkd`（香港最新賣出價）的是核對後的叫價：多筆相符取中位數；只有一筆時，標題必須自帶 set code 或卡號，而且價錢要落在日本成交中位數的 10%–300% 內，否則留空（畫面顯示 —）。`hk_listings_n` 是採用的筆數，`hk_listing_url` 是最接近該價的一則連結。日本 Yahoo 成交仍是參考價。`meta.source_status` 分開計數。
+
+拒絕（不當賣出價）：
+
+- 標題沒有 set code、公開系列名（151／黑炎／閃色…）或收藏編號。噴火龍不等於噴火龍 151，夢幻不等於超夢，噴火龍 X 不等於一般噴火龍。
+- PSA10 對上 PSA 1–9、裸卡、AR／SR／UR（查的是 SAR 時），或編號對不上（173/165 不是 198/165，sv5k 097 不是 088）。
+- 未開封對上單包、ETB、禮盒、牌組、公仔、繁中、原箱、多盒。
+- 求購、WTB、收卡。
+- 叫價低於日本成交中位數一成，或高於三倍。單獨一筆又沒有 set code／卡號，同樣不顯示。
 
 | 來源 | 怎麼拿 | 用什麼 |
 |---|---|---|
@@ -125,7 +133,7 @@
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
 2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
-4. **HK**：Carousell／HKCardLink／LONO／ShipMyToy／Zenox 標題命中的最低賣出價 → `hk_ask_hkd`。Yahoo 只作日本參考。不編造買價。
+4. **HK**：Carousell／HKCardLink／LONO／ShipMyToy／Zenox 標題命中、並通過上面拒絕規則的賣出價 → `hk_ask_hkd`（多筆用中位數）。Yahoo 只作日本參考。不編造買價。
 5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
 
 ---

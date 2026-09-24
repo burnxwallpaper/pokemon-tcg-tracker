@@ -63,14 +63,23 @@ def merge_history_by_date(
             continue
         old = by_date[d]
         if prefer_incoming:
+            incoming_authoritative = bool(p.get("hk_ask_authoritative"))
             merged = dict(old)
             for k, v in p.items():
-                if k == "hk_ask_hkd" and v is None and old.get("hk_ask_hkd") is not None:
+                if k == "hk_ask_authoritative":
+                    continue
+                if k == "hk_ask_hkd" and v is None:
+                    if incoming_authoritative:
+                        merged[k] = None
                     continue
                 if v is not None or k not in merged:
                     merged[k] = v
-            # If incoming has price, take it; keep old hk_ask if needed
-            if merged.get("hk_ask_hkd") is None and old.get("hk_ask_hkd") is not None:
+            # A missed scrape leaves the prior ask. A QA rejection clears it.
+            if (
+                not incoming_authoritative
+                and merged.get("hk_ask_hkd") is None
+                and old.get("hk_ask_hkd") is not None
+            ):
                 merged["hk_ask_hkd"] = old["hk_ask_hkd"]
             by_date[d] = merged
         else:
@@ -101,6 +110,8 @@ def write_series_merged(
     merged = merge_history_by_date(
         prior_hist, incoming, prefer_incoming=True, history_days=history_days
     )
+    for point in merged:
+        point.pop("hk_ask_authoritative", None)
 
     doc = {
         "id": iid,

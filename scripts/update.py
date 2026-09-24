@@ -9,8 +9,11 @@ Pipeline:
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
-HK PRIMARY → hk_ask_hkd is the lowest title-matched sell ask (香港最新賣出價).
-JP REFERENCE → price_jpy / price_hkd. Buy/seek posts are not asks.
+HK PRIMARY → hk_ask_hkd is the Hong Kong sell ask we will show (香港最新賣出價).
+Several listings inside 10–300% of the JP sold median use their median.
+A single listing is shown only when the title carries the set code or
+collector number and the price is inside that band. Buy/seek posts are not asks.
+JP REFERENCE → price_jpy / price_hkd.
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
 from __future__ import annotations
@@ -237,6 +240,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             carousell_on=hk_on,
             shops_on=shops_on,
             facebook_on=facebook_on,
+            jp_hkd_by_id=_jp_hkd_map(cfg, jp_by_id),
         )
         source_status.update(hk_status)
         for name, bucket in hk_status.items():
@@ -268,7 +272,7 @@ def merge_and_compute(
         hk = hk_by_id.get(iid) or {}
         price_jpy = jp.get("median_jpy")
         price = hkd(price_jpy, fx)
-        hk_ask = hk.get("lowest_hkd")
+        hk_ask = hk.get("published_hkd")
         if hk_ask is not None:
             hk_ask = round(float(hk_ask), 2)
 
@@ -332,6 +336,8 @@ def merge_and_compute(
             vol_7d = float(jp.get("volume_7d_est") or max(vol_today, 1))
         vol_ratio = round(vol_today / vol_7d, 2) if vol_7d else 0.0
 
+        _stamp_today_ask(history, today, hk_ask)
+
         spread_pct = None
         if hk_ask is not None and price and price > 0:
             spread_pct = round((hk_ask - price) / price * 100.0, 2)
@@ -371,16 +377,53 @@ def merge_and_compute(
                 "volume_ratio": vol_ratio,
                 "liquidity_score": liq,
                 "hk_ask_hkd": hk_ask,
+                "hk_listings_n": int(hk.get("match_count") or 0),
+                "hk_listing_url": hk.get("example_url"),
                 "spread_jp_hk_pct": spread_pct,
                 "sources": srcs,
                 "is_sample": False,
                 "jp_comps_n": len(jp.get("comps") or []),
-                "hk_listings_n": len(hk.get("listings") or []),
                 "hk_backend": hk.get("backend"),
                 "history": history,
             }
         )
     return items
+
+
+def _stamp_today_ask(history: list[dict], today: str, hk_ask: float | None) -> None:
+    """Mark today's ask as a QA decision so a rejection clears a stale price."""
+    for point in history:
+        if point.get("date") != today:
+            continue
+        point["hk_ask_hkd"] = hk_ask
+        point["hk_ask_authoritative"] = True
+        return
+    if hk_ask is None:
+        return
+    history.append(
+        {
+            "date": today,
+            "hk_ask_hkd": hk_ask,
+            "hk_ask_authoritative": True,
+        }
+    )
+
+
+def _jp_hkd_map(cfg: dict, jp_by_id: dict[str, dict]) -> dict[str, float]:
+    fx = float(cfg["fx_jpy_to_hkd"])
+    out: dict[str, float] = {}
+    for iid, jp in jp_by_id.items():
+        converted = hkd(jp.get("median_jpy"), fx)
+        if converted:
+            out[str(iid)] = float(converted)
+    return out
+
+
+def _strip_ask_flags(payload: dict) -> None:
+    for item in payload.get("items") or []:
+        for point in item.get("history") or []:
+            if isinstance(point, dict):
+                point.pop("hk_ask_authoritative", None)
 
 
 def compute_sections(items: list[dict], cfg: dict) -> dict:
@@ -450,6 +493,40 @@ def write_outputs(payload: dict) -> None:
     LATEST_PATH.parent.mkdir(parents=True, exist_ok=True)
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Series merge must see hk_ask_authoritative before it is stripped.
+    n_series = 0
+    try:
+        from series_io import write_series_merged, write_catalog
+        hist_days = int(payload["meta"].get("history_days") or 90)
+        for it in payload["items"]:
+            write_series_merged(it, payload["meta"], history_days=hist_days)
+            n_series += 1
+        cat_path = write_catalog(
+            watchlist
+            or [
+                {
+                    "id": it["id"],
+                    "name_zh": it.get("name_zh"),
+                    "name_jp": it.get("name_jp"),
+                    "kind": it.get("kind"),
+                    "set": it.get("set"),
+                    "tcgdex_id": it.get("tcgdex_id"),
+                    "image_official_url": None,
+                    "image_note": None,
+                    "search_jp": None,
+                    "search_hk": None,
+                }
+                for it in payload["items"]
+            ],
+            payload["items"],
+            payload["meta"],
+        )
+        print(f"Wrote catalog {cat_path.relative_to(ROOT)}")
+    except Exception as e:
+        print(f"[warn] series_io catalog/series failed: {e}; using write_series_files")
+        n_series = write_series_files(payload["items"], payload["meta"])
+    _strip_ask_flags(payload)
+
     with LATEST_PATH.open("w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
         f.write("\n")
@@ -483,40 +560,6 @@ def write_outputs(payload: dict) -> None:
     with hist_path.open("w", encoding="utf-8") as f:
         json.dump(history_doc, f, ensure_ascii=False, indent=2)
         f.write("\n")
-
-    # Persist series (merge-by-date) + durable catalog (names / official images / tcgdex)
-    n_series = 0
-    try:
-        from series_io import write_series_merged, write_catalog
-        hist_days = int(payload["meta"].get("history_days") or 90)
-        for it in payload["items"]:
-            write_series_merged(it, payload["meta"], history_days=hist_days)
-            n_series += 1
-        cat_path = write_catalog(
-            watchlist
-            or [
-                {
-                    "id": it["id"],
-                    "name_zh": it.get("name_zh"),
-                    "name_jp": it.get("name_jp"),
-                    "kind": it.get("kind"),
-                    "set": it.get("set"),
-                    "tcgdex_id": it.get("tcgdex_id"),
-                    "image_official_url": None,
-                    "image_note": None,
-                    "search_jp": None,
-                    "search_hk": None,
-                }
-                for it in payload["items"]
-            ],
-            payload["items"],
-            payload["meta"],
-        )
-        print(f"Wrote catalog {cat_path.relative_to(ROOT)}")
-    except Exception as e:
-        # Fallback to legacy series writer
-        print(f"[warn] series_io catalog/series failed: {e}; using write_series_files")
-        n_series = write_series_files(payload["items"], payload["meta"])
 
     n_hk = sum(1 for it in payload["items"] if it.get("hk_ask_hkd") is not None)
     n_jp = sum(1 for it in payload["items"] if it.get("price_jpy") is not None)
@@ -585,12 +628,14 @@ def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
         interval = float(cfg.get("request_min_interval_sec") or 1.6)
         watchlist = cfg.get("watchlist") or []
         print(f"[fetch] HK-only refresh × {len(watchlist)} (JP reference preserved)")
+        jp_by_id = _jp_preserved_from_latest()
         hk_by_id, hk_status = hk_asks.collect_hk(
             watchlist,
             min_interval=interval,
             carousell_on=bool(sources_cfg.get("carousell_hk", {}).get("enabled")),
             shops_on=bool(sources_cfg.get("hk_card_shops", {}).get("enabled")),
             facebook_on=bool(sources_cfg.get("facebook_hk", {}).get("enabled")),
+            jp_hkd_by_id=_jp_hkd_map(cfg, jp_by_id),
         )
         for name, bucket in hk_status.items():
             print(
@@ -598,7 +643,6 @@ def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
                 f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
                 flush=True,
             )
-        jp_by_id = _jp_preserved_from_latest()
         source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
         source_status.update(hk_status)
     else:

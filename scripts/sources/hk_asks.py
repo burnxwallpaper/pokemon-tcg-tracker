@@ -8,9 +8,8 @@ from .hk_match import (
     broad_query,
     english_query,
     extra_queries,
-    lowest_ask,
     primary_query,
-    robust_median,
+    publish_ask,
 )
 
 
@@ -31,6 +30,7 @@ def collect_hk(
     carousell_on: bool,
     shops_on: bool,
     facebook_on: bool,
+    jp_hkd_by_id: dict[str, float] | None = None,
 ) -> tuple[dict[str, dict], dict[str, Any]]:
     status: dict[str, Any] = {
         "carousell_hk": {
@@ -104,6 +104,7 @@ def collect_hk(
             queries = []
             for query in (
                 primary_query(item),
+                str(item.get("search_hk") or ""),
                 *extra_queries(item),
                 english_query(item),
                 broad_query(item),
@@ -123,29 +124,38 @@ def collect_hk(
             parts["zenox"] = hk_shops.match_shop("zenox", item, min_interval=min_interval)
             parts["shipmytoy"] = hk_shops.match_shop("shipmytoy", item, min_interval=min_interval)
 
-        asks: list[float] = []
         listings: list[dict] = []
-        backends: list[str] = []
         for name, part in parts.items():
             bucket = status[name]
             if part.get("ok"):
                 bucket["ok_items"] += 1
                 bucket["listings"] += len(part.get("asks_hkd") or [])
-                asks.extend(part.get("asks_hkd") or [])
-                listings.extend(part.get("listings") or [])
-                backends.append(name)
+                for row in part.get("listings") or []:
+                    copied = dict(row)
+                    if not copied.get("source"):
+                        copied["source"] = name
+                    listings.append(copied)
             elif part.get("error") and len(bucket["errors"]) < 12:
                 bucket["errors"].append(f"{item.get('id')}: {part.get('error')}")
-        median_hkd = robust_median(asks)
-        low_hkd = lowest_ask(asks)
+        jp_hkd = (jp_hkd_by_id or {}).get(str(item.get("id") or ""))
+        decision = publish_ask(listings, jp_hkd)
+        published = decision.get("hkd")
+        used = decision.get("listings") or []
+        backends: list[str] = []
+        for row in used:
+            source = str(row.get("source") or "")
+            if source and source not in backends:
+                backends.append(source)
         hk_by_id[item["id"]] = {
-            "ok": low_hkd is not None,
-            "median_hkd": median_hkd,
-            "lowest_hkd": low_hkd,
-            "listings": listings[:20],
+            "ok": published is not None,
+            "median_hkd": published,
+            "published_hkd": published,
+            "match_count": decision.get("match_count") or 0,
+            "example_url": decision.get("example_url"),
+            "listings": used[:20],
             "backends": backends,
             "backend": "+".join(backends) if backends else None,
-            "error": None if low_hkd is not None else "no title-matched HK ask",
+            "error": None if published is not None else "no confident HK sell ask",
         }
 
     if hkcardlink_size is not None:
