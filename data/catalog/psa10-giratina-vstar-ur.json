@@ -1,12 +1,12 @@
 {
   "id": "psa10-giratina-vstar-ur",
-  "name_zh": "騎拉帝納 VSTAR UR PSA10",
-  "name_jp": "ギラティナVSTAR UR PSA10",
-  "name_en": "Giratina VSTAR UR PSA10",
+  "name_zh": "騎拉帝納 VSTAR UR（失落深淵）PSA10",
+  "name_jp": "ギラティナVSTAR UR ロストアビス PSA10",
+  "name_en": "Giratina VSTAR UR Lost Abyss PSA10",
   "kind": "psa10",
-  "set": "S11 / 125",
-  "search_jp": "ギラティナVSTAR UR PSA10",
-  "search_hk": "騎拉帝納 VSTAR UR PSA10",
+  "set": "S11 / 125/100",
+  "search_jp": "ギラティナVSTAR UR PSA10 ロストアビス",
+  "search_hk": "騎拉帝納 VSTAR UR PSA10 失落深淵",
   "tcgdex_id": "S11-125",
   "image": "images/psa10-giratina-vstar-ur.webp",
   "image_official_url": "https://assets.tcgdex.net/ja/S/S11/125/high.webp",
@@ -16,5 +16,5 @@
   "history_points": 71,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T18:12:27+08:00"
+  "updated_at": "2026-09-24T18:38:02+08:00"
 }

@@ -18,6 +18,8 @@ JST = timezone(timedelta(hours=9))
 # Longer phrases first. These are discriminators, not the product itself.
 _SET_PHRASES: tuple[str, ...] = (
     "シャイニートレジャー",
+    "VSTARユニバース",
+    "ロストアビス",
     "クレイバースト",
     "テラスタルフェス",
     "超電ブレイカー",
@@ -137,7 +139,10 @@ def _fractions(text: str) -> list[tuple[str, str]]:
 
 
 def _item_fraction(item: dict) -> tuple[str, str] | None:
-    return _fraction(f"{item.get('set') or ''} {item.get('search_jp') or ''}")
+    """Printed card number. A set code like S11 / 125 is not 11/125."""
+    text = f"{item.get('set') or ''} {item.get('search_jp') or ''}"
+    text = re.sub(r"(?i)(?<![a-z0-9])(?:sv|s|m)\d+[a-z]?\s*/", " ", text)
+    return _fraction(text)
 
 
 def _item_set_code(item: dict) -> str | None:
@@ -196,14 +201,27 @@ def build_queries(item: dict) -> list[str]:
     return out
 
 
-def _rarity(text: str) -> str | None:
-    """Grade token. Spaces are kept so SAR PSA10 is still SAR, not sarpsa."""
+def _rarity_text(text: str) -> str:
     s = text.lower()
     s = s.translate(str.maketrans("ＰＳＡ０１２３４５６７８９", "psa0123456789"))
     s = re.sub(r"psa\s*\d*", " ", s)
-    s = re.sub(r"[^a-z]+", " ", s)
+    return re.sub(r"[^a-z]+", " ", s)
+
+
+def _rarities(text: str) -> set[str]:
+    """Grade tokens. Spaces are kept so SAR PSA10 is still SAR, not sarpsa."""
+    s = _rarity_text(text)
+    found: set[str] = set()
     for rarity in _RARITY:
         if re.search(rf"(?<![a-z]){rarity}(?![a-z])", s):
+            found.add(rarity)
+    return found
+
+
+def _rarity(text: str) -> str | None:
+    found = _rarities(text)
+    for rarity in _RARITY:
+        if rarity in found:
             return rarity
     return None
 
@@ -264,6 +282,9 @@ def _identity(item: dict) -> str:
 
 
 def _evolution_ok(identity: str, title_n: str) -> bool:
+    # "V SR" / "V SA" collapse to vsr / vsa once spaces are removed.
+    title_n = re.sub(r"v(?=(?:csr|chr|sar|sr|ur|hr|sa|ar))", "v ", title_n)
+    identity = re.sub(r"v(?=(?:csr|chr|sar|sr|ur|hr|sa|ar))", "v ", identity)
     if "vstar" in identity:
         return "vstar" in title_n
     if "vmax" in identity:
@@ -327,8 +348,8 @@ def _psa_title_ok(title: str, item: dict) -> bool:
     if not _evolution_ok(identity, title_n):
         return False
     item_r = _rarity(str(item.get("name_jp") or "") + str(item.get("search_jp") or ""))
-    title_r = _rarity(title)
-    if item_r and title_r != item_r:
+    # SA slabs are often titled "SR SA". Keep the asked grade if it is present.
+    if item_r and item_r not in _rarities(title):
         return False
     if "プロモ" in title and "プロモ" not in str(item.get("name_jp") or "") and "svp" not in str(item.get("set") or "").lower():
         return False

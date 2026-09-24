@@ -8,13 +8,13 @@
   "search_jp": "メガシンフォニア BOX 未開封",
   "search_hk": "超級協奏 BOX 未開封",
   "tcgdex_id": null,
-  "image": "images/sealed-mega-symphonia.png",
-  "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-  "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)",
-  "image_source": "official",
+  "image": null,
+  "image_official_url": null,
+  "image_note": "shared M1 key art covers メガブレイブ and メガシンフォニア; face left blank",
+  "image_source": "none",
   "series_path": "history/series/sealed-mega-symphonia.json",
   "history_points": 85,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T18:12:27+08:00"
+  "updated_at": "2026-09-24T18:38:02+08:00"
 }

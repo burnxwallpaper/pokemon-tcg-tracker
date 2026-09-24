@@ -96,6 +96,21 @@ def test_card_number_and_mega() -> None:
     )
     assert title_matches("ミライドンex SAR PSA10 SV1V 102/078", miraidon)
     assert not title_matches("ミライドンex SAR PSA10 102/079", miraidon)
+    giratina = _card(
+        name_jp="ギラティナVSTAR UR ロストアビス PSA10",
+        search_jp="ギラティナVSTAR UR PSA10 ロストアビス",
+        set="S11 / 125/100",
+    )
+    assert title_matches("PSA10 ギラティナVSTAR UR 125/100 ロストアビス", giratina)
+    assert not title_matches("PSA10 ギラティナVSTAR UR 261/172 VSTARユニバース", giratina)
+    assert not title_matches("PSA10 ギラティナVSTAR HR 120/100 ロストアビス", giratina)
+    lugia = _card(
+        name_jp="ルギアV SA PSA10",
+        search_jp="ルギアV SA PSA10",
+        set="S12 / 110/098",
+    )
+    assert title_matches("PSA10 ルギアV SR SA 110/098 パラダイムトリガー", lugia)
+    assert not title_matches("PSA10 ルギアV SR 110/098 パラダイムトリガー", lugia)
 
 
 def test_sealed_single_box_only() -> None:

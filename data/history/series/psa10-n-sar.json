@@ -1,7 +1,7 @@
 {
   "id": "psa10-n-sar",
-  "name_zh": "N SAR PSA10",
-  "name_jp": "N SAR PSA10",
+  "name_zh": "N SAR PSA10（待核對）",
+  "name_jp": "N SAR PSA10（待核對）",
   "kind": "psa10",
   "set": "sv6a",
   "image": "images/psa10-n-sar.webp",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 76,
-  "updated_at": "2026-09-24T18:12:27+08:00",
+  "updated_at": "2026-09-24T18:38:02+08:00",
   "history": [
     {
       "date": "2026-06-27",

@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 49,
-  "updated_at": "2026-09-24T18:12:27+08:00",
+  "updated_at": "2026-09-24T18:38:02+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -38,9 +38,9 @@
     },
     {
       "date": "2026-07-03",
-      "price_hkd": 8712.0,
+      "price_hkd": 8786.25,
       "hk_ask_hkd": null,
-      "volume": 3.0
+      "volume": 2.0
     },
     {
       "date": "2026-07-05",
@@ -74,9 +74,9 @@
     },
     {
       "date": "2026-07-17",
-      "price_hkd": 10815.75,
+      "price_hkd": 10835.55,
       "hk_ask_hkd": null,
-      "volume": 5.0
+      "volume": 2.0
     },
     {
       "date": "2026-07-19",
@@ -92,9 +92,9 @@
     },
     {
       "date": "2026-07-24",
-      "price_hkd": 10308.38,
+      "price_hkd": 10246.5,
       "hk_ask_hkd": null,
-      "volume": 8.0
+      "volume": 5.0
     },
     {
       "date": "2026-07-26",
@@ -134,15 +134,15 @@
     },
     {
       "date": "2026-08-03",
-      "price_hkd": 9974.25,
+      "price_hkd": 10048.5,
       "hk_ask_hkd": null,
-      "volume": 4.0
+      "volume": 1.0
     },
     {
       "date": "2026-08-06",
       "price_hkd": 10098.0,
       "hk_ask_hkd": null,
-      "volume": 3.0
+      "volume": 1.0
     },
     {
       "date": "2026-08-07",
@@ -164,9 +164,9 @@
     },
     {
       "date": "2026-08-10",
-      "price_hkd": 10469.25,
+      "price_hkd": 10395.0,
       "hk_ask_hkd": null,
-      "volume": 2.0
+      "volume": 1.0
     },
     {
       "date": "2026-08-13",
@@ -206,15 +206,15 @@
     },
     {
       "date": "2026-08-22",
-      "price_hkd": 10296.0,
+      "price_hkd": 10147.5,
       "hk_ask_hkd": null,
-      "volume": 2.0
+      "volume": 1.0
     },
     {
       "date": "2026-08-23",
       "price_hkd": 10147.5,
       "hk_ask_hkd": null,
-      "volume": 3.0
+      "volume": 1.0
     },
     {
       "date": "2026-08-24",
@@ -272,9 +272,9 @@
     },
     {
       "date": "2026-09-16",
-      "price_hkd": 7796.23,
+      "price_hkd": 8786.25,
       "hk_ask_hkd": null,
-      "volume": 4.0
+      "volume": 2.0
     },
     {
       "date": "2026-09-17",
@@ -284,9 +284,9 @@
     },
     {
       "date": "2026-09-19",
-      "price_hkd": 7981.88,
+      "price_hkd": 7796.25,
       "hk_ask_hkd": null,
-      "volume": 2.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-21",
@@ -302,7 +302,7 @@
     },
     {
       "date": "2026-09-24",
-      "price_hkd": 9900.0,
+      "price_hkd": 7895.25,
       "hk_ask_hkd": 4224.0,
       "volume": 0.0
     }
