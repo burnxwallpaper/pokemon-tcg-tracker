@@ -2,6 +2,7 @@
   "id": "sealed-shiny-treasure",
   "name_zh": "閃色寶藏 ex BOX（未開封）",
   "name_jp": "シャイニートレジャーex BOX 未開封",
+  "name_en": "Shiny Treasure ex Booster Box",
   "kind": "sealed",
   "set": "SV4a",
   "search_jp": "シャイニートレジャーex BOX 未開封",
@@ -15,5 +16,5 @@
   "history_points": 83,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

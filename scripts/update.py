@@ -9,7 +9,7 @@ Pipeline:
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
-最近成交價 → price_hkd (Yahoo JP sold, HKD).
+最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask).
 香港最新賣出價 → hk_ask_hkd (median of matched HK sell asks).
 最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd (HKCardLink WTB only; else null).
 Mild: ≥1–2s between requests, browser UA, graceful failures.
@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
-from sources import hk_asks, yahoo_auctions_jp  # noqa: E402
+from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
 from sources.reference_links import attach_public_quotes  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
@@ -148,21 +148,48 @@ def download_image(url: str | None, item_id: str) -> str | None:
         return None
 
 
+def _local_official_image(item_id: str) -> str | None:
+    for ext in (".webp", ".png", ".jpg", ".jpeg"):
+        path = IMAGES_DIR / f"{item_id}{ext}"
+        if path.exists() and path.stat().st_size >= 500:
+            return f"images/{item_id}{ext}"
+    return None
+
+
+def _clear_local_images(item_id: str) -> None:
+    if not IMAGES_DIR.exists():
+        return
+    for ext in (".webp", ".png", ".jpg", ".jpeg"):
+        path = IMAGES_DIR / f"{item_id}{ext}"
+        if path.exists():
+            path.unlink()
+
+
 def resolve_official_image(wl: dict) -> str | None:
     """Resolve official thumbnail; never use Yahoo/Mercari listing photos.
 
-    Order: existing local file (post-migration = official) → download from
-    config image_official_url → None.
+    A blank image_official_url deletes any cached face. A changed URL is
+    re-downloaded. The previous file is kept only when the catalog URL matches.
     """
     iid = wl["id"]
-    for ext in (".webp", ".png", ".jpg", ".jpeg"):
-        p = IMAGES_DIR / f"{iid}{ext}"
-        if p.exists() and p.stat().st_size >= 500:
-            return f"images/{iid}{ext}"
-    url = wl.get("image_official_url") or wl.get("official_image")
-    if url:
-        return download_image(url, iid)
-    return None
+    url = str(wl.get("image_official_url") or wl.get("official_image") or "").strip()
+    if not url:
+        _clear_local_images(iid)
+        return None
+    current = _local_official_image(iid)
+    prior_url = ""
+    try:
+        from series_io import _load_catalog_item
+
+        prior = _load_catalog_item(iid).get("image_official_url")
+        if isinstance(prior, str):
+            prior_url = prior.strip()
+    except Exception:
+        prior_url = ""
+    if current and prior_url == url:
+        return current
+    saved = download_image(url, iid)
+    return saved or current
 
 
 def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, Any]]:
@@ -197,6 +224,30 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             shallow_at = int(disc.get("shallow_series_days") or 14)
             backfill_pages = int(disc.get("backfill_max_pages") or 6)
             deep = prior_n < shallow_at
+            if item.get("identity_review"):
+                print(
+                    f"  JP {i}/{len(watchlist)} {item['id']} identity review — skip",
+                    flush=True,
+                )
+                jp_by_id[item["id"]] = {
+                    "ok": False,
+                    "status": "identity_review",
+                    "median_jpy": None,
+                    "volume_24h": 0,
+                    "volume_7d_est": 0,
+                    "comps": [],
+                    "total_available": 0,
+                    "error": "identity_review",
+                    "jp_debug": {
+                        "query": None,
+                        "matched_titles": [],
+                        "matched_prices_jpy": [],
+                        "source_urls": [],
+                        "matched_n": 0,
+                        "note": "identity_review",
+                    },
+                }
+                continue
             if deep:
                 print(
                     f"  JP {i}/{len(watchlist)} {item['id']} backfill "
@@ -226,6 +277,32 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
                 )
         source_status["yahoo_auctions_jp"]["status"] = (
             "ok" if any_ok else ("blocked" if blocked else "empty")
+        )
+
+    snkr_on = bool(sources_cfg.get("snkrdunk", {}).get("enabled"))
+    source_status["snkrdunk"] = {
+        "enabled": snkr_on,
+        "status": "disabled" if not snkr_on else "pending",
+        "ok_items": 0,
+        "errors": [],
+        "note": "Primary JP reference: public catalog match, last sale, PSA10 lowest ask",
+    }
+    if snkr_on:
+        print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
+        for i, item in enumerate(watchlist, 1):
+            if item.get("identity_review"):
+                print(f"  SNKRDUNK {i}/{len(watchlist)} {item['id']} identity review — skip", flush=True)
+                continue
+            print(f"  SNKRDUNK {i}/{len(watchlist)} {item['id']} …", flush=True)
+            hit = snkrdunk.fetch_watchlist_item(item, min_interval=interval)
+            slot = jp_by_id.setdefault(item["id"], {})
+            slot["snkrdunk"] = hit
+            if hit.get("ok"):
+                source_status["snkrdunk"]["ok_items"] += 1
+            elif hit.get("error"):
+                source_status["snkrdunk"]["errors"].append(f"{item['id']}: {hit.get('error')}")
+        source_status["snkrdunk"]["status"] = (
+            "ok" if source_status["snkrdunk"]["ok_items"] else "empty"
         )
 
     if hk_on or shops_on or facebook_on:
@@ -271,7 +348,18 @@ def merge_and_compute(
         iid = wl["id"]
         jp = jp_by_id.get(iid) or {}
         hk = hk_by_id.get(iid) or {}
-        price_jpy = jp.get("median_jpy")
+        if wl.get("identity_review"):
+            hk = {
+                "median_hkd": None,
+                "lowest_hkd": None,
+                "bid_hkd": None,
+                "listings": [],
+                "bid_listings": [],
+                "listings_n": 0,
+                "backends": [],
+            }
+        snkr = jp.get("snkrdunk") if isinstance(jp.get("snkrdunk"), dict) else {}
+        price_jpy, price_source = snkrdunk.choose_jp_price(jp.get("median_jpy"), snkr)
         price = hkd(price_jpy, fx)
         hk_ask = hk.get("median_hkd")
         if hk_ask is not None:
@@ -294,17 +382,6 @@ def merge_and_compute(
             history = merge_history_by_date(
                 prev_hist, incoming, prefer_incoming=True, history_days=hist_days
             )
-            today_point = next((p for p in history if p.get("date") == today), None)
-            if today_point and today_point.get("price_hkd") is not None:
-                price = float(today_point["price_hkd"])
-                vol_today = int(today_point.get("volume") or 0)
-                if fx:
-                    price_jpy = int(round(price / fx))
-            elif history and history[-1].get("price_hkd") is not None:
-                price = float(history[-1]["price_hkd"])
-                if fx:
-                    price_jpy = int(round(price / fx))
-                vol_today = int(today_point.get("volume") or 0) if today_point else 0
             if hk_ask is not None:
                 history = merge_history_by_date(
                     history,
@@ -317,15 +394,42 @@ def merge_and_compute(
                     history_days=hist_days,
                 )
         else:
-            today_point = {
+            incoming = comps_to_daily_history(
+                jp.get("comps") or [],
+                fx=fx,
+                days=hist_days,
+                today_hk_ask=hk_ask,
+            )
+            incoming.append({
                 "date": today,
                 "price_hkd": price,
                 "hk_ask_hkd": hk_ask,
                 "volume": float(vol_today),
-            }
+            })
             history = merge_history_by_date(
-                prev_hist, [today_point], prefer_incoming=True, history_days=hist_days
+                prev_hist, incoming, prefer_incoming=True, history_days=hist_days
             )
+
+        # Fresh sold quote wins, including null when nothing matched.
+        # merge_history_by_date keeps the previous price when incoming is null.
+        stamped = False
+        for point in history:
+            if point.get("date") != today:
+                continue
+            point["price_hkd"] = price
+            point["volume"] = float(vol_today)
+            if wl.get("identity_review"):
+                point["hk_ask_hkd"] = None
+            stamped = True
+            break
+        if not stamped:
+            history.append({
+                "date": today,
+                "price_hkd": price,
+                "hk_ask_hkd": hk_ask,
+                "volume": float(vol_today),
+            })
+            history.sort(key=lambda p: str(p.get("date") or ""))
 
         prev_1 = price_on_or_before(history[:-1], day_1) if len(history) > 1 else None
         prev_7 = price_on_or_before(history[:-1], day_7) if len(history) > 1 else None
@@ -345,14 +449,22 @@ def merge_and_compute(
             spread_pct = round((hk_ask - price) / price * 100.0, 2)
 
         srcs = []
-        if jp.get("ok"):
+        if price_source == "snkrdunk_last_sale":
+            srcs.append("snkrdunk")
+        if jp.get("ok") and price_source != "blank_yahoo_vs_snkrdunk":
             srcs.append("yahoo_auctions_jp")
+        if snkr.get("url") and "snkrdunk" not in srcs:
+            srcs.append("snkrdunk")
         for backend in hk.get("backends") or []:
             if backend not in srcs:
                 srcs.append(backend)
 
-        # Image: official art only (TCGdex / pokemon-card.com). Never Yahoo listing photos.
-        image = resolve_official_image(wl)
+        # Official art first. A blank watchlist face can use the matched SNKRDUNK catalog image.
+        face = wl
+        snkr_image = snkr.get("image_url") if isinstance(snkr.get("image_url"), str) else ""
+        if not wl.get("image_official_url") and snkr_image.startswith("https://"):
+            face = {**wl, "image_official_url": snkr_image}
+        image = resolve_official_image(face)
 
         if jp.get("status") == "preserved" and jp.get("liquidity_score") is not None:
             liq = int(jp["liquidity_score"])
@@ -381,13 +493,38 @@ def merge_and_compute(
             "spread_jp_hk_pct": spread_pct,
             "sources": srcs,
             "is_sample": False,
-            "jp_comps_n": len(jp.get("comps") or []),
-            "hk_listings_n": len(hk.get("listings") or []),
+            "jp_comps_n": (
+                int(jp["jp_debug"]["matched_n"])
+                if isinstance(jp.get("jp_debug"), dict) and isinstance(jp["jp_debug"].get("matched_n"), int)
+                else len(jp.get("comps") or [])
+            ),
+            "hk_listings_n": (
+                int(hk["listings_n"])
+                if hk.get("listings_n") is not None
+                else len(hk.get("listings") or [])
+            ),
             "hk_backend": hk.get("backend"),
             "history": history,
         }
+        if jp.get("query"):
+            row["jp_query"] = jp["query"]
+        debug = jp.get("jp_debug")
+        if isinstance(debug, dict):
+            row["jp_debug"] = debug
         if wl.get("name_en"):
             row["name_en"] = wl["name_en"]
+        if wl.get("identity_review"):
+            row["identity_review"] = True
+        if price_source in ("snkrdunk_last_sale", "blank_yahoo_vs_snkrdunk"):
+            row["price_source"] = price_source
+        if snkr.get("url"):
+            row["snkrdunk_url"] = snkr["url"]
+        if isinstance(snkr.get("ask_jpy"), int):
+            row["snkrdunk_ask_jpy"] = snkr["ask_jpy"]
+        if isinstance(snkr.get("last_sale_jpy"), int):
+            row["snkrdunk_last_sale_jpy"] = snkr["last_sale_jpy"]
+        if snkr_image.startswith("https://") and not wl.get("image_official_url"):
+            row["snkrdunk_image_url"] = snkr_image
         if iid in pins:
             row["pinned"] = True
         attach_public_quotes(
@@ -600,7 +737,54 @@ def _yahoo_preserved_status() -> dict[str, Any]:
     return yahoo
 
 
-def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
+def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
+    """Reuse the last HK asks so a JP accuracy refresh does not re-hit HK shops."""
+    preserved_status: dict[str, Any] = {
+        "enabled": True,
+        "status": "preserved",
+        "ok_items": 0,
+        "errors": [],
+        "note": "Preserved HK asks; this run refreshed JP sold only",
+    }
+    if not LATEST_PATH.exists():
+        return {}, {"carousell_hk": preserved_status}
+    try:
+        prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}, {"carousell_hk": preserved_status}
+    out: dict[str, dict] = {}
+    for it in prior.get("items") or []:
+        if not isinstance(it, dict) or not it.get("id"):
+            continue
+        backends = [
+            s
+            for s in (it.get("sources") or [])
+            if s not in ("yahoo_auctions_jp", "snkrdunk")
+        ]
+        out[str(it["id"])] = {
+            "median_hkd": it.get("hk_ask_hkd"),
+            "lowest_hkd": it.get("hk_ask_low_hkd"),
+            "bid_hkd": it.get("hk_bid_hkd"),
+            "listings": [],
+            "listings_n": it.get("hk_listings_n") or 0,
+            "bid_listings": [],
+            "backends": backends,
+            "backend": it.get("hk_backend"),
+        }
+    prev = (prior.get("meta") or {}).get("source_status") or {}
+    status: dict[str, Any] = {}
+    for key, bucket in prev.items():
+        if key in ("yahoo_auctions_jp", "snkrdunk") or not isinstance(bucket, dict):
+            continue
+        kept = dict(bucket)
+        kept["note"] = "Preserved HK asks; this run refreshed JP sold only"
+        status[key] = kept
+    if "carousell_hk" not in status:
+        status["carousell_hk"] = preserved_status
+    return out, status
+
+
+def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) -> dict:
     now = datetime.now(HK_TZ)
     if hk_only:
         sources_cfg = cfg.get("sources") or {}
@@ -623,6 +807,21 @@ def build_payload(cfg: dict, *, hk_only: bool = False) -> dict:
         jp_by_id = _jp_preserved_from_latest()
         source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
         source_status.update(hk_status)
+    elif jp_only:
+        jp_by_id, _hk_unused, source_status = fetch_all(
+            {
+                **cfg,
+                "sources": {
+                    **(cfg.get("sources") or {}),
+                    "carousell_hk": {"enabled": False},
+                    "hk_card_shops": {"enabled": False},
+                    "facebook_hk": {"enabled": False},
+                },
+            }
+        )
+        hk_by_id, hk_status = _hk_preserved_from_latest()
+        source_status.update(hk_status)
+        print("[fetch] JP-only refresh (HK asks preserved)", flush=True)
     else:
         jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
@@ -721,7 +920,11 @@ def main() -> None:
             file=sys.stderr,
         )
         sys.exit(1)
-    payload = build_payload(cfg, hk_only=("--hk-only" in sys.argv))
+    payload = build_payload(
+        cfg,
+        hk_only=("--hk-only" in sys.argv),
+        jp_only=("--jp-only" in sys.argv),
+    )
     write_outputs(payload)
     # Print source_status summary
     ss = payload["meta"].get("source_status") or {}

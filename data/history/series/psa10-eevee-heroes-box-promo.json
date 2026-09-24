@@ -1,7 +1,7 @@
 {
   "id": "psa10-eevee-heroes-box-promo",
-  "name_zh": "伊布英雄 特別卡盒相關 PSA10",
-  "name_jp": "イーブイヒーローズ PSA10",
+  "name_zh": "伊布英雄 PSA10（待核對）",
+  "name_jp": "イーブイヒーローズ PSA10（待核對）",
   "kind": "psa10",
   "set": "S6a",
   "image": "images/psa10-eevee-heroes-box-promo.webp",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 89,
-  "updated_at": "2026-09-24T16:54:52+08:00",
+  "updated_at": "2026-09-24T18:59:50+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -543,8 +543,8 @@
     {
       "date": "2026-09-24",
       "price_hkd": 2957.62,
-      "hk_ask_hkd": 2580.0,
-      "volume": 8.0
+      "hk_ask_hkd": 2400.0,
+      "volume": 0.0
     }
   ],
   "backfill": "yahoo_closedsearch"

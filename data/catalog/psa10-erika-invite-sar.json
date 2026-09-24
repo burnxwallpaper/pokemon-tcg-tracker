@@ -2,6 +2,7 @@
   "id": "psa10-erika-invite-sar",
   "name_zh": "莉佳的邀請 SAR PSA10",
   "name_jp": "エリカの招待 SAR PSA10",
+  "name_en": "Erika's Invitation SAR PSA10",
   "kind": "psa10",
   "set": "SV2a / 206",
   "search_jp": "エリカの招待 SAR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 45,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

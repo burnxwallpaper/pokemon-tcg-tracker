@@ -2,7 +2,8 @@
 
 研究日期：2026-09-24（HK）。
 **已實作溫和 scraper**（`scripts/update.py`）：
-- Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅
+- SNKRDUNK（https://snkrdunk.com/en/）公開目錄 → 身份對照、最近成交（有公開 sales-history 時）、PSA10 最低叫價 ✅ **JP 主參考**
+- Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅ **次要交叉檢查**
 - Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的叫價；Cloudflare 403 就停，不繞過
 - HKCardLink → 公開 Supabase listings，與 Carousell 合併
 - LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價；Zenox `zenoxstore.com` → Shopify 日版補充包 BOX
@@ -18,10 +19,10 @@
 
 | 優先 | 來源 | 角色 | 為何 |
 |------|------|------|------|
-| **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交＋流動性 | 日版 PSA10／BOX 成交樣本最大；可算 median／量 |
-| **P0** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大、PSA10／未開封關鍵字好搜 |
+| **P0** | SNKRDUNK（https://snkrdunk.com/en/） | JP 身份＋市價主參考 | 目錄頁有正確卡名／編號／圖；密封品有公開成交，PSA10 有最低叫價。與 Yahoo 差太遠就信 SNKRDUNK 或留空 |
+| **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交交叉檢查 | 日版樣本大，但搜尋會混卡。只在和 SNKRDUNK 同一身份、價差不離譜時採用 median |
 | **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；價差區塊必要 |
-| **P1** | SNKRDUNK（スニーカーダンク） | JP 市價參考 | 鑑定卡 last-sold／ask 整齊；適合 PSA10 watchlist |
+| **P1** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大；目前未接入 |
 | **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
 | **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |
 | **P2** | 遊々亭 (Yuyu-tei) | 單卡店價 | raw／店售為主；PSA10 次要 |
@@ -32,7 +33,7 @@
 
 ## 各源詳述
 
-### 1. Yahoo Auctions Japan（ヤフオク）— **P0**
+### 1. Yahoo Auctions Japan（ヤフオク）— **P0，次要交叉檢查**
 
 - **提供什麼**：進行中＋**結束（落札）**拍賣；標題、落札價 JPY、入札數、結束時間、URL。
 - **PSA10 適配**：高。關鍵字如 `ポケモンカード … PSA10`；成交價可用。
@@ -40,7 +41,7 @@
 - **流動性訊號**：結束筆數、入札數、單位時間成交量 → 很適合 Top-50 by liquidity。
 - **抓取難度**：中高。公開搜尋／結束搜尋頁；結構常變；可能要日文關鍵字＋代理。無官方公開 API。第三方（如 Apify yahoo-auction-sold-comps）有 sold summary。
 - **ToS／限制**：Yahoo 服務條款通常限制自動化；需溫和頻率、尊重 robots。**勿大量並行。**
-- **MVP 用法**：每日關鍵字列表（watchlist）抽 ended sold → median JPY → × FX → HKD；記 `volume_today`。
+- **MVP 用法**：每日關鍵字列表抽 ended sold → median。只在和同一張卡的 SNKRDUNK 成交或 PSA10 叫價差距不離譜時顯示；否則留空。
 
 ### 2. Mercari Japan（jp.mercari.com）— **P0**
 
@@ -60,15 +61,13 @@
 - **ToS**：平台禁止未授權 scraping 的機率高；個人低頻搜尋較務實。
 - **MVP 用法**：對 Top 流動性品項搜 HK 關鍵字 → 取合理 ask 中位數 → `spread_jp_hk_pct`。香港 Facebook 叫價見 §8，目前不能接。
 
-### 4. SNKRDUNK（snkrdunk.com）— **P1**
+### 4. SNKRDUNK（https://snkrdunk.com/en/）— **P0，JP 主參考**
 
-- **提供什麼**：球鞋起家的鑑定卡市集；last sold／最低 ask 等（以站上顯示為準）。第三方有卡片搜尋／報價工具與非官方 API 包裝。
-- **PSA10**：很高（市集偏 graded）。
-- **Sealed**：中（以單卡／鑑定為主；BOX 較少）。
-- **流動性**：有成交次數可用；適合 PSA10 核心清單。
-- **抓取難度**：中高。無穩定公開官方 API；第三方 Parse／Spider 等需評估授權與費用。
-- **ToS**：服務條款可限制自動化；**不要假設可自由 bulk scrape**。
-- **MVP 用法**：PSA10 參考價第二來源；與ヤフオク／メルカリ交叉驗證異常跳動。
+- **提供什麼**：公開目錄頁的卡名、系列、編號、商品圖，以及市價。密封品 `sales-history` 有最近成交。單卡 PSA10 公開的是該評級最低叫價（last sale 陣列常是空的）。參考連結用英文商品頁 `https://snkrdunk.com/en/trading-cards/{id}`。
+- **身份**：搜尋結果的 `[系列 編號]` 必須和 watchlist 是同一張卡。對不上就不貼連結、不拿來改價。待核對的列不猜。
+- **價格**：有公開成交就用成交中位數當最近成交價，Yahoo 只作對照。只有 PSA10 最低叫價時，Yahoo 成交中位數要落在叫價的 1.75 倍以內才保留；差更遠就留空，不用那個 Yahoo 數字，也不把叫價標成成交。
+- **抓取**：免登入 GET，沿用全站 ≥1.6 秒間隔。搜尋頁 `https://snkrdunk.com/search`、商品頁 `https://snkrdunk.com/apparels/{id}`、`/v1/apparels/{id}/sales-history`。不登入、不繞過。
+- **ToS**：服務條款可限制自動化；只讀公開頁、低頻、可在 `config.json` 關掉 `sources.snkrdunk`。
 
 ### 5. Cardrush（cardrush.jp / cardrush.media）— **P1**
 
@@ -146,10 +145,10 @@
 ## 建議的 MVP 資料流（實作時）
 
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
-2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
+2. **JP**：先對 SNKRDUNK 目錄（身份＋成交或 PSA10 叫價）。ヤフオク ended median 只在和 SNKRDUNK 同一張卡、價差不離譜時留下；否則留空。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
 4. **HK**：Carousell／HKCardLink／LONO／Zenox 標題命中的叫價 → 價差。Yahoo 只作日本參考。
-5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
+5. **校準**：SNKRDUNK 是主參考。Cardrush 仍只作店價錨點，不覆蓋成交。
 
 ---
 

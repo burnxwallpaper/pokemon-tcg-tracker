@@ -1,19 +1,20 @@
 {
   "id": "psa10-koraidon-ex-sar",
-  "name_zh": "故勒頓 ex SAR PSA10",
-  "name_jp": "コライドンex SAR PSA10",
+  "name_zh": "故勒頓 ex UR（閃）PSA10",
+  "name_jp": "コライドンex UR シャイニートレジャー PSA10",
+  "name_en": "Koraidon ex UR Shiny Treasure PSA10",
   "kind": "psa10",
-  "set": "SV4a / 360",
-  "search_jp": "コライドンex SAR PSA10 シャイニートレジャー",
-  "search_hk": "故勒頓 SAR PSA10",
+  "set": "SV4a / 360/190",
+  "search_jp": "コライドンex UR PSA10 シャイニートレジャー",
+  "search_hk": "故勒頓 UR PSA10 閃",
   "tcgdex_id": "SV4a-360",
   "image": "images/psa10-koraidon-ex-sar.webp",
   "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/360/high.webp",
-  "image_note": "official_card TCGdex high.webp",
+  "image_note": "official_card SV4a-360 コライドンex UR 360/190 (not SAR)",
   "image_source": "official",
   "series_path": "history/series/psa10-koraidon-ex-sar.json",
   "history_points": 86,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

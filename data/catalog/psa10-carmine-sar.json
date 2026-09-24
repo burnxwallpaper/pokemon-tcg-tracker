@@ -2,6 +2,7 @@
   "id": "psa10-carmine-sar",
   "name_zh": "丹瑜 SAR PSA10",
   "name_jp": "ゼイユ SAR PSA10",
+  "name_en": "Carmine SAR PSA10",
   "kind": "psa10",
   "set": "SV6 / 130",
   "search_jp": "ゼイユ SAR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 46,
   "first_seen": "2026-07-03",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

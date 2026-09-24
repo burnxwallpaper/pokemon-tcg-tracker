@@ -2,6 +2,7 @@
   "id": "psa10-acerola-premonition",
   "name_zh": "阿塞蘿拉的預感 SR PSA10",
   "name_jp": "アセロラの予感 SR PSA10",
+  "name_en": "Acerola's Premonition SR PSA10",
   "kind": "psa10",
   "set": "S8b / 255",
   "search_jp": "アセロラの予感 SR PSA10",
@@ -15,5 +16,5 @@
   "history_points": 56,
   "first_seen": "2026-06-28",
   "last_seen": "2026-09-24",
-  "updated_at": "2026-09-24T16:54:52+08:00"
+  "updated_at": "2026-09-24T18:59:50+08:00"
 }

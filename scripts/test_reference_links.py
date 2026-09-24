@@ -64,6 +64,17 @@ def test_reference_links_use_keywords_and_real_listing() -> None:
     )
     labels = [link["label"] for link in links]
     assert labels[0] == "HKCardLink 徵求"
+    snkr = build_reference_links(
+        {
+            "name_zh": "噴火龍",
+            "name_jp": "リザードンex SAR PSA10",
+            "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/162095",
+            "sources": [],
+        },
+        watch={"search_jp": "リザードンex SAR PSA10"},
+    )
+    assert snkr[0]["label"] == "SNKRDUNK"
+    assert snkr[0]["href"] == "https://snkrdunk.com/en/trading-cards/162095"
     assert any(link["href"].startswith("https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=") for link in links)
     assert any("carousell.com.hk/search/" in link["href"] and "%E5%99%B4" in link["href"] for link in links)
     assert any(link["label"] == "LONO" for link in links)

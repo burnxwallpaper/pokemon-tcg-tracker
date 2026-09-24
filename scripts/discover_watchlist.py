@@ -93,7 +93,18 @@ def merge_candidates(cfg: dict, seeds: list[dict]) -> list[dict]:
         if kind not in ALLOWED_KINDS:
             continue
         base = dict(by_id.get(wl["id"]) or {})
+        clearable = {
+            "image_official_url",
+            "tcgdex_id",
+            "search_jp",
+            "search_hk",
+            "set",
+            "image_note",
+        }
         for key, val in wl.items():
+            if key in clearable and (val is None or val == ""):
+                base[key] = None
+                continue
             if val is not None and val != "":
                 base[key] = val
         base["id"] = wl["id"]
@@ -274,6 +285,7 @@ def watchlist_entry(cand: dict) -> dict:
         "tcgdex_id",
         "image_official_url",
         "image_note",
+        "identity_review",
     )
     out: dict[str, Any] = {}
     for key in keys:

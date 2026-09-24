@@ -109,6 +109,9 @@ def build_reference_links(
     watch = watch or {}
     links: list[dict[str, str]] = []
     seen: set[str] = set()
+    snkr_url = str(item.get("snkrdunk_url") or watch.get("snkrdunk_url") or "").strip()
+    if snkr_url.startswith("https://snkrdunk.com/"):
+        _add(links, seen, "SNKRDUNK", snkr_url)
     sources = set(item.get("sources") or [])
     kind = str(item.get("kind") or watch.get("kind") or "psa10")
 
@@ -118,7 +121,12 @@ def build_reference_links(
         _add(links, seen, _listing_label(row), str(row.get("url")))
 
     jp = str(
-        watch.get("search_jp") or item.get("search_jp") or item.get("name_jp") or item.get("name_zh") or ""
+        item.get("jp_query")
+        or watch.get("search_jp")
+        or item.get("search_jp")
+        or item.get("name_jp")
+        or item.get("name_zh")
+        or ""
     ).strip()
     hk = str(
         watch.get("search_hk") or item.get("search_hk") or item.get("name_zh") or item.get("name_jp") or ""
