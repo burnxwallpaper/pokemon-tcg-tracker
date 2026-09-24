@@ -35,8 +35,8 @@
       "note": "JP C2C sold comps"
     },
     "snkrdunk": {
-      "enabled": false,
-      "note": "JP marketplace last-sold / ask"
+      "enabled": true,
+      "note": "Identity + JP PSA10/BOX ask. HK asks outside 10–300% of this market are dropped. https://snkrdunk.com/en/"
     },
     "cardrush": {
       "enabled": false,

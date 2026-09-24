@@ -800,10 +800,10 @@ def match_listings(
                 continue
             if re.search(r"原箱|カートン", title):
                 continue
-            multi = re.search(r"(\d+)\s*盒", title)
+            multi = re.search(r"(?<!\d)(\d{1,2})\s*盒", title)
             if multi and int(multi.group(1)) >= 2:
                 continue
-            multi_box = re.search(r"(\d+)\s*(?:box|ボックス|箱)", title, re.I)
+            multi_box = re.search(r"(?<!\d)(\d{1,2})\s*(?:box|ボックス|箱)", title, re.I)
             if multi_box and int(multi_box.group(1)) >= 2:
                 continue
             if re.search(r"[×✕]\s*[2-9]", title):

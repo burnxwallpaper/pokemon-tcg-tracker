@@ -8,6 +8,7 @@
 - LONO `lono.com.hk` → PSA／寶可夢分類頁公開標價
 - ShipMyToy `shipmytoy.com.hk` → 日版補充包 BOX；同一卡上的低價是單包，只留盒價
 - Zenox `zenoxstore.com` → Shopify 日版補充包 BOX，以及有貨的 PSA10 變體（略過 PSA9）
+- SNKRDUNK `snkrdunk.com/en` → 同一張卡的身份（set code＋編號）與 PSA10／BOX 日圓叫價，用來擋離譜的香港賣出價；詳情頁連回該商品
 - Facebook Marketplace → 此環境 HTTP 400，無登入、不繞牆
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
@@ -23,7 +24,7 @@
 | **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交＋流動性 | 日版 PSA10／BOX 成交樣本最大；可算 median／量 |
 | **P0** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大、PSA10／未開封關鍵字好搜 |
 | **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；價差區塊必要 |
-| **P1** | SNKRDUNK（スニーカーダンク） | JP 市價參考 | 鑑定卡 last-sold／ask 整齊；適合 PSA10 watchlist |
+| **身份＋市價帶** | SNKRDUNK（スニーカーダンク） | 對卡＋HK 叫價帶 | 公開搜尋對上 `[set 編號]`；PSA10／BOX 日圓叫價是香港賣出價的 10%–300% 帶 |
 | **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
 | **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |
 | **P2** | 遊々亭 (Yuyu-tei) | 單卡店價 | raw／店售為主；PSA10 次要 |
@@ -61,15 +62,13 @@
 - **ToS**：平台禁止未授權 scraping 的機率高；個人低頻搜尋較務實。
 - **MVP 用法**：對 Top 流動性品項搜 HK 關鍵字 → 取合理 ask 中位數 → `spread_jp_hk_pct`。Facebook 稍後再接。
 
-### 4. SNKRDUNK（snkrdunk.com）— **P1**
+### 4. SNKRDUNK（snkrdunk.com）— **身份＋市價帶**
 
-- **提供什麼**：球鞋起家的鑑定卡市集；last sold／最低 ask 等（以站上顯示為準）。第三方有卡片搜尋／報價工具與非官方 API 包裝。
-- **PSA10**：很高（市集偏 graded）。
-- **Sealed**：中（以單卡／鑑定為主；BOX 較少）。
-- **流動性**：有成交次數可用；適合 PSA10 核心清單。
-- **抓取難度**：中高。無穩定公開官方 API；第三方 Parse／Spider 等需評估授權與費用。
-- **ToS**：服務條款可限制自動化；**不要假設可自由 bulk scrape**。
-- **MVP 用法**：PSA10 參考價第二來源；與ヤフオク／メルカリ交叉驗證異常跳動。
+- **提供什麼**：英文搜尋 `https://snkrdunk.com/en/v1/search` 回傳卡名（含 `[SV2a 173/165]` 這類編號）。商品日圓在 `https://snkrdunk.com/v1/apparels/{id}`；PSA10 叫價在該商品的 used 列表（`wearCount` = `tradingCardSingleConditionPSA10`）。裸卡 `usedMinPrice` 不是 PSA10。
+- **怎麼對卡**：單卡搜尋用 set code＋收藏編號，標題括號裡的系列與編號都要對上，並拒絕標題帶 `EN` 的英文再版（MEW EN 201 不是 SV2a 噴火龍）。未開封用日文盒名，略過 no shrink、抽選、開封済。
+- **市價**：PSA10 取至少兩筆叫價的中位數（不足兩筆才把已售 PSA10 補進）。未開封用 `minPrice`，沒有才用 `usedMinPrice`。這個日圓換算後是香港賣出價的 10%–300% 帶；沒有命中才退回 Yahoo 成交中位數。畫面上的日本參考仍是 Yahoo，不拿 SNKRDUNK 覆蓋。
+- **連結**：單卡 `https://snkrdunk.com/en/trading-cards/{id}`，詳情頁「日本參考」下方。
+- **ToS**：限頻（與其他來源同一間隔），只讀公開 JSON，不登入、不繞過。
 
 ### 5. Cardrush（cardrush.jp / cardrush.media）— **P1**
 
@@ -107,7 +106,7 @@
 - PSA10 對上 PSA 1–9、裸卡、AR／SR／UR（查的是 SAR 時），或編號對不上（173/165 不是 198/165，sv5k 097 不是 088）。
 - 未開封對上單包、ETB、禮盒、牌組、公仔、繁中、原箱、多盒。
 - 求購、WTB、收卡。
-- 叫價低於日本成交中位數一成，或高於三倍。單獨一筆又沒有 set code／卡號，同樣不顯示。
+- 叫價低於對照市價一成，或高於三倍。對照市價優先用 [SNKRDUNK](https://snkrdunk.com/en/) 上同一張卡的 PSA10 叫價（未開封則用 BOX 叫價）；沒有 SNKRDUNK 時才退回 Yahoo 成交中位數。詳情頁有 SNKRDUNK 連結。單獨一筆又沒有 set code／卡號，同樣不顯示。
 
 | 來源 | 怎麼拿 | 用什麼 |
 |---|---|---|
@@ -134,7 +133,7 @@
 2. **JP sold**：ヤフオク ended ＋ メルカリ sold_out → 正規化 HKD。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
 4. **HK**：Carousell／HKCardLink／LONO／ShipMyToy／Zenox 標題命中、並通過上面拒絕規則的賣出價 → `hk_ask_hkd`（多筆用中位數）。Yahoo 只作日本參考。不編造買價。
-5. **校準**：SNKRDUNK／Cardrush 作異常檢查，不覆蓋成交主源。
+5. **校準**：SNKRDUNK 同一張卡的 PSA10／BOX 叫價是香港賣出價的市價帶；Yahoo 成交仍是畫面上的日本參考，不拿 SNKRDUNK 覆蓋它。
 
 ---
 

@@ -16,6 +16,13 @@ from sources.hk_match import (  # noqa: E402
     robust_median,
 )
 from sources.hk_shops import parse_lono_cards, parse_shopline_cards, parse_zenox_products, sell_price  # noqa: E402
+from sources.snkrdunk import (  # noqa: E402
+    choose_hit,
+    psa10_market_jpy,
+    same_print,
+    search_keyword,
+    sealed_market_jpy,
+)
 from sources.yahoo_auctions_jp import publish_sold_median  # noqa: E402
 
 
@@ -500,6 +507,87 @@ def test_publish_ask_prefers_median_and_drops_a_lone_weak_listing() -> None:
     assert absurd["hkd"] is None
 
 
+def test_snkrdunk_print_rejects_english_reprint_and_loose_box() -> None:
+    pikachu = {
+        "kind": "psa10",
+        "name_zh": "皮卡丘 AR（151）PSA10",
+        "name_jp": "ピカチュウ AR PSA10",
+        "search_jp": "ピカチュウ AR PSA10 173/165 ポケモンカード151",
+        "search_hk": "皮卡丘 AR PSA10 151",
+        "set": "sv2a / 173/165",
+        "tcgdex_id": "SV2a-173",
+    }
+    charizard = {
+        "kind": "psa10",
+        "name_zh": "噴火龍 ex SAR（151）PSA10",
+        "name_jp": "リザードンex SAR PSA10 151",
+        "search_jp": "リザードンex SAR PSA10 201/165",
+        "search_hk": "噴火龍 SAR PSA10 151",
+        "set": "sv2a / 201/165",
+        "tcgdex_id": "SV2a-201",
+    }
+    box = {
+        "kind": "sealed",
+        "name_zh": "151 補充包 BOX（未開封）",
+        "name_jp": "ポケモンカード151 BOX 未開封",
+        "search_jp": "ポケモンカード151 BOX 未開封 シュリンク",
+        "search_hk": "151 BOX 未開封",
+        "set": "SV2a",
+    }
+    assert search_keyword(pikachu) == "sv2a 173"
+    assert search_keyword(box) == "ポケモンカード151 BOX"
+    assert same_print(pikachu, "Pikachu AR[SV2a 173/165]")
+    assert not same_print(pikachu, "Pikachu AR[SV2a 198/165]")
+    assert not same_print(charizard, "Alakazam[MEW EN 201/165]")
+    assert not same_print(charizard, "Charizard ex SAR[MEW EN 199/165]")
+    assert same_print(charizard, "Charizard ex SAR[SV2a 201/165]")
+    hit = choose_hit(
+        charizard,
+        [
+            {"id": 1, "name": "Alakazam[MEW EN 201/165]"},
+            {"id": 2, "name": "Charizard ex SAR[MEW EN 199/165]"},
+            {"id": 128117, "name": "Charizard ex SAR[SV2a 201/165]"},
+        ],
+    )
+    assert hit is not None and hit["id"] == 128117
+    boxed = choose_hit(
+        box,
+        [
+            {"id": 9, "name": '[No shrink] Pokemon Card Game Scarlet & Violet Enhanced Expansion Pack "pokemon card 151" Box'},
+            {"id": 8, "name": "【ポケカ 100BOX 抽選定価販売】「ポケモンカード151」20BOX"},
+            {"id": 7, "name": "Pokemon Card Game [EN Ver.] Scarlet & Violet 151 Pokemon Center Elite Trainer Box"},
+            {"id": 118914, "name": 'Pokemon Card Game Scarlet & Violet Enhanced Expansion Pack "pokemon card 151" Box'},
+        ],
+    )
+    assert boxed is not None and boxed["id"] == 118914
+
+
+def test_snkrdunk_psa10_market_ignores_raw_and_other_grades() -> None:
+    psa10 = "tradingCardSingleConditionPSA10"
+    mid = psa10_market_jpy(
+        [
+            {"wearCount": psa10, "price": 12800, "isDisplaySold": False},
+            {"wearCount": psa10, "price": 12700, "isDisplaySold": False},
+            {"wearCount": psa10, "price": 13000, "isDisplaySold": False},
+            {"wearCount": psa10, "price": 12699, "isDisplaySold": True},
+            {"wearCount": "raw", "price": 3500, "isDisplaySold": False},
+            {"wearCount": "psa9", "price": 8000, "isDisplaySold": False},
+        ]
+    )
+    assert mid == 12800
+    thin = psa10_market_jpy(
+        [
+            {"wearCount": psa10, "price": 12800, "isDisplaySold": False},
+            {"wearCount": psa10, "price": 12000, "isDisplaySold": True},
+            {"wearCount": psa10, "price": 14000, "isDisplaySold": True},
+        ]
+    )
+    assert thin == 12800
+    assert psa10_market_jpy([{"wearCount": psa10, "price": 12800, "isDisplaySold": False}]) is None
+    assert sealed_market_jpy({"minPrice": 45000, "usedMinPrice": 40000}) == 45000
+    assert sealed_market_jpy({"minPrice": 0, "usedMinPrice": 40000}) == 40000
+
+
 if __name__ == "__main__":
     test_listing_cards_ignores_empty_price()
     test_charizard_variants_do_not_cross_match()
@@ -520,4 +608,6 @@ if __name__ == "__main__":
     test_yahoo_sold_requires_grade_set_and_enough_comps()
     test_bare_collector_number_must_match()
     test_publish_ask_prefers_median_and_drops_a_lone_weak_listing()
+    test_snkrdunk_print_rejects_english_reprint_and_loose_box()
+    test_snkrdunk_psa10_market_ignores_raw_and_other_grades()
     print("ok")

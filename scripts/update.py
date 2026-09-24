@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
-from sources import hk_asks, yahoo_auctions_jp  # noqa: E402
+from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
@@ -166,8 +166,13 @@ def resolve_official_image(wl: dict) -> str | None:
     return None
 
 
-def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, Any]]:
-    """Fetch JP + HK for each watchlist item. Returns (jp_by_id, hk_by_id, source_status)."""
+def fetch_all(
+    cfg: dict,
+) -> tuple[dict[str, dict], dict[str, dict], dict[str, Any], dict[str, dict]]:
+    """Fetch JP + HK for each watchlist item.
+
+    Returns (jp_by_id, hk_by_id, source_status, snkr_by_id).
+    """
     watchlist = cfg.get("watchlist") or []
     interval = float(cfg.get("request_min_interval_sec") or 1.6)
     sources_cfg = cfg.get("sources") or {}
@@ -178,6 +183,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
 
     jp_by_id: dict[str, dict] = {}
     hk_by_id: dict[str, dict] = {}
+    snkr_by_id: dict[str, dict] = {}
     source_status: dict[str, Any] = {
         "yahoo_auctions_jp": {
             "enabled": jp_on,
@@ -229,6 +235,17 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             "ok" if any_ok else ("blocked" if blocked else "empty")
         )
 
+    snkr_on = bool(sources_cfg.get("snkrdunk", {}).get("enabled"))
+    if snkr_on:
+        print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
+        snkr_by_id, snkr_status = snkrdunk.collect(watchlist, min_interval=interval)
+        source_status["snkrdunk"] = snkr_status
+        print(
+            f"  snkrdunk: status={snkr_status.get('status')} "
+            f"ok_items={snkr_status.get('ok_items')}",
+            flush=True,
+        )
+
     if hk_on or shops_on or facebook_on:
         print(
             f"[fetch] HK asks × {len(watchlist)} "
@@ -240,7 +257,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             carousell_on=hk_on,
             shops_on=shops_on,
             facebook_on=facebook_on,
-            jp_hkd_by_id=_jp_hkd_map(cfg, jp_by_id),
+            jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id, snkr_by_id),
         )
         source_status.update(hk_status)
         for name, bucket in hk_status.items():
@@ -250,7 +267,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
                 flush=True,
             )
 
-    return jp_by_id, hk_by_id, source_status
+    return jp_by_id, hk_by_id, source_status, snkr_by_id
 
 
 def merge_and_compute(
@@ -258,6 +275,7 @@ def merge_and_compute(
     jp_by_id: dict[str, dict],
     hk_by_id: dict[str, dict],
     now: datetime,
+    snkr_by_id: dict[str, dict] | None = None,
 ) -> list[dict]:
     fx = float(cfg["fx_jpy_to_hkd"])
     hist_days = int(cfg.get("history_days", 90))
@@ -270,6 +288,7 @@ def merge_and_compute(
         iid = wl["id"]
         jp = jp_by_id.get(iid) or {}
         hk = hk_by_id.get(iid) or {}
+        snkr = (snkr_by_id or {}).get(iid) or {}
         price_jpy = jp.get("median_jpy")
         price = hkd(price_jpy, fx)
         hk_ask = hk.get("published_hkd")
@@ -350,6 +369,8 @@ def merge_and_compute(
         for backend in hk.get("backends") or []:
             if backend not in srcs:
                 srcs.append(backend)
+        if snkr.get("url") and "snkrdunk" not in srcs:
+            srcs.append("snkrdunk")
 
         # Image: official art only (TCGdex / pokemon-card.com). Never Yahoo listing photos.
         image = resolve_official_image(wl)
@@ -381,6 +402,9 @@ def merge_and_compute(
                 "hk_ask_hkd": hk_ask,
                 "hk_listings_n": int(hk.get("match_count") or 0),
                 "hk_listing_url": hk.get("example_url"),
+                "snkrdunk_url": snkr.get("url"),
+                "snkrdunk_name": snkr.get("name"),
+                "snkrdunk_jpy": snkr.get("market_jpy"),
                 "spread_jp_hk_pct": spread_pct,
                 "sources": srcs,
                 "is_sample": False,
@@ -434,6 +458,21 @@ def _jp_hkd_map(cfg: dict, jp_by_id: dict[str, dict]) -> dict[str, float]:
     out: dict[str, float] = {}
     for iid, jp in jp_by_id.items():
         converted = hkd(jp.get("median_jpy"), fx)
+        if converted:
+            out[str(iid)] = float(converted)
+    return out
+
+
+def _band_hkd_map(
+    cfg: dict,
+    jp_by_id: dict[str, dict],
+    snkr_by_id: dict[str, dict] | None,
+) -> dict[str, float]:
+    """SNKRDUNK PSA10/BOX ask when we have it; otherwise the Yahoo sold median."""
+    out = _jp_hkd_map(cfg, jp_by_id)
+    fx = float(cfg["fx_jpy_to_hkd"])
+    for iid, row in (snkr_by_id or {}).items():
+        converted = hkd(row.get("market_jpy"), fx)
         if converted:
             out[str(iid)] = float(converted)
     return out
@@ -672,19 +711,25 @@ def _hk_preserved_from_latest() -> dict[str, dict]:
 
 def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) -> dict:
     now = datetime.now(HK_TZ)
+    snkr_by_id: dict[str, dict] = {}
     if hk_only:
         sources_cfg = cfg.get("sources") or {}
         interval = float(cfg.get("request_min_interval_sec") or 1.6)
         watchlist = cfg.get("watchlist") or []
         print(f"[fetch] HK-only refresh × {len(watchlist)} (JP reference preserved)")
         jp_by_id = _jp_preserved_from_latest()
+        if sources_cfg.get("snkrdunk", {}).get("enabled"):
+            print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
+            snkr_by_id, snkr_status = snkrdunk.collect(watchlist, min_interval=interval)
+        else:
+            snkr_status = {"enabled": False, "status": "disabled", "ok_items": 0, "errors": []}
         hk_by_id, hk_status = hk_asks.collect_hk(
             watchlist,
             min_interval=interval,
             carousell_on=bool(sources_cfg.get("carousell_hk", {}).get("enabled")),
             shops_on=bool(sources_cfg.get("hk_card_shops", {}).get("enabled")),
             facebook_on=bool(sources_cfg.get("facebook_hk", {}).get("enabled")),
-            jp_hkd_by_id=_jp_hkd_map(cfg, jp_by_id),
+            jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id, snkr_by_id),
         )
         for name, bucket in hk_status.items():
             print(
@@ -692,7 +737,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
                 f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
                 flush=True,
             )
-        source_status = {"yahoo_auctions_jp": _yahoo_preserved_status()}
+        source_status = {"yahoo_auctions_jp": _yahoo_preserved_status(), "snkrdunk": snkr_status}
         source_status.update(hk_status)
     elif jp_only:
         cfg_jp = dict(cfg)
@@ -703,7 +748,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
             sources[key] = block
         cfg_jp["sources"] = sources
         print("[fetch] JP-only refresh (HK asks preserved)")
-        jp_by_id, _, source_status = fetch_all(cfg_jp)
+        jp_by_id, _, source_status, snkr_by_id = fetch_all(cfg_jp)
         hk_by_id = _hk_preserved_from_latest()
         source_status["hk_preserved"] = {
             "enabled": True,
@@ -712,8 +757,8 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
             "note": "Preserved HK asks; this run refreshed Japan sold comps only",
         }
     else:
-        jp_by_id, hk_by_id, source_status = fetch_all(cfg)
-    items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
+        jp_by_id, hk_by_id, source_status, snkr_by_id = fetch_all(cfg)
+    items = merge_and_compute(cfg, jp_by_id, hk_by_id, now, snkr_by_id)
     sections = compute_sections(items, cfg)
 
     n_hk = sum(1 for it in items if it.get("hk_ask_hkd") is not None)

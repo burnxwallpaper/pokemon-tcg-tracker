@@ -928,6 +928,7 @@
             </div>
             <div class="price" style="margin:0.2rem 0">${fmtHkd(it.hk_ask_hkd)}<span>香港最新賣出價</span></div>
             <div class="price-sub">日本參考 ${fmtHkd(it.price_hkd)}</div>
+            ${it.snkrdunk_url ? `<div class="price-sub"><a href="${escapeHtml(it.snkrdunk_url)}" target="_blank" rel="noopener">SNKRDUNK</a>${it.snkrdunk_jpy ? ` · ¥${Number(it.snkrdunk_jpy).toLocaleString("en-HK")}` : ""}</div>` : ""}
             <div class="row" style="margin-top:0.5rem">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
               <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
