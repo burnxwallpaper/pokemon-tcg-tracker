@@ -43,12 +43,13 @@ def test_shiny_charizard_rejects_other_sets_and_lots() -> None:
 
 def test_koraidon_shiny_does_not_use_scarlet() -> None:
     item = _card(
-        name_jp="コライドンex SAR PSA10",
-        search_jp="コライドンex SAR PSA10 シャイニートレジャー",
-        set="SV4a / 360",
+        name_jp="コライドンex UR シャイニートレジャー PSA10",
+        search_jp="コライドンex UR PSA10 シャイニートレジャー",
+        set="SV4a / 360/190",
     )
-    assert title_matches("コライドンex SAR PSA10 シャイニートレジャー", item)
-    assert not title_matches("コライドンex SAR PSA10", item)
+    assert title_matches("コライドンex UR PSA10 シャイニートレジャー 360/190", item)
+    assert not title_matches("コライドンex SAR PSA10 シャイニートレジャー", item)
+    assert not title_matches("コライドンex UR PSA10 シャイニートレジャー", item)
     assert not title_matches("【PSA10】コライドンex SAR SV1S スカーレットex 103/078", item)
     assert not title_matches("PSA10 ミライドンex&コライドンex SAR連番", item)
 
@@ -65,19 +66,36 @@ def test_card_number_and_mega() -> None:
     assert not title_matches("【最安値・極美品・PSA10相当】ピカチュウ AR 173/165", pika)
     assert not title_matches("ピカチュウex SAR PSA10 132/106 超電ブレイカー", pika)
     gengar = _card(
-        name_jp="ゲンガーex SAR PSA10",
-        search_jp="ゲンガーex SAR PSA10",
-        set="sv5a / 099/071",
+        name_jp="ゲンガーex SR PSA10",
+        search_jp="ゲンガーex SR PSA10",
+        set="SV5K / 088/071",
     )
-    assert title_matches("ゲンガーex SAR PSA10 099/071", gengar)
+    assert title_matches("ゲンガーex SR PSA10 088/071 ワイルドフォース", gengar)
+    assert not title_matches("ゲンガーex SAR PSA10 099/071", gengar)
     assert not title_matches("メガゲンガーex SAR PSA10 240/193", gengar)
     mega = _card(
         name_jp="メガゲンガーex SAR PSA10",
         search_jp="メガゲンガーex SAR PSA10",
-        set="M2a",
+        set="M2a / 240/193",
     )
     assert title_matches("メガゲンガーex SAR PSA10 240/193", mega)
-    assert not title_matches("ゲンガーex SAR PSA10 099/071", mega)
+    assert not title_matches("メガゲンガーex UR PSA10 230/193", mega)
+    assert not title_matches("ゲンガーex SR PSA10 088/071", mega)
+    iono = _card(
+        name_jp="ナンジャモ SAR クレイバースト PSA10",
+        search_jp="ナンジャモ SAR PSA10 クレイバースト",
+        set="SV2D / 096",
+    )
+    assert title_matches("ナンジャモ SAR PSA10 クレイバースト", iono)
+    assert not title_matches("ナンジャモ SAR PSA10 シャイニートレジャー 350/190", iono)
+    assert not title_matches("ナンジャモ SAR PSA10", iono)
+    miraidon = _card(
+        name_jp="ミライドンex SAR PSA10",
+        search_jp="ミライドンex SAR PSA10",
+        set="SV1V / 102/078",
+    )
+    assert title_matches("ミライドンex SAR PSA10 SV1V 102/078", miraidon)
+    assert not title_matches("ミライドンex SAR PSA10 102/079", miraidon)
 
 
 def test_sealed_single_box_only() -> None:
@@ -122,9 +140,10 @@ def test_queries_and_fuzzy_guard() -> None:
     queries = build_queries(_card())
     assert any("シャイニートレジャー" in q and "-メガ" in q for q in queries)
     gengar = build_queries(
-        _card(name_jp="ゲンガーex SAR PSA10", search_jp="ゲンガーex SAR PSA10", set="sv5a / 099/071")
+        _card(name_jp="ゲンガーex SR PSA10", search_jp="ゲンガーex SR PSA10", set="SV5K / 088/071")
     )
-    assert gengar[0].startswith("ゲンガーex SAR PSA10")
+    assert gengar[0].startswith("ゲンガーex SR PSA10")
+    assert "088/071" in gengar[0]
     assert "-メガ" in gengar[0]
     assert "WAND" not in gengar[0]
     mega = build_queries(

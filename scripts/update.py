@@ -148,21 +148,48 @@ def download_image(url: str | None, item_id: str) -> str | None:
         return None
 
 
+def _local_official_image(item_id: str) -> str | None:
+    for ext in (".webp", ".png", ".jpg", ".jpeg"):
+        path = IMAGES_DIR / f"{item_id}{ext}"
+        if path.exists() and path.stat().st_size >= 500:
+            return f"images/{item_id}{ext}"
+    return None
+
+
+def _clear_local_images(item_id: str) -> None:
+    if not IMAGES_DIR.exists():
+        return
+    for ext in (".webp", ".png", ".jpg", ".jpeg"):
+        path = IMAGES_DIR / f"{item_id}{ext}"
+        if path.exists():
+            path.unlink()
+
+
 def resolve_official_image(wl: dict) -> str | None:
     """Resolve official thumbnail; never use Yahoo/Mercari listing photos.
 
-    Order: existing local file (post-migration = official) → download from
-    config image_official_url → None.
+    A blank image_official_url deletes any cached face. A changed URL is
+    re-downloaded. The previous file is kept only when the catalog URL matches.
     """
     iid = wl["id"]
-    for ext in (".webp", ".png", ".jpg", ".jpeg"):
-        p = IMAGES_DIR / f"{iid}{ext}"
-        if p.exists() and p.stat().st_size >= 500:
-            return f"images/{iid}{ext}"
-    url = wl.get("image_official_url") or wl.get("official_image")
-    if url:
-        return download_image(url, iid)
-    return None
+    url = str(wl.get("image_official_url") or wl.get("official_image") or "").strip()
+    if not url:
+        _clear_local_images(iid)
+        return None
+    current = _local_official_image(iid)
+    prior_url = ""
+    try:
+        from series_io import _load_catalog_item
+
+        prior = _load_catalog_item(iid).get("image_official_url")
+        if isinstance(prior, str):
+            prior_url = prior.strip()
+    except Exception:
+        prior_url = ""
+    if current and prior_url == url:
+        return current
+    saved = download_image(url, iid)
+    return saved or current
 
 
 def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, Any]]:
@@ -197,6 +224,30 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             shallow_at = int(disc.get("shallow_series_days") or 14)
             backfill_pages = int(disc.get("backfill_max_pages") or 6)
             deep = prior_n < shallow_at
+            if item.get("identity_review"):
+                print(
+                    f"  JP {i}/{len(watchlist)} {item['id']} identity review — skip",
+                    flush=True,
+                )
+                jp_by_id[item["id"]] = {
+                    "ok": False,
+                    "status": "identity_review",
+                    "median_jpy": None,
+                    "volume_24h": 0,
+                    "volume_7d_est": 0,
+                    "comps": [],
+                    "total_available": 0,
+                    "error": "identity_review",
+                    "jp_debug": {
+                        "query": None,
+                        "matched_titles": [],
+                        "matched_prices_jpy": [],
+                        "source_urls": [],
+                        "matched_n": 0,
+                        "note": "identity_review",
+                    },
+                }
+                continue
             if deep:
                 print(
                     f"  JP {i}/{len(watchlist)} {item['id']} backfill "
@@ -271,6 +322,16 @@ def merge_and_compute(
         iid = wl["id"]
         jp = jp_by_id.get(iid) or {}
         hk = hk_by_id.get(iid) or {}
+        if wl.get("identity_review"):
+            hk = {
+                "median_hkd": None,
+                "lowest_hkd": None,
+                "bid_hkd": None,
+                "listings": [],
+                "bid_listings": [],
+                "listings_n": 0,
+                "backends": [],
+            }
         price_jpy = jp.get("median_jpy")
         price = hkd(price_jpy, fx)
         hk_ask = hk.get("median_hkd")
@@ -330,6 +391,8 @@ def merge_and_compute(
                 continue
             point["price_hkd"] = price
             point["volume"] = float(vol_today)
+            if wl.get("identity_review"):
+                point["hk_ask_hkd"] = None
             stamped = True
             break
         if not stamped:
@@ -415,6 +478,8 @@ def merge_and_compute(
             row["jp_debug"] = debug
         if wl.get("name_en"):
             row["name_en"] = wl["name_en"]
+        if wl.get("identity_review"):
+            row["identity_review"] = True
         if iid in pins:
             row["pinned"] = True
         attach_public_quotes(

@@ -18,6 +18,7 @@ JST = timezone(timedelta(hours=9))
 # Longer phrases first. These are discriminators, not the product itself.
 _SET_PHRASES: tuple[str, ...] = (
     "シャイニートレジャー",
+    "クレイバースト",
     "テラスタルフェス",
     "超電ブレイカー",
     "黒炎の支配者",
@@ -196,9 +197,13 @@ def build_queries(item: dict) -> list[str]:
 
 
 def _rarity(text: str) -> str | None:
-    n = _norm(text)
+    """Grade token. Spaces are kept so SAR PSA10 is still SAR, not sarpsa."""
+    s = text.lower()
+    s = s.translate(str.maketrans("ＰＳＡ０１２３４５６７８９", "psa0123456789"))
+    s = re.sub(r"psa\s*\d*", " ", s)
+    s = re.sub(r"[^a-z]+", " ", s)
     for rarity in _RARITY:
-        if re.search(rf"(?<![a-z]){rarity}(?![a-z])", n):
+        if re.search(rf"(?<![a-z]){rarity}(?![a-z])", s):
             return rarity
     return None
 

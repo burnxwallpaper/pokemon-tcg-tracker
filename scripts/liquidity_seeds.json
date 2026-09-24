@@ -29,29 +29,29 @@
     },
     {
       "id": "psa10-mew-ex-sar",
-      "name_zh": "夢幻 ex SAR PSA10",
-      "name_jp": "ミュウex SAR PSA10",
-      "name_en": "Mew ex SAR PSA10",
+      "name_zh": "夢幻 ex SAR（閃）PSA10",
+      "name_jp": "ミュウex SAR シャイニートレジャー PSA10",
+      "name_en": "Mew ex SAR Shiny Treasure PSA10",
       "kind": "psa10",
-      "set": "sv3a / 205/187",
-      "search_jp": "ミュウex SAR PSA10",
-      "search_hk": "夢幻 SAR PSA10",
+      "set": "SV4a / 347/190",
+      "search_jp": "ミュウex SAR PSA10 シャイニートレジャー",
+      "search_hk": "夢幻 SAR PSA10 閃",
       "tcgdex_id": "SV4a-347",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/347/high.webp",
-      "image_note": "official_card SV4a-347 ミュウex SAR (Shiny Treasure)"
+      "image_note": "official_card SV4a-347 ミュウex SAR 347/190 Shiny Treasure"
     },
     {
       "id": "psa10-gengar-ex-sar",
-      "name_zh": "耿鬼 ex SAR PSA10",
-      "name_jp": "ゲンガーex SAR PSA10",
-      "name_en": "Gengar ex SAR PSA10",
+      "name_zh": "耿鬼 ex SR PSA10",
+      "name_jp": "ゲンガーex SR PSA10",
+      "name_en": "Gengar ex SR PSA10 Wild Force",
       "kind": "psa10",
-      "set": "sv5a / 099/071",
-      "search_jp": "ゲンガーex SAR PSA10",
-      "search_hk": "耿鬼 SAR PSA10",
+      "set": "SV5K / 088/071",
+      "search_jp": "ゲンガーex SR PSA10",
+      "search_hk": "耿鬼 ex SR PSA10",
       "tcgdex_id": "SV5K-088",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV5K/088/high.webp",
-      "image_note": "official_card SV5K-088 ゲンガーex SR"
+      "image_note": "official_card SV5K-088 ゲンガーex SR 088/071 (no separate SAR)"
     },
     {
       "id": "psa10-umbreon-vmax-hr",
@@ -129,29 +129,30 @@
     },
     {
       "id": "psa10-n-sar",
-      "name_zh": "N SAR PSA10",
-      "name_jp": "N SAR PSA10",
-      "name_en": "N SAR PSA10",
+      "name_zh": "N SAR PSA10（待核對）",
+      "name_jp": "N SAR PSA10（待核對）",
+      "name_en": "N SAR PSA10 identity review",
       "kind": "psa10",
-      "set": "sv6a",
-      "search_jp": "N SAR PSA10 ポケモン",
-      "search_hk": "N SAR PSA10",
-      "tcgdex_id": "SV9-127",
-      "image_official_url": "https://assets.tcgdex.net/ja/SV/SV9/127/high.webp",
-      "image_note": "official_card SV9-127 Nのゾロアークex SAR"
+      "set": "",
+      "search_jp": "",
+      "search_hk": "",
+      "tcgdex_id": null,
+      "image_official_url": null,
+      "image_note": "identity uncertain; removed SV9-127 Nのゾロアークex face",
+      "identity_review": true
     },
     {
       "id": "psa10-iono-sar",
-      "name_zh": "奇樹 SAR PSA10",
-      "name_jp": "ナンジャモ SAR PSA10",
-      "name_en": "Iono SAR PSA10",
+      "name_zh": "奇樹 SAR（粘土爆發）PSA10",
+      "name_jp": "ナンジャモ SAR クレイバースト PSA10",
+      "name_en": "Iono SAR Clay Burst PSA10",
       "kind": "psa10",
-      "set": "sv2a / 350/165",
-      "search_jp": "ナンジャモ SAR PSA10",
-      "search_hk": "奇樹 SAR PSA10",
+      "set": "SV2D / 096",
+      "search_jp": "ナンジャモ SAR PSA10 クレイバースト",
+      "search_hk": "奇樹 SAR PSA10 粘土爆發",
       "tcgdex_id": "SV2D-096",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2D/096/high.webp",
-      "image_note": "official_card SV2D-096 ナンジャモ SAR"
+      "image_note": "official_card SV2D-096 ナンジャモ SAR Clay Burst (not 151 350/165)"
     },
     {
       "id": "sealed-151-box",
@@ -185,8 +186,8 @@
       "set": "SV4M",
       "search_jp": "未来の一閃 BOX 未開封",
       "search_hk": "未來閃光 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/ogp.png",
-      "image_note": "official_product promo art pokemon-card.com SV4 OGP (未来の一閃)"
+      "image_official_url": null,
+      "image_note": "shared SV4 visual covers 古代の咆哮 and 未来の一閃; face left blank"
     },
     {
       "id": "sealed-ancient-roar",
@@ -197,8 +198,8 @@
       "set": "SV4K",
       "search_jp": "古代の咆哮 BOX 未開封",
       "search_hk": "古代咆哮 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv4/assets/images/hero-visual.jpg",
-      "image_note": "official_product hero art pokemon-card.com SV4 (古代の咆哮)"
+      "image_official_url": null,
+      "image_note": "shared SV4 visual covers 古代の咆哮 and 未来の一閃; face left blank"
     },
     {
       "id": "sealed-terastal-fest",
@@ -258,16 +259,17 @@
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
-      "name_zh": "伊布英雄 特別卡盒相關 PSA10",
-      "name_jp": "イーブイヒーローズ PSA10",
-      "name_en": "Eevee Heroes PSA10",
+      "name_zh": "伊布英雄 PSA10（待核對）",
+      "name_jp": "イーブイヒーローズ PSA10（待核對）",
+      "name_en": "Eevee Heroes PSA10 identity review",
       "kind": "psa10",
       "set": "S6a",
-      "search_jp": "イーブイヒーローズ PSA10",
-      "search_hk": "伊布英雄 PSA10",
-      "tcgdex_id": "swsh7-189",
-      "image_official_url": "https://assets.tcgdex.net/en/swsh/swsh7/189/high.webp",
-      "image_note": "official_card Umbreon V SR art (Eevee Heroes related PSA10)"
+      "search_jp": "",
+      "search_hk": "",
+      "tcgdex_id": null,
+      "image_official_url": null,
+      "image_note": "identity uncertain; removed EN swsh7-189 Umbreon V stand-in",
+      "identity_review": true
     },
     {
       "id": "psa10-erika-invite-sar",
@@ -587,16 +589,16 @@
     },
     {
       "id": "psa10-koraidon-ex-sar",
-      "name_zh": "故勒頓 ex SAR PSA10",
-      "name_jp": "コライドンex SAR PSA10",
-      "name_en": "Koraidon ex SAR PSA10",
+      "name_zh": "故勒頓 ex UR（閃）PSA10",
+      "name_jp": "コライドンex UR シャイニートレジャー PSA10",
+      "name_en": "Koraidon ex UR Shiny Treasure PSA10",
       "kind": "psa10",
-      "set": "SV4a / 360",
-      "search_jp": "コライドンex SAR PSA10 シャイニートレジャー",
-      "search_hk": "故勒頓 SAR PSA10",
+      "set": "SV4a / 360/190",
+      "search_jp": "コライドンex UR PSA10 シャイニートレジャー",
+      "search_hk": "故勒頓 UR PSA10 閃",
       "tcgdex_id": "SV4a-360",
       "image_official_url": "https://assets.tcgdex.net/ja/SV/SV4a/360/high.webp",
-      "image_note": "official_card TCGdex high.webp"
+      "image_note": "official_card SV4a-360 コライドンex UR 360/190 (not SAR)"
     },
     {
       "id": "psa10-miraidon-ex-sar",
@@ -604,7 +606,7 @@
       "name_jp": "ミライドンex SAR PSA10",
       "name_en": "Miraidon ex SAR PSA10",
       "kind": "psa10",
-      "set": "SV1V / 102",
+      "set": "SV1V / 102/078",
       "search_jp": "ミライドンex SAR PSA10",
       "search_hk": "密勒頓 SAR PSA10",
       "tcgdex_id": "SV1V-102",
@@ -643,7 +645,7 @@
       "name_jp": "メガゲンガーex SAR PSA10",
       "name_en": "Mega Gengar ex SAR PSA10",
       "kind": "psa10",
-      "set": "M2a",
+      "set": "M2a / 240/193",
       "search_jp": "メガゲンガーex SAR PSA10",
       "search_hk": "超級耿鬼 SAR PSA10",
       "tcgdex_id": "M2a-240",
@@ -777,8 +779,8 @@
       "set": "SV11B",
       "search_jp": "ブラックボルト BOX 未開封",
       "search_hk": "黑雷 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)"
+      "image_official_url": null,
+      "image_note": "shared SV11 key art covers ブラックボルト and ホワイトフレア; face left blank"
     },
     {
       "id": "sealed-white-flare",
@@ -789,8 +791,8 @@
       "set": "SV11W",
       "search_jp": "ホワイトフレア BOX 未開封",
       "search_hk": "白炎 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/sv11/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com SV11 (ブラックボルト／ホワイトフレア)"
+      "image_official_url": null,
+      "image_note": "shared SV11 key art covers ブラックボルト and ホワイトフレア; face left blank"
     },
     {
       "id": "sealed-mega-brave",
@@ -801,8 +803,8 @@
       "set": "M1L",
       "search_jp": "メガブレイブ BOX 未開封",
       "search_hk": "超級勇氣 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)"
+      "image_official_url": null,
+      "image_note": "shared M1 key art covers メガブレイブ and メガシンフォニア; face left blank"
     },
     {
       "id": "sealed-mega-symphonia",
@@ -813,8 +815,8 @@
       "set": "M1S",
       "search_jp": "メガシンフォニア BOX 未開封",
       "search_hk": "超級協奏 BOX 未開封",
-      "image_official_url": "https://www.pokemon-card.com/ex/m1/assets/images/ogp.png",
-      "image_note": "official set key art pokemon-card.com M1 (メガブレイブ／メガシンフォニア)"
+      "image_official_url": null,
+      "image_note": "shared M1 key art covers メガブレイブ and メガシンフォニア; face left blank"
     },
     {
       "id": "sealed-inferno-x",

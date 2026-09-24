@@ -718,6 +718,7 @@
             </div>
             <div class="row">
               ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無香港賣出價</span>` : ""}
+              ${it.identity_review ? `<span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
               ${it.is_sample ? `<span class="badge" style="font-size:0.65rem">範例</span>` : ""}
             </div>
             ${reasons ? `<div class="reasons">${reasons}</div>` : ""}
@@ -809,7 +810,7 @@
             <div style="display:flex;align-items:center">
               ${imgHtml(it, "thumb")}
               <div>
-                <strong>${escapeHtml(it.name_zh)}</strong>
+                <strong>${escapeHtml(it.name_zh)}</strong>${it.identity_review ? ` <span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
                 <div class="liq-names">${escapeHtml([it.name_jp, englishName(it)].filter(Boolean).join(" · "))}</div>
                 <div class="liq-names">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
               </div>
@@ -1073,6 +1074,7 @@
             <div class="detail-meta-row">
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kindLabel(it.kind)}</span>
               ${sampleBadge}
+              ${it.identity_review ? `<span class="badge">待核對</span>` : ""}
             </div>
             <div class="price" style="margin:0.2rem 0">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
             <div class="price-sub">香港最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)} · 買入價／徵求 ${fmtBid(it)}</div>
