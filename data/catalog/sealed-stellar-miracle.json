@@ -1,0 +1,19 @@
+{
+  "id": "sealed-stellar-miracle",
+  "name_zh": "星晶奇跡 BOX（未開封）",
+  "name_jp": "ステラミラクル BOX 未開封",
+  "kind": "sealed",
+  "set": "SV7",
+  "search_jp": "ステラミラクル BOX 未開封",
+  "search_hk": "星晶奇跡 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-stellar-miracle.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/sv7/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com SV7 OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-stellar-miracle.json",
+  "history_points": 64,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

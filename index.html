@@ -86,6 +86,60 @@
       color: #0b1220;
       border-color: var(--accent);
     }
+    .cat-bar {
+      display: flex;
+      gap: 0.45rem;
+      margin-top: 0.95rem;
+      flex-wrap: wrap;
+    }
+    .cat {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      padding: 0.5rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .cat .sub, .cat .count {
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .cat.active {
+      background: var(--accent);
+      color: #0b1220;
+      border-color: var(--accent);
+    }
+    .cat.active .sub, .cat.active .count { color: #0b1220; }
+    .cat[data-kind="sealed"].active {
+      background: var(--warn);
+      border-color: var(--warn);
+      color: #1a1408;
+    }
+    .cat[data-kind="sealed"].active .sub,
+    .cat[data-kind="sealed"].active .count { color: #1a1408; }
+    .cat-block { margin-bottom: 1.35rem; }
+    .cat-block-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      margin: 0 0 0.65rem;
+    }
+    .cat-block-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    .cat-block[data-kind="psa10"] .cat-block-head h3 { color: var(--accent); }
+    .cat-block[data-kind="sealed"] .cat-block-head h3 { color: var(--warn); }
+    .cat-block-head span, .cat-empty { color: var(--muted); font-size: 0.8rem; }
+    .cat-empty { margin: 0 0 0.4rem; }
     main { padding: 1rem 1.5rem 2.5rem; }
     .section { display: none; }
     .section.active { display: block; }
@@ -385,10 +439,15 @@
 <body>
   <header>
     <h1>寶可夢 TCG 行情追蹤</h1>
-    <p class="subtitle">個人投機用 · PSA10／未開封 · 香港價為主 · 日本價參考 · HKD</p>
+    <p class="subtitle">個人投機用 · 卡（PSA10）同盒（未開封）分開睇 · 香港價為主 · 日本價參考 · HKD</p>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
     </div>
+    <nav class="cat-bar" role="tablist" aria-label="大類">
+      <button class="cat active" type="button" data-kind="all" aria-pressed="true">兩邊 <span class="count"></span></button>
+      <button class="cat" type="button" data-kind="psa10" aria-pressed="false">卡 <span class="sub">PSA10</span> <span class="count"></span></button>
+      <button class="cat" type="button" data-kind="sealed" aria-pressed="false">盒 <span class="sub">未開封</span> <span class="count"></span></button>
+    </nav>
   </header>
 
   <nav class="tabs" role="tablist">
@@ -398,20 +457,20 @@
   </nav>
 
   <main>
-    <div id="status" class="loading">正在讀取 <code>../data/latest.json</code>…</div>
+    <div id="status" class="loading">正在讀取 <code>./data/latest.json</code>…</div>
 
     <section id="sec-moves" class="section active" aria-label="大異動">
       <div class="section-head">
         <h2>大異動</h2>
-        <span class="hint">1日／7日價格變動或量能異常 · 點擊卡片看詳情</span>
+        <span class="hint">1日／7日價格變動或量能異常 · 卡同盒分開列 · 點擊卡片看詳情</span>
       </div>
-      <div class="card-grid" id="movesGrid"></div>
+      <div id="movesGrid"></div>
     </section>
 
     <section id="sec-liquidity" class="section" aria-label="流動性">
       <div class="section-head">
         <h2>流動性</h2>
-        <span class="hint">約 Top N 依流動性分數排序 · 點擊列看詳情</span>
+        <span class="hint">卡同盒各自按流動性分數排序 · 點擊列看詳情</span>
       </div>
       <div id="liquidityWrap"></div>
     </section>
@@ -419,14 +478,14 @@
     <section id="sec-spreads" class="section" aria-label="價差">
       <div class="section-head">
         <h2>價差</h2>
-        <span class="hint">香港價 vs 日本參考（正值 = 香港較貴）· 點擊卡片看詳情</span>
+        <span class="hint">香港價 vs 日本參考（正值 = 香港較貴）· 卡同盒分開列 · 點擊卡片看詳情</span>
       </div>
-      <div class="card-grid" id="spreadsGrid"></div>
+      <div id="spreadsGrid"></div>
     </section>
   </main>
 
   <footer>
-    本機靜態儀表板 · 資料由 <code>scripts/update_stub.py</code> 產生 · 日後由 bot 每日同步 · 非正式投資建議
+    靜態儀表板 · 資料 <code>./data/latest.json</code> · <code>scripts/update.py</code> 每日更新 · 非正式投資建議
   </footer>
 
   <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
@@ -450,9 +509,9 @@
     ];
 
     const SERIES_URLS = (id) => [
-      `../data/history/series/${id}.json`,
       `./data/history/series/${id}.json`,
       `/data/history/series/${id}.json`,
+      `../data/history/series/${id}.json`,
     ];
 
     const DEFAULTS = {
@@ -464,6 +523,9 @@
     let itemsById = {};
     /** @type {object|null} */
     let currentMeta = null;
+    /** @type {"all"|"psa10"|"sealed"} */
+    let category = "all";
+    let viewData = { moves: [], liquidity: [], spreads: [] };
     /** @type {import('chart.js').Chart[]} */
     let activeCharts = [];
 
@@ -485,7 +547,7 @@
     }
 
     function kindLabel(kind) {
-      return kind === "sealed" ? "未開封" : "PSA10";
+      return kind === "sealed" ? "盒" : "卡";
     }
 
     function escapeHtml(s) {
@@ -507,7 +569,7 @@
         <span>最後更新：<strong>${escapeHtml(meta.updated_at || "—")}</strong></span>
         <span>匯率：<strong>1 JPY = ${fx} HKD</strong></span>
         <span>門檻：1日 ±${th.short_move_pct}% · 7日 ±${th.medium_move_pct}% · 量能 ≥${th.volume_vs_7d_avg}×7日均</span>
-        <span>項目：<strong>${meta.item_count ?? "—"}</strong></span>
+        <span>項目：<strong id="itemCount">${meta.item_count ?? "—"}</strong></span>
       `;
     }
 
@@ -569,23 +631,35 @@
       });
     }
 
+    function groupsFor(list) {
+      const cards = (list || []).filter((it) => it.kind === "psa10");
+      const boxes = (list || []).filter((it) => it.kind === "sealed");
+      const both = [
+        { id: "psa10", title: "卡", sub: "PSA10 鑑定卡", items: cards },
+        { id: "sealed", title: "盒", sub: "未開封產品", items: boxes },
+      ];
+      if (category === "psa10") return [both[0]];
+      if (category === "sealed") return [both[1]];
+      return both;
+    }
+
+    function catHead(group) {
+      return `<div class="cat-block-head"><h3>${group.title}</h3><span>${escapeHtml(group.sub)} · ${group.items.length}</span></div>`;
+    }
+
     function renderMoves(list) {
       const el = document.getElementById("movesGrid");
-      if (!list || !list.length) {
-        el.innerHTML = `<p class="hint" style="color:var(--muted)">目前沒有超過門檻的異動。</p>`;
-        return;
-      }
-      el.innerHTML = list.map((it) => cardHtml(it)).join("");
+      el.innerHTML = groupsFor(list).map((group) => {
+        const body = group.items.length
+          ? `<div class="card-grid">${group.items.map((it) => cardHtml(it)).join("")}</div>`
+          : `<p class="cat-empty">這個分類暫無超過門檻的異動。</p>`;
+        return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
+      }).join("");
       wireCardClicks(el);
     }
 
-    function renderLiquidity(list) {
-      const el = document.getElementById("liquidityWrap");
-      if (!list || !list.length) {
-        el.innerHTML = `<p style="color:var(--muted)">無資料</p>`;
-        return;
-      }
-      const rows = list
+    function liquidityTable(items) {
+      const rows = items
         .map(
           (it, i) => `
         <tr data-id="${escapeHtml(it.id)}" tabindex="0" title="點擊查看詳情">
@@ -607,7 +681,7 @@
         </tr>`
         )
         .join("");
-      el.innerHTML = `
+      return `
         <table class="compact">
           <thead>
             <tr>
@@ -622,17 +696,68 @@
           </thead>
           <tbody>${rows}</tbody>
         </table>`;
+    }
+
+    function renderLiquidity(list) {
+      const el = document.getElementById("liquidityWrap");
+      el.innerHTML = groupsFor(list).map((group) => {
+        const body = group.items.length
+          ? liquidityTable(group.items)
+          : `<p class="cat-empty">這個分類暫無資料。</p>`;
+        return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
+      }).join("");
       wireCardClicks(el);
     }
 
     function renderSpreads(list) {
       const el = document.getElementById("spreadsGrid");
-      if (!list || !list.length) {
-        el.innerHTML = `<p style="color:var(--muted)">尚無 HK 叫價可比對。</p>`;
-        return;
-      }
-      el.innerHTML = list.map((it) => cardHtml(it)).join("");
+      el.innerHTML = groupsFor(list).map((group) => {
+        const body = group.items.length
+          ? `<div class="card-grid">${group.items.map((it) => cardHtml(it)).join("")}</div>`
+          : `<p class="cat-empty">這個分類暫無香港價可比對。</p>`;
+        return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
+      }).join("");
       wireCardClicks(el);
+    }
+
+    function renderViews() {
+      renderMoves(viewData.moves);
+      renderLiquidity(viewData.liquidity);
+      renderSpreads(viewData.spreads);
+      const items = Object.values(itemsById);
+      const nPsa = items.filter((it) => it.kind === "psa10").length;
+      const nBox = items.filter((it) => it.kind === "sealed").length;
+      const counts = { all: nPsa + nBox, psa10: nPsa, sealed: nBox };
+      document.querySelectorAll(".cat").forEach((btn) => {
+        const id = btn.getAttribute("data-kind");
+        const on = id === category;
+        btn.classList.toggle("active", on);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+        const countEl = btn.querySelector(".count");
+        if (countEl) countEl.textContent = String(counts[id] ?? "");
+      });
+      const itemCount = document.getElementById("itemCount");
+      if (itemCount) itemCount.textContent = `卡 ${nPsa} · 盒 ${nBox}`;
+    }
+
+    function wireCategories() {
+      const params = new URLSearchParams(location.search);
+      const requested = params.get("kind");
+      if (requested === "psa10" || requested === "sealed" || requested === "all") {
+        category = requested;
+      }
+      document.querySelectorAll(".cat").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const next = btn.getAttribute("data-kind");
+          if (next !== "all" && next !== "psa10" && next !== "sealed") return;
+          category = next;
+          const url = new URL(location.href);
+          if (category === "all") url.searchParams.delete("kind");
+          else url.searchParams.set("kind", category);
+          history.replaceState(null, "", url);
+          renderViews();
+        });
+      });
     }
 
     function destroyCharts() {
@@ -931,6 +1056,7 @@
 
     async function init() {
       wireTabs();
+      wireCategories();
       wireDetail();
       try {
         const data = await loadData();
@@ -939,9 +1065,12 @@
         renderMeta(currentMeta);
         indexItems(data);
         const sec = data.sections || {};
-        renderMoves(sec["大異動"] || []);
-        renderLiquidity(sec["流動性"] || data.items || []);
-        renderSpreads(sec["價差"] || []);
+        viewData = {
+          moves: sec["大異動"] || [],
+          liquidity: sec["流動性"] || data.items || [],
+          spreads: sec["價差"] || [],
+        };
+        renderViews();
 
         // Deep-link: ?id=sample-001
         const q = new URLSearchParams(location.search).get("id");
@@ -951,7 +1080,7 @@
         document.getElementById("status").innerHTML = `
           無法載入資料。<br/>
           請在專案根目錄執行 <code>python3 -m http.server 8080</code>，
-          然後開啟 <code>http://localhost:8080/dashboard/</code>。<br/>
+          然後開啟 <code>http://localhost:8080/</code>。<br/>
           <small>${escapeHtml(String(e))}</small>
         `;
         renderMeta({

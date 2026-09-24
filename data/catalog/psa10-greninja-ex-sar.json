@@ -1,0 +1,19 @@
+{
+  "id": "psa10-greninja-ex-sar",
+  "name_zh": "甲賀忍蛙 ex SAR PSA10",
+  "name_jp": "ゲッコウガex SAR PSA10",
+  "kind": "psa10",
+  "set": "SV5a / 090",
+  "search_jp": "ゲッコウガex SAR PSA10",
+  "search_hk": "甲賀忍蛙 SAR PSA10",
+  "tcgdex_id": "SV5a-090",
+  "image": "images/psa10-greninja-ex-sar.webp",
+  "image_official_url": "https://assets.tcgdex.net/ja/SV/SV5a/090/high.webp",
+  "image_note": "official_card TCGdex high.webp",
+  "image_source": "official",
+  "series_path": "history/series/psa10-greninja-ex-sar.json",
+  "history_points": 88,
+  "first_seen": "2026-06-27",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

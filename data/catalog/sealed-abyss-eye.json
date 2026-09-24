@@ -1,0 +1,19 @@
+{
+  "id": "sealed-abyss-eye",
+  "name_zh": "深淵之眼 BOX（未開封）",
+  "name_jp": "アビスアイ BOX 未開封",
+  "kind": "sealed",
+  "set": "M5",
+  "search_jp": "アビスアイ BOX 未開封",
+  "search_hk": "深淵之眼 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-abyss-eye.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/m5/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com M5 OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-abyss-eye.json",
+  "history_points": 58,
+  "first_seen": "2026-07-29",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

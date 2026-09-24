@@ -1,0 +1,106 @@
+{
+  "id": "sealed-storm-emerald",
+  "name_zh": "風暴翡翠 BOX（未開封）",
+  "name_jp": "ストームエメラルダ BOX 未開封",
+  "kind": "sealed",
+  "set": "M6",
+  "image": "images/sealed-storm-emerald.png",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 15,
+  "updated_at": "2026-09-24T16:19:35+08:00",
+  "history": [
+    {
+      "date": "2026-09-10",
+      "price_hkd": 544.5,
+      "hk_ask_hkd": null,
+      "volume": 3.0
+    },
+    {
+      "date": "2026-09-11",
+      "price_hkd": 1084.05,
+      "hk_ask_hkd": null,
+      "volume": 35.0
+    },
+    {
+      "date": "2026-09-12",
+      "price_hkd": 544.5,
+      "hk_ask_hkd": null,
+      "volume": 48.0
+    },
+    {
+      "date": "2026-09-13",
+      "price_hkd": 529.65,
+      "hk_ask_hkd": null,
+      "volume": 49.0
+    },
+    {
+      "date": "2026-09-14",
+      "price_hkd": 519.75,
+      "hk_ask_hkd": null,
+      "volume": 40.0
+    },
+    {
+      "date": "2026-09-15",
+      "price_hkd": 1160.78,
+      "hk_ask_hkd": null,
+      "volume": 34.0
+    },
+    {
+      "date": "2026-09-16",
+      "price_hkd": 539.55,
+      "hk_ask_hkd": null,
+      "volume": 40.0
+    },
+    {
+      "date": "2026-09-17",
+      "price_hkd": 779.62,
+      "hk_ask_hkd": null,
+      "volume": 50.0
+    },
+    {
+      "date": "2026-09-18",
+      "price_hkd": 1019.7,
+      "hk_ask_hkd": null,
+      "volume": 52.0
+    },
+    {
+      "date": "2026-09-19",
+      "price_hkd": 1138.5,
+      "hk_ask_hkd": null,
+      "volume": 44.0
+    },
+    {
+      "date": "2026-09-20",
+      "price_hkd": 1052.15,
+      "hk_ask_hkd": null,
+      "volume": 48.0
+    },
+    {
+      "date": "2026-09-21",
+      "price_hkd": 1138.5,
+      "hk_ask_hkd": null,
+      "volume": 43.0
+    },
+    {
+      "date": "2026-09-22",
+      "price_hkd": 767.25,
+      "hk_ask_hkd": null,
+      "volume": 41.0
+    },
+    {
+      "date": "2026-09-23",
+      "price_hkd": 742.5,
+      "hk_ask_hkd": null,
+      "volume": 52.0
+    },
+    {
+      "date": "2026-09-24",
+      "price_hkd": 792.0,
+      "hk_ask_hkd": 559.5,
+      "volume": 21.0
+    }
+  ]
+}

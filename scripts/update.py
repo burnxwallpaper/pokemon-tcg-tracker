@@ -27,6 +27,7 @@ SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
 from sources import carousell_hk, yahoo_auctions_jp  # noqa: E402
+from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
     merge_history_by_date,
@@ -194,8 +195,25 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
         any_ok = False
         blocked = False
         for i, item in enumerate(watchlist, 1):
-            print(f"  JP {i}/{len(watchlist)} {item['id']} …", flush=True)
-            res = yahoo_auctions_jp.fetch_watchlist_item(item, min_interval=interval)
+            prior_n = len(load_series_points(item["id"]))
+            disc = cfg.get("discovery") if isinstance(cfg.get("discovery"), dict) else {}
+            shallow_at = int(disc.get("shallow_series_days") or 14)
+            backfill_pages = int(disc.get("backfill_max_pages") or 6)
+            deep = prior_n < shallow_at
+            if deep:
+                print(
+                    f"  JP {i}/{len(watchlist)} {item['id']} backfill "
+                    f"(series={prior_n}d < {shallow_at}) …",
+                    flush=True,
+                )
+            else:
+                print(f"  JP {i}/{len(watchlist)} {item['id']} …", flush=True)
+            res = yahoo_auctions_jp.fetch_watchlist_item(
+                item,
+                min_interval=interval,
+                days=(int(cfg.get("history_days") or 90) if deep else None),
+                max_pages=backfill_pages,
+            )
             jp_by_id[item["id"]] = res
             if res.get("ok"):
                 any_ok = True
@@ -280,17 +298,51 @@ def merge_and_compute(
             hk_ask = round(float(hk_ask), 2)
 
         prev_hist = load_series(iid)
-        # Upsert today only; MERGE into prior real points (never wipe other dates)
         vol_today = int(jp.get("volume_24h") or 0)
-        today_point = {
-            "date": today,
-            "price_hkd": price,
-            "hk_ask_hkd": hk_ask,
-            "volume": float(vol_today),
-        }
-        history = merge_history_by_date(
-            prev_hist, [today_point], prefer_incoming=True, history_days=hist_days
-        )
+        # Shallow series: merge every sale-day from the paginated closedsearch
+        # backfill. Deep series: upsert today only. Never drop other dates.
+        if jp.get("days_requested"):
+            incoming = comps_to_daily_history(
+                jp.get("comps") or [],
+                fx=fx,
+                days=hist_days,
+                today_hk_ask=hk_ask,
+            )
+            history = merge_history_by_date(
+                prev_hist, incoming, prefer_incoming=True, history_days=hist_days
+            )
+            today_point = next((p for p in history if p.get("date") == today), None)
+            if today_point and today_point.get("price_hkd") is not None:
+                price = float(today_point["price_hkd"])
+                vol_today = int(today_point.get("volume") or 0)
+                if fx:
+                    price_jpy = int(round(price / fx))
+            elif history and history[-1].get("price_hkd") is not None:
+                price = float(history[-1]["price_hkd"])
+                if fx:
+                    price_jpy = int(round(price / fx))
+                vol_today = int(today_point.get("volume") or 0) if today_point else 0
+            if hk_ask is not None:
+                history = merge_history_by_date(
+                    history,
+                    [{
+                        "date": today,
+                        "hk_ask_hkd": hk_ask,
+                        "volume": float(vol_today) if vol_today else None,
+                    }],
+                    prefer_incoming=True,
+                    history_days=hist_days,
+                )
+        else:
+            today_point = {
+                "date": today,
+                "price_hkd": price,
+                "hk_ask_hkd": hk_ask,
+                "volume": float(vol_today),
+            }
+            history = merge_history_by_date(
+                prev_hist, [today_point], prefer_incoming=True, history_days=hist_days
+            )
 
         prev_1 = price_on_or_before(history[:-1], day_1) if len(history) > 1 else None
         prev_7 = price_on_or_before(history[:-1], day_7) if len(history) > 1 else None
@@ -538,12 +590,15 @@ def build_payload(cfg: dict) -> dict:
                 "with_hk_ask": n_hk,
             },
             "pipeline": [
+                "discover: rank PSA10 + sealed seeds by Yahoo closedsearch totalResultsAvailable",
                 "fetch yahoo_auctions_jp sold + carousell_hk asks (hkcardlink fallback)",
+                "backfill shallow series from closed comps (merge by date; never wipe)",
                 "normalize HKD via fx_jpy_to_hkd",
                 "compute movers / liquidity / spreads from history",
                 "thumbnails: official TCGdex / pokemon-card.com art only (never auction photos)",
-                "write latest.json + history day file + series",
+                "write latest.json + history day file + series + catalog",
             ],
+            "discovery": _discovery_meta(),
             "image_source": "official",
             "image_source_note": "Dashboard thumbnails from TCGdex card faces or pokemon-card.com product art; Yahoo listing photos are never used.",
             "sources_enabled": {
@@ -561,10 +616,45 @@ def build_payload(cfg: dict) -> dict:
     }
 
 
+def _discovery_meta() -> dict | None:
+    path = ROOT / "data" / "catalog" / "liquidity_rank.json"
+    if not path.exists():
+        return None
+    try:
+        doc = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+    if not isinstance(doc, dict):
+        return None
+    return {
+        "applied": doc.get("applied"),
+        "updated_at": doc.get("updated_at"),
+        "method": doc.get("method"),
+        "selected_count": doc.get("selected_count"),
+        "psa10_slots": doc.get("psa10_slots"),
+        "sealed_slots": doc.get("sealed_slots"),
+        "window_days": doc.get("window_days"),
+        "rank_path": "data/catalog/liquidity_rank.json",
+    }
+
+
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     cfg = load_config()
+    if "--no-discover" not in sys.argv:
+        from discover_watchlist import refresh_watchlist
+
+        cfg = refresh_watchlist(cfg, force=("--discover" in sys.argv))
     if not cfg.get("watchlist"):
         print("ERROR: config.json missing watchlist", file=sys.stderr)
+        sys.exit(1)
+    if len(cfg.get("watchlist") or []) < 45:
+        print(
+            f"ERROR: watchlist has {len(cfg.get('watchlist') or [])} items; "
+            "expected about 45–55 after discovery",
+            file=sys.stderr,
+        )
         sys.exit(1)
     payload = build_payload(cfg)
     write_outputs(payload)

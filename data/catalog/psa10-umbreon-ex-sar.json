@@ -1,0 +1,19 @@
+{
+  "id": "psa10-umbreon-ex-sar",
+  "name_zh": "月亮伊布 ex SAR PSA10",
+  "name_jp": "ブラッキーex SAR PSA10",
+  "kind": "psa10",
+  "set": "SV8a / 217",
+  "search_jp": "ブラッキーex SAR PSA10 テラスタルフェス",
+  "search_hk": "月亮伊布 ex SAR PSA10",
+  "tcgdex_id": "SV8a-217",
+  "image": "images/psa10-umbreon-ex-sar.webp",
+  "image_official_url": "https://assets.tcgdex.net/ja/SV/SV8a/217/high.webp",
+  "image_note": "official_card TCGdex high.webp",
+  "image_source": "official",
+  "series_path": "history/series/psa10-umbreon-ex-sar.json",
+  "history_points": 86,
+  "first_seen": "2026-06-28",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

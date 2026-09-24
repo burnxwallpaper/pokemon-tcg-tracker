@@ -1,0 +1,19 @@
+{
+  "id": "sealed-storm-emerald",
+  "name_zh": "風暴翡翠 BOX（未開封）",
+  "name_jp": "ストームエメラルダ BOX 未開封",
+  "kind": "sealed",
+  "set": "M6",
+  "search_jp": "ストームエメラルダ BOX 未開封",
+  "search_hk": "風暴翡翠 BOX 未開封",
+  "tcgdex_id": null,
+  "image": "images/sealed-storm-emerald.png",
+  "image_official_url": "https://www.pokemon-card.com/ex/m6/assets/images/ogp.png",
+  "image_note": "official_product promo art pokemon-card.com M6 OGP",
+  "image_source": "official",
+  "series_path": "history/series/sealed-storm-emerald.json",
+  "history_points": 15,
+  "first_seen": "2026-09-10",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}

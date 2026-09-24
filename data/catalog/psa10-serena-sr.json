@@ -1,0 +1,19 @@
+{
+  "id": "psa10-serena-sr",
+  "name_zh": "莎莉娜 SR PSA10",
+  "name_jp": "セレナ SR PSA10",
+  "kind": "psa10",
+  "set": "S11a / 081",
+  "search_jp": "セレナ SR PSA10",
+  "search_hk": "莎莉娜 SR PSA10",
+  "tcgdex_id": "S11a-081",
+  "image": "images/psa10-serena-sr.webp",
+  "image_official_url": "https://assets.tcgdex.net/ja/S/S11a/081/high.webp",
+  "image_note": "official_card TCGdex high.webp",
+  "image_source": "official",
+  "series_path": "history/series/psa10-serena-sr.json",
+  "history_points": 57,
+  "first_seen": "2026-06-28",
+  "last_seen": "2026-09-24",
+  "updated_at": "2026-09-24T16:19:35+08:00"
+}
