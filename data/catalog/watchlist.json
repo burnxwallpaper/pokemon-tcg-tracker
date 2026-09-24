@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-24T19:18:46+08:00",
+  "updated_at": "2026-09-24T19:48:15+08:00",
   "timezone": "Asia/Hong_Kong",
   "note": "Stable card identity + official image refs. Series history under history/series/.",
   "image_source": "official",
@@ -22,7 +22,7 @@
       "history_points": 86,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
@@ -41,7 +41,7 @@
       "history_points": 88,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-abyss-eye",
@@ -60,7 +60,7 @@
       "history_points": 58,
       "first_seen": "2026-07-29",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-storm-emerald",
@@ -79,7 +79,7 @@
       "history_points": 15,
       "first_seen": "2026-09-10",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-mega-dream",
@@ -98,7 +98,7 @@
       "history_points": 58,
       "first_seen": "2026-07-29",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-ninja-spinner",
@@ -117,7 +117,7 @@
       "history_points": 78,
       "first_seen": "2026-07-09",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-inferno-x",
@@ -136,7 +136,7 @@
       "history_points": 87,
       "first_seen": "2026-06-30",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
@@ -155,7 +155,7 @@
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-mega-brave",
@@ -174,7 +174,7 @@
       "history_points": 72,
       "first_seen": "2026-07-11",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-mega-symphonia",
@@ -193,7 +193,7 @@
       "history_points": 85,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-munikis-zero",
@@ -212,7 +212,7 @@
       "history_points": 86,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-gengar-ex-sar",
@@ -231,7 +231,7 @@
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -250,7 +250,7 @@
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-iono-sar",
@@ -269,7 +269,7 @@
       "history_points": 90,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-greninja-ex-sar",
@@ -288,7 +288,7 @@
       "history_points": 88,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-rocket-mewtwo-ex-sar",
@@ -307,7 +307,7 @@
       "history_points": 89,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-terastal-fest",
@@ -326,7 +326,7 @@
       "history_points": 83,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-151-box",
@@ -345,7 +345,7 @@
       "history_points": 79,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-shiny-treasure",
@@ -364,7 +364,7 @@
       "history_points": 83,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-battle-partners",
@@ -383,7 +383,7 @@
       "history_points": 79,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-mew-ex-sar",
@@ -402,7 +402,7 @@
       "history_points": 84,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-umbreon-ex-sar",
@@ -421,7 +421,7 @@
       "history_points": 86,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-giratina-vstar-ur",
@@ -440,7 +440,7 @@
       "history_points": 71,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-mega-gardevoir-ex",
@@ -459,7 +459,7 @@
       "history_points": 74,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-stellar-miracle",
@@ -478,7 +478,7 @@
       "history_points": 64,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-team-rocket-glory",
@@ -497,7 +497,7 @@
       "history_points": 55,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-rulers-black-flame",
@@ -516,7 +516,7 @@
       "history_points": 73,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-mega-lucario-ex",
@@ -535,7 +535,7 @@
       "history_points": 63,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-eevee-ex-sar",
@@ -554,7 +554,7 @@
       "history_points": 76,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-n-sar",
@@ -573,7 +573,7 @@
       "history_points": 76,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-mega-charizard-x-ex",
@@ -592,7 +592,7 @@
       "history_points": 66,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-black-bolt",
@@ -611,7 +611,7 @@
       "history_points": 67,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-leafeon-ex-sar",
@@ -630,7 +630,7 @@
       "history_points": 73,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-white-flare",
@@ -649,7 +649,7 @@
       "history_points": 58,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "sealed-ancient-roar",
@@ -668,7 +668,7 @@
       "history_points": 58,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-shiny",
@@ -687,7 +687,7 @@
       "history_points": 61,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -706,7 +706,7 @@
       "history_points": 61,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-acerola-premonition",
@@ -725,7 +725,7 @@
       "history_points": 56,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-serena-sr",
@@ -744,7 +744,7 @@
       "history_points": 57,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-obsidian",
@@ -763,7 +763,7 @@
       "history_points": 70,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-miriam-sar",
@@ -782,7 +782,7 @@
       "history_points": 54,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-erika-invite-sar",
@@ -801,7 +801,7 @@
       "history_points": 45,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-pikachu-ex-sar-terastal",
@@ -820,7 +820,7 @@
       "history_points": 60,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-lugia-v-sa",
@@ -839,7 +839,7 @@
       "history_points": 49,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-iono-sar-shiny",
@@ -858,7 +858,7 @@
       "history_points": 50,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-hooh-ex-sar",
@@ -877,7 +877,7 @@
       "history_points": 52,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-carmine-sar",
@@ -896,7 +896,7 @@
       "history_points": 46,
       "first_seen": "2026-07-03",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-151",
@@ -915,7 +915,7 @@
       "history_points": 52,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-cynthia-ambition-sar",
@@ -934,7 +934,7 @@
       "history_points": 45,
       "first_seen": "2026-06-28",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     },
     {
       "id": "psa10-miraidon-ex-sar",
@@ -953,7 +953,7 @@
       "history_points": 38,
       "first_seen": "2026-06-27",
       "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T19:18:46+08:00"
+      "updated_at": "2026-09-24T19:48:15+08:00"
     }
   ]
 }

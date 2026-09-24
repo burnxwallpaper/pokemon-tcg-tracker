@@ -86,15 +86,17 @@ def same_print(item: dict, name: str) -> bool:
         return False
     if re.search(r"\bEN\b", name):
         return False
+    # The parenthetical is the product ("Violet ex", "VSTAR Universe"), not the card's stage.
+    card_name = re.sub(r"\([^)]*\)", " ", name)
     query = " ".join(
         str(item.get(key) or "")
         for key in ("name_jp", "name_zh", "search_jp", "search_hk")
     )
-    if _stated_rarity_conflict(name, query):
+    if _stated_rarity_conflict(card_name, query):
         return False
-    if _wants_illustration_rare(query) and not _is_illustration_rare(name):
+    if _wants_illustration_rare(query) and not _is_illustration_rare(card_name):
         return False
-    if _stage_conflict(name, query):
+    if _stage_conflict(card_name, query):
         return False
     return True
 

@@ -76,7 +76,7 @@ _GROUPS: list[dict[str, Any]] = [
     {"id": "shinybox", "terms": ["閃色寶藏", "shinytreasure", "シャイニートレジャー", "shiny treasure"]},
     {"id": "battle", "terms": ["對戰夥伴", "battlepartners", "バトルパートナーズ", "battle partners"]},
     {"id": "stellar", "terms": ["星晶奇跡", "stellarmiracle", "ステラミラクル", "stellar miracle"]},
-    {"id": "glory", "terms": ["火箭隊的榮耀", "ロケット団の栄光", "gloryoftheteamrocket"]},
+    {"id": "glory", "terms": ["火箭隊的榮耀", "ロケット団の栄光", "gloryoftheteamrocket", "glory of team rocket"]},
     {"id": "bolt", "terms": ["黑雷", "blackbolt", "ブラックボルト", "black bolt"]},
     {"id": "flare", "terms": ["白炎", "whiteflare", "ホワイトフレア", "white flare"]},
     {"id": "ancient", "terms": ["古代咆哮", "ancientroar", "古代の咆哮", "ancient roar"]},
@@ -633,9 +633,12 @@ def english_query(item: dict) -> str | None:
 
 
 def _identity_codes(item: dict) -> set[str]:
-    """Prefer tcgdex when `set` names a different product."""
-    tcg_codes = {c.lower() for c in _CODE_RE.findall(_norm(str(item.get("tcgdex_id") or "")))}
-    set_codes = {c.lower() for c in _CODE_RE.findall(_norm(str(item.get("set") or "")))}
+    """Prefer tcgdex when `set` names a different product.
+
+    Read the raw fields. Normalizing first glues SV9-127 into a fake code sv9127.
+    """
+    tcg_codes = _set_codes(str(item.get("tcgdex_id") or ""))
+    set_codes = _set_codes(str(item.get("set") or ""))
     if tcg_codes and set_codes and not (tcg_codes & set_codes):
         return tcg_codes
     return tcg_codes | set_codes
@@ -645,14 +648,17 @@ def _card_print(item: dict) -> tuple[str, str | None] | None:
     """Full set fraction when it belongs to the same set code as tcgdex; else the tcgdex number."""
     tcg = str(item.get("tcgdex_id") or "")
     set_field = str(item.get("set") or "")
-    tcg_codes = {c.lower() for c in _CODE_RE.findall(_norm(tcg))}
-    set_codes = {c.lower() for c in _CODE_RE.findall(_norm(set_field))}
+    tcg_codes = _set_codes(tcg)
+    set_codes = _set_codes(set_field)
     conflict = bool(tcg_codes and set_codes and not (tcg_codes & set_codes))
+    code_nums = {digits for code in (tcg_codes | set_codes) for digits in re.findall(r"\d+", code)}
     if not conflict:
         found = re.findall(r"(\d{2,3})\s*/\s*(\d{2,3})", set_field)
         if found:
             num, den = found[-1]
-            return num, den
+            # "S11 / 125" is the set number and the collector number, not 11/125.
+            if num not in code_nums:
+                return num, den
     match = re.search(r"-(\d{2,3})\b", tcg)
     if not match:
         return None

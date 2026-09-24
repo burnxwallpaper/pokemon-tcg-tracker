@@ -536,6 +536,46 @@ def test_snkrdunk_print_rejects_english_reprint_and_loose_box() -> None:
     }
     assert search_keyword(pikachu) == "sv2a 173"
     assert search_keyword(box) == "ポケモンカード151 BOX"
+    assert search_keyword(
+        {
+            "kind": "psa10",
+            "name_jp": "Nのゾロアークex SAR PSA10",
+            "set": "SV9 / 127/100",
+            "tcgdex_id": "SV9-127",
+        }
+    ) == "sv9 127"
+    assert search_keyword(
+        {
+            "kind": "psa10",
+            "name_jp": "ギラティナVSTAR UR PSA10",
+            "set": "S11 / 125",
+            "tcgdex_id": "S11-125",
+        }
+    ) == "s11 125"
+    assert same_print(
+        {
+            "kind": "psa10",
+            "name_jp": "シロナの覇気 SAR PSA10",
+            "name_zh": "竹蘭的霸氣 SAR PSA10",
+            "search_jp": "シロナの覇気 SAR PSA10",
+            "search_hk": "竹蘭的霸氣 SAR PSA10",
+            "set": "S12a / 239",
+            "tcgdex_id": "S12a-239",
+        },
+        'Cynthia’s Ambition SAR[s12a 239/172](High Class Pack "VSTAR Universe")',
+    )
+    assert same_print(
+        {
+            "kind": "psa10",
+            "name_jp": "ミモザ SAR PSA10",
+            "name_zh": "米莫莎 SAR PSA10",
+            "search_jp": "ミモザ SAR PSA10",
+            "search_hk": "米莫莎 SAR PSA10",
+            "set": "SV1V / 105",
+            "tcgdex_id": "SV1V-105",
+        },
+        'Miriam SAR[SV1V 105/078](Scarlet & Violet Expansion Pack "Violet ex")',
+    )
     assert same_print(pikachu, "Pikachu AR[SV2a 173/165]")
     assert not same_print(pikachu, "Pikachu AR[SV2a 198/165]")
     assert not same_print(charizard, "Alakazam[MEW EN 201/165]")

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-09-24T19:18:46+08:00",
+    "updated_at": "2026-09-24T19:48:15+08:00",
     "timezone": "Asia/Hong_Kong",
     "is_sample": false,
     "sample_label": null,
@@ -42,7 +42,7 @@
     "sources_enabled": {
       "yahoo_auctions_jp": true,
       "mercari_jp": false,
-      "snkrdunk": false,
+      "snkrdunk": true,
       "cardrush": false,
       "yuyu_tei": false,
       "magi": false,
@@ -57,6 +57,13 @@
         "ok_items": 45,
         "errors": [],
         "note": "Preserved JP reference; this run refreshed HK asks only"
+      },
+      "snkrdunk": {
+        "enabled": true,
+        "status": "ok",
+        "ok_items": 49,
+        "errors": [],
+        "note": "SNKRDUNK catalog identity + PSA10/BOX ask in JPY. HK asks outside 10–300% of this market are dropped."
       },
       "carousell_hk": {
         "enabled": true,
@@ -143,6 +150,9 @@
       "hk_ask_hkd": null,
       "hk_listings_n": 0,
       "hk_listing_url": null,
+      "snkrdunk_url": null,
+      "snkrdunk_name": null,
+      "snkrdunk_jpy": null,
       "spread_jp_hk_pct": null,
       "sources": [],
       "is_sample": false,
@@ -687,11 +697,15 @@
       "hk_ask_hkd": 930.0,
       "hk_listings_n": 5,
       "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ar-holo-173-165",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128089",
+      "snkrdunk_name": "ピカチュウ AR[SV2a 173/165](強化拡張パック「ポケモンカード151」)",
+      "snkrdunk_jpy": 13400,
       "spread_jp_hk_pct": 26.09,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 40,
@@ -1263,11 +1277,15 @@
       "hk_ask_hkd": 550.0,
       "hk_listings_n": 15,
       "hk_listing_url": "https://www.carousell.com.hk/p/1460673544/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/806644",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「アビスアイ」ボックス",
+      "snkrdunk_jpy": 8000,
       "spread_jp_hk_pct": 46.2,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 3,
@@ -1659,11 +1677,15 @@
       "hk_ask_hkd": 980.0,
       "hk_listings_n": 7,
       "hk_listing_url": "https://www.carousell.com.hk/p/1454774964/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/846048",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ストームエメラルダ」ボックス",
+      "snkrdunk_jpy": 11380,
       "spread_jp_hk_pct": 88.55,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 9,
@@ -1797,12 +1819,16 @@
       "hk_ask_hkd": 820.0,
       "hk_listings_n": 21,
       "hk_listing_url": "https://www.carousell.com.hk/p/1430164545/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/721913",
+      "snkrdunk_name": "ポケモンカードゲームMEGA ハイクラスパック「MEGAドリームex」ボックス",
+      "snkrdunk_jpy": 12400,
       "spread_jp_hk_pct": 36.32,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
         "lono",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 16,
@@ -2194,10 +2220,14 @@
       "hk_ask_hkd": 610.0,
       "hk_listings_n": 17,
       "hk_listing_url": "https://www.carousell.com.hk/p/1452421067/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/762693",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ニンジャスピナー」 ボックス",
+      "snkrdunk_jpy": 8200,
       "spread_jp_hk_pct": null,
       "sources": [
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 1,
@@ -2699,11 +2729,15 @@
       "hk_ask_hkd": 975.0,
       "hk_listings_n": 12,
       "hk_listing_url": "https://www.carousell.com.hk/p/1458408087/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/687430",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「インフェルノX」ボックス",
+      "snkrdunk_jpy": 18000,
       "spread_jp_hk_pct": 15.19,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 4,
@@ -3269,9 +3303,13 @@
       "hk_ask_hkd": null,
       "hk_listings_n": 0,
       "hk_listing_url": null,
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/91176",
+      "snkrdunk_name": "ブラッキーV SR: SA[S6a 085/069](強化拡張パック「イーブイヒーローズ」)",
+      "snkrdunk_jpy": 77000,
       "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp"
+        "yahoo_auctions_jp",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 40,
@@ -3849,10 +3887,14 @@
       "hk_ask_hkd": 650.0,
       "hk_listings_n": 7,
       "hk_listing_url": "https://www.carousell.com.hk/p/1379782937/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628146",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガブレイブ」ボックス",
+      "snkrdunk_jpy": 8099,
       "spread_jp_hk_pct": 68.35,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 11,
@@ -4328,11 +4370,15 @@
       "hk_ask_hkd": 600.0,
       "hk_listings_n": 4,
       "hk_listing_url": "https://www.carousell.com.hk/p/1437475434/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628148",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガシンフォニア」ボックス",
+      "snkrdunk_jpy": 7399,
       "spread_jp_hk_pct": 64.58,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 8,
@@ -4886,11 +4932,15 @@
       "hk_ask_hkd": 495.0,
       "hk_listings_n": 4,
       "hk_listing_url": "https://www.carousell.com.hk/p/1452420881/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/743533",
+      "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ムニキスゼロ」ボックス",
+      "snkrdunk_jpy": 7777,
       "spread_jp_hk_pct": null,
       "sources": [
         "carousell_hk",
         "zenox",
-        "shipmytoy"
+        "shipmytoy",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 2,
@@ -5445,10 +5495,14 @@
       "hk_ask_hkd": 1600.0,
       "hk_listings_n": 2,
       "hk_listing_url": "https://www.carousell.com.hk/p/1436201709/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/186243",
+      "snkrdunk_name": "ゲンガーex SR [SV5K 088/071](拡張パック「ワイルドフォース」)",
+      "snkrdunk_jpy": 17450,
       "spread_jp_hk_pct": 63.25,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 31,
@@ -6026,10 +6080,14 @@
       "hk_ask_hkd": 5200.0,
       "hk_listings_n": 7,
       "hk_listing_url": "https://www.carousell.com.hk/p/1458434253/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/724996",
+      "snkrdunk_name": "メガゲンガーex SAR [M2a 240/193](ハイクラスパック「MEGAドリームex」)",
+      "snkrdunk_jpy": 63000,
       "spread_jp_hk_pct": 65.43,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 30,
@@ -6607,10 +6665,14 @@
       "hk_ask_hkd": 3000.0,
       "hk_listings_n": 3,
       "hk_listing_url": "https://www.carousell.com.hk/p/1462798382/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/120748",
+      "snkrdunk_name": "ナンジャモ SAR[SV2D 096/071](拡張パック「クレイバースト」)",
+      "snkrdunk_jpy": 70000,
       "spread_jp_hk_pct": -28.7,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 39,
@@ -7194,10 +7256,14 @@
       "hk_ask_hkd": 3925.0,
       "hk_listings_n": 10,
       "hk_listing_url": "https://www.carousell.com.hk/p/1356781987/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/224087",
+      "snkrdunk_name": "ゲッコウガex SAR [SV5a 090/066](強化拡張パック「クリムゾンヘイズ」)",
+      "snkrdunk_jpy": 44980,
       "spread_jp_hk_pct": 76.21,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 4,
@@ -7769,8 +7835,13 @@
       "hk_ask_hkd": null,
       "hk_listings_n": 0,
       "hk_listing_url": null,
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/568902",
+      "snkrdunk_name": "ロケット団のミュウツーex SAR [SV10 125/098](拡張パック「ロケット団の栄光」)",
+      "snkrdunk_jpy": 80000,
       "spread_jp_hk_pct": null,
-      "sources": [],
+      "sources": [
+        "snkrdunk"
+      ],
       "is_sample": false,
       "jp_comps_n": 0,
       "jp_sold_samples": [],
@@ -8328,14 +8399,18 @@
       "volume_7d_avg": 2.43,
       "volume_ratio": 0.0,
       "liquidity_score": 19,
-      "hk_ask_hkd": 1200.0,
-      "hk_listings_n": 11,
-      "hk_listing_url": "https://www.carousell.com.hk/p/1431351014/",
-      "spread_jp_hk_pct": 36.58,
+      "hk_ask_hkd": 1110.0,
+      "hk_listings_n": 16,
+      "hk_listing_url": "https://www.carousell.com.hk/p/1362575351/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/424297",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック「テラスタルフェスex」ボックス",
+      "snkrdunk_jpy": 16850,
+      "spread_jp_hk_pct": 26.33,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 8,
@@ -8853,7 +8928,7 @@
         {
           "date": "2026-09-24",
           "price_hkd": 878.62,
-          "hk_ask_hkd": 1200.0,
+          "hk_ask_hkd": 1110.0,
           "volume": 0.0
         }
       ]
@@ -8875,13 +8950,17 @@
       "volume_ratio": 0.0,
       "liquidity_score": 19,
       "hk_ask_hkd": 2600.0,
-      "hk_listings_n": 24,
+      "hk_listings_n": 25,
       "hk_listing_url": "https://www.carousell.com.hk/p/1462871712/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/118914",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック「ポケモンカード151」ボックス",
+      "snkrdunk_jpy": 44900,
       "spread_jp_hk_pct": 2.49,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 10,
@@ -9399,11 +9478,15 @@
       "hk_ask_hkd": 840.0,
       "hk_listings_n": 14,
       "hk_listing_url": "https://www.carousell.com.hk/p/1370876247/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/151755",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック 「シャイニートレジャーex」 ボックス",
+      "snkrdunk_jpy": 15150,
       "spread_jp_hk_pct": -8.27,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 9,
@@ -9945,11 +10028,15 @@
       "hk_ask_hkd": 590.0,
       "hk_listings_n": 17,
       "hk_listing_url": "https://www.carousell.com.hk/p/1448799662/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/484952",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「バトルパートナーズ」ボックス",
+      "snkrdunk_jpy": 9700,
       "spread_jp_hk_pct": 29.2,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 14,
@@ -10467,10 +10554,14 @@
       "hk_ask_hkd": 7000.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.carousell.com.hk/p/1462072626/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164250",
+      "snkrdunk_name": "ミュウex SAR [SV4a 347/190](ハイクラスパック「シャイニートレジャーex」)",
+      "snkrdunk_jpy": 115000,
       "spread_jp_hk_pct": 14.04,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 39,
@@ -11018,10 +11109,14 @@
       "hk_ask_hkd": 4300.0,
       "hk_listings_n": 5,
       "hk_listing_url": "https://www.carousell.com.hk/p/1457523164/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455596",
+      "snkrdunk_name": "ブラッキーex SAR [SV8a 217/187](ハイクラスパック「テラスタルフェスex」)",
+      "snkrdunk_jpy": 67000,
       "spread_jp_hk_pct": 24.1,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 28,
@@ -11581,8 +11676,13 @@
       "hk_ask_hkd": null,
       "hk_listings_n": 0,
       "hk_listing_url": null,
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/93380",
+      "snkrdunk_name": "ギラティナVSTAR UR[S11 125/100](拡張パック「ロストアビス」)",
+      "snkrdunk_jpy": 21850,
       "spread_jp_hk_pct": null,
-      "sources": [],
+      "sources": [
+        "snkrdunk"
+      ],
       "is_sample": false,
       "jp_comps_n": 0,
       "jp_sold_samples": [],
@@ -12035,10 +12135,14 @@
       "hk_ask_hkd": 1219.0,
       "hk_listings_n": 2,
       "hk_listing_url": "https://www.carousell.com.hk/p/1446052981/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657365",
+      "snkrdunk_name": "メガサーナイトex SAR [M1S 087/063](拡張パック「メガシンフォニア」)",
+      "snkrdunk_jpy": 18999,
       "spread_jp_hk_pct": 23.75,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 25,
@@ -12523,13 +12627,17 @@
       "volume_7d_avg": 1.43,
       "volume_ratio": 0.0,
       "liquidity_score": 12,
-      "hk_ask_hkd": 500.0,
-      "hk_listings_n": 9,
-      "hk_listing_url": "https://www.carousell.com.hk/p/1408274628/",
-      "spread_jp_hk_pct": -8.17,
+      "hk_ask_hkd": 350.0,
+      "hk_listings_n": 3,
+      "hk_listing_url": "https://www.carousell.com.hk/p/1410849368/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/283206",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ステラミラクル」ボックス",
+      "snkrdunk_jpy": 10400,
+      "spread_jp_hk_pct": -35.72,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 22,
@@ -12932,7 +13040,7 @@
         },
         {
           "date": "2026-09-24",
-          "hk_ask_hkd": 500.0,
+          "hk_ask_hkd": 350.0,
           "volume": 0.0,
           "price_hkd": 544.5
         }
@@ -12957,10 +13065,14 @@
       "hk_ask_hkd": 1300.0,
       "hk_listings_n": 9,
       "hk_listing_url": "https://www.carousell.com.hk/p/1382126986/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/550896",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ロケット団の栄光」ボックス",
+      "snkrdunk_jpy": 23199,
       "spread_jp_hk_pct": 14.68,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 12,
@@ -13334,10 +13446,14 @@
       "hk_ask_hkd": 800.0,
       "hk_listings_n": 9,
       "hk_listing_url": "https://www.carousell.com.hk/p/1459043295/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/127743",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「黒炎の支配者」 ボックス",
+      "snkrdunk_jpy": 15450,
       "spread_jp_hk_pct": -7.65,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 19,
@@ -13819,11 +13935,15 @@
       "hk_ask_hkd": 1520.0,
       "hk_listings_n": 4,
       "hk_listing_url": "https://www.carousell.com.hk/p/1439796644/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657364",
+      "snkrdunk_name": "メガルカリオex SAR [M1L 088/063](拡張パック「メガブレイブ」)",
+      "snkrdunk_jpy": 18945,
       "spread_jp_hk_pct": 104.71,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 25,
@@ -14245,10 +14365,14 @@
       "hk_ask_hkd": 825.0,
       "hk_listings_n": 2,
       "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-eevee-ex-223-188",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455676",
+      "snkrdunk_name": "イーブイex SAR [SV8a 223/187](ハイクラスパック「テラスタルフェスex」)",
+      "snkrdunk_jpy": 11900,
       "spread_jp_hk_pct": 21.21,
       "sources": [
         "yahoo_auctions_jp",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 6,
@@ -14748,9 +14872,13 @@
       "hk_ask_hkd": null,
       "hk_listings_n": 0,
       "hk_listing_url": null,
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/506159",
+      "snkrdunk_name": "Nのゾロアークex SAR [SV9 127/100](拡張パック「バトルパートナーズ」)",
+      "snkrdunk_jpy": 13150,
       "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp"
+        "yahoo_auctions_jp",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 19,
@@ -15250,11 +15378,15 @@
       "hk_ask_hkd": 6250.0,
       "hk_listings_n": 10,
       "hk_listing_url": "https://www.carousell.com.hk/p/1463321606/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/704401",
+      "snkrdunk_name": "メガリザードンXex SAR [M2 110/080](拡張パック「インフェルノX」)",
+      "snkrdunk_jpy": 120000,
       "spread_jp_hk_pct": -19.06,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 14,
@@ -15694,11 +15826,15 @@
       "hk_ask_hkd": 1100.0,
       "hk_listings_n": 8,
       "hk_listing_url": "https://www.carousell.com.hk/p/1462560886/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584770",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ブラックボルト」ボックス",
+      "snkrdunk_jpy": 20700,
       "spread_jp_hk_pct": -3.38,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 14,
@@ -16144,11 +16280,15 @@
       "hk_ask_hkd": 1110.0,
       "hk_listings_n": 4,
       "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-leafeon-ex-200-188",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/469625",
+      "snkrdunk_name": "リーフィアex SAR [SV8a 200/187](ハイクラスパック「テラスタルフェスex」)",
+      "snkrdunk_jpy": 14500,
       "spread_jp_hk_pct": 54.65,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 24,
@@ -16630,11 +16770,15 @@
       "hk_ask_hkd": 1120.0,
       "hk_listings_n": 5,
       "hk_listing_url": "https://www.carousell.com.hk/p/1454214678/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584772",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ホワイトフレア」ボックス",
+      "snkrdunk_jpy": 19180,
       "spread_jp_hk_pct": 3.79,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 14,
@@ -17026,10 +17170,14 @@
       "hk_ask_hkd": 520.0,
       "hk_listings_n": 5,
       "hk_listing_url": "https://www.carousell.com.hk/p/1411220591/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/140591",
+      "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「古代の咆哮」（PARADOX RIFT） ボックス",
+      "snkrdunk_jpy": 9800,
       "spread_jp_hk_pct": -4.5,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 15,
@@ -17421,9 +17569,13 @@
       "hk_ask_hkd": null,
       "hk_listings_n": 0,
       "hk_listing_url": null,
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/162095",
+      "snkrdunk_name": "リザードンex SAR [SV4a 349/190](ハイクラスパック「シャイニートレジャーex」)",
+      "snkrdunk_jpy": 59980,
       "spread_jp_hk_pct": null,
       "sources": [
-        "yahoo_auctions_jp"
+        "yahoo_auctions_jp",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 29,
@@ -17833,10 +17985,14 @@
       "hk_ask_hkd": 2300.0,
       "hk_listings_n": 3,
       "hk_listing_url": "https://www.carousell.com.hk/p/1402466048/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/382399",
+      "snkrdunk_name": "ルチアのアピール SAR [SV7a 091/064](強化拡張パック「楽園ドラゴーナ」)",
+      "snkrdunk_jpy": 35999,
       "spread_jp_hk_pct": 25.55,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 37,
@@ -18246,10 +18402,14 @@
       "hk_ask_hkd": 1065.0,
       "hk_listings_n": 4,
       "hk_listing_url": "https://www.carousell.com.hk/p/1441736087/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/91151",
+      "snkrdunk_name": "アセロラの予感 SR[S8b 255/184](ハイクラスパック「VMAXクライマックス」)",
+      "snkrdunk_jpy": 13500,
       "spread_jp_hk_pct": 56.47,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 3,
@@ -18629,11 +18789,15 @@
       "hk_ask_hkd": 1270.0,
       "hk_listings_n": 3,
       "hk_listing_url": "https://www.carousell.com.hk/p/1414518523/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/95124",
+      "snkrdunk_name": "セレナ SR [s11a 081/068](強化拡張パック『白熱のアルカナ』)",
+      "snkrdunk_jpy": 17000,
       "spread_jp_hk_pct": 46.61,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 31,
@@ -19019,10 +19183,14 @@
       "hk_ask_hkd": 5500.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.carousell.com.hk/p/1380286077/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/132279",
+      "snkrdunk_name": "リザードンex SAR[SV3 134/108](拡張パック「黒炎の支配者」)",
+      "snkrdunk_jpy": 69000,
       "spread_jp_hk_pct": 50.15,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 23,
@@ -19486,10 +19654,14 @@
       "hk_ask_hkd": 2500.0,
       "hk_listings_n": 6,
       "hk_listing_url": "https://www.carousell.com.hk/p/1426934795/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/110938",
+      "snkrdunk_name": "ミモザ SAR[SV1V 105/078](スカーレット＆バイオレット 拡張パック「バイオレットex」)",
+      "snkrdunk_jpy": 34800,
       "spread_jp_hk_pct": 37.43,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 4,
@@ -19857,11 +20029,15 @@
       "hk_ask_hkd": 1600.0,
       "hk_listings_n": 5,
       "hk_listing_url": "https://www.carousell.com.hk/p/1422220123/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128122",
+      "snkrdunk_name": "エリカの招待 SAR[SV2a 206/165](強化拡張パック「ポケモンカード151」)",
+      "snkrdunk_jpy": 23750,
       "spread_jp_hk_pct": 7.74,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 37,
@@ -20175,10 +20351,14 @@
       "hk_ask_hkd": 6425.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ex-jp-132-106",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/408333",
+      "snkrdunk_name": "ピカチュウex SAR [SV8 132/106](拡張パック「超電ブレイカー」)",
+      "snkrdunk_jpy": 80000,
       "spread_jp_hk_pct": 66.41,
       "sources": [
         "yahoo_auctions_jp",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 7,
@@ -20582,10 +20762,14 @@
       "hk_ask_hkd": 10715.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-lugia-v-jp-110-098",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/100567",
+      "snkrdunk_name": "ルギアV SR:SA[s12 110/098](拡張パック「パラダイムトリガー」)",
+      "snkrdunk_jpy": 150000,
       "spread_jp_hk_pct": 30.2,
       "sources": [
         "yahoo_auctions_jp",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 16,
@@ -20923,10 +21107,14 @@
       "hk_ask_hkd": 1600.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.carousell.com.hk/p/1429073970/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164251",
+      "snkrdunk_name": "ナンジャモ SAR [SV4a 350/190](ハイクラスパック「シャイニートレジャーex」)",
+      "snkrdunk_jpy": 26000,
       "spread_jp_hk_pct": 29.29,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 20,
@@ -21270,11 +21458,15 @@
       "hk_ask_hkd": 2010.0,
       "hk_listings_n": 10,
       "hk_listing_url": "https://www.carousell.com.hk/p/1401746407/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/525751",
+      "snkrdunk_name": "ヒビキのホウオウex SAR [SV9a 086/063](強化拡張パック「熱風のアリーナ」)",
+      "snkrdunk_jpy": 36000,
       "spread_jp_hk_pct": -0.96,
       "sources": [
         "yahoo_auctions_jp",
         "carousell_hk",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 31,
@@ -21630,10 +21822,14 @@
       "hk_ask_hkd": 3200.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.carousell.com.hk/p/1462529017/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/255643",
+      "snkrdunk_name": "ゼイユ SAR [SV6 130/101](拡張パック「変幻の仮面」)",
+      "snkrdunk_jpy": 68300,
       "spread_jp_hk_pct": -12.64,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 28,
@@ -21953,10 +22149,14 @@
       "hk_ask_hkd": 7415.0,
       "hk_listings_n": 2,
       "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-charizard-ex-jp-201-166",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128117",
+      "snkrdunk_name": "リザードンex SAR [SV2a 201/165](強化拡張パック「ポケモンカード151」)",
+      "snkrdunk_jpy": 92500,
       "spread_jp_hk_pct": 48.31,
       "sources": [
         "yahoo_auctions_jp",
-        "zenox"
+        "zenox",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 40,
@@ -22312,10 +22512,14 @@
       "hk_ask_hkd": 940.0,
       "hk_listings_n": 4,
       "hk_listing_url": "https://www.carousell.com.hk/p/1460374012/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/103056",
+      "snkrdunk_name": "シロナの覇気 SAR[s12a 239/172](ハイクラスパック「VSTARユニバース」)",
+      "snkrdunk_jpy": 20100,
       "spread_jp_hk_pct": -0.84,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 4,
@@ -22629,10 +22833,14 @@
       "hk_ask_hkd": 600.0,
       "hk_listings_n": 1,
       "hk_listing_url": "https://www.carousell.com.hk/p/1462448285/",
+      "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/110935",
+      "snkrdunk_name": "ミライドンex SAR[SV1V 102/078](スカーレット＆バイオレット 拡張パック「バイオレットex」)",
+      "snkrdunk_jpy": 11400,
       "spread_jp_hk_pct": -2.25,
       "sources": [
         "yahoo_auctions_jp",
-        "carousell_hk"
+        "carousell_hk",
+        "snkrdunk"
       ],
       "is_sample": false,
       "jp_comps_n": 34,
@@ -22907,10 +23115,14 @@
         "hk_ask_hkd": 3000.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462798382/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/120748",
+        "snkrdunk_name": "ナンジャモ SAR[SV2D 096/071](拡張パック「クレイバースト」)",
+        "snkrdunk_jpy": 70000,
         "spread_jp_hk_pct": -28.7,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 39,
@@ -22956,10 +23168,14 @@
         "hk_ask_hkd": 800.0,
         "hk_listings_n": 9,
         "hk_listing_url": "https://www.carousell.com.hk/p/1459043295/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/127743",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「黒炎の支配者」 ボックス",
+        "snkrdunk_jpy": 15450,
         "spread_jp_hk_pct": -7.65,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 19,
@@ -23005,9 +23221,13 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/91176",
+        "snkrdunk_name": "ブラッキーV SR: SA[S6a 085/069](強化拡張パック「イーブイヒーローズ」)",
+        "snkrdunk_jpy": 77000,
         "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp"
+          "yahoo_auctions_jp",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -23050,13 +23270,17 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 12,
-        "hk_ask_hkd": 500.0,
-        "hk_listings_n": 9,
-        "hk_listing_url": "https://www.carousell.com.hk/p/1408274628/",
-        "spread_jp_hk_pct": -8.17,
+        "hk_ask_hkd": 350.0,
+        "hk_listings_n": 3,
+        "hk_listing_url": "https://www.carousell.com.hk/p/1410849368/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/283206",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ステラミラクル」ボックス",
+        "snkrdunk_jpy": 10400,
+        "spread_jp_hk_pct": -35.72,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 22,
@@ -23101,10 +23325,14 @@
         "hk_ask_hkd": 7000.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462072626/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164250",
+        "snkrdunk_name": "ミュウex SAR [SV4a 347/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 115000,
         "spread_jp_hk_pct": 14.04,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 39,
@@ -23150,11 +23378,15 @@
         "hk_ask_hkd": 930.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ar-holo-173-165",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128089",
+        "snkrdunk_name": "ピカチュウ AR[SV2a 173/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 13400,
         "spread_jp_hk_pct": 26.09,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -23197,14 +23429,18 @@
         "volume_7d_avg": 2.43,
         "volume_ratio": 0.0,
         "liquidity_score": 19,
-        "hk_ask_hkd": 1200.0,
-        "hk_listings_n": 11,
-        "hk_listing_url": "https://www.carousell.com.hk/p/1431351014/",
-        "spread_jp_hk_pct": 36.58,
+        "hk_ask_hkd": 1110.0,
+        "hk_listings_n": 16,
+        "hk_listing_url": "https://www.carousell.com.hk/p/1362575351/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/424297",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック「テラスタルフェスex」ボックス",
+        "snkrdunk_jpy": 16850,
+        "spread_jp_hk_pct": 26.33,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 8,
@@ -23249,11 +23485,15 @@
         "hk_ask_hkd": 1120.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1454214678/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584772",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ホワイトフレア」ボックス",
+        "snkrdunk_jpy": 19180,
         "spread_jp_hk_pct": 3.79,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -23299,11 +23539,15 @@
         "hk_ask_hkd": 1100.0,
         "hk_listings_n": 8,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462560886/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584770",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ブラックボルト」ボックス",
+        "snkrdunk_jpy": 20700,
         "spread_jp_hk_pct": -3.38,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -23349,12 +23593,16 @@
         "hk_ask_hkd": 820.0,
         "hk_listings_n": 21,
         "hk_listing_url": "https://www.carousell.com.hk/p/1430164545/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/721913",
+        "snkrdunk_name": "ポケモンカードゲームMEGA ハイクラスパック「MEGAドリームex」ボックス",
+        "snkrdunk_jpy": 12400,
         "spread_jp_hk_pct": 36.32,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
           "lono",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 16,
@@ -23399,10 +23647,14 @@
         "hk_ask_hkd": 650.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1379782937/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628146",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガブレイブ」ボックス",
+        "snkrdunk_jpy": 8099,
         "spread_jp_hk_pct": 68.35,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 11,
@@ -23448,11 +23700,15 @@
         "hk_ask_hkd": 550.0,
         "hk_listings_n": 15,
         "hk_listing_url": "https://www.carousell.com.hk/p/1460673544/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/806644",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「アビスアイ」ボックス",
+        "snkrdunk_jpy": 8000,
         "spread_jp_hk_pct": 46.2,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 3,
@@ -23498,10 +23754,14 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.carousell.com.hk/p/1436201709/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/186243",
+        "snkrdunk_name": "ゲンガーex SR [SV5K 088/071](拡張パック「ワイルドフォース」)",
+        "snkrdunk_jpy": 17450,
         "spread_jp_hk_pct": 63.25,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -23547,11 +23807,15 @@
         "hk_ask_hkd": 600.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1437475434/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628148",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガシンフォニア」ボックス",
+        "snkrdunk_jpy": 7399,
         "spread_jp_hk_pct": 64.58,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 8,
@@ -23597,10 +23861,14 @@
         "hk_ask_hkd": 1219.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.carousell.com.hk/p/1446052981/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657365",
+        "snkrdunk_name": "メガサーナイトex SAR [M1S 087/063](拡張パック「メガシンフォニア」)",
+        "snkrdunk_jpy": 18999,
         "spread_jp_hk_pct": 23.75,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 25,
@@ -23646,6 +23914,9 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": null,
         "sources": [
           "yahoo_auctions_jp"
@@ -23694,10 +23965,14 @@
         "hk_ask_hkd": 3925.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1356781987/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/224087",
+        "snkrdunk_name": "ゲッコウガex SAR [SV5a 090/066](強化拡張パック「クリムゾンヘイズ」)",
+        "snkrdunk_jpy": 44980,
         "spread_jp_hk_pct": 76.21,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 4,
@@ -23743,11 +24018,15 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1422220123/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128122",
+        "snkrdunk_name": "エリカの招待 SAR[SV2a 206/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 23750,
         "spread_jp_hk_pct": 7.74,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 37,
@@ -23793,11 +24072,15 @@
         "hk_ask_hkd": 975.0,
         "hk_listings_n": 12,
         "hk_listing_url": "https://www.carousell.com.hk/p/1458408087/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/687430",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「インフェルノX」ボックス",
+        "snkrdunk_jpy": 18000,
         "spread_jp_hk_pct": 15.19,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 4,
@@ -23842,10 +24125,14 @@
         "hk_ask_hkd": 825.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-eevee-ex-223-188",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455676",
+        "snkrdunk_name": "イーブイex SAR [SV8a 223/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 11900,
         "spread_jp_hk_pct": 21.21,
         "sources": [
           "yahoo_auctions_jp",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 6,
@@ -23891,6 +24178,9 @@
         "hk_ask_hkd": 1300.0,
         "hk_listings_n": 9,
         "hk_listing_url": "https://www.carousell.com.hk/p/1382126986/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 14.68,
         "sources": [
           "yahoo_auctions_jp",
@@ -23940,6 +24230,9 @@
         "hk_ask_hkd": 3200.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462529017/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -12.64,
         "sources": [
           "yahoo_auctions_jp",
@@ -23988,11 +24281,15 @@
         "hk_ask_hkd": 980.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1454774964/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/846048",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ストームエメラルダ」ボックス",
+        "snkrdunk_jpy": 11380,
         "spread_jp_hk_pct": 88.55,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 9,
@@ -24038,10 +24335,14 @@
         "hk_ask_hkd": 600.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462448285/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/110935",
+        "snkrdunk_name": "ミライドンex SAR[SV1V 102/078](スカーレット＆バイオレット 拡張パック「バイオレットex」)",
+        "snkrdunk_jpy": 11400,
         "spread_jp_hk_pct": -2.25,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 34,
@@ -24087,6 +24388,9 @@
         "hk_ask_hkd": 6250.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1463321606/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -19.06,
         "sources": [
           "yahoo_auctions_jp",
@@ -24137,11 +24441,15 @@
         "hk_ask_hkd": 1270.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1414518523/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/95124",
+        "snkrdunk_name": "セレナ SR [s11a 081/068](強化拡張パック『白熱のアルカナ』)",
+        "snkrdunk_jpy": 17000,
         "spread_jp_hk_pct": 46.61,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -24188,10 +24496,14 @@
         "hk_ask_hkd": 7415.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-charizard-ex-jp-201-166",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128117",
+        "snkrdunk_name": "リザードンex SAR [SV2a 201/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 92500,
         "spread_jp_hk_pct": 48.31,
         "sources": [
           "yahoo_auctions_jp",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -24237,6 +24549,9 @@
         "hk_ask_hkd": 940.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1460374012/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -0.84,
         "sources": [
           "yahoo_auctions_jp",
@@ -24285,11 +24600,15 @@
         "hk_ask_hkd": 2010.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1401746407/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/525751",
+        "snkrdunk_name": "ヒビキのホウオウex SAR [SV9a 086/063](強化拡張パック「熱風のアリーナ」)",
+        "snkrdunk_jpy": 36000,
         "spread_jp_hk_pct": -0.96,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -24335,11 +24654,15 @@
         "hk_ask_hkd": 840.0,
         "hk_listings_n": 14,
         "hk_listing_url": "https://www.carousell.com.hk/p/1370876247/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/151755",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック 「シャイニートレジャーex」 ボックス",
+        "snkrdunk_jpy": 15150,
         "spread_jp_hk_pct": -8.27,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 9,
@@ -24385,10 +24708,14 @@
         "hk_ask_hkd": 520.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1411220591/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/140591",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「古代の咆哮」（PARADOX RIFT） ボックス",
+        "snkrdunk_jpy": 9800,
         "spread_jp_hk_pct": -4.5,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 15,
@@ -24434,10 +24761,14 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1429073970/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164251",
+        "snkrdunk_name": "ナンジャモ SAR [SV4a 350/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 26000,
         "spread_jp_hk_pct": 29.29,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 20,
@@ -24482,9 +24813,13 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/162095",
+        "snkrdunk_name": "リザードンex SAR [SV4a 349/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 59980,
         "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp"
+          "yahoo_auctions_jp",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 29,
@@ -24530,11 +24865,15 @@
         "hk_ask_hkd": 1110.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-leafeon-ex-200-188",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/469625",
+        "snkrdunk_name": "リーフィアex SAR [SV8a 200/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 14500,
         "spread_jp_hk_pct": 54.65,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 24,
@@ -24581,11 +24920,15 @@
         "hk_ask_hkd": 590.0,
         "hk_listings_n": 17,
         "hk_listing_url": "https://www.carousell.com.hk/p/1448799662/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/484952",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「バトルパートナーズ」ボックス",
+        "snkrdunk_jpy": 9700,
         "spread_jp_hk_pct": 29.2,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -24631,10 +24974,14 @@
         "hk_ask_hkd": 2300.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1402466048/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/382399",
+        "snkrdunk_name": "ルチアのアピール SAR [SV7a 091/064](強化拡張パック「楽園ドラゴーナ」)",
+        "snkrdunk_jpy": 35999,
         "spread_jp_hk_pct": 25.55,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 37,
@@ -24677,13 +25024,17 @@
         "volume_ratio": 0.0,
         "liquidity_score": 19,
         "hk_ask_hkd": 2600.0,
-        "hk_listings_n": 24,
+        "hk_listings_n": 25,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462871712/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/118914",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック「ポケモンカード151」ボックス",
+        "snkrdunk_jpy": 44900,
         "spread_jp_hk_pct": 2.49,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 10,
@@ -24729,6 +25080,9 @@
         "hk_ask_hkd": 5500.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1380286077/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 50.15,
         "sources": [
           "yahoo_auctions_jp",
@@ -24777,6 +25131,9 @@
         "hk_ask_hkd": 10715.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-lugia-v-jp-110-098",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 30.2,
         "sources": [
           "yahoo_auctions_jp",
@@ -24825,11 +25182,15 @@
         "hk_ask_hkd": 1520.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1439796644/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657364",
+        "snkrdunk_name": "メガルカリオex SAR [M1L 088/063](拡張パック「メガブレイブ」)",
+        "snkrdunk_jpy": 18945,
         "spread_jp_hk_pct": 104.71,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 25,
@@ -24876,11 +25237,15 @@
         "hk_ask_hkd": 980.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1454774964/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/846048",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ストームエメラルダ」ボックス",
+        "snkrdunk_jpy": 11380,
         "spread_jp_hk_pct": 88.55,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 9,
@@ -24922,10 +25287,14 @@
         "hk_ask_hkd": 650.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1379782937/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628146",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガブレイブ」ボックス",
+        "snkrdunk_jpy": 8099,
         "spread_jp_hk_pct": 68.35,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 11,
@@ -24967,11 +25336,15 @@
         "hk_ask_hkd": 600.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1437475434/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628148",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガシンフォニア」ボックス",
+        "snkrdunk_jpy": 7399,
         "spread_jp_hk_pct": 64.58,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 8,
@@ -25013,12 +25386,16 @@
         "hk_ask_hkd": 820.0,
         "hk_listings_n": 21,
         "hk_listing_url": "https://www.carousell.com.hk/p/1430164545/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/721913",
+        "snkrdunk_name": "ポケモンカードゲームMEGA ハイクラスパック「MEGAドリームex」ボックス",
+        "snkrdunk_jpy": 12400,
         "spread_jp_hk_pct": 36.32,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
           "lono",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 16,
@@ -25060,11 +25437,15 @@
         "hk_ask_hkd": 550.0,
         "hk_listings_n": 15,
         "hk_listing_url": "https://www.carousell.com.hk/p/1460673544/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/806644",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「アビスアイ」ボックス",
+        "snkrdunk_jpy": 8000,
         "spread_jp_hk_pct": 46.2,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 3,
@@ -25106,10 +25487,14 @@
         "hk_ask_hkd": 5200.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1458434253/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/724996",
+        "snkrdunk_name": "メガゲンガーex SAR [M2a 240/193](ハイクラスパック「MEGAドリームex」)",
+        "snkrdunk_jpy": 63000,
         "spread_jp_hk_pct": 65.43,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 30,
@@ -25151,10 +25536,14 @@
         "hk_ask_hkd": 610.0,
         "hk_listings_n": 17,
         "hk_listing_url": "https://www.carousell.com.hk/p/1452421067/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/762693",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ニンジャスピナー」 ボックス",
+        "snkrdunk_jpy": 8200,
         "spread_jp_hk_pct": null,
         "sources": [
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 1,
@@ -25186,11 +25575,15 @@
         "hk_ask_hkd": 975.0,
         "hk_listings_n": 12,
         "hk_listing_url": "https://www.carousell.com.hk/p/1458408087/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/687430",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「インフェルノX」ボックス",
+        "snkrdunk_jpy": 18000,
         "spread_jp_hk_pct": 15.19,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 4,
@@ -25232,11 +25625,15 @@
         "hk_ask_hkd": 1520.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1439796644/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657364",
+        "snkrdunk_name": "メガルカリオex SAR [M1L 088/063](拡張パック「メガブレイブ」)",
+        "snkrdunk_jpy": 18945,
         "spread_jp_hk_pct": 104.71,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 25,
@@ -25278,6 +25675,9 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": null,
         "sources": [],
         "is_sample": false,
@@ -25304,10 +25704,14 @@
         "hk_ask_hkd": 3925.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1356781987/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/224087",
+        "snkrdunk_name": "ゲッコウガex SAR [SV5a 090/066](強化拡張パック「クリムゾンヘイズ」)",
+        "snkrdunk_jpy": 44980,
         "spread_jp_hk_pct": 76.21,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 4,
@@ -25349,11 +25753,15 @@
         "hk_ask_hkd": 495.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1452420881/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/743533",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ムニキスゼロ」ボックス",
+        "snkrdunk_jpy": 7777,
         "spread_jp_hk_pct": null,
         "sources": [
           "carousell_hk",
           "zenox",
-          "shipmytoy"
+          "shipmytoy",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 2,
@@ -25390,11 +25798,15 @@
         "hk_ask_hkd": 930.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ar-holo-173-165",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128089",
+        "snkrdunk_name": "ピカチュウ AR[SV2a 173/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 13400,
         "spread_jp_hk_pct": 26.09,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -25436,6 +25848,9 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": null,
         "sources": [],
         "is_sample": false,
@@ -25462,11 +25877,15 @@
         "hk_ask_hkd": 590.0,
         "hk_listings_n": 17,
         "hk_listing_url": "https://www.carousell.com.hk/p/1448799662/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/484952",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「バトルパートナーズ」ボックス",
+        "snkrdunk_jpy": 9700,
         "spread_jp_hk_pct": 29.2,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -25508,11 +25927,15 @@
         "hk_ask_hkd": 1110.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-leafeon-ex-200-188",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/469625",
+        "snkrdunk_name": "リーフィアex SAR [SV8a 200/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 14500,
         "spread_jp_hk_pct": 54.65,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 24,
@@ -25554,10 +25977,14 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.carousell.com.hk/p/1436201709/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/186243",
+        "snkrdunk_name": "ゲンガーex SR [SV5K 088/071](拡張パック「ワイルドフォース」)",
+        "snkrdunk_jpy": 17450,
         "spread_jp_hk_pct": 63.25,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -25596,14 +26023,18 @@
         "volume_7d_avg": 2.43,
         "volume_ratio": 0.0,
         "liquidity_score": 19,
-        "hk_ask_hkd": 1200.0,
-        "hk_listings_n": 11,
-        "hk_listing_url": "https://www.carousell.com.hk/p/1431351014/",
-        "spread_jp_hk_pct": 36.58,
+        "hk_ask_hkd": 1110.0,
+        "hk_listings_n": 16,
+        "hk_listing_url": "https://www.carousell.com.hk/p/1362575351/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/424297",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック「テラスタルフェスex」ボックス",
+        "snkrdunk_jpy": 16850,
+        "spread_jp_hk_pct": 26.33,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 8,
@@ -25643,13 +26074,17 @@
         "volume_ratio": 0.0,
         "liquidity_score": 19,
         "hk_ask_hkd": 2600.0,
-        "hk_listings_n": 24,
+        "hk_listings_n": 25,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462871712/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/118914",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック「ポケモンカード151」ボックス",
+        "snkrdunk_jpy": 44900,
         "spread_jp_hk_pct": 2.49,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 10,
@@ -25691,10 +26126,14 @@
         "hk_ask_hkd": 3000.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462798382/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/120748",
+        "snkrdunk_name": "ナンジャモ SAR[SV2D 096/071](拡張パック「クレイバースト」)",
+        "snkrdunk_jpy": 70000,
         "spread_jp_hk_pct": -28.7,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 39,
@@ -25736,10 +26175,14 @@
         "hk_ask_hkd": 7000.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462072626/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164250",
+        "snkrdunk_name": "ミュウex SAR [SV4a 347/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 115000,
         "spread_jp_hk_pct": 14.04,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 39,
@@ -25781,11 +26224,15 @@
         "hk_ask_hkd": 1270.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1414518523/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/95124",
+        "snkrdunk_name": "セレナ SR [s11a 081/068](強化拡張パック『白熱のアルカナ』)",
+        "snkrdunk_jpy": 17000,
         "spread_jp_hk_pct": 46.61,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -25827,11 +26274,15 @@
         "hk_ask_hkd": 840.0,
         "hk_listings_n": 14,
         "hk_listing_url": "https://www.carousell.com.hk/p/1370876247/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/151755",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック 「シャイニートレジャーex」 ボックス",
+        "snkrdunk_jpy": 15150,
         "spread_jp_hk_pct": -8.27,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 9,
@@ -25873,10 +26324,14 @@
         "hk_ask_hkd": 4300.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1457523164/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455596",
+        "snkrdunk_name": "ブラッキーex SAR [SV8a 217/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 67000,
         "spread_jp_hk_pct": 24.1,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 28,
@@ -25918,6 +26373,9 @@
         "hk_ask_hkd": 6250.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1463321606/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -19.06,
         "sources": [
           "yahoo_auctions_jp",
@@ -25964,9 +26422,13 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/162095",
+        "snkrdunk_name": "リザードンex SAR [SV4a 349/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 59980,
         "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp"
+          "yahoo_auctions_jp",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 29,
@@ -26008,10 +26470,14 @@
         "hk_ask_hkd": 2300.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1402466048/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/382399",
+        "snkrdunk_name": "ルチアのアピール SAR [SV7a 091/064](強化拡張パック「楽園ドラゴーナ」)",
+        "snkrdunk_jpy": 35999,
         "spread_jp_hk_pct": 25.55,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 37,
@@ -26053,6 +26519,9 @@
         "hk_ask_hkd": 5500.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1380286077/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 50.15,
         "sources": [
           "yahoo_auctions_jp",
@@ -26098,10 +26567,14 @@
         "hk_ask_hkd": 1219.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.carousell.com.hk/p/1446052981/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657365",
+        "snkrdunk_name": "メガサーナイトex SAR [M1S 087/063](拡張パック「メガシンフォニア」)",
+        "snkrdunk_jpy": 18999,
         "spread_jp_hk_pct": 23.75,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 25,
@@ -26143,6 +26616,9 @@
         "hk_ask_hkd": 6425.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ex-jp-132-106",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 66.41,
         "sources": [
           "yahoo_auctions_jp",
@@ -26188,9 +26664,13 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/91176",
+        "snkrdunk_name": "ブラッキーV SR: SA[S6a 085/069](強化拡張パック「イーブイヒーローズ」)",
+        "snkrdunk_jpy": 77000,
         "spread_jp_hk_pct": null,
         "sources": [
-          "yahoo_auctions_jp"
+          "yahoo_auctions_jp",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -26232,6 +26712,9 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": null,
         "sources": [],
         "is_sample": false,
@@ -26258,6 +26741,9 @@
         "hk_ask_hkd": 1300.0,
         "hk_listings_n": 9,
         "hk_listing_url": "https://www.carousell.com.hk/p/1382126986/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 14.68,
         "sources": [
           "yahoo_auctions_jp",
@@ -26303,11 +26789,15 @@
         "hk_ask_hkd": 1120.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1454214678/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584772",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ホワイトフレア」ボックス",
+        "snkrdunk_jpy": 19180,
         "spread_jp_hk_pct": 3.79,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -26346,13 +26836,17 @@
         "volume_7d_avg": 1.43,
         "volume_ratio": 0.0,
         "liquidity_score": 12,
-        "hk_ask_hkd": 500.0,
-        "hk_listings_n": 9,
-        "hk_listing_url": "https://www.carousell.com.hk/p/1408274628/",
-        "spread_jp_hk_pct": -8.17,
+        "hk_ask_hkd": 350.0,
+        "hk_listings_n": 3,
+        "hk_listing_url": "https://www.carousell.com.hk/p/1410849368/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/283206",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ステラミラクル」ボックス",
+        "snkrdunk_jpy": 10400,
+        "spread_jp_hk_pct": -35.72,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 22,
@@ -26394,10 +26888,14 @@
         "hk_ask_hkd": 800.0,
         "hk_listings_n": 9,
         "hk_listing_url": "https://www.carousell.com.hk/p/1459043295/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/127743",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「黒炎の支配者」 ボックス",
+        "snkrdunk_jpy": 15450,
         "spread_jp_hk_pct": -7.65,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 19,
@@ -26439,10 +26937,14 @@
         "hk_ask_hkd": 825.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-eevee-ex-223-188",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455676",
+        "snkrdunk_name": "イーブイex SAR [SV8a 223/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 11900,
         "spread_jp_hk_pct": 21.21,
         "sources": [
           "yahoo_auctions_jp",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 6,
@@ -26484,10 +26986,14 @@
         "hk_ask_hkd": 520.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1411220591/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/140591",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「古代の咆哮」（PARADOX RIFT） ボックス",
+        "snkrdunk_jpy": 9800,
         "spread_jp_hk_pct": -4.5,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 15,
@@ -26529,11 +27035,15 @@
         "hk_ask_hkd": 1100.0,
         "hk_listings_n": 8,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462560886/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584770",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ブラックボルト」ボックス",
+        "snkrdunk_jpy": 20700,
         "spread_jp_hk_pct": -3.38,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -26575,6 +27085,9 @@
         "hk_ask_hkd": 1065.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1441736087/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 56.47,
         "sources": [
           "yahoo_auctions_jp",
@@ -26620,10 +27133,14 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1429073970/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164251",
+        "snkrdunk_name": "ナンジャモ SAR [SV4a 350/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 26000,
         "spread_jp_hk_pct": 29.29,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 20,
@@ -26665,10 +27182,14 @@
         "hk_ask_hkd": 7415.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-charizard-ex-jp-201-166",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128117",
+        "snkrdunk_name": "リザードンex SAR [SV2a 201/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 92500,
         "spread_jp_hk_pct": 48.31,
         "sources": [
           "yahoo_auctions_jp",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -26710,6 +27231,9 @@
         "hk_ask_hkd": 3200.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462529017/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -12.64,
         "sources": [
           "yahoo_auctions_jp",
@@ -26755,6 +27279,9 @@
         "hk_ask_hkd": 2500.0,
         "hk_listings_n": 6,
         "hk_listing_url": "https://www.carousell.com.hk/p/1426934795/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 37.43,
         "sources": [
           "yahoo_auctions_jp",
@@ -26800,11 +27327,15 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1422220123/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128122",
+        "snkrdunk_name": "エリカの招待 SAR[SV2a 206/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 23750,
         "spread_jp_hk_pct": 7.74,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 37,
@@ -26846,6 +27377,9 @@
         "hk_ask_hkd": 10715.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-lugia-v-jp-110-098",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 30.2,
         "sources": [
           "yahoo_auctions_jp",
@@ -26891,6 +27425,9 @@
         "hk_ask_hkd": 940.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1460374012/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -0.84,
         "sources": [
           "yahoo_auctions_jp",
@@ -26936,6 +27473,9 @@
         "hk_ask_hkd": null,
         "hk_listings_n": 0,
         "hk_listing_url": null,
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": null,
         "sources": [
           "yahoo_auctions_jp"
@@ -26980,11 +27520,15 @@
         "hk_ask_hkd": 2010.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1401746407/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/525751",
+        "snkrdunk_name": "ヒビキのホウオウex SAR [SV9a 086/063](強化拡張パック「熱風のアリーナ」)",
+        "snkrdunk_jpy": 36000,
         "spread_jp_hk_pct": -0.96,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -27026,10 +27570,14 @@
         "hk_ask_hkd": 600.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462448285/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/110935",
+        "snkrdunk_name": "ミライドンex SAR[SV1V 102/078](スカーレット＆バイオレット 拡張パック「バイオレットex」)",
+        "snkrdunk_jpy": 11400,
         "spread_jp_hk_pct": -2.25,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 34,
@@ -27073,11 +27621,15 @@
         "hk_ask_hkd": 1520.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1439796644/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657364",
+        "snkrdunk_name": "メガルカリオex SAR [M1L 088/063](拡張パック「メガブレイブ」)",
+        "snkrdunk_jpy": 18945,
         "spread_jp_hk_pct": 104.71,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 25,
@@ -27119,11 +27671,15 @@
         "hk_ask_hkd": 980.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1454774964/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/846048",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「ストームエメラルダ」ボックス",
+        "snkrdunk_jpy": 11380,
         "spread_jp_hk_pct": 88.55,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 9,
@@ -27165,10 +27721,14 @@
         "hk_ask_hkd": 3925.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1356781987/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/224087",
+        "snkrdunk_name": "ゲッコウガex SAR [SV5a 090/066](強化拡張パック「クリムゾンヘイズ」)",
+        "snkrdunk_jpy": 44980,
         "spread_jp_hk_pct": 76.21,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 4,
@@ -27210,10 +27770,14 @@
         "hk_ask_hkd": 650.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1379782937/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628146",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガブレイブ」ボックス",
+        "snkrdunk_jpy": 8099,
         "spread_jp_hk_pct": 68.35,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 11,
@@ -27255,6 +27819,9 @@
         "hk_ask_hkd": 6425.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ex-jp-132-106",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 66.41,
         "sources": [
           "yahoo_auctions_jp",
@@ -27300,10 +27867,14 @@
         "hk_ask_hkd": 5200.0,
         "hk_listings_n": 7,
         "hk_listing_url": "https://www.carousell.com.hk/p/1458434253/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/724996",
+        "snkrdunk_name": "メガゲンガーex SAR [M2a 240/193](ハイクラスパック「MEGAドリームex」)",
+        "snkrdunk_jpy": 63000,
         "spread_jp_hk_pct": 65.43,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 30,
@@ -27345,11 +27916,15 @@
         "hk_ask_hkd": 600.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1437475434/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/628148",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「メガシンフォニア」ボックス",
+        "snkrdunk_jpy": 7399,
         "spread_jp_hk_pct": 64.58,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 8,
@@ -27391,10 +27966,14 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.carousell.com.hk/p/1436201709/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/186243",
+        "snkrdunk_name": "ゲンガーex SR [SV5K 088/071](拡張パック「ワイルドフォース」)",
+        "snkrdunk_jpy": 17450,
         "spread_jp_hk_pct": 63.25,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -27436,6 +28015,9 @@
         "hk_ask_hkd": 1065.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1441736087/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 56.47,
         "sources": [
           "yahoo_auctions_jp",
@@ -27481,11 +28063,15 @@
         "hk_ask_hkd": 1110.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-leafeon-ex-200-188",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/469625",
+        "snkrdunk_name": "リーフィアex SAR [SV8a 200/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 14500,
         "spread_jp_hk_pct": 54.65,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 24,
@@ -27527,6 +28113,9 @@
         "hk_ask_hkd": 5500.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1380286077/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 50.15,
         "sources": [
           "yahoo_auctions_jp",
@@ -27572,10 +28161,14 @@
         "hk_ask_hkd": 7415.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-charizard-ex-jp-201-166",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128117",
+        "snkrdunk_name": "リザードンex SAR [SV2a 201/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 92500,
         "spread_jp_hk_pct": 48.31,
         "sources": [
           "yahoo_auctions_jp",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -27617,11 +28210,15 @@
         "hk_ask_hkd": 1270.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1414518523/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/95124",
+        "snkrdunk_name": "セレナ SR [s11a 081/068](強化拡張パック『白熱のアルカナ』)",
+        "snkrdunk_jpy": 17000,
         "spread_jp_hk_pct": 46.61,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -27663,11 +28260,15 @@
         "hk_ask_hkd": 550.0,
         "hk_listings_n": 15,
         "hk_listing_url": "https://www.carousell.com.hk/p/1460673544/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/806644",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「アビスアイ」ボックス",
+        "snkrdunk_jpy": 8000,
         "spread_jp_hk_pct": 46.2,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 3,
@@ -27709,6 +28310,9 @@
         "hk_ask_hkd": 2500.0,
         "hk_listings_n": 6,
         "hk_listing_url": "https://www.carousell.com.hk/p/1426934795/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 37.43,
         "sources": [
           "yahoo_auctions_jp",
@@ -27736,52 +28340,6 @@
         "hk_backend": "carousell_hk"
       },
       {
-        "id": "sealed-terastal-fest",
-        "name_zh": "太晶慶典 ex BOX（未開封）",
-        "name_jp": "テラスタルフェスex BOX 未開封",
-        "kind": "sealed",
-        "set": "SV8a",
-        "image": "images/sealed-terastal-fest.png",
-        "tcgdex_id": null,
-        "price_hkd": 878.62,
-        "price_jpy": 17750,
-        "short_change_pct": -88.14,
-        "medium_change_pct": 10.94,
-        "volume_today": 0,
-        "volume_7d_avg": 2.43,
-        "volume_ratio": 0.0,
-        "liquidity_score": 19,
-        "hk_ask_hkd": 1200.0,
-        "hk_listings_n": 11,
-        "hk_listing_url": "https://www.carousell.com.hk/p/1431351014/",
-        "spread_jp_hk_pct": 36.58,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk",
-          "zenox"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 8,
-        "jp_sold_samples": [
-          {
-            "title": "新品未開封 ポケモンカード テラスタルフェスex 1BOX シュリンク有り",
-            "price_jpy": 17500,
-            "url": "https://auctions.yahoo.co.jp/jp/auction/z683261840"
-          },
-          {
-            "title": "シュリンク付き ポケモンカードゲーム スカーレット＆バイオレット テラスタルフェスex 未開封品BOX",
-            "price_jpy": 18000,
-            "url": "https://auctions.yahoo.co.jp/jp/auction/z674958966"
-          },
-          {
-            "title": "新品未開封 ポケモンカード テラスタルフェスex 1BOX シュリンク有り",
-            "price_jpy": 17000,
-            "url": "https://auctions.yahoo.co.jp/jp/auction/z682586506"
-          }
-        ],
-        "hk_backend": "carousell_hk+zenox"
-      },
-      {
         "id": "sealed-mega-dream",
         "name_zh": "超級夢想 ex BOX（未開封）",
         "name_jp": "MEGAドリームex BOX 未開封",
@@ -27800,12 +28358,16 @@
         "hk_ask_hkd": 820.0,
         "hk_listings_n": 21,
         "hk_listing_url": "https://www.carousell.com.hk/p/1430164545/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/721913",
+        "snkrdunk_name": "ポケモンカードゲームMEGA ハイクラスパック「MEGAドリームex」ボックス",
+        "snkrdunk_jpy": 12400,
         "spread_jp_hk_pct": 36.32,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
           "lono",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 16,
@@ -27829,6 +28391,55 @@
         "hk_backend": "carousell_hk+lono+zenox"
       },
       {
+        "id": "sealed-stellar-miracle",
+        "name_zh": "星晶奇跡 BOX（未開封）",
+        "name_jp": "ステラミラクル BOX 未開封",
+        "kind": "sealed",
+        "set": "SV7",
+        "image": "images/sealed-stellar-miracle.png",
+        "tcgdex_id": null,
+        "price_hkd": 544.5,
+        "price_jpy": 11000,
+        "short_change_pct": 4.76,
+        "medium_change_pct": 129.17,
+        "volume_today": 0,
+        "volume_7d_avg": 1.43,
+        "volume_ratio": 0.0,
+        "liquidity_score": 12,
+        "hk_ask_hkd": 350.0,
+        "hk_listings_n": 3,
+        "hk_listing_url": "https://www.carousell.com.hk/p/1410849368/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/283206",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ステラミラクル」ボックス",
+        "snkrdunk_jpy": 10400,
+        "spread_jp_hk_pct": -35.72,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "snkrdunk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 22,
+        "jp_sold_samples": [
+          {
+            "title": "ポケモンカードゲーム ステラミラクル　1BOX シュリンク付き　新品未開封",
+            "price_jpy": 11000,
+            "url": "https://auctions.yahoo.co.jp/jp/auction/z683105860"
+          },
+          {
+            "title": "2607F2201 トレカ ポケモンカード ゲーム ステラミラクル ポケカ 1BOX シュリンク付き 未開封",
+            "price_jpy": 11000,
+            "url": "https://auctions.yahoo.co.jp/jp/auction/c1240546210"
+          },
+          {
+            "title": "ステラミラクル　1BOX ポケモンカードゲーム BOX 新品未開封シュリンク付き",
+            "price_jpy": 11200,
+            "url": "https://auctions.yahoo.co.jp/jp/auction/z663230582"
+          }
+        ],
+        "hk_backend": "carousell_hk"
+      },
+      {
         "id": "psa10-lugia-v-sa",
         "name_zh": "洛奇亞 V SA PSA10",
         "name_jp": "ルギアV SA PSA10",
@@ -27847,6 +28458,9 @@
         "hk_ask_hkd": 10715.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-lugia-v-jp-110-098",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 30.2,
         "sources": [
           "yahoo_auctions_jp",
@@ -27892,10 +28506,14 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1429073970/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164251",
+        "snkrdunk_name": "ナンジャモ SAR [SV4a 350/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 26000,
         "spread_jp_hk_pct": 29.29,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 20,
@@ -27937,11 +28555,15 @@
         "hk_ask_hkd": 590.0,
         "hk_listings_n": 17,
         "hk_listing_url": "https://www.carousell.com.hk/p/1448799662/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/484952",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「バトルパートナーズ」ボックス",
+        "snkrdunk_jpy": 9700,
         "spread_jp_hk_pct": 29.2,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -27983,10 +28605,14 @@
         "hk_ask_hkd": 3000.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462798382/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/120748",
+        "snkrdunk_name": "ナンジャモ SAR[SV2D 096/071](拡張パック「クレイバースト」)",
+        "snkrdunk_jpy": 70000,
         "spread_jp_hk_pct": -28.7,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 39,
@@ -28010,6 +28636,56 @@
         "hk_backend": "carousell_hk"
       },
       {
+        "id": "sealed-terastal-fest",
+        "name_zh": "太晶慶典 ex BOX（未開封）",
+        "name_jp": "テラスタルフェスex BOX 未開封",
+        "kind": "sealed",
+        "set": "SV8a",
+        "image": "images/sealed-terastal-fest.png",
+        "tcgdex_id": null,
+        "price_hkd": 878.62,
+        "price_jpy": 17750,
+        "short_change_pct": -88.14,
+        "medium_change_pct": 10.94,
+        "volume_today": 0,
+        "volume_7d_avg": 2.43,
+        "volume_ratio": 0.0,
+        "liquidity_score": 19,
+        "hk_ask_hkd": 1110.0,
+        "hk_listings_n": 16,
+        "hk_listing_url": "https://www.carousell.com.hk/p/1362575351/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/424297",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック「テラスタルフェスex」ボックス",
+        "snkrdunk_jpy": 16850,
+        "spread_jp_hk_pct": 26.33,
+        "sources": [
+          "yahoo_auctions_jp",
+          "carousell_hk",
+          "zenox",
+          "snkrdunk"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 8,
+        "jp_sold_samples": [
+          {
+            "title": "新品未開封 ポケモンカード テラスタルフェスex 1BOX シュリンク有り",
+            "price_jpy": 17500,
+            "url": "https://auctions.yahoo.co.jp/jp/auction/z683261840"
+          },
+          {
+            "title": "シュリンク付き ポケモンカードゲーム スカーレット＆バイオレット テラスタルフェスex 未開封品BOX",
+            "price_jpy": 18000,
+            "url": "https://auctions.yahoo.co.jp/jp/auction/z674958966"
+          },
+          {
+            "title": "新品未開封 ポケモンカード テラスタルフェスex 1BOX シュリンク有り",
+            "price_jpy": 17000,
+            "url": "https://auctions.yahoo.co.jp/jp/auction/z682586506"
+          }
+        ],
+        "hk_backend": "carousell_hk+zenox"
+      },
+      {
         "id": "psa10-pikachu-ex-sar-151",
         "name_zh": "皮卡丘 AR（151）PSA10",
         "name_jp": "ピカチュウ AR PSA10",
@@ -28028,11 +28704,15 @@
         "hk_ask_hkd": 930.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-pikachu-ar-holo-173-165",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128089",
+        "snkrdunk_name": "ピカチュウ AR[SV2a 173/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 13400,
         "spread_jp_hk_pct": 26.09,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 40,
@@ -28074,10 +28754,14 @@
         "hk_ask_hkd": 2300.0,
         "hk_listings_n": 3,
         "hk_listing_url": "https://www.carousell.com.hk/p/1402466048/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/382399",
+        "snkrdunk_name": "ルチアのアピール SAR [SV7a 091/064](強化拡張パック「楽園ドラゴーナ」)",
+        "snkrdunk_jpy": 35999,
         "spread_jp_hk_pct": 25.55,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 37,
@@ -28119,10 +28803,14 @@
         "hk_ask_hkd": 4300.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1457523164/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455596",
+        "snkrdunk_name": "ブラッキーex SAR [SV8a 217/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 67000,
         "spread_jp_hk_pct": 24.1,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 28,
@@ -28164,10 +28852,14 @@
         "hk_ask_hkd": 1219.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.carousell.com.hk/p/1446052981/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/657365",
+        "snkrdunk_name": "メガサーナイトex SAR [M1S 087/063](拡張パック「メガシンフォニア」)",
+        "snkrdunk_jpy": 18999,
         "spread_jp_hk_pct": 23.75,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 25,
@@ -28209,10 +28901,14 @@
         "hk_ask_hkd": 825.0,
         "hk_listings_n": 2,
         "hk_listing_url": "https://www.zenoxstore.com/products/pokemon-eevee-ex-223-188",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/455676",
+        "snkrdunk_name": "イーブイex SAR [SV8a 223/187](ハイクラスパック「テラスタルフェスex」)",
+        "snkrdunk_jpy": 11900,
         "spread_jp_hk_pct": 21.21,
         "sources": [
           "yahoo_auctions_jp",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 6,
@@ -28254,6 +28950,9 @@
         "hk_ask_hkd": 6250.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1463321606/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -19.06,
         "sources": [
           "yahoo_auctions_jp",
@@ -28300,11 +28999,15 @@
         "hk_ask_hkd": 975.0,
         "hk_listings_n": 12,
         "hk_listing_url": "https://www.carousell.com.hk/p/1458408087/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/687430",
+        "snkrdunk_name": "ポケモンカードゲームMEGA 拡張パック「インフェルノX」ボックス",
+        "snkrdunk_jpy": 18000,
         "spread_jp_hk_pct": 15.19,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 4,
@@ -28346,6 +29049,9 @@
         "hk_ask_hkd": 1300.0,
         "hk_listings_n": 9,
         "hk_listing_url": "https://www.carousell.com.hk/p/1382126986/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": 14.68,
         "sources": [
           "yahoo_auctions_jp",
@@ -28391,10 +29097,14 @@
         "hk_ask_hkd": 7000.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462072626/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/164250",
+        "snkrdunk_name": "ミュウex SAR [SV4a 347/190](ハイクラスパック「シャイニートレジャーex」)",
+        "snkrdunk_jpy": 115000,
         "spread_jp_hk_pct": 14.04,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 39,
@@ -28436,6 +29146,9 @@
         "hk_ask_hkd": 3200.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462529017/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -12.64,
         "sources": [
           "yahoo_auctions_jp",
@@ -28481,11 +29194,15 @@
         "hk_ask_hkd": 840.0,
         "hk_listings_n": 14,
         "hk_listing_url": "https://www.carousell.com.hk/p/1370876247/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/151755",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット ハイクラスパック 「シャイニートレジャーex」 ボックス",
+        "snkrdunk_jpy": 15150,
         "spread_jp_hk_pct": -8.27,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 9,
@@ -28509,51 +29226,6 @@
         "hk_backend": "carousell_hk+zenox"
       },
       {
-        "id": "sealed-stellar-miracle",
-        "name_zh": "星晶奇跡 BOX（未開封）",
-        "name_jp": "ステラミラクル BOX 未開封",
-        "kind": "sealed",
-        "set": "SV7",
-        "image": "images/sealed-stellar-miracle.png",
-        "tcgdex_id": null,
-        "price_hkd": 544.5,
-        "price_jpy": 11000,
-        "short_change_pct": 4.76,
-        "medium_change_pct": 129.17,
-        "volume_today": 0,
-        "volume_7d_avg": 1.43,
-        "volume_ratio": 0.0,
-        "liquidity_score": 12,
-        "hk_ask_hkd": 500.0,
-        "hk_listings_n": 9,
-        "hk_listing_url": "https://www.carousell.com.hk/p/1408274628/",
-        "spread_jp_hk_pct": -8.17,
-        "sources": [
-          "yahoo_auctions_jp",
-          "carousell_hk"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 22,
-        "jp_sold_samples": [
-          {
-            "title": "ポケモンカードゲーム ステラミラクル　1BOX シュリンク付き　新品未開封",
-            "price_jpy": 11000,
-            "url": "https://auctions.yahoo.co.jp/jp/auction/z683105860"
-          },
-          {
-            "title": "2607F2201 トレカ ポケモンカード ゲーム ステラミラクル ポケカ 1BOX シュリンク付き 未開封",
-            "price_jpy": 11000,
-            "url": "https://auctions.yahoo.co.jp/jp/auction/c1240546210"
-          },
-          {
-            "title": "ステラミラクル　1BOX ポケモンカードゲーム BOX 新品未開封シュリンク付き",
-            "price_jpy": 11200,
-            "url": "https://auctions.yahoo.co.jp/jp/auction/z663230582"
-          }
-        ],
-        "hk_backend": "carousell_hk"
-      },
-      {
         "id": "psa10-erika-invite-sar",
         "name_zh": "莉佳的邀請 SAR PSA10",
         "name_jp": "エリカの招待 SAR PSA10",
@@ -28572,11 +29244,15 @@
         "hk_ask_hkd": 1600.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1422220123/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128122",
+        "snkrdunk_name": "エリカの招待 SAR[SV2a 206/165](強化拡張パック「ポケモンカード151」)",
+        "snkrdunk_jpy": 23750,
         "spread_jp_hk_pct": 7.74,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 37,
@@ -28618,10 +29294,14 @@
         "hk_ask_hkd": 800.0,
         "hk_listings_n": 9,
         "hk_listing_url": "https://www.carousell.com.hk/p/1459043295/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/127743",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「黒炎の支配者」 ボックス",
+        "snkrdunk_jpy": 15450,
         "spread_jp_hk_pct": -7.65,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 19,
@@ -28663,10 +29343,14 @@
         "hk_ask_hkd": 520.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1411220591/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/140591",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「古代の咆哮」（PARADOX RIFT） ボックス",
+        "snkrdunk_jpy": 9800,
         "spread_jp_hk_pct": -4.5,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 15,
@@ -28708,11 +29392,15 @@
         "hk_ask_hkd": 1120.0,
         "hk_listings_n": 5,
         "hk_listing_url": "https://www.carousell.com.hk/p/1454214678/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584772",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ホワイトフレア」ボックス",
+        "snkrdunk_jpy": 19180,
         "spread_jp_hk_pct": 3.79,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -28754,11 +29442,15 @@
         "hk_ask_hkd": 1100.0,
         "hk_listings_n": 8,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462560886/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/584770",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「ブラックボルト」ボックス",
+        "snkrdunk_jpy": 20700,
         "spread_jp_hk_pct": -3.38,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 14,
@@ -28798,13 +29490,17 @@
         "volume_ratio": 0.0,
         "liquidity_score": 19,
         "hk_ask_hkd": 2600.0,
-        "hk_listings_n": 24,
+        "hk_listings_n": 25,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462871712/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/118914",
+        "snkrdunk_name": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック「ポケモンカード151」ボックス",
+        "snkrdunk_jpy": 44900,
         "spread_jp_hk_pct": 2.49,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 10,
@@ -28846,10 +29542,14 @@
         "hk_ask_hkd": 600.0,
         "hk_listings_n": 1,
         "hk_listing_url": "https://www.carousell.com.hk/p/1462448285/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/110935",
+        "snkrdunk_name": "ミライドンex SAR[SV1V 102/078](スカーレット＆バイオレット 拡張パック「バイオレットex」)",
+        "snkrdunk_jpy": 11400,
         "spread_jp_hk_pct": -2.25,
         "sources": [
           "yahoo_auctions_jp",
-          "carousell_hk"
+          "carousell_hk",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 34,
@@ -28891,11 +29591,15 @@
         "hk_ask_hkd": 2010.0,
         "hk_listings_n": 10,
         "hk_listing_url": "https://www.carousell.com.hk/p/1401746407/",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/525751",
+        "snkrdunk_name": "ヒビキのホウオウex SAR [SV9a 086/063](強化拡張パック「熱風のアリーナ」)",
+        "snkrdunk_jpy": 36000,
         "spread_jp_hk_pct": -0.96,
         "sources": [
           "yahoo_auctions_jp",
           "carousell_hk",
-          "zenox"
+          "zenox",
+          "snkrdunk"
         ],
         "is_sample": false,
         "jp_comps_n": 31,
@@ -28937,6 +29641,9 @@
         "hk_ask_hkd": 940.0,
         "hk_listings_n": 4,
         "hk_listing_url": "https://www.carousell.com.hk/p/1460374012/",
+        "snkrdunk_url": null,
+        "snkrdunk_name": null,
+        "snkrdunk_jpy": null,
         "spread_jp_hk_pct": -0.84,
         "sources": [
           "yahoo_auctions_jp",
