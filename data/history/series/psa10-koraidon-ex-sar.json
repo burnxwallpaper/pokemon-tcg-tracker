@@ -9,8 +9,8 @@
   "tcgdex_id": "SV4a-360",
   "is_sample": false,
   "real_points": true,
-  "history_days": 86,
-  "updated_at": "2026-09-24T20:27:07+08:00",
+  "history_days": 87,
+  "updated_at": "2026-09-25T09:00:24+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -526,6 +526,12 @@
       "date": "2026-09-24",
       "price_hkd": 2722.5,
       "hk_ask_hkd": 300.0,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": null,
       "volume": 0.0
     }
   ]
