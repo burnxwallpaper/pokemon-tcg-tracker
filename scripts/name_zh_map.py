@@ -98,6 +98,19 @@ def has_kana(text: str) -> bool:
     return _KANA.search(text) is not None
 
 
+def translate_or_keep(text: str) -> tuple[str, str]:
+    """Translate, or return the original when kana would still show.
+
+    Status is ``zh`` or ``fallback``. A partial mix is not returned.
+    """
+    if not text:
+        return text, "zh"
+    translated = translate(text)
+    if has_kana(translated):
+        return text, "fallback"
+    return translated, "zh"
+
+
 def clear_cache() -> None:
     load_map.cache_clear()
     _compiled.cache_clear()

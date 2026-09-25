@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from name_zh_map import load_map, rarity_label, translate  # noqa: E402
+from name_zh_map import load_map, rarity_label, translate, translate_or_keep  # noqa: E402
 
 
 def test_species_use_official_traditional_chinese() -> None:
@@ -68,6 +68,12 @@ def test_promos_and_xy_mega_prefix() -> None:
 def test_unknown_kana_is_left_in_place() -> None:
     assert translate("わけのわからない") == "わけのわからない"
     assert translate("ポケキュンコレクション") == "ポケキュンコレクション"
+    kept, status = translate_or_keep('拡張パック「ファントムゲート」')
+    assert status == "fallback"
+    assert kept == '拡張パック「ファントムゲート」'
+    zh_name, zh_status = translate_or_keep("ステラミラクル BOX")
+    assert zh_status == "zh"
+    assert zh_name == "星晶奇跡 BOX"
 
 
 def test_map_groups_are_nonempty() -> None:

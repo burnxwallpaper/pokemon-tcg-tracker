@@ -2,7 +2,7 @@
   "locale": "zh-Hant",
   "style": "HK/TW official",
   "match": "longest-key-first",
-  "import": "scripts/name_zh_map.py — translate(text) uses replace_groups; rarity_label(code) is exact",
+  "import": "scripts/name_zh_map.py — translate(text), translate_or_keep(text), rarity_label(code)",
   "replace_groups": [
     "phrases",
     "sets",

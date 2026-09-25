@@ -409,7 +409,7 @@ def build(species_csv: str, forms_csv: str) -> dict[str, object]:
         "locale": "zh-Hant",
         "style": "HK/TW official",
         "match": "longest-key-first",
-        "import": "scripts/name_zh_map.py — translate(text) uses replace_groups; rarity_label(code) is exact",
+        "import": "scripts/name_zh_map.py — translate(text), translate_or_keep(text), rarity_label(code)",
         "replace_groups": list(groups),
         "rules": {
             "possessive_no": "After replacement, の between non-kana characters becomes 的.",
