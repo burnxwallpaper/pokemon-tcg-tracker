@@ -330,6 +330,13 @@ def test_hottest_items_kind_floor_and_liquidity() -> None:
     assert liquidity_score(3, 9) < liquidity_score(15, 275) < liquidity_score(140, 791)
     assert liquidity_score(140, 791) == 99
     assert liquidity_score(80, 800) == 99
+    # PSA10: one sale and a fat raw book stay well under a high-turnover PSA10 staple.
+    thin = liquidity_score(1, 674, kind="psa10", psa10_asks=0)
+    staple = liquidity_score(144, 634, kind="psa10", psa10_asks=14)
+    assert thin < 25
+    assert staple >= 90
+    assert thin + 40 < staple
+    assert liquidity_score(50, 200, kind="psa10", psa10_asks=8) > thin + 40
     promo_name = "リザードン: プロモ[S8a-P 001/025](プロモカードパック 25th ANNIVERSARY edition)"
     promo_item = {
         "id": "psa10-s8a-p-001",

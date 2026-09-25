@@ -140,15 +140,43 @@ def psa10_rankable(item: dict) -> bool:
     return _pos_yen(item.get("snkrdunk_last_sale_jpy")) or _has_ask_book(item)
 
 
-def liquidity_score(vol_today: float, vol_7d: float, total_available: int, *, recent_sold: float = 0, listing_count: int = 0) -> int:
-    """0–99 from SNKRDUNK recent sales and live sell listings.
+def _psa10_ask_n(snkr: dict) -> int:
+    """Count of live PSA10 asks. A lone ask summary counts as one."""
+    listed = snkr.get("ask_prices_jpy")
+    if isinstance(listed, list):
+        n = sum(1 for price in listed if _pos_yen(price))
+        if n:
+            return n
+    if _pos_yen(snkr.get("ask_jpy")) or _pos_yen(snkr.get("ask_min_jpy")):
+        return 1
+    return 0
 
-    ``total_available`` is unused. Yahoo volume is only the fallback when
-    ``recent_sold`` is 0. See ``snkrdunk.liquidity_score``.
+
+def liquidity_score(
+    vol_today: float,
+    vol_7d: float,
+    total_available: int,
+    *,
+    recent_sold: float = 0,
+    listing_count: int = 0,
+    kind: str = "sealed",
+    psa10_asks: int = 0,
+) -> int:
+    """0–99 from SNKRDUNK recent sales and the live sell book.
+
+    ``total_available`` is unused. Yahoo volume is the sealed fallback when
+    ``recent_sold`` is 0. PSA10 ignores that fallback and the raw listing book.
+    See ``snkrdunk.liquidity_score``.
     """
     del total_available
     yahoo_vol = float(vol_today or 0) + float(vol_7d or 0)
-    return snkrdunk.liquidity_score(recent_sold, listing_count, yahoo_vol=yahoo_vol)
+    return snkrdunk.liquidity_score(
+        recent_sold,
+        listing_count,
+        yahoo_vol=yahoo_vol,
+        kind=kind,
+        psa10_asks=psa10_asks,
+    )
 
 
 def download_image(url: str | None, item_id: str) -> str | None:
@@ -575,6 +603,8 @@ def merge_and_compute(
                 int(jp.get("total_available") or 0),
                 recent_sold=float(recent_sold or 0),
                 listing_count=int(listing_count or 0),
+                kind=str(wl.get("kind") or ""),
+                psa10_asks=_psa10_ask_n(snkr),
             )
         if not psa10_rankable(
             {

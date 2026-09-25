@@ -1117,10 +1117,22 @@ def sell_listing_count(apparel: dict | None, *, kind: str) -> int:
 # log1p keeps the score absolute (same counts → same score tomorrow) and stops
 # a Hottest-heavy list from stacking on 99. A within-list percentile would
 # force a spread every day, but then 80 would not mean the same book depth.
+#
+# Sealed: sold ``60 * log1p(sales) / log1p(80)`` plus new listings
+# ``39 * log1p(listings) / log1p(800)``. Those listings are the sealed book.
+#
+# PSA10: sales ``72 * log1p(psa10_sold) / log1p(80)`` and PSA10 asks
+# ``22 * log1p(psa10_asks) / log1p(20)`` fill the score. Raw/all-grade
+# usedListingCount is only ``5 * log1p(raw) / log1p(800)`` and cannot dominate.
+# One PSA10 sale plus a fat raw book stays low; ~80 PSA10 sales fill the sold side.
 LIQUIDITY_SOLD_POINTS = 60.0
 LIQUIDITY_LIST_POINTS = 39.0
 LIQUIDITY_SOLD_CAP = 80.0
 LIQUIDITY_LIST_CAP = 800.0
+PSA10_SOLD_POINTS = 72.0
+PSA10_ASK_POINTS = 22.0
+PSA10_RAW_POINTS = 5.0
+PSA10_ASK_CAP = 20.0
 
 
 def _liquidity_side(value: float, cap: float, points: float) -> float:
@@ -1130,19 +1142,27 @@ def _liquidity_side(value: float, cap: float, points: float) -> float:
     return points * min(1.0, math.log1p(value) / math.log1p(cap))
 
 
-def liquidity_score(recent_sold: float, listing_count: int, *, yahoo_vol: float = 0) -> int:
-    """0–99 from recent sold activity and the current sell-listing count.
+def liquidity_score(
+    recent_sold: float,
+    listing_count: int,
+    *,
+    yahoo_vol: float = 0,
+    kind: str = "sealed",
+    psa10_asks: int = 0,
+) -> int:
+    """0–99 from recent sold activity and the current sell book.
 
-    ``recent_sold`` is SNKRDUNK sales over about 7 days. ``yahoo_vol`` (today
-    plus the 7-day average) is used only when that count is 0. ``listing_count``
-    is the live SNKRDUNK seller book (used listings for a slab, new listings
-    for a sealed box).
-
-    Sold side is ``60 * log1p(sales) / log1p(80)``. Book side is
-    ``39 * log1p(listings) / log1p(800)``. About 80 sales or about 800 listings
-    fill that side. 15 sales and a few hundred listings land in the mid range;
-    99 needs both a deep sale week and a deep book.
+    Sealed uses recent sales (Yahoo volume only when that count is 0) and the
+    new-listing count. PSA10 uses PSA10 sales and PSA10 asks. ``listing_count``
+    on a PSA10 row is the raw/all-grade used book and is capped at 5 points.
     """
+    if kind == "psa10":
+        sold_pts = _liquidity_side(float(recent_sold or 0), LIQUIDITY_SOLD_CAP, PSA10_SOLD_POINTS)
+        ask_pts = _liquidity_side(float(psa10_asks or 0), PSA10_ASK_CAP, PSA10_ASK_POINTS)
+        raw_pts = _liquidity_side(float(listing_count or 0), LIQUIDITY_LIST_CAP, PSA10_RAW_POINTS)
+        if sold_pts <= 0 and ask_pts <= 0 and raw_pts <= 0:
+            return 1
+        return int(max(1, min(99, round(sold_pts + ask_pts + raw_pts))))
     sold = float(recent_sold or 0)
     if sold <= 0:
         sold = float(yahoo_vol or 0)
