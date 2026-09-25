@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv-p-260",
+  "name_zh": "トウホクのピカチュウ P [SV-P 260](スペシャルBOX「ポケモンセンタートウホク」)",
+  "name_jp": "トウホクのピカチュウ P [SV-P 260](スペシャルBOX「ポケモンセンタートウホク」)",
+  "kind": "psa10",
+  "set": "SV-P / 260",
+  "image": "images/psa10-sv-p-260.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 1386.0,
+      "hk_ask_hkd": 1452.82,
+      "volume": 0.0
+    }
+  ]
+}

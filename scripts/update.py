@@ -116,11 +116,15 @@ def avg_volume(history: list[dict], days: int = 7) -> float:
     return round(sum(vols) / len(vols), 2) if vols else 0.0
 
 
-def liquidity_score(vol_today: float, vol_7d: float, total_available: int) -> int:
-    """0–100 heuristic from volume + JP market depth."""
-    base = min(70.0, vol_today * 3.0 + vol_7d * 2.0)
-    depth = min(25.0, (total_available or 0) / 40.0)
-    return int(max(1, min(99, round(base + depth))))
+def liquidity_score(vol_today: float, vol_7d: float, total_available: int, *, recent_sold: float = 0, listing_count: int = 0) -> int:
+    """0–99 from SNKRDUNK recent sales and live sell listings.
+
+    ``total_available`` is unused. Yahoo volume is only the fallback when
+    ``recent_sold`` is 0. See ``snkrdunk.liquidity_score``.
+    """
+    del total_available
+    yahoo_vol = float(vol_today or 0) + float(vol_7d or 0)
+    return snkrdunk.liquidity_score(recent_sold, listing_count, yahoo_vol=yahoo_vol)
 
 
 def download_image(url: str | None, item_id: str) -> str | None:
@@ -535,11 +539,18 @@ def merge_and_compute(
         image = resolve_official_image(face)
         snkr_image = snkr.get("image_url") if isinstance(snkr.get("image_url"), str) else ""
 
-        if jp.get("status") == "preserved" and jp.get("liquidity_score") is not None:
+        recent_sold = snkr.get("recent_sold_n")
+        listing_count = snkr.get("listing_count")
+        has_snkr_liq = isinstance(recent_sold, int) or isinstance(listing_count, int)
+        if jp.get("status") == "preserved" and jp.get("liquidity_score") is not None and not has_snkr_liq:
             liq = int(jp["liquidity_score"])
         else:
             liq = liquidity_score(
-                vol_today, vol_7d, int(jp.get("total_available") or 0)
+                vol_today,
+                vol_7d,
+                int(jp.get("total_available") or 0),
+                recent_sold=float(recent_sold or 0),
+                listing_count=int(listing_count or 0),
             )
 
         row = {
@@ -606,6 +617,10 @@ def merge_and_compute(
             row["snkrdunk_jpy"] = snkr["market_jpy"]
         if isinstance(snkr.get("last_sale_jpy"), int):
             row["snkrdunk_last_sale_jpy"] = snkr["last_sale_jpy"]
+        if isinstance(snkr.get("recent_sold_n"), int):
+            row["snkrdunk_recent_sold_n"] = snkr["recent_sold_n"]
+        if isinstance(snkr.get("listing_count"), int):
+            row["snkrdunk_listing_count"] = snkr["listing_count"]
         if snkr_image.startswith("https://") and face.get("image_official_url") == snkr_image:
             row["snkrdunk_image_url"] = snkr_image
         if iid in pins:
@@ -811,6 +826,8 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
                 "ask_prices_jpy": it.get("snkrdunk_ask_prices_jpy"),
                 "market_jpy": it.get("snkrdunk_jpy"),
                 "last_sale_jpy": it.get("snkrdunk_last_sale_jpy"),
+                "recent_sold_n": it.get("snkrdunk_recent_sold_n"),
+                "listing_count": it.get("snkrdunk_listing_count"),
                 "image_url": it.get("snkrdunk_image_url"),
             },
         }
@@ -1091,7 +1108,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
                 "excluded_below_min_hkd": excluded_below,
             },
             "pipeline": [
-                "discover: rank PSA10 + sealed seeds by Yahoo closedsearch totalResultsAvailable",
+                "discover: SNKRDUNK Hottest Items, then hottest search fill",
                 "fetch yahoo_auctions_jp sold (reference) + title-matched HK asks",
                 "backfill shallow series from closed comps (merge by date; never wipe)",
                 "normalize HKD via fx_jpy_to_hkd",

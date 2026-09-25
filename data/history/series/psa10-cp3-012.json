@@ -1,0 +1,22 @@
+{
+  "id": "psa10-cp3-012",
+  "name_zh": "デデンネ U :1ED [CP3 012/032](コンセプトパック「ポケキュンコレクション」)",
+  "name_jp": "デデンネ U :1ED [CP3 012/032](コンセプトパック「ポケキュンコレクション」)",
+  "kind": "psa10",
+  "set": "CP3 / 012/032",
+  "image": "images/psa10-cp3-012.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 1683.0,
+      "hk_ask_hkd": 1930.5,
+      "volume": 0.0
+    }
+  ]
+}

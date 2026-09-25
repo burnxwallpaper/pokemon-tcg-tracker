@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s8a-p-007",
+  "name_zh": "_のピカチュウ: プロモ (お誕生日ピカチュウ) [S8a-P 007/025](プロモカードパック 25th ANNIVERSARY edition)",
+  "name_jp": "_のピカチュウ: プロモ (お誕生日ピカチュウ) [S8a-P 007/025](プロモカードパック 25th ANNIVERSARY edition)",
+  "kind": "psa10",
+  "set": "S8a-P / 007/025",
+  "image": "images/psa10-s8a-p-007.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 3351.15,
+      "hk_ask_hkd": 3588.75,
+      "volume": 0.0
+    }
+  ]
+}

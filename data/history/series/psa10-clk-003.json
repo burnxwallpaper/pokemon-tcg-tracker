@@ -1,0 +1,22 @@
+{
+  "id": "psa10-clk-003",
+  "name_zh": "カメックス [CLK 003/032](ポケモンカードゲーム Classic)",
+  "name_jp": "カメックス [CLK 003/032](ポケモンカードゲーム Classic)",
+  "kind": "psa10",
+  "set": "CLK / 003/032",
+  "image": "images/psa10-clk-003.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 564.3,
+      "hk_ask_hkd": 683.7,
+      "volume": 0.0
+    }
+  ]
+}

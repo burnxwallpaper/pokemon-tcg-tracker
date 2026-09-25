@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-134104",
+  "name_zh": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック 「レイジングサーフ」 ボックス",
+  "name_jp": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック 「レイジングサーフ」 ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-134104.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 648.45,
+      "hk_ask_hkd": 668.25,
+      "volume": 0.0
+    }
+  ]
+}

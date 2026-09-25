@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sm12a-182",
+  "name_zh": "ブラッキー&ダークライGX SR: SA[SM12a 182/173](ハイクラスパック「TAG TEAM GX タッグオールスターズ」)",
+  "name_jp": "ブラッキー&ダークライGX SR: SA[SM12a 182/173](ハイクラスパック「TAG TEAM GX タッグオールスターズ」)",
+  "kind": "psa10",
+  "set": "SM12a / 182/173",
+  "image": "images/psa10-sm12a-182.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 13315.01,
+      "hk_ask_hkd": 12408.4,
+      "volume": 0.0
+    }
+  ]
+}

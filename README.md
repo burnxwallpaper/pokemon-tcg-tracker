@@ -47,7 +47,7 @@ python -m http.server 8080
 python scripts/update.py
 ```
 
-先按 Yahoo 結束拍賣筆數重排 PSA10／未開封種子（約 Top 50，見 `data/catalog/liquidity_rank.json`），再抓 JP sold／HK asks。新卡若 series 未夠深，會用 closedsearch 回填每日點（按 date merge，唔會洗走舊歷史）。寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
+先收 SNKRDUNK 商品頁 **Hottest Items**（例：https://snkrdunk.com/en/trading-cards/704407?slide=right ，API `/en/v1/brands/pokemon/streetwears?department=tradingCard`），再用 search `sort=hottest` 填滿剩餘名額（上限約 200，見 `data/catalog/liquidity_rank.json`），然後抓 JP sold／HK asks。新卡若 series 未夠深，會用 closedsearch 回填每日點（按 date merge，唔會洗走舊歷史）。寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
 
 只重排名單：`python scripts/discover_watchlist.py --force`  
 跳過重排：`python scripts/update.py --no-discover`
@@ -81,10 +81,11 @@ python scripts/update_stub.py
 ## 產品設定（摘要）
 
 - 追蹤：PSA10 slabs、sealed（未開封）；raw 單卡非 MVP 重點
-- 自動掃描約流動性 Top 50；1日／7日價格＋量能
+- 自動掃描 Hottest Items，再以搜尋熱門填到約 200（160 PSA10 + 40 未開封）；1日／7日價格＋量能
 - 門檻（可於 `config.json` 改）：1日 ±5%、7日 ±12%、量能 ≥1.5×7日均
+- `liquidity_score`（0–99）：近期 SNKRDUNK 成交（約 7 日；PSA10 用一週圖表，未開封用 sales-history 日期）＋而家放售筆數（卡用 `usedListingCount`，盒用 `listingCount`）。冇 SNKRDUNK 成交先至用 Yahoo 今日＋7日量。15 筆成交或約 26 個放售就頂滿嗰一邊。見 `discovery.liquidity_score_note`。
 - 匯率起始：`1 JPY = 0.0495 HKD`（可改）
-- 最低上架價：`min_list_price_hkd` = **HK$100**。有賣出價就用賣出價，否則用最近成交價；低過呢個數唔會出現喺清單。SNKRDUNK 搜尋標題價換算後低過 HK$100 亦唔會掃入熱門名單。冇可靠報價先至留空，唔會用其他等級嘅價頂上。
+- 最低上架價：`min_list_price_hkd` = **HK$100**。有賣出價就用賣出價，否則用最近成交價；低過呢個數唔會出現喺清單。Hottest Items 的 `minPrice` 已是港元；搜尋標題係日圓 × 匯率。低過 HK$100 唔會掃入。冇可靠報價先至留空，唔會用其他等級嘅價頂上。
 - 歷史：約 90 天
 - 暫無推播；Facebook 本地店稍後再接
 

@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
-from sources import yahoo_auctions_jp  # noqa: E402
+from sources import snkrdunk, yahoo_auctions_jp  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
@@ -78,9 +78,9 @@ def avg_volume(history: list[dict], days: int = 7) -> float:
 
 
 def liquidity_score(vol_today: float, vol_7d: float, total_available: int) -> int:
-    base = min(70.0, vol_today * 3.0 + vol_7d * 2.0)
-    depth = min(25.0, (total_available or 0) / 40.0)
-    return int(max(1, min(99, round(base + depth))))
+    """Yahoo volume fallback. Backfill has no SNKRDUNK listing book."""
+    del total_available
+    return snkrdunk.liquidity_score(0, 0, yahoo_vol=float(vol_today or 0) + float(vol_7d or 0))
 
 
 def existing_image(item_id: str, prior: dict | None) -> str | None:

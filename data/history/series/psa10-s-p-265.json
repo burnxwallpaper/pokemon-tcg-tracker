@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s-p-265",
+  "name_zh": "ピカチュウVMAX: プロモ P [S-P 265](月刊コロコロコミック2022年2月号付録)",
+  "name_jp": "ピカチュウVMAX: プロモ P [S-P 265](月刊コロコロコミック2022年2月号付録)",
+  "kind": "psa10",
+  "set": "S-P / 265",
+  "image": "images/psa10-s-p-265.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 519.75,
+      "hk_ask_hkd": 536.95,
+      "volume": 0.0
+    }
+  ]
+}

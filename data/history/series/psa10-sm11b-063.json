@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sm11b-063",
+  "name_zh": "ソルガレオ&ルナアーラGX (リーリエ) SR :SA (ソルルナGX) [SM11b 063/049](強化拡張パック「ドリームリーグ」)",
+  "name_jp": "ソルガレオ&ルナアーラGX (リーリエ) SR :SA (ソルルナGX) [SM11b 063/049](強化拡張パック「ドリームリーグ」)",
+  "kind": "psa10",
+  "set": "SM11b / 063/049",
+  "image": "images/psa10-sm11b-063.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 2952.68,
+      "hk_ask_hkd": 3267.0,
+      "volume": 0.0
+    }
+  ]
+}
