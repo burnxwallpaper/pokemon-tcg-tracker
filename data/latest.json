@@ -349,7 +349,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 2,
-      "snkrdunk_listing_count": 271
+      "snkrdunk_listing_count": 271,
+      "psa10_market": true
     },
     {
       "id": "sealed-storm-emerald",
@@ -689,7 +690,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 1,
-      "snkrdunk_listing_count": 287
+      "snkrdunk_listing_count": 287,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-137",
@@ -754,7 +756,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 1,
-      "snkrdunk_listing_count": 674
+      "snkrdunk_listing_count": 674,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-135",
@@ -820,7 +823,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 2,
-      "snkrdunk_listing_count": 350
+      "snkrdunk_listing_count": 350,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-134",
@@ -837,7 +841,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 94,
+      "liquidity_score": 0,
       "hk_ask_hkd": 540.78,
       "spread_jp_hk_pct": 10.35,
       "sources": [
@@ -906,7 +910,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 522,
-      "snkrdunk_listing_count": 312
+      "snkrdunk_listing_count": 312,
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-127",
@@ -923,7 +928,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 91,
+      "liquidity_score": 0,
       "hk_ask_hkd": 623.7,
       "spread_jp_hk_pct": 12.0,
       "sources": [
@@ -989,7 +994,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 500,
-      "snkrdunk_listing_count": 216
+      "snkrdunk_listing_count": 216,
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-126",
@@ -1055,7 +1061,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 1,
-      "snkrdunk_listing_count": 208
+      "snkrdunk_listing_count": 208,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-289",
@@ -1133,7 +1140,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 201,
-      "snkrdunk_listing_count": 420
+      "snkrdunk_listing_count": 420,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-132",
@@ -1150,7 +1158,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 89,
+      "liquidity_score": 0,
       "hk_ask_hkd": 209.34,
       "spread_jp_hk_pct": 0.69,
       "sources": [
@@ -1221,7 +1229,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 312,
-      "snkrdunk_listing_count": 152
+      "snkrdunk_listing_count": 152,
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-130",
@@ -1238,7 +1247,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 89,
+      "liquidity_score": 0,
       "hk_ask_hkd": 237.6,
       "spread_jp_hk_pct": 6.67,
       "sources": [
@@ -1302,7 +1311,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 297,
-      "snkrdunk_listing_count": 138
+      "snkrdunk_listing_count": 138,
+      "psa10_market": false
     },
     {
       "id": "psa10-mf-043",
@@ -1319,7 +1329,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 85,
+      "liquidity_score": 0,
       "hk_ask_hkd": 259.88,
       "spread_jp_hk_pct": 10.76,
       "sources": [
@@ -1379,7 +1389,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 246,
-      "snkrdunk_listing_count": 74
+      "snkrdunk_listing_count": 74,
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-128",
@@ -1444,7 +1455,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 1,
-      "snkrdunk_listing_count": 207
+      "snkrdunk_listing_count": 207,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-165",
@@ -1510,7 +1522,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 2,
-      "snkrdunk_listing_count": 138
+      "snkrdunk_listing_count": 138,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-131",
@@ -1527,7 +1540,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 91,
+      "liquidity_score": 0,
       "hk_ask_hkd": 351.44,
       "spread_jp_hk_pct": 5.18,
       "sources": [
@@ -1596,7 +1609,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 412,
-      "snkrdunk_listing_count": 189
+      "snkrdunk_listing_count": 189,
+      "psa10_market": false
     },
     {
       "id": "sealed-mega-dream",
@@ -2620,7 +2634,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 89,
+      "liquidity_score": 0,
       "hk_ask_hkd": 702.9,
       "spread_jp_hk_pct": 4.03,
       "sources": [
@@ -2688,7 +2702,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 292,
-      "snkrdunk_listing_count": 132
+      "snkrdunk_listing_count": 132,
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-136",
@@ -2705,7 +2720,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 90,
+      "liquidity_score": 0,
       "hk_ask_hkd": 288.34,
       "spread_jp_hk_pct": 3.1,
       "sources": [
@@ -2773,7 +2788,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 308,
-      "snkrdunk_listing_count": 164
+      "snkrdunk_listing_count": 164,
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-150",
@@ -2790,7 +2806,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 90,
+      "liquidity_score": 0,
       "hk_ask_hkd": 353.92,
       "spread_jp_hk_pct": 6.71,
       "sources": [
@@ -2859,7 +2875,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 378,
-      "snkrdunk_listing_count": 182
+      "snkrdunk_listing_count": 182,
+      "psa10_market": false
     },
     {
       "id": "psa10-sv-p-261",
@@ -2933,7 +2950,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 185,
-      "snkrdunk_listing_count": 463
+      "snkrdunk_listing_count": 463,
+      "psa10_market": true
     },
     {
       "id": "sealed-mega-symphonia",
@@ -3643,7 +3661,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 144,
-      "snkrdunk_listing_count": 634
+      "snkrdunk_listing_count": 634,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6-110",
@@ -3724,7 +3743,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 40,
-      "snkrdunk_listing_count": 226
+      "snkrdunk_listing_count": 226,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-154",
@@ -3741,7 +3761,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 86,
+      "liquidity_score": 0,
       "hk_ask_hkd": 173.21,
       "spread_jp_hk_pct": 13.72,
       "sources": [
@@ -3808,7 +3828,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 255,
-      "snkrdunk_listing_count": 90
+      "snkrdunk_listing_count": 90,
+      "psa10_market": false
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -4456,7 +4477,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 104,
-      "snkrdunk_listing_count": 422
+      "snkrdunk_listing_count": 422,
+      "psa10_market": true
     },
     {
       "id": "psa10-s10a-073",
@@ -4534,7 +4556,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 46,
-      "snkrdunk_listing_count": 287
+      "snkrdunk_listing_count": 287,
+      "psa10_market": true
     },
     {
       "id": "sealed-abyss-eye",
@@ -5619,7 +5642,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 74,
-      "snkrdunk_listing_count": 359
+      "snkrdunk_listing_count": 359,
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-223",
@@ -5700,7 +5724,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 140,
-      "snkrdunk_listing_count": 791
+      "snkrdunk_listing_count": 791,
+      "psa10_market": true
     },
     {
       "id": "psa10-m-p-020",
@@ -5780,7 +5805,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 206,
-      "snkrdunk_listing_count": 560
+      "snkrdunk_listing_count": 560,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-260",
@@ -5858,7 +5884,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 74,
-      "snkrdunk_listing_count": 513
+      "snkrdunk_listing_count": 513,
+      "psa10_market": true
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
@@ -6505,7 +6532,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 36,
-      "snkrdunk_listing_count": 367
+      "snkrdunk_listing_count": 367,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-g-001",
@@ -6583,7 +6611,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20%E3%83%93%E3%83%8B%E3%83%BC%E3%83%AB%E3%81%AA%E3%81%97%5BS8a-G%20001%2F015%5D%2825th%20%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-218",
@@ -6662,7 +6691,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 28,
-      "snkrdunk_listing_count": 218
+      "snkrdunk_listing_count": 218,
+      "psa10_market": true
     },
     {
       "id": "sealed-inferno-x",
@@ -9174,7 +9204,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 30,
-      "snkrdunk_listing_count": 318
+      "snkrdunk_listing_count": 318,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-007",
@@ -9252,7 +9283,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=_%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%28%E3%81%8A%E8%AA%95%E7%94%9F%E6%97%A5%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%29%20%5BS8a-P%20007%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m5-114",
@@ -9336,7 +9368,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 111,
-      "snkrdunk_listing_count": 289
+      "snkrdunk_listing_count": 289,
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-086",
@@ -9416,7 +9449,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 17,
-      "snkrdunk_listing_count": 194
+      "snkrdunk_listing_count": 194,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-12883",
@@ -9553,7 +9587,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 1,
-      "snkrdunk_listing_count": 142
+      "snkrdunk_listing_count": 142,
+      "psa10_market": true
     },
     {
       "id": "sealed-ninja-spinner",
@@ -10657,7 +10692,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 98,
-      "snkrdunk_listing_count": 429
+      "snkrdunk_listing_count": 429,
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-764",
@@ -10738,7 +10774,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 46,
-      "snkrdunk_listing_count": 354
+      "snkrdunk_listing_count": 354,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-236",
@@ -10813,7 +10850,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 30,
-      "snkrdunk_listing_count": 171
+      "snkrdunk_listing_count": 171,
+      "psa10_market": true
     },
     {
       "id": "psa10-m3-114",
@@ -10894,7 +10932,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 36,
-      "snkrdunk_listing_count": 196
+      "snkrdunk_listing_count": 196,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-001",
@@ -10968,7 +11007,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 44,
-      "snkrdunk_listing_count": 171
+      "snkrdunk_listing_count": 171,
+      "psa10_market": true
     },
     {
       "id": "psa10-m5-118",
@@ -11050,7 +11090,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 16,
-      "snkrdunk_listing_count": 157
+      "snkrdunk_listing_count": 157,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv11b-174",
@@ -11131,7 +11172,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 26,
-      "snkrdunk_listing_count": 103
+      "snkrdunk_listing_count": 103,
+      "psa10_market": true
     },
     {
       "id": "psa10-svg-051",
@@ -11207,7 +11249,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 14,
-      "snkrdunk_listing_count": 49
+      "snkrdunk_listing_count": 49,
+      "psa10_market": true
     },
     {
       "id": "sealed-munikis-zero",
@@ -11919,7 +11962,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 29,
-      "snkrdunk_listing_count": 417
+      "snkrdunk_listing_count": 417,
+      "psa10_market": true
     },
     {
       "id": "psa10-m4-114",
@@ -12002,7 +12046,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 77,
-      "snkrdunk_listing_count": 376
+      "snkrdunk_listing_count": 376,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-584772",
@@ -12155,7 +12200,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 24,
-      "snkrdunk_listing_count": 222
+      "snkrdunk_listing_count": 222,
+      "psa10_market": true
     },
     {
       "id": "psa10-wcs23-001-snkr-131236",
@@ -12235,7 +12281,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 26,
-      "snkrdunk_listing_count": 203
+      "snkrdunk_listing_count": 203,
+      "psa10_market": true
     },
     {
       "id": "psa10-m1s-090",
@@ -12324,7 +12371,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 6,
-      "snkrdunk_listing_count": 168
+      "snkrdunk_listing_count": 168,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-054",
@@ -12401,7 +12449,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 27,
-      "snkrdunk_listing_count": 101
+      "snkrdunk_listing_count": 101,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-270",
@@ -12479,7 +12528,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 23,
-      "snkrdunk_listing_count": 69
+      "snkrdunk_listing_count": 69,
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-237",
@@ -12555,7 +12605,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 86,
-      "snkrdunk_listing_count": 328
+      "snkrdunk_listing_count": 328,
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-765",
@@ -12637,7 +12688,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 31,
-      "snkrdunk_listing_count": 219
+      "snkrdunk_listing_count": 219,
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-189",
@@ -12720,7 +12772,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 147
+      "snkrdunk_listing_count": 147,
+      "psa10_market": true
     },
     {
       "id": "sealed-shiny-treasure",
@@ -13407,7 +13460,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 41,
-      "snkrdunk_listing_count": 302
+      "snkrdunk_listing_count": 302,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-183",
@@ -13486,7 +13540,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 30,
-      "snkrdunk_listing_count": 227
+      "snkrdunk_listing_count": 227,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-063",
@@ -13574,7 +13629,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 158
+      "snkrdunk_listing_count": 158,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-245",
@@ -13652,7 +13708,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 17,
-      "snkrdunk_listing_count": 119
+      "snkrdunk_listing_count": 119,
+      "psa10_market": true
     },
     {
       "id": "psa10-m3-117",
@@ -13733,7 +13790,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 15,
-      "snkrdunk_listing_count": 91
+      "snkrdunk_listing_count": 91,
+      "psa10_market": true
     },
     {
       "id": "psa10-mew-ex-sar",
@@ -14351,7 +14409,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 31,
-      "snkrdunk_listing_count": 90
+      "snkrdunk_listing_count": 90,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-024",
@@ -14430,7 +14489,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20024%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2-116",
@@ -14516,7 +14576,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 14,
-      "snkrdunk_listing_count": 276
+      "snkrdunk_listing_count": 276,
+      "psa10_market": true
     },
     {
       "id": "sealed-black-bolt",
@@ -15188,7 +15249,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 14,
-      "snkrdunk_listing_count": 232
+      "snkrdunk_listing_count": 232,
+      "psa10_market": true
     },
     {
       "id": "psa10-m3-115",
@@ -15271,7 +15333,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 11,
-      "snkrdunk_listing_count": 215
+      "snkrdunk_listing_count": 215,
+      "psa10_market": true
     },
     {
       "id": "psa10-m1s-087",
@@ -15352,7 +15415,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 26,
-      "snkrdunk_listing_count": 206
+      "snkrdunk_listing_count": 206,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv4a-327",
@@ -15436,7 +15500,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 23,
-      "snkrdunk_listing_count": 200
+      "snkrdunk_listing_count": 200,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv1a-080",
@@ -15519,7 +15584,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 32,
-      "snkrdunk_listing_count": 177
+      "snkrdunk_listing_count": 177,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-134104",
@@ -15666,7 +15732,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 34,
-      "snkrdunk_listing_count": 127
+      "snkrdunk_listing_count": 127,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv11w-174",
@@ -15746,7 +15813,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 92
+      "snkrdunk_listing_count": 92,
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-087",
@@ -15825,7 +15893,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 19,
-      "snkrdunk_listing_count": 95
+      "snkrdunk_listing_count": 95,
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-226",
@@ -15902,7 +15971,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 48
+      "snkrdunk_listing_count": 48,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-283",
@@ -15982,7 +16052,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 22
+      "snkrdunk_listing_count": 22,
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-208",
@@ -16066,7 +16137,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 27,
-      "snkrdunk_listing_count": 279
+      "snkrdunk_listing_count": 279,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-205",
@@ -16151,7 +16223,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 13,
-      "snkrdunk_listing_count": 183
+      "snkrdunk_listing_count": 183,
+      "psa10_market": true
     },
     {
       "id": "psa10-m4-120",
@@ -16233,7 +16306,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 6,
-      "snkrdunk_listing_count": 184
+      "snkrdunk_listing_count": 184,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-226",
@@ -16314,7 +16388,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 38,
-      "snkrdunk_listing_count": 149
+      "snkrdunk_listing_count": 149,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-228",
@@ -16391,7 +16466,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 21,
-      "snkrdunk_listing_count": 149
+      "snkrdunk_listing_count": 149,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-211",
@@ -16471,7 +16547,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 19,
-      "snkrdunk_listing_count": 132
+      "snkrdunk_listing_count": 132,
+      "psa10_market": true
     },
     {
       "id": "psa10-sn-001",
@@ -16549,7 +16626,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 29,
-      "snkrdunk_listing_count": 121
+      "snkrdunk_listing_count": 121,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-223",
@@ -16630,7 +16708,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 110
+      "snkrdunk_listing_count": 110,
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-144",
@@ -16711,7 +16790,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 97
+      "snkrdunk_listing_count": 97,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-038",
@@ -16787,7 +16867,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 82
+      "snkrdunk_listing_count": 82,
+      "psa10_market": true
     },
     {
       "id": "psa10-m5-115",
@@ -16864,7 +16945,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 73
+      "snkrdunk_listing_count": 73,
+      "psa10_market": true
     },
     {
       "id": "psa10-m6-108",
@@ -16881,7 +16963,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 67,
+      "liquidity_score": 0,
       "hk_ask_hkd": 219.95,
       "spread_jp_hk_pct": 11.09,
       "sources": [
@@ -16950,7 +17032,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 21,
-      "snkrdunk_listing_count": 64
+      "snkrdunk_listing_count": 64,
+      "psa10_market": false
     },
     {
       "id": "psa10-sn-007",
@@ -17029,7 +17112,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 17,
-      "snkrdunk_listing_count": 59
+      "snkrdunk_listing_count": 59,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-407",
@@ -17107,7 +17191,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 56
+      "snkrdunk_listing_count": 56,
+      "psa10_market": true
     },
     {
       "id": "psa10-cp3-012",
@@ -17182,7 +17267,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 25
+      "snkrdunk_listing_count": 25,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-101885",
@@ -17335,7 +17421,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 76,
-      "snkrdunk_listing_count": 290
+      "snkrdunk_listing_count": 290,
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-755",
@@ -17417,7 +17504,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 203
+      "snkrdunk_listing_count": 203,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2d-091",
@@ -17497,7 +17585,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 26,
-      "snkrdunk_listing_count": 190
+      "snkrdunk_listing_count": 190,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-211",
@@ -17582,7 +17671,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 12,
-      "snkrdunk_listing_count": 170
+      "snkrdunk_listing_count": 170,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-208",
@@ -17661,7 +17751,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 168
+      "snkrdunk_listing_count": 168,
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-248",
@@ -17735,7 +17826,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 15,
-      "snkrdunk_listing_count": 159
+      "snkrdunk_listing_count": 159,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8-132",
@@ -17819,7 +17911,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 20,
-      "snkrdunk_listing_count": 154
+      "snkrdunk_listing_count": 154,
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-236",
@@ -17894,7 +17987,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 27,
-      "snkrdunk_listing_count": 151
+      "snkrdunk_listing_count": 151,
+      "psa10_market": true
     },
     {
       "id": "psa10-clk-014",
@@ -17973,7 +18067,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 14,
-      "snkrdunk_listing_count": 130
+      "snkrdunk_listing_count": 130,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-222",
@@ -18052,7 +18147,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 16,
-      "snkrdunk_listing_count": 127
+      "snkrdunk_listing_count": 127,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-005",
@@ -18129,7 +18225,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%8F%E3%82%8B%E3%81%84%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%89%E3%82%B9%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20005%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12-110",
@@ -18215,7 +18312,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 15,
-      "snkrdunk_listing_count": 122
+      "snkrdunk_listing_count": 122,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8-136",
@@ -18292,7 +18390,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 16,
-      "snkrdunk_listing_count": 119
+      "snkrdunk_listing_count": 119,
+      "psa10_market": true
     },
     {
       "id": "psa10-cll-003",
@@ -18372,7 +18471,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 15,
-      "snkrdunk_listing_count": 114
+      "snkrdunk_listing_count": 114,
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-227",
@@ -18452,7 +18552,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 17,
-      "snkrdunk_listing_count": 109
+      "snkrdunk_listing_count": 109,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-284",
@@ -18532,7 +18633,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 99
+      "snkrdunk_listing_count": 99,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-006",
@@ -18606,7 +18708,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E5%9B%A3%E5%8F%82%E4%B8%8A%21%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20006%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -19097,7 +19200,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 80
+      "snkrdunk_listing_count": 80,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-244",
@@ -19179,7 +19283,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 9,
-      "snkrdunk_listing_count": 77
+      "snkrdunk_listing_count": 77,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-101",
@@ -19267,7 +19372,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 72
+      "snkrdunk_listing_count": 72,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm8b-219",
@@ -19351,7 +19457,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 72
+      "snkrdunk_listing_count": 72,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv11w-168",
@@ -19429,7 +19536,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 18,
-      "snkrdunk_listing_count": 73
+      "snkrdunk_listing_count": 73,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-288",
@@ -19513,7 +19621,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 68
+      "snkrdunk_listing_count": 68,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-214",
@@ -19591,7 +19700,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 52
+      "snkrdunk_listing_count": 52,
+      "psa10_market": true
     },
     {
       "id": "psa10-sc-007",
@@ -19673,7 +19783,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 4,
-      "snkrdunk_listing_count": 52
+      "snkrdunk_listing_count": 52,
+      "psa10_market": true
     },
     {
       "id": "psa10-svg-050",
@@ -19751,7 +19862,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 14,
-      "snkrdunk_listing_count": 35
+      "snkrdunk_listing_count": 35,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-106",
@@ -19829,7 +19941,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 3,
-      "snkrdunk_listing_count": 14
+      "snkrdunk_listing_count": 14,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-001",
@@ -19914,7 +20027,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20001%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-012",
@@ -20000,7 +20114,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E2%98%86%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20012%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv1v-105",
@@ -20083,7 +20198,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 13,
-      "snkrdunk_listing_count": 246
+      "snkrdunk_listing_count": 246,
+      "psa10_market": true
     },
     {
       "id": "psa10-s4a-308",
@@ -20167,7 +20283,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 246
+      "snkrdunk_listing_count": 246,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv4a-236",
@@ -20250,7 +20367,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 216
+      "snkrdunk_listing_count": 216,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-212",
@@ -20330,7 +20448,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 32,
-      "snkrdunk_listing_count": 210
+      "snkrdunk_listing_count": 210,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-022",
@@ -20411,7 +20530,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCEX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20022%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-252",
@@ -20492,7 +20612,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 19,
-      "snkrdunk_listing_count": 178
+      "snkrdunk_listing_count": 178,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-221",
@@ -20569,7 +20690,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 23,
-      "snkrdunk_listing_count": 172
+      "snkrdunk_listing_count": 172,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-210",
@@ -20648,7 +20770,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 18,
-      "snkrdunk_listing_count": 168
+      "snkrdunk_listing_count": 168,
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-085",
@@ -20730,7 +20853,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 14,
-      "snkrdunk_listing_count": 163
+      "snkrdunk_listing_count": 163,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv9-126",
@@ -20809,7 +20933,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 18,
-      "snkrdunk_listing_count": 160
+      "snkrdunk_listing_count": 160,
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-243",
@@ -20886,7 +21011,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 18,
-      "snkrdunk_listing_count": 159
+      "snkrdunk_listing_count": 159,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv4a-349",
@@ -20977,7 +21103,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 12,
-      "snkrdunk_listing_count": 154
+      "snkrdunk_listing_count": 154,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-025",
@@ -21058,7 +21185,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 11,
-      "snkrdunk_listing_count": 147
+      "snkrdunk_listing_count": 147,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-111467",
@@ -21208,7 +21336,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20020%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s10b-074",
@@ -21289,7 +21418,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 141
+      "snkrdunk_listing_count": 141,
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-092",
@@ -21381,7 +21511,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 1,
-      "snkrdunk_listing_count": 122
+      "snkrdunk_listing_count": 122,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-279",
@@ -21457,7 +21588,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 97
+      "snkrdunk_listing_count": 97,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-195",
@@ -21536,7 +21668,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 10,
-      "snkrdunk_listing_count": 88
+      "snkrdunk_listing_count": 88,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-170",
@@ -21615,7 +21748,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 15,
-      "snkrdunk_listing_count": 86
+      "snkrdunk_listing_count": 86,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-12889",
@@ -21768,7 +21902,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 81
+      "snkrdunk_listing_count": 81,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-392",
@@ -21852,7 +21987,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 5,
-      "snkrdunk_listing_count": 74
+      "snkrdunk_listing_count": 74,
+      "psa10_market": true
     },
     {
       "id": "psa10-s6a-073",
@@ -21936,7 +22072,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 5,
-      "snkrdunk_listing_count": 70
+      "snkrdunk_listing_count": 70,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-064",
@@ -22027,7 +22164,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 70
+      "snkrdunk_listing_count": 70,
+      "psa10_market": true
     },
     {
       "id": "psa10-s6a-089",
@@ -22113,7 +22251,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 62
+      "snkrdunk_listing_count": 62,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm12a-182",
@@ -22199,7 +22338,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 56
+      "snkrdunk_listing_count": 56,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-259",
@@ -22276,7 +22416,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 9,
-      "snkrdunk_listing_count": 52
+      "snkrdunk_listing_count": 52,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-215",
@@ -22359,7 +22500,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 4,
-      "snkrdunk_listing_count": 48
+      "snkrdunk_listing_count": 48,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-052",
@@ -22443,7 +22585,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 9,
-      "snkrdunk_listing_count": 44
+      "snkrdunk_listing_count": 44,
+      "psa10_market": true
     },
     {
       "id": "psa10-clk-003",
@@ -22517,7 +22660,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 23,
-      "snkrdunk_listing_count": 44
+      "snkrdunk_listing_count": 44,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm12a-175",
@@ -22597,7 +22741,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 41
+      "snkrdunk_listing_count": 41,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-218",
@@ -22677,7 +22822,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 3,
-      "snkrdunk_listing_count": 32
+      "snkrdunk_listing_count": 32,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-238",
@@ -22760,7 +22906,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 4,
-      "snkrdunk_listing_count": 23
+      "snkrdunk_listing_count": 23,
+      "psa10_market": true
     },
     {
       "id": "psa10-xy-105",
@@ -22843,7 +22990,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 3,
-      "snkrdunk_listing_count": 21
+      "snkrdunk_listing_count": 21,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-104",
@@ -22923,7 +23071,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 3,
-      "snkrdunk_listing_count": 20
+      "snkrdunk_listing_count": 20,
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-073",
@@ -23001,7 +23150,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 4,
-      "snkrdunk_listing_count": 14
+      "snkrdunk_listing_count": 14,
+      "psa10_market": true
     },
     {
       "id": "psa10-xy4-097",
@@ -23077,7 +23227,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 3,
-      "snkrdunk_listing_count": 9
+      "snkrdunk_listing_count": 9,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-550896",
@@ -23225,7 +23376,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 41,
-      "snkrdunk_listing_count": 230
+      "snkrdunk_listing_count": 230,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-183",
@@ -23309,7 +23461,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 33,
-      "snkrdunk_listing_count": 225
+      "snkrdunk_listing_count": 225,
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-030",
@@ -23394,7 +23547,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 21,
-      "snkrdunk_listing_count": 206
+      "snkrdunk_listing_count": 206,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-15595",
@@ -23544,7 +23698,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20014%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s11a-081",
@@ -23623,7 +23778,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 9,
-      "snkrdunk_listing_count": 176
+      "snkrdunk_listing_count": 176,
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-088",
@@ -23706,7 +23862,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 25,
-      "snkrdunk_listing_count": 172
+      "snkrdunk_listing_count": 172,
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-246",
@@ -23787,7 +23944,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 164
+      "snkrdunk_listing_count": 164,
+      "psa10_market": true
     },
     {
       "id": "psa10-charizard-ex-sar-151",
@@ -24224,7 +24382,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 22,
-      "snkrdunk_listing_count": 164
+      "snkrdunk_listing_count": 164,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-140593",
@@ -24446,7 +24605,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20002%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-218",
@@ -24524,7 +24684,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 17,
-      "snkrdunk_listing_count": 150
+      "snkrdunk_listing_count": 150,
+      "psa10_market": true
     },
     {
       "id": "psa10-s10a-074",
@@ -24606,7 +24767,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 8,
-      "snkrdunk_listing_count": 142
+      "snkrdunk_listing_count": 142,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv5a-078",
@@ -24692,7 +24854,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 7,
-      "snkrdunk_listing_count": 143
+      "snkrdunk_listing_count": 143,
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-224",
@@ -24770,7 +24933,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 18,
-      "snkrdunk_listing_count": 137
+      "snkrdunk_listing_count": 137,
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-171882",
@@ -25613,7 +25777,8 @@
         }
       ],
       "snkrdunk_recent_sold_n": 17,
-      "snkrdunk_listing_count": 175
+      "snkrdunk_listing_count": 175,
+      "psa10_market": true
     }
   ],
   "sections": {
@@ -27126,7 +27291,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 140,
-        "snkrdunk_listing_count": 791
+        "snkrdunk_listing_count": 791,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-234",
@@ -27204,7 +27370,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 144,
-        "snkrdunk_listing_count": 634
+        "snkrdunk_listing_count": 634,
+        "psa10_market": true
       },
       {
         "id": "psa10-m-p-020",
@@ -27276,7 +27443,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 206,
-        "snkrdunk_listing_count": 560
+        "snkrdunk_listing_count": 560,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-261",
@@ -27342,7 +27510,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 185,
-        "snkrdunk_listing_count": 463
+        "snkrdunk_listing_count": 463,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-289",
@@ -27412,7 +27581,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 201,
-        "snkrdunk_listing_count": 420
+        "snkrdunk_listing_count": 420,
+        "psa10_market": true
       },
       {
         "id": "psa10-mega-gengar-ex",
@@ -27518,7 +27688,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 104,
-        "snkrdunk_listing_count": 422
+        "snkrdunk_listing_count": 422,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-260",
@@ -27588,7 +27759,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 74,
-        "snkrdunk_listing_count": 513
+        "snkrdunk_listing_count": 513,
+        "psa10_market": true
       },
       {
         "id": "psa10-mega-charizard-x-ex",
@@ -27707,85 +27879,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 98,
-        "snkrdunk_listing_count": 429
-      },
-      {
-        "id": "psa10-m6a-134",
-        "name_zh": "超夢ex FUR [M6a 134/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ミュウツーex FUR [M6a 134/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 134/103",
-        "image": "images/psa10-m6a-134.webp",
-        "tcgdex_id": null,
-        "price_hkd": 490.05,
-        "price_jpy": 9900,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 94,
-        "hk_ask_hkd": 540.78,
-        "spread_jp_hk_pct": 10.35,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881428",
-        "snkrdunk_ask_jpy": 9500,
-        "snkrdunk_ask_min_jpy": 9500,
-        "snkrdunk_ask_median_jpy": 10950,
-        "snkrdunk_ask_max_jpy": 18888,
-        "snkrdunk_ask_prices_jpy": [
-          9500,
-          9800,
-          9900,
-          9990,
-          9999,
-          10800,
-          10900,
-          11000,
-          12000,
-          12999,
-          13000,
-          13500,
-          15000,
-          18888
-        ],
-        "snkrdunk_jpy": 9500,
-        "snkrdunk_last_sale_jpy": 9900,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/433c88d9-e3d7-47c1-a98e-b25b81ec698d.webp",
-        "hk_ask_low_hkd": 470.25,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881428"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex+FUR+%5BM6a+134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 522,
-        "snkrdunk_listing_count": 312
+        "snkrdunk_listing_count": 429,
+        "psa10_market": true
       },
       {
         "id": "psa10-m4-114",
@@ -27860,7 +27955,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 77,
-        "snkrdunk_listing_count": 376
+        "snkrdunk_listing_count": 376,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-237",
@@ -27928,7 +28024,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 86,
-        "snkrdunk_listing_count": 328
+        "snkrdunk_listing_count": 328,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-217",
@@ -27998,7 +28095,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 74,
-        "snkrdunk_listing_count": 359
+        "snkrdunk_listing_count": 359,
+        "psa10_market": true
       },
       {
         "id": "psa10-m5-114",
@@ -28074,7 +28172,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 111,
-        "snkrdunk_listing_count": 289
+        "snkrdunk_listing_count": 289,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-g-001",
@@ -28144,7 +28243,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20%E3%83%93%E3%83%8B%E3%83%BC%E3%83%AB%E3%81%AA%E3%81%97%5BS8a-G%20001%2F015%5D%2825th%20%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-246",
@@ -28217,545 +28317,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 76,
-        "snkrdunk_listing_count": 290
-      },
-      {
-        "id": "psa10-m6a-127",
-        "name_zh": "皮卡丘ex SAR [M6a 127/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ピカチュウex SAR [M6a 127/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 127/103",
-        "image": "images/psa10-m6a-127.webp",
-        "tcgdex_id": null,
-        "price_hkd": 556.88,
-        "price_jpy": 11250,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 91,
-        "hk_ask_hkd": 623.7,
-        "spread_jp_hk_pct": 12.0,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/882280",
-        "snkrdunk_ask_jpy": 11000,
-        "snkrdunk_ask_min_jpy": 11000,
-        "snkrdunk_ask_median_jpy": 12600,
-        "snkrdunk_ask_max_jpy": 15500,
-        "snkrdunk_ask_prices_jpy": [
-          11000,
-          11400,
-          11500,
-          11600,
-          12500,
-          12600,
-          13000,
-          13333,
-          14000,
-          15000,
-          15500
-        ],
-        "snkrdunk_jpy": 11000,
-        "snkrdunk_last_sale_jpy": 11250,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a0163a22-6e45-41dc-8203-a5dd647af7ef.webp",
-        "hk_ask_low_hkd": 544.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/882280"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex+SAR+%5BM6a+127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 500,
-        "snkrdunk_listing_count": 216
-      },
-      {
-        "id": "psa10-m6a-131",
-        "name_zh": "耿鬼ex SAR [M6a 131/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ゲンガーex SAR [M6a 131/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 131/103",
-        "image": "images/psa10-m6a-131.webp",
-        "tcgdex_id": null,
-        "price_hkd": 334.12,
-        "price_jpy": 6750,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 91,
-        "hk_ask_hkd": 351.44,
-        "spread_jp_hk_pct": 5.18,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/896992",
-        "snkrdunk_ask_jpy": 6500,
-        "snkrdunk_ask_min_jpy": 6500,
-        "snkrdunk_ask_median_jpy": 7200,
-        "snkrdunk_ask_max_jpy": 18000,
-        "snkrdunk_ask_prices_jpy": [
-          6500,
-          6799,
-          6800,
-          6899,
-          6900,
-          6999,
-          7000,
-          7399,
-          7500,
-          7980,
-          7999,
-          8888,
-          9999,
-          18000
-        ],
-        "snkrdunk_jpy": 6500,
-        "snkrdunk_last_sale_jpy": 6750,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f803b03b-76e1-4148-a0f0-8ccc062112ba.webp",
-        "hk_ask_low_hkd": 321.75,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/896992"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex+SAR+%5BM6a+131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 412,
-        "snkrdunk_listing_count": 189
-      },
-      {
-        "id": "psa10-m6a-136",
-        "name_zh": "皮卡丘 [M6a 136/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ピカチュウ [M6a 136/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 136/103",
-        "image": "images/psa10-m6a-136.webp",
-        "tcgdex_id": null,
-        "price_hkd": 279.68,
-        "price_jpy": 5650,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 90,
-        "hk_ask_hkd": 288.34,
-        "spread_jp_hk_pct": 3.1,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/886016",
-        "snkrdunk_ask_jpy": 5000,
-        "snkrdunk_ask_min_jpy": 5000,
-        "snkrdunk_ask_median_jpy": 5850,
-        "snkrdunk_ask_max_jpy": 1000000,
-        "snkrdunk_ask_prices_jpy": [
-          5000,
-          5494,
-          5500,
-          5650,
-          5700,
-          5800,
-          5900,
-          5999,
-          6000,
-          7500,
-          7777,
-          9999,
-          1000000
-        ],
-        "snkrdunk_jpy": 5000,
-        "snkrdunk_last_sale_jpy": 5650,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/8987def8-62c9-4f2b-8174-29bd6c2729a7.webp",
-        "hk_ask_low_hkd": 247.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/886016"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6+%5BM6a+136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 308,
-        "snkrdunk_listing_count": 164
-      },
-      {
-        "id": "psa10-m6a-150",
-        "name_zh": "耿鬼 [M6a 150/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ゲンガー [M6a 150/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 150/103",
-        "image": "images/psa10-m6a-150.webp",
-        "tcgdex_id": null,
-        "price_hkd": 331.65,
-        "price_jpy": 6700,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 90,
-        "hk_ask_hkd": 353.92,
-        "spread_jp_hk_pct": 6.71,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892648",
-        "snkrdunk_ask_jpy": 6600,
-        "snkrdunk_ask_min_jpy": 6600,
-        "snkrdunk_ask_median_jpy": 7200,
-        "snkrdunk_ask_max_jpy": 13000,
-        "snkrdunk_ask_prices_jpy": [
-          6600,
-          6700,
-          6780,
-          6800,
-          6999,
-          7000,
-          7100,
-          7300,
-          7400,
-          7500,
-          8000,
-          9000,
-          12450,
-          13000
-        ],
-        "snkrdunk_jpy": 6600,
-        "snkrdunk_last_sale_jpy": 6700,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/3407cc6f-adb3-484e-a6eb-a8dcf6bb4f60.webp",
-        "hk_ask_low_hkd": 326.7,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/892648"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC+%5BM6a+150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 378,
-        "snkrdunk_listing_count": 182
-      },
-      {
-        "id": "psa10-m6a-132",
-        "name_zh": "基拉祈ex SAR [M6a 132/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ジラーチex SAR [M6a 132/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 132/103",
-        "image": "images/psa10-m6a-132.webp",
-        "tcgdex_id": null,
-        "price_hkd": 207.9,
-        "price_jpy": 4200,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 89,
-        "hk_ask_hkd": 209.34,
-        "spread_jp_hk_pct": 0.69,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891195",
-        "snkrdunk_ask_jpy": 3700,
-        "snkrdunk_ask_min_jpy": 3700,
-        "snkrdunk_ask_median_jpy": 4236,
-        "snkrdunk_ask_max_jpy": 5000,
-        "snkrdunk_ask_prices_jpy": [
-          3700,
-          3800,
-          3850,
-          3900,
-          3999,
-          4000,
-          4200,
-          4222,
-          4250,
-          4300,
-          4400,
-          4500,
-          4665,
-          4666,
-          4999,
-          5000
-        ],
-        "snkrdunk_jpy": 3700,
-        "snkrdunk_last_sale_jpy": 4200,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/1f01e4b4-9b34-434c-949c-b44c988300d9.webp",
-        "hk_ask_low_hkd": 183.15,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/891195"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex+SAR+%5BM6a+132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 312,
-        "snkrdunk_listing_count": 152
-      },
-      {
-        "id": "psa10-m6a-130",
-        "name_zh": "仙子伊布ex SAR [M6a 130/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ニンフィアex SAR [M6a 130/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 130/103",
-        "image": "images/psa10-m6a-130.webp",
-        "tcgdex_id": null,
-        "price_hkd": 222.75,
-        "price_jpy": 4500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 89,
-        "hk_ask_hkd": 237.6,
-        "spread_jp_hk_pct": 6.67,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891194",
-        "snkrdunk_ask_jpy": 4100,
-        "snkrdunk_ask_min_jpy": 4100,
-        "snkrdunk_ask_median_jpy": 4800,
-        "snkrdunk_ask_max_jpy": 6000,
-        "snkrdunk_ask_prices_jpy": [
-          4100,
-          4300,
-          4500,
-          4600,
-          4800,
-          4900,
-          5000,
-          5400,
-          6000
-        ],
-        "snkrdunk_jpy": 4100,
-        "snkrdunk_last_sale_jpy": 4500,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/db1fb87a-852a-4735-90f4-e8ae1218ac20.webp",
-        "hk_ask_low_hkd": 202.95,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/891194"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex+SAR+%5BM6a+130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 297,
-        "snkrdunk_listing_count": 138
-      },
-      {
-        "id": "psa10-mf-044",
-        "name_zh": "月亮伊布ex SAR樣式 [MF 044/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
-        "name_jp": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
-        "kind": "psa10",
-        "set": "MF / 044/040",
-        "image": "images/psa10-mf-044.webp",
-        "tcgdex_id": null,
-        "price_hkd": 675.68,
-        "price_jpy": 13650,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 89,
-        "hk_ask_hkd": 702.9,
-        "spread_jp_hk_pct": 4.03,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881431",
-        "snkrdunk_ask_jpy": 13000,
-        "snkrdunk_ask_min_jpy": 13000,
-        "snkrdunk_ask_median_jpy": 14200,
-        "snkrdunk_ask_max_jpy": 29800,
-        "snkrdunk_ask_prices_jpy": [
-          13000,
-          13500,
-          13600,
-          13900,
-          13980,
-          14000,
-          14200,
-          14500,
-          14800,
-          14999,
-          15777,
-          17500,
-          29800
-        ],
-        "snkrdunk_jpy": 13000,
-        "snkrdunk_last_sale_jpy": 13650,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f078d5c7-085f-4e12-bfc0-144b3e61cb9d.webp",
-        "hk_ask_low_hkd": 643.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881431"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex+SAR%E4%BB%95%E6%A7%98+%5BMF+044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th+CELEBRATION+%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88+%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 292,
-        "snkrdunk_listing_count": 132
+        "snkrdunk_listing_count": 290,
+        "psa10_market": true
       },
       {
         "id": "psa10-mc-764",
@@ -28828,83 +28391,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 46,
-        "snkrdunk_listing_count": 354
-      },
-      {
-        "id": "psa10-m6a-154",
-        "name_zh": "烈空坐EX [M6a 154/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "レックウザEX [M6a 154/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 154/103",
-        "image": "images/psa10-m6a-154.webp",
-        "tcgdex_id": null,
-        "price_hkd": 152.31,
-        "price_jpy": 3077,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 86,
-        "hk_ask_hkd": 173.21,
-        "spread_jp_hk_pct": 13.72,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892652",
-        "snkrdunk_ask_jpy": 3000,
-        "snkrdunk_ask_min_jpy": 3000,
-        "snkrdunk_ask_median_jpy": 3500,
-        "snkrdunk_ask_max_jpy": 4500,
-        "snkrdunk_ask_prices_jpy": [
-          3000,
-          3060,
-          3200,
-          3300,
-          3400,
-          3499,
-          3500,
-          3600,
-          3680,
-          3999,
-          4000,
-          4500
-        ],
-        "snkrdunk_jpy": 3000,
-        "snkrdunk_last_sale_jpy": 3077,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/b98c4231-6c88-4e6e-af0c-c8387aea9f14.webp",
-        "hk_ask_low_hkd": 148.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/892652"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX+%5BM6a+154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 255,
-        "snkrdunk_listing_count": 90
+        "snkrdunk_listing_count": 354,
+        "psa10_market": true
       },
       {
         "id": "psa10-s10a-073",
@@ -28974,76 +28462,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 46,
-        "snkrdunk_listing_count": 287
-      },
-      {
-        "id": "psa10-mf-043",
-        "name_zh": "太陽伊布ex SAR樣式 [MF 043/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
-        "name_jp": "エーフィex SAR仕様 [MF 043/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
-        "kind": "psa10",
-        "set": "MF / 043/040",
-        "image": "images/psa10-mf-043.webp",
-        "tcgdex_id": null,
-        "price_hkd": 234.63,
-        "price_jpy": 4740,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 85,
-        "hk_ask_hkd": 259.88,
-        "spread_jp_hk_pct": 10.76,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881430",
-        "snkrdunk_ask_jpy": 4999,
-        "snkrdunk_ask_min_jpy": 4999,
-        "snkrdunk_ask_median_jpy": 5250,
-        "snkrdunk_ask_max_jpy": 6000,
-        "snkrdunk_ask_prices_jpy": [
-          4999,
-          5200,
-          5250,
-          5700,
-          6000
-        ],
-        "snkrdunk_jpy": 4999,
-        "snkrdunk_last_sale_jpy": 4740,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/73acd0cb-07fc-499e-b2e2-59e10c8e26e2.webp",
-        "hk_ask_low_hkd": 247.45,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881430"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex+SAR%E4%BB%95%E6%A7%98+%5BMF+043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th+CELEBRATION+%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88+%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 246,
-        "snkrdunk_listing_count": 74
+        "snkrdunk_listing_count": 287,
+        "psa10_market": true
       },
       {
         "id": "psa10-pikachu-ex-sar-151",
@@ -29154,7 +28574,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 36,
-        "snkrdunk_listing_count": 367
+        "snkrdunk_listing_count": 367,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-007",
@@ -29224,7 +28645,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=_%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%28%E3%81%8A%E8%AA%95%E7%94%9F%E6%97%A5%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%29%20%5BS8a-P%20007%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-098",
@@ -29292,7 +28714,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 41,
-        "snkrdunk_listing_count": 302
+        "snkrdunk_listing_count": 302,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-022",
@@ -29365,7 +28788,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCEX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20022%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-024",
@@ -29436,7 +28860,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20024%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-cll-008",
@@ -29504,7 +28929,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 41,
-        "snkrdunk_listing_count": 230
+        "snkrdunk_listing_count": 230,
+        "psa10_market": true
       },
       {
         "id": "psa10-m6-110",
@@ -29577,7 +29003,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 40,
-        "snkrdunk_listing_count": 226
+        "snkrdunk_listing_count": 226,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-001",
@@ -29643,7 +29070,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 44,
-        "snkrdunk_listing_count": 171
+        "snkrdunk_listing_count": 171,
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-091",
@@ -29717,7 +29145,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 29,
-        "snkrdunk_listing_count": 417
+        "snkrdunk_listing_count": 417,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-250",
@@ -29795,7 +29224,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 30,
-        "snkrdunk_listing_count": 318
+        "snkrdunk_listing_count": 318,
+        "psa10_market": true
       },
       {
         "id": "psa10-m3-114",
@@ -29868,7 +29298,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 36,
-        "snkrdunk_listing_count": 196
+        "snkrdunk_listing_count": 196,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-183",
@@ -29944,7 +29375,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 33,
-        "snkrdunk_listing_count": 225
+        "snkrdunk_listing_count": 225,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-881424-b",
@@ -30187,7 +29619,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 31,
-        "snkrdunk_listing_count": 219
+        "snkrdunk_listing_count": 219,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-183",
@@ -30258,7 +29691,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 30,
-        "snkrdunk_listing_count": 227
+        "snkrdunk_listing_count": 227,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-226",
@@ -30331,7 +29765,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 38,
-        "snkrdunk_listing_count": 149
+        "snkrdunk_listing_count": 149,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-005",
@@ -30400,7 +29835,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%8F%E3%82%8B%E3%81%84%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%89%E3%82%B9%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20005%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-001",
@@ -30477,7 +29913,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20001%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-212",
@@ -30549,7 +29986,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 32,
-        "snkrdunk_listing_count": 210
+        "snkrdunk_listing_count": 210,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv1a-080",
@@ -30624,7 +30062,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 32,
-        "snkrdunk_listing_count": 177
+        "snkrdunk_listing_count": 177,
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-208",
@@ -30700,7 +30139,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 27,
-        "snkrdunk_listing_count": 279
+        "snkrdunk_listing_count": 279,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-218",
@@ -30771,7 +30211,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 28,
-        "snkrdunk_listing_count": 218
+        "snkrdunk_listing_count": 218,
+        "psa10_market": true
       },
       {
         "id": "sealed-terastal-fest",
@@ -31048,7 +30489,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 30,
-        "snkrdunk_listing_count": 171
+        "snkrdunk_listing_count": 171,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8-122",
@@ -31115,7 +30557,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 34,
-        "snkrdunk_listing_count": 127
+        "snkrdunk_listing_count": 127,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-881423",
@@ -31251,7 +30694,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 26,
-        "snkrdunk_listing_count": 203
+        "snkrdunk_listing_count": 203,
+        "psa10_market": true
       },
       {
         "id": "sealed-shiny-treasure",
@@ -31429,7 +30873,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 26,
-        "snkrdunk_listing_count": 206
+        "snkrdunk_listing_count": 206,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2d-091",
@@ -31501,7 +30946,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 26,
-        "snkrdunk_listing_count": 190
+        "snkrdunk_listing_count": 190,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-881421",
@@ -31638,7 +31084,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 24,
-        "snkrdunk_listing_count": 222
+        "snkrdunk_listing_count": 222,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-236",
@@ -31705,7 +31152,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 27,
-        "snkrdunk_listing_count": 151
+        "snkrdunk_listing_count": 151,
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-088",
@@ -31780,7 +31228,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 25,
-        "snkrdunk_listing_count": 172
+        "snkrdunk_listing_count": 172,
+        "psa10_market": true
       },
       {
         "id": "sealed-rulers-black-flame",
@@ -32091,7 +31540,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 31,
-        "snkrdunk_listing_count": 90
+        "snkrdunk_listing_count": 90,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv4a-327",
@@ -32167,7 +31617,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 23,
-        "snkrdunk_listing_count": 200
+        "snkrdunk_listing_count": 200,
+        "psa10_market": true
       },
       {
         "id": "psa10-sn-001",
@@ -32237,7 +31688,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 29,
-        "snkrdunk_listing_count": 121
+        "snkrdunk_listing_count": 121,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-101885",
@@ -32379,7 +31831,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E2%98%86%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20012%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-014",
@@ -32449,7 +31902,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20014%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-abyss-eye",
@@ -32625,7 +32079,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 168
+        "snkrdunk_listing_count": 168,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-221",
@@ -32694,7 +32149,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 23,
-        "snkrdunk_listing_count": 172
+        "snkrdunk_listing_count": 172,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-030",
@@ -32771,7 +32227,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 21,
-        "snkrdunk_listing_count": 206
+        "snkrdunk_listing_count": 206,
+        "psa10_market": true
       },
       {
         "id": "psa10-charizard-ex-sar-151",
@@ -32888,7 +32345,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 164
+        "snkrdunk_listing_count": 164,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-002",
@@ -32958,7 +32416,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20002%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-mega-dream",
@@ -33306,7 +32765,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 26,
-        "snkrdunk_listing_count": 103
+        "snkrdunk_listing_count": 103,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-054",
@@ -33375,7 +32835,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 27,
-        "snkrdunk_listing_count": 101
+        "snkrdunk_listing_count": 101,
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-189",
@@ -33450,7 +32911,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 147
+        "snkrdunk_listing_count": 147,
+        "psa10_market": true
       },
       {
         "id": "sealed-mega-symphonia",
@@ -33731,7 +33193,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 21,
-        "snkrdunk_listing_count": 149
+        "snkrdunk_listing_count": 149,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8-132",
@@ -33807,7 +33270,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 20,
-        "snkrdunk_listing_count": 154
+        "snkrdunk_listing_count": 154,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-252",
@@ -33880,7 +33344,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 19,
-        "snkrdunk_listing_count": 178
+        "snkrdunk_listing_count": 178,
+        "psa10_market": true
       },
       {
         "id": "sealed-storm-emerald",
@@ -34057,7 +33522,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 17,
-        "snkrdunk_listing_count": 194
+        "snkrdunk_listing_count": 194,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2-116",
@@ -34135,7 +33601,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 14,
-        "snkrdunk_listing_count": 276
+        "snkrdunk_listing_count": 276,
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-144",
@@ -34208,7 +33675,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 97
+        "snkrdunk_listing_count": 97,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-210",
@@ -34279,7 +33747,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 18,
-        "snkrdunk_listing_count": 168
+        "snkrdunk_listing_count": 168,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv9-126",
@@ -34350,7 +33819,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 18,
-        "snkrdunk_listing_count": 160
+        "snkrdunk_listing_count": 160,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-243",
@@ -34419,7 +33889,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 18,
-        "snkrdunk_listing_count": 159
+        "snkrdunk_listing_count": 159,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-279",
@@ -34487,7 +33958,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 97
+        "snkrdunk_listing_count": 97,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-550896",
@@ -34660,7 +34132,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 17,
-        "snkrdunk_listing_count": 175
+        "snkrdunk_listing_count": 175,
+        "psa10_market": true
       },
       {
         "id": "sealed-ninja-spinner",
@@ -34841,7 +34314,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 14,
-        "snkrdunk_listing_count": 232
+        "snkrdunk_listing_count": 232,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv11w-174",
@@ -34913,7 +34387,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 92
+        "snkrdunk_listing_count": 92,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-211",
@@ -34985,7 +34460,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 19,
-        "snkrdunk_listing_count": 132
+        "snkrdunk_listing_count": 132,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-038",
@@ -35053,7 +34529,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 82
+        "snkrdunk_listing_count": 82,
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-126",
@@ -35126,7 +34603,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 22,
-        "snkrdunk_listing_count": 81
+        "snkrdunk_listing_count": 81,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-218",
@@ -35196,7 +34674,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 17,
-        "snkrdunk_listing_count": 150
+        "snkrdunk_listing_count": 150,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-224",
@@ -35266,7 +34745,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 18,
-        "snkrdunk_listing_count": 137
+        "snkrdunk_listing_count": 137,
+        "psa10_market": true
       },
       {
         "id": "psa10-m5-118",
@@ -35340,7 +34820,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 16,
-        "snkrdunk_listing_count": 157
+        "snkrdunk_listing_count": 157,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-584772",
@@ -35474,7 +34955,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 23,
-        "snkrdunk_listing_count": 69
+        "snkrdunk_listing_count": 69,
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-087",
@@ -35545,7 +35027,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 19,
-        "snkrdunk_listing_count": 95
+        "snkrdunk_listing_count": 95,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv1v-105",
@@ -35620,7 +35103,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 13,
-        "snkrdunk_listing_count": 246
+        "snkrdunk_listing_count": 246,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-020",
@@ -35690,7 +35174,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20020%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-15595",
@@ -35888,85 +35373,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 17,
-        "snkrdunk_listing_count": 119
-      },
-      {
-        "id": "psa10-m6-108",
-        "name_zh": "雷公ex SAR [M6 108/076](擴充包「綠寶石風暴」)",
-        "name_jp": "ライコウex SAR [M6 108/076](拡張パック「ストームエメラルダ」)",
-        "kind": "psa10",
-        "set": "M6 / 108/076",
-        "image": "images/psa10-m6-108.webp",
-        "tcgdex_id": null,
-        "price_hkd": 198.0,
-        "price_jpy": 4000,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 67,
-        "hk_ask_hkd": 219.95,
-        "spread_jp_hk_pct": 11.09,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/868610",
-        "snkrdunk_ask_jpy": 3800,
-        "snkrdunk_ask_min_jpy": 3800,
-        "snkrdunk_ask_median_jpy": 4444,
-        "snkrdunk_ask_max_jpy": 7500,
-        "snkrdunk_ask_prices_jpy": [
-          3800,
-          3999,
-          4000,
-          4100,
-          4200,
-          4300,
-          4443,
-          4445,
-          4500,
-          5000,
-          5500,
-          5600,
-          6000,
-          7500
-        ],
-        "snkrdunk_jpy": 3800,
-        "snkrdunk_last_sale_jpy": 4000,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/5c6d127c-a14d-4511-a9d5-4a9203084181.webp",
-        "hk_ask_low_hkd": 188.1,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/868610"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex+SAR+%5BM6+108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 21,
-        "snkrdunk_listing_count": 64
+        "snkrdunk_listing_count": 119,
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-248",
@@ -36032,7 +35440,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 15,
-        "snkrdunk_listing_count": 159
+        "snkrdunk_listing_count": 159,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-222",
@@ -36103,7 +35512,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 16,
-        "snkrdunk_listing_count": 127
+        "snkrdunk_listing_count": 127,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8-136",
@@ -36172,7 +35582,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 16,
-        "snkrdunk_listing_count": 119
+        "snkrdunk_listing_count": 119,
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-227",
@@ -36244,7 +35655,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 17,
-        "snkrdunk_listing_count": 109
+        "snkrdunk_listing_count": 109,
+        "psa10_market": true
       },
       {
         "id": "psa10-mc-085",
@@ -36318,7 +35730,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 14,
-        "snkrdunk_listing_count": 163
+        "snkrdunk_listing_count": 163,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-205",
@@ -36395,7 +35808,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 13,
-        "snkrdunk_listing_count": 183
+        "snkrdunk_listing_count": 183,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12-110",
@@ -36473,7 +35887,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 15,
-        "snkrdunk_listing_count": 122
+        "snkrdunk_listing_count": 122,
+        "psa10_market": true
       },
       {
         "id": "psa10-cll-003",
@@ -36545,7 +35960,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 15,
-        "snkrdunk_listing_count": 114
+        "snkrdunk_listing_count": 114,
+        "psa10_market": true
       },
       {
         "id": "psa10-clk-003",
@@ -36611,7 +36027,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 23,
-        "snkrdunk_listing_count": 44
+        "snkrdunk_listing_count": 44,
+        "psa10_market": true
       },
       {
         "id": "psa10-m3-115",
@@ -36686,7 +36103,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 11,
-        "snkrdunk_listing_count": 215
+        "snkrdunk_listing_count": 215,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-211",
@@ -36763,7 +36181,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 12,
-        "snkrdunk_listing_count": 170
+        "snkrdunk_listing_count": 170,
+        "psa10_market": true
       },
       {
         "id": "psa10-clk-014",
@@ -36834,7 +36253,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 14,
-        "snkrdunk_listing_count": 130
+        "snkrdunk_listing_count": 130,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv11w-168",
@@ -36904,7 +36324,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 18,
-        "snkrdunk_listing_count": 73
+        "snkrdunk_listing_count": 73,
+        "psa10_market": true
       },
       {
         "id": "psa10-m3-117",
@@ -36977,7 +36398,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 15,
-        "snkrdunk_listing_count": 91
+        "snkrdunk_listing_count": 91,
+        "psa10_market": true
       },
       {
         "id": "sealed-black-bolt",
@@ -37158,7 +36580,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 216
+        "snkrdunk_listing_count": 216,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv4a-349",
@@ -37241,7 +36664,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 12,
-        "snkrdunk_listing_count": 154
+        "snkrdunk_listing_count": 154,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-170",
@@ -37312,7 +36736,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 15,
-        "snkrdunk_listing_count": 86
+        "snkrdunk_listing_count": 86,
+        "psa10_market": true
       },
       {
         "id": "psa10-sn-007",
@@ -37383,7 +36808,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 17,
-        "snkrdunk_listing_count": 59
+        "snkrdunk_listing_count": 59,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-025",
@@ -37456,7 +36882,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 11,
-        "snkrdunk_listing_count": 147
+        "snkrdunk_listing_count": 147,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-063",
@@ -37536,7 +36963,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 158
+        "snkrdunk_listing_count": 158,
+        "psa10_market": true
       },
       {
         "id": "psa10-s11a-081",
@@ -37607,7 +37035,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 9,
-        "snkrdunk_listing_count": 176
+        "snkrdunk_listing_count": 176,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-14025",
@@ -37745,7 +37174,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 203
+        "snkrdunk_listing_count": 203,
+        "psa10_market": true
       },
       {
         "id": "psa10-s4a-308",
@@ -37821,7 +37251,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 246
+        "snkrdunk_listing_count": 246,
+        "psa10_market": true
       },
       {
         "id": "psa10-svg-051",
@@ -37889,7 +37320,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 14,
-        "snkrdunk_listing_count": 49
+        "snkrdunk_listing_count": 49,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-395189",
@@ -38089,7 +37521,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 99
+        "snkrdunk_listing_count": 99,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-12875",
@@ -38224,7 +37657,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 88
+        "snkrdunk_listing_count": 88,
+        "psa10_market": true
       },
       {
         "id": "psa10-s10a-074",
@@ -38298,7 +37732,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 142
+        "snkrdunk_listing_count": 142,
+        "psa10_market": true
       },
       {
         "id": "psa10-m5-115",
@@ -38367,7 +37802,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 73
+        "snkrdunk_listing_count": 73,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-101",
@@ -38447,7 +37883,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 72
+        "snkrdunk_listing_count": 72,
+        "psa10_market": true
       },
       {
         "id": "psa10-svg-050",
@@ -38517,7 +37954,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 14,
-        "snkrdunk_listing_count": 35
+        "snkrdunk_listing_count": 35,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-246",
@@ -38590,7 +38028,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 164
+        "snkrdunk_listing_count": 164,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-140593",
@@ -38728,7 +38167,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 6,
-        "snkrdunk_listing_count": 184
+        "snkrdunk_listing_count": 184,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-244",
@@ -38802,7 +38242,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 9,
-        "snkrdunk_listing_count": 77
+        "snkrdunk_listing_count": 77,
+        "psa10_market": true
       },
       {
         "id": "psa10-s10b-074",
@@ -38875,7 +38316,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 141
+        "snkrdunk_listing_count": 141,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv5a-078",
@@ -38953,7 +38395,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 143
+        "snkrdunk_listing_count": 143,
+        "psa10_market": true
       },
       {
         "id": "psa10-m1s-090",
@@ -39034,7 +38477,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 6,
-        "snkrdunk_listing_count": 168
+        "snkrdunk_listing_count": 168,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-223",
@@ -39107,7 +38551,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 110
+        "snkrdunk_listing_count": 110,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-407",
@@ -39177,7 +38622,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 56
+        "snkrdunk_listing_count": 56,
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-006",
@@ -39243,7 +38689,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E5%9B%A3%E5%8F%82%E4%B8%8A%21%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20006%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-226",
@@ -39312,7 +38759,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 48
+        "snkrdunk_listing_count": 48,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm8b-219",
@@ -39388,7 +38836,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 72
+        "snkrdunk_listing_count": 72,
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-288",
@@ -39464,7 +38913,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 68
+        "snkrdunk_listing_count": 68,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-259",
@@ -39533,7 +38983,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 9,
-        "snkrdunk_listing_count": 52
+        "snkrdunk_listing_count": 52,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-224649",
@@ -39714,7 +39165,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 80
+        "snkrdunk_listing_count": 80,
+        "psa10_market": true
       },
       {
         "id": "psa10-s6a-089",
@@ -39792,7 +39244,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 62
+        "snkrdunk_listing_count": 62,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-052",
@@ -39868,7 +39321,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 9,
-        "snkrdunk_listing_count": 44
+        "snkrdunk_listing_count": 44,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-97143",
@@ -40002,7 +39456,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 52
+        "snkrdunk_listing_count": 52,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-064",
@@ -40085,7 +39540,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 70
+        "snkrdunk_listing_count": 70,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm12a-182",
@@ -40163,7 +39619,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 56
+        "snkrdunk_listing_count": 56,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-171882",
@@ -40303,7 +39760,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 5,
-        "snkrdunk_listing_count": 74
+        "snkrdunk_listing_count": 74,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm12a-175",
@@ -40375,7 +39833,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 41
+        "snkrdunk_listing_count": 41,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-32870",
@@ -40497,7 +39956,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 2,
-        "snkrdunk_listing_count": 350
+        "snkrdunk_listing_count": 350,
+        "psa10_market": true
       },
       {
         "id": "psa10-s6a-073",
@@ -40573,7 +40033,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 5,
-        "snkrdunk_listing_count": 70
+        "snkrdunk_listing_count": 70,
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-129",
@@ -40631,7 +40092,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 2,
-        "snkrdunk_listing_count": 271
+        "snkrdunk_listing_count": 271,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-283",
@@ -40703,7 +40165,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 8,
-        "snkrdunk_listing_count": 22
+        "snkrdunk_listing_count": 22,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-111467",
@@ -40824,7 +40287,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 674
+        "snkrdunk_listing_count": 674,
+        "psa10_market": true
       },
       {
         "id": "psa10-cp3-012",
@@ -40891,7 +40355,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 7,
-        "snkrdunk_listing_count": 25
+        "snkrdunk_listing_count": 25,
+        "psa10_market": true
       },
       {
         "id": "psa10-sc-007",
@@ -40965,7 +40430,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 4,
-        "snkrdunk_listing_count": 52
+        "snkrdunk_listing_count": 52,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-12889",
@@ -41104,7 +40570,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 4,
-        "snkrdunk_listing_count": 48
+        "snkrdunk_listing_count": 48,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-86213",
@@ -41226,7 +40693,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 2,
-        "snkrdunk_listing_count": 138
+        "snkrdunk_listing_count": 138,
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-15573",
@@ -41347,7 +40815,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 287
+        "snkrdunk_listing_count": 287,
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-126",
@@ -41405,7 +40874,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 208
+        "snkrdunk_listing_count": 208,
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-128",
@@ -41462,7 +40932,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 207
+        "snkrdunk_listing_count": 207,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-238",
@@ -41537,7 +41008,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 4,
-        "snkrdunk_listing_count": 23
+        "snkrdunk_listing_count": 23,
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-218",
@@ -41609,7 +41081,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 3,
-        "snkrdunk_listing_count": 32
+        "snkrdunk_listing_count": 32,
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-160",
@@ -41666,7 +41139,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 142
+        "snkrdunk_listing_count": 142,
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-092",
@@ -41750,7 +41224,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 122
+        "snkrdunk_listing_count": 122,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-073",
@@ -41820,7 +41295,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 4,
-        "snkrdunk_listing_count": 14
+        "snkrdunk_listing_count": 14,
+        "psa10_market": true
       },
       {
         "id": "psa10-xy-105",
@@ -41895,7 +41371,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 3,
-        "snkrdunk_listing_count": 21
+        "snkrdunk_listing_count": 21,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-104",
@@ -41967,7 +41444,8 @@
           }
         ],
         "snkrdunk_recent_sold_n": 3,
-        "snkrdunk_listing_count": 20
+        "snkrdunk_listing_count": 20,
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-106",
@@ -42037,7 +41515,77 @@
           }
         ],
         "snkrdunk_recent_sold_n": 3,
-        "snkrdunk_listing_count": 14
+        "snkrdunk_listing_count": 14,
+        "psa10_market": true
+      },
+      {
+        "id": "psa10-xy4-097",
+        "name_zh": "M耿鬼EX UR 初版 [XY4 097/088]",
+        "name_jp": "MゲンガーEX UR :1ED [XY4 097/088](拡張パック「ファントムゲート」)",
+        "kind": "psa10",
+        "set": "XY4 / 097/088",
+        "image": "images/psa10-xy4-097.webp",
+        "tcgdex_id": null,
+        "price_hkd": 17435.14,
+        "price_jpy": 352225,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 0.0,
+        "volume_today": 0,
+        "volume_7d_avg": 1.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 32,
+        "hk_ask_hkd": 15961.27,
+        "spread_jp_hk_pct": -8.45,
+        "sources": [
+          "snkrdunk",
+          "yahoo_auctions_jp"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
+        "price_source": "snkrdunk_last_sale",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/91538",
+        "snkrdunk_ask_jpy": 300000,
+        "snkrdunk_ask_min_jpy": 300000,
+        "snkrdunk_ask_median_jpy": 324900,
+        "snkrdunk_ask_max_jpy": 600000,
+        "snkrdunk_ask_prices_jpy": [
+          300000,
+          320000,
+          329800,
+          600000
+        ],
+        "snkrdunk_jpy": 324900,
+        "snkrdunk_last_sale_jpy": 352225,
+        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/7fe888cb-dd1a-453a-b5ae-4147a7ea64b8.webp",
+        "hk_ask_low_hkd": 14850.0,
+        "hk_bid_hkd": null,
+        "links": [
+          {
+            "label": "SNKRDUNK",
+            "href": "https://snkrdunk.com/en/trading-cards/91538"
+          },
+          {
+            "label": "Yahoo 已結束拍賣",
+            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX+UR+%3A1ED+%5BXY4+097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29&ei=UTF-8"
+          },
+          {
+            "label": "Carousell 搜尋",
+            "href": "https://www.carousell.com.hk/search/M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29/"
+          },
+          {
+            "label": "HKCardLink 搜尋",
+            "href": "https://www.hkcardlink.com/marketplace?q=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29"
+          },
+          {
+            "label": "HKCardLink 徵求",
+            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29"
+          }
+        ],
+        "snkrdunk_recent_sold_n": 3,
+        "snkrdunk_listing_count": 9,
+        "psa10_market": true
       }
     ],
     "價差": [

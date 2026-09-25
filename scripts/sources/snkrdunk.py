@@ -705,6 +705,33 @@ def has_psa10_quote(
     return bool(psa10_active_ask_prices(rows))
 
 
+def read_psa10_market(apparel_id: str, *, min_interval: float) -> bool | None:
+    """True when this catalog id has a PSA10 last sale or a PSA10 ask.
+
+    None when the product page cannot be read. Does not use condition A.
+    """
+    try:
+        page = polite_get(
+            APPAREL_URL.format(apparel_id=apparel_id),
+            min_interval=min_interval,
+            timeout=25,
+            headers={"Accept-Language": "ja,en;q=0.8"},
+        )
+    except Exception:
+        return None
+    if page.status_code != 200:
+        return None
+    try:
+        asks = parse_condition_asks(page.text)
+        rows = _psa10_used_rows(apparel_id, min_interval=min_interval)
+        last_sale = psa10_last_sale_jpy(rows)
+        if last_sale is None:
+            last_sale = _chart_last_sale(apparel_id, min_interval=min_interval)
+        return has_psa10_quote(rows, floor_jpy=asks.get("PSA10"), last_sale_jpy=last_sale)
+    except Exception:
+        return None
+
+
 def chart_last_sale_jpy(payload: dict) -> int | None:
     """Latest point on the PSA10 used sales chart. Points are ``[epoch_ms, yen]``."""
     points = payload.get("points") if isinstance(payload, dict) else None
@@ -1058,6 +1085,7 @@ def _quote_fields(
         return {
             "quote": quote,
             "last_sale": last_sale,
+            "psa10_market": True,
             "image_url": image,
             **_activity_fields(
                 recent_sold_n=week_sold,
@@ -1085,6 +1113,7 @@ def _quote_fields(
     return {
         "quote": quote,
         "last_sale": last_sale,
+        "psa10_market": False,
         "image_url": image,
         **_activity_fields(
             recent_sold_n=raw_sold,
@@ -1132,7 +1161,7 @@ def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) ->
     )
     quote = packed["quote"]
     image = packed.get("image_url") or _media_url(apparel)
-    return {
+    fetched = {
         "ok": True,
         "apparel_id": apparel_id,
         "url": en_product_url(apparel_id),
@@ -1149,6 +1178,9 @@ def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) ->
         "image_url": image,
         "error": None,
     }
+    if isinstance(packed.get("psa10_market"), bool):
+        fetched["psa10_market"] = packed["psa10_market"]
+    return fetched
 
 
 def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, Any]:
@@ -1204,7 +1236,7 @@ def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, 
         return empty
     packed = _quote_fields(item, apparel_id, page_html=page.text, min_interval=min_interval)
     quote = packed["quote"]
-    return {
+    fetched = {
         "ok": True,
         "apparel_id": apparel_id,
         "url": en_product_url(apparel_id),
@@ -1221,6 +1253,9 @@ def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, 
         "image_url": packed.get("image_url") or _product_image(page.text),
         "error": None,
     }
+    if isinstance(packed.get("psa10_market"), bool):
+        fetched["psa10_market"] = packed["psa10_market"]
+    return fetched
 
 
 def search_keywords(item: dict) -> list[str]:
