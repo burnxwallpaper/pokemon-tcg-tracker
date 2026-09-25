@@ -714,7 +714,7 @@
 </head>
 <body>
   <header>
-    <p class="site-version" id="siteVersion">版 2026-09-25.2322</p>
+    <p class="site-version" id="siteVersion">版 2026-09-25.2337</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
@@ -738,7 +738,7 @@
         <h2>流動性</h2>
         <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
       </div>
-      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝已核對賣盤的中位數，包括本地賣盤同 SNKRDUNK 現時放售（日圓按頁首匯率換成港元）；對不上就留空。最低賣出價＝呢個池入面最低。詳情有 SNKRDUNK 連結。</p>
+      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝SNKRDUNK 現時放售換算港元後的中位數；沒有放售就留空。最低賣出價＝呢個池入面最低。詳情有 SNKRDUNK 同 Yahoo 連結。</p>
       <div class="liq-search">
         <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
         <span id="liqSearchCount" class="hint"></span>
@@ -1261,8 +1261,8 @@
             </div>
           </td>
           <td class="num desk-only" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
-          <td class="num desk-only" title="呢個賣盤池入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
-          <td class="num desk-only" title="已核對賣盤中位數（本地賣盤同 SNKRDUNK 放售，一律港元）">${fmtAsk(it)}</td>
+          <td class="num desk-only" title="SNKRDUNK 放售池入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
+          <td class="num desk-only" title="SNKRDUNK 放售換算港元後的中位數">${fmtAsk(it)}</td>
           <td class="num desk-only"><strong>${it.liquidity_score ?? "—"}</strong></td>
           <td class="desk-only">${linksHtml(it)}</td>
         </tr>`

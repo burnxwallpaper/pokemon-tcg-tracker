@@ -2,7 +2,7 @@
   "date": "2026-09-25",
   "note": "每日快照：meta + items（真實抓取）。保留約 history_days 天。",
   "meta": {
-    "updated_at": "2026-09-25T23:21:39+08:00",
+    "updated_at": "2026-09-25T23:37:33+08:00",
     "fx_jpy_to_hkd": 0.0495,
     "is_sample": false,
     "item_count": 201,
@@ -19,42 +19,7 @@
         "status": "ok",
         "ok_items": 201,
         "errors": [],
-        "note": "Catalog match and last sale. Active asks join the HKD sell-ask pool. The PSA10 median still bands local listings."
-      },
-      "lono": {
-        "enabled": true,
-        "status": "ok",
-        "ok_items": 1,
-        "listings": 1,
-        "errors": [],
-        "note": "lono.com.hk PSA + Pokémon category prices",
-        "catalog_size": 306
-      },
-      "zenox": {
-        "enabled": true,
-        "status": "ok",
-        "ok_items": 32,
-        "listings": 35,
-        "errors": [],
-        "note": "zenoxstore.com JP booster boxes and in-stock PSA10 slabs",
-        "catalog_size": 204
-      },
-      "shipmytoy": {
-        "enabled": true,
-        "status": "ok",
-        "ok_items": 1,
-        "listings": 1,
-        "errors": [],
-        "note": "shipmytoy.com.hk Pokémon category; box price, not the pack price",
-        "catalog_size": 20
-      },
-      "facebook_hk": {
-        "enabled": true,
-        "status": "unreachable",
-        "ok_items": 0,
-        "listings": 0,
-        "http_status": 400,
-        "note": "Facebook Marketplace/login HTML is not reachable from this worker (no logged-in browser; login walls are not bypassed)."
+        "note": "Catalog match, last sale, and active asks. Asks join the HKD sell-ask pool at fx_jpy_to_hkd."
       }
     }
   },
@@ -103,7 +68,7 @@
       "price_jpy": 11000,
       "volume_today": 23,
       "liquidity_score": 70,
-      "hk_ask_hkd": 890.0,
+      "hk_ask_hkd": 549.99,
       "hk_ask_low_hkd": 549.99,
       "hk_bid_hkd": null
     },
@@ -283,7 +248,7 @@
       "price_jpy": 12800,
       "volume_today": 4,
       "liquidity_score": 72,
-      "hk_ask_hkd": 850.0,
+      "hk_ask_hkd": 618.75,
       "hk_ask_low_hkd": 618.75,
       "hk_bid_hkd": null
     },
@@ -355,7 +320,7 @@
       "price_jpy": 7398,
       "volume_today": 7,
       "liquidity_score": 71,
-      "hk_ask_hkd": 570.6,
+      "hk_ask_hkd": 376.2,
       "hk_ask_low_hkd": 376.2,
       "hk_bid_hkd": null
     },
@@ -427,7 +392,7 @@
       "price_jpy": 8000,
       "volume_today": 1,
       "liquidity_score": 73,
-      "hk_ask_hkd": 590.08,
+      "hk_ask_hkd": 381.15,
       "hk_ask_low_hkd": 381.15,
       "hk_bid_hkd": null
     },
@@ -499,7 +464,7 @@
       "price_jpy": 12900,
       "volume_today": 3,
       "liquidity_score": 78,
-      "hk_ask_hkd": 717.75,
+      "hk_ask_hkd": 693.0,
       "hk_ask_low_hkd": 658.35,
       "hk_bid_hkd": null
     },
@@ -511,7 +476,7 @@
       "price_jpy": 154999,
       "volume_today": 0,
       "liquidity_score": 89,
-      "hk_ask_hkd": 7920.0,
+      "hk_ask_hkd": 7796.25,
       "hk_ask_low_hkd": 7647.75,
       "hk_bid_hkd": null
     },
@@ -535,7 +500,7 @@
       "price_jpy": 17999,
       "volume_today": 1,
       "liquidity_score": 74,
-      "hk_ask_hkd": 1304.97,
+      "hk_ask_hkd": 890.95,
       "hk_ask_low_hkd": 890.95,
       "hk_bid_hkd": null
     },
@@ -547,7 +512,7 @@
       "price_jpy": 45498,
       "volume_today": 1,
       "liquidity_score": 79,
-      "hk_ask_hkd": 3130.65,
+      "hk_ask_hkd": 2242.3,
       "hk_ask_low_hkd": 2242.3,
       "hk_bid_hkd": null
     },
@@ -559,7 +524,7 @@
       "price_jpy": 16869,
       "volume_today": 0,
       "liquidity_score": 77,
-      "hk_ask_hkd": 1130.22,
+      "hk_ask_hkd": 841.45,
       "hk_ask_low_hkd": 841.45,
       "hk_bid_hkd": null
     },
@@ -571,7 +536,7 @@
       "price_jpy": 9800,
       "volume_today": 3,
       "liquidity_score": 77,
-      "hk_ask_hkd": 572.0,
+      "hk_ask_hkd": 495.0,
       "hk_ask_low_hkd": 495.0,
       "hk_bid_hkd": null
     },
@@ -655,7 +620,7 @@
       "price_jpy": 8400,
       "volume_today": 1,
       "liquidity_score": 69,
-      "hk_ask_hkd": 602.5,
+      "hk_ask_hkd": 396.0,
       "hk_ask_low_hkd": 396.0,
       "hk_bid_hkd": null
     },
@@ -667,7 +632,7 @@
       "price_jpy": 115000,
       "volume_today": 3,
       "liquidity_score": 96,
-      "hk_ask_hkd": 6039.0,
+      "hk_ask_hkd": 5952.38,
       "hk_ask_low_hkd": 5741.95,
       "hk_bid_hkd": null
     },
@@ -763,7 +728,7 @@
       "price_jpy": 7974,
       "volume_today": 2,
       "liquidity_score": 71,
-      "hk_ask_hkd": 480.0,
+      "hk_ask_hkd": 381.15,
       "hk_ask_low_hkd": 381.15,
       "hk_bid_hkd": null
     },
@@ -823,7 +788,7 @@
       "price_jpy": 70500,
       "volume_today": 0,
       "liquidity_score": 74,
-      "hk_ask_hkd": 3563.01,
+      "hk_ask_hkd": 3551.13,
       "hk_ask_low_hkd": 3489.75,
       "hk_bid_hkd": null
     },
@@ -847,7 +812,7 @@
       "price_jpy": 40000,
       "volume_today": 0,
       "liquidity_score": 71,
-      "hk_ask_hkd": 2412.88,
+      "hk_ask_hkd": 2400.26,
       "hk_ask_low_hkd": 2178.0,
       "hk_bid_hkd": null
     },
@@ -907,7 +872,7 @@
       "price_jpy": 15000,
       "volume_today": 0,
       "liquidity_score": 76,
-      "hk_ask_hkd": 993.42,
+      "hk_ask_hkd": 707.85,
       "hk_ask_low_hkd": 707.85,
       "hk_bid_hkd": null
     },
@@ -1015,7 +980,7 @@
       "price_jpy": 20710,
       "volume_today": 0,
       "liquidity_score": 64,
-      "hk_ask_hkd": 1359.4,
+      "hk_ask_hkd": 1009.8,
       "hk_ask_low_hkd": 1009.8,
       "hk_bid_hkd": null
     },
@@ -1183,7 +1148,7 @@
       "price_jpy": 58250,
       "volume_today": 0,
       "liquidity_score": 66,
-      "hk_ask_hkd": 3132.23,
+      "hk_ask_hkd": 3019.5,
       "hk_ask_low_hkd": 2866.0,
       "hk_bid_hkd": null
     },
@@ -1435,7 +1400,7 @@
       "price_jpy": 77490,
       "volume_today": 0,
       "liquidity_score": 72,
-      "hk_ask_hkd": 4504.5,
+      "hk_ask_hkd": 4452.23,
       "hk_ask_low_hkd": 3861.0,
       "hk_bid_hkd": null
     },
@@ -1495,7 +1460,7 @@
       "price_jpy": 147000,
       "volume_today": 0,
       "liquidity_score": 69,
-      "hk_ask_hkd": 7425.0,
+      "hk_ask_hkd": 7400.25,
       "hk_ask_low_hkd": 7029.0,
       "hk_bid_hkd": null
     },
@@ -1579,7 +1544,7 @@
       "price_jpy": 18249,
       "volume_today": 0,
       "liquidity_score": 58,
-      "hk_ask_hkd": 940.5,
+      "hk_ask_hkd": 928.12,
       "hk_ask_low_hkd": 866.2,
       "hk_bid_hkd": null
     },
@@ -1687,7 +1652,7 @@
       "price_jpy": 77500,
       "volume_today": 0,
       "liquidity_score": 77,
-      "hk_ask_hkd": 3910.5,
+      "hk_ask_hkd": 3910.47,
       "hk_ask_low_hkd": 3712.45,
       "hk_bid_hkd": null
     },
@@ -1699,7 +1664,7 @@
       "price_jpy": 41800,
       "volume_today": 0,
       "liquidity_score": 72,
-      "hk_ask_hkd": 2079.0,
+      "hk_ask_hkd": 2078.97,
       "hk_ask_low_hkd": 1980.0,
       "hk_bid_hkd": null
     },
@@ -1783,7 +1748,7 @@
       "price_jpy": 21900,
       "volume_today": 0,
       "liquidity_score": 69,
-      "hk_ask_hkd": 1188.0,
+      "hk_ask_hkd": 1150.88,
       "hk_ask_low_hkd": 1108.8,
       "hk_bid_hkd": null
     },
@@ -1891,7 +1856,7 @@
       "price_jpy": 24800,
       "volume_today": 0,
       "liquidity_score": 54,
-      "hk_ask_hkd": 1277.1,
+      "hk_ask_hkd": 1237.5,
       "hk_ask_low_hkd": 1138.5,
       "hk_bid_hkd": null
     },
@@ -1939,7 +1904,7 @@
       "price_jpy": 12995,
       "volume_today": 0,
       "liquidity_score": 64,
-      "hk_ask_hkd": 717.73,
+      "hk_ask_hkd": 693.0,
       "hk_ask_low_hkd": 643.45,
       "hk_bid_hkd": null
     },
@@ -2239,7 +2204,7 @@
       "price_jpy": 15000,
       "volume_today": 0,
       "liquidity_score": 57,
-      "hk_ask_hkd": 903.38,
+      "hk_ask_hkd": 891.0,
       "hk_ask_low_hkd": 717.75,
       "hk_bid_hkd": null
     },
@@ -2275,7 +2240,7 @@
       "price_jpy": 75475,
       "volume_today": 0,
       "liquidity_score": 74,
-      "hk_ask_hkd": 4197.6,
+      "hk_ask_hkd": 3861.0,
       "hk_ask_low_hkd": 3712.5,
       "hk_bid_hkd": null
     },
@@ -2335,7 +2300,7 @@
       "price_jpy": 13000,
       "volume_today": 0,
       "liquidity_score": 57,
-      "hk_ask_hkd": 668.25,
+      "hk_ask_hkd": 663.3,
       "hk_ask_low_hkd": 618.75,
       "hk_bid_hkd": null
     },

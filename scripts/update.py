@@ -3,14 +3,14 @@
 update.py — Pokémon TCG price tracker (REAL mild scrapers)
 
 Pipeline:
-  1. fetch   — Yahoo Auctions JP sold + title-matched HK asks
-  2. merge   — attach JP/HK prices onto watchlist items
-  3. compute — 1日/7日 movers, liquidity, JP↔HK spreads (from history)
+  1. fetch   — Yahoo Auctions JP sold + SNKRDUNK asks
+  2. merge   — attach JP prices and the SNKRDUNK HKD ask onto watchlist items
+  3. compute — 1日/7日 movers, liquidity, spreads (from history)
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
 最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask). Shown in HKD.
-最新賣出價 → hk_ask_hkd (median of one HKD pool: matched local asks plus SNKRDUNK active asks × fx).
+最新賣出價 → hk_ask_hkd (median of SNKRDUNK active asks × fx).
 最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd stays null.
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
@@ -315,8 +315,6 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
     interval = float(cfg.get("request_min_interval_sec") or 1.6)
     sources_cfg = cfg.get("sources") or {}
     jp_on = bool(sources_cfg.get("yahoo_auctions_jp", {}).get("enabled"))
-    shops_on = bool(sources_cfg.get("hk_card_shops", {}).get("enabled"))
-    facebook_on = bool(sources_cfg.get("facebook_hk", {}).get("enabled"))
 
     jp_by_id: dict[str, dict] = {}
     hk_by_id: dict[str, dict] = {}
@@ -401,7 +399,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
         "status": "disabled" if not snkr_on else "pending",
         "ok_items": 0,
         "errors": [],
-        "note": "Catalog match and last sale. Active asks join the HKD sell-ask pool. The PSA10 median still bands local listings.",
+        "note": "Catalog match, last sale, and active asks. Asks join the HKD sell-ask pool at fx_jpy_to_hkd.",
     }
     if snkr_on:
         print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
@@ -420,26 +418,6 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
         source_status["snkrdunk"]["status"] = (
             "ok" if source_status["snkrdunk"]["ok_items"] else "empty"
         )
-
-    if shops_on or facebook_on:
-        print(
-            f"[fetch] HK asks × {len(watchlist)} "
-            "(LONO, ShipMyToy, Zenox)"
-        )
-        hk_by_id, hk_status = hk_asks.collect_hk(
-            watchlist,
-            min_interval=interval,
-            shops_on=shops_on,
-            facebook_on=facebook_on,
-            jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id),
-        )
-        source_status.update(hk_status)
-        for name, bucket in hk_status.items():
-            print(
-                f"  {name}: status={bucket.get('status')} "
-                f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
-                flush=True,
-            )
 
     return jp_by_id, hk_by_id, source_status
 
@@ -907,33 +885,6 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
     return out
 
 
-def _band_yen(jp: dict) -> int | None:
-    """SNKRDUNK PSA10 median (or BOX ask), then the lowest PSA10 ask, then the JP price."""
-    snkr = jp.get("snkrdunk") if isinstance(jp.get("snkrdunk"), dict) else {}
-    for key in ("market_jpy", "ask_jpy"):
-        value = snkr.get(key)
-        if isinstance(value, bool) or not isinstance(value, (int, float)):
-            continue
-        if value > 0:
-            return int(value)
-    median = jp.get("median_jpy")
-    if isinstance(median, bool) or not isinstance(median, (int, float)):
-        return None
-    if median <= 0:
-        return None
-    return int(median)
-
-
-def _band_hkd_map(cfg: dict, jp_by_id: dict[str, dict]) -> dict[str, float]:
-    fx = float(cfg["fx_jpy_to_hkd"])
-    out: dict[str, float] = {}
-    for iid, jp in jp_by_id.items():
-        converted = hkd(_band_yen(jp), fx)
-        if converted:
-            out[str(iid)] = float(converted)
-    return out
-
-
 def _yahoo_preserved_status() -> dict[str, Any]:
     yahoo: dict[str, Any] = {
         "enabled": True,
@@ -955,52 +906,8 @@ def _yahoo_preserved_status() -> dict[str, Any]:
 
 
 def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
-    """Reuse the last HK asks so a JP accuracy refresh does not re-hit HK shops."""
-    preserved_status: dict[str, Any] = {
-        "enabled": True,
-        "status": "preserved",
-        "ok_items": 0,
-        "errors": [],
-        "note": "Preserved HK asks; this run refreshed JP sold only",
-    }
-    if not LATEST_PATH.exists():
-        return {}, {"lono": preserved_status}
-    try:
-        prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError):
-        return {}, {"lono": preserved_status}
-    out: dict[str, dict] = {}
-    for it in prior.get("items") or []:
-        if not isinstance(it, dict) or not it.get("id"):
-            continue
-        backends = [
-            s
-            for s in (it.get("sources") or [])
-            if s not in ("yahoo_auctions_jp", "snkrdunk", *hk_asks.DROPPED_HK_SOURCES)
-        ]
-        out[str(it["id"])] = {
-            "median_hkd": it.get("hk_ask_hkd"),
-            "lowest_hkd": it.get("hk_ask_low_hkd"),
-            "bid_hkd": None,
-            "listings": [],
-            "listings_n": it.get("hk_listings_n") or 0,
-            "bid_listings": [],
-            "backends": backends,
-            "backend": "+".join(backends) if backends else None,
-        }
-    prev = (prior.get("meta") or {}).get("source_status") or {}
-    status: dict[str, Any] = {}
-    for key, bucket in prev.items():
-        if key in ("yahoo_auctions_jp", "snkrdunk", *hk_asks.DROPPED_HK_SOURCES):
-            continue
-        if not isinstance(bucket, dict):
-            continue
-        kept = dict(bucket)
-        kept["note"] = "Preserved HK asks; this run refreshed JP sold only"
-        status[key] = kept
-    if not status:
-        status["lono"] = preserved_status
-    return out, status
+    """No shop catalog. The HKD ask is recomputed from the SNKRDUNK book already on the row."""
+    return {}, {}
 
 
 def _snkr_only_books(cfg: dict, jp_fresh: dict[str, dict]) -> dict[str, dict]:
@@ -1082,7 +989,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
             "status": "disabled" if not snkr_on else "pending",
             "ok_items": 0,
             "errors": [],
-            "note": "SNKRDUNK active asks refreshed into the HKD sell-ask pool; local listings still use that band",
+            "note": "SNKRDUNK active asks refreshed into the HKD sell-ask pool",
         }
         if snkr_on:
             print(f"[fetch] SNKRDUNK asks × {len(watchlist)} (interval≥{interval}s)")
@@ -1115,60 +1022,30 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
                     snkr_status["ok_items"] += 1
                 slot["snkrdunk"] = refreshed
             snkr_status["status"] = "ok" if snkr_status["ok_items"] else "empty"
-        hk_by_id, hk_status = hk_asks.collect_hk(
-            watchlist,
-            min_interval=interval,
-            shops_on=bool(sources_cfg.get("hk_card_shops", {}).get("enabled")),
-            facebook_on=bool(sources_cfg.get("facebook_hk", {}).get("enabled")),
-            jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id),
-        )
-        for name, bucket in hk_status.items():
-            print(
-                f"  {name}: status={bucket.get('status')} "
-                f"ok_items={bucket.get('ok_items')} listings={bucket.get('listings')}",
-                flush=True,
-            )
+        hk_by_id = {}
         source_status = {
             "yahoo_auctions_jp": _yahoo_preserved_status(),
             "snkrdunk": snkr_status,
         }
-        source_status.update(hk_status)
     elif jp_only:
-        jp_by_id, _hk_unused, source_status = fetch_all(
-            {
-                **cfg,
-                "sources": {
-                    **(cfg.get("sources") or {}),
-                    "hk_card_shops": {"enabled": False},
-                    "facebook_hk": {"enabled": False},
-                },
-            }
-        )
-        hk_by_id, hk_status = _hk_preserved_from_latest()
-        source_status.update(hk_status)
-        print("[fetch] JP-only refresh (HK asks preserved)", flush=True)
+        jp_by_id, hk_by_id, source_status = fetch_all(cfg)
+        print("[fetch] Yahoo + SNKRDUNK refresh", flush=True)
     elif snkr_only:
-        print("[fetch] SNKRDUNK-only refresh (Yahoo sold and HK asks preserved)", flush=True)
+        print("[fetch] SNKRDUNK-only refresh (Yahoo sold preserved)", flush=True)
         fresh_cfg = {
             **cfg,
             "sources": {
                 **(cfg.get("sources") or {}),
                 "yahoo_auctions_jp": {"enabled": False},
-                "hk_card_shops": {"enabled": False},
-                "facebook_hk": {"enabled": False},
             },
         }
         jp_fresh, _hk_unused, source_status = fetch_all(fresh_cfg)
         jp_by_id = _snkr_only_books(cfg, jp_fresh)
-        hk_by_id, hk_status = _hk_preserved_from_latest()
+        hk_by_id, _hk_status = _hk_preserved_from_latest()
         _drop_empty_psa10_preserved_asks(jp_by_id, hk_by_id)
-        for bucket in hk_status.values():
-            if isinstance(bucket, dict):
-                bucket["note"] = "Preserved HK asks; this run refreshed SNKRDUNK"
         yahoo = _yahoo_preserved_status()
         yahoo["note"] = "Preserved JP sold; this run refreshed SNKRDUNK asks"
         source_status["yahoo_auctions_jp"] = yahoo
-        source_status.update(hk_status)
     else:
         jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
@@ -1209,7 +1086,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
             },
             "pipeline": [
                 "discover: SNKRDUNK Hottest Items, then hottest search fill",
-                "fetch yahoo_auctions_jp sold (reference) + title-matched HK asks",
+                "fetch yahoo_auctions_jp sold (reference) + SNKRDUNK asks in HKD",
                 "backfill shallow series from closed comps (merge by date; never wipe)",
                 "normalize HKD via fx_jpy_to_hkd",
                 "compute movers / liquidity / spreads from history",
@@ -1220,7 +1097,9 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
             "image_source": "official",
             "image_source_note": "Dashboard thumbnails from TCGdex card faces or pokemon-card.com product art; Yahoo listing photos are never used.",
             "sources_enabled": {
-                k: v.get("enabled", False) for k, v in cfg.get("sources", {}).items()
+                k: bool(v.get("enabled", False))
+                for k, v in (cfg.get("sources") or {}).items()
+                if k not in hk_asks.DROPPED_HK_SOURCES
             },
             "source_status": source_status,
             "display": cfg.get("display"),

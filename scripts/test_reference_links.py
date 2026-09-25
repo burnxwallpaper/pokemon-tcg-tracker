@@ -23,16 +23,16 @@ def test_lowest_ask_matches_single_price() -> None:
 def test_best_bid_ignores_sells_and_empty_prices() -> None:
     price, row = best_bid(
         [
-            {"listing_type": "sale", "price_hkd": 5000, "source": "zenox"},
-            {"listing_type": "wtb", "price_hkd": 0, "source": "lono"},
-            {"listing_type": "wtb", "price_hkd": 3200, "url": "https://www.lono.com.hk/products/a"},
+            {"listing_type": "sale", "price_hkd": 5000},
+            {"listing_type": "wtb", "price_hkd": 0},
+            {"listing_type": "wtb", "price_hkd": 3200, "url": "https://example.com/products/a"},
             {"listing_type": "wtb", "price_hkd": 2800},
         ]
     )
     assert price == 3200
     assert row is not None
     assert row["url"].endswith("/products/a")
-    assert best_bid([{"price_hkd": 999, "source": "zenox"}]) == (None, None)
+    assert best_bid([{"price_hkd": 999}]) == (None, None)
 
 
 def test_reference_links_use_keywords_and_real_listing() -> None:
@@ -41,44 +41,37 @@ def test_reference_links_use_keywords_and_real_listing() -> None:
             "name_zh": "噴火龍ex SAR PSA10",
             "name_jp": "リザードンex SAR PSA10",
             "kind": "psa10",
-            "sources": ["yahoo_auctions_jp", "lono", "zenox"],
+            "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/162095",
+            "sources": ["yahoo_auctions_jp", "snkrdunk"],
         },
-        watch={"search_jp": "リザードンex SAR PSA10", "search_hk": "噴火龍 SAR PSA10"},
+        watch={"search_jp": "リザードンex SAR PSA10"},
         listings=[
+            {
+                "source": "yahoo_auctions_jp",
+                "listing_type": "sale",
+                "price_hkd": 5100,
+                "url": "https://auctions.yahoo.co.jp/jp/auction/x1",
+            },
             {
                 "source": "zenox",
                 "listing_type": "sale",
-                "price_hkd": 5100,
-                "url": "https://www.zenoxstore.com/products/charizard",
-            },
-            {
-                "source": "lono",
-                "listing_type": "wtb",
                 "price_hkd": 4000,
-                "url": "https://www.lono.com.hk/products/charizard-wtb",
+                "url": "https://www.zenoxstore.com/products/charizard",
             },
         ],
     )
     labels = [link["label"] for link in links]
     hrefs = " ".join(link["href"] for link in links)
-    assert labels[0] == "Zenox"
+    assert labels[0] == "SNKRDUNK"
+    assert "zenox" not in hrefs.lower()
+    assert "lono" not in hrefs.lower()
+    assert "shipmytoy" not in hrefs.lower()
     assert "carousell" not in hrefs
     assert "hkcardlink" not in hrefs
+    assert "facebook" not in hrefs
     assert all("徵求" not in label for label in labels)
-    snkr = build_reference_links(
-        {
-            "name_zh": "噴火龍",
-            "name_jp": "リザードンex SAR PSA10",
-            "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/162095",
-            "sources": [],
-        },
-        watch={"search_jp": "リザードンex SAR PSA10"},
-    )
-    assert snkr[0]["label"] == "SNKRDUNK"
-    assert snkr[0]["href"] == "https://snkrdunk.com/en/trading-cards/162095"
     assert any(link["href"].startswith("https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=") for link in links)
-    assert any(link["label"] == "LONO" for link in links)
-    assert any(link["label"] == "Zenox" for link in links)
+    assert any(link["label"] == "Yahoo 拍賣" for link in links)
 
 
 def test_attach_does_not_invent_low_or_bid() -> None:
@@ -104,9 +97,9 @@ def test_match_listings_keeps_url_and_wtb_type() -> None:
             {
                 "card_name": "PSA10 噴火龍ex SAR Pokemon 151 201/165",
                 "price": 5100,
-                "source": "zenox",
+                "source": "sale",
                 "listing_type": "wtb",
-                "url": "https://www.zenoxstore.com/products/zard",
+                "url": "https://example.com/products/zard",
                 "id": "1",
             }
         ],

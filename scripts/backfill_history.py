@@ -6,7 +6,7 @@ MERGE semantics: incoming daily points are merged by date into existing
 data/history/series/{id}.json (never wipe prior real points). Incremental
 mode: if series already has depth, only fetch recent pages.
 
-Does not re-hit HK shops or wipe images. Preserves hk_ask_hkd + image paths.
+Does not re-hit shops. Preserves the SNKRDUNK HKD ask and image paths.
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
-from sources import snkrdunk, yahoo_auctions_jp  # noqa: E402
+from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
@@ -287,7 +287,11 @@ def main() -> None:
         if hk_ask is not None and price and price > 0:
             spread_pct = round((hk_ask - price) / price * 100.0, 2)
 
-        srcs = list(prior.get("sources") or [])
+        srcs = [
+            s
+            for s in (prior.get("sources") or [])
+            if s not in hk_asks.DROPPED_HK_SOURCES
+        ]
         if res.get("ok") and "yahoo_auctions_jp" not in srcs:
             srcs.insert(0, "yahoo_auctions_jp")
         if not srcs and res.get("ok"):
@@ -344,8 +348,8 @@ def main() -> None:
                 "sources": srcs,
                 "is_sample": False,
                 "jp_comps_n": len(res.get("comps") or []),
-                "hk_listings_n": prior.get("hk_listings_n") or 0,
-                "hk_backend": prior.get("hk_backend"),
+                "hk_listings_n": 0,
+                "hk_backend": None,
                 "history": history,
             }
         )
@@ -356,7 +360,11 @@ def main() -> None:
 
     # Refresh Yahoo; keep every HK source count from the prior snapshot.
     prior_ss = (prior_latest.get("meta") or {}).get("source_status") or {}
-    source_status = dict(prior_ss) if isinstance(prior_ss, dict) else {}
+    source_status = {
+        key: bucket
+        for key, bucket in (prior_ss.items() if isinstance(prior_ss, dict) else [])
+        if key not in hk_asks.DROPPED_HK_SOURCES and key != "yahoo_auctions_jp"
+    }
     source_status["yahoo_auctions_jp"] = {
         "enabled": True,
         "status": "ok" if jp_ok else "empty",
@@ -386,7 +394,9 @@ def main() -> None:
                 "write latest.json + series",
             ],
             "sources_enabled": {
-                k: v.get("enabled", False) for k, v in cfg.get("sources", {}).items()
+                k: bool(v.get("enabled", False))
+                for k, v in (cfg.get("sources") or {}).items()
+                if k not in hk_asks.DROPPED_HK_SOURCES
             },
             "source_status": source_status,
             "display": cfg.get("display"),

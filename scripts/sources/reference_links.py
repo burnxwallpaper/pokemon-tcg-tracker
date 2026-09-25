@@ -1,21 +1,42 @@
 """Public quote labels and reference URLs. No invented buy bids.
 
 最近成交價 = price_hkd (SNKRDUNK last sale, else a close Yahoo sold, shown in HKD)
-最新賣出價 = hk_ask_hkd (robust median of one HKD pool: local shop asks + SNKRDUNK asks × fx)
+最新賣出價 = hk_ask_hkd (robust median of SNKRDUNK active asks × fx)
 最低賣出價 = hk_ask_low_hkd (lowest price in that pool; equals the ask when only one)
 買入價／徵求 = hk_bid_hkd stays null. No public WTB catalog is connected.
 """
 from __future__ import annotations
 
 from typing import Any
-from urllib.parse import quote, urlencode
+from urllib.parse import urlencode
 
 YAHOO_CLOSED = "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
-LONO_BY_KIND = {
-    "psa10": "https://www.lono.com.hk/categories/psa-ptcg",
-    "sealed": "https://www.lono.com.hk/categories/pokemon-tcg",
-}
-ZENOX_COLLECTION = "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
+DROPPED_LINK_SOURCES = frozenset(
+    {
+        "lono",
+        "zenox",
+        "shipmytoy",
+        "facebook_hk",
+        "carousell_hk",
+        "hkcardlink",
+        "mercari_jp",
+        "cardrush",
+        "yuyu_tei",
+        "magi",
+    }
+)
+_DROPPED_HOSTS = (
+    "lono.com.hk",
+    "zenoxstore.com",
+    "shipmytoy.com.hk",
+    "facebook.com",
+    "carousell.com",
+    "hkcardlink",
+    "mercari.com",
+    "cardrush",
+    "yuyu-tei",
+    "magi.camp",
+)
 
 PRICE_LABELS = {
     "price_hkd": "最近成交價",
@@ -25,9 +46,8 @@ PRICE_LABELS = {
 }
 
 HK_ASK_NOTE = (
-    "最新賣出價係已核對賣盤的穩健中位數，池內包括本地店賣盤（LONO、ShipMyToy、Zenox），"
-    "以及 SNKRDUNK 現時放售（日圓按 fx_jpy_to_hkd 換成港元）。最低賣出價係呢個池入面最低；"
-    "只有一筆時兩者相同。對不上可靠賣盤就留空，不會估算。"
+    "最新賣出價係 SNKRDUNK 現時放售（日圓按 fx_jpy_to_hkd 換成港元）的穩健中位數。"
+    "最低賣出價係呢個池入面最低；只有一筆時兩者相同。沒有放售就留空，不會估算。"
 )
 
 HK_BID_NOTE = (
@@ -60,28 +80,27 @@ def best_bid(listings: list[dict]) -> tuple[float | None, dict | None]:
     return round(best_price, 2), best_row
 
 
-def _q(text: str) -> str:
-    return quote(text.strip(), safe="")
+def _dropped_href(href: str) -> bool:
+    lowered = href.lower()
+    return any(host in lowered for host in _DROPPED_HOSTS)
 
 
 def _add(links: list[dict[str, str]], seen: set[str], label: str, href: str | None) -> None:
-    if not href or href in seen:
+    if not href or href in seen or _dropped_href(href):
         return
     seen.add(href)
     links.append({"label": label, "href": href})
 
 
-def _listing_label(listing: dict) -> str:
+def _listing_label(listing: dict) -> str | None:
     source = str(listing.get("source") or "")
-    if source == "lono":
-        return "LONO"
-    if source == "zenox":
-        return "Zenox"
-    if source == "shipmytoy":
-        return "ShipMyToy"
+    if source in DROPPED_LINK_SOURCES:
+        return None
     if source == "yahoo_auctions_jp":
         return "Yahoo 拍賣"
-    return "來源刊登"
+    if source == "snkrdunk":
+        return "SNKRDUNK"
+    return None
 
 
 def build_reference_links(
@@ -97,13 +116,13 @@ def build_reference_links(
     snkr_url = str(item.get("snkrdunk_url") or watch.get("snkrdunk_url") or "").strip()
     if snkr_url.startswith("https://snkrdunk.com/"):
         _add(links, seen, "SNKRDUNK", snkr_url)
-    sources = set(item.get("sources") or [])
-    kind = str(item.get("kind") or watch.get("kind") or "psa10")
-
     concrete = [row for row in (listings or []) if row.get("url") and not is_wtb(row)]
     concrete.sort(key=lambda row: float(row.get("price_hkd") or 0))
     for row in concrete[:4]:
-        _add(links, seen, _listing_label(row), str(row.get("url")))
+        label = _listing_label(row)
+        if label is None:
+            continue
+        _add(links, seen, label, str(row.get("url")))
 
     jp = str(
         item.get("jp_query")
@@ -120,10 +139,6 @@ def build_reference_links(
             "Yahoo 已結束拍賣",
             f"{YAHOO_CLOSED}?{urlencode({'p': jp, 'ei': 'UTF-8'})}",
         )
-    if "lono" in sources and not any(link["label"] == "LONO" for link in links):
-        _add(links, seen, "LONO", LONO_BY_KIND.get(kind, LONO_BY_KIND["sealed"]))
-    if "zenox" in sources and not any(link["label"] == "Zenox" for link in links):
-        _add(links, seen, "Zenox", ZENOX_COLLECTION)
     return links
 
 

@@ -1,4 +1,4 @@
-"""Offline checks for HK title matching and shop catalog parsing."""
+"""Offline checks for title matching and the SNKRDUNK HKD ask pool."""
 from __future__ import annotations
 
 import sys
@@ -15,7 +15,6 @@ from sources.hk_match import (  # noqa: E402
     robust_median,
     unified_sell_asks,
 )
-from sources.hk_shops import parse_lono_cards, parse_shopline_cards, parse_zenox_products, sell_price  # noqa: E402
 from sources.snkrdunk import (  # noqa: E402
     PSA10_WEAR,
     build_ask_quote,
@@ -100,18 +99,6 @@ def test_base_gengar_skips_mega_and_eevee_skips_umbreon() -> None:
         rows, keyword="伊布 ex SAR PSA10", kind="psa10", name_zh="伊布 ex SAR PSA10", name_jp="イーブイex SAR PSA10"
     )
     assert [h["price_hkd"] for h in eevee] == [800]
-
-
-def test_lono_card_html() -> None:
-    html = """
-    <div class="title text-primary-color ">2025 POKEMON JAPANESE M2A MEGA CHARIZARD X EX 【PSA 10】</div>
-    <div class="quick-cart-price ">
-      <span class="global-primary dark-primary sl-price price">HK$13,000.00</span>
-    </div>
-    """
-    rows = parse_lono_cards(html)
-    assert len(rows) == 1
-    assert rows[0]["price"] == 13000
 
 
 def test_shiny_mew_rejects_151_listing() -> None:
@@ -248,56 +235,6 @@ def test_mega_dream_box_does_not_need_set_code_on_the_title() -> None:
         name_jp="メガドリームex BOX 未開封",
     )
     assert [h["price_hkd"] for h in hits] == [760, 780]
-
-
-def test_pack_price_is_not_the_box_ask() -> None:
-    assert sell_price("Booster Box", [25, 700]) == 700
-    assert sell_price("Booster Box", [1150, 1350]) == 1150
-    html = """
-    <div class="title text-primary-color ">Pokemon TCG日版 M5 深淵之瞳 Booster Box</div>
-    HK$20.00 HK$550.00
-    <div class="title text-primary-color ">Pokemon TCG日版 M6 綠寶石風暴 Booster Box</div>
-    售完 HK$1,199.00
-    """
-    rows = parse_shopline_cards(html, "shipmytoy")
-    assert [(r["card_name"], r["price"]) for r in rows] == [
-        ("Pokemon TCG日版 M5 深淵之瞳 Booster Box", 550),
-    ]
-
-
-def test_zenox_psa10_skips_psa9_and_sold_out() -> None:
-    payload = {
-        "products": [
-            {
-                "id": 1,
-                "title": "Pokemon - Charizard ex (JP) 201/165",
-                "variants": [
-                    {"title": "PSA 9", "available": True, "price": "4200.00"},
-                    {"title": "PSA 10", "available": True, "price": "7520.00"},
-                    {"title": "PSA 10", "available": False, "price": "1000.00"},
-                ],
-            },
-            {
-                "id": 2,
-                "title": "Pokemon - Pikachu (CN) 171/151",
-                "variants": [{"title": "PSA 10", "available": True, "price": "300.00"}],
-            },
-        ]
-    }
-    rows = parse_zenox_products(payload, graded=True)
-    assert len(rows) == 2
-    assert rows[0]["price"] == 7520
-    assert "PSA10" in rows[0]["card_name"]
-    item = {
-        "kind": "psa10",
-        "name_zh": "噴火龍 ex SAR PSA10",
-        "name_jp": "リザードンex SAR PSA10",
-        "search_hk": "噴火龍 SAR PSA10 151",
-        "set": "sv2a / 201/165",
-        "tcgdex_id": "SV2a-201",
-    }
-    hits = match_item(rows, item)
-    assert [h["price_hkd"] for h in hits] == [7520]
 
 
 def test_mew_and_mewtwo_do_not_share_a_substring() -> None:
@@ -685,15 +622,12 @@ if __name__ == "__main__":
     test_charizard_variants_do_not_cross_match()
     test_sealed_skips_case_dx_and_traditional_chinese()
     test_base_gengar_skips_mega_and_eevee_skips_umbreon()
-    test_lono_card_html()
     test_shiny_mew_rejects_151_listing()
     test_black_flame_box_skips_gift_set()
     test_multi_card_menu_and_m2a_are_rejected()
     test_primary_query_and_median()
     test_specific_names_seek_grade_and_card_number()
     test_mega_dream_box_does_not_need_set_code_on_the_title()
-    test_pack_price_is_not_the_box_ask()
-    test_zenox_psa10_skips_psa9_and_sold_out()
     test_mew_and_mewtwo_do_not_share_a_substring()
     test_charizard_without_set_or_number_is_rejected()
     test_listing_must_match_the_card_in_the_name()

@@ -3,7 +3,7 @@
 個人用、投機導向的日版 PSA10 鑑定卡＋未開封商品行情儀表板。顯示貨幣僅 **HKD**。  
 本目錄為本機 scaffold；之後會由 bot **每日同步**到你的 PC：`C:\Users\leosiu\Documents\pokemonTCG`。
 
-> `scripts/update.py` 會以溫和公開抓取更新真實行情。最近成交價以 SNKRDUNK 公開成交為主（港元），Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。最新賣出價係一個港元池：本地店賣盤（LONO、ShipMyToy、Zenox）加上 SNKRDUNK 現時放售（日圓按固定匯率換算）。多筆取中位數，最低賣出價係池入面最低；偏離 SNKRDUNK 市價帶（約 10%–300%）或對不上的刊登留空。詳情頁連到 SNKRDUNK。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
+> `scripts/update.py` 會以溫和公開抓取更新真實行情。最近成交價以 SNKRDUNK 公開成交為主（港元），Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。最新賣出價係 SNKRDUNK 現時放售（日圓按固定匯率換算港元）的中位數。最低賣出價係池入面最低。沒有放售就留空。詳情頁連到 SNKRDUNK 同 Yahoo 已結束拍賣。各源筆數見 `meta.source_status`（只會有 SNKRDUNK 同 Yahoo）。`update_stub.py` 仍可產生範例資料。
 
 ---
 
@@ -36,7 +36,7 @@ python -m http.server 8080
 | 畫面 | 欄位 | 意思 |
 |------|------|------|
 | 最近成交價 | `price_hkd` | SNKRDUNK 公開成交；沒有成交時先用接近的 Yahoo 已結束拍賣。一律港元 |
-| 最新賣出價 | `hk_ask_hkd` | 已核對賣盤的穩健中位數（本地賣盤 + SNKRDUNK 放售換算港元；只有一筆時即該賣價） |
+| 最新賣出價 | `hk_ask_hkd` | SNKRDUNK 現時放售換算港元後的穩健中位數（只有一筆時即該賣價） |
 | 最低賣出價 | `hk_ask_low_hkd` | 同一個港元池入面最低 |
 
 ---
@@ -47,7 +47,7 @@ python -m http.server 8080
 python scripts/update.py
 ```
 
-先收 SNKRDUNK 商品頁 **Hottest Items**（例：https://snkrdunk.com/en/trading-cards/704407?slide=right ，API `/en/v1/brands/pokemon/streetwears?department=tradingCard`），再用 search `sort=hottest` 填滿剩餘名額（上限約 200，見 `data/catalog/liquidity_rank.json`），然後抓 JP sold／HK asks。新卡若 series 未夠深，會用 closedsearch 回填每日點（按 date merge，唔會洗走舊歷史）。寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
+先收 SNKRDUNK 商品頁 **Hottest Items**（例：https://snkrdunk.com/en/trading-cards/704407?slide=right ，API `/en/v1/brands/pokemon/streetwears?department=tradingCard`），再用 search `sort=hottest` 填滿剩餘名額（上限約 200，見 `data/catalog/liquidity_rank.json`），然後抓 Yahoo 已結束拍賣同 SNKRDUNK 放售。新卡若 series 未夠深，會用 closedsearch 回填每日點（按 date merge，唔會洗走舊歷史）。寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
 
 90 日價格趨勢同成交量來自 SNKRDUNK 圖表，再按日期 merge 入 `data/history/series/{id}.json`（唔會洗走已有點）。PSA10 只用 used sales-chart 的 PSA10 option（`salesChartOptionId=22`），`range=threeMonths`；該段未開或冇點就改用 `all` 再裁到 90 日。每日價係當日圖點的中位數（只有一點時即該價），成交量係當日點數。3 個月／全部圖通常每日一個價位，所以嗰啲日的成交量係 1。未開封用新品 `sales-chart` 的「1個」；圖空先用 sales-history 的單件日期。冇 PSA10 成交就留空。詳情頁讀 series 檔，唔再用 `latest.json` 入面嗰一日快照。
 
@@ -77,7 +77,7 @@ python scripts/update_stub.py
 | `data/latest.json` | 最新快照（含 meta、items、三區塊 sections） |
 | `data/name_zh_map.json` | 日文→繁中對照（物種、系列、稀有度／商品詞）。`scripts/name_zh_map.translate()` 最長鍵優先 |
 | `data/history/` | 每日歷史（約保留 90 天；格式見內文說明） |
-| `scripts/update.py` | 真實更新管線：Yahoo JP + LONO／ShipMyToy／Zenox |
+| `scripts/update.py` | 真實更新管線：Yahoo JP + SNKRDUNK |
 | `scripts/backfill_snkrdunk_history.py` | 用 SNKRDUNK PSA10／未開封圖表回填約 90 日價格同成交量 |
 | `scripts/sources/` | 溫和 scrapers |
 | `scripts/update_stub.py` | 範例資料 stub（UI 測試） |
@@ -96,7 +96,7 @@ python scripts/update_stub.py
 - 匯率起始：`1 JPY = 0.0495 HKD`（可改）
 - 最低上架價：`min_list_price_hkd` = **HK$100**。有賣出價就用賣出價，否則用最近成交價；低過呢個數唔會出現喺清單。Hottest Items 的 `minPrice` 已是港元；搜尋標題係日圓 × 匯率。低過 HK$100 唔會掃入。冇可靠報價先至留空，唔會用其他等級嘅價頂上。
 - 歷史：約 90 天。趨勢同成交量由 SNKRDUNK PSA10（option 22）`threeMonths` 圖回填；未開封用「1個」sales-chart
-- 暫無推播；Facebook 本地店稍後再接
+- 暫無推播。資料源只有 SNKRDUNK 同 Yahoo。
 
 ---
 
