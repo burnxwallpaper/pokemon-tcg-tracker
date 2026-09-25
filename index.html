@@ -680,6 +680,41 @@
         .join("")}</div>`;
     }
 
+    function fieldText(value) {
+      return String(value || "").trim();
+    }
+
+    function primaryCardName(it) {
+      return fieldText(it && it.name_zh) || fieldText(it && it.name_jp);
+    }
+
+    function printSuffix(it, name) {
+      const setRaw = fieldText(it && it.set);
+      const setSplit = setRaw.match(/^(\S+)\s+\/\s+(.+)$/);
+      const setPretty = setSplit ? `${setSplit[1]} ${setSplit[2]}` : setRaw;
+      const parts = [];
+      const code = setPretty.split(" ")[0];
+      if (setPretty && (!code || !name.includes(code))) parts.push(setPretty);
+      const blob = [it && it.name_jp, it && it.name_zh].map(fieldText).join(" ");
+      const seen = new Set();
+      const re = /\b(PSA\s*10|SAR|MUR|CHR|CSR|SSR|BWR|FUR|MA|UR|SR|AR|RRR|HR|RR|BOX)\b/gi;
+      let match;
+      while ((match = re.exec(blob))) {
+        const label = match[1].toUpperCase().replace(/\s+/g, "");
+        if (seen.has(label)) continue;
+        seen.add(label);
+        if (!name.toUpperCase().replace(/\s+/g, "").includes(label)) parts.push(label);
+      }
+      return parts.join(" ");
+    }
+
+    function cardTitle(it) {
+      const name = primaryCardName(it);
+      if (!name) return "";
+      const suffix = printSuffix(it, name);
+      return suffix ? `${name} ${suffix}` : name;
+    }
+
     function cardHtml(it) {
       const kind = kindLabel(it.kind);
       const reasons = (it.move_reasons || [])
@@ -691,7 +726,7 @@
           <div class="card-body">
             <div class="card-top">
               <div>
-                <div class="card-name">${escapeHtml(it.name_zh)}</div>
+                <div class="card-name">${escapeHtml(cardTitle(it))}</div>
                 <div class="card-jp">${escapeHtml(it.name_jp || "")} · ${escapeHtml(it.set || "")}</div>
               </div>
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kind}</span>
@@ -803,7 +838,7 @@
             <div style="display:flex;align-items:center">
               ${imgHtml(it, "thumb")}
               <div>
-                <strong>${escapeHtml(it.name_zh)}</strong>${it.identity_review ? ` <span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
+                <strong>${escapeHtml(cardTitle(it))}</strong>${it.identity_review ? ` <span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
                 <div class="liq-names">${escapeHtml([it.name_jp, englishName(it)].filter(Boolean).join(" · "))}</div>
                 <div class="liq-names">${kindLabel(it.kind)} · ${escapeHtml(it.set || "")}</div>
               </div>
@@ -1040,7 +1075,7 @@
       const sub = document.getElementById("detailSub");
       const body = document.getElementById("detailBody");
 
-      title.textContent = it.name_zh;
+      title.textContent = cardTitle(it);
       sub.textContent = [it.name_jp, englishName(it), it.set].filter(Boolean).join(" · ");
 
       const sampleBadge = it.is_sample
