@@ -404,7 +404,14 @@
       font-weight: 700;
       font-variant-numeric: tabular-nums;
     }
-    .m-link { font-size: 0.75rem; font-weight: 700; }
+    .m-link,
+    .m-link:visited,
+    .m-link:hover,
+    .m-link:active {
+      color: var(--text);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
     @media (max-width: 599px) {
       main { padding: 0.75rem 0.65rem 2rem; }
       header { padding: 1rem 0.65rem 0.85rem; }
@@ -764,7 +771,7 @@
         <div class="m-line"><span>最近成交</span><strong>${fmtHkd(it.price_hkd)}</strong></div>
         <div class="m-line"><span>最新賣出價</span><strong>${fmtAskRange(it)}</strong></div>
         <div class="m-line"><span>流動性</span><strong>${it.liquidity_score ?? "—"}</strong></div>
-        <div class="m-line">${link}</div>
+        <div class="m-line"><span>參考連結</span>${link}</div>
       </div>`;
     }
 
