@@ -282,6 +282,13 @@
       background: var(--panel2);
       border: 1px solid var(--border);
     }
+    .card-art-hit {
+      display: inline-flex;
+      cursor: zoom-in;
+      touch-action: manipulation;
+      line-height: 0;
+    }
+    td.col-img { cursor: zoom-in; }
     .card-top {
       display: flex;
       justify-content: space-between;
@@ -637,6 +644,50 @@
       flex: 1;
       min-height: 280px;
     }
+    .card-art {
+      position: fixed;
+      inset: 0;
+      z-index: 450;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(6, 10, 16, 0.78);
+    }
+    .card-art.open { display: flex; }
+    .card-art-panel {
+      width: min(440px, 100%);
+      max-height: min(92vh, 820px);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      padding: 0.85rem 0.9rem 1rem;
+    }
+    .card-art-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.7rem;
+    }
+    .card-art-head h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .card-art-panel img {
+      width: auto;
+      max-width: 100%;
+      max-height: min(78vh, 680px);
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 12px;
+      background: var(--panel2);
+    }
     .sources-list {
       font-size: 0.8rem;
       color: var(--muted);
@@ -656,12 +707,15 @@
       .detail-stats { grid-template-columns: 1fr; }
       .chart-zoom { padding: 1rem; align-items: stretch; }
       .chart-zoom-panel { width: 100%; height: 100%; }
+      .card-art { padding: 0.75rem; align-items: stretch; }
+      .card-art-panel { width: 100%; max-height: 100%; }
+      .card-art-panel img { max-height: calc(100vh - 6.5rem); }
     }
   </style>
 </head>
 <body>
   <header>
-    <p class="site-version" id="siteVersion">版 2026-09-25.2106</p>
+    <p class="site-version" id="siteVersion">版 2026-09-25.2158</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <p class="subtitle">個人投機用 · 首頁係卡（PSA10）流動性 · 盒係次要 · 全部以 HKD 顯示 · 成交、賣出價分開標</p>
     <div class="meta-bar" id="metaBar">
@@ -728,6 +782,16 @@
         <button type="button" class="detail-close" id="chartZoomClose" aria-label="關閉">×</button>
       </div>
       <div class="chart-zoom-wrap"><canvas id="priceChartZoom"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card-art" id="cardArt" role="dialog" aria-modal="true" aria-labelledby="cardArtTitle" hidden>
+    <div class="card-art-panel" id="cardArtPanel">
+      <div class="card-art-head">
+        <h2 id="cardArtTitle">卡圖</h2>
+        <button type="button" class="detail-close" id="cardArtClose" aria-label="關閉">×</button>
+      </div>
+      <img id="cardArtImg" alt="" />
     </div>
   </div>
 
@@ -818,10 +882,13 @@
       return "./data/" + it.image.replace(/^\/?data\//, "");
     }
 
-    function imgHtml(it, cls) {
+    function imgHtml(it, cls, zoomable) {
       const src = imageSrc(it);
-      if (!src) return `<div class="${cls} placeholder">無圖</div>`;
-      return `<img class="${cls}" src="${escapeHtml(src)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} placeholder',textContent:'無圖'}))" />`;
+      const inner = !src
+        ? `<div class="${cls} placeholder">無圖</div>`
+        : `<img class="${cls}" src="${escapeHtml(src)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'${cls} placeholder',textContent:'無圖'}))" />`;
+      if (!zoomable) return inner;
+      return `<span class="card-art-hit">${inner}</span>`;
     }
 
     function fmtAsk(it) {
@@ -964,7 +1031,7 @@
         .join("");
       return `
         <article class="card" role="button" tabindex="0" data-id="${escapeHtml(it.id)}" title="點擊查看詳情">
-          ${imgHtml(it, "card-img")}
+          ${imgHtml(it, "card-img", true)}
           <div class="card-body">
             <div class="card-top">
               <div>
@@ -992,12 +1059,62 @@
       `;
     }
 
+    function cardArtTarget(node) {
+      if (!(node instanceof Element)) return false;
+      return !!node.closest(".card-art-hit, td.col-img");
+    }
+
+    let cardArtOpenedAt = 0;
+
+    function openCardArt(id) {
+      const it = itemsById[id];
+      const src = it ? imageSrc(it) : "";
+      if (!src) return;
+      const overlay = document.getElementById("cardArt");
+      const img = document.getElementById("cardArtImg");
+      const title = document.getElementById("cardArtTitle");
+      if (!overlay || !(img instanceof HTMLImageElement) || !title) return;
+      const label = cardTitle(it) || "卡圖";
+      title.textContent = label;
+      img.src = src;
+      img.alt = label;
+      cardArtOpenedAt = performance.now();
+      overlay.hidden = false;
+      overlay.classList.add("open");
+      const closeBtn = document.getElementById("cardArtClose");
+      if (closeBtn instanceof HTMLElement) closeBtn.focus();
+    }
+
+    function closeCardArt() {
+      const overlay = document.getElementById("cardArt");
+      if (!overlay) return;
+      overlay.classList.remove("open");
+      overlay.hidden = true;
+      const img = document.getElementById("cardArtImg");
+      if (img instanceof HTMLImageElement) img.removeAttribute("src");
+    }
+
+    function wireCardArt() {
+      document.getElementById("cardArtClose").addEventListener("click", closeCardArt);
+      document.getElementById("cardArt").addEventListener("click", (e) => {
+        if (e.target !== e.currentTarget) return;
+        if (performance.now() - cardArtOpenedAt < 500) return;
+        closeCardArt();
+      });
+    }
+
     function wireCardClicks(container) {
       container.querySelectorAll("[data-id]").forEach((el) => {
         const open = () => openDetail(el.getAttribute("data-id"));
         el.addEventListener("click", (e) => {
           const node = e.target instanceof Element ? e.target : e.target.parentElement;
           if (node && node.closest("a")) return;
+          if (node && cardArtTarget(node)) {
+            e.preventDefault();
+            e.stopPropagation();
+            openCardArt(el.getAttribute("data-id"));
+            return;
+          }
           open();
         });
         el.addEventListener("keydown", (e) => {
@@ -1137,11 +1254,11 @@
           (it, i) => `
         <tr data-id="${escapeHtml(it.id)}" tabindex="0" title="點擊查看詳情">
           <td class="col-rank">${i + 1}</td>
-          <td class="col-img">${imgHtml(it, "thumb")}</td>
+          <td class="col-img">${imgHtml(it, "thumb", true)}</td>
           <td class="col-info">
             ${mobileInfoHtml(it)}
             <div class="desk-name">
-              ${imgHtml(it, "thumb")}
+              ${imgHtml(it, "thumb", true)}
               <div>
                 <strong>${escapeHtml(cardTitle(it))}</strong>${it.name_zh_fallback ? ` <span class="badge" style="font-size:0.65rem">待譯</span>` : ""}${it.identity_review ? ` <span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
                 <div class="liq-names">${escapeHtml([it.name_jp, englishName(it)].filter(Boolean).join(" · "))}</div>
@@ -1544,6 +1661,11 @@
       });
       document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
+        const art = document.getElementById("cardArt");
+        if (art && art.classList.contains("open")) {
+          closeCardArt();
+          return;
+        }
         const zoom = document.getElementById("chartZoom");
         if (zoom && zoom.classList.contains("open")) {
           closeChartZoom(true);
@@ -1646,6 +1768,7 @@
       wireLiquiditySearch();
       wireLiquiditySort();
       wireDetail();
+      wireCardArt();
       try {
         const data = await loadData();
         document.getElementById("status").style.display = "none";
