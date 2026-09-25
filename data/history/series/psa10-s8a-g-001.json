@@ -1,6 +1,6 @@
 {
   "id": "psa10-s8a-g-001",
-  "name_zh": "ピカチュウV ビニールなし[S8a-G 001/015](25th アニバーサリー ゴールデンボックス)",
+  "name_zh": "皮卡丘V 無膠套[S8a-G 001/015](25週年紀念 黃金盒)",
   "name_jp": "ピカチュウV ビニールなし[S8a-G 001/015](25th アニバーサリー ゴールデンボックス)",
   "kind": "psa10",
   "set": "S8a-G / 001/015",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 7672.45,
-      "hk_ask_hkd": 7796.25,
+      "hk_ask_hkd": 7672.5,
       "volume": 0.0
     }
   ]

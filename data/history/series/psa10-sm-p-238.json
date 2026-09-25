@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm-p-238",
-  "name_zh": "ゼクロムGX: プロモ [SM-P 238](プロモーションカード「SM-P」)",
+  "name_zh": "捷克羅姆GX: 特典 [SM-P 238](特典卡「SM-P」)",
   "name_jp": "ゼクロムGX: プロモ [SM-P 238](プロモーションカード「SM-P」)",
   "kind": "psa10",
   "set": "SM-P / 238",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 2079.0,
-      "hk_ask_hkd": 3520.69,
+      "hk_ask_hkd": 3369.1,
       "volume": 0.0
     }
   ]

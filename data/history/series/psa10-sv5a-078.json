@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv5a-078",
-  "name_zh": "イーブイ AR [SV5a 078/066](強化拡張パック「クリムゾンヘイズ」)",
+  "name_zh": "伊布 AR [SV5a 078/066](強化擴充包「緋紅薄霧」)",
   "name_jp": "イーブイ AR [SV5a 078/066](強化拡張パック「クリムゾンヘイズ」)",
   "kind": "psa10",
   "set": "SV5a / 078/066",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 551.93,
-      "hk_ask_hkd": 571.11,
+      "price_hkd": 549.45,
+      "hk_ask_hkd": 569.25,
       "volume": 0.0
     }
   ]

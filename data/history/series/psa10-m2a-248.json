@@ -1,6 +1,6 @@
 {
   "id": "psa10-m2a-248",
-  "name_zh": "カナリィ SAR [M2a 248/193](ハイクラスパック「MEGAドリームex」)",
+  "name_zh": "卡娜莉 SAR [M2a 248/193](高級擴充包「超級進化夢想ex」)",
   "name_jp": "カナリィ SAR [M2a 248/193](ハイクラスパック「MEGAドリームex」)",
   "kind": "psa10",
   "set": "M2a / 248/193",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 385.51,
-      "hk_ask_hkd": 402.19,
+      "hk_ask_hkd": 399.1,
       "volume": 0.0
     }
   ]

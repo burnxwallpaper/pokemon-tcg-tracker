@@ -1,6 +1,6 @@
 {
   "id": "psa10-s8a-p-005",
-  "name_zh": "わるいギャラドス: プロモ[S8a-P 005/025](プロモカードパック 25th ANNIVERSARY edition)",
+  "name_zh": "邪惡暴鯉龍: 特典[S8a-P 005/025](特典卡包 25th ANNIVERSARY edition)",
   "name_jp": "わるいギャラドス: プロモ[S8a-P 005/025](プロモカードパック 25th ANNIVERSARY edition)",
   "kind": "psa10",
   "set": "S8a-P / 005/025",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 544.45,
-      "hk_ask_hkd": 737.28,
+      "price_hkd": 544.5,
+      "hk_ask_hkd": 685.17,
       "volume": 0.0
     }
   ]

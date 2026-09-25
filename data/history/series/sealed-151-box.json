@@ -1,6 +1,6 @@
 {
   "id": "sealed-151-box",
-  "name_zh": "151 補充包 BOX（未開封）",
+  "name_zh": "寶可夢卡牌151 BOX（未開封）",
   "name_jp": "ポケモンカード151 BOX 未開封",
   "kind": "sealed",
   "set": "SV2a",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 81,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -495,7 +495,7 @@
     {
       "date": "2026-09-25",
       "price_hkd": 2252.15,
-      "hk_ask_hkd": 2242.3,
+      "hk_ask_hkd": 2239.78,
       "volume": 1.0
     }
   ],

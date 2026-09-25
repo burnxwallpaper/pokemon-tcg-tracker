@@ -1,6 +1,6 @@
 {
   "id": "psa10-cll-008",
-  "name_zh": "ピカチュウ [CLL 008/032](ポケモンカードゲーム Classic)",
+  "name_zh": "皮卡丘 [CLL 008/032](寶可夢卡牌遊戲 Classic)",
   "name_jp": "ピカチュウ [CLL 008/032](ポケモンカードゲーム Classic)",
   "kind": "psa10",
   "set": "CLL / 008/032",
@@ -10,11 +10,11 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 863.78,
+      "price_hkd": 866.25,
       "hk_ask_hkd": 913.28,
       "volume": 0.0
     }

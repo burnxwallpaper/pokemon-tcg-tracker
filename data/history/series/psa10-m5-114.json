@@ -1,6 +1,6 @@
 {
   "id": "psa10-m5-114",
-  "name_zh": "メガダークライex SAR [M5 114/081](拡張パック「アビスアイ」)",
+  "name_zh": "超級達克萊伊ex SAR [M5 114/081](擴充包「深淵之瞳」)",
   "name_jp": "メガダークライex SAR [M5 114/081](拡張パック「アビスアイ」)",
   "kind": "psa10",
   "set": "M5 / 114/081",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1658.25,
-      "hk_ask_hkd": 1725.57,
+      "hk_ask_hkd": 1726.07,
       "volume": 0.0
     }
   ]

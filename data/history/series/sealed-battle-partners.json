@@ -1,6 +1,6 @@
 {
   "id": "sealed-battle-partners",
-  "name_zh": "對戰夥伴 BOX（未開封）",
+  "name_zh": "對戰搭檔 BOX（未開封）",
   "name_jp": "バトルパートナーズ BOX 未開封",
   "kind": "sealed",
   "set": "SV9",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 80,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-06-27",

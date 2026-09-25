@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv-p-261",
-  "name_zh": "ヒロシマのピカチュウ P [SV-P 261](スペシャルBOX「ポケモンセンターヒロシマ」)",
+  "name_zh": "廣島的皮卡丘 P [SV-P 261]",
   "name_jp": "ヒロシマのピカチュウ P [SV-P 261](スペシャルBOX「ポケモンセンターヒロシマ」)",
   "kind": "psa10",
   "set": "SV-P / 261",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 1329.08,
-      "hk_ask_hkd": 1348.88,
+      "price_hkd": 1331.55,
+      "hk_ask_hkd": 1336.5,
       "volume": 0.0
     }
   ]

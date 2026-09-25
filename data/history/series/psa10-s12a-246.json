@@ -1,6 +1,6 @@
 {
   "id": "psa10-s12a-246",
-  "name_zh": "カミツレのきらめき SR[s12a 246/172](ハイクラスパック「VSTARユニバース」)",
+  "name_zh": "小菊兒的閃耀 SR[s12a 246/172](高級擴充包「天地萬物VSTAR」)",
   "name_jp": "カミツレのきらめき SR[s12a 246/172](ハイクラスパック「VSTARユニバース」)",
   "kind": "psa10",
   "set": "s12a / 246/172",
@@ -10,11 +10,11 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 420.75,
+      "price_hkd": 419.46,
       "hk_ask_hkd": 470.25,
       "volume": 0.0
     }

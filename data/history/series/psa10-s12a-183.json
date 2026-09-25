@@ -1,6 +1,6 @@
 {
   "id": "psa10-s12a-183",
-  "name_zh": "ミュウ AR[s12a 183/172](ハイクラスパック「VSTARユニバース」)",
+  "name_zh": "夢幻 AR[s12a 183/172](高級擴充包「天地萬物VSTAR」)",
   "name_jp": "ミュウ AR[s12a 183/172](ハイクラスパック「VSTARユニバース」)",
   "kind": "psa10",
   "set": "s12a / 183/172",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 673.2,
-      "hk_ask_hkd": 723.92,
+      "hk_ask_hkd": 717.75,
       "volume": 0.0
     }
   ]

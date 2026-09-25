@@ -1,6 +1,6 @@
 {
   "id": "sealed-snkr-32870",
-  "name_zh": "ポケモンカードゲーム ソード&シールド 拡張パック スターバース ボックス (スタバ)",
+  "name_zh": "寶可夢卡牌遊戲 劍&盾 擴充包 星星誕生 盒",
   "name_jp": "ポケモンカードゲーム ソード&シールド 拡張パック スターバース ボックス (スタバ)",
   "kind": "sealed",
   "set": null,
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 980.1,
-      "hk_ask_hkd": 940.5,
+      "price_hkd": 977.62,
+      "hk_ask_hkd": 952.85,
       "volume": 0.0
     }
   ]

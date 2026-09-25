@@ -1,6 +1,6 @@
 {
   "id": "sealed-terastal-fest",
-  "name_zh": "太晶慶典 ex BOX（未開封）",
+  "name_zh": "太晶慶典ex BOX（未開封）",
   "name_jp": "テラスタルフェスex BOX 未開封",
   "kind": "sealed",
   "set": "SV8a",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 84,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-06-28",
@@ -512,7 +512,7 @@
     },
     {
       "date": "2026-09-25",
-      "price_hkd": 835.02,
+      "price_hkd": 836.25,
       "hk_ask_hkd": 841.45,
       "volume": 0.0
     }

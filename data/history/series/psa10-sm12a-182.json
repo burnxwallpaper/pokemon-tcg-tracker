@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm12a-182",
-  "name_zh": "ブラッキー&ダークライGX SR: SA[SM12a 182/173](ハイクラスパック「TAG TEAM GX タッグオールスターズ」)",
+  "name_zh": "月亮伊布&達克萊伊GX SR: SA[SM12a 182/173](高級擴充包「TAG TEAM GX 聯手明星大集合」)",
   "name_jp": "ブラッキー&ダークライGX SR: SA[SM12a 182/173](ハイクラスパック「TAG TEAM GX タッグオールスターズ」)",
   "kind": "psa10",
   "set": "SM12a / 182/173",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 13315.01,
-      "hk_ask_hkd": 12408.4,
+      "hk_ask_hkd": 12389.22,
       "volume": 0.0
     }
   ]

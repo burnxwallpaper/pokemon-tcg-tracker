@@ -1,6 +1,6 @@
 {
   "id": "psa10-s10a-073",
-  "name_zh": "ピカチュウ CHR[S10a 073/071](強化拡張パック「ダークファンタズマ」)",
+  "name_zh": "皮卡丘 CHR[S10a 073/071](強化擴充包「黑暗亡靈」)",
   "name_jp": "ピカチュウ CHR[S10a 073/071](強化拡張パック「ダークファンタズマ」)",
   "kind": "psa10",
   "set": "S10a / 073/071",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 719.73,
-      "hk_ask_hkd": 734.36,
+      "price_hkd": 717.75,
+      "hk_ask_hkd": 732.11,
       "volume": 0.0
     }
   ]

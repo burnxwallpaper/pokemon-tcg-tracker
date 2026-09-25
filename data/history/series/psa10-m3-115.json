@@ -1,6 +1,6 @@
 {
   "id": "psa10-m3-115",
-  "name_zh": "メイのはげまし SAR [M3 115/080](拡張パック「ムニキスゼロ」)",
+  "name_zh": "鳴依的勉勵 SAR [M3 115/080](擴充包「虛無歸零」)",
   "name_jp": "メイのはげまし SAR [M3 115/080](拡張パック「ムニキスゼロ」)",
   "kind": "psa10",
   "set": "M3 / 115/080",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1188.0,
-      "hk_ask_hkd": 1188.78,
+      "hk_ask_hkd": 1188.39,
       "volume": 0.0
     }
   ]

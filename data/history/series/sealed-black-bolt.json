@@ -1,6 +1,6 @@
 {
   "id": "sealed-black-bolt",
-  "name_zh": "黑雷 BOX（未開封）",
+  "name_zh": "漆黑伏特 BOX（未開封）",
   "name_jp": "ブラックボルト BOX 未開封",
   "kind": "sealed",
   "set": "SV11B",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 68,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-06-28",
@@ -416,7 +416,7 @@
     },
     {
       "date": "2026-09-25",
-      "price_hkd": 1025.14,
+      "price_hkd": 1019.7,
       "hk_ask_hkd": 1009.8,
       "volume": 0.0
     }

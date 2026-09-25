@@ -1,6 +1,6 @@
 {
   "id": "sealed-snkr-15595",
-  "name_zh": "ポケモンカードゲーム 25th アニバーサリー ゴールデンボックス",
+  "name_zh": "寶可夢卡牌遊戲 25週年紀念 黃金盒",
   "name_jp": "ポケモンカードゲーム 25th アニバーサリー ゴールデンボックス",
   "kind": "sealed",
   "set": null,
@@ -10,11 +10,11 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 10568.25,
+      "price_hkd": 10469.25,
       "hk_ask_hkd": 10194.52,
       "volume": 0.0
     }

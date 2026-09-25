@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv2d-091",
-  "name_zh": "ナンジャモ SR[SV2D 091/071](拡張パック「クレイバースト」)",
+  "name_zh": "奇樹 SR[SV2D 091/071](擴充包「碟旋暴擊」)",
   "name_jp": "ナンジャモ SR[SV2D 091/071](拡張パック「クレイバースト」)",
   "kind": "psa10",
   "set": "SV2D / 091/071",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 668.25,
-      "hk_ask_hkd": 860.07,
+      "price_hkd": 680.62,
+      "hk_ask_hkd": 866.25,
       "volume": 0.0
     }
   ]

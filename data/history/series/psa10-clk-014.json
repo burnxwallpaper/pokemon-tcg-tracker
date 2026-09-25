@@ -1,6 +1,6 @@
 {
   "id": "psa10-clk-014",
-  "name_zh": "ミュウツー [CLK 014/032](ポケモンカードゲーム Classic)",
+  "name_zh": "超夢 [CLK 014/032](寶可夢卡牌遊戲 Classic)",
   "name_jp": "ミュウツー [CLK 014/032](ポケモンカードゲーム Classic)",
   "kind": "psa10",
   "set": "CLK / 014/032",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 692.95,
-      "hk_ask_hkd": 712.75,
+      "hk_ask_hkd": 710.3,
       "volume": 0.0
     }
   ]

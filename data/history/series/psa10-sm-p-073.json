@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm-p-073",
-  "name_zh": "サトシのピカチュウ: プロモ[SM-P 073](プロモーションカード「SM-P」)",
+  "name_zh": "小智的皮卡丘: 特典[SM-P 073](特典卡「SM-P」)",
   "name_jp": "サトシのピカチュウ: プロモ[SM-P 073](プロモーションカード「SM-P」)",
   "kind": "psa10",
   "set": "SM-P / 073",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 7152.75,
-      "hk_ask_hkd": 7778.66,
+      "hk_ask_hkd": 7723.1,
       "volume": 0.0
     }
   ]

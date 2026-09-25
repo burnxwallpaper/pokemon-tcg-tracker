@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm-p-270",
-  "name_zh": "レッドのピカチュウ: プロモ[SM-P 270](プロモーションカード「SM-P」)",
+  "name_zh": "赤紅的皮卡丘: 特典[SM-P 270](特典卡「SM-P」)",
   "name_jp": "レッドのピカチュウ: プロモ[SM-P 270](プロモーションカード「SM-P」)",
   "kind": "psa10",
   "set": "SM-P / 270",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 6917.62,
-      "hk_ask_hkd": 8340.75,
+      "hk_ask_hkd": 8316.0,
       "volume": 0.0
     }
   ]

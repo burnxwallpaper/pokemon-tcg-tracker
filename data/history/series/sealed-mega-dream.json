@@ -1,6 +1,6 @@
 {
   "id": "sealed-mega-dream",
-  "name_zh": "超級夢想 ex BOX（未開封）",
+  "name_zh": "超級進化夢想ex BOX（未開封）",
   "name_jp": "MEGAドリームex BOX 未開封",
   "kind": "sealed",
   "set": "M2a",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 59,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-07-29",
@@ -362,7 +362,7 @@
     },
     {
       "date": "2026-09-25",
-      "price_hkd": 633.6,
+      "price_hkd": 618.75,
       "hk_ask_hkd": 598.95,
       "volume": 4.0
     }

@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv2a-170",
-  "name_zh": "ゼニガメ AR[SV2a 170/165](強化拡張パック「ポケモンカード151」)",
+  "name_zh": "傑尼龜 AR[SV2a 170/165](強化擴充包「寶可夢卡牌151」)",
   "name_jp": "ゼニガメ AR[SV2a 170/165](強化拡張パック「ポケモンカード151」)",
   "kind": "psa10",
   "set": "SV2a / 170/165",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 643.25,
-      "hk_ask_hkd": 693.0,
+      "hk_ask_hkd": 680.62,
       "volume": 0.0
     }
   ]

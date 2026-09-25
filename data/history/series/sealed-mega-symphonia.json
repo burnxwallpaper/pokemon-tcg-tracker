@@ -1,6 +1,6 @@
 {
   "id": "sealed-mega-symphonia",
-  "name_zh": "超級協奏 BOX（未開封）",
+  "name_zh": "超級交響樂 BOX（未開封）",
   "name_jp": "メガシンフォニア BOX 未開封",
   "kind": "sealed",
   "set": "M1S",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 86,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -525,7 +525,7 @@
     {
       "date": "2026-09-25",
       "price_hkd": 366.2,
-      "hk_ask_hkd": 368.75,
+      "hk_ask_hkd": 366.25,
       "volume": 7.0
     }
   ]

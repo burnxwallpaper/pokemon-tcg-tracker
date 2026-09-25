@@ -1,6 +1,6 @@
 {
   "id": "psa10-sn-001",
-  "name_zh": "ピカチュウV [SN 001/024](スタートデッキ100 コロコロコミックver.)",
+  "name_zh": "皮卡丘V [SN 001/024](起始牌組100 快樂快樂ver.)",
   "name_jp": "ピカチュウV [SN 001/024](スタートデッキ100 コロコロコミックver.)",
   "kind": "psa10",
   "set": "SN / 001/024",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 730.12,
-      "hk_ask_hkd": 1997.32,
+      "hk_ask_hkd": 1970.1,
       "volume": 0.0
     }
   ]

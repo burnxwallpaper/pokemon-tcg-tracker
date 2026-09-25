@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv11b-174",
-  "name_zh": "ゼクロムex BWR [SV11B 174/086](拡張パック「ブラックボルト」)",
+  "name_zh": "捷克羅姆ex BWR [SV11B 174/086](擴充包「漆黑伏特」)",
   "name_jp": "ゼクロムex BWR [SV11B 174/086](拡張パック「ブラックボルト」)",
   "kind": "psa10",
   "set": "SV11B / 174/086",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T18:19:59+08:00",
   "history": [
     {
       "date": "2026-09-25",
