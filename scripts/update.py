@@ -931,7 +931,7 @@ def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
 
 
 def _snkr_only_books(cfg: dict, jp_fresh: dict[str, dict]) -> dict[str, dict]:
-    """Keep the last sold price and volume. Replace the ask book when SNKRDUNK answered."""
+    """Keep a real sold price. An empty PSA10 book does not replay a raw-grade fill."""
     preserved = _jp_preserved_from_latest()
     out: dict[str, dict] = {}
     for item in cfg.get("watchlist") or []:
@@ -956,6 +956,20 @@ def _snkr_only_books(cfg: dict, jp_fresh: dict[str, dict]) -> dict[str, dict]:
             "jp_debug": prior.get("jp_debug"),
             "snkrdunk": snkr if isinstance(snkr, dict) else {},
         }
+        if fresh_snkr.get("ok") and not snkrdunk.psa10_quote_present(fresh_snkr):
+            source = str(prior.get("price_source") or "")
+            cleared = {
+                **base,
+                "price_jpy": None,
+                "price_source": "empty",
+                "status": "ok",
+            }
+            if source != "yahoo_auctions_jp":
+                cleared["median_jpy"] = None
+            else:
+                cleared["price_source"] = source
+            out[iid] = cleared
+            continue
         if isinstance(last, int) and last > 0:
             out[iid] = base
             continue
@@ -966,6 +980,19 @@ def _snkr_only_books(cfg: dict, jp_fresh: dict[str, dict]) -> dict[str, dict]:
             "status": "preserved",
         }
     return out
+
+
+def _drop_empty_psa10_preserved_asks(jp_by_id: dict[str, dict], hk_by_id: dict[str, dict]) -> None:
+    """No local listings means the stored HKD ask was the previous SNKRDUNK pool."""
+    for iid, jp in jp_by_id.items():
+        snkr = jp.get("snkrdunk") if isinstance(jp.get("snkrdunk"), dict) else {}
+        if not snkr.get("ok") or snkrdunk.psa10_quote_present(snkr):
+            continue
+        hk = hk_by_id.get(iid)
+        if not isinstance(hk, dict) or int(hk.get("listings_n") or 0) > 0:
+            continue
+        hk["median_hkd"] = None
+        hk["lowest_hkd"] = None
 
 
 def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, snkr_only: bool = False) -> dict:
@@ -1064,6 +1091,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
         jp_fresh, _hk_unused, source_status = fetch_all(fresh_cfg)
         jp_by_id = _snkr_only_books(cfg, jp_fresh)
         hk_by_id, hk_status = _hk_preserved_from_latest()
+        _drop_empty_psa10_preserved_asks(jp_by_id, hk_by_id)
         for bucket in hk_status.values():
             if isinstance(bucket, dict):
                 bucket["note"] = "Preserved HK asks; this run refreshed SNKRDUNK"

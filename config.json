@@ -48,7 +48,7 @@
     },
     "snkrdunk": {
       "enabled": true,
-      "note": "Catalog identity, last sale, and current asks. Those asks join the HKD sell-ask pool at fx_jpy_to_hkd. Local asks outside 10–300% of the SNKRDUNK PSA10 median (or BOX ask) are dropped."
+      "note": "Catalog identity, PSA10 last sale, and PSA10 asks only. Condition A/B/C/D never fills a PSA10 card. Those asks join the HKD sell-ask pool at fx_jpy_to_hkd. Local asks outside 10–300% of the SNKRDUNK PSA10 median (or BOX ask) are dropped."
     },
     "cardrush": {
       "enabled": false,
