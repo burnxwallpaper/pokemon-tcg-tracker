@@ -1154,7 +1154,6 @@
       const labels = history.map((p) => p.date);
       const hkAsk = history.map((p) => (p.hk_ask_hkd != null ? p.hk_ask_hkd : null));
       const jpRef = history.map((p) => p.price_hkd);
-      const vols = history.map((p) => p.volume);
 
       const hasHk = hkAsk.some((v) => v != null);
       const priceDatasets = [];
@@ -1182,8 +1181,7 @@
       });
 
       const priceCtx = document.getElementById("priceChart");
-      const volCtx = document.getElementById("volChart");
-      if (!priceCtx || !volCtx || typeof Chart === "undefined") return;
+      if (!priceCtx || typeof Chart === "undefined") return;
 
       const commonOpts = {
         responsive: true,
@@ -1198,9 +1196,6 @@
               label(ctx) {
                 const v = ctx.parsed.y;
                 if (v == null) return ctx.dataset.label + ": —";
-                if (ctx.dataset.label && ctx.dataset.label.includes("量")) {
-                  return ctx.dataset.label + ": " + v;
-                }
                 return ctx.dataset.label + ": HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 });
               },
             },
@@ -1231,36 +1226,6 @@
           type: "line",
           data: { labels, datasets: priceDatasets },
           options: commonOpts,
-        })
-      );
-
-      activeCharts.push(
-        new Chart(volCtx, {
-          type: "bar",
-          data: {
-            labels,
-            datasets: [
-              {
-                label: "成交量",
-                data: vols,
-                backgroundColor: "rgba(230, 192, 123, 0.55)",
-                borderColor: "#e6c07b",
-                borderWidth: 0,
-                borderRadius: 2,
-              },
-            ],
-          },
-          options: {
-            ...commonOpts,
-            scales: {
-              ...commonOpts.scales,
-              y: {
-                ticks: { color: "#8b9bb0", font: { size: 10 } },
-                grid: { color: "rgba(46,61,82,0.5)" },
-                beginAtZero: true,
-              },
-            },
-          },
         })
       );
     }
@@ -1331,10 +1296,6 @@
         <div class="chart-block">
           <h3>價格趨勢（約 90 日）</h3>
           <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
-        </div>
-        <div class="chart-block">
-          <h3>成交量（約 90 日）</h3>
-          <div class="chart-wrap"><canvas id="volChart"></canvas></div>
         </div>
         <div class="sources-list"><div style="margin-bottom:0.35rem">參考連結</div>${linksHtml(it)}</div>
         <div class="sources-list">抓取來源：${sources || "—"}</div>
