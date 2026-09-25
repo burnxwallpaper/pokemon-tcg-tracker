@@ -157,6 +157,9 @@ def main() -> int:
             f"https://burnxwallpaper.github.io/pokemon-tcg-tracker/?id={iid}",
             flush=True,
         )
+    from update import recompute_published_history
+
+    recompute_published_history(cfg)
     return 0
 
 

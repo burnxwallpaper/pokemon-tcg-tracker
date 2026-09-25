@@ -34,6 +34,7 @@ from sources.hk_match import unified_sell_asks  # noqa: E402
 from sources.reference_links import attach_public_quotes  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from zh_names import stamp_display_name  # noqa: E402
+from price_windows import change_windows  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
     merge_history_by_date,
@@ -91,22 +92,13 @@ def load_series(item_id: str) -> list[dict]:
     return load_series_points(item_id)
 
 
-def pct_change(curr: float | None, prev: float | None) -> float:
-    if curr is None or prev is None or prev == 0:
-        return 0.0
-    return round((curr - prev) / prev * 100.0, 2)
-
-
-def price_on_or_before(history: list[dict], target_date: str, field: str = "price_hkd") -> float | None:
-    """Last known value on or before target_date."""
-    val = None
-    for p in history:
-        d = p.get("date")
-        if not d or d > target_date:
-            break
-        if p.get(field) is not None:
-            val = float(p[field])
-    return val
+def _sold_price(value: object) -> float | None:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    price = float(value)
+    if price <= 0:
+        return None
+    return price
 
 
 def avg_volume(history: list[dict], days: int = 7) -> float:
@@ -431,8 +423,6 @@ def merge_and_compute(
     fx = float(cfg["fx_jpy_to_hkd"])
     hist_days = int(cfg.get("history_days", 90))
     today = now.date().isoformat()
-    day_1 = (now.date() - timedelta(days=1)).isoformat()
-    day_7 = (now.date() - timedelta(days=7)).isoformat()
 
     from discover_watchlist import pinned_ids
 
@@ -533,11 +523,8 @@ def merge_and_compute(
             })
             history.sort(key=lambda p: str(p.get("date") or ""))
 
-        prev_1 = price_on_or_before(history[:-1], day_1) if len(history) > 1 else None
-        prev_7 = price_on_or_before(history[:-1], day_7) if len(history) > 1 else None
-        # If we only have today, changes are 0 (honest — no fake sample drift)
-        short_pct = pct_change(price, prev_1) if price is not None else 0.0
-        med_pct = pct_change(price, prev_7) if price is not None else 0.0
+        # 1日 and 7日 are separate sold-price windows. A missing window stays null.
+        short_pct, med_pct = change_windows(history, today=today, current=price)
 
         vol_7d = avg_volume(history[:-1], 7) if len(history) > 1 else float(
             jp.get("volume_7d_est") or 0
@@ -749,14 +736,46 @@ def write_series_files(items: list[dict], meta: dict) -> int:
     return written
 
 
-def write_outputs(payload: dict) -> None:
+def _apply_windows(items: list[dict], today: str) -> None:
+    for it in items:
+        short_pct, med_pct = change_windows(
+            it.get("history") or [],
+            today=today,
+            current=_sold_price(it.get("price_hkd")),
+        )
+        it["short_change_pct"] = short_pct
+        it["medium_change_pct"] = med_pct
+
+
+def _section_payload(items: list[dict], cfg: dict) -> dict:
+    sections = compute_sections(items, cfg)
+    return {
+        "大異動": sections["big_moves"],
+        "流動性": sections["liquidity"],
+        "價差": sections["spreads"],
+    }
+
+
+def attach_series_history(items: list[dict], *, today: str, history_days: int) -> None:
+    """Merge on-disk sold series into each item, then set 1日 / 7日 from that series."""
+    for it in items:
+        iid = it.get("id")
+        if not isinstance(iid, str) or not iid:
+            continue
+        series = load_series(iid)
+        embedded = [p for p in (it.get("history") or []) if isinstance(p, dict)]
+        # Series sold prices win. An ask already stored on that date is kept when the
+        # series point has none — a missing ask is never filled with the sold price.
+        it["history"] = merge_history_by_date(
+            embedded, series, prefer_incoming=True, history_days=history_days
+        )
+    _apply_windows(items, today)
+
+
+def write_outputs(payload: dict, cfg: dict | None = None) -> None:
     watchlist = payload.pop("_watchlist", None) or []
     LATEST_PATH.parent.mkdir(parents=True, exist_ok=True)
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
-
-    with LATEST_PATH.open("w", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, indent=2)
-        f.write("\n")
 
     day = payload["meta"]["updated_at"][:10]
     history_doc = {
@@ -790,7 +809,9 @@ def write_outputs(payload: dict) -> None:
         json.dump(history_doc, f, ensure_ascii=False, indent=2)
         f.write("\n")
 
-    # Persist series (merge-by-date) + durable catalog (names / official images / tcgdex)
+    # Persist series first. write_series_merged reflects the merged points back onto
+    # each item; latest.json is written after that so a 1-point incoming quote cannot
+    # hide the sold series already on disk.
     n_series = 0
     try:
         from series_io import write_series_merged, write_catalog
@@ -798,6 +819,10 @@ def write_outputs(payload: dict) -> None:
         for it in payload["items"]:
             write_series_merged(it, payload["meta"], history_days=hist_days)
             n_series += 1
+        today = str(payload["meta"].get("updated_at") or "")[:10]
+        _apply_windows(payload["items"], today)
+        if cfg is not None:
+            payload["sections"] = _section_payload(payload["items"], cfg)
         cat_path = write_catalog(
             watchlist
             or [
@@ -823,6 +848,14 @@ def write_outputs(payload: dict) -> None:
         # Fallback to legacy series writer
         print(f"[warn] series_io catalog/series failed: {e}; using write_series_files")
         n_series = write_series_files(payload["items"], payload["meta"])
+        today = str(payload["meta"].get("updated_at") or "")[:10]
+        _apply_windows(payload["items"], today)
+        if cfg is not None:
+            payload["sections"] = _section_payload(payload["items"], cfg)
+
+    with LATEST_PATH.open("w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+        f.write("\n")
 
     n_hk = sum(1 for it in payload["items"] if it.get("hk_ask_hkd") is not None)
     n_jp = sum(1 for it in payload["items"] if it.get("price_jpy") is not None)
@@ -1218,9 +1251,70 @@ def refresh_psa10_ranks(cfg: dict) -> None:
     print(f"sealed_same={sealed_before == sealed_after} 流動性={len(sections['liquidity'])}", flush=True)
 
 
+def _quote_day(items: list[dict], fallback: str) -> str:
+    """Date the sold windows are measured from.
+
+    A recompute after midnight still describes the last scraped sale day. Using
+    the wall clock would treat that sale as both the current price and the
+    1-day baseline.
+    """
+    days: list[str] = []
+    for it in items:
+        if not isinstance(it, dict):
+            continue
+        for point in it.get("history") or []:
+            if isinstance(point, dict) and isinstance(point.get("date"), str):
+                days.append(point["date"])
+    if fallback in days:
+        return fallback
+    return max(days) if days else fallback
+
+
+def recompute_published_history(cfg: dict) -> None:
+    """Rebuild latest.json history and 1日/7日 from series files already on disk.
+
+    Does not fetch and does not invent prices. Sold points come from the series
+    merge; a day with no ask stays null.
+    """
+    if not LATEST_PATH.exists():
+        print("ERROR: missing data/latest.json", file=sys.stderr)
+        sys.exit(1)
+    payload = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+    items = payload.get("items")
+    if not isinstance(items, list):
+        print("ERROR: latest.json has no items", file=sys.stderr)
+        sys.exit(1)
+    now = datetime.now(HK_TZ)
+    meta = payload.setdefault("meta", {})
+    if not isinstance(meta, dict):
+        print("ERROR: latest.json meta is not an object", file=sys.stderr)
+        sys.exit(1)
+    meta["updated_at"] = now.isoformat(timespec="seconds")
+    hist_days = int(cfg.get("history_days") or meta.get("history_days") or 90)
+    before = sum(1 for it in items if isinstance(it, dict) and len(it.get("history") or []) <= 1)
+    quote_day = _quote_day(items, now.date().isoformat())
+    attach_series_history(items, today=quote_day, history_days=hist_days)
+    payload["sections"] = _section_payload(items, cfg)
+    after = sum(1 for it in items if isinstance(it, dict) and len(it.get("history") or []) <= 1)
+    blank = sum(
+        1
+        for it in items
+        if isinstance(it, dict) and it.get("short_change_pct") is None and it.get("medium_change_pct") is None
+    )
+    _write_latest(payload)
+    print(
+        f"[recompute] histN<=1 {before} -> {after} of {len(items)}; "
+        f"both windows blank {blank}; quote_day {quote_day}; updated_at {meta['updated_at']}",
+        flush=True,
+    )
+
+
 def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if "--recompute-series" in sys.argv:
+        recompute_published_history(load_config())
+        return
     if "--psa10-rank" in sys.argv:
         refresh_psa10_ranks(load_config())
         return
@@ -1245,7 +1339,7 @@ def main() -> None:
         jp_only=("--jp-only" in sys.argv),
         snkr_only=("--snkr-only" in sys.argv),
     )
-    write_outputs(payload)
+    write_outputs(payload, cfg)
     # Print source_status summary
     ss = payload["meta"].get("source_status") or {}
     print("--- source_status ---")

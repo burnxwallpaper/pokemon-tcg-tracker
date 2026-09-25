@@ -714,7 +714,7 @@
 </head>
 <body>
   <header>
-    <p class="site-version" id="siteVersion">版 2026-09-25.2349</p>
+    <p class="site-version" id="siteVersion">版 2026-09-26.0006</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
@@ -749,7 +749,7 @@
     <section id="sec-moves" class="section" aria-label="大異動">
       <div class="section-head">
         <h2>大異動</h2>
-        <span class="hint">1日／7日最近成交價變動或量能異常 · 跟上面卡／盒 · 點擊卡片看詳情</span>
+        <span class="hint">1日／7日最近成交價變動或量能異常 · 日子不夠顯示 — · 跟上面卡／盒 · 點擊卡片看詳情</span>
       </div>
       <div id="movesGrid"></div>
     </section>
@@ -836,6 +836,7 @@
     }
 
     function chgClass(pct) {
+      if (pct == null || Number.isNaN(Number(pct))) return "flat";
       if (pct > 0.05) return "up";
       if (pct < -0.05) return "down";
       return "flat";
@@ -1371,8 +1372,34 @@
       return fromFile;
     }
 
-    function priceChartOptions(large) {
+    function priceChartOptions(large, hasAsk) {
       const tickSize = large ? 12 : 10;
+      const moneyTick = {
+        color: "#8b9bb0",
+        font: { size: tickSize },
+        callback: (v) => "HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 }),
+      };
+      const scales = {
+        x: {
+          ticks: {
+            color: "#8b9bb0",
+            maxTicksLimit: large ? 10 : 6,
+            font: { size: tickSize },
+          },
+          grid: { color: "rgba(46,61,82,0.5)" },
+        },
+        y: {
+          ticks: moneyTick,
+          grid: { color: "rgba(46,61,82,0.5)" },
+        },
+      };
+      if (hasAsk) {
+        scales.y1 = {
+          position: "right",
+          ticks: { ...moneyTick, color: "#5b9fd4" },
+          grid: { drawOnChartArea: false },
+        };
+      }
       return {
         responsive: true,
         maintainAspectRatio: false,
@@ -1385,37 +1412,29 @@
             callbacks: {
               label(ctx) {
                 const v = ctx.parsed.y;
-                if (v == null) return ctx.dataset.label + ": —";
+                if (v == null || Number.isNaN(v)) return ctx.dataset.label + ": —";
                 return ctx.dataset.label + ": HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 });
               },
             },
           },
         },
-        scales: {
-          x: {
-            ticks: {
-              color: "#8b9bb0",
-              maxTicksLimit: large ? 10 : 6,
-              font: { size: tickSize },
-            },
-            grid: { color: "rgba(46,61,82,0.5)" },
-          },
-          y: {
-            ticks: {
-              color: "#8b9bb0",
-              font: { size: tickSize },
-              callback: (v) => "HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 }),
-            },
-            grid: { color: "rgba(46,61,82,0.5)" },
-          },
-        },
+        scales,
       };
+    }
+
+    function finitePrice(value) {
+      if (value == null || Number.isNaN(Number(value))) return null;
+      return Number(value);
     }
 
     function cloneChartData(model) {
       return {
         labels: model.labels.slice(),
-        datasets: model.datasets.map((ds) => ({ ...ds, data: ds.data.slice() })),
+        datasets: model.datasets.map((ds) => ({
+          ...ds,
+          data: ds.data.slice(),
+          pointRadius: Array.isArray(ds.pointRadius) ? ds.pointRadius.slice() : ds.pointRadius,
+        })),
       };
     }
 
@@ -1423,8 +1442,9 @@
       destroyCharts();
       closeChartZoom(false);
       const labels = history.map((p) => String(p.date));
-      const hkAsk = history.map((p) => (p.hk_ask_hkd != null ? p.hk_ask_hkd : null));
-      const jpRef = history.map((p) => p.price_hkd);
+      // Ask is only a real observation. A missing ask stays null — never the sold price.
+      const hkAsk = history.map((p) => finitePrice(p.hk_ask_hkd));
+      const jpRef = history.map((p) => finitePrice(p.price_hkd));
 
       const hasHk = hkAsk.some((v) => v != null);
       const priceDatasets = [];
@@ -1432,25 +1452,29 @@
         priceDatasets.push({
           label: "最新賣出價",
           data: hkAsk,
+          yAxisID: "y1",
           borderColor: "#5b9fd4",
           backgroundColor: "rgba(91,159,212,0.12)",
           borderWidth: 2,
-          pointRadius: 0,
-          tension: 0.25,
-          spanGaps: true,
+          pointRadius: hkAsk.map((v) => (v == null ? 0 : 3)),
+          pointHoverRadius: 4,
+          tension: 0,
+          spanGaps: false,
         });
       }
       priceDatasets.push({
         label: "最近成交價",
         data: jpRef,
+        yAxisID: "y",
         borderColor: hasHk ? "#8b9bb0" : "#5b9fd4",
         backgroundColor: "transparent",
         borderWidth: hasHk ? 1.5 : 2,
         borderDash: hasHk ? [4, 3] : [],
         pointRadius: 0,
         tension: 0.25,
+        spanGaps: false,
       });
-      priceChartModel = { labels, datasets: priceDatasets };
+      priceChartModel = { labels, datasets: priceDatasets, hasAsk: hasHk };
 
       const priceCtx = document.getElementById("priceChart");
       if (!priceCtx || typeof Chart === "undefined") return;
@@ -1466,7 +1490,7 @@
         new Chart(priceCtx, {
           type: "line",
           data: cloneChartData(priceChartModel),
-          options: priceChartOptions(false),
+          options: priceChartOptions(false, hasHk),
         })
       );
     }
@@ -1505,7 +1529,7 @@
         zoomChart = new Chart(canvas, {
           type: "line",
           data: cloneChartData(model),
-          options: priceChartOptions(true),
+          options: priceChartOptions(true, !!(model && model.hasAsk)),
         });
         const closeBtn = document.getElementById("chartZoomClose");
         if (closeBtn) closeBtn.focus();

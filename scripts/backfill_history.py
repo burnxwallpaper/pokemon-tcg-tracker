@@ -22,6 +22,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
+from price_windows import change_windows  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
     merge_history_by_date,
@@ -50,23 +51,6 @@ def load_latest() -> dict:
         return json.loads(LATEST_PATH.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError):
         return {}
-
-
-def pct_change(curr: float | None, prev: float | None) -> float:
-    if curr is None or prev is None or prev == 0:
-        return 0.0
-    return round((curr - prev) / prev * 100.0, 2)
-
-
-def price_on_or_before(history: list[dict], target_date: str, field: str = "price_hkd") -> float | None:
-    val = None
-    for p in history:
-        d = p.get("date")
-        if not d or d > target_date:
-            break
-        if p.get(field) is not None:
-            val = float(p[field])
-    return val
 
 
 def avg_volume(history: list[dict], days: int = 7) -> float:
@@ -177,8 +161,6 @@ def main() -> None:
 
     now = datetime.now(HK_TZ)
     today = now.date().isoformat()
-    day_1 = (now.date() - timedelta(days=1)).isoformat()
-    day_7 = (now.date() - timedelta(days=7)).isoformat()
 
     watchlist = cfg.get("watchlist") or []
     print(
@@ -262,15 +244,9 @@ def main() -> None:
         # Trim
         history = [p for p in history if p.get("date")][-hist_days:]
 
-        # Metrics from richer history
-        prev_1 = price_on_or_before(history, day_1) if len(history) > 1 else None
-        # If no point on day_1, price_on_or_before already walks; exclude today for lookback
         hist_before_today = [p for p in history if p.get("date") != today]
-        prev_1 = price_on_or_before(hist_before_today, day_1) if hist_before_today else None
-        prev_7 = price_on_or_before(hist_before_today, day_7) if hist_before_today else None
-
-        short_pct = pct_change(price, prev_1) if price is not None else 0.0
-        med_pct = pct_change(price, prev_7) if price is not None else 0.0
+        sold_now = price if isinstance(price, (int, float)) and not isinstance(price, bool) else None
+        short_pct, med_pct = change_windows(history, today=today, current=sold_now)
 
         # Re-resolve today_point after merge
         today_point = next((p for p in history if p.get("date") == today), None)
