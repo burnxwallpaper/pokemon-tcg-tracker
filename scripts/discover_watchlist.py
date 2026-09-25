@@ -507,11 +507,12 @@ def entry_for_tile(
     label = str(tile.get("label") or "").strip()
     if kind == "psa10":
         code = str(tile.get("set_code") or "card").lower()
-        number = int(str(tile.get("number")))
+        raw_number = str(tile.get("number"))
+        number = int(raw_number)
         iid = f"psa10-{code}-{number:03d}"
         if iid in used_ids:
             iid = f"psa10-{code}-{number:03d}-snkr-{apparel_id}"
-        set_field = f"{tile.get('set_code')} / {number}"
+        set_field = f"{tile.get('set_code')} / {raw_number}"
         denom = tile.get("denom")
         if denom:
             set_field = f"{set_field}/{denom}"

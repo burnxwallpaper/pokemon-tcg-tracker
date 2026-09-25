@@ -10,6 +10,7 @@ from sources.hk_match import _stated_rarity_conflict  # noqa: E402
 from sources.snkrdunk import (  # noqa: E402
     catalog_kind,
     choose_jp_price,
+    product_name_ok,
     choose_match,
     official_face_matches,
     parse_condition_asks,
@@ -115,6 +116,28 @@ def test_catalog_kind_skips_jewelry_and_keeps_cards_and_boxes() -> None:
     assert catalog_kind({"label": "リザードンex SAR [SV2a 201/165] [EN]", "set_code": "SV2a", "number": "201"}) is None
 
 
+def test_zero_padded_number_and_van_gogh_promo() -> None:
+    item = {
+        "id": "psa10-m1l-086",
+        "kind": "psa10",
+        "name_jp": "リーリエの決心 SR [M1L 086/063](拡張パック「メガブレイブ」)",
+        "name_zh": "リーリエの決心 SR [M1L 086/063](拡張パック「メガブレイブ」)",
+        "search_jp": "リーリエの決心 SR [M1L 086/063](拡張パック「メガブレイブ」)",
+        "set": "M1L / 86/063",
+    }
+    assert same_print(item, item["name_jp"])
+    promo = {
+        "id": "psa10-van-gogh-pikachu",
+        "kind": "psa10",
+        "name_jp": "ゴッホピカチュウ PSA10",
+        "set": "SVP EN / 085",
+    }
+    assert product_name_ok(
+        promo,
+        "ピカチュウ : プロモ [SVP EN 085](「ゴッホ展」) 【英語版】",
+    )
+
+
 def test_ur_does_not_match_sar() -> None:
     assert _stated_rarity_conflict("ピカチュウex SAR [SV8 136/106]", "ピカチュウex UR")
     assert _stated_rarity_conflict("ピカチュウex UR [SV8 132/106]", "ピカチュウex SAR")
@@ -134,5 +157,6 @@ if __name__ == "__main__":
     test_last_sale_replaces_yahoo_and_far_ask_blanks_it()
     test_face_must_encode_the_print()
     test_catalog_kind_skips_jewelry_and_keeps_cards_and_boxes()
+    test_zero_padded_number_and_van_gogh_promo()
     test_ur_does_not_match_sar()
     print("ok")

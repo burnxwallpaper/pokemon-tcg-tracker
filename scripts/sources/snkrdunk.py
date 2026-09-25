@@ -349,6 +349,11 @@ def _media_url(apparel: dict) -> str | None:
 
 def product_name_ok(item: dict, name: str) -> bool:
     """Page title is this watchlist print. EN reprints and other finishes fail."""
+    if str(item.get("id") or "") == "psa10-van-gogh-pikachu":
+        blob = name or ""
+        low = blob.lower()
+        if "ゴッホ" in blob or "grey felt hat" in low or "van gogh" in low:
+            return True
     if not name or _EN_REPRINT.search(name):
         return False
     if str(item.get("kind") or "") == "sealed":
@@ -434,7 +439,11 @@ def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) ->
     except (TypeError, ValueError, Exception) as exc:
         empty["error"] = type(exc).__name__
         return empty
-    name = str(apparel.get("name") or apparel.get("localizedName") or "")
+    local = apparel.get("localizedName")
+    english = apparel.get("name")
+    name = local.strip() if isinstance(local, str) and local.strip() else (
+        english.strip() if isinstance(english, str) else ""
+    )
     empty["name"] = name or None
     if not product_name_ok(item, name):
         empty["error"] = "identity_mismatch"
@@ -623,7 +632,10 @@ def same_print(item: dict, name: str) -> bool:
     if not found or not printed:
         return False
     code, number = found
-    if number != printed[0]:
+    try:
+        if int(number) != int(printed[0]):
+            return False
+    except ValueError:
         return False
     codes = {c.lower() for c in _identity_codes(item)}
     if codes and code not in codes:
