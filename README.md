@@ -38,7 +38,6 @@ python -m http.server 8080
 | 最近成交價 | `price_hkd` | SNKRDUNK 公開成交；沒有成交時先用接近的 Yahoo 已結束拍賣。一律港元 |
 | 最新賣出價 | `hk_ask_hkd` | 已核對賣盤的穩健中位數（本地賣盤 + SNKRDUNK 放售換算港元；只有一筆時即該賣價） |
 | 最低賣出價 | `hk_ask_low_hkd` | 同一個港元池入面最低 |
-| 買入價／徵求 | `hk_bid_hkd` | 只採用 HKCardLink 公開徵收（`listing_type=wtb`）而且有正數預算。Carousell、LONO、Zenox 冇結構化徵求，對不到就係 `null`（畫面 **暫無**），不會估算 |
 
 ---
 

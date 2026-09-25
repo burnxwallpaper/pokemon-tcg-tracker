@@ -484,14 +484,13 @@
 <body>
   <header>
     <h1>寶可夢 TCG 行情追蹤</h1>
-    <p class="subtitle">個人投機用 · 首頁係卡（PSA10）流動性 · 盒係次要 · 全部以 HKD 顯示 · 成交、賣出價、徵求分開標</p>
+    <p class="subtitle">個人投機用 · 首頁係卡（PSA10）流動性 · 盒係次要 · 全部以 HKD 顯示 · 成交、賣出價分開標</p>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
     </div>
     <nav class="cat-bar" role="tablist" aria-label="大類">
       <button class="cat active" type="button" data-kind="psa10" aria-pressed="true">卡 <span class="sub">PSA10</span> <span class="count"></span></button>
       <button class="cat" type="button" data-kind="sealed" aria-pressed="false">盒 <span class="sub">未開封</span> <span class="count"></span></button>
-      <button class="cat" type="button" data-kind="all" aria-pressed="false">兩邊 <span class="count"></span></button>
     </nav>
   </header>
 
@@ -508,7 +507,7 @@
         <h2>流動性</h2>
         <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
       </div>
-      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝已核對賣盤的中位數，包括本地賣盤同 SNKRDUNK 現時放售（日圓按頁首匯率換成港元）；對不上就留空。最低賣出價＝呢個池入面最低。買入價／徵求只顯示 HKCardLink 公開徵收預算；對唔到就顯示暫無，唔會估算。詳情有 SNKRDUNK 連結。</p>
+      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝已核對賣盤的中位數，包括本地賣盤同 SNKRDUNK 現時放售（日圓按頁首匯率換成港元）；對不上就留空。最低賣出價＝呢個池入面最低。詳情有 SNKRDUNK 連結。</p>
       <div class="liq-search">
         <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
         <span id="liqSearchCount" class="hint"></span>
@@ -519,7 +518,7 @@
     <section id="sec-moves" class="section" aria-label="大異動">
       <div class="section-head">
         <h2>大異動</h2>
-        <span class="hint">1日／7日最近成交價變動或量能異常 · 卡同盒分開列 · 點擊卡片看詳情</span>
+        <span class="hint">1日／7日最近成交價變動或量能異常 · 跟上面卡／盒 · 點擊卡片看詳情</span>
       </div>
       <div id="movesGrid"></div>
     </section>
@@ -565,7 +564,7 @@
     let itemsById = {};
     /** @type {object|null} */
     let currentMeta = null;
-    /** @type {"all"|"psa10"|"sealed"} */
+    /** @type {"psa10"|"sealed"} */
     let category = "psa10";
     let viewData = { moves: [], liquidity: [] };
     let liqQuery = "";
@@ -638,13 +637,15 @@
       return "—";
     }
 
-    function fmtBid(it) {
-      return it.hk_bid_hkd == null ? "暫無" : fmtHkd(it.hk_bid_hkd);
+    function isSeekLink(link) {
+      const label = String((link && link.label) || "");
+      const href = String((link && link.href) || "");
+      return label.includes("徵求") || label.includes("求購") || /(?:^|[?&])mode=wtb(?:&|$)/.test(href);
     }
 
     function referenceLinks(it) {
       if (Array.isArray(it.links) && it.links.length) {
-        return it.links.filter((link) => link && link.href && link.label);
+        return it.links.filter((link) => link && link.href && link.label && !isSeekLink(link));
       }
       const links = [];
       const jp = it.search_jp || it.name_jp || it.name_zh;
@@ -663,10 +664,6 @@
         links.push({
           label: "HKCardLink 搜尋",
           href: "https://www.hkcardlink.com/marketplace?q=" + encodeURIComponent(hk),
-        });
-        links.push({
-          label: "HKCardLink 徵求",
-          href: "https://www.hkcardlink.com/marketplace?mode=wtb&q=" + encodeURIComponent(hk),
         });
       }
       return links;
@@ -701,7 +698,6 @@
             </div>
             <div class="price">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
             <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
-            <div class="price-sub">買入價／徵求 ${fmtBid(it)}</div>
             ${linksHtml(it)}
             <div class="row">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
@@ -737,15 +733,20 @@
     }
 
     function groupsFor(list) {
-      const cards = (list || []).filter((it) => it.kind === "psa10");
-      const boxes = (list || []).filter((it) => it.kind === "sealed");
-      const both = [
-        { id: "psa10", title: "卡", sub: "PSA10 鑑定卡", items: cards },
-        { id: "sealed", title: "盒", sub: "未開封產品", items: boxes },
-      ];
-      if (category === "psa10") return [both[0]];
-      if (category === "sealed") return [both[1]];
-      return both;
+      if (category === "sealed") {
+        return [{
+          id: "sealed",
+          title: "盒",
+          sub: "未開封產品",
+          items: (list || []).filter((it) => it.kind === "sealed"),
+        }];
+      }
+      return [{
+        id: "psa10",
+        title: "卡",
+        sub: "PSA10 鑑定卡",
+        items: (list || []).filter((it) => it.kind === "psa10"),
+      }];
     }
 
     function catHead(group) {
@@ -811,7 +812,6 @@
           <td class="num" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
           <td class="num" title="已核對賣盤中位數（本地賣盤同 SNKRDUNK 放售，一律港元）">${fmtAsk(it)}</td>
           <td class="num" title="呢個賣盤池入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
-          <td class="num" title="只顯示 HKCardLink 公開徵收預算；否則暫無">${fmtBid(it)}</td>
           <td class="num"><strong>${it.liquidity_score ?? "—"}</strong></td>
           <td>${linksHtml(it)}</td>
         </tr>`
@@ -827,7 +827,6 @@
               <th>最近成交價</th>
               <th>最新賣出價</th>
               <th>最低賣出價</th>
-              <th>買入價／徵求</th>
               <th>流動性</th>
               <th>參考連結</th>
             </tr>
@@ -856,7 +855,7 @@
       const items = Object.values(itemsById);
       const nPsa = items.filter((it) => it.kind === "psa10").length;
       const nBox = items.filter((it) => it.kind === "sealed").length;
-      const counts = { all: nPsa + nBox, psa10: nPsa, sealed: nBox };
+      const counts = { psa10: nPsa, sealed: nBox };
       document.querySelectorAll(".cat").forEach((btn) => {
         const id = btn.getAttribute("data-kind");
         const on = id === category;
@@ -872,13 +871,17 @@
     function wireCategories() {
       const params = new URLSearchParams(location.search);
       const requested = params.get("kind");
-      if (requested === "psa10" || requested === "sealed" || requested === "all") {
-        category = requested;
+      if (requested === "sealed") {
+        category = "sealed";
+      } else if (requested) {
+        const url = new URL(location.href);
+        url.searchParams.delete("kind");
+        history.replaceState(null, "", url);
       }
       document.querySelectorAll(".cat").forEach((btn) => {
         btn.addEventListener("click", () => {
           const next = btn.getAttribute("data-kind");
-          if (next !== "all" && next !== "psa10" && next !== "sealed") return;
+          if (next !== "psa10" && next !== "sealed") return;
           category = next;
           const url = new URL(location.href);
           if (category === "psa10") url.searchParams.delete("kind");
@@ -1057,7 +1060,7 @@
               ${it.identity_review ? `<span class="badge">待核對</span>` : ""}
             </div>
             <div class="price" style="margin:0.2rem 0">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
-            <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)} · 買入價／徵求 ${fmtBid(it)}</div>
+            <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
             <div class="row" style="margin-top:0.5rem">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
               <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
@@ -1076,10 +1079,6 @@
           <div class="stat">
             <div class="label">最低賣出價</div>
             <div class="value">${fmtLow(it)}</div>
-          </div>
-          <div class="stat">
-            <div class="label">買入價／徵求</div>
-            <div class="value">${fmtBid(it)}</div>
           </div>
           <div class="stat">
             <div class="label">量能 vs 7日均</div>
@@ -1103,7 +1102,6 @@
           <div class="chart-wrap"><canvas id="volChart"></canvas></div>
         </div>
         <div class="sources-list"><div style="margin-bottom:0.35rem">參考連結</div>${linksHtml(it)}</div>
-        <p style="font-size:0.75rem;color:var(--muted);margin:0.65rem 0 0">${it.hk_bid_hkd == null ? "買入價／徵求顯示暫無：Carousell、LONO、Zenox 冇結構化徵求價；HKCardLink 徵收對不到正數預算時亦唔會估算。" : "買入價／徵求來自 HKCardLink 公開徵收預算。"}</p>
         <div class="sources-list">抓取來源：${sources || "—"}</div>
         <p style="font-size:0.72rem;color:var(--muted);margin:0.75rem 0 0">id: <code>${escapeHtml(it.id)}</code>${it.is_sample ? " · 範例序列（非正式行情）" : ""}</p>
       `;
