@@ -21,7 +21,7 @@
 |------|------|------|------|
 | **P0** | SNKRDUNK（https://snkrdunk.com/en/） | JP 身份＋市價主參考 | 目錄頁有正確卡名／編號／圖；密封品有公開成交，PSA10 有最低叫價。與 Yahoo 差太遠就信 SNKRDUNK 或留空 |
 | **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交交叉檢查 | 日版樣本大，但搜尋會混卡。只在和 SNKRDUNK 同一身份、價差不離譜時採用 median |
-| **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；價差區塊必要 |
+| **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；賣出價併入港元池，畫面不再分開價差分頁 |
 | **P1** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大；目前未接入 |
 | **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
 | **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |
@@ -66,7 +66,8 @@
 - **提供什麼**：公開目錄頁的卡名、系列、編號、商品圖，以及市價。密封品 `sales-history` 有最近成交。單卡 PSA10 公開的是該評級最低叫價（last sale 陣列常是空的）。參考連結用英文商品頁 `https://snkrdunk.com/en/trading-cards/{id}`。
 - **身份**：搜尋結果的 `[系列 編號]` 必須和 watchlist 是同一張卡。對不上就不貼連結、不拿來改價。待核對的列不猜。
 - **價格**：有公開成交就用成交中位數當最近成交價，Yahoo 只作對照。只有 PSA10 最低叫價時，Yahoo 成交中位數要落在叫價的 1.75 倍以內才保留；差更遠就留空，不用那個 Yahoo 數字，也不把叫價標成成交。
-- **香港市價帶**：同一商品的 used 列表裡，PSA10 叫價取中位數（少於兩筆才把已售 PSA10 補進）。未開封用 `minPrice`，沒有才用 `usedMinPrice`。換算 HKD 後，香港賣出價落在這條市價的 10%–300% 外就丢掉；寧可留空，也不顯示一個離譜數字。標題帶 `EN` 的英文再版不算同一張卡。151 BOX 不會採用單包、ETB 或其他卡的叫價。
+- **賣出價（港元）**：PSA10 在售叫價（已售唔算）的最低、中位、最高，以及未開封 `minPrice`，按 `fx_jpy_to_hkd` 換成港元後，同已核對的本地賣盤合成一個池。`hk_ask_hkd` 係池的穩健中位數，`hk_ask_low_hkd` 係最低。畫面只標港元。對不上商品就留空。
+- **本地市價帶**：同一商品的 used 列表裡，PSA10 叫價取中位數（少於兩筆才把已售 PSA10 補進，呢個中位數只用來篩本地賣盤，唔會當成放售）。未開封用 `minPrice`，沒有才用 `usedMinPrice`。換算 HKD 後，本地賣出價落在這條市價的 10%–300% 外就丢掉；寧可留空，也不顯示一個離譜數字。標題帶 `EN` 的英文再版不算同一張卡。151 BOX 不會採用單包、ETB 或其他卡的叫價。
 - **連結**：詳情頁參考連結第一條是 `https://snkrdunk.com/en/trading-cards/{id}`。
 - **抓取**：免登入 GET，沿用全站 ≥1.6 秒間隔。搜尋頁 `https://snkrdunk.com/search`、商品頁 `https://snkrdunk.com/apparels/{id}`、`/v1/apparels/{id}/sales-history`，PSA10 中位數另讀 `/v1/apparels/{id}/used`。不登入、不繞過。
 - **ToS**：服務條款可限制自動化；只讀公開頁、低頻、可在 `config.json` 關掉 `sources.snkrdunk`。

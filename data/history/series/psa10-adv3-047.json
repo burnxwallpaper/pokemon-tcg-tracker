@@ -1,0 +1,22 @@
+{
+  "id": "psa10-adv3-047",
+  "name_zh": "レックウザex ☆ [ADV3 047/054](拡張パック第3弾「天空の覇者」)",
+  "name_jp": "レックウザex ☆ [ADV3 047/054](拡張パック第3弾「天空の覇者」)",
+  "kind": "psa10",
+  "set": "ADV3 / 047/054",
+  "image": "images/psa10-adv3-047.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": null,
+      "volume": 0.0
+    }
+  ]
+}

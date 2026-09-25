@@ -23,6 +23,7 @@ Writes config.json watchlist + data/catalog/liquidity_rank.json.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -67,14 +68,23 @@ def discovery_settings(cfg: dict) -> dict[str, Any]:
     sealed = int(raw.get("sealed_slots") or 18)
     psa = max(0, min(psa, top_n))
     sealed = max(0, min(sealed, top_n - psa))
+    backend = str(raw.get("backend") or "yahoo").strip().lower()
     return {
         "enabled": bool(raw.get("enabled", True)),
+        "backend": backend,
         "refresh_hours": float(raw.get("refresh_hours") or 20),
         "window_days": int(raw.get("window_days") or 14),
         "psa10_slots": psa,
         "sealed_slots": sealed,
         "min_closed": int(raw.get("min_closed") or 1),
         "top_n": top_n,
+        "pages": max(1, int(raw.get("pages") or 10)),
+        "min_selected": int(raw.get("min_selected") or (80 if backend == "snkrdunk" else 45)),
+        "method": (
+            "snkrdunk_hottest"
+            if backend == "snkrdunk"
+            else "yahoo_closedsearch_totalResultsAvailable"
+        ),
     }
 
 
@@ -164,6 +174,9 @@ def _rank_is_fresh(settings: dict) -> bool:
     except (json.JSONDecodeError, OSError):
         return False
     if not doc.get("applied"):
+        return False
+    expected = settings.get("method")
+    if expected and doc.get("method") != expected:
         return False
     stamp = doc.get("updated_at")
     if not stamp:
@@ -286,6 +299,7 @@ def watchlist_entry(cand: dict) -> dict:
         "image_official_url",
         "image_note",
         "identity_review",
+        "snkrdunk_apparel_id",
     )
     out: dict[str, Any] = {}
     for key in keys:
@@ -310,6 +324,8 @@ def write_rank_file(
     applied: bool,
     fatal: str | None,
     now: datetime,
+    method: str | None = None,
+    method_note: str | None = None,
 ) -> None:
     selected = set(selected_ids)
     rankings = []
@@ -328,8 +344,8 @@ def write_rank_file(
         "timezone": "Asia/Hong_Kong",
         "applied": applied,
         "fatal": fatal,
-        "method": "yahoo_closedsearch_totalResultsAvailable",
-        "method_note": (
+        "method": method or "yahoo_closedsearch_totalResultsAvailable",
+        "method_note": method_note or (
             "Primary liquidity key is Yahoo closedsearch totalResultsAvailable "
             "for each seed keyword (closed comps still indexed, typically ~120 days). "
             "window_count is the number of those comps on the first page (n=20) whose "
@@ -377,6 +393,283 @@ def persist_missing_pins(cfg: dict) -> dict:
     return load_config()
 
 
+def _print_key(set_code: str | None, number: str | None) -> str | None:
+    if not set_code or not number or not str(number).isdigit():
+        return None
+    return f"{str(set_code).lower()}:{int(number):03d}"
+
+
+def watch_print_keys(item: dict) -> set[str]:
+    """Set code + collector number, from the set field and from tcgdex id."""
+    from sources.jp_match import _item_fraction, _item_set_code
+
+    keys: set[str] = set()
+    code = _item_set_code(item)
+    frac = _item_fraction(item)
+    if code and frac:
+        key = _print_key(code, frac[0])
+        if key:
+            keys.add(key)
+    found = re.match(r"([A-Za-z]+\d+[A-Za-z]*)-(\d{2,3})$", str(item.get("tcgdex_id") or ""))
+    if found:
+        key = _print_key(found.group(1), found.group(2))
+        if key:
+            keys.add(key)
+    return keys
+
+
+def _sealed_identity(item: dict) -> str:
+    from sources.jp_match import _identity
+
+    return _identity(item)
+
+
+def _index_existing(watchlist: list[dict]) -> tuple[dict[str, dict], dict[str, dict]]:
+    by_print: dict[str, dict] = {}
+    sealed_groups: dict[str, list[dict]] = {}
+    for item in watchlist:
+        if not isinstance(item, dict) or item.get("kind") not in ALLOWED_KINDS:
+            continue
+        if item.get("kind") == "psa10":
+            for key in watch_print_keys(item):
+                by_print.setdefault(key, item)
+            continue
+        ident = _sealed_identity(item)
+        if len(ident) >= 4:
+            sealed_groups.setdefault(ident, []).append(item)
+    sealed_unique = {key: rows[0] for key, rows in sealed_groups.items() if len(rows) == 1}
+    return by_print, sealed_unique
+
+
+def scrub_face(entry: dict) -> dict:
+    """Drop a single's official URL when it is not this set and collector number."""
+    if entry.get("kind") == "sealed":
+        return entry
+    url = str(entry.get("image_official_url") or "").strip()
+    if not url:
+        return entry
+    keys = watch_print_keys(entry)
+    if not keys:
+        return entry
+    from sources.snkrdunk import official_face_matches
+
+    out = dict(entry)
+    for key in keys:
+        code, number = key.split(":", 1)
+        if official_face_matches(url, code, number):
+            return entry
+    out["image_official_url"] = None
+    note = str(out.get("image_note") or "")
+    if "cleared:" not in note:
+        out["image_note"] = (
+            (note + "; " if note else "")
+            + "cleared: URL does not encode this set and collector number"
+        )
+    return out
+
+
+def _reuse_sealed(tile: dict, sealed_unique: dict[str, dict]) -> dict | None:
+    from sources.jp_match import _norm
+
+    label = _norm(str(tile.get("label") or ""))
+    hits = [(ident, item) for ident, item in sealed_unique.items() if ident and ident in label]
+    if not hits:
+        return None
+    hits.sort(key=lambda pair: len(pair[0]), reverse=True)
+    best = len(hits[0][0])
+    top = [item for ident, item in hits if len(ident) == best]
+    if len(top) != 1:
+        return None
+    return dict(top[0])
+
+
+def entry_for_tile(
+    tile: dict,
+    kind: str,
+    by_print: dict[str, dict],
+    sealed_unique: dict[str, dict],
+    used_ids: set[str],
+) -> dict:
+    """Reuse a watchlist id for the same print, or mint one from the SNKRDUNK label."""
+    apparel_id = str(tile.get("apparel_id") or "")
+    reused: dict | None = None
+    if kind == "psa10":
+        key = _print_key(tile.get("set_code"), tile.get("number"))
+        found = by_print.get(key) if key else None
+        if found:
+            reused = dict(found)
+    else:
+        reused = _reuse_sealed(tile, sealed_unique)
+    if reused and reused.get("id"):
+        reused["snkrdunk_apparel_id"] = apparel_id
+        used_ids.add(str(reused["id"]))
+        return scrub_face(reused)
+    label = str(tile.get("label") or "").strip()
+    if kind == "psa10":
+        code = str(tile.get("set_code") or "card").lower()
+        raw_number = str(tile.get("number"))
+        number = int(raw_number)
+        iid = f"psa10-{code}-{number:03d}"
+        if iid in used_ids:
+            iid = f"psa10-{code}-{number:03d}-snkr-{apparel_id}"
+        set_field = f"{tile.get('set_code')} / {raw_number}"
+        denom = tile.get("denom")
+        if denom:
+            set_field = f"{set_field}/{denom}"
+    else:
+        iid = f"sealed-snkr-{apparel_id}"
+        if iid in used_ids:
+            iid = f"sealed-snkr-{apparel_id}-b"
+        set_field = ""
+    used_ids.add(iid)
+    return {
+        "id": iid,
+        "name_zh": label,
+        "name_jp": label,
+        "kind": kind,
+        "set": set_field,
+        "search_jp": label,
+        "search_hk": label,
+        "snkrdunk_apparel_id": apparel_id,
+        "image_official_url": None,
+        "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
+    }
+
+
+def _attach_van_gogh(chosen: list[dict], *, interval: float) -> None:
+    """One extra search so the pinned promo keeps a SNKRDUNK id when it is listed."""
+    card = next((row for row in chosen if row.get("id") == "psa10-van-gogh-pikachu"), None)
+    if card is None or str(card.get("snkrdunk_apparel_id") or "").isdigit():
+        return
+    from sources._http import polite_get
+    from sources.snkrdunk import SEARCH_URL, parse_tiles
+
+    try:
+        resp = polite_get(
+            SEARCH_URL,
+            params={"keywords": "ゴッホ ピカチュウ"},
+            min_interval=interval,
+            timeout=25,
+            headers={"Accept-Language": "ja,en;q=0.8"},
+        )
+    except Exception as exc:
+        print(f"[discover] van gogh search skipped: {type(exc).__name__}", flush=True)
+        return
+    if resp.status_code != 200:
+        print(f"[discover] van gogh search HTTP {resp.status_code}", flush=True)
+        return
+    for tile in parse_tiles(resp.text):
+        label = str(tile.get("label") or "")
+        if "ゴッホ" in label and "ピカチュウ" in label:
+            card["snkrdunk_apparel_id"] = str(tile["apparel_id"])
+            print(f"[discover] van gogh apparel {card['snkrdunk_apparel_id']}", flush=True)
+            return
+    print("[discover] van gogh not on the first SNKRDUNK page", flush=True)
+
+
+def refresh_from_snkrdunk(cfg: dict, settings: dict, *, force: bool = False) -> dict:
+    """Replace the watchlist from SNKRDUNK hottest search, up to top_n.
+
+    A short or blocked scrape does not shrink the list. Pinned ids are appended
+    after the cap. Series files for ids that drop out stay on disk.
+    """
+    _stdout_utf8()
+    if not settings["enabled"] and not force:
+        print("[discover] disabled in config", flush=True)
+        return persist_missing_pins(cfg)
+    if not force and _rank_is_fresh(settings):
+        print("[discover] SNKRDUNK rank is fresh; keeping watchlist", flush=True)
+        return persist_missing_pins(cfg)
+
+    from sources.snkrdunk import catalog_kind, collect_hottest_tiles
+
+    interval = float(cfg.get("request_min_interval_sec") or 1.6)
+    pages = int(settings["pages"])
+    print(
+        f"[discover] SNKRDUNK hottest × {pages} pages "
+        f"(cap={settings['top_n']}, psa10={settings['psa10_slots']}, "
+        f"sealed={settings['sealed_slots']}, interval≥{interval}s)",
+        flush=True,
+    )
+    tiles = collect_hottest_tiles(pages=pages, min_interval=interval)
+    print(f"[discover] hottest catalog hits={len(tiles)}", flush=True)
+    watchlist = [w for w in (cfg.get("watchlist") or []) if isinstance(w, dict)]
+    by_print, sealed_unique = _index_existing(watchlist)
+    used_ids = {str(w.get("id")) for w in watchlist if w.get("id")}
+    rows: list[dict] = []
+    entries: dict[str, dict] = {}
+    for index, tile in enumerate(tiles):
+        kind = catalog_kind(tile)
+        if kind not in ALLOWED_KINDS:
+            continue
+        entry = entry_for_tile(tile, kind, by_print, sealed_unique, used_ids)
+        iid = str(entry.get("id") or "")
+        if not iid or iid in entries:
+            continue
+        entries[iid] = entry
+        rows.append(
+            {
+                "id": iid,
+                "kind": kind,
+                "name_zh": entry.get("name_zh"),
+                "search_jp": entry.get("search_jp"),
+                "total_available": 100000 - index,
+                "window_count": 0,
+                "status": "ok",
+            }
+        )
+    now = datetime.now(HK_TZ)
+    selected_rows = select_membership(
+        rows,
+        top_n=settings["top_n"],
+        psa10_slots=settings["psa10_slots"],
+        sealed_slots=settings["sealed_slots"],
+        min_closed=1,
+    )
+    applied = len(selected_rows) >= int(settings["min_selected"])
+    selected_ids: list[str] = []
+    if applied:
+        chosen = [entries[row["id"]] for row in selected_rows if row["id"] in entries]
+        pool = {str(w["id"]): scrub_face(dict(w)) for w in watchlist if w.get("id")}
+        for entry in chosen:
+            pool[str(entry["id"])] = entry
+        chosen = append_pinned(chosen, pool, pinned_ids(cfg))
+        _attach_van_gogh(chosen, interval=interval)
+        selected_ids = [str(c["id"]) for c in chosen]
+        write_config_watchlist(cfg, chosen)
+        n_psa = sum(1 for c in chosen if c.get("kind") == "psa10")
+        n_sealed = sum(1 for c in chosen if c.get("kind") == "sealed")
+        print(
+            f"[discover] watchlist={len(chosen)} psa10={n_psa} sealed={n_sealed}",
+            flush=True,
+        )
+    else:
+        print(
+            f"[discover] not applying (selected={len(selected_rows)}, "
+            f"need {settings['min_selected']}); config watchlist unchanged",
+            flush=True,
+        )
+        cfg = persist_missing_pins(cfg)
+    write_rank_file(
+        settings=settings,
+        rows=rows,
+        selected_ids=selected_ids,
+        applied=applied,
+        fatal=None,
+        now=now,
+        method="snkrdunk_hottest",
+        method_note=(
+            "SNKRDUNK public search sort=hottest for ポケモンカード, PSA10, and ボックス. "
+            "First-seen order is the liquidity rank. Cap is top_n with psa10_slots and sealed_slots. "
+            "Fewer than min_selected hits does not replace the watchlist. "
+            "The same set and collector number keeps its existing id and Chinese name. "
+            "config.pinned ids stay even outside the cap. "
+            "Ids that leave the active watchlist keep series, images, and per-id catalog files."
+        ),
+    )
+    return load_config()
+
+
 def refresh_watchlist(cfg: dict | None = None, *, force: bool = False) -> dict:
     """Probe seeds and rewrite config watchlist when a full ranking succeeds."""
     _stdout_utf8()
@@ -385,6 +678,8 @@ def refresh_watchlist(cfg: dict | None = None, *, force: bool = False) -> dict:
     if not settings["enabled"] and not force:
         print("[discover] disabled in config", flush=True)
         return persist_missing_pins(cfg)
+    if settings["backend"] == "snkrdunk":
+        return refresh_from_snkrdunk(cfg, settings, force=force)
     if not force and _rank_is_fresh(settings):
         print("[discover] liquidity rank is fresh; keeping watchlist", flush=True)
         return persist_missing_pins(cfg)

@@ -452,8 +452,32 @@ def _has_token(text: str, token: str) -> bool:
     return re.search(rf"(^|[^a-z0-9]){token}([^a-z0-9]|$)", text.lower()) is not None
 
 
+_RARITY_TOKENS = ("sar", "sr", "ur", "ar", "hr", "mur", "csr", "chr", "sa", "rr")
+_GOLD_FINISH = re.compile(
+    r"(?<!ハート)ゴールド|(?<!heart )(?<!yellow )\bgold\b|金色",
+    re.I,
+)
+
+
+def _stated_rarities(text: str) -> set[str]:
+    """Rarity and gold-finish tokens. HeartGold / Yellow Gold are not a gold card."""
+    found = {tok for tok in _RARITY_TOKENS if _has_token(text, tok)}
+    if _GOLD_FINISH.search(text or ""):
+        found.add("gold")
+    if "special art" in (text or "").lower():
+        found.add("sar")
+    return found
+
+
 def _stated_rarity_conflict(title: str, query: str) -> bool:
-    """A title that names a different rarity is not this card, even with the same number."""
+    """A title that names a different rarity or finish is not this card.
+
+    Gold / UR must not resolve to a SAR, SR, or base print, and the reverse.
+    """
+    title_r = _stated_rarities(title)
+    query_r = _stated_rarities(query)
+    if title_r and query_r and title_r.isdisjoint(query_r):
+        return True
     if _has_token(query, "sr") and not _has_token(query, "sar"):
         return _has_token(title, "sar") or _has_token(title, "ar")
     if not (_has_token(query, "sar") or "special art" in query.lower()):
@@ -930,8 +954,38 @@ def _closest_url(rows: list[dict], price: float) -> str | None:
     return str(url) if url else None
 
 
+def unified_sell_asks(
+    hk_prices_hkd: list[float],
+    snkr_asks_jpy: list[int],
+    fx: float,
+) -> tuple[float | None, float | None]:
+    """Median and lowest of one HKD ask pool.
+
+    Local listing prices are already HKD. SNKRDUNK asks are yen converted at ``fx``.
+    Returns ``(median_hkd, lowest_hkd)``. An empty pool stays empty.
+    """
+    pool: list[float] = []
+    for price in hk_prices_hkd:
+        try:
+            value = float(price)
+        except (TypeError, ValueError):
+            continue
+        if value > 0:
+            pool.append(value)
+    rate = float(fx)
+    for raw in snkr_asks_jpy:
+        if isinstance(raw, bool) or not isinstance(raw, (int, float)):
+            continue
+        if raw <= 0 or rate <= 0:
+            continue
+        pool.append(round(float(raw) * rate, 2))
+    if not pool:
+        return None, None
+    return robust_median(pool), lowest_ask(pool)
+
+
 def publish_ask(listings: list[dict], jp_hkd: float | None) -> dict[str, Any]:
-    """Price we are willing to show as 香港最新賣出價.
+    """Price we are willing to show as a sell ask.
 
     Several matches inside 10–300% of the JP sold median publish their median.
     One listing is kept only when the title carries the set code or collector

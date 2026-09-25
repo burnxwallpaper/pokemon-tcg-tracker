@@ -8,7 +8,7 @@
   "search_jp": "ゴッホ ピカチュウ PSA10",
   "search_hk": "梵高比卡超 PSA10",
   "tcgdex_id": "SVP-085",
-  "image": "images/psa10-van-gogh-pikachu.png",
+  "image": "images/psa10-van-gogh-pikachu.webp",
   "image_official_url": "https://www.pokemon.com/static-assets/content-assets/cms2/img/cards/web/SVP/SVP_EN_85.png",
   "image_note": "official_card pokemon.com SVP EN 085 Pikachu with Grey Felt Hat",
   "image_source": "official",
@@ -16,5 +16,5 @@
   "history_points": 26,
   "first_seen": "2026-07-01",
   "last_seen": "2026-09-25",
-  "updated_at": "2026-09-25T09:00:24+08:00"
+  "updated_at": "2026-09-25T10:08:51+08:00"
 }

@@ -8,13 +8,13 @@
   "search_jp": "メガリザードンXex SAR PSA10",
   "search_hk": "超級噴火龍X SAR PSA10",
   "tcgdex_id": "M2-110",
-  "image": "images/psa10-mega-charizard-x-ex.jpg",
-  "image_official_url": "https://www.pokemon-card.com/assets/images/card_images/large/M2/048522_P_MRIZADONXEX.jpg",
-  "image_note": "official card scan pokemon-card.com M2 メガリザードンXex",
+  "image": "images/psa10-mega-charizard-x-ex.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/13eca26e-6c94-43d7-be39-b9e2e083192e.webp",
+  "image_note": "official card scan pokemon-card.com M2 メガリザードンXex; cleared: URL does not encode this set and collector number",
   "image_source": "official",
   "series_path": "history/series/psa10-mega-charizard-x-ex.json",
   "history_points": 67,
   "first_seen": "2026-06-27",
   "last_seen": "2026-09-25",
-  "updated_at": "2026-09-25T09:00:24+08:00"
+  "updated_at": "2026-09-25T10:08:51+08:00"
 }

@@ -9,14 +9,15 @@ Pipeline:
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
-最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask).
-香港最新賣出價 → hk_ask_hkd (median of matched HK sell asks).
+最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask). Shown in HKD.
+最新賣出價 → hk_ask_hkd (median of one HKD pool: matched local asks plus SNKRDUNK active asks × fx).
 最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd (HKCardLink WTB only; else null).
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
 from __future__ import annotations
 
 import json
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -29,6 +30,7 @@ SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
 from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
+from sources.hk_match import unified_sell_asks  # noqa: E402
 from sources.reference_links import attach_public_quotes  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
@@ -56,6 +58,31 @@ def hkd(jpy: float | int | None, fx: float) -> float | None:
     if jpy is None:
         return None
     return round(float(jpy) * fx, 2)
+
+
+def _listing_prices_hkd(rows: list) -> list[float]:
+    prices: list[float] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        try:
+            price = float(row.get("price_hkd"))
+        except (TypeError, ValueError):
+            continue
+        if price > 0:
+            prices.append(price)
+    return prices
+
+
+def _summary_prices_hkd(*values: object) -> list[float]:
+    """Preserved median/low when the listing rows were not stored."""
+    prices: list[float] = []
+    for value in values:
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            continue
+        if value > 0 and float(value) not in prices:
+            prices.append(float(value))
+    return prices
 
 
 def load_series(item_id: str) -> list[dict]:
@@ -116,12 +143,18 @@ def download_image(url: str | None, item_id: str) -> str | None:
     # Prefer webp/png for official; keep jpg only if source is jpg
     dest = IMAGES_DIR / f"{item_id}{ext}"
     try:
+        host = (urlparse(url).hostname or "").lower()
+        referer = (
+            "https://snkrdunk.com/"
+            if "snkrdunk.com" in host
+            else "https://www.pokemon-card.com/"
+        )
         req = Request(
             url,
             headers={
                 "User-Agent": BROWSER_UA,
                 "Accept": "image/webp,image/apng,image/*,*/*;q=0.8",
-                "Referer": "https://www.pokemon-card.com/",
+                "Referer": referer,
             },
         )
         with urlopen(req, timeout=30) as resp:  # noqa: S310 — public CDN / official site
@@ -165,6 +198,29 @@ def _clear_local_images(item_id: str) -> None:
             path.unlink()
 
 
+def _face_for_item(wl: dict, snkr: dict) -> dict:
+    """Official art only when it is this print. Else the SNKRDUNK SKU photo."""
+    from sources.jp_match import _item_fraction, _item_set_code
+
+    face = dict(wl)
+    snkr_image = snkr.get("image_url") if isinstance(snkr.get("image_url"), str) else ""
+    if str(wl.get("kind") or "") != "sealed":
+        code = _item_set_code(wl)
+        frac = _item_fraction(wl)
+        number = frac[0] if frac else None
+        if not number:
+            found = re.search(r"-(\d{2,3})$", str(wl.get("tcgdex_id") or ""))
+            if found:
+                number = found.group(1)
+                code = code or found.string.split("-", 1)[0]
+        url = str(face.get("image_official_url") or "").strip()
+        if url and code and number and not snkrdunk.official_face_matches(url, code, number):
+            face["image_official_url"] = None
+    if not face.get("image_official_url") and snkr_image.startswith("https://"):
+        face["image_official_url"] = snkr_image
+    return face
+
+
 def resolve_official_image(wl: dict) -> str | None:
     """Resolve official thumbnail; never use Yahoo/Mercari listing photos.
 
@@ -189,7 +245,12 @@ def resolve_official_image(wl: dict) -> str | None:
     if current and prior_url == url:
         return current
     saved = download_image(url, iid)
-    return saved or current
+    if saved:
+        return saved
+    if prior_url != url:
+        _clear_local_images(iid)
+        return None
+    return current
 
 
 def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, Any]]:
@@ -285,7 +346,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
         "status": "disabled" if not snkr_on else "pending",
         "ok_items": 0,
         "errors": [],
-        "note": "Primary JP reference: catalog match, last sale, PSA10 lowest ask. HK band uses the PSA10 ask median.",
+        "note": "Catalog match and last sale. Active asks join the HKD sell-ask pool. The PSA10 median still bands local listings.",
     }
     if snkr_on:
         print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
@@ -367,10 +428,13 @@ def merge_and_compute(
         else:
             price_jpy, price_source = snkrdunk.choose_jp_price(jp.get("median_jpy"), snkr)
         price = hkd(price_jpy, fx)
-        hk_ask = hk.get("median_hkd")
-        if hk_ask is not None:
-            hk_ask = round(float(hk_ask), 2)
-        hk_low = hk.get("lowest_hkd")
+        hk_points = _listing_prices_hkd(hk.get("listings") or [])
+        if not hk_points:
+            hk_points = _summary_prices_hkd(hk.get("median_hkd"), hk.get("lowest_hkd"))
+        snkr_points: list[int] = []
+        if not wl.get("identity_review"):
+            snkr_points = snkrdunk.sell_ask_jpy_points(snkr, kind=str(wl.get("kind") or ""))
+        hk_ask, hk_low = unified_sell_asks(hk_points, snkr_points, fx)
         hk_bid = hk.get("bid_hkd")
         quote_listings = list(hk.get("listings") or []) + list(hk.get("bid_listings") or [])
 
@@ -465,12 +529,11 @@ def merge_and_compute(
             if backend not in srcs:
                 srcs.append(backend)
 
-        # Official art first. A blank watchlist face can use the matched SNKRDUNK catalog image.
-        face = wl
-        snkr_image = snkr.get("image_url") if isinstance(snkr.get("image_url"), str) else ""
-        if not wl.get("image_official_url") and snkr_image.startswith("https://"):
-            face = {**wl, "image_official_url": snkr_image}
+        # A single keeps an official URL only when the path encodes this print.
+        # Otherwise use the SNKRDUNK catalog photo, or no face.
+        face = _face_for_item(wl, snkr)
         image = resolve_official_image(face)
+        snkr_image = snkr.get("image_url") if isinstance(snkr.get("image_url"), str) else ""
 
         if jp.get("status") == "preserved" and jp.get("liquidity_score") is not None:
             liq = int(jp["liquidity_score"])
@@ -527,11 +590,23 @@ def merge_and_compute(
             row["snkrdunk_url"] = snkr["url"]
         if isinstance(snkr.get("ask_jpy"), int):
             row["snkrdunk_ask_jpy"] = snkr["ask_jpy"]
+        for src_key, dest_key in (
+            ("ask_min_jpy", "snkrdunk_ask_min_jpy"),
+            ("ask_median_jpy", "snkrdunk_ask_median_jpy"),
+            ("ask_max_jpy", "snkrdunk_ask_max_jpy"),
+        ):
+            if isinstance(snkr.get(src_key), int):
+                row[dest_key] = snkr[src_key]
+        ask_book = snkr.get("ask_prices_jpy")
+        if isinstance(ask_book, list):
+            book = [price for price in ask_book if isinstance(price, int) and price > 0]
+            if book:
+                row["snkrdunk_ask_prices_jpy"] = book[:40]
         if isinstance(snkr.get("market_jpy"), int):
             row["snkrdunk_jpy"] = snkr["market_jpy"]
         if isinstance(snkr.get("last_sale_jpy"), int):
             row["snkrdunk_last_sale_jpy"] = snkr["last_sale_jpy"]
-        if snkr_image.startswith("https://") and not wl.get("image_official_url"):
+        if snkr_image.startswith("https://") and face.get("image_official_url") == snkr_image:
             row["snkrdunk_image_url"] = snkr_image
         if iid in pins:
             row["pinned"] = True
@@ -730,6 +805,10 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
                 "url": it.get("snkrdunk_url"),
                 "name": it.get("snkrdunk_name"),
                 "ask_jpy": it.get("snkrdunk_ask_jpy"),
+                "ask_min_jpy": it.get("snkrdunk_ask_min_jpy"),
+                "ask_median_jpy": it.get("snkrdunk_ask_median_jpy"),
+                "ask_max_jpy": it.get("snkrdunk_ask_max_jpy"),
+                "ask_prices_jpy": it.get("snkrdunk_ask_prices_jpy"),
                 "market_jpy": it.get("snkrdunk_jpy"),
                 "last_sale_jpy": it.get("snkrdunk_last_sale_jpy"),
                 "image_url": it.get("snkrdunk_image_url"),
@@ -832,7 +911,45 @@ def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
     return out, status
 
 
-def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) -> dict:
+def _snkr_only_books(cfg: dict, jp_fresh: dict[str, dict]) -> dict[str, dict]:
+    """Keep the last sold price and volume. Replace the ask book when SNKRDUNK answered."""
+    preserved = _jp_preserved_from_latest()
+    out: dict[str, dict] = {}
+    for item in cfg.get("watchlist") or []:
+        if not isinstance(item, dict) or not item.get("id"):
+            continue
+        iid = str(item["id"])
+        fresh = jp_fresh.get(iid) or {}
+        prior = preserved.get(iid) or {}
+        fresh_snkr = fresh.get("snkrdunk") if isinstance(fresh.get("snkrdunk"), dict) else {}
+        prior_snkr = prior.get("snkrdunk") if isinstance(prior.get("snkrdunk"), dict) else {}
+        snkr = fresh_snkr if fresh_snkr.get("ok") else prior_snkr
+        last = snkr.get("last_sale_jpy") if fresh_snkr.get("ok") else None
+        base = {
+            "ok": bool(prior.get("ok") or (isinstance(snkr, dict) and snkr.get("ok"))),
+            "median_jpy": prior.get("median_jpy"),
+            "volume_24h": prior.get("volume_24h") or 0,
+            "volume_7d_est": prior.get("volume_7d_est") or 0,
+            "total_available": prior.get("total_available") or 0,
+            "liquidity_score": prior.get("liquidity_score"),
+            "comps": [],
+            "query": prior.get("query"),
+            "jp_debug": prior.get("jp_debug"),
+            "snkrdunk": snkr if isinstance(snkr, dict) else {},
+        }
+        if isinstance(last, int) and last > 0:
+            out[iid] = base
+            continue
+        out[iid] = {
+            **base,
+            "price_jpy": prior.get("price_jpy"),
+            "price_source": prior.get("price_source"),
+            "status": "preserved",
+        }
+    return out
+
+
+def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, snkr_only: bool = False) -> dict:
     now = datetime.now(HK_TZ)
     if hk_only:
         sources_cfg = cfg.get("sources") or {}
@@ -846,10 +963,10 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
             "status": "disabled" if not snkr_on else "pending",
             "ok_items": 0,
             "errors": [],
-            "note": "HK band refreshed from the matched SNKRDUNK PSA10 median or BOX ask",
+            "note": "SNKRDUNK active asks refreshed into the HKD sell-ask pool; local listings still use that band",
         }
         if snkr_on:
-            print(f"[fetch] SNKRDUNK market band × {len(watchlist)} (interval≥{interval}s)")
+            print(f"[fetch] SNKRDUNK asks × {len(watchlist)} (interval≥{interval}s)")
             for item in watchlist:
                 slot = jp_by_id.setdefault(item["id"], {"status": "preserved", "snkrdunk": {}})
                 snkr = slot.get("snkrdunk") if isinstance(slot.get("snkrdunk"), dict) else {}
@@ -858,19 +975,24 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
                 apparel_id = snkrdunk.apparel_id_from_url(str(snkr.get("url") or ""))
                 if not apparel_id:
                     continue
-                try:
-                    market = snkrdunk.market_jpy_for_id(
-                        apparel_id,
-                        kind=str(item.get("kind") or ""),
-                        min_interval=interval,
-                    )
-                except Exception as exc:  # noqa: BLE001
-                    snkr_status["errors"].append(f"{item['id']}: {type(exc).__name__}")
+                quote = snkrdunk.ask_quote_for_id(
+                    apparel_id,
+                    kind=str(item.get("kind") or ""),
+                    min_interval=interval,
+                )
+                if quote.get("error"):
+                    snkr_status["errors"].append(f"{item['id']}: {quote.get('error')}")
                     continue
                 refreshed = dict(snkr)
-                if market is not None:
-                    refreshed["market_jpy"] = market
-                    refreshed["ok"] = True
+                refreshed["ok"] = True
+                refreshed["market_jpy"] = quote.get("market_jpy")
+                refreshed["ask_prices_jpy"] = quote.get("ask_prices_jpy") or []
+                refreshed["ask_min_jpy"] = quote.get("ask_min_jpy")
+                refreshed["ask_median_jpy"] = quote.get("ask_median_jpy")
+                refreshed["ask_max_jpy"] = quote.get("ask_max_jpy")
+                if str(item.get("kind") or "") != "sealed":
+                    refreshed["ask_jpy"] = quote.get("ask_jpy")
+                if quote.get("market_jpy") or quote.get("ask_prices_jpy"):
                     snkr_status["ok_items"] += 1
                 slot["snkrdunk"] = refreshed
             snkr_status["status"] = "ok" if snkr_status["ok_items"] else "empty"
@@ -908,6 +1030,28 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
         hk_by_id, hk_status = _hk_preserved_from_latest()
         source_status.update(hk_status)
         print("[fetch] JP-only refresh (HK asks preserved)", flush=True)
+    elif snkr_only:
+        print("[fetch] SNKRDUNK-only refresh (Yahoo sold and HK asks preserved)", flush=True)
+        fresh_cfg = {
+            **cfg,
+            "sources": {
+                **(cfg.get("sources") or {}),
+                "yahoo_auctions_jp": {"enabled": False},
+                "carousell_hk": {"enabled": False},
+                "hk_card_shops": {"enabled": False},
+                "facebook_hk": {"enabled": False},
+            },
+        }
+        jp_fresh, _hk_unused, source_status = fetch_all(fresh_cfg)
+        jp_by_id = _snkr_only_books(cfg, jp_fresh)
+        hk_by_id, hk_status = _hk_preserved_from_latest()
+        for bucket in hk_status.values():
+            if isinstance(bucket, dict):
+                bucket["note"] = "Preserved HK asks; this run refreshed SNKRDUNK"
+        yahoo = _yahoo_preserved_status()
+        yahoo["note"] = "Preserved JP sold; this run refreshed SNKRDUNK asks"
+        source_status["yahoo_auctions_jp"] = yahoo
+        source_status.update(hk_status)
     else:
         jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
@@ -1002,7 +1146,7 @@ def main() -> None:
     if len(cfg.get("watchlist") or []) < 45:
         print(
             f"ERROR: watchlist has {len(cfg.get('watchlist') or [])} items; "
-            "expected about 45–55 after discovery",
+            "expected at least 45 after discovery",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -1010,6 +1154,7 @@ def main() -> None:
         cfg,
         hk_only=("--hk-only" in sys.argv),
         jp_only=("--jp-only" in sys.argv),
+        snkr_only=("--snkr-only" in sys.argv),
     )
     write_outputs(payload)
     # Print source_status summary

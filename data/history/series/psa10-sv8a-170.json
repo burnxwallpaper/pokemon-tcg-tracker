@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv8a-170",
+  "name_zh": "ゼイユ :モンスターボールミラー [SV8a 170/187](ハイクラスパック「テラスタルフェスex」) - ¥",
+  "name_jp": "ゼイユ :モンスターボールミラー [SV8a 170/187](ハイクラスパック「テラスタルフェスex」) - ¥",
+  "kind": "psa10",
+  "set": "SV8a / 170/187",
+  "image": "images/psa10-sv8a-170.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": null,
+      "volume": 0.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s8a-014",
+  "name_zh": "コスモッグ ノーマル [S8a 014/028](拡張パック「25th ANNIVERSARY COLLECTION」)",
+  "name_jp": "コスモッグ ノーマル [S8a 014/028](拡張パック「25th ANNIVERSARY COLLECTION」)",
+  "kind": "psa10",
+  "set": "S8a / 014/028",
+  "image": "images/psa10-s8a-014.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 318.98,
+      "volume": 0.0
+    }
+  ]
+}

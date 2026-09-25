@@ -4,13 +4,13 @@
   "name_jp": "ゴッホピカチュウ PSA10",
   "kind": "psa10",
   "set": "SVP EN / 085",
-  "image": "images/psa10-van-gogh-pikachu.png",
+  "image": "images/psa10-van-gogh-pikachu.webp",
   "image_source": "official",
   "tcgdex_id": "SVP-085",
   "is_sample": false,
   "real_points": true,
   "history_days": 26,
-  "updated_at": "2026-09-25T09:00:24+08:00",
+  "updated_at": "2026-09-25T10:08:51+08:00",
   "history": [
     {
       "date": "2026-07-01",
@@ -158,14 +158,14 @@
     },
     {
       "date": "2026-09-24",
-      "price_hkd": 18810.0,
+      "price_hkd": 20047.5,
       "hk_ask_hkd": null,
       "volume": 2.0
     },
     {
       "date": "2026-09-25",
       "price_hkd": 20047.5,
-      "hk_ask_hkd": null,
+      "hk_ask_hkd": 21532.5,
       "volume": 2.0
     }
   ]
