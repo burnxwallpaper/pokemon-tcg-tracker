@@ -1,10 +1,12 @@
 """SNKRDUNK public catalog: identity match and JP market check.
 
 Search HTML and apparel pages are readable without a login. PSA10 asks and
-recent sales come from the used feed filtered to condition 22 (PSA10). The
-apparel sales-history feed is for sealed boxes and is empty for slabs.
+recent sales come from the used feed filtered to condition 22 (PSA10). When
+that feed and the PSA10 chart are both empty, condition A (18) single-copy
+listings on the same product fill last sale and asks. Other grades stay out.
+The apparel sales-history feed is for sealed boxes and is empty for slabs.
 A last sale replaces Yahoo. An ask that is far from Yahoo blanks the Yahoo figure.
-Multi-box lot sizes (2個 and up) are not this SKU.
+Multi-box lot sizes (2個 and up) and multi-copy lots (2枚 and up) are not this SKU.
 """
 from __future__ import annotations
 
@@ -40,7 +42,10 @@ APPAREL_JSON_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}"
 USED_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/used"
 PSA10_WEAR = "tradingCardSingleConditionPSA10"
 PSA10_CONDITION_IDS = "22"
+RAW_A_WEAR = "tradingCardSingleConditionNearlyUnused"
+RAW_A_CONDITION_IDS = "18"
 _UNIT_COUNT = re.compile(r"(\d+)\s*(?:個|箱|ボックス|boxes|box)", re.I)
+_SHEET_COUNT = re.compile(r"(\d+)\s*枚")
 _BRACKET = re.compile(
     r"\[([A-Za-z]+\d+[A-Za-z]*)\s+(\d{2,3})(?:\s*/\s*\d{2,3})?\]"
 )
@@ -289,6 +294,20 @@ def single_sku_sale(row: dict) -> bool:
     return True
 
 
+def single_sheet(row: dict) -> bool:
+    """1枚 is this card. 2枚 and up are lots, not the single on the watchlist."""
+    size = (row or {}).get("size")
+    label = ""
+    if isinstance(size, dict):
+        label = str(size.get("localizedName") or "")
+    elif isinstance(size, str):
+        label = size
+    found = _SHEET_COUNT.search(label)
+    if found and int(found.group(1)) >= 2:
+        return False
+    return True
+
+
 def parse_sales_history(payload: dict) -> int | None:
     history = payload.get("history") if isinstance(payload, dict) else None
     if not isinstance(history, list):
@@ -415,6 +434,69 @@ def psa10_last_sale_jpy(rows: list[dict]) -> int | None:
     return robust_median_jpy(psa10_sold_prices(rows)[:12])
 
 
+def raw_a_sold_prices(rows: list[dict]) -> list[int]:
+    """Completed condition-A sales of one copy. Lots, asks, and other grades stay out."""
+    prices: list[int] = []
+    for row in rows:
+        if row.get("wearCount") != RAW_A_WEAR or not row.get("isDisplaySold"):
+            continue
+        if not single_sheet(row):
+            continue
+        price = _pos_int(row.get("price"))
+        if price is not None:
+            prices.append(price)
+    return prices
+
+
+def raw_a_last_sale_jpy(rows: list[dict]) -> int | None:
+    """Robust median of the newest condition-A single-copy sales."""
+    return robust_median_jpy(raw_a_sold_prices(rows)[:12])
+
+
+def raw_a_active_ask_prices(rows: list[dict]) -> list[int]:
+    """Condition-A listings still for sale, one copy only."""
+    prices: list[int] = []
+    for row in rows:
+        if row.get("wearCount") != RAW_A_WEAR or row.get("isDisplaySold"):
+            continue
+        if not single_sheet(row):
+            continue
+        price = _pos_int(row.get("price"))
+        if price is not None and price not in prices:
+            prices.append(price)
+    return prices
+
+
+def raw_a_ask_quote(rows: list[dict], *, floor_jpy: int | None) -> dict[str, Any]:
+    """Ask band for condition A. A cheaper chip price is a lot or another grade."""
+    prices = raw_a_active_ask_prices(rows)
+    floor = _pos_int(floor_jpy)
+    if not prices or (floor is not None and floor < min(prices)):
+        floor = None
+    band = summarize_ask_prices(prices, floor=floor)
+    return {
+        "market_jpy": band["min"],
+        "ask_jpy": band["min"],
+        "ask_prices_jpy": band["prices"],
+        "ask_min_jpy": band["min"],
+        "ask_median_jpy": band["median"],
+        "ask_max_jpy": band["max"],
+        "error": None,
+    }
+
+
+def has_psa10_quote(
+    rows: list[dict],
+    *,
+    floor_jpy: int | None,
+    last_sale_jpy: int | None,
+) -> bool:
+    """True when the PSA10 feed, chip, or chart already has a sale or an ask."""
+    if last_sale_jpy is not None or _pos_int(floor_jpy) is not None:
+        return True
+    return bool(psa10_active_ask_prices(rows))
+
+
 def chart_last_sale_jpy(payload: dict) -> int | None:
     """Latest point on the PSA10 used sales chart. Points are ``[epoch_ms, yen]``."""
     points = payload.get("points") if isinstance(payload, dict) else None
@@ -426,11 +508,17 @@ def chart_last_sale_jpy(payload: dict) -> int | None:
     return None
 
 
-def _chart_last_sale(apparel_id: str, *, min_interval: float) -> int | None:
+def _chart_last_sale(
+    apparel_id: str,
+    *,
+    min_interval: float,
+    option_id: str = PSA10_CONDITION_IDS,
+    range_key: str = "oneMonth",
+) -> int | None:
     try:
         chart = polite_get(
             SALES_CHART_USED_URL.format(apparel_id=apparel_id),
-            params={"salesChartOptionId": PSA10_CONDITION_IDS, "range": "oneMonth"},
+            params={"salesChartOptionId": option_id, "range": range_key},
             min_interval=min_interval,
             timeout=20,
             headers={"Accept": "application/json"},
@@ -488,52 +576,85 @@ def headline_under_min(tile: dict, *, fx: float, minimum: float) -> bool:
     return float(raw) * float(fx) < float(minimum)
 
 
+def _empty_quote() -> dict[str, Any]:
+    return {
+        "market_jpy": None,
+        "ask_jpy": None,
+        "ask_prices_jpy": [],
+        "ask_min_jpy": None,
+        "ask_median_jpy": None,
+        "ask_max_jpy": None,
+    }
+
+
+def _psa10_used_rows(apparel_id: str, *, min_interval: float) -> list[dict]:
+    try:
+        return _used_rows(
+            int(apparel_id),
+            min_interval=min_interval,
+            condition_ids=PSA10_CONDITION_IDS,
+        )
+    except (TypeError, ValueError):
+        return []
+
+
+def _raw_a_used_rows(apparel_id: str, *, min_interval: float) -> list[dict]:
+    try:
+        return _used_rows(
+            int(apparel_id),
+            min_interval=min_interval,
+            condition_ids=RAW_A_CONDITION_IDS,
+        )
+    except (TypeError, ValueError):
+        return []
+
+
 def _quote_fields(item: dict, apparel_id: str, *, page_html: str, min_interval: float) -> dict[str, Any]:
     kind = str(item.get("kind") or "")
     asks = parse_condition_asks(page_html)
-    ask = asks.get("PSA10") if kind != "sealed" else None
-    used_rows: list[dict] | None = None
+    image = _product_image(page_html)
     if kind == "sealed":
         last_sale = _sealed_last_sale(apparel_id, min_interval=min_interval)
-    else:
         try:
-            used_rows = _used_rows(
-                int(apparel_id),
-                min_interval=min_interval,
-                condition_ids=PSA10_CONDITION_IDS,
-            )
-        except (TypeError, ValueError):
-            used_rows = []
-        last_sale = psa10_last_sale_jpy(used_rows)
-        if last_sale is None:
-            last_sale = _chart_last_sale(apparel_id, min_interval=min_interval)
-    quote: dict[str, Any] = {
-        "market_jpy": ask if isinstance(ask, int) else None,
-        "ask_jpy": ask,
-        "ask_prices_jpy": [ask] if isinstance(ask, int) else [],
-        "ask_min_jpy": ask,
-        "ask_median_jpy": ask,
-        "ask_max_jpy": ask,
-    }
-    try:
-        if kind == "sealed":
             quote = build_ask_quote(
                 kind="sealed",
                 floor_jpy=None,
                 used_rows=None,
                 apparel=_apparel_json(int(apparel_id), min_interval=min_interval),
             )
-        else:
+        except (TypeError, ValueError, Exception):
+            quote = _empty_quote()
+        return {"quote": quote, "last_sale": last_sale, "image_url": image}
+
+    ask = asks.get("PSA10")
+    used_rows = _psa10_used_rows(apparel_id, min_interval=min_interval)
+    last_sale = psa10_last_sale_jpy(used_rows)
+    if last_sale is None:
+        last_sale = _chart_last_sale(apparel_id, min_interval=min_interval)
+    if has_psa10_quote(used_rows, floor_jpy=ask, last_sale_jpy=last_sale):
+        try:
             quote = build_ask_quote(
                 kind="psa10",
                 floor_jpy=ask,
-                used_rows=used_rows or [],
+                used_rows=used_rows,
                 apparel=None,
             )
-    except (TypeError, ValueError, Exception):
-        if isinstance(ask, int) and ask > 0:
-            quote = build_ask_quote(kind="psa10", floor_jpy=ask, used_rows=[], apparel=None)
-    image = _product_image(page_html)
+        except (TypeError, ValueError, Exception):
+            quote = _empty_quote()
+            if isinstance(ask, int) and ask > 0:
+                quote = build_ask_quote(kind="psa10", floor_jpy=ask, used_rows=[], apparel=None)
+        return {"quote": quote, "last_sale": last_sale, "image_url": image}
+
+    raw_rows = _raw_a_used_rows(apparel_id, min_interval=min_interval)
+    last_sale = raw_a_last_sale_jpy(raw_rows)
+    if last_sale is None:
+        last_sale = _chart_last_sale(
+            apparel_id,
+            min_interval=min_interval,
+            option_id=RAW_A_CONDITION_IDS,
+            range_key="all",
+        )
+    quote = raw_a_ask_quote(raw_rows, floor_jpy=asks.get("A"))
     return {"quote": quote, "last_sale": last_sale, "image_url": image}
 
 
@@ -981,7 +1102,7 @@ def ask_quote_for_id(apparel_id: str, *, kind: str, min_interval: float) -> dict
                 used_rows=None,
                 apparel=apparel,
             )
-        floor = None
+        page_html = ""
         page = polite_get(
             APPAREL_URL.format(apparel_id=apparel_id),
             min_interval=min_interval,
@@ -989,12 +1110,25 @@ def ask_quote_for_id(apparel_id: str, *, kind: str, min_interval: float) -> dict
             headers={"Accept-Language": "ja,en;q=0.8"},
         )
         if page.status_code == 200:
-            floor = parse_condition_asks(page.text).get("PSA10")
+            page_html = page.text
+        asks = parse_condition_asks(page_html)
+        floor = asks.get("PSA10")
         rows = _used_rows(
             numeric,
             min_interval=min_interval,
             condition_ids=PSA10_CONDITION_IDS,
         )
+        if not has_psa10_quote(rows, floor_jpy=floor, last_sale_jpy=psa10_last_sale_jpy(rows)):
+            raw_rows = _used_rows(
+                numeric,
+                min_interval=min_interval,
+                condition_ids=RAW_A_CONDITION_IDS,
+            )
+            quote = raw_a_ask_quote(raw_rows, floor_jpy=asks.get("A"))
+            if quote.get("ask_min_jpy") is None:
+                empty["error"] = "no ask page"
+                return empty
+            return quote
         if floor is None and not rows:
             empty["error"] = "no ask page"
             return empty
