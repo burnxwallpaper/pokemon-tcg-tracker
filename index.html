@@ -696,7 +696,7 @@
         ${sample}
         <span>最後更新：<strong>${escapeHtml(meta.updated_at || "—")}</strong></span>
         <span>匯率：<strong>1 JPY = ${fx} HKD</strong></span>
-        <span>門檻：1日 ±${th.short_move_pct}% · 7日 ±${th.medium_move_pct}% · 量能 ≥${th.volume_vs_7d_avg}×7日均</span>
+        <span>大異動門檻：1日 ±${th.short_move_pct}% · 7日 ±${th.medium_move_pct}% · 量能 ≥${th.volume_vs_7d_avg}×7日均</span>
         <span>項目：<strong id="itemCount">${meta.item_count ?? "—"}</strong></span>
       `;
     }
@@ -924,7 +924,7 @@
       el.innerHTML = groupsFor(list).map((group) => {
         const body = group.items.length
           ? `<div class="card-grid">${group.items.map((it) => cardHtml(it)).join("")}</div>`
-          : `<p class="cat-empty">這個分類暫無超過門檻的異動。</p>`;
+          : `<p class="cat-empty">這個分類暫無超過大異動門檻的異動。</p>`;
         return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
       }).join("");
       wireCardClicks(el);
