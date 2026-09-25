@@ -20,8 +20,11 @@ from sources.snkrdunk import (  # noqa: E402
     parse_condition_asks,
     parse_sales_history,
     parse_tiles,
+    has_psa10_quote,
     psa10_active_ask_prices,
     psa10_last_sale_jpy,
+    raw_a_ask_quote,
+    raw_a_last_sale_jpy,
     same_print,
     tile_matches,
 )
@@ -166,6 +169,55 @@ def test_exact_snkrdunk_title_is_the_same_print() -> None:
         assert same_print(item, name), iid
 
 
+def test_raw_a_single_fills_when_psa10_quote_is_empty() -> None:
+    rows = [
+        {
+            "wearCount": "tradingCardSingleConditionNearlyUnused",
+            "isDisplaySold": False,
+            "price": 1900,
+            "size": {"localizedName": "2枚"},
+        },
+        {
+            "wearCount": "tradingCardSingleConditionNearlyUnused",
+            "isDisplaySold": False,
+            "price": 1000,
+            "size": {"localizedName": "1枚"},
+        },
+        {
+            "wearCount": "tradingCardSingleConditionNearlyUnused",
+            "isDisplaySold": True,
+            "price": 1000,
+            "size": {"localizedName": "1枚"},
+        },
+        {
+            "wearCount": "tradingCardSingleConditionNearlyUnused",
+            "isDisplaySold": True,
+            "price": 1200,
+            "size": {"localizedName": "1枚"},
+        },
+        {
+            "wearCount": PSA10_WEAR,
+            "isDisplaySold": True,
+            "price": 9000,
+            "size": {"localizedName": "1枚"},
+        },
+        {
+            "wearCount": "tradingCardSingleConditionLittleScratches",
+            "isDisplaySold": True,
+            "price": 800,
+            "size": {"localizedName": "1枚"},
+        },
+    ]
+    assert not has_psa10_quote([], floor_jpy=None, last_sale_jpy=None)
+    assert has_psa10_quote(rows, floor_jpy=None, last_sale_jpy=psa10_last_sale_jpy(rows))
+    assert psa10_last_sale_jpy(rows) == 9000
+    assert raw_a_last_sale_jpy(rows) == 1100
+    quote = raw_a_ask_quote(rows, floor_jpy=800)
+    assert quote["ask_jpy"] == 1000
+    assert quote["ask_prices_jpy"] == [1000]
+    assert raw_a_ask_quote([], floor_jpy=1000)["ask_jpy"] is None
+
+
 def test_psa10_last_sale_ignores_raw_and_active_asks() -> None:
     rows = [
         {"wearCount": "tradingCardSingleConditionNearlyUnused", "isDisplaySold": False, "price": 1000},
@@ -223,6 +275,7 @@ if __name__ == "__main__":
     test_zero_padded_number_and_van_gogh_promo()
     test_set_slash_is_not_the_collector_number()
     test_exact_snkrdunk_title_is_the_same_print()
+    test_raw_a_single_fills_when_psa10_quote_is_empty()
     test_psa10_last_sale_ignores_raw_and_active_asks()
     test_sealed_history_drops_multi_box_lots()
     test_min_list_price_prefers_ask_then_sold()
