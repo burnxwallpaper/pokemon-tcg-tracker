@@ -550,6 +550,56 @@
       color: var(--muted);
     }
     .chart-wrap { position: relative; height: 200px; }
+    .chart-wrap.is-zoomable { cursor: pointer; }
+    .chart-wrap.is-zoomable:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .chart-zoom-hint {
+      font-size: 0.72rem;
+      font-weight: 500;
+      margin-left: 0.35rem;
+    }
+    .chart-zoom {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(6, 10, 16, 0.78);
+    }
+    .chart-zoom.open { display: flex; }
+    .chart-zoom-panel {
+      width: min(960px, 100%);
+      height: min(86vh, 720px);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      padding: 0.85rem 0.9rem 1rem;
+    }
+    .chart-zoom-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+    .chart-zoom-head h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .chart-zoom-wrap {
+      position: relative;
+      flex: 1;
+      min-height: 280px;
+    }
     .sources-list {
       font-size: 0.8rem;
       color: var(--muted);
@@ -567,6 +617,8 @@
       .detail-hero { grid-template-columns: 80px 1fr; }
       .detail-hero img, .detail-hero .card-img { width: 80px; height: 112px; }
       .detail-stats { grid-template-columns: 1fr; }
+      .chart-zoom { padding: 1rem; align-items: stretch; }
+      .chart-zoom-panel { width: 100%; height: 100%; }
     }
   </style>
 </head>
@@ -618,6 +670,16 @@
     靜態儀表板 · 資料 <code>./data/latest.json</code> · <code>scripts/update.py</code> 每日更新 · 非正式投資建議
   </footer>
 
+  <div class="chart-zoom" id="chartZoom" role="dialog" aria-modal="true" aria-labelledby="chartZoomTitle" hidden>
+    <div class="chart-zoom-panel" id="chartZoomPanel">
+      <div class="chart-zoom-head">
+        <h2 id="chartZoomTitle">價格趨勢（約 90 日）</h2>
+        <button type="button" class="detail-close" id="chartZoomClose" aria-label="關閉">×</button>
+      </div>
+      <div class="chart-zoom-wrap"><canvas id="priceChartZoom"></canvas></div>
+    </div>
+  </div>
+
   <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
     <div class="detail-panel" id="detailPanel">
       <div class="detail-head">
@@ -663,6 +725,10 @@
     let liqSortDir = "desc";
     /** @type {import('chart.js').Chart[]} */
     let activeCharts = [];
+    /** @type {import('chart.js').Chart | null} */
+    let zoomChart = null;
+    /** @type {{ labels: string[], datasets: object[] } | null} */
+    let priceChartModel = null;
 
     function fmtHkd(n) {
       if (n == null || Number.isNaN(n)) return "—";
@@ -1156,9 +1222,58 @@
       return fromFile;
     }
 
+    function priceChartOptions(large) {
+      const tickSize = large ? 12 : 10;
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: {
+            labels: { color: "#8b9bb0", boxWidth: 12, font: { size: large ? 13 : 11 } },
+          },
+          tooltip: {
+            callbacks: {
+              label(ctx) {
+                const v = ctx.parsed.y;
+                if (v == null) return ctx.dataset.label + ": —";
+                return ctx.dataset.label + ": HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 });
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: "#8b9bb0",
+              maxTicksLimit: large ? 10 : 6,
+              font: { size: tickSize },
+            },
+            grid: { color: "rgba(46,61,82,0.5)" },
+          },
+          y: {
+            ticks: {
+              color: "#8b9bb0",
+              font: { size: tickSize },
+              callback: (v) => "HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 }),
+            },
+            grid: { color: "rgba(46,61,82,0.5)" },
+          },
+        },
+      };
+    }
+
+    function cloneChartData(model) {
+      return {
+        labels: model.labels.slice(),
+        datasets: model.datasets.map((ds) => ({ ...ds, data: ds.data.slice() })),
+      };
+    }
+
     function buildCharts(history) {
       destroyCharts();
-      const labels = history.map((p) => p.date);
+      closeChartZoom(false);
+      const labels = history.map((p) => String(p.date));
       const hkAsk = history.map((p) => (p.hk_ask_hkd != null ? p.hk_ask_hkd : null));
       const jpRef = history.map((p) => p.price_hkd);
 
@@ -1186,55 +1301,65 @@
         pointRadius: 0,
         tension: 0.25,
       });
+      priceChartModel = { labels, datasets: priceDatasets };
 
       const priceCtx = document.getElementById("priceChart");
       if (!priceCtx || typeof Chart === "undefined") return;
-
-      const commonOpts = {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-        plugins: {
-          legend: {
-            labels: { color: "#8b9bb0", boxWidth: 12, font: { size: 11 } },
-          },
-          tooltip: {
-            callbacks: {
-              label(ctx) {
-                const v = ctx.parsed.y;
-                if (v == null) return ctx.dataset.label + ": —";
-                return ctx.dataset.label + ": HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 });
-              },
-            },
-          },
-        },
-        scales: {
-          x: {
-            ticks: {
-              color: "#8b9bb0",
-              maxTicksLimit: 6,
-              font: { size: 10 },
-            },
-            grid: { color: "rgba(46,61,82,0.5)" },
-          },
-          y: {
-            ticks: {
-              color: "#8b9bb0",
-              font: { size: 10 },
-              callback: (v) => "HK$" + Number(v).toLocaleString("zh-HK", { maximumFractionDigits: 0 }),
-            },
-            grid: { color: "rgba(46,61,82,0.5)" },
-          },
-        },
-      };
+      const wrap = priceCtx.closest(".chart-wrap");
+      if (wrap) {
+        wrap.classList.add("is-zoomable");
+        wrap.setAttribute("role", "button");
+        wrap.tabIndex = 0;
+        wrap.setAttribute("aria-label", "放大價格趨勢");
+      }
 
       activeCharts.push(
         new Chart(priceCtx, {
           type: "line",
-          data: { labels, datasets: priceDatasets },
-          options: commonOpts,
+          data: cloneChartData(priceChartModel),
+          options: priceChartOptions(false),
         })
       );
+    }
+
+    function destroyZoomChart() {
+      if (!zoomChart) return;
+      try { zoomChart.destroy(); } catch (_) {}
+      zoomChart = null;
+    }
+
+    function closeChartZoom(restoreFocus) {
+      destroyZoomChart();
+      const overlay = document.getElementById("chartZoom");
+      if (!overlay) return;
+      const wasOpen = overlay.classList.contains("open");
+      overlay.classList.remove("open");
+      overlay.hidden = true;
+      if (!restoreFocus || !wasOpen) return;
+      const wrap = document.querySelector("#detailBody .chart-wrap.is-zoomable");
+      if (wrap instanceof HTMLElement) wrap.focus();
+    }
+
+    function openChartZoom() {
+      if (!priceChartModel || typeof Chart === "undefined") return;
+      const overlay = document.getElementById("chartZoom");
+      const canvas = document.getElementById("priceChartZoom");
+      if (!overlay || !canvas) return;
+      destroyZoomChart();
+      overlay.hidden = false;
+      overlay.classList.add("open");
+      const model = priceChartModel;
+      requestAnimationFrame(() => {
+        if (!overlay.classList.contains("open") || priceChartModel !== model) return;
+        destroyZoomChart();
+        zoomChart = new Chart(canvas, {
+          type: "line",
+          data: cloneChartData(model),
+          options: priceChartOptions(true),
+        });
+        const closeBtn = document.getElementById("chartZoomClose");
+        if (closeBtn) closeBtn.focus();
+      });
     }
 
     async function openDetail(id) {
@@ -1301,7 +1426,7 @@
           </div>
         </div>
         <div class="chart-block">
-          <h3>價格趨勢（約 90 日）</h3>
+          <h3>價格趨勢（約 90 日）<span class="chart-zoom-hint">點擊放大</span></h3>
           <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
         </div>
         <div class="sources-list"><div style="margin-bottom:0.35rem">參考連結</div>${linksHtml(it)}</div>
@@ -1315,6 +1440,7 @@
 
       const history = await loadSeries(id);
       if (!history.length) {
+        priceChartModel = null;
         const blocks = body.querySelectorAll(".chart-block");
         blocks.forEach((b) => {
           b.innerHTML = `<p style="color:var(--muted);font-size:0.85rem;margin:0">尚無歷史序列。</p>`;
@@ -1326,6 +1452,8 @@
     }
 
     function closeDetail() {
+      closeChartZoom(false);
+      priceChartModel = null;
       const overlay = document.getElementById("detailOverlay");
       overlay.classList.remove("open");
       overlay.hidden = true;
@@ -1333,13 +1461,42 @@
       destroyCharts();
     }
 
+    function chartWrapFromEvent(event) {
+      const target = event.target;
+      if (!(target instanceof Element)) return null;
+      const block = target.closest(".chart-block");
+      if (!block) return null;
+      return block.querySelector(".chart-wrap.is-zoomable");
+    }
+
     function wireDetail() {
       document.getElementById("detailClose").addEventListener("click", closeDetail);
       document.getElementById("detailOverlay").addEventListener("click", (e) => {
         if (e.target === e.currentTarget) closeDetail();
       });
+      const body = document.getElementById("detailBody");
+      body.addEventListener("click", (e) => {
+        if (!chartWrapFromEvent(e)) return;
+        openChartZoom();
+      });
+      body.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        if (!chartWrapFromEvent(e)) return;
+        e.preventDefault();
+        openChartZoom();
+      });
+      document.getElementById("chartZoomClose").addEventListener("click", () => closeChartZoom(true));
+      document.getElementById("chartZoom").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget) closeChartZoom(true);
+      });
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeDetail();
+        if (e.key !== "Escape") return;
+        const zoom = document.getElementById("chartZoom");
+        if (zoom && zoom.classList.contains("open")) {
+          closeChartZoom(true);
+          return;
+        }
+        closeDetail();
       });
     }
 
