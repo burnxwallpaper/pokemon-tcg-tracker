@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -10,7 +11,10 @@ from sources.hk_match import _card_print, _stated_rarity_conflict  # noqa: E402
 from sources.snkrdunk import (  # noqa: E402
     PSA10_WEAR,
     catalog_kind,
+    PSA10_CONDITION_IDS,
+    bucket_chart_points,
     chart_last_sale_jpy,
+    choose_90d_points,
     choose_jp_price,
     headline_under_min,
     liquidity_score,
@@ -28,8 +32,10 @@ from sources.snkrdunk import (  # noqa: E402
     psa10_quote_present,
     recent_history_count,
     sale_within_days,
+    sales_history_chart_points,
     same_print,
     sell_listing_count,
+    single_unit_option_id,
     tile_from_hottest_row,
     tile_matches,
 )
@@ -362,6 +368,55 @@ def test_hottest_items_kind_floor_and_liquidity() -> None:
     assert not product_name_ok(box_item, deck_name)
 
 
+def test_90d_chart_buckets_psa10_points_and_skips_old_days() -> None:
+    assert PSA10_CONDITION_IDS == "22"
+    hkt = timezone(timedelta(hours=8))
+    now = datetime(2026, 9, 25, 12, 0, tzinfo=hkt)
+    day_early = datetime(2026, 9, 24, 15, 0, tzinfo=hkt)
+    day_late = datetime(2026, 9, 24, 18, 0, tzinfo=hkt)
+    old = datetime(2026, 1, 1, 12, 0, tzinfo=hkt)
+    recent = (int(datetime(2026, 9, 20, 12, 0, tzinfo=hkt).timestamp() * 1000), 9000)
+    ancient = (int(old.timestamp() * 1000), 1000)
+    assert choose_90d_points([recent], [ancient, recent], days=90, now=now) == [recent]
+    assert choose_90d_points([], [ancient, recent], days=90, now=now) == [recent]
+    daily = bucket_chart_points(
+        [
+            (int(day_early.timestamp() * 1000), 10000),
+            (int(day_late.timestamp() * 1000), 12000),
+            ancient,
+        ],
+        fx=0.05,
+        days=90,
+        now=now,
+    )
+    assert daily == [{
+        "date": "2026-09-24",
+        "price_hkd": 550.0,
+        "hk_ask_hkd": None,
+        "volume": 2.0,
+    }]
+    assert single_unit_option_id({
+        "salesChartOption": [
+            {"id": 1, "localizedName": "10個"},
+            {"id": 2, "localizedName": "1個"},
+            {"id": 22, "localizedName": "PSA10"},
+        ]
+    }) == "2"
+    hist = sales_history_chart_points(
+        {
+            "history": [
+                {"price": 150000, "size": "6個", "date": "1時間前"},
+                {"price": 24000, "size": "1個", "date": "2日前"},
+            ]
+        },
+        now=now,
+    )
+    assert len(hist) == 1
+    assert hist[0][1] == 24000
+    stamped = datetime.fromtimestamp(hist[0][0] / 1000, hkt)
+    assert stamped.date().isoformat() == "2026-09-23"
+
+
 if __name__ == "__main__":
     test_parse_and_match_printed_number()
     test_psa10_ask_and_sales_median()
@@ -377,4 +432,5 @@ if __name__ == "__main__":
     test_min_list_price_prefers_ask_then_sold()
     test_ur_does_not_match_sar()
     test_hottest_items_kind_floor_and_liquidity()
+    test_90d_chart_buckets_psa10_points_and_skips_old_days()
     print("ok")

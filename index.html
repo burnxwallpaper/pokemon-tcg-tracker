@@ -936,18 +936,22 @@
 
     async function loadSeries(id) {
       const cached = itemsById[id];
-      if (cached && Array.isArray(cached.history) && cached.history.length) {
-        return cached.history;
-      }
+      const embedded = cached && Array.isArray(cached.history) ? cached.history : [];
+      let fromFile = [];
       for (const url of SERIES_URLS(id)) {
         try {
           const res = await fetch(url, { cache: "no-store" });
           if (!res.ok) continue;
           const doc = await res.json();
-          if (Array.isArray(doc.history)) return doc.history;
+          if (Array.isArray(doc.history) && doc.history.length) {
+            fromFile = doc.history;
+            break;
+          }
         } catch (_) {}
       }
-      return [];
+      if (fromFile.length > embedded.length) return fromFile;
+      if (embedded.length) return embedded;
+      return fromFile;
     }
 
     function buildCharts(history) {

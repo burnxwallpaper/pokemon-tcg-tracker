@@ -39,6 +39,7 @@ SEARCH_URL = "https://snkrdunk.com/search"
 APPAREL_URL = "https://snkrdunk.com/apparels/{apparel_id}"
 SALES_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/sales-history"
 SALES_CHART_USED_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/sales-chart/used"
+SALES_CHART_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/sales-chart"
 EN_URL = "https://snkrdunk.com/en/trading-cards/{apparel_id}"
 APPAREL_JSON_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}"
 # Product-page "Hottest Items" (TradingCardDetailHottestBrandItem).
@@ -47,6 +48,12 @@ HOTTEST_HUB = "https://snkrdunk.com/en/trading-cards/704407?slide=right"
 USED_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/used"
 PSA10_WEAR = "tradingCardSingleConditionPSA10"
 PSA10_CONDITION_IDS = "22"
+HKT = timezone(timedelta(hours=8))
+# Public chart ranges: all, oneWeek, oneMonth, threeMonths.
+# threeMonths is the ~90-day window. A disabled range returns no points;
+# all still carries the daily series, which we then cut to 90 days.
+CHART_RANGE_90D = "threeMonths"
+CHART_RANGE_ALL = "all"
 _UNIT_COUNT = re.compile(r"(\d+)\s*(?:個|箱|ボックス|boxes|box)", re.I)
 _SET_CODE = r"[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)*"
 _BRACKET = re.compile(
@@ -688,6 +695,279 @@ def chart_last_sale_jpy(payload: dict) -> int | None:
     if isinstance(last, (list, tuple)) and len(last) >= 2:
         return _pos_int(last[1])
     return None
+
+
+def parse_chart_points(payload: dict) -> list[tuple[int, int]]:
+    """Chart rows as ``(epoch_ms, yen)``. Non-positive prices are dropped."""
+    raw = payload.get("points") if isinstance(payload, dict) else None
+    if not isinstance(raw, list):
+        return []
+    points: list[tuple[int, int]] = []
+    for row in raw:
+        if not isinstance(row, (list, tuple)) or len(row) < 2:
+            continue
+        epoch = row[0]
+        yen = _pos_int(row[1])
+        if yen is None or isinstance(epoch, bool) or not isinstance(epoch, (int, float)):
+            continue
+        points.append((int(epoch), yen))
+    return points
+
+
+def chart_range_enabled(payload: dict, key: str) -> bool | None:
+    """True/False from ``rangeKeys``. None when the payload has no such key."""
+    keys = payload.get("rangeKeys") if isinstance(payload, dict) else None
+    if not isinstance(keys, list):
+        return None
+    for row in keys:
+        if not isinstance(row, dict) or row.get("key") != key:
+            continue
+        enabled = row.get("enabled")
+        if isinstance(enabled, bool):
+            return enabled
+    return None
+
+
+def single_unit_option_id(payload: dict) -> str | None:
+    """Sealed chart option for a single box (``1個``). Multi-box sizes stay out."""
+    options = payload.get("salesChartOption") if isinstance(payload, dict) else None
+    if not isinstance(options, list):
+        return None
+    for opt in options:
+        if not isinstance(opt, dict):
+            continue
+        if str(opt.get("localizedName") or "") != "1個":
+            continue
+        oid = opt.get("id")
+        if isinstance(oid, bool) or not isinstance(oid, int):
+            continue
+        return str(oid)
+    return None
+
+
+def _point_date(epoch_ms: int) -> str:
+    return datetime.fromtimestamp(epoch_ms / 1000, HKT).date().isoformat()
+
+
+def filter_points_to_window(
+    points: list[tuple[int, int]],
+    *,
+    days: int,
+    now: datetime,
+) -> list[tuple[int, int]]:
+    """Keep points whose HKT calendar date falls in the last ``days`` days."""
+    today = now.astimezone(HKT).date()
+    span = max(int(days), 1)
+    cutoff = (today - timedelta(days=span - 1)).isoformat()
+    today_s = today.isoformat()
+    kept: list[tuple[int, int]] = []
+    for epoch_ms, yen in points:
+        if yen <= 0:
+            continue
+        day = _point_date(epoch_ms)
+        if cutoff <= day <= today_s:
+            kept.append((epoch_ms, yen))
+    return kept
+
+
+def choose_90d_points(
+    three_month_points: list[tuple[int, int]],
+    all_points: list[tuple[int, int]],
+    *,
+    days: int,
+    now: datetime,
+) -> list[tuple[int, int]]:
+    """Prefer the threeMonths series. If it is empty, use ``all`` inside the window."""
+    windowed = filter_points_to_window(three_month_points, days=days, now=now)
+    if windowed:
+        return windowed
+    return filter_points_to_window(all_points, days=days, now=now)
+
+
+def bucket_chart_points(
+    points: list[tuple[int, int]],
+    *,
+    fx: float,
+    days: int = 90,
+    now: datetime | None = None,
+) -> list[dict]:
+    """Group ``[epoch_ms, yen]`` into HKT days.
+
+    Price is the robust median (one point that day means last and median match).
+    Volume is how many chart points landed that day. The 3-month and all-range
+    charts publish one price per day, so that volume is usually 1.
+    """
+    now_dt = now or datetime.now(HKT)
+    kept = filter_points_to_window(points, days=days, now=now_dt)
+    by_date: dict[str, list[int]] = {}
+    for epoch_ms, yen in kept:
+        by_date.setdefault(_point_date(epoch_ms), []).append(yen)
+    history: list[dict] = []
+    for day in sorted(by_date):
+        med = robust_median_jpy(by_date[day])
+        if med is None:
+            continue
+        history.append({
+            "date": day,
+            "price_hkd": round(float(med) * float(fx), 2),
+            "hk_ask_hkd": None,
+            "volume": float(len(by_date[day])),
+        })
+    return history
+
+
+def relative_sale_datetime(label: str, *, now: datetime) -> datetime | None:
+    """Turn a SNKRDUNK relative sale label (``4分前``, ``2日前``) into an instant."""
+    text = str(label or "").strip()
+    if not text:
+        return None
+    base = now.astimezone(HKT)
+    if "今日" in text:
+        return base
+    if "昨日" in text:
+        return base - timedelta(days=1)
+    match = _REL_SALE.search(text)
+    if not match:
+        return None
+    count = int(match.group(1))
+    unit = match.group(2)
+    if unit == "分":
+        return base - timedelta(minutes=count)
+    if unit == "時間":
+        return base - timedelta(hours=count)
+    if unit == "日":
+        return base - timedelta(days=count)
+    if unit in ("週間", "週"):
+        return base - timedelta(days=count * 7)
+    if unit in ("か月", "ヶ月", "ヵ月"):
+        return base - timedelta(days=count * 30)
+    return None
+
+
+def sales_history_chart_points(payload: dict, *, now: datetime) -> list[tuple[int, int]]:
+    """Single-SKU sales-history rows as chart points. Multi-box lots are skipped."""
+    history = payload.get("history") if isinstance(payload, dict) else None
+    if not isinstance(history, list):
+        return []
+    points: list[tuple[int, int]] = []
+    for row in history:
+        if not isinstance(row, dict) or not single_sku_sale(row):
+            continue
+        yen = _pos_int(row.get("price"))
+        if yen is None:
+            continue
+        stamped = relative_sale_datetime(str(row.get("date") or ""), now=now)
+        if stamped is None:
+            continue
+        points.append((int(stamped.timestamp() * 1000), yen))
+    return points
+
+
+def _fetch_chart_payload(
+    url: str,
+    *,
+    range_key: str,
+    option_id: str | None,
+    min_interval: float,
+) -> dict:
+    params: dict[str, str] = {"range": range_key}
+    if option_id:
+        params["salesChartOptionId"] = option_id
+    try:
+        resp = polite_get(
+            url,
+            params=params,
+            min_interval=min_interval,
+            timeout=25,
+            headers={"Accept": "application/json"},
+        )
+        if resp.status_code != 200:
+            return {}
+        payload = resp.json()
+    except (json.JSONDecodeError, TypeError, ValueError, Exception):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def fetch_psa10_90d_points(
+    apparel_id: str,
+    *,
+    min_interval: float,
+    days: int = 90,
+    now: datetime | None = None,
+) -> list[tuple[int, int]]:
+    """PSA10 used sales-chart points for the 90-day window. Option 22 only."""
+    now_dt = now or datetime.now(HKT)
+    url = SALES_CHART_USED_URL.format(apparel_id=apparel_id)
+    three = parse_chart_points(
+        _fetch_chart_payload(
+            url,
+            range_key=CHART_RANGE_90D,
+            option_id=PSA10_CONDITION_IDS,
+            min_interval=min_interval,
+        )
+    )
+    chosen = choose_90d_points(three, [], days=days, now=now_dt)
+    if chosen:
+        return chosen
+    all_pts = parse_chart_points(
+        _fetch_chart_payload(
+            url,
+            range_key=CHART_RANGE_ALL,
+            option_id=PSA10_CONDITION_IDS,
+            min_interval=min_interval,
+        )
+    )
+    return choose_90d_points([], all_pts, days=days, now=now_dt)
+
+
+def fetch_sealed_90d_points(
+    apparel_id: str,
+    *,
+    min_interval: float,
+    days: int = 90,
+    now: datetime | None = None,
+) -> list[tuple[int, int]]:
+    """New-product sales chart for ``1個``. Sales-history dates if that chart is empty."""
+    now_dt = now or datetime.now(HKT)
+    url = SALES_CHART_URL.format(apparel_id=apparel_id)
+    probe = _fetch_chart_payload(
+        url,
+        range_key=CHART_RANGE_90D,
+        option_id=None,
+        min_interval=min_interval,
+    )
+    option_id = single_unit_option_id(probe)
+    if option_id:
+        range_key = CHART_RANGE_90D
+        if chart_range_enabled(probe, CHART_RANGE_90D) is False:
+            range_key = CHART_RANGE_ALL
+        primary = parse_chart_points(
+            _fetch_chart_payload(
+                url,
+                range_key=range_key,
+                option_id=option_id,
+                min_interval=min_interval,
+            )
+        )
+        chosen = choose_90d_points(primary, [], days=days, now=now_dt)
+        if not chosen and range_key != CHART_RANGE_ALL:
+            all_pts = parse_chart_points(
+                _fetch_chart_payload(
+                    url,
+                    range_key=CHART_RANGE_ALL,
+                    option_id=option_id,
+                    min_interval=min_interval,
+                )
+            )
+            chosen = choose_90d_points([], all_pts, days=days, now=now_dt)
+        if chosen:
+            return chosen
+    hist = sales_history_chart_points(
+        _sales_payload(apparel_id, min_interval=min_interval),
+        now=now_dt,
+    )
+    return filter_points_to_window(hist, days=days, now=now_dt)
 
 
 def _chart_last_sale(

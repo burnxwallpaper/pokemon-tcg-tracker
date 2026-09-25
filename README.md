@@ -49,6 +49,12 @@ python scripts/update.py
 
 先收 SNKRDUNK 商品頁 **Hottest Items**（例：https://snkrdunk.com/en/trading-cards/704407?slide=right ，API `/en/v1/brands/pokemon/streetwears?department=tradingCard`），再用 search `sort=hottest` 填滿剩餘名額（上限約 200，見 `data/catalog/liquidity_rank.json`），然後抓 JP sold／HK asks。新卡若 series 未夠深，會用 closedsearch 回填每日點（按 date merge，唔會洗走舊歷史）。寫入 `data/latest.json`、`data/history/YYYY-MM-DD.json`、`data/history/series/{id}.json`。
 
+90 日價格趨勢同成交量來自 SNKRDUNK 圖表，再按日期 merge 入 `data/history/series/{id}.json`（唔會洗走已有點）。PSA10 只用 used sales-chart 的 PSA10 option（`salesChartOptionId=22`），`range=threeMonths`；該段未開或冇點就改用 `all` 再裁到 90 日。每日價係當日圖點的中位數（只有一點時即該價），成交量係當日點數。3 個月／全部圖通常每日一個價位，所以嗰啲日的成交量係 1。未開封用新品 `sales-chart` 的「1個」；圖空先用 sales-history 的單件日期。冇 PSA10 成交就留空。詳情頁讀 series 檔，唔再用 `latest.json` 入面嗰一日快照。
+
+```bash
+python scripts/backfill_snkrdunk_history.py
+```
+
 只重排名單：`python scripts/discover_watchlist.py --force`  
 跳過重排：`python scripts/update.py --no-discover`
 
@@ -72,6 +78,7 @@ python scripts/update_stub.py
 | `data/name_zh_map.json` | 日文→繁中對照（物種、系列、稀有度／商品詞）。`scripts/name_zh_map.translate()` 最長鍵優先 |
 | `data/history/` | 每日歷史（約保留 90 天；格式見內文說明） |
 | `scripts/update.py` | 真實更新管線：Yahoo JP + Carousell HK（HKCardLink fallback） |
+| `scripts/backfill_snkrdunk_history.py` | 用 SNKRDUNK PSA10／未開封圖表回填約 90 日價格同成交量 |
 | `scripts/sources/` | 溫和 scrapers |
 | `scripts/update_stub.py` | 範例資料 stub（UI 測試） |
 | `SOURCES.md` | JP／HK 公開資料源研究與 MVP 優先順序 |
@@ -88,7 +95,7 @@ python scripts/update_stub.py
 - `liquidity_score`（0–99，絕對值，唔係當日清單百分位）：`60 * log1p(約 7 日成交) / log1p(80)` ＋ `39 * log1p(放售筆數) / log1p(800)`。PSA10 用一週圖表，未開封用 sales-history 日期；卡用 `usedListingCount`，盒用 `listingCount`。冇 SNKRDUNK 成交先至用 Yahoo 今日＋7日量。約 80 筆成交或約 800 個放售先至頂滿嗰一邊，所以一般 Hottest 會落喺中段，99 要成交同放售都深。見 `discovery.liquidity_score_note`。
 - 匯率起始：`1 JPY = 0.0495 HKD`（可改）
 - 最低上架價：`min_list_price_hkd` = **HK$100**。有賣出價就用賣出價，否則用最近成交價；低過呢個數唔會出現喺清單。Hottest Items 的 `minPrice` 已是港元；搜尋標題係日圓 × 匯率。低過 HK$100 唔會掃入。冇可靠報價先至留空，唔會用其他等級嘅價頂上。
-- 歷史：約 90 天
+- 歷史：約 90 天。趨勢同成交量由 SNKRDUNK PSA10（option 22）`threeMonths` 圖回填；未開封用「1個」sales-chart
 - 暫無推播；Facebook 本地店稍後再接
 
 ---

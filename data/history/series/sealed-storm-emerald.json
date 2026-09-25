@@ -1,6 +1,6 @@
 {
   "id": "sealed-storm-emerald",
-  "name_zh": "風暴翡翠 BOX（未開封）",
+  "name_zh": "綠寶石風暴 BOX（未開封）",
   "name_jp": "ストームエメラルダ BOX 未開封",
   "kind": "sealed",
   "set": "M6",
@@ -9,98 +9,434 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 16,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history_days": 72,
+  "updated_at": "2026-09-25T18:38:30+08:00",
   "history": [
     {
-      "date": "2026-09-10",
-      "price_hkd": 544.5,
+      "date": "2026-07-04",
+      "price_hkd": 1942.03,
       "hk_ask_hkd": null,
-      "volume": 3.0
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-07",
+      "price_hkd": 1534.5,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-08",
+      "price_hkd": 1655.78,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-13",
+      "price_hkd": 1720.12,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-16",
+      "price_hkd": 1584.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-21",
+      "price_hkd": 1459.26,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-22",
+      "price_hkd": 1388.48,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-23",
+      "price_hkd": 1397.53,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-24",
+      "price_hkd": 1318.14,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-25",
+      "price_hkd": 1286.65,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-26",
+      "price_hkd": 1219.83,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-27",
+      "price_hkd": 1137.06,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-28",
+      "price_hkd": 1159.14,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-29",
+      "price_hkd": 1133.3,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-30",
+      "price_hkd": 1178.15,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-31",
+      "price_hkd": 1060.49,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-01",
+      "price_hkd": 969.21,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-02",
+      "price_hkd": 964.61,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-03",
+      "price_hkd": 1025.29,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-04",
+      "price_hkd": 1055.84,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-05",
+      "price_hkd": 1051.92,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-06",
+      "price_hkd": 1011.93,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-07",
+      "price_hkd": 974.36,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-08",
+      "price_hkd": 956.79,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-09",
+      "price_hkd": 945.95,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-10",
+      "price_hkd": 925.65,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-11",
+      "price_hkd": 901.15,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-12",
+      "price_hkd": 899.66,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-13",
+      "price_hkd": 873.77,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-14",
+      "price_hkd": 860.95,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-15",
+      "price_hkd": 845.16,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-16",
+      "price_hkd": 854.32,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-17",
+      "price_hkd": 870.31,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-18",
+      "price_hkd": 863.78,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-19",
+      "price_hkd": 860.01,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-20",
+      "price_hkd": 839.42,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-21",
+      "price_hkd": 808.38,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-22",
+      "price_hkd": 779.38,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-23",
+      "price_hkd": 779.43,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-24",
+      "price_hkd": 756.61,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-25",
+      "price_hkd": 741.11,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-26",
+      "price_hkd": 725.08,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-27",
+      "price_hkd": 701.51,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-28",
+      "price_hkd": 685.62,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-29",
+      "price_hkd": 671.37,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-30",
+      "price_hkd": 664.54,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-31",
+      "price_hkd": 650.48,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-01",
+      "price_hkd": 635.09,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-02",
+      "price_hkd": 645.38,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-03",
+      "price_hkd": 630.38,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-04",
+      "price_hkd": 646.32,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-05",
+      "price_hkd": 627.12,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-06",
+      "price_hkd": 632.56,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-07",
+      "price_hkd": 611.37,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-08",
+      "price_hkd": 594.15,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-09",
+      "price_hkd": 582.57,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-10",
+      "price_hkd": 577.57,
+      "hk_ask_hkd": null,
+      "volume": 1.0
     },
     {
       "date": "2026-09-11",
-      "price_hkd": 1084.05,
+      "price_hkd": 561.48,
       "hk_ask_hkd": null,
-      "volume": 35.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-12",
-      "price_hkd": 544.5,
+      "price_hkd": 525.89,
       "hk_ask_hkd": null,
-      "volume": 48.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-13",
-      "price_hkd": 529.65,
+      "price_hkd": 530.1,
       "hk_ask_hkd": null,
-      "volume": 49.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-14",
-      "price_hkd": 519.75,
+      "price_hkd": 517.87,
       "hk_ask_hkd": null,
-      "volume": 40.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-15",
-      "price_hkd": 1160.78,
+      "price_hkd": 501.04,
       "hk_ask_hkd": null,
-      "volume": 34.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-16",
-      "price_hkd": 539.55,
+      "price_hkd": 528.76,
       "hk_ask_hkd": null,
-      "volume": 40.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-17",
-      "price_hkd": 779.62,
+      "price_hkd": 556.28,
       "hk_ask_hkd": null,
-      "volume": 50.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-18",
-      "price_hkd": 1019.7,
+      "price_hkd": 566.43,
       "hk_ask_hkd": null,
-      "volume": 52.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-19",
-      "price_hkd": 1138.5,
+      "price_hkd": 563.76,
       "hk_ask_hkd": null,
-      "volume": 44.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-20",
-      "price_hkd": 1052.15,
+      "price_hkd": 571.77,
       "hk_ask_hkd": null,
-      "volume": 48.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-21",
-      "price_hkd": 1138.5,
+      "price_hkd": 573.9,
       "hk_ask_hkd": null,
-      "volume": 43.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-22",
-      "price_hkd": 767.25,
+      "price_hkd": 572.81,
       "hk_ask_hkd": null,
-      "volume": 41.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-23",
-      "price_hkd": 524.7,
+      "price_hkd": 551.33,
       "hk_ask_hkd": null,
-      "volume": 12.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-24",
-      "price_hkd": 544.5,
+      "price_hkd": 549.15,
       "hk_ask_hkd": 980.0,
-      "volume": 23.0
+      "volume": 1.0
     },
     {
       "date": "2026-09-25",
@@ -108,5 +444,6 @@
       "hk_ask_hkd": 546.0,
       "volume": 23.0
     }
-  ]
+  ],
+  "backfill": "snkrdunk_sales_chart"
 }
