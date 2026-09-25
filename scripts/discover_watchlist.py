@@ -79,9 +79,11 @@ def discovery_settings(cfg: dict) -> dict[str, Any]:
         "min_closed": int(raw.get("min_closed") or 1),
         "top_n": top_n,
         "pages": max(1, int(raw.get("pages") or 10)),
+        "hottest_brand": str(raw.get("hottest_brand") or "pokemon").strip() or "pokemon",
+        "hottest_per_page": max(12, int(raw.get("hottest_per_page") or 48)),
         "min_selected": int(raw.get("min_selected") or (80 if backend == "snkrdunk" else 45)),
         "method": (
-            "snkrdunk_hottest"
+            "snkrdunk_hottest_items"
             if backend == "snkrdunk"
             else "yahoo_closedsearch_totalResultsAvailable"
         ),
@@ -326,6 +328,7 @@ def write_rank_file(
     now: datetime,
     method: str | None = None,
     method_note: str | None = None,
+    extra: dict | None = None,
 ) -> None:
     selected = set(selected_ids)
     rankings = []
@@ -364,6 +367,8 @@ def write_rank_file(
         "selected_ids": selected_ids if applied else [],
         "rankings": rankings,
     }
+    if extra:
+        doc.update(extra)
     RANK_PATH.parent.mkdir(parents=True, exist_ok=True)
     RANK_PATH.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -581,20 +586,59 @@ def refresh_from_snkrdunk(cfg: dict, settings: dict, *, force: bool = False) -> 
         print("[discover] SNKRDUNK rank is fresh; keeping watchlist", flush=True)
         return persist_missing_pins(cfg)
 
-    from sources.snkrdunk import catalog_kind, collect_hottest_tiles, headline_under_min
+    from sources.snkrdunk import (
+        HOTTEST_HUB,
+        catalog_kind,
+        collect_brand_hottest,
+        collect_brand_search_labels,
+        collect_hottest_tiles,
+        headline_under_min,
+        prepare_brand_hottest,
+    )
 
     interval = float(cfg.get("request_min_interval_sec") or 1.6)
     fx = float(cfg.get("fx_jpy_to_hkd") or 0)
     min_hkd = float(cfg.get("min_list_price_hkd") or 0)
     pages = int(settings["pages"])
+    brand = str(settings["hottest_brand"])
+    per_page = int(settings["hottest_per_page"])
     print(
-        f"[discover] SNKRDUNK hottest × {pages} pages "
-        f"(cap={settings['top_n']}, psa10={settings['psa10_slots']}, "
-        f"sealed={settings['sealed_slots']}, interval≥{interval}s)",
+        f"[discover] SNKRDUNK Hottest Items brand={brand} × {pages} pages "
+        f"(per_page={per_page}, cap={settings['top_n']}, psa10={settings['psa10_slots']}, "
+        f"sealed={settings['sealed_slots']}, floor=HK${min_hkd:g}, interval≥{interval}s)",
         flush=True,
     )
-    tiles = collect_hottest_tiles(pages=pages, min_interval=interval)
-    print(f"[discover] hottest catalog hits={len(tiles)}", flush=True)
+    brand_raw = collect_brand_hottest(
+        pages=pages,
+        min_interval=interval,
+        per_page=per_page,
+        brand_id=brand,
+    )
+    print(f"[discover] hottest items hits={len(brand_raw)}", flush=True)
+    jp_labels = collect_brand_search_labels(pages=pages, min_interval=interval, brand_id=brand)
+    brand_kept, localized = prepare_brand_hottest(
+        brand_raw,
+        jp_labels,
+        fx=fx,
+        minimum=min_hkd,
+        min_interval=interval,
+        localize_cap=int(settings["top_n"]) + 40,
+    )
+    print(
+        f"[discover] hottest items eligible={len(brand_kept)} jp_labels={len(jp_labels)} "
+        f"localized={localized}",
+        flush=True,
+    )
+    keyword_tiles = collect_hottest_tiles(pages=pages, min_interval=interval)
+    seen_apparel = {str(tile.get("apparel_id") or "") for tile in brand_kept}
+    tiles = list(brand_kept)
+    for tile in keyword_tiles:
+        apparel_id = str(tile.get("apparel_id") or "")
+        if not apparel_id or apparel_id in seen_apparel:
+            continue
+        seen_apparel.add(apparel_id)
+        tiles.append(tile)
+    print(f"[discover] catalog hits={len(tiles)} (keyword fill={len(tiles) - len(brand_kept)})", flush=True)
     watchlist = [w for w in (cfg.get("watchlist") or []) if isinstance(w, dict)]
     by_print, sealed_unique = _index_existing(watchlist)
     used_ids = {str(w.get("id")) for w in watchlist if w.get("id")}
@@ -654,6 +698,22 @@ def refresh_from_snkrdunk(cfg: dict, settings: dict, *, force: bool = False) -> 
             flush=True,
         )
         cfg = persist_missing_pins(cfg)
+    selected_apparel = {
+        str(entries[iid].get("snkrdunk_apparel_id") or "")
+        for iid in selected_ids
+        if iid in entries
+    }
+    eligible_ids = [str(tile.get("apparel_id") or "") for tile in brand_kept]
+    first_page_ids = [str(tile.get("apparel_id") or "") for tile in brand_raw[:12]]
+    eligible_set = set(eligible_ids)
+    first_eligible = [aid for aid in first_page_ids if aid in eligible_set]
+    first_selected = [aid for aid in first_eligible if aid in selected_apparel]
+    hottest_selected = [aid for aid in eligible_ids if aid in selected_apparel]
+    print(
+        f"[discover] hottest coverage selected={len(hottest_selected)}/{len(eligible_ids)} "
+        f"first_page={len(first_selected)}/{len(first_eligible) or len(first_page_ids)}",
+        flush=True,
+    )
     write_rank_file(
         settings=settings,
         rows=rows,
@@ -661,15 +721,31 @@ def refresh_from_snkrdunk(cfg: dict, settings: dict, *, force: bool = False) -> 
         applied=applied,
         fatal=None,
         now=now,
-        method="snkrdunk_hottest",
+        method="snkrdunk_hottest_items",
         method_note=(
-            "SNKRDUNK public search sort=hottest for ポケモンカード, PSA10, and ボックス. "
-            "First-seen order is the liquidity rank. Cap is top_n with psa10_slots and sealed_slots. "
+            "SNKRDUNK Hottest Items on product pages "
+            f"({HOTTEST_HUB}): /en/v1/brands/{brand}/streetwears?department=tradingCard. "
+            "That order is the rank. Keyword search sort=hottest fills any slots left under the cap. "
+            "HK$ min_list_price_hkd drops a headline under the floor (brand API minPrice is already HKD; "
+            "search tiles are yen × fx_jpy_to_hkd). Cap is top_n with psa10_slots and sealed_slots. "
             "Fewer than min_selected hits does not replace the watchlist. "
             "The same set and collector number keeps its existing id and Chinese name. "
             "config.pinned ids stay even outside the cap. "
             "Ids that leave the active watchlist keep series, images, and per-id catalog files."
         ),
+        extra={
+            "hottest_hub": HOTTEST_HUB,
+            "hottest_brand": brand,
+            "hottest_fetched": len(brand_raw),
+            "hottest_eligible": len(eligible_ids),
+            "hottest_selected": len(hottest_selected) if applied else 0,
+            "hottest_first_page_ids": first_page_ids,
+            "hottest_first_page_eligible": first_eligible,
+            "hottest_first_page_selected": first_selected if applied else [],
+            "hottest_missed_ids": [
+                aid for aid in eligible_ids if aid not in selected_apparel
+            ][:40],
+        },
     )
     return load_config()
 

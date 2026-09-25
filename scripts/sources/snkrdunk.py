@@ -13,6 +13,7 @@ from __future__ import annotations
 import html
 import json
 import re
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from ._http import polite_get
@@ -39,6 +40,9 @@ SALES_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/sales-history"
 SALES_CHART_USED_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/sales-chart/used"
 EN_URL = "https://snkrdunk.com/en/trading-cards/{apparel_id}"
 APPAREL_JSON_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}"
+# Product-page "Hottest Items" (TradingCardDetailHottestBrandItem).
+HOTTEST_BRAND_URL = "https://snkrdunk.com/en/v1/brands/{brand_id}/streetwears"
+HOTTEST_HUB = "https://snkrdunk.com/en/trading-cards/704407?slide=right"
 USED_URL = "https://snkrdunk.com/v1/apparels/{apparel_id}/used"
 PSA10_WEAR = "tradingCardSingleConditionPSA10"
 PSA10_CONDITION_IDS = "22"
@@ -46,8 +50,9 @@ RAW_A_WEAR = "tradingCardSingleConditionNearlyUnused"
 RAW_A_CONDITION_IDS = "18"
 _UNIT_COUNT = re.compile(r"(\d+)\s*(?:個|箱|ボックス|boxes|box)", re.I)
 _SHEET_COUNT = re.compile(r"(\d+)\s*枚")
+_SET_CODE = r"[A-Za-z][A-Za-z0-9]*(?:-[A-Za-z0-9]+)*"
 _BRACKET = re.compile(
-    r"\[([A-Za-z]+\d+[A-Za-z]*)\s+(\d{2,3})(?:\s*/\s*\d{2,3})?\]"
+    rf"\[({_SET_CODE})\s+(\d{{2,3}})(?:\s*/\s*\d{{2,3}})?\]"
 )
 _SEALED_SKIP = re.compile(r"no shrink|シュリンクなし|抽選|開封済|campaign ended", re.I)
 _SEALED_NOISE = re.compile(r"未開封|シュリンク付き|シュリンク|shrink", re.I)
@@ -61,8 +66,13 @@ _TILE = re.compile(
     r'href="https://snkrdunk.com/apparels/(\d+)(?:/used/\d+)?"[^>]*aria-label="([^"]+)"'
 )
 _CARD_NO = re.compile(
-    r"\[([A-Za-z]+\d+[A-Za-z]*)\s+(\d{2,3})(?:\s*/\s*(\d{2,3}))?\]"
+    rf"\[({_SET_CODE})\s+(\d{{2,3}})(?:\s*/\s*(\d{{2,3}}))?\]"
 )
+_JP_SCRIPT = re.compile(r"[\u3040-\u30ff\u4e00-\u9fff]")
+_NO_SHRINK = re.compile(r"シュリンクなし|シュリンク無|no\s*shrink", re.I)
+_OPENED = re.compile(r"開封済|開封済み|\bopened\b", re.I)
+_DECK_SET = re.compile(r"構築デッキ|プレミアムデッキ|deck\s*set|constructed\s*deck", re.I)
+_REL_SALE = re.compile(r"(\d+)\s*(分|時間|日|週間|週|か月|ヶ月|ヵ月)")
 _YEN = re.compile(r"¥\s*([\d,]+)\s*$")
 _COND = re.compile(
     r'"filterConditionId":"([^"]+)"'
@@ -142,10 +152,18 @@ def _local_number(item: dict) -> str | None:
 
 
 def _pack_only(label: str) -> bool:
-    if "パック" not in label:
-        return False
+    """A loose pack, not a box or deck that happens to say 拡張パック / Expansion Pack."""
     folded = label.lower()
-    return "ボックス" not in label and "box" not in folded
+    is_pack = "パック" in label or bool(re.search(r"\bpacks?\b", folded))
+    if not is_pack:
+        return False
+    if "ボックス" in label or "デッキ" in label or "box" in folded or "deck" in folded:
+        return False
+    return True
+
+
+def _is_pokemon(label: str) -> bool:
+    return bool(re.search(r"ポケモン|pokemon|pokémon", label, re.I))
 
 
 def tile_matches(tile: dict, item: dict) -> bool:
@@ -194,18 +212,22 @@ _CATALOG_SKIP = re.compile(
 
 
 def catalog_kind(tile: dict) -> str | None:
-    """Hottest-search hit we are willing to track. None drops jewelry, EN, and packs."""
+    """Hottest hit we track. None drops jewelry, EN, packs, no-shrink, and opened stock."""
     label = str(tile.get("label") or "")
     if not label or _CATALOG_SKIP.search(label) or _EN_REPRINT.search(label):
         return None
+    if _NO_SHRINK.search(label) or _OPENED.search(label):
+        return None
     if str(tile.get("set_code") or "") and str(tile.get("number") or ""):
         return "psa10"
-    if "ポケモン" in label and _is_box(label) and not _pack_only(label):
-        if re.search(r"カートン|\bcase\b", label, re.I):
-            return None
-        multi = _MULTI_BOX.search(label)
-        if multi and int(multi.group(1)) >= 2:
-            return None
+    if not _is_pokemon(label) or _pack_only(label):
+        return None
+    if re.search(r"カートン|\bcase\b", label, re.I):
+        return None
+    multi = _MULTI_BOX.search(label)
+    if multi and int(multi.group(1)) >= 2:
+        return None
+    if _is_box(label) or _DECK_SET.search(label):
         return "sealed"
     return None
 
@@ -247,6 +269,191 @@ def collect_hottest_tiles(
             if fresh == 0:
                 break
     return tiles
+
+
+def _tile_from_parts(apparel_id: str, label: str, *, price_jpy: int | None = None, price_hkd: int | None = None) -> dict[str, Any]:
+    number = _CARD_NO.search(label)
+    return {
+        "apparel_id": str(apparel_id),
+        "label": label,
+        "tile_price_jpy": price_jpy,
+        "tile_price_hkd": price_hkd,
+        "set_code": number.group(1) if number else None,
+        "number": number.group(2) if number else None,
+        "denom": number.group(3) if number else None,
+    }
+
+
+def tile_from_hottest_row(row: dict) -> dict[str, Any] | None:
+    """One Hottest Items row. ``minPrice`` on the EN brand API is already HKD."""
+    if not isinstance(row, dict) or row.get("id") is None:
+        return None
+    name = str(row.get("name") or "").strip()
+    if not name:
+        return None
+    price = row.get("minPrice")
+    price_hkd = None
+    if isinstance(price, (int, float)) and not isinstance(price, bool) and price > 0:
+        price_hkd = int(price)
+    return _tile_from_parts(str(row["id"]), name, price_hkd=price_hkd)
+
+
+def collect_brand_hottest(
+    *,
+    pages: int,
+    min_interval: float,
+    per_page: int = 48,
+    brand_id: str = "pokemon",
+) -> list[dict]:
+    """Product-page Hottest Items, first page first, one row per apparel id.
+
+    The EN widget loads ``/en/v1/brands/{brand}/streetwears?department=tradingCard``.
+    """
+    seen: set[str] = set()
+    tiles: list[dict] = []
+    for page in range(1, max(1, pages) + 1):
+        try:
+            resp = polite_get(
+                HOTTEST_BRAND_URL.format(brand_id=brand_id),
+                params={
+                    "perPage": str(max(1, per_page)),
+                    "page": str(page),
+                    "department": "tradingCard",
+                },
+                min_interval=min_interval,
+                timeout=25,
+                headers={"Accept": "application/json", "Accept-Language": "en"},
+            )
+        except Exception:
+            break
+        if resp.status_code != 200:
+            break
+        try:
+            payload = resp.json()
+        except (json.JSONDecodeError, ValueError):
+            break
+        rows = payload.get("streetwears") if isinstance(payload, dict) else None
+        if not isinstance(rows, list) or not rows:
+            break
+        fresh = 0
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            tile = tile_from_hottest_row(row)
+            if tile is None:
+                continue
+            apparel_id = str(tile["apparel_id"])
+            if apparel_id in seen:
+                continue
+            seen.add(apparel_id)
+            tiles.append(tile)
+            fresh += 1
+        if fresh == 0 or len(rows) < per_page:
+            break
+    return tiles
+
+
+def collect_brand_search_labels(
+    *,
+    pages: int,
+    min_interval: float,
+    brand_id: str = "pokemon",
+) -> dict[str, dict]:
+    """Japanese titles from the brand hottest search, keyed by apparel id."""
+    index: dict[str, dict] = {}
+    for page in range(1, max(1, pages) + 1):
+        try:
+            resp = polite_get(
+                SEARCH_URL,
+                params={"brandIds": brand_id, "sort": "hottest", "page": str(page)},
+                min_interval=min_interval,
+                timeout=25,
+                headers={"Accept-Language": "ja,en;q=0.8"},
+            )
+        except Exception:
+            break
+        if resp.status_code != 200:
+            break
+        batch = parse_tiles(resp.text)
+        fresh = 0
+        for tile in batch:
+            apparel_id = str(tile.get("apparel_id") or "")
+            if not apparel_id or apparel_id in index:
+                continue
+            index[apparel_id] = tile
+            fresh += 1
+        if fresh == 0:
+            break
+    return index
+
+
+def _apply_japanese_label(tile: dict, jp: dict) -> None:
+    label = str(jp.get("label") or "").strip()
+    if not label or not _JP_SCRIPT.search(label):
+        return
+    parsed = _tile_from_parts(
+        str(tile.get("apparel_id") or jp.get("apparel_id") or ""),
+        label,
+        price_jpy=tile.get("tile_price_jpy") if isinstance(tile.get("tile_price_jpy"), int) else None,
+        price_hkd=tile.get("tile_price_hkd") if isinstance(tile.get("tile_price_hkd"), int) else None,
+    )
+    tile["label"] = parsed["label"]
+    for key in ("set_code", "number", "denom"):
+        if parsed.get(key):
+            tile[key] = parsed[key]
+
+
+def _localize_from_apparel(tile: dict, *, min_interval: float) -> None:
+    if _JP_SCRIPT.search(str(tile.get("label") or "")):
+        return
+    try:
+        apparel_id = int(tile.get("apparel_id") or 0)
+    except (TypeError, ValueError):
+        return
+    if apparel_id <= 0:
+        return
+    try:
+        apparel = _apparel_json(apparel_id, min_interval=min_interval)
+    except Exception:
+        return
+    local = apparel.get("localizedName")
+    if not isinstance(local, str) or not local.strip():
+        return
+    _apply_japanese_label(tile, {"label": local.strip(), "apparel_id": str(apparel_id)})
+
+
+def prepare_brand_hottest(
+    tiles: list[dict],
+    jp_by_id: dict[str, dict],
+    *,
+    fx: float,
+    minimum: float,
+    min_interval: float,
+    localize_cap: int,
+) -> tuple[list[dict], int]:
+    """Keep Hottest Items that clear the HKD floor and catalog rules.
+
+    Japanese search titles fill names first. Apparel JSON fills the rest, up to
+    ``localize_cap``, so the head of the section is not left in English.
+    """
+    kept: list[dict] = []
+    localized = 0
+    for tile in tiles:
+        aid = str(tile.get("apparel_id") or "")
+        jp = jp_by_id.get(aid)
+        if jp:
+            _apply_japanese_label(tile, jp)
+        if headline_under_min(tile, fx=fx, minimum=minimum):
+            continue
+        if not _JP_SCRIPT.search(str(tile.get("label") or "")) and localized < localize_cap:
+            _localize_from_apparel(tile, min_interval=min_interval)
+            localized += 1
+        if headline_under_min(tile, fx=fx, minimum=minimum):
+            continue
+        if catalog_kind(tile) is None:
+            continue
+        kept.append(tile)
+    return kept, localized
 
 
 def search_queries(item: dict) -> list[str]:
@@ -530,7 +737,7 @@ def _chart_last_sale(
         return None
 
 
-def _sealed_last_sale(apparel_id: str, *, min_interval: float) -> int | None:
+def _sales_payload(apparel_id: str, *, min_interval: float) -> dict:
     try:
         hist = polite_get(
             SALES_URL.format(apparel_id=apparel_id),
@@ -539,10 +746,147 @@ def _sealed_last_sale(apparel_id: str, *, min_interval: float) -> int | None:
             headers={"Accept": "application/json"},
         )
         if hist.status_code != 200:
-            return None
-        return parse_sales_history(hist.json())
+            return {}
+        payload = hist.json()
     except (json.JSONDecodeError, TypeError, ValueError, Exception):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _sealed_last_sale(apparel_id: str, *, min_interval: float) -> int | None:
+    return parse_sales_history(_sales_payload(apparel_id, min_interval=min_interval))
+
+
+def sale_within_days(label: str, *, days: int = 7) -> bool:
+    """True for a SNKRDUNK relative sale date inside ``days`` (分前 / N日前)."""
+    text = str(label or "").strip()
+    if not text:
+        return False
+    if "今日" in text or "昨日" in text:
+        return True
+    match = _REL_SALE.search(text)
+    if not match:
+        return False
+    count = int(match.group(1))
+    unit = match.group(2)
+    if unit in ("分", "時間"):
+        return True
+    if unit == "日":
+        return count <= days
+    if unit in ("週間", "週"):
+        return count * 7 <= days
+    return False
+
+
+def recent_history_count(payload: dict, *, days: int = 7) -> int:
+    """Sealed sales-history rows whose relative date is inside the window."""
+    history = payload.get("history") if isinstance(payload, dict) else None
+    if not isinstance(history, list):
+        return 0
+    sold = 0
+    for row in history:
+        if not isinstance(row, dict) or not single_sku_sale(row):
+            continue
+        if sale_within_days(str(row.get("date") or ""), days=days):
+            sold += 1
+    return sold
+
+
+def _parse_iso(value: object) -> datetime | None:
+    if not isinstance(value, str) or not value:
         return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def recent_used_sold_count(rows: list[dict], *, wear: str, days: int = 7) -> int:
+    """Sold rows on the used feed whose update time is inside the window."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    sold = 0
+    for row in rows:
+        if row.get("wearCount") != wear or not row.get("isDisplaySold"):
+            continue
+        if wear == RAW_A_WEAR and not single_sheet(row):
+            continue
+        stamped = _parse_iso(row.get("updatedAt")) or _parse_iso(row.get("createdAt"))
+        if stamped is not None and stamped >= cutoff:
+            sold += 1
+    return sold
+
+
+def _week_sold_count(apparel_id: str, *, min_interval: float, option_id: str) -> int:
+    """Points on the one-week used sales chart for one condition."""
+    try:
+        chart = polite_get(
+            SALES_CHART_USED_URL.format(apparel_id=apparel_id),
+            params={"salesChartOptionId": option_id, "range": "oneWeek"},
+            min_interval=min_interval,
+            timeout=20,
+            headers={"Accept": "application/json"},
+        )
+        if chart.status_code != 200:
+            return 0
+        payload = chart.json()
+    except (json.JSONDecodeError, TypeError, ValueError, Exception):
+        return 0
+    points = payload.get("points") if isinstance(payload, dict) else None
+    if not isinstance(points, list):
+        return 0
+    return sum(
+        1
+        for point in points
+        if isinstance(point, (list, tuple)) and len(point) >= 2 and _pos_int(point[1])
+    )
+
+
+def _count_field(data: dict, key: str) -> int:
+    raw = data.get(key)
+    if isinstance(raw, str):
+        cleaned = raw.replace("+", "").replace(",", "").strip()
+        if cleaned.isdigit():
+            return int(cleaned)
+        return 0
+    parsed = _pos_int(raw)
+    return parsed if parsed is not None else 0
+
+
+def sell_listing_count(apparel: dict | None, *, kind: str) -> int:
+    """Current SNKRDUNK sell listings. Slabs use used listings; boxes use new listings."""
+    data = apparel or {}
+    if kind == "sealed":
+        return _count_field(data, "listingCount") or _count_field(data, "totalListingCount")
+    return _count_field(data, "usedListingCount") or _count_field(data, "totalListingCount")
+
+
+def liquidity_score(recent_sold: float, listing_count: int, *, yahoo_vol: float = 0) -> int:
+    """0–99 from recent sold activity and the current sell-listing count.
+
+    ``recent_sold`` is SNKRDUNK sales over about 7 days. ``yahoo_vol`` (today
+    plus the 7-day average) is used only when that count is 0. ``listing_count``
+    is the live SNKRDUNK seller book (used listings for a slab, new listings
+    for a sealed box). 15 sales saturate the sold side at 60. About 26 listings
+    saturate the book side at 39.
+    """
+    sold = float(recent_sold or 0)
+    if sold <= 0:
+        sold = float(yahoo_vol or 0)
+    sold_pts = min(60.0, sold * 4.0)
+    list_pts = min(39.0, float(listing_count or 0) * 1.5)
+    if sold_pts <= 0 and list_pts <= 0:
+        return 1
+    return int(max(1, min(99, round(sold_pts + list_pts))))
+
+
+def _load_apparel(apparel_id: str, apparel: dict | None, *, min_interval: float) -> dict:
+    if isinstance(apparel, dict) and apparel.get("id"):
+        return apparel
+    try:
+        loaded = _apparel_json(int(apparel_id), min_interval=min_interval)
+    except (TypeError, ValueError, Exception):
+        return {}
+    return loaded if isinstance(loaded, dict) else {}
 
 
 def relevant_list_price_hkd(item: dict) -> float | None:
@@ -567,8 +911,17 @@ def meets_min_list_price(item: dict, minimum: float) -> bool:
 
 
 def headline_under_min(tile: dict, *, fx: float, minimum: float) -> bool:
-    """True when the search-tile yen converts under the HKD floor."""
-    if minimum <= 0 or fx <= 0:
+    """True when the tile price converts under the HKD floor.
+
+    ``tile_price_hkd`` is already HKD (Hottest Items brand API).
+    ``tile_price_jpy`` is yen from search HTML.
+    """
+    if minimum <= 0:
+        return False
+    hkd = tile.get("tile_price_hkd")
+    if isinstance(hkd, (int, float)) and not isinstance(hkd, bool) and hkd > 0:
+        return float(hkd) < float(minimum)
+    if fx <= 0:
         return False
     raw = tile.get("tile_price_jpy")
     if isinstance(raw, bool) or not isinstance(raw, (int, float)) or raw <= 0:
@@ -609,28 +962,65 @@ def _raw_a_used_rows(apparel_id: str, *, min_interval: float) -> list[dict]:
         return []
 
 
-def _quote_fields(item: dict, apparel_id: str, *, page_html: str, min_interval: float) -> dict[str, Any]:
+def _activity_fields(
+    *,
+    recent_sold_n: int,
+    apparel: dict,
+    kind: str,
+    ask_fallback: int = 0,
+) -> dict[str, int]:
+    listings = sell_listing_count(apparel, kind="sealed" if kind == "sealed" else "psa10")
+    if listings <= 0 and ask_fallback > 0:
+        listings = ask_fallback
+    return {"recent_sold_n": max(0, int(recent_sold_n)), "listing_count": listings}
+
+
+def _quote_fields(
+    item: dict,
+    apparel_id: str,
+    *,
+    page_html: str,
+    min_interval: float,
+    apparel: dict | None = None,
+) -> dict[str, Any]:
     kind = str(item.get("kind") or "")
     asks = parse_condition_asks(page_html)
     image = _product_image(page_html)
+    loaded = _load_apparel(apparel_id, apparel, min_interval=min_interval)
     if kind == "sealed":
-        last_sale = _sealed_last_sale(apparel_id, min_interval=min_interval)
+        payload = _sales_payload(apparel_id, min_interval=min_interval)
+        last_sale = parse_sales_history(payload)
         try:
             quote = build_ask_quote(
                 kind="sealed",
                 floor_jpy=None,
                 used_rows=None,
-                apparel=_apparel_json(int(apparel_id), min_interval=min_interval),
+                apparel=loaded,
             )
         except (TypeError, ValueError, Exception):
             quote = _empty_quote()
-        return {"quote": quote, "last_sale": last_sale, "image_url": image}
+        return {
+            "quote": quote,
+            "last_sale": last_sale,
+            "image_url": image,
+            **_activity_fields(
+                recent_sold_n=recent_history_count(payload),
+                apparel=loaded,
+                kind="sealed",
+                ask_fallback=len(quote.get("ask_prices_jpy") or []),
+            ),
+        }
 
     ask = asks.get("PSA10")
     used_rows = _psa10_used_rows(apparel_id, min_interval=min_interval)
     last_sale = psa10_last_sale_jpy(used_rows)
     if last_sale is None:
         last_sale = _chart_last_sale(apparel_id, min_interval=min_interval)
+    week_sold = _week_sold_count(
+        apparel_id, min_interval=min_interval, option_id=PSA10_CONDITION_IDS
+    )
+    if week_sold <= 0:
+        week_sold = recent_used_sold_count(used_rows, wear=PSA10_WEAR)
     if has_psa10_quote(used_rows, floor_jpy=ask, last_sale_jpy=last_sale):
         try:
             quote = build_ask_quote(
@@ -643,7 +1033,17 @@ def _quote_fields(item: dict, apparel_id: str, *, page_html: str, min_interval: 
             quote = _empty_quote()
             if isinstance(ask, int) and ask > 0:
                 quote = build_ask_quote(kind="psa10", floor_jpy=ask, used_rows=[], apparel=None)
-        return {"quote": quote, "last_sale": last_sale, "image_url": image}
+        return {
+            "quote": quote,
+            "last_sale": last_sale,
+            "image_url": image,
+            **_activity_fields(
+                recent_sold_n=week_sold,
+                apparel=loaded,
+                kind="psa10",
+                ask_fallback=len(psa10_active_ask_prices(used_rows)),
+            ),
+        }
 
     raw_rows = _raw_a_used_rows(apparel_id, min_interval=min_interval)
     last_sale = raw_a_last_sale_jpy(raw_rows)
@@ -654,8 +1054,23 @@ def _quote_fields(item: dict, apparel_id: str, *, page_html: str, min_interval: 
             option_id=RAW_A_CONDITION_IDS,
             range_key="all",
         )
+    raw_sold = _week_sold_count(
+        apparel_id, min_interval=min_interval, option_id=RAW_A_CONDITION_IDS
+    )
+    if raw_sold <= 0:
+        raw_sold = recent_used_sold_count(raw_rows, wear=RAW_A_WEAR)
     quote = raw_a_ask_quote(raw_rows, floor_jpy=asks.get("A"))
-    return {"quote": quote, "last_sale": last_sale, "image_url": image}
+    return {
+        "quote": quote,
+        "last_sale": last_sale,
+        "image_url": image,
+        **_activity_fields(
+            recent_sold_n=raw_sold,
+            apparel=loaded,
+            kind="psa10",
+            ask_fallback=len(raw_a_active_ask_prices(raw_rows)),
+        ),
+    }
 
 
 def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) -> dict[str, Any]:
@@ -690,7 +1105,9 @@ def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) ->
     if page.status_code != 200:
         empty["error"] = f"apparel HTTP {page.status_code}"
         return empty
-    packed = _quote_fields(item, apparel_id, page_html=page.text, min_interval=min_interval)
+    packed = _quote_fields(
+        item, apparel_id, page_html=page.text, min_interval=min_interval, apparel=apparel
+    )
     quote = packed["quote"]
     image = packed.get("image_url") or _media_url(apparel)
     return {
@@ -705,6 +1122,8 @@ def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) ->
         "ask_max_jpy": quote.get("ask_max_jpy"),
         "market_jpy": quote.get("market_jpy"),
         "last_sale_jpy": packed.get("last_sale"),
+        "recent_sold_n": packed.get("recent_sold_n") or 0,
+        "listing_count": packed.get("listing_count") or 0,
         "image_url": image,
         "error": None,
     }
@@ -775,6 +1194,8 @@ def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, 
         "ask_max_jpy": quote.get("ask_max_jpy"),
         "market_jpy": quote.get("market_jpy"),
         "last_sale_jpy": packed.get("last_sale"),
+        "recent_sold_n": packed.get("recent_sold_n") or 0,
+        "listing_count": packed.get("listing_count") or 0,
         "image_url": packed.get("image_url") or _product_image(page.text),
         "error": None,
     }

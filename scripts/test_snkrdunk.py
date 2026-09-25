@@ -13,6 +13,7 @@ from sources.snkrdunk import (  # noqa: E402
     chart_last_sale_jpy,
     choose_jp_price,
     headline_under_min,
+    liquidity_score,
     meets_min_list_price,
     product_name_ok,
     choose_match,
@@ -25,7 +26,11 @@ from sources.snkrdunk import (  # noqa: E402
     psa10_last_sale_jpy,
     raw_a_ask_quote,
     raw_a_last_sale_jpy,
+    recent_history_count,
+    sale_within_days,
     same_print,
+    sell_listing_count,
+    tile_from_hottest_row,
     tile_matches,
 )
 
@@ -251,6 +256,8 @@ def test_min_list_price_prefers_ask_then_sold() -> None:
     assert meets_min_list_price({"hk_ask_hkd": None, "price_hkd": None}, 100) is True
     assert headline_under_min({"tile_price_jpy": 2000}, fx=0.0495, minimum=100) is True
     assert headline_under_min({"tile_price_jpy": 8100}, fx=0.0495, minimum=100) is False
+    assert headline_under_min({"tile_price_hkd": 50}, fx=0.0495, minimum=100) is True
+    assert headline_under_min({"tile_price_hkd": 1188, "tile_price_jpy": 1000}, fx=0.0495, minimum=100) is False
 
 
 def test_ur_does_not_match_sar() -> None:
@@ -264,6 +271,68 @@ def test_ur_does_not_match_sar() -> None:
     }
     assert same_print(ur, "ピカチュウex UR [SV8 136/106]")
     assert not same_print(ur, "ピカチュウex SAR [SV8 136/106]")
+
+
+def test_hottest_items_kind_floor_and_liquidity() -> None:
+    card = tile_from_hottest_row(
+        {
+            "id": 704407,
+            "name": 'MEGA Charizard X ex MUR [M2 116/080](Expansion Pack "Inferno X")',
+            "minPrice": 3784,
+        }
+    )
+    assert card is not None
+    assert card["apparel_id"] == "704407"
+    assert card["set_code"] == "M2"
+    assert card["number"] == "116"
+    assert catalog_kind(card) == "psa10"
+    promo = tile_from_hottest_row(
+        {"id": 618447, "name": "Fukuoka's Pikachu P [SV-P 289](Special Box)", "minPrice": 396}
+    )
+    assert promo is not None
+    assert promo["set_code"] == "SV-P"
+    assert catalog_kind(promo) == "psa10"
+    box = tile_from_hottest_row(
+        {
+            "id": 881421,
+            "name": 'Pokemon Card Game MEGA Expansion Pack "30th CELEBRATION" Box',
+            "minPrice": 1188,
+        }
+    )
+    assert catalog_kind(box) == "sealed"
+    deck = tile_from_hottest_row(
+        {
+            "id": 881423,
+            "name": 'Pokemon Card Game MEGA Constructed Deck "30th CELEBRATION Premium Deck Set"',
+            "minPrice": 841,
+        }
+    )
+    assert catalog_kind(deck) == "sealed"
+    pack = tile_from_hottest_row(
+        {
+            "id": 881422,
+            "name": 'Pokemon Card Game MEGA Expansion Pack "30th CELEBRATION" Pack',
+            "minPrice": 50,
+        }
+    )
+    assert catalog_kind(pack) is None
+    assert headline_under_min(pack, fx=0.0495, minimum=100) is True
+    bare = tile_from_hottest_row(
+        {"id": 881427, "name": '[No shrink] Pokemon Card Game MEGA Expansion Pack "30th" Box', "minPrice": 990}
+    )
+    assert catalog_kind(bare) is None
+    assert sale_within_days("7分前")
+    assert sale_within_days("6日前")
+    assert not sale_within_days("8日前")
+    assert not sale_within_days("2週間前")
+    assert recent_history_count(
+        {"history": [{"price": 24000, "size": "1個", "date": "12分前"}, {"price": 150000, "size": "6個", "date": "1分前"}]}
+    ) == 1
+    assert sell_listing_count({"usedListingCount": 275, "listingCount": 0}, kind="psa10") == 275
+    assert sell_listing_count({"listingCount": 1566, "usedListingCount": 0}, kind="sealed") == 1566
+    assert liquidity_score(15, 275) == 99
+    assert liquidity_score(0, 0, yahoo_vol=2) == 8
+    assert liquidity_score(0, 4) == 6
 
 
 if __name__ == "__main__":
@@ -280,4 +349,5 @@ if __name__ == "__main__":
     test_sealed_history_drops_multi_box_lots()
     test_min_list_price_prefers_ask_then_sold()
     test_ur_does_not_match_sar()
+    test_hottest_items_kind_floor_and_liquidity()
     print("ok")
