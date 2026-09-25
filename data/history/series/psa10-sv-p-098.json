@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv-p-098",
-  "name_zh": "名偵探皮卡丘: 特典 [SV-P 098](特典卡「SV-P」)",
+  "name_zh": "名探偵ピカチュウ: プロモ [SV-P 098](プロモーションカード「SV-P」)",
   "name_jp": "名探偵ピカチュウ: プロモ [SV-P 098](プロモーションカード「SV-P」)",
   "kind": "psa10",
   "set": "SV-P / 098",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 2212.65,
-      "hk_ask_hkd": 2460.76,
+      "price_hkd": 2217.6,
+      "hk_ask_hkd": 2456.43,
       "volume": 0.0
     }
   ]

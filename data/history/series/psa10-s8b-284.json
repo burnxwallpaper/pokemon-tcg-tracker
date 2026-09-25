@@ -1,6 +1,6 @@
 {
   "id": "psa10-s8b-284",
-  "name_zh": "烈空坐VMAX UR[S8b 284/184](高級擴充包「VMAX絕群壓軸」)",
+  "name_zh": "レックウザVMAX UR[S8b 284/184](ハイクラスパック「VMAXクライマックス」)",
   "name_jp": "レックウザVMAX UR[S8b 284/184](ハイクラスパック「VMAXクライマックス」)",
   "kind": "psa10",
   "set": "S8b / 284/184",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 940.45,
-      "hk_ask_hkd": 993.72,
+      "hk_ask_hkd": 1007.33,
       "volume": 0.0
     }
   ]

@@ -1,6 +1,6 @@
 {
   "id": "sealed-snkr-881423",
-  "name_zh": "寶可夢卡牌遊戲MEGA 構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」",
+  "name_zh": "ポケモンカードゲームMEGA 構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」",
   "name_jp": "ポケモンカードゲームMEGA 構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」",
   "kind": "sealed",
   "set": null,
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 841.5,
-      "hk_ask_hkd": 858.4,
+      "hk_ask_hkd": 857.98,
       "volume": 0.0
     }
   ]

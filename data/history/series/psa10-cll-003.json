@@ -1,6 +1,6 @@
 {
   "id": "psa10-cll-003",
-  "name_zh": "噴火龍 [CLL 003/032](寶可夢卡牌遊戲 Classic)",
+  "name_zh": "リザードン [CLL 003/032](ポケモンカードゲーム Classic)",
   "name_jp": "リザードン [CLL 003/032](ポケモンカードゲーム Classic)",
   "kind": "psa10",
   "set": "CLL / 003/032",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 2549.25,
-      "hk_ask_hkd": 2664.33,
+      "price_hkd": 2524.5,
+      "hk_ask_hkd": 2665.56,
       "volume": 0.0
     }
   ]

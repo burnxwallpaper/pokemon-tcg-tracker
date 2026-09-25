@@ -1,6 +1,6 @@
 {
   "id": "psa10-s10a-074",
-  "name_zh": "耿鬼 CHR[s10a 074/071](強化擴充包「黑暗亡靈」)",
+  "name_zh": "ゲンガー CHR[s10a 074/071](強化拡張パック「ダークファンタズマ」)",
   "name_jp": "ゲンガー CHR[s10a 074/071](強化拡張パック「ダークファンタズマ」)",
   "kind": "psa10",
   "set": "s10a / 074/071",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 641.02,
-      "hk_ask_hkd": 659.59,
+      "price_hkd": 643.5,
+      "hk_ask_hkd": 660.83,
       "volume": 0.0
     }
   ]

@@ -1,6 +1,6 @@
 {
   "id": "psa10-m2-116",
-  "name_zh": "超級噴火龍Xex MUR [M2 116/080](擴充包「烈獄狂火X」)",
+  "name_zh": "メガリザードンXex MUR [M2 116/080](拡張パック「インフェルノX」)",
   "name_jp": "メガリザードンXex MUR [M2 116/080](拡張パック「インフェルノX」)",
   "kind": "psa10",
   "set": "M2 / 116/080",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 14850.0,
-      "hk_ask_hkd": 16499.98,
+      "hk_ask_hkd": 16519.37,
       "volume": 0.0
     }
   ]

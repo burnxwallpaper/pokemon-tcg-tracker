@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm9-101",
-  "name_zh": "皮卡丘&捷克羅姆GX SR: SA [SM9 101/095]",
+  "name_zh": "ピカチュウ&ゼクロムGX SR: SA [SM9 101/095](拡張パック「タッグボルト」)",
   "name_jp": "ピカチュウ&ゼクロムGX SR: SA [SM9 101/095](拡張パック「タッグボルト」)",
   "kind": "psa10",
   "set": "SM9 / 101/095",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 28792.47,
-      "hk_ask_hkd": 33140.25,
+      "hk_ask_hkd": 32997.94,
       "volume": 0.0
     }
   ]

@@ -1,6 +1,6 @@
 {
   "id": "psa10-s-p-227",
-  "name_zh": "皮卡丘: 特典[S-P 227]",
+  "name_zh": "ピカチュウ: プロモ[S-P 227](プロモーションカード 「ポケモン切手BOX 見返り美人・月に雁セット」)",
   "name_jp": "ピカチュウ: プロモ[S-P 227](プロモーションカード 「ポケモン切手BOX 見返り美人・月に雁セット」)",
   "kind": "psa10",
   "set": "S-P / 227",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 21532.5,
-      "hk_ask_hkd": 22187.5,
+      "hk_ask_hkd": 22200.0,
       "volume": 0.0
     }
   ]

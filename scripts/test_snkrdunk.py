@@ -316,9 +316,14 @@ def test_hottest_items_kind_floor_and_liquidity() -> None:
     ) == 1
     assert sell_listing_count({"usedListingCount": 275, "listingCount": 0}, kind="psa10") == 275
     assert sell_listing_count({"listingCount": 1566, "usedListingCount": 0}, kind="sealed") == 1566
-    assert liquidity_score(15, 275) == 99
-    assert liquidity_score(0, 0, yahoo_vol=2) == 8
-    assert liquidity_score(0, 4) == 6
+    # 15 sales and a few hundred listings used to clip at 99. They sit mid-pack now.
+    assert liquidity_score(15, 275) == 71
+    assert liquidity_score(0, 0, yahoo_vol=2) == 15
+    assert liquidity_score(0, 4) == 9
+    assert liquidity_score(0, 0) == 1
+    assert liquidity_score(3, 9) < liquidity_score(15, 275) < liquidity_score(140, 791)
+    assert liquidity_score(140, 791) == 99
+    assert liquidity_score(80, 800) == 99
     promo_name = "リザードン: プロモ[S8a-P 001/025](プロモカードパック 25th ANNIVERSARY edition)"
     promo_item = {
         "id": "psa10-s8a-p-001",

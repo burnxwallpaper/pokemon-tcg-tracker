@@ -1,6 +1,6 @@
 {
   "id": "psa10-van-gogh-pikachu",
-  "name_zh": "梵高皮卡丘 PSA10",
+  "name_zh": "梵高比卡超 PSA10",
   "name_jp": "ゴッホピカチュウ PSA10",
   "kind": "psa10",
   "set": "SVP EN / 085",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 26,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-07-01",
@@ -165,7 +165,7 @@
     {
       "date": "2026-09-25",
       "price_hkd": 19651.5,
-      "hk_ask_hkd": 21755.25,
+      "hk_ask_hkd": 21740.4,
       "volume": 2.0
     }
   ]

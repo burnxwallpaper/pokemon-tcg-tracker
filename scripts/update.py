@@ -117,6 +117,29 @@ def avg_volume(history: list[dict], days: int = 7) -> float:
     return round(sum(vols) / len(vols), 2) if vols else 0.0
 
 
+def _pos_yen(value: object) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and value > 0
+
+
+def _has_ask_book(item: dict) -> bool:
+    if _pos_yen(item.get("snkrdunk_ask_jpy")) or _pos_yen(item.get("snkrdunk_ask_min_jpy")):
+        return True
+    prices = item.get("snkrdunk_ask_prices_jpy")
+    return isinstance(prices, list) and any(_pos_yen(price) for price in prices)
+
+
+def psa10_rankable(item: dict) -> bool:
+    """Sealed boxes stay. A PSA10 slot needs a PSA10 last sale or a PSA10 ask.
+
+    ``psa10_market`` false means the stored sale and ask are not PSA10.
+    """
+    if str(item.get("kind") or "") != "psa10":
+        return True
+    if item.get("psa10_market") is False:
+        return False
+    return _pos_yen(item.get("snkrdunk_last_sale_jpy")) or _has_ask_book(item)
+
+
 def liquidity_score(vol_today: float, vol_7d: float, total_available: int, *, recent_sold: float = 0, listing_count: int = 0) -> int:
     """0–99 from SNKRDUNK recent sales and live sell listings.
 
@@ -553,6 +576,17 @@ def merge_and_compute(
                 recent_sold=float(recent_sold or 0),
                 listing_count=int(listing_count or 0),
             )
+        if not psa10_rankable(
+            {
+                "kind": wl.get("kind"),
+                "psa10_market": snkr.get("psa10_market"),
+                "snkrdunk_last_sale_jpy": snkr.get("last_sale_jpy"),
+                "snkrdunk_ask_jpy": snkr.get("ask_jpy"),
+                "snkrdunk_ask_min_jpy": snkr.get("ask_min_jpy"),
+                "snkrdunk_ask_prices_jpy": snkr.get("ask_prices_jpy"),
+            }
+        ):
+            liq = 0
 
         row = {
             "id": iid,
@@ -622,6 +656,8 @@ def merge_and_compute(
             row["snkrdunk_recent_sold_n"] = snkr["recent_sold_n"]
         if isinstance(snkr.get("listing_count"), int):
             row["snkrdunk_listing_count"] = snkr["listing_count"]
+        if isinstance(snkr.get("psa10_market"), bool):
+            row["psa10_market"] = snkr["psa10_market"]
         if snkr_image.startswith("https://") and face.get("image_official_url") == snkr_image:
             row["snkrdunk_image_url"] = snkr_image
         if iid in pins:
@@ -662,7 +698,11 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
 
     from discover_watchlist import include_pinned_rows, pinned_ids
 
-    ranked = sorted(items, key=lambda x: x.get("liquidity_score") or 0, reverse=True)
+    ranked = sorted(
+        (it for it in items if psa10_rankable(it)),
+        key=lambda x: x.get("liquidity_score") or 0,
+        reverse=True,
+    )
     liquidity = include_pinned_rows(ranked, pinned_ids(cfg), int(cfg.get("top_n") or 50))
 
     spreads = [it for it in items if it.get("spread_jp_hk_pct") is not None]
@@ -833,6 +873,8 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
                 "image_url": it.get("snkrdunk_image_url"),
             },
         }
+        if isinstance(it.get("psa10_market"), bool):
+            out[str(it["id"])]["snkrdunk"]["psa10_market"] = it["psa10_market"]
     return out
 
 
@@ -1186,9 +1228,95 @@ def _discovery_meta() -> dict | None:
     }
 
 
+def _psa10_table_ranks(payload: dict) -> dict[str, int]:
+    ranks: dict[str, int] = {}
+    n = 0
+    section = (payload.get("sections") or {}).get("流動性") or []
+    for it in section:
+        if not isinstance(it, dict) or it.get("kind") != "psa10":
+            continue
+        n += 1
+        iid = it.get("id")
+        if isinstance(iid, str):
+            ranks[iid] = n
+    return ranks
+
+
+def _write_latest(payload: dict) -> None:
+    with LATEST_PATH.open("w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
+def refresh_psa10_ranks(cfg: dict) -> None:
+    """Mark PSA10 slots that have no PSA10 sale and no PSA10 ask, then rebuild the live list."""
+    if not LATEST_PATH.exists():
+        print("ERROR: missing data/latest.json", file=sys.stderr)
+        sys.exit(1)
+    payload = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
+    items = payload.get("items")
+    if not isinstance(items, list):
+        print("ERROR: latest.json has no items", file=sys.stderr)
+        sys.exit(1)
+    interval = float(cfg.get("request_min_interval_sec") or 1.6)
+    watched = ("psa10-m6a-134", "psa10-m6a-127")
+    before = _psa10_table_ranks(payload)
+    sealed_before = [
+        it.get("id")
+        for it in (payload.get("sections") or {}).get("流動性") or []
+        if isinstance(it, dict) and it.get("kind") == "sealed"
+    ]
+    print("before " + " ".join(f"{iid}=#{before.get(iid)}" for iid in watched), flush=True)
+    print("sealed_before " + " ".join(str(iid) for iid in sealed_before[:5]), flush=True)
+    pending: list[tuple[dict, str]] = []
+    for it in items:
+        if not isinstance(it, dict) or it.get("kind") != "psa10":
+            continue
+        if isinstance(it.get("psa10_market"), bool):
+            if it.get("psa10_market") is False:
+                it["liquidity_score"] = 0
+            continue
+        apparel = snkrdunk.apparel_id_from_url(str(it.get("snkrdunk_url") or ""))
+        if not apparel:
+            print(f"  skip {it.get('id')} no apparel id", flush=True)
+            continue
+        pending.append((it, apparel))
+    print(f"[rank] PSA10 market × {len(pending)} (interval≥{interval}s)", flush=True)
+    for i, (it, apparel) in enumerate(pending, 1):
+        market = snkrdunk.read_psa10_market(apparel, min_interval=interval)
+        print(f"  {i}/{len(pending)} {it.get('id')} psa10_market={market}", flush=True)
+        if not isinstance(market, bool):
+            continue
+        it["psa10_market"] = market
+        if not market:
+            it["liquidity_score"] = 0
+        if i % 25 == 0:
+            sections = compute_sections(items, cfg)
+            payload.setdefault("sections", {})["流動性"] = sections["liquidity"]
+            _write_latest(payload)
+    sections = compute_sections(items, cfg)
+    payload.setdefault("sections", {})["流動性"] = sections["liquidity"]
+    meta = payload.setdefault("meta", {})
+    if isinstance(meta, dict):
+        meta["updated_at"] = datetime.now(HK_TZ).isoformat(timespec="seconds")
+    _write_latest(payload)
+    after = _psa10_table_ranks(payload)
+    sealed_after = [
+        it.get("id")
+        for it in sections["liquidity"]
+        if isinstance(it, dict) and it.get("kind") == "sealed"
+    ]
+    print("after " + " ".join(f"{iid}=#{after.get(iid)}" for iid in watched), flush=True)
+    print("sealed_after " + " ".join(str(iid) for iid in sealed_after[:5]), flush=True)
+    print(f"sealed_same={sealed_before == sealed_after} 流動性={len(sections['liquidity'])}", flush=True)
+
+
 def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if "--psa10-rank" in sys.argv:
+        refresh_psa10_ranks(load_config())
+        return
     cfg = load_config()
     if "--no-discover" not in sys.argv:
         from discover_watchlist import refresh_watchlist

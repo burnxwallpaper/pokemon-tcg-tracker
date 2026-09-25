@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv-p-260",
-  "name_zh": "東北的皮卡丘 P [SV-P 260]",
+  "name_zh": "トウホクのピカチュウ P [SV-P 260](スペシャルBOX「ポケモンセンタートウホク」)",
   "name_jp": "トウホクのピカチュウ P [SV-P 260](スペシャルBOX「ポケモンセンタートウホク」)",
   "kind": "psa10",
   "set": "SV-P / 260",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1386.0,
-      "hk_ask_hkd": 1450.35,
+      "hk_ask_hkd": 1452.82,
       "volume": 0.0
     }
   ]

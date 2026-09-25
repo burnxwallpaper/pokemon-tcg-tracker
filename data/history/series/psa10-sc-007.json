@@ -1,6 +1,6 @@
 {
   "id": "psa10-sc-007",
-  "name_zh": "皮卡丘 U 初版 [SC 007/020]",
+  "name_zh": "ピカチュウ U :1ED [SC 007/020](コンセプトパック「シャイニーコレクション」)",
   "name_jp": "ピカチュウ U :1ED [SC 007/020](コンセプトパック「シャイニーコレクション」)",
   "kind": "psa10",
   "set": "SC / 007/020",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 9578.25,
-      "hk_ask_hkd": 10103.57,
+      "hk_ask_hkd": 10307.14,
       "volume": 0.0
     }
   ]

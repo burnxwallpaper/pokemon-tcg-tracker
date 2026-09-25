@@ -1,6 +1,6 @@
 {
   "id": "psa10-s-p-226",
-  "name_zh": "古月鳥: 特典[S-P 226]",
+  "name_zh": "ウッウ: プロモ[S-P 226](ポケモン切手BOXプロモーションカード 見返り美人・月に雁「S-P」)",
   "name_jp": "ウッウ: プロモ[S-P 226](ポケモン切手BOXプロモーションカード 見返り美人・月に雁「S-P」)",
   "kind": "psa10",
   "set": "S-P / 226",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 4034.25,
-      "hk_ask_hkd": 4380.26,
+      "hk_ask_hkd": 4405.5,
       "volume": 0.0
     }
   ]

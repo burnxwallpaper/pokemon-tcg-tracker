@@ -1,6 +1,6 @@
 {
   "id": "psa10-mega-charizard-x-ex",
-  "name_zh": "超級噴火龍Xex SAR PSA10",
+  "name_zh": "超級噴火龍X ex SAR PSA10",
   "name_jp": "メガリザードンXex SAR PSA10",
   "kind": "psa10",
   "set": "M2",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 67,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -410,8 +410,8 @@
     },
     {
       "date": "2026-09-25",
-      "price_hkd": 5741.51,
-      "hk_ask_hkd": 5890.5,
+      "price_hkd": 5692.5,
+      "hk_ask_hkd": 5933.81,
       "volume": 3.0
     }
   ]

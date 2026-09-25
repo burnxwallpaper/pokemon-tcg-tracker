@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm-p-407",
-  "name_zh": "漫才表演皮卡丘: 特典[SM-P 407](特典卡「S-P」)",
+  "name_zh": "漫才ごっこピカチュウ: プロモ[SM-P 407](プロモーションカード「S-P」)",
   "name_jp": "漫才ごっこピカチュウ: プロモ[SM-P 407](プロモーションカード「S-P」)",
   "kind": "psa10",
   "set": "SM-P / 407",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 5890.5,
-      "hk_ask_hkd": 6311.25,
+      "hk_ask_hkd": 6682.5,
       "volume": 0.0
     }
   ]

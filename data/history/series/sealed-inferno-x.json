@@ -1,6 +1,6 @@
 {
   "id": "sealed-inferno-x",
-  "name_zh": "烈獄狂火X BOX（未開封）",
+  "name_zh": "烈焰X BOX（未開封）",
   "name_jp": "インフェルノX BOX 未開封",
   "kind": "sealed",
   "set": "M2",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 88,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-06-30",
@@ -536,8 +536,8 @@
     },
     {
       "date": "2026-09-25",
-      "price_hkd": 886.05,
-      "hk_ask_hkd": 886.05,
+      "price_hkd": 890.95,
+      "hk_ask_hkd": 890.95,
       "volume": 1.0
     }
   ]

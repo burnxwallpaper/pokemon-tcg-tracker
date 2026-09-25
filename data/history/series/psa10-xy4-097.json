@@ -1,6 +1,6 @@
 {
   "id": "psa10-xy4-097",
-  "name_zh": "M耿鬼EX UR 初版 [XY4 097/088]",
+  "name_zh": "MゲンガーEX UR :1ED [XY4 097/088](拡張パック「ファントムゲート」)",
   "name_jp": "MゲンガーEX UR :1ED [XY4 097/088](拡張パック「ファントムゲート」)",
   "kind": "psa10",
   "set": "XY4 / 097/088",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 17435.14,
-      "hk_ask_hkd": 15900.64,
+      "hk_ask_hkd": 15961.27,
       "volume": 0.0
     }
   ]

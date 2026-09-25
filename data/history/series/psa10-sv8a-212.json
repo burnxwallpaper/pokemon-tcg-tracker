@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv8a-212",
-  "name_zh": "仙子伊布ex SAR [SV8a 212/187](高級擴充包「太晶慶典ex」)",
+  "name_zh": "ニンフィアex SAR [SV8a 212/187](ハイクラスパック「テラスタルフェスex」)",
   "name_jp": "ニンフィアex SAR [SV8a 212/187](ハイクラスパック「テラスタルフェスex」)",
   "kind": "psa10",
   "set": "SV8a / 212/187",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1232.55,
-      "hk_ask_hkd": 1256.68,
+      "hk_ask_hkd": 1261.01,
       "volume": 0.0
     }
   ]

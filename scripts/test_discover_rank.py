@@ -15,6 +15,7 @@ from discover_watchlist import (  # noqa: E402
     scrub_face,
     select_membership,
 )
+from update import compute_sections, psa10_rankable  # noqa: E402
 
 
 def row(i: int, kind: str, total: int, window: int = 0, status: str = "ok") -> dict:
@@ -165,6 +166,74 @@ def test_snkrdunk_tile_reuses_print_and_drops_a_wrong_face() -> None:
     assert kept["image_official_url"].endswith("/SV2a/201/high.webp")
 
 
+def _rank_cfg() -> dict:
+    return {
+        "top_n": 50,
+        "pinned": ["psa10-m6a-134"],
+        "thresholds": {
+            "short_move_pct": 99.0,
+            "medium_move_pct": 99.0,
+            "volume_vs_7d_avg": 99.0,
+        },
+    }
+
+
+def _quote(iid: str, kind: str, score: int, **extra: object) -> dict:
+    row = {
+        "id": iid,
+        "kind": kind,
+        "liquidity_score": score,
+        "short_change_pct": 0,
+        "medium_change_pct": 0,
+        "volume_ratio": 0,
+    }
+    row.update(extra)
+    return row
+
+
+def test_psa10_without_market_leaves_the_live_rank() -> None:
+    assert psa10_rankable({"kind": "sealed"})
+    assert not psa10_rankable({"kind": "psa10"})
+    assert not psa10_rankable(
+        {
+            "kind": "psa10",
+            "psa10_market": False,
+            "snkrdunk_last_sale_jpy": 9900,
+            "snkrdunk_ask_jpy": 9500,
+        }
+    )
+    assert psa10_rankable(
+        {"kind": "psa10", "psa10_market": True, "snkrdunk_last_sale_jpy": 5000}
+    )
+    items = [
+        _quote(
+            "psa10-m6a-134",
+            "psa10",
+            99,
+            psa10_market=False,
+            snkrdunk_last_sale_jpy=9900,
+            snkrdunk_ask_jpy=9500,
+        ),
+        _quote(
+            "psa10-m6a-127",
+            "psa10",
+            99,
+            psa10_market=False,
+            snkrdunk_last_sale_jpy=11250,
+            snkrdunk_ask_jpy=11000,
+        ),
+        _quote("psa10-real", "psa10", 40, snkrdunk_last_sale_jpy=8000, snkrdunk_ask_jpy=7900),
+        _quote("sealed-box", "sealed", 99),
+        _quote("psa10-empty", "psa10", 99),
+    ]
+    shown = [it["id"] for it in compute_sections(items, _rank_cfg())["liquidity"]]
+    assert shown[0] == "sealed-box"
+    assert "psa10-real" in shown
+    assert "psa10-m6a-134" not in shown
+    assert "psa10-m6a-127" not in shown
+    assert "psa10-empty" not in shown
+
+
 def test_window_count_tie_break() -> None:
     rows = [
         row(1, "psa10", 10, window=1),
@@ -182,6 +251,7 @@ def main() -> None:
     test_liquidity_keeps_pinned_outside_top_n()
     test_van_gogh_pinned_in_config_and_latest()
     test_snkrdunk_tile_reuses_print_and_drops_a_wrong_face()
+    test_psa10_without_market_leaves_the_live_rank()
     test_window_count_tie_break()
     print("ok")
 

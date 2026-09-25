@@ -1,6 +1,6 @@
 {
   "id": "psa10-m6a-150",
-  "name_zh": "耿鬼 [M6a 150/103](擴充包「30th CELEBRATION」)",
+  "name_zh": "ゲンガー [M6a 150/103](拡張パック「30th CELEBRATION」)",
   "name_jp": "ゲンガー [M6a 150/103](拡張パック「30th CELEBRATION」)",
   "kind": "psa10",
   "set": "M6a / 150/103",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 331.65,
-      "hk_ask_hkd": 353.92,
+      "price_hkd": null,
+      "hk_ask_hkd": null,
       "volume": 0.0
     }
   ]

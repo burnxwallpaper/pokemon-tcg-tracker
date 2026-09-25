@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm9-104",
-  "name_zh": "拉帝亞斯&拉帝歐斯GX SR [SM9 104/095]",
+  "name_zh": "ラティアス&ラティオスGX SR [SM9 104/095](拡張パック「タッグボルト」)",
   "name_jp": "ラティアス&ラティオスGX SR [SM9 104/095](拡張パック「タッグボルト」)",
   "kind": "psa10",
   "set": "SM9 / 104/095",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1675.58,
-      "hk_ask_hkd": 1777.05,
+      "hk_ask_hkd": 1819.12,
       "volume": 0.0
     }
   ]

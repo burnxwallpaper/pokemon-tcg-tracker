@@ -1,6 +1,6 @@
 {
   "id": "psa10-mc-764",
-  "name_zh": "皮卡丘ex SAR樣式 [MC 764/742]",
+  "name_zh": "ピカチュウex SAR仕様 [MC 764/742](スタートデッキ100「バトルコレクション」)",
   "name_jp": "ピカチュウex SAR仕様 [MC 764/742](スタートデッキ100「バトルコレクション」)",
   "kind": "psa10",
   "set": "MC / 764/742",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 10593.0,
-      "hk_ask_hkd": 10543.5,
+      "hk_ask_hkd": 10642.5,
       "volume": 0.0
     }
   ]

@@ -1,6 +1,6 @@
 {
   "id": "psa10-s6a-089",
-  "name_zh": "葉伊布VMAX HR: SA[S6a 089/069](強化擴充包「伊布英雄」)",
+  "name_zh": "リーフィアVMAX HR: SA[S6a 089/069](強化拡張パック「イーブイヒーローズ」)",
   "name_jp": "リーフィアVMAX HR: SA[S6a 089/069](強化拡張パック「イーブイヒーローズ」)",
   "kind": "psa10",
   "set": "S6a / 089/069",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 3539.25,
-      "hk_ask_hkd": 4052.81,
+      "hk_ask_hkd": 3997.12,
       "volume": 0.0
     }
   ]

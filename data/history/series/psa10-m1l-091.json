@@ -1,6 +1,6 @@
 {
   "id": "psa10-m1l-091",
-  "name_zh": "莉莉艾的決意 SAR [M1L 091/063](擴充包「超級勇氣」)",
+  "name_zh": "リーリエの決心 SAR [M1L 091/063](拡張パック「メガブレイブ」)",
   "name_jp": "リーリエの決心 SAR [M1L 091/063](拡張パック「メガブレイブ」)",
   "kind": "psa10",
   "set": "M1L / 091/063",
@@ -10,11 +10,11 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 2213.74,
+      "price_hkd": 2227.5,
       "hk_ask_hkd": 2301.75,
       "volume": 0.0
     }

@@ -1,6 +1,6 @@
 {
   "id": "psa10-sm12a-175",
-  "name_zh": "咚咚鼠GX SR [SM12a 175/173](高級擴充包「TAG TEAM GX 聯手明星大集合」)",
+  "name_zh": "デデンネGX SR [SM12a 175/173](ハイクラスパック「TAG TEAM GX タッグオールスターズ」)",
   "name_jp": "デデンネGX SR [SM12a 175/173](ハイクラスパック「TAG TEAM GX タッグオールスターズ」)",
   "kind": "psa10",
   "set": "SM12a / 175/173",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 2212.65,
-      "hk_ask_hkd": 2697.7,
+      "hk_ask_hkd": 2722.46,
       "volume": 0.0
     }
   ]

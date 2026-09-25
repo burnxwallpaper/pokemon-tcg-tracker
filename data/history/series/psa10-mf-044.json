@@ -1,6 +1,6 @@
 {
   "id": "psa10-mf-044",
-  "name_zh": "月亮伊布ex SAR樣式 [MF 044/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
+  "name_zh": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
   "name_jp": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
   "kind": "psa10",
   "set": "MF / 044/040",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 675.68,
-      "hk_ask_hkd": 702.9,
+      "price_hkd": null,
+      "hk_ask_hkd": null,
       "volume": 0.0
     }
   ]

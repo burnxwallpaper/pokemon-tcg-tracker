@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv4a-349",
-  "name_zh": "噴火龍ex SAR [SV4a 349/190](高級擴充包「閃色寶藏ex」)",
+  "name_zh": "リザードンex SAR [SV4a 349/190](ハイクラスパック「シャイニートレジャーex」)",
   "name_jp": "リザードンex SAR [SV4a 349/190](ハイクラスパック「シャイニートレジャーex」)",
   "kind": "psa10",
   "set": "SV4a / 349/190",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 2969.95,
-      "hk_ask_hkd": 2960.1,
+      "hk_ask_hkd": 2969.01,
       "volume": 0.0
     }
   ]

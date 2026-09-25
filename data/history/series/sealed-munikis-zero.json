@@ -1,6 +1,6 @@
 {
   "id": "sealed-munikis-zero",
-  "name_zh": "虛無歸零 BOX（未開封）",
+  "name_zh": "尼比斯零 BOX（未開封）",
   "name_jp": "ムニキスゼロ BOX 未開封",
   "kind": "sealed",
   "set": "M3",
@@ -10,7 +10,7 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 87,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -530,7 +530,7 @@
     },
     {
       "date": "2026-09-25",
-      "price_hkd": 391.05,
+      "price_hkd": 394.71,
       "hk_ask_hkd": 381.15,
       "volume": 2.0
     }

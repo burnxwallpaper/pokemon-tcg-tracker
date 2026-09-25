@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv8a-236",
-  "name_zh": "皮卡丘ex UR [SV8a 236/187](高級擴充包「太晶慶典ex」)",
+  "name_zh": "ピカチュウex UR [SV8a 236/187](ハイクラスパック「テラスタルフェスex」)",
   "name_jp": "ピカチュウex UR [SV8a 236/187](ハイクラスパック「テラスタルフェスex」)",
   "kind": "psa10",
   "set": "SV8a / 236/187",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 962.03,
-      "hk_ask_hkd": 1188.0,
+      "hk_ask_hkd": 1237.5,
       "volume": 0.0
     }
   ]

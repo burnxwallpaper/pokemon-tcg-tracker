@@ -1,6 +1,6 @@
 {
   "id": "psa10-mc-085",
-  "name_zh": "超級噴火龍Yex :鏡 [MC 085/742]",
+  "name_zh": "メガリザードンYex :ミラー [MC 085/742](スタートデッキ100「バトルコレクション」)",
   "name_jp": "メガリザードンYex :ミラー [MC 085/742](スタートデッキ100「バトルコレクション」)",
   "kind": "psa10",
   "set": "MC / 085/742",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 613.8,
-      "hk_ask_hkd": 1320.41,
+      "price_hkd": 601.43,
+      "hk_ask_hkd": 1413.22,
       "volume": 0.0
     }
   ]

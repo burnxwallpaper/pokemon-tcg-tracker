@@ -1,6 +1,6 @@
 {
   "id": "sealed-snkr-15573",
-  "name_zh": "寶可夢卡牌遊戲 劍&盾 高級擴充包 VMAX絕群壓軸 盒",
+  "name_zh": "ポケモンカードゲーム ソード&シールド ハイクラスパック VMAXクライマックス ボックス",
   "name_jp": "ポケモンカードゲーム ソード&シールド ハイクラスパック VMAXクライマックス ボックス",
   "kind": "sealed",
   "set": null,
@@ -10,11 +10,11 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 1556.78,
+      "price_hkd": 1559.25,
       "hk_ask_hkd": 1549.35,
       "volume": 0.0
     }

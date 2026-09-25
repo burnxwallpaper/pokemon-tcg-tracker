@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv4a-327",
-  "name_zh": "夢幻ex SSR [SV4a 327/190](高級擴充包「閃色寶藏ex」)",
+  "name_zh": "ミュウex SSR [SV4a 327/190](ハイクラスパック「シャイニートレジャーex」)",
   "name_jp": "ミュウex SSR [SV4a 327/190](ハイクラスパック「シャイニートレジャーex」)",
   "kind": "psa10",
   "set": "SV4a / 327/190",
@@ -10,12 +10,12 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T18:19:59+08:00",
+  "updated_at": "2026-09-25T15:32:09+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 461.54,
-      "hk_ask_hkd": 470.25,
+      "hk_ask_hkd": 471.02,
       "volume": 0.0
     }
   ]
