@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv11b-169",
+  "name_zh": "ゼクロムex SAR [SV11B 169/086](拡張パック「ブラックボルト」)",
+  "name_jp": "ゼクロムex SAR [SV11B 169/086](拡張パック「ブラックボルト」)",
+  "kind": "psa10",
+  "set": "SV11B / 169/086",
+  "image": "images/psa10-sv11b-169.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 1484.96,
+      "volume": 0.0
+    }
+  ]
+}

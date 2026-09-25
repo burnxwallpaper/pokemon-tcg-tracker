@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv2a-208",
+  "name_zh": "ミュウex UR[SV2a 208/165](強化拡張パック「ポケモンカード151」)",
+  "name_jp": "ミュウex UR[SV2a 208/165](強化拡張パック「ポケモンカード151」)",
+  "kind": "psa10",
+  "set": "SV2a / 208/165",
+  "image": "images/psa10-sv2a-208.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 767.2,
+      "volume": 0.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "psa10-cp6-049",
+  "name_zh": "ミュウツー R :1ED [CP6 049/087](コンセプトパック「ポケットモンスターカードゲーム 拡張パック 20th Anniversary」)",
+  "name_jp": "ミュウツー R :1ED [CP6 049/087](コンセプトパック「ポケットモンスターカードゲーム 拡張パック 20th Anniversary」)",
+  "kind": "psa10",
+  "set": "CP6 / 049/087",
+  "image": "images/psa10-cp6-049.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 1965.15,
+      "volume": 0.0
+    }
+  ]
+}

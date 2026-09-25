@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s2-105",
+  "name_zh": "オリーヴ SR[S2 105/096](拡張パック「反逆クラッシュ」)",
+  "name_jp": "オリーヴ SR[S2 105/096](拡張パック「反逆クラッシュ」)",
+  "kind": "psa10",
+  "set": "S2 / 105/096",
+  "image": "images/psa10-s2-105.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 455.4,
+      "volume": 0.0
+    }
+  ]
+}

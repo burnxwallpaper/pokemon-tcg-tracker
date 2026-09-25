@@ -1,0 +1,22 @@
+{
+  "id": "psa10-e1-012",
+  "name_zh": "コイキング ● :1ED [e1 012/128](ポケモンカードe 第1弾「基本拡張パック」)",
+  "name_jp": "コイキング ● :1ED [e1 012/128](ポケモンカードe 第1弾「基本拡張パック」)",
+  "kind": "psa10",
+  "set": "e1 / 012/128",
+  "image": "images/psa10-e1-012.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 7053.75,
+      "volume": 0.0
+    }
+  ]
+}

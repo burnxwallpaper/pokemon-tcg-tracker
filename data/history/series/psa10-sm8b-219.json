@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sm8b-219",
+  "name_zh": "ミュウツーGX SSR[SM8b 219/150](ハイクラスパック「GXウルトラシャイニー」)",
+  "name_jp": "ミュウツーGX SSR[SM8b 219/150](ハイクラスパック「GXウルトラシャイニー」)",
+  "kind": "psa10",
+  "set": "SM8b / 219/150",
+  "image": "images/psa10-sm8b-219.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 3143.25,
+      "volume": 0.0
+    }
+  ]
+}

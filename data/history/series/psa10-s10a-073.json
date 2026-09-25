@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s10a-073",
+  "name_zh": "ピカチュウ CHR[S10a 073/071](強化拡張パック「ダークファンタズマ」)",
+  "name_jp": "ピカチュウ CHR[S10a 073/071](強化拡張パック「ダークファンタズマ」)",
+  "kind": "psa10",
+  "set": "S10a / 073/071",
+  "image": "images/psa10-s10a-073.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 737.3,
+      "volume": 0.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s10p-071",
+  "name_zh": "オリジンパルキアV SR: SA[S10P 071/067](拡張パック「スペースジャグラー」)",
+  "name_jp": "オリジンパルキアV SR: SA[S10P 071/067](拡張パック「スペースジャグラー」)",
+  "kind": "psa10",
+  "set": "S10P / 071/067",
+  "image": "images/psa10-s10p-071.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": 935.55,
+      "volume": 0.0
+    }
+  ]
+}

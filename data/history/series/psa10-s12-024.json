@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s12-024",
+  "name_zh": "ピカチュウ C [S12 024/098](拡張パック「パラダイムトリガー」)",
+  "name_jp": "ピカチュウ C [S12 024/098](拡張パック「パラダイムトリガー」)",
+  "kind": "psa10",
+  "set": "S12 / 024/098",
+  "image": null,
+  "image_source": null,
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": null,
+      "volume": 0.0
+    }
+  ]
+}

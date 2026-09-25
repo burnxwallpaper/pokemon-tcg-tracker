@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-881421",
+  "name_zh": "ポケモンカードゲームMEGA 拡張パック「30th CELEBRATION」ボックス",
+  "name_jp": "ポケモンカードゲームMEGA 拡張パック「30th CELEBRATION」ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-881421.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T10:08:51+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 1188.0,
+      "hk_ask_hkd": 1175.62,
+      "volume": 0.0
+    }
+  ]
+}
