@@ -69,6 +69,7 @@ python scripts/update_stub.py
 | `config.json` | 匯率、門檻、top_n、history_days、來源開關（目前皆關閉） |
 | `dashboard/index.html` | 繁中本機儀表板（單檔 HTML+CSS+JS） |
 | `data/latest.json` | 最新快照（含 meta、items、三區塊 sections） |
+| `data/name_zh_map.json` | 日文→繁中對照（物種、系列、稀有度／商品詞）。`scripts/name_zh_map.translate()` 最長鍵優先 |
 | `data/history/` | 每日歷史（約保留 90 天；格式見內文說明） |
 | `scripts/update.py` | 真實更新管線：Yahoo JP + Carousell HK（HKCardLink fallback） |
 | `scripts/sources/` | 溫和 scrapers |
