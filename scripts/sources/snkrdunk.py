@@ -598,7 +598,7 @@ def product_name_ok(item: dict, name: str) -> bool:
     if not name or _EN_REPRINT.search(name):
         return False
     if str(item.get("kind") or "") == "sealed":
-        if sealed_same(item, name):
+        if sealed_same(item, name) or _tracked_deck_set(item, name):
             return True
         if not _is_box(name) or _sealed_side_product(name):
             return False
@@ -1231,6 +1231,30 @@ def bracket_print(name: str) -> tuple[str, str] | None:
     return match.group(1).lower(), match.group(2)
 
 
+def _catalog_bracket(item: dict) -> tuple[str, str] | None:
+    """Bracket printed on the watchlist title. Keeps S8a-P / S8a-G, which set-code scan truncates to S8a."""
+    blob = " ".join(
+        str(item.get(key) or "")
+        for key in ("name_jp", "name_zh", "search_jp", "search_hk")
+    )
+    return bracket_print(blob)
+
+
+def _tracked_deck_set(item: dict, name: str) -> bool:
+    """A deck set already chosen for the watchlist. Booster-box asks still reject decks."""
+    blob = " ".join(
+        str(item.get(key) or "")
+        for key in ("name_jp", "name_zh", "search_jp", "search_hk")
+    )
+    if not _DECK_SET.search(blob) or not _DECK_SET.search(name or ""):
+        return False
+    if _EN_REPRINT.search(name) or _NO_SHRINK.search(name) or _OPENED.search(name):
+        return False
+    if re.search(r"カートン|\bcase\b", name, re.I):
+        return False
+    return True
+
+
 def same_print(item: dict, name: str) -> bool:
     """The SNKRDUNK title's [set number] is this watchlist card, not an English reprint."""
     found = bracket_print(name)
@@ -1243,9 +1267,14 @@ def same_print(item: dict, name: str) -> bool:
             return False
     except ValueError:
         return False
-    codes = {c.lower() for c in _identity_codes(item)}
-    if codes and code not in codes:
-        return False
+    named = _catalog_bracket(item)
+    if named:
+        if code != named[0].lower():
+            return False
+    else:
+        codes = {c.lower() for c in _identity_codes(item)}
+        if codes and code not in codes:
+            return False
     if re.search(r"\bEN\b", name):
         return False
     card_name = re.sub(r"\([^)]*\)", " ", name)

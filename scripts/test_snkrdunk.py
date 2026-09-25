@@ -333,6 +333,42 @@ def test_hottest_items_kind_floor_and_liquidity() -> None:
     assert liquidity_score(15, 275) == 99
     assert liquidity_score(0, 0, yahoo_vol=2) == 8
     assert liquidity_score(0, 4) == 6
+    promo_name = "リザードン: プロモ[S8a-P 001/025](プロモカードパック 25th ANNIVERSARY edition)"
+    promo_item = {
+        "id": "psa10-s8a-p-001",
+        "kind": "psa10",
+        "name_jp": promo_name,
+        "search_jp": promo_name,
+        "set": "S8a-P / 001/025",
+    }
+    assert same_print(promo_item, promo_name)
+    assert product_name_ok(promo_item, promo_name)
+    assert not same_print(promo_item, "リザードン [S8a 001/025](拡張パック)")
+    base = {
+        "kind": "psa10",
+        "name_jp": "リザードン [S8a 001/025]",
+        "search_jp": "リザードン [S8a 001/025]",
+        "set": "S8a / 001/025",
+    }
+    assert not same_print(base, promo_name)
+    deck_name = "ポケモンカードゲームMEGA 構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」"
+    deck_item = {
+        "id": "sealed-snkr-881423",
+        "kind": "sealed",
+        "name_jp": deck_name,
+        "search_jp": deck_name,
+    }
+    assert product_name_ok(deck_item, deck_name)
+    assert product_name_ok(
+        deck_item,
+        'Pokemon Card Game MEGA Constructed Deck "30th CELEBRATION Premium Deck Set"',
+    )
+    box_item = {
+        "kind": "sealed",
+        "name_jp": "ポケモンカードゲームMEGA 拡張パック「30th CELEBRATION」ボックス",
+        "search_jp": "ポケモンカードゲームMEGA 拡張パック「30th CELEBRATION」ボックス",
+    }
+    assert not product_name_ok(box_item, deck_name)
 
 
 if __name__ == "__main__":
