@@ -89,6 +89,7 @@ python scripts/update_stub.py
 ## 產品設定（摘要）
 
 - 追蹤：PSA10 slabs、sealed（未開封）；raw 單卡非 MVP 重點
+- PSA10 卡只用 PSA10 成交同 PSA10 放售。冇 PSA10 成交又冇 PSA10 叫價，最近成交價同賣出價留空，唔會用 A/B/C/D 補。
 - 自動掃描 Hottest Items，再以搜尋熱門填到約 200（160 PSA10 + 40 未開封）；1日／7日價格＋量能
 - 門檻（可於 `config.json` 改）：1日 ±5%、7日 ±12%、量能 ≥1.5×7日均
 - `liquidity_score`（0–99，絕對值，唔係當日清單百分位）：`60 * log1p(約 7 日成交) / log1p(80)` ＋ `39 * log1p(放售筆數) / log1p(800)`。PSA10 用一週圖表，未開封用 sales-history 日期；卡用 `usedListingCount`，盒用 `listingCount`。冇 SNKRDUNK 成交先至用 Yahoo 今日＋7日量。約 80 筆成交或約 800 個放售先至頂滿嗰一邊，所以一般 Hottest 會落喺中段，99 要成交同放售都深。見 `discovery.liquidity_score_note`。

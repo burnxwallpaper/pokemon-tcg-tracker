@@ -14,8 +14,8 @@
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": 198.0,
-      "hk_ask_hkd": 219.95,
+      "price_hkd": null,
+      "hk_ask_hkd": null,
       "volume": 0.0
     }
   ]

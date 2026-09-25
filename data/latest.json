@@ -834,16 +834,16 @@
       "set": "M6a / 134/103",
       "image": "images/psa10-m6a-134.webp",
       "tcgdex_id": null,
-      "price_hkd": 490.05,
-      "price_jpy": 9900,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 540.78,
-      "spread_jp_hk_pct": 10.35,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -855,37 +855,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 490.05,
-          "hk_ask_hkd": 540.78,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881428",
-      "snkrdunk_ask_jpy": 9500,
-      "snkrdunk_ask_min_jpy": 9500,
-      "snkrdunk_ask_median_jpy": 10950,
-      "snkrdunk_ask_max_jpy": 18888,
-      "snkrdunk_ask_prices_jpy": [
-        9500,
-        9800,
-        9900,
-        9990,
-        9999,
-        10800,
-        10900,
-        11000,
-        12000,
-        12999,
-        13000,
-        13500,
-        15000,
-        18888
-      ],
-      "snkrdunk_jpy": 9500,
-      "snkrdunk_last_sale_jpy": 9900,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/433c88d9-e3d7-47c1-a98e-b25b81ec698d.webp",
-      "hk_ask_low_hkd": 470.25,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -909,7 +894,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 522,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 312,
       "psa10_market": false
     },
@@ -921,16 +906,16 @@
       "set": "M6a / 127/103",
       "image": "images/psa10-m6a-127.webp",
       "tcgdex_id": null,
-      "price_hkd": 556.88,
-      "price_jpy": 11250,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 623.7,
-      "spread_jp_hk_pct": 12.0,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -942,34 +927,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 556.88,
-          "hk_ask_hkd": 623.7,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/882280",
-      "snkrdunk_ask_jpy": 11000,
-      "snkrdunk_ask_min_jpy": 11000,
-      "snkrdunk_ask_median_jpy": 12600,
-      "snkrdunk_ask_max_jpy": 15500,
-      "snkrdunk_ask_prices_jpy": [
-        11000,
-        11400,
-        11500,
-        11600,
-        12500,
-        12600,
-        13000,
-        13333,
-        14000,
-        15000,
-        15500
-      ],
-      "snkrdunk_jpy": 11000,
-      "snkrdunk_last_sale_jpy": 11250,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a0163a22-6e45-41dc-8203-a5dd647af7ef.webp",
-      "hk_ask_low_hkd": 544.5,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -993,7 +966,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 500,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 216,
       "psa10_market": false
     },
@@ -1151,16 +1124,16 @@
       "set": "M6a / 132/103",
       "image": "images/psa10-m6a-132.webp",
       "tcgdex_id": null,
-      "price_hkd": 207.9,
-      "price_jpy": 4200,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 209.34,
-      "spread_jp_hk_pct": 0.69,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -1172,39 +1145,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 207.9,
-          "hk_ask_hkd": 209.34,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891195",
-      "snkrdunk_ask_jpy": 3700,
-      "snkrdunk_ask_min_jpy": 3700,
-      "snkrdunk_ask_median_jpy": 4236,
-      "snkrdunk_ask_max_jpy": 5000,
-      "snkrdunk_ask_prices_jpy": [
-        3700,
-        3800,
-        3850,
-        3900,
-        3999,
-        4000,
-        4200,
-        4222,
-        4250,
-        4300,
-        4400,
-        4500,
-        4665,
-        4666,
-        4999,
-        5000
-      ],
-      "snkrdunk_jpy": 3700,
-      "snkrdunk_last_sale_jpy": 4200,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/1f01e4b4-9b34-434c-949c-b44c988300d9.webp",
-      "hk_ask_low_hkd": 183.15,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -1228,7 +1184,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 312,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 152,
       "psa10_market": false
     },
@@ -1240,16 +1196,16 @@
       "set": "M6a / 130/103",
       "image": "images/psa10-m6a-130.webp",
       "tcgdex_id": null,
-      "price_hkd": 222.75,
-      "price_jpy": 4500,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 237.6,
-      "spread_jp_hk_pct": 6.67,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -1261,32 +1217,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 222.75,
-          "hk_ask_hkd": 237.6,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891194",
-      "snkrdunk_ask_jpy": 4100,
-      "snkrdunk_ask_min_jpy": 4100,
-      "snkrdunk_ask_median_jpy": 4800,
-      "snkrdunk_ask_max_jpy": 6000,
-      "snkrdunk_ask_prices_jpy": [
-        4100,
-        4300,
-        4500,
-        4600,
-        4800,
-        4900,
-        5000,
-        5400,
-        6000
-      ],
-      "snkrdunk_jpy": 4100,
-      "snkrdunk_last_sale_jpy": 4500,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/db1fb87a-852a-4735-90f4-e8ae1218ac20.webp",
-      "hk_ask_low_hkd": 202.95,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -1310,7 +1256,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 297,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 138,
       "psa10_market": false
     },
@@ -1322,16 +1268,16 @@
       "set": "MF / 043/040",
       "image": "images/psa10-mf-043.webp",
       "tcgdex_id": null,
-      "price_hkd": 234.63,
-      "price_jpy": 4740,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 259.88,
-      "spread_jp_hk_pct": 10.76,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -1343,28 +1289,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 234.63,
-          "hk_ask_hkd": 259.88,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881430",
-      "snkrdunk_ask_jpy": 4999,
-      "snkrdunk_ask_min_jpy": 4999,
-      "snkrdunk_ask_median_jpy": 5250,
-      "snkrdunk_ask_max_jpy": 6000,
-      "snkrdunk_ask_prices_jpy": [
-        4999,
-        5200,
-        5250,
-        5700,
-        6000
-      ],
-      "snkrdunk_jpy": 4999,
-      "snkrdunk_last_sale_jpy": 4740,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/73acd0cb-07fc-499e-b2e2-59e10c8e26e2.webp",
-      "hk_ask_low_hkd": 247.45,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -1388,7 +1328,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 246,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 74,
       "psa10_market": false
     },
@@ -1533,16 +1473,16 @@
       "set": "M6a / 131/103",
       "image": "images/psa10-m6a-131.webp",
       "tcgdex_id": null,
-      "price_hkd": 334.12,
-      "price_jpy": 6750,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 351.44,
-      "spread_jp_hk_pct": 5.18,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -1554,37 +1494,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 334.12,
-          "hk_ask_hkd": 351.44,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/896992",
-      "snkrdunk_ask_jpy": 6500,
-      "snkrdunk_ask_min_jpy": 6500,
-      "snkrdunk_ask_median_jpy": 7200,
-      "snkrdunk_ask_max_jpy": 18000,
-      "snkrdunk_ask_prices_jpy": [
-        6500,
-        6799,
-        6800,
-        6899,
-        6900,
-        6999,
-        7000,
-        7399,
-        7500,
-        7980,
-        7999,
-        8888,
-        9999,
-        18000
-      ],
-      "snkrdunk_jpy": 6500,
-      "snkrdunk_last_sale_jpy": 6750,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f803b03b-76e1-4148-a0f0-8ccc062112ba.webp",
-      "hk_ask_low_hkd": 321.75,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -1608,7 +1533,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 412,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 189,
       "psa10_market": false
     },
@@ -2627,16 +2552,16 @@
       "set": "MF / 044/040",
       "image": "images/psa10-mf-044.webp",
       "tcgdex_id": null,
-      "price_hkd": 675.68,
-      "price_jpy": 13650,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 702.9,
-      "spread_jp_hk_pct": 4.03,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -2648,36 +2573,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 675.68,
-          "hk_ask_hkd": 702.9,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881431",
-      "snkrdunk_ask_jpy": 13000,
-      "snkrdunk_ask_min_jpy": 13000,
-      "snkrdunk_ask_median_jpy": 14200,
-      "snkrdunk_ask_max_jpy": 29800,
-      "snkrdunk_ask_prices_jpy": [
-        13000,
-        13500,
-        13600,
-        13900,
-        13980,
-        14000,
-        14200,
-        14500,
-        14800,
-        14999,
-        15777,
-        17500,
-        29800
-      ],
-      "snkrdunk_jpy": 13000,
-      "snkrdunk_last_sale_jpy": 13650,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f078d5c7-085f-4e12-bfc0-144b3e61cb9d.webp",
-      "hk_ask_low_hkd": 643.5,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -2701,7 +2612,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 292,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 132,
       "psa10_market": false
     },
@@ -2713,16 +2624,16 @@
       "set": "M6a / 136/103",
       "image": "images/psa10-m6a-136.webp",
       "tcgdex_id": null,
-      "price_hkd": 279.68,
-      "price_jpy": 5650,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 288.34,
-      "spread_jp_hk_pct": 3.1,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -2734,36 +2645,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 279.68,
-          "hk_ask_hkd": 288.34,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/886016",
-      "snkrdunk_ask_jpy": 5000,
-      "snkrdunk_ask_min_jpy": 5000,
-      "snkrdunk_ask_median_jpy": 5850,
-      "snkrdunk_ask_max_jpy": 1000000,
-      "snkrdunk_ask_prices_jpy": [
-        5000,
-        5494,
-        5500,
-        5650,
-        5700,
-        5800,
-        5900,
-        5999,
-        6000,
-        7500,
-        7777,
-        9999,
-        1000000
-      ],
-      "snkrdunk_jpy": 5000,
-      "snkrdunk_last_sale_jpy": 5650,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/8987def8-62c9-4f2b-8174-29bd6c2729a7.webp",
-      "hk_ask_low_hkd": 247.5,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -2787,7 +2684,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 308,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 164,
       "psa10_market": false
     },
@@ -2799,16 +2696,16 @@
       "set": "M6a / 150/103",
       "image": "images/psa10-m6a-150.webp",
       "tcgdex_id": null,
-      "price_hkd": 331.65,
-      "price_jpy": 6700,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 353.92,
-      "spread_jp_hk_pct": 6.71,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -2820,37 +2717,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 331.65,
-          "hk_ask_hkd": 353.92,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892648",
-      "snkrdunk_ask_jpy": 6600,
-      "snkrdunk_ask_min_jpy": 6600,
-      "snkrdunk_ask_median_jpy": 7200,
-      "snkrdunk_ask_max_jpy": 13000,
-      "snkrdunk_ask_prices_jpy": [
-        6600,
-        6700,
-        6780,
-        6800,
-        6999,
-        7000,
-        7100,
-        7300,
-        7400,
-        7500,
-        8000,
-        9000,
-        12450,
-        13000
-      ],
-      "snkrdunk_jpy": 6600,
-      "snkrdunk_last_sale_jpy": 6700,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/3407cc6f-adb3-484e-a6eb-a8dcf6bb4f60.webp",
-      "hk_ask_low_hkd": 326.7,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -2874,7 +2756,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 378,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 182,
       "psa10_market": false
     },
@@ -3754,16 +3636,16 @@
       "set": "M6a / 154/103",
       "image": "images/psa10-m6a-154.webp",
       "tcgdex_id": null,
-      "price_hkd": 152.31,
-      "price_jpy": 3077,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 173.21,
-      "spread_jp_hk_pct": 13.72,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -3775,35 +3657,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 152.31,
-          "hk_ask_hkd": 173.21,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892652",
-      "snkrdunk_ask_jpy": 3000,
-      "snkrdunk_ask_min_jpy": 3000,
-      "snkrdunk_ask_median_jpy": 3500,
-      "snkrdunk_ask_max_jpy": 4500,
-      "snkrdunk_ask_prices_jpy": [
-        3000,
-        3060,
-        3200,
-        3300,
-        3400,
-        3499,
-        3500,
-        3600,
-        3680,
-        3999,
-        4000,
-        4500
-      ],
-      "snkrdunk_jpy": 3000,
-      "snkrdunk_last_sale_jpy": 3077,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/b98c4231-6c88-4e6e-af0c-c8387aea9f14.webp",
-      "hk_ask_low_hkd": 148.5,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -3827,7 +3696,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 255,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 90,
       "psa10_market": false
     },
@@ -16956,16 +16825,16 @@
       "set": "M6 / 108/076",
       "image": "images/psa10-m6-108.webp",
       "tcgdex_id": null,
-      "price_hkd": 198.0,
-      "price_jpy": 4000,
+      "price_hkd": null,
+      "price_jpy": null,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
       "liquidity_score": 0,
-      "hk_ask_hkd": 219.95,
-      "spread_jp_hk_pct": 11.09,
+      "hk_ask_hkd": null,
+      "spread_jp_hk_pct": null,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -16977,37 +16846,22 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 198.0,
-          "hk_ask_hkd": 219.95,
+          "price_hkd": null,
+          "hk_ask_hkd": null,
           "volume": 0.0
         }
       ],
-      "price_source": "snkrdunk_last_sale",
+      "price_source": null,
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/868610",
-      "snkrdunk_ask_jpy": 3800,
-      "snkrdunk_ask_min_jpy": 3800,
-      "snkrdunk_ask_median_jpy": 4444,
-      "snkrdunk_ask_max_jpy": 7500,
-      "snkrdunk_ask_prices_jpy": [
-        3800,
-        3999,
-        4000,
-        4100,
-        4200,
-        4300,
-        4443,
-        4445,
-        4500,
-        5000,
-        5500,
-        5600,
-        6000,
-        7500
-      ],
-      "snkrdunk_jpy": 3800,
-      "snkrdunk_last_sale_jpy": 4000,
+      "snkrdunk_ask_jpy": null,
+      "snkrdunk_ask_min_jpy": null,
+      "snkrdunk_ask_median_jpy": null,
+      "snkrdunk_ask_max_jpy": null,
+      "snkrdunk_ask_prices_jpy": [],
+      "snkrdunk_jpy": null,
+      "snkrdunk_last_sale_jpy": null,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/5c6d127c-a14d-4511-a9d5-4a9203084181.webp",
-      "hk_ask_low_hkd": 188.1,
+      "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
       "links": [
         {
@@ -17031,7 +16885,7 @@
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
         }
       ],
-      "snkrdunk_recent_sold_n": 21,
+      "snkrdunk_recent_sold_n": 0,
       "snkrdunk_listing_count": 64,
       "psa10_market": false
     },
@@ -43851,82 +43705,6 @@
         "snkrdunk_listing_count": 168
       },
       {
-        "id": "psa10-m6a-154",
-        "name_zh": "烈空坐EX [M6a 154/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "レックウザEX [M6a 154/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 154/103",
-        "image": "images/psa10-m6a-154.webp",
-        "tcgdex_id": null,
-        "price_hkd": 152.31,
-        "price_jpy": 3077,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 86,
-        "hk_ask_hkd": 173.21,
-        "spread_jp_hk_pct": 13.72,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892652",
-        "snkrdunk_ask_jpy": 3000,
-        "snkrdunk_ask_min_jpy": 3000,
-        "snkrdunk_ask_median_jpy": 3500,
-        "snkrdunk_ask_max_jpy": 4500,
-        "snkrdunk_ask_prices_jpy": [
-          3000,
-          3060,
-          3200,
-          3300,
-          3400,
-          3499,
-          3500,
-          3600,
-          3680,
-          3999,
-          4000,
-          4500
-        ],
-        "snkrdunk_jpy": 3000,
-        "snkrdunk_last_sale_jpy": 3077,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/b98c4231-6c88-4e6e-af0c-c8387aea9f14.webp",
-        "hk_ask_low_hkd": 148.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/892652"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX+%5BM6a+154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 255,
-        "snkrdunk_listing_count": 90
-      },
-      {
         "id": "psa10-sm11b-052",
         "name_zh": "波加曼 CHR[sm11b 052/049](強化擴充包「夢之聯盟」)",
         "name_jp": "ポッチャマ CHR[sm11b 052/049](強化拡張パック「ドリームリーグ」)",
@@ -44504,81 +44282,6 @@
         "snkrdunk_listing_count": 359
       },
       {
-        "id": "psa10-m6a-127",
-        "name_zh": "皮卡丘ex SAR [M6a 127/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ピカチュウex SAR [M6a 127/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 127/103",
-        "image": "images/psa10-m6a-127.webp",
-        "tcgdex_id": null,
-        "price_hkd": 556.88,
-        "price_jpy": 11250,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 91,
-        "hk_ask_hkd": 623.7,
-        "spread_jp_hk_pct": 12.0,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/882280",
-        "snkrdunk_ask_jpy": 11000,
-        "snkrdunk_ask_min_jpy": 11000,
-        "snkrdunk_ask_median_jpy": 12600,
-        "snkrdunk_ask_max_jpy": 15500,
-        "snkrdunk_ask_prices_jpy": [
-          11000,
-          11400,
-          11500,
-          11600,
-          12500,
-          12600,
-          13000,
-          13333,
-          14000,
-          15000,
-          15500
-        ],
-        "snkrdunk_jpy": 11000,
-        "snkrdunk_last_sale_jpy": 11250,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a0163a22-6e45-41dc-8203-a5dd647af7ef.webp",
-        "hk_ask_low_hkd": 544.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/882280"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex+SAR+%5BM6a+127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 500,
-        "snkrdunk_listing_count": 216
-      },
-      {
         "id": "psa10-sv8a-218",
         "name_zh": "轟鳴月ex SAR [SV8a 218/187](高級擴充包「太晶慶典ex」)",
         "name_jp": "トドロクツキex SAR [SV8a 218/187](ハイクラスパック「テラスタルフェスex」)",
@@ -44800,84 +44503,6 @@
         "snkrdunk_listing_count": 276
       },
       {
-        "id": "psa10-m6-108",
-        "name_zh": "雷公ex SAR [M6 108/076](擴充包「綠寶石風暴」)",
-        "name_jp": "ライコウex SAR [M6 108/076](拡張パック「ストームエメラルダ」)",
-        "kind": "psa10",
-        "set": "M6 / 108/076",
-        "image": "images/psa10-m6-108.webp",
-        "tcgdex_id": null,
-        "price_hkd": 198.0,
-        "price_jpy": 4000,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 67,
-        "hk_ask_hkd": 219.95,
-        "spread_jp_hk_pct": 11.09,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/868610",
-        "snkrdunk_ask_jpy": 3800,
-        "snkrdunk_ask_min_jpy": 3800,
-        "snkrdunk_ask_median_jpy": 4444,
-        "snkrdunk_ask_max_jpy": 7500,
-        "snkrdunk_ask_prices_jpy": [
-          3800,
-          3999,
-          4000,
-          4100,
-          4200,
-          4300,
-          4443,
-          4445,
-          4500,
-          5000,
-          5500,
-          5600,
-          6000,
-          7500
-        ],
-        "snkrdunk_jpy": 3800,
-        "snkrdunk_last_sale_jpy": 4000,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/5c6d127c-a14d-4511-a9d5-4a9203084181.webp",
-        "hk_ask_low_hkd": 188.1,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/868610"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex+SAR+%5BM6+108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 21,
-        "snkrdunk_listing_count": 64
-      },
-      {
         "id": "psa10-s8b-245",
         "name_zh": "月亮伊布VMAX CSR[S8b 245/184](高級擴充包「VMAX絕群壓軸」)",
         "name_jp": "ブラッキーVMAX CSR[S8b 245/184](ハイクラスパック「VMAXクライマックス」)",
@@ -45014,75 +44639,6 @@
         ],
         "snkrdunk_recent_sold_n": 41,
         "snkrdunk_listing_count": 302
-      },
-      {
-        "id": "psa10-mf-043",
-        "name_zh": "太陽伊布ex SAR樣式 [MF 043/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
-        "name_jp": "エーフィex SAR仕様 [MF 043/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
-        "kind": "psa10",
-        "set": "MF / 043/040",
-        "image": "images/psa10-mf-043.webp",
-        "tcgdex_id": null,
-        "price_hkd": 234.63,
-        "price_jpy": 4740,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 85,
-        "hk_ask_hkd": 259.88,
-        "spread_jp_hk_pct": 10.76,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881430",
-        "snkrdunk_ask_jpy": 4999,
-        "snkrdunk_ask_min_jpy": 4999,
-        "snkrdunk_ask_median_jpy": 5250,
-        "snkrdunk_ask_max_jpy": 6000,
-        "snkrdunk_ask_prices_jpy": [
-          4999,
-          5200,
-          5250,
-          5700,
-          6000
-        ],
-        "snkrdunk_jpy": 4999,
-        "snkrdunk_last_sale_jpy": 4740,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/73acd0cb-07fc-499e-b2e2-59e10c8e26e2.webp",
-        "hk_ask_low_hkd": 247.45,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881430"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex+SAR%E4%BB%95%E6%A7%98+%5BMF+043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th+CELEBRATION+%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88+%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 246,
-        "snkrdunk_listing_count": 74
       },
       {
         "id": "psa10-sm11b-063",
@@ -45272,84 +44828,6 @@
         ],
         "snkrdunk_recent_sold_n": 17,
         "snkrdunk_listing_count": 175
-      },
-      {
-        "id": "psa10-m6a-134",
-        "name_zh": "超夢ex FUR [M6a 134/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ミュウツーex FUR [M6a 134/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 134/103",
-        "image": "images/psa10-m6a-134.webp",
-        "tcgdex_id": null,
-        "price_hkd": 490.05,
-        "price_jpy": 9900,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 94,
-        "hk_ask_hkd": 540.78,
-        "spread_jp_hk_pct": 10.35,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881428",
-        "snkrdunk_ask_jpy": 9500,
-        "snkrdunk_ask_min_jpy": 9500,
-        "snkrdunk_ask_median_jpy": 10950,
-        "snkrdunk_ask_max_jpy": 18888,
-        "snkrdunk_ask_prices_jpy": [
-          9500,
-          9800,
-          9900,
-          9990,
-          9999,
-          10800,
-          10900,
-          11000,
-          12000,
-          12999,
-          13000,
-          13500,
-          15000,
-          18888
-        ],
-        "snkrdunk_jpy": 9500,
-        "snkrdunk_last_sale_jpy": 9900,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/433c88d9-e3d7-47c1-a98e-b25b81ec698d.webp",
-        "hk_ask_low_hkd": 470.25,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881428"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex+FUR+%5BM6a+134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 522,
-        "snkrdunk_listing_count": 312
       },
       {
         "id": "psa10-sv4a-236",
@@ -47088,84 +46566,6 @@
         "snkrdunk_listing_count": 56
       },
       {
-        "id": "psa10-m6a-150",
-        "name_zh": "耿鬼 [M6a 150/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ゲンガー [M6a 150/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 150/103",
-        "image": "images/psa10-m6a-150.webp",
-        "tcgdex_id": null,
-        "price_hkd": 331.65,
-        "price_jpy": 6700,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 90,
-        "hk_ask_hkd": 353.92,
-        "spread_jp_hk_pct": 6.71,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892648",
-        "snkrdunk_ask_jpy": 6600,
-        "snkrdunk_ask_min_jpy": 6600,
-        "snkrdunk_ask_median_jpy": 7200,
-        "snkrdunk_ask_max_jpy": 13000,
-        "snkrdunk_ask_prices_jpy": [
-          6600,
-          6700,
-          6780,
-          6800,
-          6999,
-          7000,
-          7100,
-          7300,
-          7400,
-          7500,
-          8000,
-          9000,
-          12450,
-          13000
-        ],
-        "snkrdunk_jpy": 6600,
-        "snkrdunk_last_sale_jpy": 6700,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/3407cc6f-adb3-484e-a6eb-a8dcf6bb4f60.webp",
-        "hk_ask_low_hkd": 326.7,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/892648"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC+%5BM6a+150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 378,
-        "snkrdunk_listing_count": 182
-      },
-      {
         "id": "psa10-m1l-092",
         "name_zh": "超級路卡利歐ex MUR [M1L 092/063](擴充包「超級勇氣」)",
         "name_jp": "メガルカリオex MUR [M1L 092/063](拡張パック「メガブレイブ」)",
@@ -47248,79 +46648,6 @@
         ],
         "snkrdunk_recent_sold_n": 1,
         "snkrdunk_listing_count": 122
-      },
-      {
-        "id": "psa10-m6a-130",
-        "name_zh": "仙子伊布ex SAR [M6a 130/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ニンフィアex SAR [M6a 130/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 130/103",
-        "image": "images/psa10-m6a-130.webp",
-        "tcgdex_id": null,
-        "price_hkd": 222.75,
-        "price_jpy": 4500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 89,
-        "hk_ask_hkd": 237.6,
-        "spread_jp_hk_pct": 6.67,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891194",
-        "snkrdunk_ask_jpy": 4100,
-        "snkrdunk_ask_min_jpy": 4100,
-        "snkrdunk_ask_median_jpy": 4800,
-        "snkrdunk_ask_max_jpy": 6000,
-        "snkrdunk_ask_prices_jpy": [
-          4100,
-          4300,
-          4500,
-          4600,
-          4800,
-          4900,
-          5000,
-          5400,
-          6000
-        ],
-        "snkrdunk_jpy": 4100,
-        "snkrdunk_last_sale_jpy": 4500,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/db1fb87a-852a-4735-90f4-e8ae1218ac20.webp",
-        "hk_ask_low_hkd": 202.95,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/891194"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex+SAR+%5BM6a+130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 297,
-        "snkrdunk_listing_count": 138
       },
       {
         "id": "psa10-m3-114",
@@ -48356,84 +47683,6 @@
         ],
         "snkrdunk_recent_sold_n": 4,
         "snkrdunk_listing_count": 48
-      },
-      {
-        "id": "psa10-m6a-131",
-        "name_zh": "耿鬼ex SAR [M6a 131/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ゲンガーex SAR [M6a 131/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 131/103",
-        "image": "images/psa10-m6a-131.webp",
-        "tcgdex_id": null,
-        "price_hkd": 334.12,
-        "price_jpy": 6750,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 91,
-        "hk_ask_hkd": 351.44,
-        "spread_jp_hk_pct": 5.18,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/896992",
-        "snkrdunk_ask_jpy": 6500,
-        "snkrdunk_ask_min_jpy": 6500,
-        "snkrdunk_ask_median_jpy": 7200,
-        "snkrdunk_ask_max_jpy": 18000,
-        "snkrdunk_ask_prices_jpy": [
-          6500,
-          6799,
-          6800,
-          6899,
-          6900,
-          6999,
-          7000,
-          7399,
-          7500,
-          7980,
-          7999,
-          8888,
-          9999,
-          18000
-        ],
-        "snkrdunk_jpy": 6500,
-        "snkrdunk_last_sale_jpy": 6750,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f803b03b-76e1-4148-a0f0-8ccc062112ba.webp",
-        "hk_ask_low_hkd": 321.75,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/896992"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex+SAR+%5BM6a+131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 412,
-        "snkrdunk_listing_count": 189
       },
       {
         "id": "psa10-sv1v-105",
@@ -49680,83 +48929,6 @@
         ],
         "snkrdunk_recent_sold_n": 5,
         "snkrdunk_listing_count": 82
-      },
-      {
-        "id": "psa10-mf-044",
-        "name_zh": "月亮伊布ex SAR樣式 [MF 044/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
-        "name_jp": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
-        "kind": "psa10",
-        "set": "MF / 044/040",
-        "image": "images/psa10-mf-044.webp",
-        "tcgdex_id": null,
-        "price_hkd": 675.68,
-        "price_jpy": 13650,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 89,
-        "hk_ask_hkd": 702.9,
-        "spread_jp_hk_pct": 4.03,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881431",
-        "snkrdunk_ask_jpy": 13000,
-        "snkrdunk_ask_min_jpy": 13000,
-        "snkrdunk_ask_median_jpy": 14200,
-        "snkrdunk_ask_max_jpy": 29800,
-        "snkrdunk_ask_prices_jpy": [
-          13000,
-          13500,
-          13600,
-          13900,
-          13980,
-          14000,
-          14200,
-          14500,
-          14800,
-          14999,
-          15777,
-          17500,
-          29800
-        ],
-        "snkrdunk_jpy": 13000,
-        "snkrdunk_last_sale_jpy": 13650,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f078d5c7-085f-4e12-bfc0-144b3e61cb9d.webp",
-        "hk_ask_low_hkd": 643.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881431"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex+SAR%E4%BB%95%E6%A7%98+%5BMF+044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th+CELEBRATION+%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88+%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 292,
-        "snkrdunk_listing_count": 132
       },
       {
         "id": "sealed-snkr-111467",
@@ -51086,83 +50258,6 @@
         ],
         "snkrdunk_recent_sold_n": 104,
         "snkrdunk_listing_count": 422
-      },
-      {
-        "id": "psa10-m6a-136",
-        "name_zh": "皮卡丘 [M6a 136/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ピカチュウ [M6a 136/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 136/103",
-        "image": "images/psa10-m6a-136.webp",
-        "tcgdex_id": null,
-        "price_hkd": 279.68,
-        "price_jpy": 5650,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 90,
-        "hk_ask_hkd": 288.34,
-        "spread_jp_hk_pct": 3.1,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/886016",
-        "snkrdunk_ask_jpy": 5000,
-        "snkrdunk_ask_min_jpy": 5000,
-        "snkrdunk_ask_median_jpy": 5850,
-        "snkrdunk_ask_max_jpy": 1000000,
-        "snkrdunk_ask_prices_jpy": [
-          5000,
-          5494,
-          5500,
-          5650,
-          5700,
-          5800,
-          5900,
-          5999,
-          6000,
-          7500,
-          7777,
-          9999,
-          1000000
-        ],
-        "snkrdunk_jpy": 5000,
-        "snkrdunk_last_sale_jpy": 5650,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/8987def8-62c9-4f2b-8174-29bd6c2729a7.webp",
-        "hk_ask_low_hkd": 247.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/886016"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6+%5BM6a+136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 308,
-        "snkrdunk_listing_count": 164
       },
       {
         "id": "psa10-s-p-227",
@@ -54697,86 +53792,6 @@
         ],
         "snkrdunk_recent_sold_n": 12,
         "snkrdunk_listing_count": 494
-      },
-      {
-        "id": "psa10-m6a-132",
-        "name_zh": "基拉祈ex SAR [M6a 132/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ジラーチex SAR [M6a 132/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 132/103",
-        "image": "images/psa10-m6a-132.webp",
-        "tcgdex_id": null,
-        "price_hkd": 207.9,
-        "price_jpy": 4200,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 89,
-        "hk_ask_hkd": 209.34,
-        "spread_jp_hk_pct": 0.69,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891195",
-        "snkrdunk_ask_jpy": 3700,
-        "snkrdunk_ask_min_jpy": 3700,
-        "snkrdunk_ask_median_jpy": 4236,
-        "snkrdunk_ask_max_jpy": 5000,
-        "snkrdunk_ask_prices_jpy": [
-          3700,
-          3800,
-          3850,
-          3900,
-          3999,
-          4000,
-          4200,
-          4222,
-          4250,
-          4300,
-          4400,
-          4500,
-          4665,
-          4666,
-          4999,
-          5000
-        ],
-        "snkrdunk_jpy": 3700,
-        "snkrdunk_last_sale_jpy": 4200,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/1f01e4b4-9b34-434c-949c-b44c988300d9.webp",
-        "hk_ask_low_hkd": 183.15,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/891195"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex+SAR+%5BM6a+132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 312,
-        "snkrdunk_listing_count": 152
       },
       {
         "id": "sealed-snkr-15573",
