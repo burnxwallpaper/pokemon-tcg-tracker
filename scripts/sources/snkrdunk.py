@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import html
 import json
+import math
 import re
 from datetime import datetime, timedelta, timezone
 from typing import Any
@@ -887,20 +888,41 @@ def sell_listing_count(apparel: dict | None, *, kind: str) -> int:
     return _count_field(data, "usedListingCount") or _count_field(data, "totalListingCount")
 
 
+# Points on each side of liquidity_score. Caps are the inputs that fill that side.
+# log1p keeps the score absolute (same counts → same score tomorrow) and stops
+# a Hottest-heavy list from stacking on 99. A within-list percentile would
+# force a spread every day, but then 80 would not mean the same book depth.
+LIQUIDITY_SOLD_POINTS = 60.0
+LIQUIDITY_LIST_POINTS = 39.0
+LIQUIDITY_SOLD_CAP = 80.0
+LIQUIDITY_LIST_CAP = 800.0
+
+
+def _liquidity_side(value: float, cap: float, points: float) -> float:
+    """Diminishing points. ``cap`` fills the side; larger inputs stay at ``points``."""
+    if value <= 0 or cap <= 0:
+        return 0.0
+    return points * min(1.0, math.log1p(value) / math.log1p(cap))
+
+
 def liquidity_score(recent_sold: float, listing_count: int, *, yahoo_vol: float = 0) -> int:
     """0–99 from recent sold activity and the current sell-listing count.
 
     ``recent_sold`` is SNKRDUNK sales over about 7 days. ``yahoo_vol`` (today
     plus the 7-day average) is used only when that count is 0. ``listing_count``
     is the live SNKRDUNK seller book (used listings for a slab, new listings
-    for a sealed box). 15 sales saturate the sold side at 60. About 26 listings
-    saturate the book side at 39.
+    for a sealed box).
+
+    Sold side is ``60 * log1p(sales) / log1p(80)``. Book side is
+    ``39 * log1p(listings) / log1p(800)``. About 80 sales or about 800 listings
+    fill that side. 15 sales and a few hundred listings land in the mid range;
+    99 needs both a deep sale week and a deep book.
     """
     sold = float(recent_sold or 0)
     if sold <= 0:
         sold = float(yahoo_vol or 0)
-    sold_pts = min(60.0, sold * 4.0)
-    list_pts = min(39.0, float(listing_count or 0) * 1.5)
+    sold_pts = _liquidity_side(sold, LIQUIDITY_SOLD_CAP, LIQUIDITY_SOLD_POINTS)
+    list_pts = _liquidity_side(float(listing_count or 0), LIQUIDITY_LIST_CAP, LIQUIDITY_LIST_POINTS)
     if sold_pts <= 0 and list_pts <= 0:
         return 1
     return int(max(1, min(99, round(sold_pts + list_pts))))

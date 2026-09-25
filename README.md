@@ -69,6 +69,7 @@ python scripts/update_stub.py
 | `config.json` | 匯率、門檻、top_n、history_days、來源開關（目前皆關閉） |
 | `dashboard/index.html` | 繁中本機儀表板（單檔 HTML+CSS+JS） |
 | `data/latest.json` | 最新快照（含 meta、items、三區塊 sections） |
+| `data/name_zh_map.json` | 日文→繁中對照（物種、系列、稀有度／商品詞）。`scripts/name_zh_map.translate()` 最長鍵優先 |
 | `data/history/` | 每日歷史（約保留 90 天；格式見內文說明） |
 | `scripts/update.py` | 真實更新管線：Yahoo JP + Carousell HK（HKCardLink fallback） |
 | `scripts/sources/` | 溫和 scrapers |
@@ -83,7 +84,7 @@ python scripts/update_stub.py
 - 追蹤：PSA10 slabs、sealed（未開封）；raw 單卡非 MVP 重點
 - 自動掃描 Hottest Items，再以搜尋熱門填到約 200（160 PSA10 + 40 未開封）；1日／7日價格＋量能
 - 門檻（可於 `config.json` 改）：1日 ±5%、7日 ±12%、量能 ≥1.5×7日均
-- `liquidity_score`（0–99）：近期 SNKRDUNK 成交（約 7 日；PSA10 用一週圖表，未開封用 sales-history 日期）＋而家放售筆數（卡用 `usedListingCount`，盒用 `listingCount`）。冇 SNKRDUNK 成交先至用 Yahoo 今日＋7日量。15 筆成交或約 26 個放售就頂滿嗰一邊。見 `discovery.liquidity_score_note`。
+- `liquidity_score`（0–99，絕對值，唔係當日清單百分位）：`60 * log1p(約 7 日成交) / log1p(80)` ＋ `39 * log1p(放售筆數) / log1p(800)`。PSA10 用一週圖表，未開封用 sales-history 日期；卡用 `usedListingCount`，盒用 `listingCount`。冇 SNKRDUNK 成交先至用 Yahoo 今日＋7日量。約 80 筆成交或約 800 個放售先至頂滿嗰一邊，所以一般 Hottest 會落喺中段，99 要成交同放售都深。見 `discovery.liquidity_score_note`。
 - 匯率起始：`1 JPY = 0.0495 HKD`（可改）
 - 最低上架價：`min_list_price_hkd` = **HK$100**。有賣出價就用賣出價，否則用最近成交價；低過呢個數唔會出現喺清單。Hottest Items 的 `minPrice` 已是港元；搜尋標題係日圓 × 匯率。低過 HK$100 唔會掃入。冇可靠報價先至留空，唔會用其他等級嘅價頂上。
 - 歷史：約 90 天
