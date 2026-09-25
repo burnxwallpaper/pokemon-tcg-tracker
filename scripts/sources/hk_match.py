@@ -930,8 +930,38 @@ def _closest_url(rows: list[dict], price: float) -> str | None:
     return str(url) if url else None
 
 
+def unified_sell_asks(
+    hk_prices_hkd: list[float],
+    snkr_asks_jpy: list[int],
+    fx: float,
+) -> tuple[float | None, float | None]:
+    """Median and lowest of one HKD ask pool.
+
+    Local listing prices are already HKD. SNKRDUNK asks are yen converted at ``fx``.
+    Returns ``(median_hkd, lowest_hkd)``. An empty pool stays empty.
+    """
+    pool: list[float] = []
+    for price in hk_prices_hkd:
+        try:
+            value = float(price)
+        except (TypeError, ValueError):
+            continue
+        if value > 0:
+            pool.append(value)
+    rate = float(fx)
+    for raw in snkr_asks_jpy:
+        if isinstance(raw, bool) or not isinstance(raw, (int, float)):
+            continue
+        if raw <= 0 or rate <= 0:
+            continue
+        pool.append(round(float(raw) * rate, 2))
+    if not pool:
+        return None, None
+    return robust_median(pool), lowest_ask(pool)
+
+
 def publish_ask(listings: list[dict], jp_hkd: float | None) -> dict[str, Any]:
-    """Price we are willing to show as 香港最新賣出價.
+    """Price we are willing to show as a sell ask.
 
     Several matches inside 10–300% of the JP sold median publish their median.
     One listing is kept only when the title carries the set code or collector

@@ -1,8 +1,8 @@
 """Public quote labels and reference URLs. No invented buy bids.
 
-最近成交價 = price_hkd (Yahoo JP closed/sold, shown in HKD)
-香港最新賣出價 = hk_ask_hkd (robust median of matched HK sell asks)
-最低賣出價 = hk_ask_low_hkd (lowest matched sell ask; equals the ask when only one)
+最近成交價 = price_hkd (SNKRDUNK last sale, else a close Yahoo sold, shown in HKD)
+最新賣出價 = hk_ask_hkd (robust median of one HKD pool: local asks + SNKRDUNK asks × fx)
+最低賣出價 = hk_ask_low_hkd (lowest price in that pool; equals the ask when only one)
 買入價／徵求 = hk_bid_hkd only from HKCardLink listing_type=wtb with a positive price.
 Carousell, LONO, and Zenox do not expose structured buy bids.
 """
@@ -22,10 +22,16 @@ ZENOX_COLLECTION = "https://www.zenoxstore.com/collections/booster-packs-collect
 
 PRICE_LABELS = {
     "price_hkd": "最近成交價",
-    "hk_ask_hkd": "香港最新賣出價",
+    "hk_ask_hkd": "最新賣出價",
     "hk_ask_low_hkd": "最低賣出價",
     "hk_bid_hkd": "買入價／徵求",
 }
+
+HK_ASK_NOTE = (
+    "最新賣出價係已核對賣盤的穩健中位數，池內包括本地賣盤，以及 SNKRDUNK 現時放售"
+    "（日圓按 fx_jpy_to_hkd 換成港元）。最低賣出價係呢個池入面最低；只有一筆時兩者相同。"
+    "對不上可靠賣盤就留空，不會估算。"
+)
 
 HK_BID_NOTE = (
     "買入價／徵求只採用 HKCardLink 公開徵收（listing_type=wtb）而且有正數預算的刊登。"
@@ -215,7 +221,7 @@ def annotate_payload(
         "currency": "HKD",
         "primary_view": "流動性",
         "labels": PRICE_LABELS,
-        "hk_ask_note": "hk_ask_hkd 係已核對香港賣盤的穩健中位數；只有一筆時與最低賣出價相同。",
+        "hk_ask_note": HK_ASK_NOTE,
         "hk_bid_note": HK_BID_NOTE,
     }
     return payload

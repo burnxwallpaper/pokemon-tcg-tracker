@@ -3,7 +3,7 @@
 個人用、投機導向的日版 PSA10 鑑定卡＋未開封商品行情儀表板。顯示貨幣僅 **HKD**。  
 本目錄為本機 scaffold；之後會由 bot **每日同步**到你的 PC：`C:\Users\leosiu\Documents\pokemonTCG`。
 
-> `scripts/update.py` 會以溫和公開抓取更新真實行情。日本最近成交價以 SNKRDUNK 公開成交為主，Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。香港最新賣出價來自 Carousell、HKCardLink、LONO、ShipMyToy、Zenox：多筆相符取中位數，偏離 SNKRDUNK 日圓市價（約 10%–300%）或對不上的刊登留空。詳情頁連到 SNKRDUNK。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
+> `scripts/update.py` 會以溫和公開抓取更新真實行情。最近成交價以 SNKRDUNK 公開成交為主（港元），Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。最新賣出價係一個港元池：本地賣盤（Carousell、HKCardLink、LONO、ShipMyToy、Zenox）加上 SNKRDUNK 現時放售（日圓按固定匯率換算）。多筆取中位數，最低賣出價係池入面最低；偏離 SNKRDUNK 市價帶（約 10%–300%）或對不上的刊登留空。詳情頁連到 SNKRDUNK。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
 
 ---
 
@@ -35,9 +35,9 @@ python -m http.server 8080
 
 | 畫面 | 欄位 | 意思 |
 |------|------|------|
-| 最近成交價 | `price_hkd` | 日本 Yahoo 已結束拍賣，換算 HKD |
-| 香港最新賣出價 | `hk_ask_hkd` | 對到的香港賣盤叫價（穩健中位數；只有一筆時即該賣價） |
-| 最低賣出價 | `hk_ask_low_hkd` | 對到賣盤入面最低。快照若未保存逐筆賣價，而且唔止一筆，就留空（畫面 —） |
+| 最近成交價 | `price_hkd` | SNKRDUNK 公開成交；沒有成交時先用接近的 Yahoo 已結束拍賣。一律港元 |
+| 最新賣出價 | `hk_ask_hkd` | 已核對賣盤的穩健中位數（本地賣盤 + SNKRDUNK 放售換算港元；只有一筆時即該賣價） |
+| 最低賣出價 | `hk_ask_low_hkd` | 同一個港元池入面最低 |
 | 買入價／徵求 | `hk_bid_hkd` | 只採用 HKCardLink 公開徵收（`listing_type=wtb`）而且有正數預算。Carousell、LONO、Zenox 冇結構化徵求，對不到就係 `null`（畫面 **暫無**），不會估算 |
 
 ---

@@ -9,8 +9,8 @@ Pipeline:
   4. write   — data/latest.json + data/history/YYYY-MM-DD.json
                + data/history/series/{id}.json (~90 daily points)
 
-最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask).
-香港最新賣出價 → hk_ask_hkd (median of matched HK sell asks).
+最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask). Shown in HKD.
+最新賣出價 → hk_ask_hkd (median of one HKD pool: matched local asks plus SNKRDUNK active asks × fx).
 最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd (HKCardLink WTB only; else null).
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
@@ -29,6 +29,7 @@ SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
 
 from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
+from sources.hk_match import unified_sell_asks  # noqa: E402
 from sources.reference_links import attach_public_quotes  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
 from series_io import (  # noqa: E402
@@ -56,6 +57,31 @@ def hkd(jpy: float | int | None, fx: float) -> float | None:
     if jpy is None:
         return None
     return round(float(jpy) * fx, 2)
+
+
+def _listing_prices_hkd(rows: list) -> list[float]:
+    prices: list[float] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        try:
+            price = float(row.get("price_hkd"))
+        except (TypeError, ValueError):
+            continue
+        if price > 0:
+            prices.append(price)
+    return prices
+
+
+def _summary_prices_hkd(*values: object) -> list[float]:
+    """Preserved median/low when the listing rows were not stored."""
+    prices: list[float] = []
+    for value in values:
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            continue
+        if value > 0 and float(value) not in prices:
+            prices.append(float(value))
+    return prices
 
 
 def load_series(item_id: str) -> list[dict]:
@@ -285,7 +311,7 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
         "status": "disabled" if not snkr_on else "pending",
         "ok_items": 0,
         "errors": [],
-        "note": "Primary JP reference: catalog match, last sale, PSA10 lowest ask. HK band uses the PSA10 ask median.",
+        "note": "Catalog match and last sale. Active asks join the HKD sell-ask pool. The PSA10 median still bands local listings.",
     }
     if snkr_on:
         print(f"[fetch] SNKRDUNK × {len(watchlist)} (interval≥{interval}s)")
@@ -367,10 +393,13 @@ def merge_and_compute(
         else:
             price_jpy, price_source = snkrdunk.choose_jp_price(jp.get("median_jpy"), snkr)
         price = hkd(price_jpy, fx)
-        hk_ask = hk.get("median_hkd")
-        if hk_ask is not None:
-            hk_ask = round(float(hk_ask), 2)
-        hk_low = hk.get("lowest_hkd")
+        hk_points = _listing_prices_hkd(hk.get("listings") or [])
+        if not hk_points:
+            hk_points = _summary_prices_hkd(hk.get("median_hkd"), hk.get("lowest_hkd"))
+        snkr_points: list[int] = []
+        if not wl.get("identity_review"):
+            snkr_points = snkrdunk.sell_ask_jpy_points(snkr, kind=str(wl.get("kind") or ""))
+        hk_ask, hk_low = unified_sell_asks(hk_points, snkr_points, fx)
         hk_bid = hk.get("bid_hkd")
         quote_listings = list(hk.get("listings") or []) + list(hk.get("bid_listings") or [])
 
@@ -527,6 +556,18 @@ def merge_and_compute(
             row["snkrdunk_url"] = snkr["url"]
         if isinstance(snkr.get("ask_jpy"), int):
             row["snkrdunk_ask_jpy"] = snkr["ask_jpy"]
+        for src_key, dest_key in (
+            ("ask_min_jpy", "snkrdunk_ask_min_jpy"),
+            ("ask_median_jpy", "snkrdunk_ask_median_jpy"),
+            ("ask_max_jpy", "snkrdunk_ask_max_jpy"),
+        ):
+            if isinstance(snkr.get(src_key), int):
+                row[dest_key] = snkr[src_key]
+        ask_book = snkr.get("ask_prices_jpy")
+        if isinstance(ask_book, list):
+            book = [price for price in ask_book if isinstance(price, int) and price > 0]
+            if book:
+                row["snkrdunk_ask_prices_jpy"] = book[:40]
         if isinstance(snkr.get("market_jpy"), int):
             row["snkrdunk_jpy"] = snkr["market_jpy"]
         if isinstance(snkr.get("last_sale_jpy"), int):
@@ -730,6 +771,10 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
                 "url": it.get("snkrdunk_url"),
                 "name": it.get("snkrdunk_name"),
                 "ask_jpy": it.get("snkrdunk_ask_jpy"),
+                "ask_min_jpy": it.get("snkrdunk_ask_min_jpy"),
+                "ask_median_jpy": it.get("snkrdunk_ask_median_jpy"),
+                "ask_max_jpy": it.get("snkrdunk_ask_max_jpy"),
+                "ask_prices_jpy": it.get("snkrdunk_ask_prices_jpy"),
                 "market_jpy": it.get("snkrdunk_jpy"),
                 "last_sale_jpy": it.get("snkrdunk_last_sale_jpy"),
                 "image_url": it.get("snkrdunk_image_url"),
@@ -846,10 +891,10 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
             "status": "disabled" if not snkr_on else "pending",
             "ok_items": 0,
             "errors": [],
-            "note": "HK band refreshed from the matched SNKRDUNK PSA10 median or BOX ask",
+            "note": "SNKRDUNK active asks refreshed into the HKD sell-ask pool; local listings still use that band",
         }
         if snkr_on:
-            print(f"[fetch] SNKRDUNK market band × {len(watchlist)} (interval≥{interval}s)")
+            print(f"[fetch] SNKRDUNK asks × {len(watchlist)} (interval≥{interval}s)")
             for item in watchlist:
                 slot = jp_by_id.setdefault(item["id"], {"status": "preserved", "snkrdunk": {}})
                 snkr = slot.get("snkrdunk") if isinstance(slot.get("snkrdunk"), dict) else {}
@@ -858,19 +903,24 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False) ->
                 apparel_id = snkrdunk.apparel_id_from_url(str(snkr.get("url") or ""))
                 if not apparel_id:
                     continue
-                try:
-                    market = snkrdunk.market_jpy_for_id(
-                        apparel_id,
-                        kind=str(item.get("kind") or ""),
-                        min_interval=interval,
-                    )
-                except Exception as exc:  # noqa: BLE001
-                    snkr_status["errors"].append(f"{item['id']}: {type(exc).__name__}")
+                quote = snkrdunk.ask_quote_for_id(
+                    apparel_id,
+                    kind=str(item.get("kind") or ""),
+                    min_interval=interval,
+                )
+                if quote.get("error"):
+                    snkr_status["errors"].append(f"{item['id']}: {quote.get('error')}")
                     continue
                 refreshed = dict(snkr)
-                if market is not None:
-                    refreshed["market_jpy"] = market
-                    refreshed["ok"] = True
+                refreshed["ok"] = True
+                refreshed["market_jpy"] = quote.get("market_jpy")
+                refreshed["ask_prices_jpy"] = quote.get("ask_prices_jpy") or []
+                refreshed["ask_min_jpy"] = quote.get("ask_min_jpy")
+                refreshed["ask_median_jpy"] = quote.get("ask_median_jpy")
+                refreshed["ask_max_jpy"] = quote.get("ask_max_jpy")
+                if str(item.get("kind") or "") != "sealed":
+                    refreshed["ask_jpy"] = quote.get("ask_jpy")
+                if quote.get("market_jpy") or quote.get("ask_prices_jpy"):
                     snkr_status["ok_items"] += 1
                 slot["snkrdunk"] = refreshed
             snkr_status["status"] = "ok" if snkr_status["ok_items"] else "empty"

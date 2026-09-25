@@ -14,14 +14,20 @@ from sources.hk_match import (  # noqa: E402
     primary_query,
     publish_ask,
     robust_median,
+    unified_sell_asks,
 )
 from sources.hk_shops import parse_lono_cards, parse_shopline_cards, parse_zenox_products, sell_price  # noqa: E402
 from sources.snkrdunk import (  # noqa: E402
+    PSA10_WEAR,
+    build_ask_quote,
     choose_hit,
+    psa10_active_ask_prices,
     psa10_market_jpy,
     same_print,
     search_keyword,
+    sealed_ask_prices,
     sealed_market_jpy,
+    sell_ask_jpy_points,
 )
 def _item(kind: str, zh: str, jp: str, hk: str) -> dict:
     return {"kind": kind, "name_zh": zh, "name_jp": jp, "search_hk": hk}
@@ -617,6 +623,53 @@ def test_snkrdunk_print_rejects_english_reprint_and_loose_box() -> None:
     assert boxed is not None and boxed["id"] == 118914
 
 
+def test_unified_hkd_pool_includes_snkrdunk_asks() -> None:
+    """A trustworthy SNKRDUNK ask fills a blank local column, in HKD."""
+    median_hkd, low_hkd = unified_sell_asks([], [10000], 0.0495)
+    assert median_hkd == 495
+    assert low_hkd == 495
+    mixed_mid, mixed_low = unified_sell_asks([800, 900], [10000, 12000], 0.0495)
+    assert mixed_low == 495
+    assert mixed_mid == robust_median([800, 900, 495, 594])
+    assert unified_sell_asks([], [], 0.0495) == (None, None)
+    assert sell_ask_jpy_points({"ok": False, "ask_jpy": 17400}, kind="psa10") == []
+    assert sell_ask_jpy_points(
+        {"ok": True, "ask_jpy": 17400, "market_jpy": 5000},
+        kind="psa10",
+    ) == [17400]
+    assert sell_ask_jpy_points(
+        {"ok": True, "ask_prices_jpy": [17400, 20000], "market_jpy": 1},
+        kind="psa10",
+    ) == [17400, 20000]
+    assert sell_ask_jpy_points({"ok": True, "market_jpy": 44800}, kind="sealed") == [44800]
+
+
+def test_active_asks_ignore_sold_rows() -> None:
+    rows = [
+        {"wearCount": PSA10_WEAR, "price": 17400, "isDisplaySold": False},
+        {"wearCount": PSA10_WEAR, "price": 20000, "isDisplaySold": False},
+        {"wearCount": PSA10_WEAR, "price": 17000, "isDisplaySold": True},
+        {"wearCount": "raw", "price": 3000, "isDisplaySold": False},
+    ]
+    assert psa10_active_ask_prices(rows) == [17400, 20000]
+    quote = build_ask_quote(kind="psa10", floor_jpy=17400, used_rows=rows, apparel=None)
+    assert quote["ask_min_jpy"] == 17400
+    assert quote["ask_max_jpy"] == 20000
+    assert quote["ask_prices_jpy"] == [17400, 20000]
+    assert 17000 not in quote["ask_prices_jpy"]
+    sold_only = build_ask_quote(
+        kind="psa10",
+        floor_jpy=None,
+        used_rows=[{"wearCount": PSA10_WEAR, "price": 17000, "isDisplaySold": True}],
+        apparel=None,
+    )
+    assert sold_only["ask_prices_jpy"] == []
+    sealed = sealed_ask_prices(
+        {"regularPrice": 5800, "minPrice": 45798, "maxPrice": 0, "minPriceOfNewListing": 45798}
+    )
+    assert sealed == [45798]
+
+
 def test_snkrdunk_psa10_market_ignores_raw_and_other_grades() -> None:
     psa10 = "tradingCardSingleConditionPSA10"
     mid = psa10_market_jpy(
@@ -664,5 +717,7 @@ if __name__ == "__main__":
     test_bare_collector_number_must_match()
     test_publish_ask_prefers_median_and_drops_a_lone_weak_listing()
     test_snkrdunk_print_rejects_english_reprint_and_loose_box()
+    test_unified_hkd_pool_includes_snkrdunk_asks()
+    test_active_asks_ignore_sold_rows()
     test_snkrdunk_psa10_market_ignores_raw_and_other_grades()
     print("ok")

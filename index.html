@@ -509,7 +509,7 @@
         <h2>流動性</h2>
         <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
       </div>
-      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和 SNKRDUNK 叫價接近才保留；換算 HKD）。香港最新賣出價＝對到的香港賣盤中位數；偏離 SNKRDUNK 日圓市價太遠，或只有一筆又對不上卡號，就留空。最低賣出價＝呢批賣盤入面最低。買入價／徵求只顯示 HKCardLink 公開徵收預算；對唔到就顯示暫無，唔會估算。詳情有 SNKRDUNK 連結。</p>
+      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝已核對賣盤的中位數，包括本地賣盤同 SNKRDUNK 現時放售（日圓按頁首匯率換成港元）；對不上就留空。最低賣出價＝呢個池入面最低。買入價／徵求只顯示 HKCardLink 公開徵收預算；對唔到就顯示暫無，唔會估算。詳情有 SNKRDUNK 連結。</p>
       <div class="liq-search">
         <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
         <span id="liqSearchCount" class="hint"></span>
@@ -528,7 +528,7 @@
     <section id="sec-spreads" class="section" aria-label="價差">
       <div class="section-head">
         <h2>價差</h2>
-        <span class="hint">香港最新賣出價 vs 最近成交價（正值 = 香港賣價較高）· 卡同盒分開列 · 點擊卡片看詳情</span>
+        <span class="hint">最新賣出價 vs 最近成交價（正值 = 賣出價較高）· 卡同盒分開列 · 點擊卡片看詳情</span>
       </div>
       <div id="spreadsGrid"></div>
     </section>
@@ -708,7 +708,7 @@
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kind}</span>
             </div>
             <div class="price">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
-            <div class="price-sub">香港最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
+            <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
             <div class="price-sub">買入價／徵求 ${fmtBid(it)}${it.spread_jp_hk_pct != null ? ` · 價差 ${fmtPct(it.spread_jp_hk_pct)}` : ""}</div>
             ${linksHtml(it)}
             <div class="row">
@@ -717,7 +717,7 @@
               <span>量能 vs 7日均 ${it.volume_ratio != null ? it.volume_ratio.toFixed(1) + "×" : "—"}</span>
             </div>
             <div class="row">
-              ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無香港賣出價</span>` : ""}
+              ${it.hk_ask_hkd == null ? `<span style="color:var(--warn)">暫無賣出價</span>` : ""}
               ${it.identity_review ? `<span class="badge" style="font-size:0.65rem">待核對</span>` : ""}
               ${it.is_sample ? `<span class="badge" style="font-size:0.65rem">範例</span>` : ""}
             </div>
@@ -817,8 +817,8 @@
             </div>
           </td>
           <td class="num" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
-          <td class="num" title="目前對到的香港賣盤叫價（穩健中位數）">${fmtAsk(it)}</td>
-          <td class="num" title="對到的香港賣盤入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
+          <td class="num" title="已核對賣盤中位數（本地賣盤同 SNKRDUNK 放售，一律港元）">${fmtAsk(it)}</td>
+          <td class="num" title="呢個賣盤池入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
           <td class="num" title="只顯示 HKCardLink 公開徵收預算；否則暫無">${fmtBid(it)}</td>
           <td class="num"><strong>${it.liquidity_score ?? "—"}</strong></td>
           <td>${linksHtml(it)}</td>
@@ -833,7 +833,7 @@
               <th>#</th>
               <th>品項</th>
               <th>最近成交價</th>
-              <th>香港最新賣出價</th>
+              <th>最新賣出價</th>
               <th>最低賣出價</th>
               <th>買入價／徵求</th>
               <th>流動性</th>
@@ -863,7 +863,7 @@
       el.innerHTML = groupsFor(list).map((group) => {
         const body = group.items.length
           ? `<div class="card-grid">${group.items.map((it) => cardHtml(it)).join("")}</div>`
-          : `<p class="cat-empty">這個分類暫無香港賣出價可比對。</p>`;
+          : `<p class="cat-empty">這個分類暫無賣出價可比對。</p>`;
         return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
       }).join("");
       wireCardClicks(el);
@@ -943,7 +943,7 @@
       const priceDatasets = [];
       if (hasHk) {
         priceDatasets.push({
-          label: "香港最新賣出價",
+          label: "最新賣出價",
           data: hkAsk,
           borderColor: "#5b9fd4",
           backgroundColor: "rgba(91,159,212,0.12)",
@@ -1077,7 +1077,7 @@
               ${it.identity_review ? `<span class="badge">待核對</span>` : ""}
             </div>
             <div class="price" style="margin:0.2rem 0">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
-            <div class="price-sub">香港最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)} · 買入價／徵求 ${fmtBid(it)}</div>
+            <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)} · 買入價／徵求 ${fmtBid(it)}</div>
             <div class="row" style="margin-top:0.5rem">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
               <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
@@ -1090,7 +1090,7 @@
             <div class="value">${fmtHkd(it.price_hkd)}</div>
           </div>
           <div class="stat">
-            <div class="label">香港最新賣出價</div>
+            <div class="label">最新賣出價</div>
             <div class="value">${fmtAsk(it)}</div>
           </div>
           <div class="stat">
@@ -1102,7 +1102,7 @@
             <div class="value">${fmtBid(it)}</div>
           </div>
           <div class="stat">
-            <div class="label">價差 JP↔HK</div>
+            <div class="label">價差</div>
             <div class="value"><span class="chg ${chgClass(it.spread_jp_hk_pct)}">${fmtPct(it.spread_jp_hk_pct)}</span></div>
           </div>
           <div class="stat">

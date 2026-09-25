@@ -304,8 +304,9 @@ def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, 
         empty["apparel_id"] = apparel_id
         empty["url"] = en_product_url(apparel_id)
         return empty
+    kind = str(item.get("kind") or "")
     asks = parse_condition_asks(page.text)
-    ask = asks.get("PSA10") if str(item.get("kind") or "") != "sealed" else None
+    ask = asks.get("PSA10") if kind != "sealed" else None
     last_sale = None
     try:
         hist = polite_get(
@@ -318,27 +319,48 @@ def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, 
             last_sale = parse_sales_history(hist.json())
     except (json.JSONDecodeError, Exception):
         last_sale = None
-    market = None
+    quote: dict[str, Any] = {
+        "market_jpy": None,
+        "ask_jpy": ask,
+        "ask_prices_jpy": [],
+        "ask_min_jpy": None,
+        "ask_median_jpy": None,
+        "ask_max_jpy": None,
+    }
     try:
-        if str(item.get("kind") or "") == "sealed":
-            market = sealed_market_jpy(
-                _apparel_json(int(apparel_id), min_interval=min_interval)
+        if kind == "sealed":
+            quote = build_ask_quote(
+                kind="sealed",
+                floor_jpy=None,
+                used_rows=None,
+                apparel=_apparel_json(int(apparel_id), min_interval=min_interval),
             )
         else:
-            market = psa10_market_jpy(
-                _used_rows(int(apparel_id), min_interval=min_interval)
+            quote = build_ask_quote(
+                kind="psa10",
+                floor_jpy=ask,
+                used_rows=_used_rows(int(apparel_id), min_interval=min_interval),
+                apparel=None,
             )
     except (TypeError, ValueError, Exception):
-        market = None
-    if market is None and isinstance(ask, int) and ask > 0:
-        market = ask
+        if isinstance(ask, int) and ask > 0:
+            quote = build_ask_quote(
+                kind="psa10",
+                floor_jpy=ask,
+                used_rows=[],
+                apparel=None,
+            )
     return {
         "ok": True,
         "apparel_id": apparel_id,
         "url": en_product_url(apparel_id),
         "name": chosen.get("label"),
-        "ask_jpy": ask,
-        "market_jpy": market,
+        "ask_jpy": quote.get("ask_jpy"),
+        "ask_prices_jpy": quote.get("ask_prices_jpy") or [],
+        "ask_min_jpy": quote.get("ask_min_jpy"),
+        "ask_median_jpy": quote.get("ask_median_jpy"),
+        "ask_max_jpy": quote.get("ask_max_jpy"),
+        "market_jpy": quote.get("market_jpy"),
         "last_sale_jpy": last_sale,
         "image_url": _product_image(page.text),
         "error": None,
@@ -441,6 +463,114 @@ def choose_hit(item: dict, rows: list[dict]) -> dict | None:
     return None
 
 
+def psa10_active_ask_prices(rows: list[dict]) -> list[int]:
+    """PSA10 listings still for sale. Sold rows and other grades are not asks."""
+    prices: list[int] = []
+    for row in rows:
+        if row.get("wearCount") != PSA10_WEAR or row.get("isDisplaySold"):
+            continue
+        price = _pos_int(row.get("price"))
+        if price is not None:
+            prices.append(price)
+    return prices
+
+
+def summarize_ask_prices(prices: list[int], *, floor: int | None = None) -> dict[str, Any]:
+    """Min, median, and max of the ask book. ``floor`` is the page's lowest ask."""
+    vals: list[int] = []
+    for price in prices:
+        parsed = _pos_int(price)
+        if parsed is not None and parsed not in vals:
+            vals.append(parsed)
+    floor_i = _pos_int(floor)
+    if floor_i is not None and floor_i not in vals:
+        vals.append(floor_i)
+    vals.sort()
+    if not vals:
+        return {"min": None, "median": None, "max": None, "prices": []}
+    mid = robust_median([float(price) for price in vals])
+    median_i = int(round(mid)) if mid is not None else vals[0]
+    return {"min": vals[0], "median": median_i, "max": vals[-1], "prices": vals}
+
+
+def sealed_ask_prices(apparel: dict) -> list[int]:
+    """Current sealed asks. MSRP (regularPrice) is not a listing."""
+    prices: list[int] = []
+    for key in ("minPrice", "minPriceOfNewListing", "usedMinPrice", "maxPrice"):
+        price = _pos_int((apparel or {}).get(key))
+        if price is not None and price not in prices:
+            prices.append(price)
+    return prices
+
+
+def sell_ask_jpy_points(snkr: dict | None, *, kind: str) -> list[int]:
+    """Asks safe to convert into the HKD pool. Requires a catalog match (``ok``).
+
+    A stored price list wins. Otherwise PSA10 uses the ask summaries only —
+    ``market_jpy`` may be filled from sold rows. A sealed box may use ``market_jpy``,
+    which is the current ``minPrice``.
+    """
+    snkr = snkr or {}
+    if not snkr.get("ok"):
+        return []
+    listed = snkr.get("ask_prices_jpy")
+    if isinstance(listed, list):
+        points: list[int] = []
+        for value in listed:
+            price = _pos_int(value)
+            if price is not None and price not in points:
+                points.append(price)
+        return points
+    keys = ["ask_min_jpy", "ask_median_jpy", "ask_max_jpy", "ask_jpy"]
+    if kind == "sealed":
+        keys.append("market_jpy")
+    points = []
+    for key in keys:
+        price = _pos_int(snkr.get(key))
+        if price is not None and price not in points:
+            points.append(price)
+    return points
+
+
+def build_ask_quote(
+    *,
+    kind: str,
+    floor_jpy: int | None,
+    used_rows: list[dict] | None,
+    apparel: dict | None,
+) -> dict[str, Any]:
+    """Active-ask band. Sold PSA10 prices stay out of this quote."""
+    if kind == "sealed":
+        prices = sealed_ask_prices(apparel or {})
+        band = summarize_ask_prices(prices)
+        market = sealed_market_jpy(apparel or {})
+        if market is None:
+            market = band["min"]
+        return {
+            "market_jpy": market,
+            "ask_jpy": None,
+            "ask_prices_jpy": band["prices"],
+            "ask_min_jpy": band["min"],
+            "ask_median_jpy": band["median"],
+            "ask_max_jpy": band["max"],
+            "error": None,
+        }
+    rows = used_rows or []
+    band = summarize_ask_prices(psa10_active_ask_prices(rows), floor=floor_jpy)
+    market = psa10_market_jpy(rows)
+    if market is None:
+        market = band["min"]
+    return {
+        "market_jpy": market,
+        "ask_jpy": band["min"],
+        "ask_prices_jpy": band["prices"],
+        "ask_min_jpy": band["min"],
+        "ask_median_jpy": band["median"],
+        "ask_max_jpy": band["max"],
+        "error": None,
+    }
+
+
 def psa10_market_jpy(rows: list[dict]) -> int | None:
     """Median of PSA10 asks. Recent sold PSA10 fills in when fewer than two asks are up."""
     asks: list[float] = []
@@ -515,11 +645,59 @@ def apparel_id_from_url(url: str | None) -> str | None:
 
 def market_jpy_for_id(apparel_id: str, *, kind: str, min_interval: float) -> int | None:
     """PSA10 ask median, or the sealed box ask, for an already matched SNKRDUNK id."""
+    quote = ask_quote_for_id(apparel_id, kind=kind, min_interval=min_interval)
+    market = quote.get("market_jpy")
+    return market if isinstance(market, int) else None
+
+
+def ask_quote_for_id(apparel_id: str, *, kind: str, min_interval: float) -> dict[str, Any]:
+    """Live ask band for an apparel id that already passed the catalog match."""
+    empty: dict[str, Any] = {
+        "market_jpy": None,
+        "ask_jpy": None,
+        "ask_prices_jpy": [],
+        "ask_min_jpy": None,
+        "ask_median_jpy": None,
+        "ask_max_jpy": None,
+        "error": None,
+    }
     try:
         numeric = int(apparel_id)
     except (TypeError, ValueError):
-        return None
-    if kind == "sealed":
-        return sealed_market_jpy(_apparel_json(numeric, min_interval=min_interval))
-    return psa10_market_jpy(_used_rows(numeric, min_interval=min_interval))
+        empty["error"] = "bad apparel id"
+        return empty
+    try:
+        if kind == "sealed":
+            apparel = _apparel_json(numeric, min_interval=min_interval)
+            if not apparel:
+                empty["error"] = "apparel empty"
+                return empty
+            return build_ask_quote(
+                kind="sealed",
+                floor_jpy=None,
+                used_rows=None,
+                apparel=apparel,
+            )
+        floor = None
+        page = polite_get(
+            APPAREL_URL.format(apparel_id=apparel_id),
+            min_interval=min_interval,
+            timeout=25,
+            headers={"Accept-Language": "ja,en;q=0.8"},
+        )
+        if page.status_code == 200:
+            floor = parse_condition_asks(page.text).get("PSA10")
+        rows = _used_rows(numeric, min_interval=min_interval)
+        if floor is None and not rows:
+            empty["error"] = "no ask page"
+            return empty
+        return build_ask_quote(
+            kind="psa10",
+            floor_jpy=floor,
+            used_rows=rows,
+            apparel=None,
+        )
+    except (TypeError, ValueError, Exception) as exc:
+        empty["error"] = type(exc).__name__
+        return empty
 
