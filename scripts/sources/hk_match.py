@@ -102,7 +102,7 @@ _NON_JP = (
     "中国語", "中国版", "簡体", "简体", "アジア版", "英語版", "韓国",
 )
 _SEEK = ("求購", "收購", "高價收", "wtb", "wanted", "looking for", "求卡", "想收", "收卡")
-_CODE_RE = re.compile(r"(?<![a-z])((?:sv|s|m)\d+[a-z]*)(?![a-z])")
+_CODE_RE = re.compile(r"(?<![a-z])((?:wcs|svp|sv|sm|s|m)\d+[a-z]*)(?![a-z])")
 _JP_OK = ("日版", "日文", "japanese", "(jp)", "日本", " jp")
 
 _LOT = ("十連", "連號", "sequential", "set of", "lot of", "一套")
@@ -669,20 +669,36 @@ def _identity_codes(item: dict) -> set[str]:
 
 
 def _card_print(item: dict) -> tuple[str, str | None] | None:
-    """Full set fraction when it belongs to the same set code as tcgdex; else the tcgdex number."""
+    """Collector number for this row.
+
+    ``S11 / 111/100`` is set S11, card 111/100. The set code's own digits are
+    not the collector number (``S11 / 111`` is not 11/111, ``SM11 / 029`` is
+    not 11/029, ``WCS23 / 001`` is not 23/001).
+    """
     tcg = str(item.get("tcgdex_id") or "")
     set_field = str(item.get("set") or "")
     tcg_codes = _set_codes(tcg)
     set_codes = _set_codes(set_field)
     conflict = bool(tcg_codes and set_codes and not (tcg_codes & set_codes))
     code_nums = {digits for code in (tcg_codes | set_codes) for digits in re.findall(r"\d+", code)}
-    if not conflict:
-        found = re.findall(r"(\d{2,3})\s*/\s*(\d{2,3})", set_field)
+    if not conflict and set_field:
+        rest = set_field
+        for code in sorted(set_codes, key=len, reverse=True):
+            rest = re.sub(
+                rf"(?<![a-z]){re.escape(code)}(?![a-z])",
+                " ",
+                rest,
+                count=1,
+                flags=re.I,
+            )
+        found = re.findall(r"(\d{2,3})\s*/\s*(\d{2,3})", rest)
         if found:
             num, den = found[-1]
-            # "S11 / 125" is the set number and the collector number, not 11/125.
             if num not in code_nums:
                 return num, den
+        bare = re.search(r"/\s*(\d{2,3})\b", rest)
+        if bare and bare.group(1) not in code_nums:
+            return bare.group(1), None
     match = re.search(r"-(\d{2,3})\b", tcg)
     if not match:
         return None

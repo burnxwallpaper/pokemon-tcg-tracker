@@ -8,13 +8,13 @@
   "search_jp": "ギラティナV SR: SA[S11 111/100](拡張パック「ロストアビス」)",
   "search_hk": "ギラティナV SR: SA[S11 111/100](拡張パック「ロストアビス」)",
   "tcgdex_id": null,
-  "image": null,
-  "image_official_url": null,
+  "image": "images/psa10-s11-111.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/3fd17ff3-aae3-4b59-aecb-60cecb5ef748.webp",
   "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
-  "image_source": "none",
+  "image_source": "official",
   "series_path": "history/series/psa10-s11-111.json",
   "history_points": 1,
   "first_seen": "2026-09-25",
   "last_seen": "2026-09-25",
-  "updated_at": "2026-09-25T10:08:51+08:00"
+  "updated_at": "2026-09-25T11:02:06+08:00"
 }

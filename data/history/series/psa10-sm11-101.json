@@ -4,18 +4,18 @@
   "name_jp": "メガヤミラミ&バンギラスGX SR [SM11 101/094](拡張パック「ミラクルツイン」)",
   "kind": "psa10",
   "set": "SM11 / 101/094",
-  "image": null,
-  "image_source": null,
+  "image": "images/psa10-sm11-101.webp",
+  "image_source": "official",
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T10:08:51+08:00",
+  "updated_at": "2026-09-25T11:02:06+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": null,
-      "hk_ask_hkd": null,
+      "price_hkd": 947.93,
+      "hk_ask_hkd": 804.35,
       "volume": 0.0
     }
   ]
