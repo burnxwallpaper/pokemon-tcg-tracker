@@ -31,15 +31,28 @@
       min-height: 100vh;
     }
     header {
+      position: relative;
       padding: 1.25rem 1.5rem 1rem;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, #162033 0%, var(--bg) 100%);
     }
     header h1 {
       margin: 0 0 0.35rem;
+      padding-right: 8.5rem;
       font-size: 1.45rem;
       font-weight: 700;
       letter-spacing: 0.02em;
+    }
+    .site-version {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.85rem;
+      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
     }
     .subtitle { color: var(--muted); font-size: 0.9rem; margin: 0; }
     .meta-bar {
@@ -549,21 +562,45 @@
       font-weight: 600;
       color: var(--muted);
     }
-    .chart-wrap { position: relative; height: 200px; }
+    .chart-wrap { position: relative; height: 200px; touch-action: manipulation; }
     .chart-wrap.is-zoomable { cursor: pointer; }
     .chart-wrap.is-zoomable:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
+    #detailBody .chart-wrap canvas { pointer-events: none; }
+    .chart-hit {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    .chart-hit:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
     .chart-zoom-hint {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
       font-size: 0.72rem;
       font-weight: 500;
       margin-left: 0.35rem;
+      padding: 0;
+      cursor: pointer;
+      touch-action: manipulation;
     }
     .chart-zoom {
       position: fixed;
       inset: 0;
-      z-index: 200;
+      z-index: 400;
       display: none;
       align-items: center;
       justify-content: center;
@@ -624,6 +661,7 @@
 </head>
 <body>
   <header>
+    <p class="site-version" id="siteVersion">版 2026-09-25.2106</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <p class="subtitle">個人投機用 · 首頁係卡（PSA10）流動性 · 盒係次要 · 全部以 HKD 顯示 · 成交、賣出價分開標</p>
     <div class="meta-bar" id="metaBar">
@@ -670,16 +708,6 @@
     靜態儀表板 · 資料 <code>./data/latest.json</code> · <code>scripts/update.py</code> 每日更新 · 非正式投資建議
   </footer>
 
-  <div class="chart-zoom" id="chartZoom" role="dialog" aria-modal="true" aria-labelledby="chartZoomTitle" hidden>
-    <div class="chart-zoom-panel" id="chartZoomPanel">
-      <div class="chart-zoom-head">
-        <h2 id="chartZoomTitle">價格趨勢（約 90 日）</h2>
-        <button type="button" class="detail-close" id="chartZoomClose" aria-label="關閉">×</button>
-      </div>
-      <div class="chart-zoom-wrap"><canvas id="priceChartZoom"></canvas></div>
-    </div>
-  </div>
-
   <div class="detail-overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle" hidden>
     <div class="detail-panel" id="detailPanel">
       <div class="detail-head">
@@ -690,6 +718,16 @@
         <button type="button" class="detail-close" id="detailClose" aria-label="關閉">×</button>
       </div>
       <div class="detail-body" id="detailBody"></div>
+    </div>
+  </div>
+
+  <div class="chart-zoom" id="chartZoom" role="dialog" aria-modal="true" aria-labelledby="chartZoomTitle" hidden>
+    <div class="chart-zoom-panel" id="chartZoomPanel">
+      <div class="chart-zoom-head">
+        <h2 id="chartZoomTitle">價格趨勢（約 90 日）</h2>
+        <button type="button" class="detail-close" id="chartZoomClose" aria-label="關閉">×</button>
+      </div>
+      <div class="chart-zoom-wrap"><canvas id="priceChartZoom"></canvas></div>
     </div>
   </div>
 
@@ -1346,6 +1384,7 @@
       const canvas = document.getElementById("priceChartZoom");
       if (!overlay || !canvas) return;
       destroyZoomChart();
+      chartZoomOpenedAt = performance.now();
       overlay.hidden = false;
       overlay.classList.add("open");
       const model = priceChartModel;
@@ -1426,8 +1465,11 @@
           </div>
         </div>
         <div class="chart-block">
-          <h3>價格趨勢（約 90 日）<span class="chart-zoom-hint">點擊放大</span></h3>
-          <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
+          <h3>價格趨勢（約 90 日）<button type="button" class="chart-zoom-hint">點擊放大</button></h3>
+          <div class="chart-wrap is-zoomable" tabindex="0" aria-label="放大價格趨勢">
+            <canvas id="priceChart"></canvas>
+            <button type="button" class="chart-hit" aria-label="放大價格趨勢"></button>
+          </div>
         </div>
         <div class="sources-list"><div style="margin-bottom:0.35rem">參考連結</div>${linksHtml(it)}</div>
         <div class="sources-list">抓取來源：${sources || "—"}</div>
@@ -1461,12 +1503,14 @@
       destroyCharts();
     }
 
+    let chartZoomOpenedAt = 0;
+
     function chartWrapFromEvent(event) {
       const target = event.target;
       if (!(target instanceof Element)) return null;
-      const block = target.closest(".chart-block");
-      if (!block) return null;
-      return block.querySelector(".chart-wrap.is-zoomable");
+      if (target.closest(".chart-hit, .chart-zoom-hint")) return target;
+      const wrap = target.closest(".chart-wrap.is-zoomable");
+      return wrap;
     }
 
     function wireDetail() {
@@ -1475,9 +1519,16 @@
         if (e.target === e.currentTarget) closeDetail();
       });
       const body = document.getElementById("detailBody");
-      body.addEventListener("click", (e) => {
+      const openFromChart = (e) => {
         if (!chartWrapFromEvent(e)) return;
+        e.preventDefault();
+        e.stopPropagation();
         openChartZoom();
+      };
+      body.addEventListener("click", openFromChart);
+      body.addEventListener("pointerup", (e) => {
+        if (e.pointerType === "mouse") return;
+        openFromChart(e);
       });
       body.addEventListener("keydown", (e) => {
         if (e.key !== "Enter" && e.key !== " ") return;
@@ -1487,7 +1538,9 @@
       });
       document.getElementById("chartZoomClose").addEventListener("click", () => closeChartZoom(true));
       document.getElementById("chartZoom").addEventListener("click", (e) => {
-        if (e.target === e.currentTarget) closeChartZoom(true);
+        if (e.target !== e.currentTarget) return;
+        if (performance.now() - chartZoomOpenedAt < 500) return;
+        closeChartZoom(true);
       });
       document.addEventListener("keydown", (e) => {
         if (e.key !== "Escape") return;
