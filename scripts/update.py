@@ -1002,6 +1002,28 @@ def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
     return out, status
 
 
+def _with_known_apparel_ids(cfg: dict) -> dict:
+    """Price the apparel id already stored on latest.json.
+
+    A last-sale refresh must not depend on search. Search can miss a print
+    whose catalog URL is already accepted.
+    """
+    preserved = _jp_preserved_from_latest()
+    annotated: list[dict] = []
+    for item in cfg.get("watchlist") or []:
+        if not isinstance(item, dict):
+            continue
+        row = dict(item)
+        if not str(row.get("snkrdunk_apparel_id") or "").isdigit():
+            slot = preserved.get(str(row.get("id") or "")) or {}
+            book = slot.get("snkrdunk") if isinstance(slot.get("snkrdunk"), dict) else {}
+            aid = snkrdunk.apparel_id_from_url(str(book.get("url") or ""))
+            if aid:
+                row["snkrdunk_apparel_id"] = aid
+        annotated.append(row)
+    return {**cfg, "watchlist": annotated}
+
+
 def _snkr_only_books(cfg: dict, jp_fresh: dict[str, dict]) -> dict[str, dict]:
     """Keep a real sold price. An empty PSA10 book does not replay a raw-grade fill."""
     preserved = _jp_preserved_from_latest()
@@ -1150,7 +1172,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
         print("[fetch] JP-only refresh (HK asks preserved)", flush=True)
     elif snkr_only:
         print("[fetch] SNKRDUNK-only refresh (Yahoo sold and HK asks preserved)", flush=True)
-        fresh_cfg = {
+        fresh_cfg = _with_known_apparel_ids({
             **cfg,
             "sources": {
                 **(cfg.get("sources") or {}),
@@ -1159,7 +1181,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
                 "hk_card_shops": {"enabled": False},
                 "facebook_hk": {"enabled": False},
             },
-        }
+        })
         jp_fresh, _hk_unused, source_status = fetch_all(fresh_cfg)
         jp_by_id = _snkr_only_books(cfg, jp_fresh)
         hk_by_id, hk_status = _hk_preserved_from_latest()

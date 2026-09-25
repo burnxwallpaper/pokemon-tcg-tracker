@@ -1,6 +1,6 @@
 {
   "id": "psa10-m6a-127",
-  "name_zh": "ピカチュウex SAR [M6a 127/103](拡張パック「30th CELEBRATION」)",
+  "name_zh": "皮卡丘ex SAR [M6a 127/103](擴充包「30th CELEBRATION」)",
   "name_jp": "ピカチュウex SAR [M6a 127/103](拡張パック「30th CELEBRATION」)",
   "kind": "psa10",
   "set": "M6a / 127/103",
@@ -10,11 +10,11 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "updated_at": "2026-09-25T23:07:23+08:00",
   "history": [
     {
       "date": "2026-09-25",
-      "price_hkd": null,
+      "price_hkd": 519.75,
       "hk_ask_hkd": null,
       "volume": 0.0
     }
