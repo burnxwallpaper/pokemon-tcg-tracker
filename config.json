@@ -1,5 +1,6 @@
 {
   "fx_jpy_to_hkd": 0.0495,
+  "min_list_price_hkd": 100,
   "display_currency": "HKD",
   "top_n": 200,
   "pinned": [
@@ -29,7 +30,7 @@
     "pages": 10,
     "cap": 200,
     "min_selected": 80,
-    "note": "Catalog is SNKRDUNK hottest search, capped at 200 (160 PSA10 + 40 sealed). A scrape under 80 cards does not replace the watchlist. Pinned cards stay. Same set and collector number keeps its existing id.",
+    "note": "Catalog is SNKRDUNK hottest search, capped at 200 (160 PSA10 + 40 sealed). A scrape under 80 cards does not replace the watchlist. Pinned cards stay. Same set and collector number keeps its existing id. A search headline under min_list_price_hkd (HK$100, yen × fx_jpy_to_hkd) is not added. The live list also drops a card whose sell ask, or last sold when there is no ask, is under that floor.",
     "shallow_series_days": 14,
     "backfill_max_pages": 6
   },

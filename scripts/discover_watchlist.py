@@ -581,9 +581,11 @@ def refresh_from_snkrdunk(cfg: dict, settings: dict, *, force: bool = False) -> 
         print("[discover] SNKRDUNK rank is fresh; keeping watchlist", flush=True)
         return persist_missing_pins(cfg)
 
-    from sources.snkrdunk import catalog_kind, collect_hottest_tiles
+    from sources.snkrdunk import catalog_kind, collect_hottest_tiles, headline_under_min
 
     interval = float(cfg.get("request_min_interval_sec") or 1.6)
+    fx = float(cfg.get("fx_jpy_to_hkd") or 0)
+    min_hkd = float(cfg.get("min_list_price_hkd") or 0)
     pages = int(settings["pages"])
     print(
         f"[discover] SNKRDUNK hottest × {pages} pages "
@@ -601,6 +603,8 @@ def refresh_from_snkrdunk(cfg: dict, settings: dict, *, force: bool = False) -> 
     for index, tile in enumerate(tiles):
         kind = catalog_kind(tile)
         if kind not in ALLOWED_KINDS:
+            continue
+        if headline_under_min(tile, fx=fx, minimum=min_hkd):
             continue
         entry = entry_for_tile(tile, kind, by_print, sealed_unique, used_ids)
         iid = str(entry.get("id") or "")

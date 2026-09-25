@@ -6,16 +6,22 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sources.hk_match import _stated_rarity_conflict  # noqa: E402
+from sources.hk_match import _card_print, _stated_rarity_conflict  # noqa: E402
 from sources.snkrdunk import (  # noqa: E402
+    PSA10_WEAR,
     catalog_kind,
+    chart_last_sale_jpy,
     choose_jp_price,
+    headline_under_min,
+    meets_min_list_price,
     product_name_ok,
     choose_match,
     official_face_matches,
     parse_condition_asks,
     parse_sales_history,
     parse_tiles,
+    psa10_active_ask_prices,
+    psa10_last_sale_jpy,
     same_print,
     tile_matches,
 )
@@ -138,6 +144,63 @@ def test_zero_padded_number_and_van_gogh_promo() -> None:
     )
 
 
+def test_set_slash_is_not_the_collector_number() -> None:
+    assert _card_print({"set": "S11 / 111/100"}) == ("111", "100")
+    assert _card_print({"set": "S11 / 125", "tcgdex_id": "S11-125"}) == ("125", None)
+    assert _card_print({"set": "SM11 / 029/094"}) == ("029", "094")
+    assert _card_print({"set": "WCS23 / 001/030"}) == ("001", "030")
+    assert _card_print({"set": "S12 / 024/098"}) == ("024", "098")
+
+
+def test_exact_snkrdunk_title_is_the_same_print() -> None:
+    rows = [
+        ("psa10-wcs23-001", "WCS23 / 001/030", "ピカチュウex [WCS23 001/030](記念デッキ)"),
+        ("psa10-s11-111", "S11 / 111/100", "ギラティナV SR: SA[S11 111/100](拡張パック「ロストアビス」)"),
+        ("psa10-s12-024", "S12 / 024/098", "ピカチュウ C [S12 024/098](拡張パック「パラダイムトリガー」)"),
+        ("psa10-sm11-029", "SM11 / 029/094", "ミュウツー&ミュウGX RR [SM11 029/094](拡張パック「ミラクルツイン」)"),
+        ("psa10-sm11-101", "SM11 / 101/094", "メガヤミラミ&バンギラスGX SR [SM11 101/094](拡張パック「ミラクルツイン」)"),
+    ]
+    for iid, set_field, name in rows:
+        item = {"id": iid, "kind": "psa10", "name_jp": name, "search_jp": name, "set": set_field}
+        assert product_name_ok(item, name), iid
+        assert same_print(item, name), iid
+
+
+def test_psa10_last_sale_ignores_raw_and_active_asks() -> None:
+    rows = [
+        {"wearCount": "tradingCardSingleConditionNearlyUnused", "isDisplaySold": False, "price": 1000},
+        {"wearCount": PSA10_WEAR, "isDisplaySold": False, "price": 8100},
+        {"wearCount": PSA10_WEAR, "isDisplaySold": True, "price": 16000},
+        {"wearCount": PSA10_WEAR, "isDisplaySold": True, "price": 15800},
+    ]
+    assert psa10_active_ask_prices(rows) == [8100]
+    assert psa10_last_sale_jpy(rows) == 15900
+    assert chart_last_sale_jpy({"points": [[1, 9000], [2, 8150]]}) == 8150
+
+
+def test_sealed_history_drops_multi_box_lots() -> None:
+    mid = parse_sales_history(
+        {
+            "history": [
+                {"price": 150000, "size": "6個"},
+                {"price": 24000, "size": "1個"},
+                {"price": 23999, "size": "1個"},
+                {"price": 245000, "size": "10個"},
+            ]
+        }
+    )
+    assert mid == 24000
+
+
+def test_min_list_price_prefers_ask_then_sold() -> None:
+    assert meets_min_list_price({"hk_ask_hkd": 99, "price_hkd": 500}, 100) is False
+    assert meets_min_list_price({"hk_ask_hkd": None, "price_hkd": 99}, 100) is False
+    assert meets_min_list_price({"hk_ask_hkd": 100, "price_hkd": 50}, 100) is True
+    assert meets_min_list_price({"hk_ask_hkd": None, "price_hkd": None}, 100) is True
+    assert headline_under_min({"tile_price_jpy": 2000}, fx=0.0495, minimum=100) is True
+    assert headline_under_min({"tile_price_jpy": 8100}, fx=0.0495, minimum=100) is False
+
+
 def test_ur_does_not_match_sar() -> None:
     assert _stated_rarity_conflict("ピカチュウex SAR [SV8 136/106]", "ピカチュウex UR")
     assert _stated_rarity_conflict("ピカチュウex UR [SV8 132/106]", "ピカチュウex SAR")
@@ -158,5 +221,10 @@ if __name__ == "__main__":
     test_face_must_encode_the_print()
     test_catalog_kind_skips_jewelry_and_keeps_cards_and_boxes()
     test_zero_padded_number_and_van_gogh_promo()
+    test_set_slash_is_not_the_collector_number()
+    test_exact_snkrdunk_title_is_the_same_print()
+    test_psa10_last_sale_ignores_raw_and_active_asks()
+    test_sealed_history_drops_multi_box_lots()
+    test_min_list_price_prefers_ask_then_sold()
     test_ur_does_not_match_sar()
     print("ok")

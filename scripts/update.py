@@ -1055,6 +1055,11 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
     else:
         jp_by_id, hk_by_id, source_status = fetch_all(cfg)
     items = merge_and_compute(cfg, jp_by_id, hk_by_id, now)
+    min_hkd = float(cfg.get("min_list_price_hkd") or 0)
+    quoted_before = len(items)
+    if min_hkd > 0:
+        items = [it for it in items if snkrdunk.meets_min_list_price(it, min_hkd)]
+    excluded_below = quoted_before - len(items)
     sections = compute_sections(items, cfg)
 
     n_hk = sum(1 for it in items if it.get("hk_ask_hkd") is not None)
@@ -1074,6 +1079,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
                 else None
             ),
             "fx_jpy_to_hkd": cfg["fx_jpy_to_hkd"],
+            "min_list_price_hkd": min_hkd,
             "display_currency": cfg["display_currency"],
             "thresholds": cfg["thresholds"],
             "top_n": cfg["top_n"],
@@ -1082,6 +1088,7 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
             "counts": {
                 "with_jp_price": n_jp,
                 "with_hk_ask": n_hk,
+                "excluded_below_min_hkd": excluded_below,
             },
             "pipeline": [
                 "discover: rank PSA10 + sealed seeds by Yahoo closedsearch totalResultsAvailable",
