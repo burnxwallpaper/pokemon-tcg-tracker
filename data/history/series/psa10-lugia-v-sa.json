@@ -9,8 +9,8 @@
   "tcgdex_id": "S12-110",
   "is_sample": false,
   "real_points": true,
-  "history_days": 49,
-  "updated_at": "2026-09-24T20:27:07+08:00",
+  "history_days": 50,
+  "updated_at": "2026-09-25T09:00:24+08:00",
   "history": [
     {
       "date": "2026-06-27",
@@ -302,9 +302,15 @@
     },
     {
       "date": "2026-09-24",
-      "price_hkd": 7895.25,
+      "price_hkd": 6732.0,
       "hk_ask_hkd": 9757.5,
-      "volume": 0.0
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-25",
+      "price_hkd": 7882.88,
+      "hk_ask_hkd": 9757.5,
+      "volume": 1.0
     }
   ],
   "backfill": "yahoo_closedsearch"

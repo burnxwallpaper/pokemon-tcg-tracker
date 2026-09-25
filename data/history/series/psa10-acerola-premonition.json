@@ -9,8 +9,8 @@
   "tcgdex_id": "S8b-255",
   "is_sample": false,
   "real_points": true,
-  "history_days": 56,
-  "updated_at": "2026-09-24T20:27:07+08:00",
+  "history_days": 57,
+  "updated_at": "2026-09-25T09:00:24+08:00",
   "history": [
     {
       "date": "2026-06-28",
@@ -347,6 +347,12 @@
       "hk_ask_hkd": 1065.0,
       "volume": 0.0,
       "price_hkd": 699.19
+    },
+    {
+      "date": "2026-09-25",
+      "price_hkd": 699.19,
+      "hk_ask_hkd": 1065.0,
+      "volume": 0.0
     }
   ]
 }

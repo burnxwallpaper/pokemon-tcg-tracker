@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-24T20:27:07+08:00",
+  "updated_at": "2026-09-25T09:00:24+08:00",
   "timezone": "Asia/Hong_Kong",
   "note": "Stable card identity + official image refs. Series history under history/series/.",
   "image_source": "official",
@@ -20,10 +20,10 @@
       "image_note": "official_card SV4a-360 コライドンex UR 360/190 (not SAR)",
       "image_source": "official",
       "series_path": "history/series/psa10-koraidon-ex-sar.json",
-      "history_points": 86,
+      "history_points": 87,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
@@ -40,10 +40,10 @@
       "image_note": "official_card SV2a-173 ピカチュウ AR (config 198/165 was ナナミの手助け)",
       "image_source": "official",
       "series_path": "history/series/psa10-pikachu-ex-sar-151.json",
-      "history_points": 88,
+      "history_points": 89,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-abyss-eye",
@@ -60,10 +60,10 @@
       "image_note": "official_product promo art pokemon-card.com M5 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-abyss-eye.json",
-      "history_points": 58,
+      "history_points": 59,
       "first_seen": "2026-07-29",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-storm-emerald",
@@ -80,10 +80,10 @@
       "image_note": "official_product promo art pokemon-card.com M6 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-storm-emerald.json",
-      "history_points": 15,
+      "history_points": 16,
       "first_seen": "2026-09-10",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-mega-dream",
@@ -100,10 +100,10 @@
       "image_note": "official_product promo art pokemon-card.com M2a OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-mega-dream.json",
-      "history_points": 58,
+      "history_points": 59,
       "first_seen": "2026-07-29",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-ninja-spinner",
@@ -120,10 +120,10 @@
       "image_note": "official_product promo art pokemon-card.com M4 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-ninja-spinner.json",
-      "history_points": 78,
+      "history_points": 79,
       "first_seen": "2026-07-09",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-inferno-x",
@@ -140,10 +140,10 @@
       "image_note": "official_product promo art pokemon-card.com M2 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-inferno-x.json",
-      "history_points": 87,
+      "history_points": 88,
       "first_seen": "2026-06-30",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-eevee-heroes-box-promo",
@@ -160,10 +160,10 @@
       "image_note": "identity uncertain; removed EN swsh7-189 Umbreon V stand-in",
       "image_source": "none",
       "series_path": "history/series/psa10-eevee-heroes-box-promo.json",
-      "history_points": 89,
+      "history_points": 90,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00",
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00",
       "identity_review": true
     },
     {
@@ -181,10 +181,10 @@
       "image_note": "shared M1 key art covers メガブレイブ and メガシンフォニア; face left blank",
       "image_source": "official",
       "series_path": "history/series/sealed-mega-brave.json",
-      "history_points": 72,
+      "history_points": 73,
       "first_seen": "2026-07-11",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-mega-symphonia",
@@ -201,10 +201,10 @@
       "image_note": "shared M1 key art covers メガブレイブ and メガシンフォニア; face left blank",
       "image_source": "official",
       "series_path": "history/series/sealed-mega-symphonia.json",
-      "history_points": 85,
+      "history_points": 86,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-munikis-zero",
@@ -221,10 +221,10 @@
       "image_note": "official_product promo art pokemon-card.com M3 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-munikis-zero.json",
-      "history_points": 86,
+      "history_points": 87,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-gengar-ex-sar",
@@ -241,10 +241,10 @@
       "image_note": "official_card SV5K-088 ゲンガーex SR 088/071 (no separate SAR)",
       "image_source": "official",
       "series_path": "history/series/psa10-gengar-ex-sar.json",
-      "history_points": 89,
+      "history_points": 90,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -261,10 +261,10 @@
       "image_note": "official card scan pokemon-card.com M2a メガゲンガーex",
       "image_source": "official",
       "series_path": "history/series/psa10-mega-gengar-ex.json",
-      "history_points": 89,
+      "history_points": 90,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-iono-sar",
@@ -283,8 +283,8 @@
       "series_path": "history/series/psa10-iono-sar.json",
       "history_points": 90,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-greninja-ex-sar",
@@ -301,10 +301,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-greninja-ex-sar.json",
-      "history_points": 88,
+      "history_points": 89,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-rocket-mewtwo-ex-sar",
@@ -321,10 +321,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-rocket-mewtwo-ex-sar.json",
-      "history_points": 89,
+      "history_points": 90,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-terastal-fest",
@@ -341,10 +341,10 @@
       "image_note": "official_product promo art pokemon-card.com SV8a OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-terastal-fest.json",
-      "history_points": 83,
+      "history_points": 84,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-151-box",
@@ -361,10 +361,10 @@
       "image_note": "official_product promo art pokemon-card.com SV2a OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-151-box.json",
-      "history_points": 80,
+      "history_points": 81,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-shiny-treasure",
@@ -381,10 +381,10 @@
       "image_note": "official_product promo art pokemon-card.com SV4a OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-shiny-treasure.json",
-      "history_points": 83,
+      "history_points": 84,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-battle-partners",
@@ -401,10 +401,10 @@
       "image_note": "official_product promo art pokemon-card.com SV9 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-battle-partners.json",
-      "history_points": 79,
+      "history_points": 80,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-mew-ex-sar",
@@ -421,10 +421,10 @@
       "image_note": "official_card SV4a-347 ミュウex SAR 347/190 Shiny Treasure",
       "image_source": "official",
       "series_path": "history/series/psa10-mew-ex-sar.json",
-      "history_points": 84,
+      "history_points": 85,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-umbreon-ex-sar",
@@ -441,10 +441,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-umbreon-ex-sar.json",
-      "history_points": 86,
+      "history_points": 87,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-giratina-vstar-ur",
@@ -461,10 +461,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-giratina-vstar-ur.json",
-      "history_points": 71,
+      "history_points": 72,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-mega-gardevoir-ex",
@@ -481,10 +481,10 @@
       "image_note": "official card scan pokemon-card.com M1S メガサーナイトex",
       "image_source": "official",
       "series_path": "history/series/psa10-mega-gardevoir-ex.json",
-      "history_points": 74,
+      "history_points": 75,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-stellar-miracle",
@@ -501,10 +501,10 @@
       "image_note": "official_product promo art pokemon-card.com SV7 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-stellar-miracle.json",
-      "history_points": 64,
+      "history_points": 65,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-team-rocket-glory",
@@ -521,10 +521,10 @@
       "image_note": "official_product promo art pokemon-card.com SV10 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-team-rocket-glory.json",
-      "history_points": 55,
+      "history_points": 56,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-rulers-black-flame",
@@ -541,10 +541,10 @@
       "image_note": "official_product promo art pokemon-card.com SV3 OGP",
       "image_source": "official",
       "series_path": "history/series/sealed-rulers-black-flame.json",
-      "history_points": 73,
+      "history_points": 74,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-mega-lucario-ex",
@@ -561,10 +561,10 @@
       "image_note": "official card scan pokemon-card.com M1L メガルカリオex",
       "image_source": "official",
       "series_path": "history/series/psa10-mega-lucario-ex.json",
-      "history_points": 63,
+      "history_points": 64,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-eevee-ex-sar",
@@ -581,10 +581,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-eevee-ex-sar.json",
-      "history_points": 76,
+      "history_points": 77,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-n-sar",
@@ -601,10 +601,10 @@
       "image_note": "identity uncertain; removed SV9-127 Nのゾロアークex face",
       "image_source": "none",
       "series_path": "history/series/psa10-n-sar.json",
-      "history_points": 76,
+      "history_points": 77,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00",
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00",
       "identity_review": true
     },
     {
@@ -622,10 +622,10 @@
       "image_note": "official card scan pokemon-card.com M2 メガリザードンXex",
       "image_source": "official",
       "series_path": "history/series/psa10-mega-charizard-x-ex.json",
-      "history_points": 66,
+      "history_points": 67,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-black-bolt",
@@ -642,10 +642,10 @@
       "image_note": "shared SV11 key art covers ブラックボルト and ホワイトフレア; face left blank",
       "image_source": "none",
       "series_path": "history/series/sealed-black-bolt.json",
-      "history_points": 67,
+      "history_points": 68,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-leafeon-ex-sar",
@@ -662,10 +662,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-leafeon-ex-sar.json",
-      "history_points": 73,
+      "history_points": 74,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-white-flare",
@@ -682,10 +682,10 @@
       "image_note": "shared SV11 key art covers ブラックボルト and ホワイトフレア; face left blank",
       "image_source": "none",
       "series_path": "history/series/sealed-white-flare.json",
-      "history_points": 58,
+      "history_points": 59,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "sealed-ancient-roar",
@@ -702,10 +702,10 @@
       "image_note": "shared SV4 visual covers 古代の咆哮 and 未来の一閃; face left blank",
       "image_source": "official",
       "series_path": "history/series/sealed-ancient-roar.json",
-      "history_points": 58,
+      "history_points": 59,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-shiny",
@@ -722,10 +722,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-charizard-ex-sar-shiny.json",
-      "history_points": 61,
+      "history_points": 62,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -742,10 +742,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-lisia-appeal-sar.json",
-      "history_points": 61,
+      "history_points": 62,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-acerola-premonition",
@@ -762,10 +762,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-acerola-premonition.json",
-      "history_points": 56,
+      "history_points": 57,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-serena-sr",
@@ -782,10 +782,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-serena-sr.json",
-      "history_points": 57,
+      "history_points": 58,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-obsidian",
@@ -802,10 +802,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-charizard-ex-sar-obsidian.json",
-      "history_points": 70,
+      "history_points": 71,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-miriam-sar",
@@ -822,10 +822,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-miriam-sar.json",
-      "history_points": 54,
+      "history_points": 55,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-erika-invite-sar",
@@ -842,10 +842,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-erika-invite-sar.json",
-      "history_points": 45,
+      "history_points": 46,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-pikachu-ex-sar-terastal",
@@ -862,10 +862,10 @@
       "image_note": "official_card SV8-132 ピカチュウex SAR",
       "image_source": "official",
       "series_path": "history/series/psa10-pikachu-ex-sar-terastal.json",
-      "history_points": 60,
+      "history_points": 61,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-lugia-v-sa",
@@ -882,10 +882,10 @@
       "image_note": "official_card S12-110 ルギアV SA",
       "image_source": "official",
       "series_path": "history/series/psa10-lugia-v-sa.json",
-      "history_points": 49,
+      "history_points": 50,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-iono-sar-shiny",
@@ -902,10 +902,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-iono-sar-shiny.json",
-      "history_points": 50,
+      "history_points": 51,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-hooh-ex-sar",
@@ -922,10 +922,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-hooh-ex-sar.json",
-      "history_points": 52,
+      "history_points": 53,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-carmine-sar",
@@ -942,10 +942,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-carmine-sar.json",
-      "history_points": 46,
+      "history_points": 47,
       "first_seen": "2026-07-03",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-charizard-ex-sar-151",
@@ -962,10 +962,10 @@
       "image_note": "official_card SV2a-201 リザードンex SAR",
       "image_source": "official",
       "series_path": "history/series/psa10-charizard-ex-sar-151.json",
-      "history_points": 52,
+      "history_points": 53,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-cynthia-ambition-sar",
@@ -982,10 +982,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-cynthia-ambition-sar.json",
-      "history_points": 45,
+      "history_points": 46,
       "first_seen": "2026-06-28",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-miraidon-ex-sar",
@@ -1002,10 +1002,10 @@
       "image_note": "official_card TCGdex high.webp",
       "image_source": "official",
       "series_path": "history/series/psa10-miraidon-ex-sar.json",
-      "history_points": 38,
+      "history_points": 39,
       "first_seen": "2026-06-27",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     },
     {
       "id": "psa10-van-gogh-pikachu",
@@ -1022,10 +1022,10 @@
       "image_note": "official_card pokemon.com SVP EN 085 Pikachu with Grey Felt Hat",
       "image_source": "official",
       "series_path": "history/series/psa10-van-gogh-pikachu.json",
-      "history_points": 25,
+      "history_points": 26,
       "first_seen": "2026-07-01",
-      "last_seen": "2026-09-24",
-      "updated_at": "2026-09-24T20:27:07+08:00"
+      "last_seen": "2026-09-25",
+      "updated_at": "2026-09-25T09:00:24+08:00"
     }
   ]
 }
