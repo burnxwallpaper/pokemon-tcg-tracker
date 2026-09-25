@@ -452,8 +452,32 @@ def _has_token(text: str, token: str) -> bool:
     return re.search(rf"(^|[^a-z0-9]){token}([^a-z0-9]|$)", text.lower()) is not None
 
 
+_RARITY_TOKENS = ("sar", "sr", "ur", "ar", "hr", "mur", "csr", "chr", "sa", "rr")
+_GOLD_FINISH = re.compile(
+    r"(?<!ハート)ゴールド|(?<!heart )(?<!yellow )\bgold\b|金色",
+    re.I,
+)
+
+
+def _stated_rarities(text: str) -> set[str]:
+    """Rarity and gold-finish tokens. HeartGold / Yellow Gold are not a gold card."""
+    found = {tok for tok in _RARITY_TOKENS if _has_token(text, tok)}
+    if _GOLD_FINISH.search(text or ""):
+        found.add("gold")
+    if "special art" in (text or "").lower():
+        found.add("sar")
+    return found
+
+
 def _stated_rarity_conflict(title: str, query: str) -> bool:
-    """A title that names a different rarity is not this card, even with the same number."""
+    """A title that names a different rarity or finish is not this card.
+
+    Gold / UR must not resolve to a SAR, SR, or base print, and the reverse.
+    """
+    title_r = _stated_rarities(title)
+    query_r = _stated_rarities(query)
+    if title_r and query_r and title_r.isdisjoint(query_r):
+        return True
     if _has_token(query, "sr") and not _has_token(query, "sar"):
         return _has_token(title, "sar") or _has_token(title, "ar")
     if not (_has_token(query, "sar") or "special art" in query.lower()):

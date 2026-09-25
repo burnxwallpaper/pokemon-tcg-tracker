@@ -21,7 +21,7 @@
 |------|------|------|------|
 | **P0** | SNKRDUNK（https://snkrdunk.com/en/） | JP 身份＋市價主參考 | 目錄頁有正確卡名／編號／圖；密封品有公開成交，PSA10 有最低叫價。與 Yahoo 差太遠就信 SNKRDUNK 或留空 |
 | **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交交叉檢查 | 日版樣本大，但搜尋會混卡。只在和 SNKRDUNK 同一身份、價差不離譜時採用 median |
-| **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；價差區塊必要 |
+| **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；賣出價併入港元池，畫面不再分開價差分頁 |
 | **P1** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大；目前未接入 |
 | **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
 | **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |

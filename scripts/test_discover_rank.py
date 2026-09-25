@@ -10,7 +10,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from discover_watchlist import (  # noqa: E402
     append_pinned,
+    entry_for_tile,
     include_pinned_rows,
+    scrub_face,
     select_membership,
 )
 
@@ -98,7 +100,7 @@ def test_van_gogh_pinned_in_config_and_latest() -> None:
     assert "ゴッホ" in card["name_jp"]
     assert "Van Gogh" in card["name_en"]
     assert "Grey Felt Hat" in card["name_en"]
-    assert card["image_official_url"].startswith("https://www.pokemon.com/")
+    assert card["kind"] == "psa10"
     seeds = json.loads((root / "scripts" / "liquidity_seeds.json").read_text(encoding="utf-8"))
     assert any(c["id"] == "psa10-van-gogh-pikachu" for c in seeds["candidates"])
     latest = json.loads((root / "data" / "latest.json").read_text(encoding="utf-8"))
@@ -106,11 +108,61 @@ def test_van_gogh_pinned_in_config_and_latest() -> None:
     liq = latest["sections"]["流動性"]
     pinned = next(it for it in liq if it["id"] == "psa10-van-gogh-pikachu")
     assert pinned["name_en"]
-    assert pinned["image"]
-    image = root / "data" / pinned["image"]
-    assert image.is_file() and image.stat().st_size > 5000
-    # English names are on the liquidity rows the search box reads.
-    assert all(it.get("name_en") for it in liq)
+    if pinned.get("image"):
+        image = root / "data" / pinned["image"]
+        assert image.is_file() and image.stat().st_size > 5000
+
+
+def test_snkrdunk_tile_reuses_print_and_drops_a_wrong_face() -> None:
+    existing = {
+        "id": "psa10-mega-gengar-ex",
+        "name_zh": "超級耿鬼 ex SAR PSA10",
+        "name_jp": "メガゲンガーex SAR PSA10",
+        "kind": "psa10",
+        "set": "M2a / 240/193",
+        "tcgdex_id": "M2a-240",
+        "image_official_url": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/050000_P_MGENGAEX.jpg",
+    }
+    by_print = {"m2a:240": existing}
+    used: set[str] = {existing["id"]}
+    tile = {
+        "apparel_id": "555",
+        "label": "メガゲンガーex SAR [M2a 240/193]",
+        "set_code": "M2a",
+        "number": "240",
+        "denom": "193",
+    }
+    entry = entry_for_tile(tile, "psa10", by_print, {}, used)
+    assert entry["id"] == "psa10-mega-gengar-ex"
+    assert entry["name_zh"] == "超級耿鬼 ex SAR PSA10"
+    assert entry["snkrdunk_apparel_id"] == "555"
+    assert entry["image_official_url"] is None
+    fresh = entry_for_tile(
+        {
+            "apparel_id": "777",
+            "label": "ピカチュウex UR [SV8 136/106]",
+            "set_code": "SV8",
+            "number": "136",
+            "denom": "106",
+        },
+        "psa10",
+        {},
+        {},
+        used,
+    )
+    assert fresh["id"] == "psa10-sv8-136"
+    assert fresh["name_zh"] == fresh["name_jp"]
+    assert "ピカチュウex UR" in fresh["name_jp"]
+    kept = scrub_face(
+        {
+            "id": "psa10-charizard-ex-sar-151",
+            "kind": "psa10",
+            "set": "sv2a / 201/165",
+            "tcgdex_id": "SV2a-201",
+            "image_official_url": "https://assets.tcgdex.net/ja/SV/SV2a/201/high.webp",
+        }
+    )
+    assert kept["image_official_url"].endswith("/SV2a/201/high.webp")
 
 
 def test_window_count_tie_break() -> None:
@@ -129,6 +181,7 @@ def main() -> None:
     test_pin_appended_outside_top_n()
     test_liquidity_keeps_pinned_outside_top_n()
     test_van_gogh_pinned_in_config_and_latest()
+    test_snkrdunk_tile_reuses_print_and_drops_a_wrong_face()
     test_window_count_tie_break()
     print("ok")
 

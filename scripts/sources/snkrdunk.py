@@ -49,7 +49,7 @@ _EN_REPRINT = re.compile(r"\bEN\b|\[EN|英語", re.I)
 DISAGREE_RATIO = 1.75
 
 _TILE = re.compile(
-    r'href="https://snkrdunk.com/apparels/(\d+)"[^>]*aria-label="([^"]+)"'
+    r'href="https://snkrdunk.com/apparels/(\d+)(?:/used/\d+)?"[^>]*aria-label="([^"]+)"'
 )
 _CARD_NO = re.compile(
     r"\[([A-Za-z]+\d+[A-Za-z]*)\s+(\d{2,3})(?:\s*/\s*(\d{2,3}))?\]"
@@ -63,6 +63,31 @@ _COND = re.compile(
 _PRIMARY_IMAGE = re.compile(
     r"https://cdn\.snkrdunk\.com/upload_bg_removed/[0-9a-f-]+\.webp"
 )
+
+
+def official_face_matches(url: str | None, set_code: str | None, number: str | None) -> bool:
+    """True only when the URL is this set+number, and not an English stand-in.
+
+    A pokemon-card.com file named after the base ex (no collector number) does
+    not match a SAR/UR/gold print. Prefer no face over that art.
+    """
+    if not url or not set_code or not number or not str(number).isdigit():
+        return False
+    if re.search(r"SVP_EN|_EN_|/en/|英語|英語版", url, re.I):
+        return False
+    wanted = int(number)
+    code = set_code.lower()
+    segments = [part.lower() for part in url.split("/") if part]
+    if code not in segments and not any(code in part for part in segments):
+        return False
+    for part in segments:
+        stem = part.split(".")[0]
+        if stem.isdigit() and int(stem) == wanted:
+            return True
+        for piece in re.findall(r"\d{2,3}", stem):
+            if int(piece) == wanted and code in stem:
+                return True
+    return False
 
 
 def en_product_url(apparel_id: str | None) -> str | None:
@@ -150,6 +175,69 @@ def tile_matches(tile: dict, item: dict) -> bool:
     if local and number and number != local:
         return False
     return True
+
+
+_CATALOG_SKIP = re.compile(
+    r"遊戯王|ネックレス|necklace|bracelet|hoodie|t-shirt|sukajan|シュリンクなし|"
+    r"シュリンク無|カートン|\bcase\b|英語版|\[EN\b",
+    re.I,
+)
+
+
+def catalog_kind(tile: dict) -> str | None:
+    """Hottest-search hit we are willing to track. None drops jewelry, EN, and packs."""
+    label = str(tile.get("label") or "")
+    if not label or _CATALOG_SKIP.search(label) or _EN_REPRINT.search(label):
+        return None
+    if str(tile.get("set_code") or "") and str(tile.get("number") or ""):
+        return "psa10"
+    if "ポケモン" in label and _is_box(label) and not _pack_only(label):
+        if re.search(r"カートン|\bcase\b", label, re.I):
+            return None
+        multi = _MULTI_BOX.search(label)
+        if multi and int(multi.group(1)) >= 2:
+            return None
+        return "sealed"
+    return None
+
+
+def collect_hottest_tiles(
+    *,
+    pages: int,
+    min_interval: float,
+    keywords: tuple[str, ...] = ("ポケモンカード", "ポケモンカード PSA10", "ポケモンカード ボックス"),
+) -> list[dict]:
+    """Hottest SNKRDUNK search hits, first-seen order, one row per apparel id."""
+    seen: set[str] = set()
+    tiles: list[dict] = []
+    for keyword in keywords:
+        for page in range(1, max(1, pages) + 1):
+            try:
+                resp = polite_get(
+                    SEARCH_URL,
+                    params={"keywords": keyword, "sort": "hottest", "page": str(page)},
+                    min_interval=min_interval,
+                    timeout=25,
+                    headers={"Accept-Language": "ja,en;q=0.8"},
+                )
+            except Exception:
+                break
+            if resp.status_code != 200:
+                break
+            batch = parse_tiles(resp.text)
+            fresh = 0
+            for tile in batch:
+                apparel_id = str(tile.get("apparel_id") or "")
+                if not apparel_id or apparel_id in seen:
+                    continue
+                if catalog_kind(tile) is None:
+                    continue
+                seen.add(apparel_id)
+                tiles.append(tile)
+                fresh += 1
+            if fresh == 0:
+                break
+    return tiles
 
 
 def search_queries(item: dict) -> list[str]:
@@ -247,9 +335,38 @@ def _product_image(page_html: str) -> str | None:
     return found.group(0)
 
 
-def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, Any]:
-    """One catalog match. Empty when the public page does not identify the SKU."""
-    empty: dict[str, Any] = {
+def _media_url(apparel: dict) -> str | None:
+    media = (apparel or {}).get("primaryMedia")
+    if isinstance(media, str) and media.startswith("https://cdn.snkrdunk.com/"):
+        return media
+    if isinstance(media, dict):
+        for key in ("imageUrl", "imageURL", "url"):
+            url = media.get(key)
+            if isinstance(url, str) and "cdn.snkrdunk.com" in url:
+                return url
+    return None
+
+
+def product_name_ok(item: dict, name: str) -> bool:
+    """Page title is this watchlist print. EN reprints and other finishes fail."""
+    if not name or _EN_REPRINT.search(name):
+        return False
+    if str(item.get("kind") or "") == "sealed":
+        if sealed_same(item, name):
+            return True
+        if not _is_box(name) or _sealed_side_product(name):
+            return False
+        if re.search(r"カートン|\bcase\b", name, re.I):
+            return False
+        multi = _MULTI_BOX.search(name)
+        if multi and int(multi.group(1)) >= 2:
+            return False
+        return True
+    return bool(same_print(item, name))
+
+
+def _empty_fetch() -> dict[str, Any]:
+    return {
         "ok": False,
         "apparel_id": None,
         "url": None,
@@ -259,9 +376,111 @@ def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, 
         "image_url": None,
         "error": None,
     }
+
+
+def _quote_fields(item: dict, apparel_id: str, *, page_html: str, min_interval: float) -> dict[str, Any]:
+    kind = str(item.get("kind") or "")
+    asks = parse_condition_asks(page_html)
+    ask = asks.get("PSA10") if kind != "sealed" else None
+    last_sale = None
+    try:
+        hist = polite_get(
+            SALES_URL.format(apparel_id=apparel_id),
+            min_interval=min_interval,
+            timeout=20,
+            headers={"Accept": "application/json"},
+        )
+        if hist.status_code == 200:
+            last_sale = parse_sales_history(hist.json())
+    except (json.JSONDecodeError, Exception):
+        last_sale = None
+    quote: dict[str, Any] = {
+        "market_jpy": ask if isinstance(ask, int) else None,
+        "ask_jpy": ask,
+        "ask_prices_jpy": [ask] if isinstance(ask, int) else [],
+        "ask_min_jpy": ask,
+        "ask_median_jpy": ask,
+        "ask_max_jpy": ask,
+    }
+    try:
+        if kind == "sealed":
+            quote = build_ask_quote(
+                kind="sealed",
+                floor_jpy=None,
+                used_rows=None,
+                apparel=_apparel_json(int(apparel_id), min_interval=min_interval),
+            )
+        else:
+            quote = build_ask_quote(
+                kind="psa10",
+                floor_jpy=ask,
+                used_rows=_used_rows(int(apparel_id), min_interval=min_interval),
+                apparel=None,
+            )
+    except (TypeError, ValueError, Exception):
+        if isinstance(ask, int) and ask > 0:
+            quote = build_ask_quote(kind="psa10", floor_jpy=ask, used_rows=[], apparel=None)
+    image = _product_image(page_html)
+    return {"quote": quote, "last_sale": last_sale, "image_url": image}
+
+
+def _fetch_known_apparel(item: dict, apparel_id: str, *, min_interval: float) -> dict[str, Any]:
+    """Price a catalog id we already accepted. Mismatched page title stays empty."""
+    empty = _empty_fetch()
+    empty["apparel_id"] = apparel_id
+    empty["url"] = en_product_url(apparel_id)
+    try:
+        apparel = _apparel_json(int(apparel_id), min_interval=min_interval)
+    except (TypeError, ValueError, Exception) as exc:
+        empty["error"] = type(exc).__name__
+        return empty
+    name = str(apparel.get("name") or apparel.get("localizedName") or "")
+    empty["name"] = name or None
+    if not product_name_ok(item, name):
+        empty["error"] = "identity_mismatch"
+        return empty
+    try:
+        page = polite_get(
+            APPAREL_URL.format(apparel_id=apparel_id),
+            min_interval=min_interval,
+            timeout=25,
+            headers={"Accept-Language": "ja,en;q=0.8"},
+        )
+    except Exception as exc:
+        empty["error"] = type(exc).__name__
+        return empty
+    if page.status_code != 200:
+        empty["error"] = f"apparel HTTP {page.status_code}"
+        return empty
+    packed = _quote_fields(item, apparel_id, page_html=page.text, min_interval=min_interval)
+    quote = packed["quote"]
+    image = packed.get("image_url") or _media_url(apparel)
+    return {
+        "ok": True,
+        "apparel_id": apparel_id,
+        "url": en_product_url(apparel_id),
+        "name": name,
+        "ask_jpy": quote.get("ask_jpy"),
+        "ask_prices_jpy": quote.get("ask_prices_jpy") or [],
+        "ask_min_jpy": quote.get("ask_min_jpy"),
+        "ask_median_jpy": quote.get("ask_median_jpy"),
+        "ask_max_jpy": quote.get("ask_max_jpy"),
+        "market_jpy": quote.get("market_jpy"),
+        "last_sale_jpy": packed.get("last_sale"),
+        "image_url": image,
+        "error": None,
+    }
+
+
+def fetch_watchlist_item(item: dict, *, min_interval: float = 1.6) -> dict[str, Any]:
+    """One catalog match. Empty when the public page does not identify the SKU."""
+    empty = _empty_fetch()
     if item.get("identity_review"):
         empty["error"] = "identity_review"
         return empty
+    known = str(item.get("snkrdunk_apparel_id") or "").strip()
+    if known.isdigit():
+        return _fetch_known_apparel(item, known, min_interval=min_interval)
     chosen: dict | None = None
     last_error: str | None = None
     for query in search_queries(item):

@@ -1,7 +1,7 @@
 {
   "fx_jpy_to_hkd": 0.0495,
   "display_currency": "HKD",
-  "top_n": 50,
+  "top_n": 200,
   "pinned": [
     "psa10-van-gogh-pikachu"
   ],
@@ -20,11 +20,16 @@
   "request_min_interval_sec": 1.6,
   "discovery": {
     "enabled": true,
+    "backend": "snkrdunk",
     "refresh_hours": 20,
     "window_days": 14,
-    "psa10_slots": 32,
-    "sealed_slots": 18,
+    "psa10_slots": 160,
+    "sealed_slots": 40,
     "min_closed": 1,
+    "pages": 10,
+    "cap": 200,
+    "min_selected": 80,
+    "note": "Catalog is SNKRDUNK hottest search, capped at 200 (160 PSA10 + 40 sealed). A scrape under 80 cards does not replace the watchlist. Pinned cards stay. Same set and collector number keeps its existing id.",
     "shallow_series_days": 14,
     "backfill_max_pages": 6
   },

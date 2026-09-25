@@ -498,7 +498,6 @@
   <nav class="tabs" role="tablist">
     <button class="tab active" data-section="liquidity" type="button">流動性</button>
     <button class="tab" data-section="moves" type="button">大異動</button>
-    <button class="tab" data-section="spreads" type="button">價差</button>
   </nav>
 
   <main>
@@ -525,13 +524,6 @@
       <div id="movesGrid"></div>
     </section>
 
-    <section id="sec-spreads" class="section" aria-label="價差">
-      <div class="section-head">
-        <h2>價差</h2>
-        <span class="hint">最新賣出價 vs 最近成交價（正值 = 賣出價較高）· 卡同盒分開列 · 點擊卡片看詳情</span>
-      </div>
-      <div id="spreadsGrid"></div>
-    </section>
   </main>
 
   <footer>
@@ -575,7 +567,7 @@
     let currentMeta = null;
     /** @type {"all"|"psa10"|"sealed"} */
     let category = "psa10";
-    let viewData = { moves: [], liquidity: [], spreads: [] };
+    let viewData = { moves: [], liquidity: [] };
     let liqQuery = "";
     /** @type {import('chart.js').Chart[]} */
     let activeCharts = [];
@@ -709,7 +701,7 @@
             </div>
             <div class="price">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
             <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
-            <div class="price-sub">買入價／徵求 ${fmtBid(it)}${it.spread_jp_hk_pct != null ? ` · 價差 ${fmtPct(it.spread_jp_hk_pct)}` : ""}</div>
+            <div class="price-sub">買入價／徵求 ${fmtBid(it)}</div>
             ${linksHtml(it)}
             <div class="row">
               <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
@@ -858,21 +850,9 @@
       updateLiqSearchCount();
     }
 
-    function renderSpreads(list) {
-      const el = document.getElementById("spreadsGrid");
-      el.innerHTML = groupsFor(list).map((group) => {
-        const body = group.items.length
-          ? `<div class="card-grid">${group.items.map((it) => cardHtml(it)).join("")}</div>`
-          : `<p class="cat-empty">這個分類暫無賣出價可比對。</p>`;
-        return `<section class="cat-block" data-kind="${group.id}">${catHead(group)}${body}</section>`;
-      }).join("");
-      wireCardClicks(el);
-    }
-
     function renderViews() {
       renderMoves(viewData.moves);
       renderLiquidity(visibleLiquidity());
-      renderSpreads(viewData.spreads);
       const items = Object.values(itemsById);
       const nPsa = items.filter((it) => it.kind === "psa10").length;
       const nBox = items.filter((it) => it.kind === "sealed").length;
@@ -1102,10 +1082,6 @@
             <div class="value">${fmtBid(it)}</div>
           </div>
           <div class="stat">
-            <div class="label">價差</div>
-            <div class="value"><span class="chg ${chgClass(it.spread_jp_hk_pct)}">${fmtPct(it.spread_jp_hk_pct)}</span></div>
-          </div>
-          <div class="stat">
             <div class="label">量能 vs 7日均</div>
             <div class="value">${it.volume_ratio != null ? it.volume_ratio.toFixed(1) + "×" : "—"} <span style="font-size:0.75rem;color:var(--muted);font-weight:500">(${it.volume_today ?? "—"} / ${it.volume_7d_avg ?? "—"})</span></div>
           </div>
@@ -1179,7 +1155,6 @@
       const map = {
         moves: "sec-moves",
         liquidity: "sec-liquidity",
-        spreads: "sec-spreads",
       };
       if (!map[name]) name = "liquidity";
       document.querySelectorAll(".tab").forEach((btn) => {
@@ -1226,7 +1201,6 @@
         ...(data.items || []),
         ...((data.sections && data.sections["大異動"]) || []),
         ...((data.sections && data.sections["流動性"]) || []),
-        ...((data.sections && data.sections["價差"]) || []),
       ];
       all.forEach((it) => {
         if (!it || !it.id) return;
@@ -1250,7 +1224,6 @@
         viewData = {
           moves: sec["大異動"] || [],
           liquidity: sec["流動性"] || data.items || [],
-          spreads: sec["價差"] || [],
         };
         renderViews();
 
