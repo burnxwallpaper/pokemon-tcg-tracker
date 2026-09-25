@@ -1,19 +1,16 @@
 """Public quote labels and reference URLs. No invented buy bids.
 
 最近成交價 = price_hkd (SNKRDUNK last sale, else a close Yahoo sold, shown in HKD)
-最新賣出價 = hk_ask_hkd (robust median of one HKD pool: local asks + SNKRDUNK asks × fx)
+最新賣出價 = hk_ask_hkd (robust median of one HKD pool: local shop asks + SNKRDUNK asks × fx)
 最低賣出價 = hk_ask_low_hkd (lowest price in that pool; equals the ask when only one)
-買入價／徵求 = hk_bid_hkd only from HKCardLink listing_type=wtb with a positive price.
-Carousell, LONO, and Zenox do not expose structured buy bids.
+買入價／徵求 = hk_bid_hkd stays null. No public WTB catalog is connected.
 """
 from __future__ import annotations
 
-import re
 from typing import Any
 from urllib.parse import quote, urlencode
 
 YAHOO_CLOSED = "https://auctions.yahoo.co.jp/closedsearch/closedsearch"
-HKCARDLINK_HOME = "https://www.hkcardlink.com"
 LONO_BY_KIND = {
     "psa10": "https://www.lono.com.hk/categories/psa-ptcg",
     "sealed": "https://www.lono.com.hk/categories/pokemon-tcg",
@@ -28,14 +25,13 @@ PRICE_LABELS = {
 }
 
 HK_ASK_NOTE = (
-    "最新賣出價係已核對賣盤的穩健中位數，池內包括本地賣盤，以及 SNKRDUNK 現時放售"
-    "（日圓按 fx_jpy_to_hkd 換成港元）。最低賣出價係呢個池入面最低；只有一筆時兩者相同。"
-    "對不上可靠賣盤就留空，不會估算。"
+    "最新賣出價係已核對賣盤的穩健中位數，池內包括本地店賣盤（LONO、ShipMyToy、Zenox），"
+    "以及 SNKRDUNK 現時放售（日圓按 fx_jpy_to_hkd 換成港元）。最低賣出價係呢個池入面最低；"
+    "只有一筆時兩者相同。對不上可靠賣盤就留空，不會估算。"
 )
 
 HK_BID_NOTE = (
-    "買入價／徵求只採用 HKCardLink 公開徵收（listing_type=wtb）而且有正數預算的刊登。"
-    "Carousell、LONO、Zenox 公開頁沒有結構化徵求價，對不到就保持 null，畫面顯示暫無，不會估算。"
+    "目前沒有接入公開徵求價。買入價／徵求保持 null，畫面顯示暫無，不會估算。"
 )
 
 
@@ -43,21 +39,8 @@ def is_wtb(listing: dict) -> bool:
     return str(listing.get("listing_type") or "").strip().lower() == "wtb"
 
 
-def hkcardlink_listing_url(card_name: str | None, listing_id: str | None) -> str | None:
-    """Public listing path used by HKCardLink: slug(name)-first8(id)."""
-    name = str(card_name or "").strip().lower()
-    lid = str(listing_id or "").strip()
-    if not name or not lid:
-        return None
-    slug_name = re.sub(r"[^a-z0-9\u4e00-\u9fff\u3400-\u4dbf]+", "-", name).strip("-")
-    short = lid.replace("-", "")[:8]
-    if not slug_name or len(short) < 8:
-        return None
-    return f"{HKCARDLINK_HOME}/listing/{quote(slug_name + '-' + short, safe='')}"
-
-
 def best_bid(listings: list[dict]) -> tuple[float | None, dict | None]:
-    """Highest positive HKCardLink WTB budget. Other sources are ignored."""
+    """Highest positive WTB budget. Sell rows are ignored."""
     best_price: float | None = None
     best_row: dict | None = None
     for listing in listings:
@@ -90,12 +73,6 @@ def _add(links: list[dict[str, str]], seen: set[str], label: str, href: str | No
 
 def _listing_label(listing: dict) -> str:
     source = str(listing.get("source") or "")
-    if is_wtb(listing):
-        return "HKCardLink 徵求"
-    if source == "hkcardlink":
-        return "HKCardLink 刊登"
-    if source == "carousell_hk":
-        return "Carousell 刊登"
     if source == "lono":
         return "LONO"
     if source == "zenox":
@@ -123,8 +100,8 @@ def build_reference_links(
     sources = set(item.get("sources") or [])
     kind = str(item.get("kind") or watch.get("kind") or "psa10")
 
-    concrete = [row for row in (listings or []) if row.get("url")]
-    concrete.sort(key=lambda row: (0 if is_wtb(row) else 1, float(row.get("price_hkd") or 0)))
+    concrete = [row for row in (listings or []) if row.get("url") and not is_wtb(row)]
+    concrete.sort(key=lambda row: float(row.get("price_hkd") or 0))
     for row in concrete[:4]:
         _add(links, seen, _listing_label(row), str(row.get("url")))
 
@@ -136,9 +113,6 @@ def build_reference_links(
         or item.get("name_zh")
         or ""
     ).strip()
-    hk = str(
-        watch.get("search_hk") or item.get("search_hk") or item.get("name_zh") or item.get("name_jp") or ""
-    ).strip()
     if jp:
         _add(
             links,
@@ -146,21 +120,6 @@ def build_reference_links(
             "Yahoo 已結束拍賣",
             f"{YAHOO_CLOSED}?{urlencode({'p': jp, 'ei': 'UTF-8'})}",
         )
-    if hk:
-        _add(links, seen, "Carousell 搜尋", f"https://www.carousell.com.hk/search/{_q(hk)}/")
-        _add(
-            links,
-            seen,
-            "HKCardLink 搜尋",
-            f"{HKCARDLINK_HOME}/marketplace?q={_q(hk)}",
-        )
-        if not any(link["label"] == "HKCardLink 徵求" for link in links):
-            _add(
-                links,
-                seen,
-                "HKCardLink 徵求",
-                f"{HKCARDLINK_HOME}/marketplace?mode=wtb&q={_q(hk)}",
-            )
     if "lono" in sources and not any(link["label"] == "LONO" for link in links):
         _add(links, seen, "LONO", LONO_BY_KIND.get(kind, LONO_BY_KIND["sealed"]))
     if "zenox" in sources and not any(link["label"] == "Zenox" for link in links):

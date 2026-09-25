@@ -3,7 +3,7 @@
 個人用、投機導向的日版 PSA10 鑑定卡＋未開封商品行情儀表板。顯示貨幣僅 **HKD**。  
 本目錄為本機 scaffold；之後會由 bot **每日同步**到你的 PC：`C:\Users\leosiu\Documents\pokemonTCG`。
 
-> `scripts/update.py` 會以溫和公開抓取更新真實行情。最近成交價以 SNKRDUNK 公開成交為主（港元），Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。最新賣出價係一個港元池：本地賣盤（Carousell、HKCardLink、LONO、ShipMyToy、Zenox）加上 SNKRDUNK 現時放售（日圓按固定匯率換算）。多筆取中位數，最低賣出價係池入面最低；偏離 SNKRDUNK 市價帶（約 10%–300%）或對不上的刊登留空。詳情頁連到 SNKRDUNK。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
+> `scripts/update.py` 會以溫和公開抓取更新真實行情。最近成交價以 SNKRDUNK 公開成交為主（港元），Yahoo 只在和 SNKRDUNK 同一張卡、價差不離譜時留下。最新賣出價係一個港元池：本地店賣盤（LONO、ShipMyToy、Zenox）加上 SNKRDUNK 現時放售（日圓按固定匯率換算）。多筆取中位數，最低賣出價係池入面最低；偏離 SNKRDUNK 市價帶（約 10%–300%）或對不上的刊登留空。詳情頁連到 SNKRDUNK。各源筆數見 `meta.source_status`。`update_stub.py` 仍可產生範例資料。
 
 ---
 
@@ -77,7 +77,7 @@ python scripts/update_stub.py
 | `data/latest.json` | 最新快照（含 meta、items、三區塊 sections） |
 | `data/name_zh_map.json` | 日文→繁中對照（物種、系列、稀有度／商品詞）。`scripts/name_zh_map.translate()` 最長鍵優先 |
 | `data/history/` | 每日歷史（約保留 90 天；格式見內文說明） |
-| `scripts/update.py` | 真實更新管線：Yahoo JP + Carousell HK（HKCardLink fallback） |
+| `scripts/update.py` | 真實更新管線：Yahoo JP + LONO／ShipMyToy／Zenox |
 | `scripts/backfill_snkrdunk_history.py` | 用 SNKRDUNK PSA10／未開封圖表回填約 90 日價格同成交量 |
 | `scripts/sources/` | 溫和 scrapers |
 | `scripts/update_stub.py` | 範例資料 stub（UI 測試） |

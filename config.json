@@ -62,10 +62,6 @@
       "enabled": false,
       "note": "JP sealed BOX listings"
     },
-    "carousell_hk": {
-      "enabled": true,
-      "note": "HK primary asks. Search HTML listingCards, title-matched. HKCardLink catalog is always merged in."
-    },
     "hk_card_shops": {
       "enabled": true,
       "note": "LONO (lono.com.hk), ShipMyToy box prices (shipmytoy.com.hk), Zenox JP boxes and in-stock PSA10 slabs (zenoxstore.com). Sell asks only."
@@ -84,8 +80,8 @@
       "hk_ask_low_hkd": "最低賣出價",
       "hk_bid_hkd": "買入價／徵求"
     },
-    "hk_ask_note": "最新賣出價係已核對賣盤的穩健中位數，池內包括本地賣盤，以及 SNKRDUNK 現時放售（日圓按 fx_jpy_to_hkd 換成港元）。最低賣出價係呢個池入面最低；只有一筆時兩者相同。對不上可靠賣盤就留空，不會估算。",
-    "hk_bid_note": "買入價／徵求只採用 HKCardLink 公開徵收（listing_type=wtb）而且有正數預算的刊登。Carousell、LONO、Zenox 公開頁沒有結構化徵求價，對不到就保持 null，畫面顯示暫無，不會估算。"
+    "hk_ask_note": "最新賣出價係已核對賣盤的穩健中位數，池內包括本地店賣盤（LONO、ShipMyToy、Zenox），以及 SNKRDUNK 現時放售（日圓按 fx_jpy_to_hkd 換成港元）。最低賣出價係呢個池入面最低；只有一筆時兩者相同。對不上可靠賣盤就留空，不會估算。",
+    "hk_bid_note": "目前沒有接入公開徵求價。買入價／徵求保持 null，畫面顯示暫無，不會估算。"
   },
   "watchlist": [
     {

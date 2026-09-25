@@ -4,10 +4,9 @@
 **已實作溫和 scraper**（`scripts/update.py`）：
 - SNKRDUNK（https://snkrdunk.com/en/）公開目錄 → 身份對照、最近成交（有公開 sales-history 時）、PSA10 最低叫價 ✅ **JP 主參考**
 - Yahoo Auctions JP closedsearch → `__NEXT_DATA__` sold comps ✅ **次要交叉檢查**
-- Carousell HK → 住宅 IP 可讀 `listingCards`（標題＋HK$），只收標題命中的叫價；Cloudflare 403 就停，不繞過
-- HKCardLink → 公開 Supabase listings，與 Carousell 合併
 - LONO `lono.com.hk`、ShipMyToy `shipmytoy.com.hk`、Zenox `zenoxstore.com`（日版 BOX 與有貨 PSA10）→ 香港賣出價。偏離 SNKRDUNK 日圓市價 10%–300% 的叫價留空
 - Facebook HK → 無登入探測失敗，**未接入**。見 §9
+- Carousell HK 與 HKCardLink → **已移除**，不再抓取、不併入賣出價或徵求價、不寫入 `latest.json`
 狀態見每次更新的 `meta.source_status`。  
 目標：個人溫和抓取／公開頁面，支撐 PSA10 slabs 與 sealed 的流動性＋價格，並與香港叫價比對。
 
@@ -21,12 +20,11 @@
 |------|------|------|------|
 | **P0** | SNKRDUNK（https://snkrdunk.com/en/） | JP 身份＋市價主參考 | 目錄頁有正確卡名／編號／圖；密封品有公開成交，PSA10 有最低叫價。與 Yahoo 差太遠就信 SNKRDUNK 或留空 |
 | **P0** | Yahoo Auctions JP（ヤフオク）結束拍賣 | JP 成交交叉檢查 | 日版樣本大，但搜尋會混卡。只在和 SNKRDUNK 同一身份、價差不離譜時採用 median |
-| **P0** | Carousell HK | HK MVP 叫價 | 本地面交／寄賣主戰場；賣出價併入港元池，畫面不再分開價差分頁 |
 | **P1** | Mercari JP（メルカリ）售出 | JP 成交補完 | C2C 量大；目前未接入 |
 | **P1** | Cardrush（カードラッシュ） | JP 店頭賣／買 | 標價＋買取；流動性弱於拍賣但穩定可對帳 |
 | **P2** | magi.camp | 未開封 BOX 上架 | sealed 上架密度高；多為 ask 非 sold |
 | **P2** | 遊々亭 (Yuyu-tei) | 單卡店價 | raw／店售為主；PSA10 次要 |
-| **P3** | 香港卡店官網 | 本地零售 | 只接免登入目錄（Shopify `products.json`、Shopline 分類頁） |
+| **P3** | 香港卡店官網 | 本地零售 | 已接免登入目錄：LONO、ShipMyToy、Zenox。Carousell 與 HKCardLink 不接入 |
 | **不做** | Facebook HK | 本地叫價 | 2026-09-24 無登入探測無標價。見 §8 下一步 |
 
 ---
@@ -52,14 +50,9 @@
 - **ToS**：禁止未授權爬取／濫用的條款常見；第三方 API 屬灰色、付費、且可能隨時失效。
 - **MVP 用法**：與ヤフオク同一 watchlist 合併 median；量能加總。
 
-### 3. Carousell Hong Kong（hk.carousell.com）— **P0（HK）**
+### 3. Carousell Hong Kong — **不接入**
 
-- **提供什麼**：本地二手／收藏叫價（ask）；PSA10、sealed BOX 都有刊登。分類路徑約在 Hobbies → Collectibles → Trading cards。
-- **PSA10／Sealed**：中高（標題品質參差，需正規化）。
-- **流動性**：刊登數＋「聊過／想要」可粗估；**成交價多半不可見** → 價差用 ask vs JP sold。
-- **抓取難度**：中。列表／搜尋頁；地區選 HK；反爬與登入牆可能出現。
-- **ToS**：平台禁止未授權 scraping 的機率高；個人低頻搜尋較務實。
-- **MVP 用法**：對 Top 流動性品項搜 HK 關鍵字 → 取合理 ask 中位數 → `spread_jp_hk_pct`。香港 Facebook 叫價見 §8，目前不能接。
+已從每日管線移除。不再抓 `listingCards`，不併入港元賣出價，也不在畫面放搜尋連結。
 
 ### 4. SNKRDUNK（https://snkrdunk.com/en/）— **P0，JP 主參考**
 
@@ -100,16 +93,16 @@
 
 ### 8. 香港本地叫價（已接入）
 
-只收**標題對得上** watchlist 的公開**賣出價**（求購／WTB 另計買入價，不混進賣出價）。多筆相符取中位數寫入 `hk_ask_hkd`。只有一筆時，標題要自帶 set code 或卡號，而且價錢要落在 SNKRDUNK 市價的 10%–300% 內，否則留空。拒絕英文再版、151 盒對上單包／ETB／卡、以及 PSA10 對上其他評級。`meta.source_status` 分開計數。
+只收**標題對得上** watchlist 的公開**賣出價**。沒有接入徵求／WTB，`hk_bid_hkd` 保持 null。多筆相符取中位數寫入 `hk_ask_hkd`。只有一筆時，標題要自帶 set code 或卡號，而且價錢要落在 SNKRDUNK 市價的 10%–300% 內，否則留空。拒絕英文再版、151 盒對上單包／ETB／卡、以及 PSA10 對上其他評級。`meta.source_status` 分開計數。
 
 | 來源 | 怎麼拿 | 用什麼 |
 |---|---|---|
-| **Carousell HK** | `https://www.carousell.com.hk/search/{關鍵字}/` 頁內 `listingCards`（`title` + `price`） | PSA10 與未開封 BOX。住宅網路可 200；遇 Cloudflare 403 就停，不繞過 |
-| **HKCardLink** | 前端 anon key → Supabase `listings` | 近期 PSA10／BOX 目錄，客戶端對標題 |
 | **LONO** | `https://www.lono.com.hk/categories/psa-ptcg` 與 `/categories/pokemon-tcg` 公開分類頁（Shopline HTML，`HK$` 標價） | 店內 PSA10 與盒子。略過繁中盒，避免拿來標日版 |
 | **Zenox** | `.../booster-packs-collection-box-jp/products.json` 與 `.../pokemon-psa/products.json` | 日版 Booster Box，以及有貨的 PSA10 變體。略過 Case、DX、PSA9、售罄 |
 | **ShipMyToy** | `https://www.shipmytoy.com.hk/categories/pokemon-tcg` | 日版 BOX。同一商品若同時有單包與整盒價，丢掉低於盒價四成的那個 |
 | **Facebook** | 公開 Marketplace URL 探一次 | 此 worker 回 HTTP 400，沒有可用列表。不用登入瀏覽器，也不繞登入牆 |
+
+Carousell HK 與 HKCardLink 已從這張表拿掉，不再當價格源。
 
 試過但未當價格源：`cardland.com.hk` products.json 403；`hkpokemon.com` 不是可用目錄；Price.com.hk 搜尋結果不是穩定的卡牌標價。
 
@@ -136,12 +129,11 @@
 3. 只為那個**具體公開 URL** 寫 parser（例如某店免登入的 Shopify `products.json` 或 Shopline 分類頁）。不要做 Marketplace 關鍵字搜尋，也不要抓社團。
 4. 官方另一條路：Meta App 通過 Page Public Content Access，且只讀已授權專頁。那不是 Marketplace 成交／叫價；此 repo 沒有這組憑證，每日 job 不要等它。
 
-在上述條件出現之前，香港叫價維持 Carousell／HKCardLink／LONO／ShipMyToy／Zenox。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
+在上述條件出現之前，香港叫價維持 LONO／ShipMyToy／Zenox。店家官網若本身免登入列出標價，另開一源，不經 Facebook。
 
 ### 其他提及（非優先）
 
 - **Suruga-ya / 駿河屋**：二手雜項；TCG 非最強。
-- **HKCardLink 等聚合**：可能快取 SNKRDUNK 等；宜當 UI 靈感，資料請回源站驗證，並注意其免責。
 - **付費 Apify／ReefAPI**：可加速原型，但有費用、依賴第三方、合規仍須自評。
 
 ---
@@ -151,7 +143,7 @@
 1. **Watchlist**：約 50 個高流動 PSA10＋熱門 BOX（日文關鍵字）。
 2. **JP**：先對 SNKRDUNK 目錄（身份＋成交或 PSA10 叫價）。ヤフオク ended median 只在和 SNKRDUNK 同一張卡、價差不離譜時留下；否則留空。
 3. **訊號**：1日／7日 %、量能 vs 7日均、liquidity_score。
-4. **HK**：Carousell／HKCardLink／LONO／ShipMyToy／Zenox 標題命中、並通過拒絕規則的賣出價 → `hk_ask_hkd`（多筆用中位數）。對不上或超出 SNKRDUNK 市價帶就留空。不把求購算成賣出價。
+4. **HK**：LONO／ShipMyToy／Zenox 標題命中、並通過拒絕規則的賣出價 → `hk_ask_hkd`（多筆用中位數）。對不上或超出 SNKRDUNK 市價帶就留空。徵求價不接入。
 5. **校準**：SNKRDUNK 是日本主參考，也是香港賣出價的市價帶。Cardrush 仍只作店價錨點，不覆蓋成交。
 
 ---

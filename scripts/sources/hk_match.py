@@ -1,4 +1,4 @@
-"""Title matching for HK asks. Shared by Carousell, HKCardLink, and shops."""
+"""Title matching for HK shop asks."""
 from __future__ import annotations
 
 import re

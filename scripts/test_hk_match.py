@@ -1,4 +1,4 @@
-"""Offline checks for HK title matching and Carousell listingCards parsing."""
+"""Offline checks for HK title matching and shop catalog parsing."""
 from __future__ import annotations
 
 import sys
@@ -6,7 +6,6 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from sources.carousell_hk import parse_listing_cards  # noqa: E402
 from sources.hk_match import (  # noqa: E402
     lowest_ask,
     match_item,
@@ -31,20 +30,6 @@ from sources.snkrdunk import (  # noqa: E402
 )
 def _item(kind: str, zh: str, jp: str, hk: str) -> dict:
     return {"kind": kind, "name_zh": zh, "name_jp": jp, "search_hk": hk}
-
-
-def test_listing_cards_ignores_empty_price() -> None:
-    html = (
-        '{"listingCards":['
-        '{"title":"PSA10 Charizard 151 SAR 噴火龍","price":"HK$5,200","listingID":11},'
-        '{"title":"","price":"HK$9","listingID":0},'
-        '{"title":"noise","price":"","listingID":12}'
-        "]}"
-    )
-    rows = parse_listing_cards(html)
-    assert len(rows) == 1
-    assert rows[0]["price"] == 5200
-    assert rows[0]["card_name"].startswith("PSA10")
 
 
 def test_charizard_variants_do_not_cross_match() -> None:
@@ -697,7 +682,6 @@ def test_snkrdunk_psa10_market_ignores_raw_and_other_grades() -> None:
 
 
 if __name__ == "__main__":
-    test_listing_cards_ignores_empty_price()
     test_charizard_variants_do_not_cross_match()
     test_sealed_skips_case_dx_and_traditional_chinese()
     test_base_gengar_skips_mega_and_eevee_skips_umbreon()

@@ -6,7 +6,7 @@ MERGE semantics: incoming daily points are merged by date into existing
 data/history/series/{id}.json (never wipe prior real points). Incremental
 mode: if series already has depth, only fetch recent pages.
 
-Does NOT re-hit Carousell / wipe images. Preserves hk_ask_hkd + image paths.
+Does not re-hit HK shops or wipe images. Preserves hk_ask_hkd + image paths.
 """
 from __future__ import annotations
 

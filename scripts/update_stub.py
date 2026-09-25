@@ -277,8 +277,7 @@ def generate_sample_items(cfg: dict, now: datetime) -> list[dict]:
                 "liquidity_score": liq,
                 "hk_ask_hkd": hk_hkd,
                 "spread_jp_hk_pct": spread_pct,
-                "sources": ["yahoo_auctions_jp", "mercari_jp"]
-                + (["carousell_hk"] if hk_jpy is not None else []),
+                "sources": ["yahoo_auctions_jp", "mercari_jp"],
                 "is_sample": True,
                 "hk_listings_n": 1 if hk_hkd is not None else 0,
                 "history": history,

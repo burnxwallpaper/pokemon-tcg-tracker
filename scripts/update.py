@@ -11,7 +11,7 @@ Pipeline:
 
 最近成交價 → price_hkd (SNKRDUNK last sale when public, else Yahoo JP sold if it agrees with the SNKRDUNK ask). Shown in HKD.
 最新賣出價 → hk_ask_hkd (median of one HKD pool: matched local asks plus SNKRDUNK active asks × fx).
-最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd (HKCardLink WTB only; else null).
+最低賣出價 → hk_ask_low_hkd. 買入價／徵求 → hk_bid_hkd stays null.
 Mild: ≥1–2s between requests, browser UA, graceful failures.
 """
 from __future__ import annotations
@@ -315,7 +315,6 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
     interval = float(cfg.get("request_min_interval_sec") or 1.6)
     sources_cfg = cfg.get("sources") or {}
     jp_on = bool(sources_cfg.get("yahoo_auctions_jp", {}).get("enabled"))
-    hk_on = bool(sources_cfg.get("carousell_hk", {}).get("enabled"))
     shops_on = bool(sources_cfg.get("hk_card_shops", {}).get("enabled"))
     facebook_on = bool(sources_cfg.get("facebook_hk", {}).get("enabled"))
 
@@ -422,15 +421,14 @@ def fetch_all(cfg: dict) -> tuple[dict[str, dict], dict[str, dict], dict[str, An
             "ok" if source_status["snkrdunk"]["ok_items"] else "empty"
         )
 
-    if hk_on or shops_on or facebook_on:
+    if shops_on or facebook_on:
         print(
             f"[fetch] HK asks × {len(watchlist)} "
-            "(Carousell titles, HKCardLink, LONO, ShipMyToy, Zenox)"
+            "(LONO, ShipMyToy, Zenox)"
         )
         hk_by_id, hk_status = hk_asks.collect_hk(
             watchlist,
             min_interval=interval,
-            carousell_on=hk_on,
             shops_on=shops_on,
             facebook_on=facebook_on,
             jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id),
@@ -582,8 +580,9 @@ def merge_and_compute(
         if snkr.get("url") and "snkrdunk" not in srcs:
             srcs.append("snkrdunk")
         for backend in hk.get("backends") or []:
-            if backend not in srcs:
-                srcs.append(backend)
+            if backend in hk_asks.DROPPED_HK_SOURCES or backend in srcs:
+                continue
+            srcs.append(backend)
 
         # A single keeps an official URL only when the path encodes this print.
         # Otherwise use the SNKRDUNK catalog photo, or no face.
@@ -965,11 +964,11 @@ def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
         "note": "Preserved HK asks; this run refreshed JP sold only",
     }
     if not LATEST_PATH.exists():
-        return {}, {"carousell_hk": preserved_status}
+        return {}, {"lono": preserved_status}
     try:
         prior = json.loads(LATEST_PATH.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError):
-        return {}, {"carousell_hk": preserved_status}
+        return {}, {"lono": preserved_status}
     out: dict[str, dict] = {}
     for it in prior.get("items") or []:
         if not isinstance(it, dict) or not it.get("id"):
@@ -977,28 +976,30 @@ def _hk_preserved_from_latest() -> tuple[dict[str, dict], dict[str, Any]]:
         backends = [
             s
             for s in (it.get("sources") or [])
-            if s not in ("yahoo_auctions_jp", "snkrdunk")
+            if s not in ("yahoo_auctions_jp", "snkrdunk", *hk_asks.DROPPED_HK_SOURCES)
         ]
         out[str(it["id"])] = {
             "median_hkd": it.get("hk_ask_hkd"),
             "lowest_hkd": it.get("hk_ask_low_hkd"),
-            "bid_hkd": it.get("hk_bid_hkd"),
+            "bid_hkd": None,
             "listings": [],
             "listings_n": it.get("hk_listings_n") or 0,
             "bid_listings": [],
             "backends": backends,
-            "backend": it.get("hk_backend"),
+            "backend": "+".join(backends) if backends else None,
         }
     prev = (prior.get("meta") or {}).get("source_status") or {}
     status: dict[str, Any] = {}
     for key, bucket in prev.items():
-        if key in ("yahoo_auctions_jp", "snkrdunk") or not isinstance(bucket, dict):
+        if key in ("yahoo_auctions_jp", "snkrdunk", *hk_asks.DROPPED_HK_SOURCES):
+            continue
+        if not isinstance(bucket, dict):
             continue
         kept = dict(bucket)
         kept["note"] = "Preserved HK asks; this run refreshed JP sold only"
         status[key] = kept
-    if "carousell_hk" not in status:
-        status["carousell_hk"] = preserved_status
+    if not status:
+        status["lono"] = preserved_status
     return out, status
 
 
@@ -1117,7 +1118,6 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
         hk_by_id, hk_status = hk_asks.collect_hk(
             watchlist,
             min_interval=interval,
-            carousell_on=bool(sources_cfg.get("carousell_hk", {}).get("enabled")),
             shops_on=bool(sources_cfg.get("hk_card_shops", {}).get("enabled")),
             facebook_on=bool(sources_cfg.get("facebook_hk", {}).get("enabled")),
             jp_hkd_by_id=_band_hkd_map(cfg, jp_by_id),
@@ -1139,7 +1139,6 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
                 **cfg,
                 "sources": {
                     **(cfg.get("sources") or {}),
-                    "carousell_hk": {"enabled": False},
                     "hk_card_shops": {"enabled": False},
                     "facebook_hk": {"enabled": False},
                 },
@@ -1155,7 +1154,6 @@ def build_payload(cfg: dict, *, hk_only: bool = False, jp_only: bool = False, sn
             "sources": {
                 **(cfg.get("sources") or {}),
                 "yahoo_auctions_jp": {"enabled": False},
-                "carousell_hk": {"enabled": False},
                 "hk_card_shops": {"enabled": False},
                 "facebook_hk": {"enabled": False},
             },

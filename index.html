@@ -714,7 +714,7 @@
 </head>
 <body>
   <header>
-    <p class="site-version" id="siteVersion">版 2026-09-25.2251</p>
+    <p class="site-version" id="siteVersion">版 2026-09-25.2322</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
@@ -950,27 +950,23 @@
       return label.includes("徵求") || label.includes("求購") || /(?:^|[?&])mode=wtb(?:&|$)/.test(href);
     }
 
+    function isDroppedSourceLink(link) {
+      const label = String((link && link.label) || "").toLowerCase();
+      const href = String((link && link.href) || "").toLowerCase();
+      return label.includes("carousell") || label.includes("hkcardlink")
+        || href.includes("carousell") || href.includes("hkcardlink");
+    }
+
     function referenceLinks(it) {
       if (Array.isArray(it.links) && it.links.length) {
-        return it.links.filter((link) => link && link.href && link.label && !isSeekLink(link));
+        return it.links.filter((link) => link && link.href && link.label && !isSeekLink(link) && !isDroppedSourceLink(link));
       }
       const links = [];
       const jp = it.search_jp || it.name_jp || it.name_zh;
-      const hk = it.search_hk || it.name_zh || it.name_jp;
       if (jp) {
         links.push({
           label: "Yahoo 已結束拍賣",
           href: "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=" + encodeURIComponent(jp) + "&ei=UTF-8",
-        });
-      }
-      if (hk) {
-        links.push({
-          label: "Carousell 搜尋",
-          href: "https://www.carousell.com.hk/search/" + encodeURIComponent(hk) + "/",
-        });
-        links.push({
-          label: "HKCardLink 搜尋",
-          href: "https://www.hkcardlink.com/marketplace?q=" + encodeURIComponent(hk),
         });
       }
       return links;
@@ -1532,6 +1528,7 @@
         ? `<span class="badge">範例資料</span>`
         : "";
       const sources = (it.sources || [])
+        .filter((s) => s !== "carousell_hk" && s !== "hkcardlink")
         .map((s) => `<code>${escapeHtml(s)}</code>`)
         .join(" ");
 
