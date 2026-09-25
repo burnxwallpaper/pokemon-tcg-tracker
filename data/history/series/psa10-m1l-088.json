@@ -1,0 +1,22 @@
+{
+  "id": "psa10-m1l-088",
+  "name_zh": "メガルカリオex SAR [M1L 088/063](拡張パック「メガブレイブ」)",
+  "name_jp": "メガルカリオex SAR [M1L 088/063](拡張パック「メガブレイブ」)",
+  "kind": "psa10",
+  "set": "M1L / 088/063",
+  "image": "images/psa10-m1l-088.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 732.11,
+      "hk_ask_hkd": 935.5,
+      "volume": 0.0
+    }
+  ]
+}

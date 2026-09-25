@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s10a-074",
+  "name_zh": "ゲンガー CHR[s10a 074/071](強化拡張パック「ダークファンタズマ」)",
+  "name_jp": "ゲンガー CHR[s10a 074/071](強化拡張パック「ダークファンタズマ」)",
+  "kind": "psa10",
+  "set": "s10a / 074/071",
+  "image": "images/psa10-s10a-074.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 643.5,
+      "hk_ask_hkd": 660.83,
+      "volume": 0.0
+    }
+  ]
+}

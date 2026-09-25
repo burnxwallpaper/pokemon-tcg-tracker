@@ -1,0 +1,22 @@
+{
+  "id": "psa10-mf-044",
+  "name_zh": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
+  "name_jp": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
+  "kind": "psa10",
+  "set": "MF / 044/040",
+  "image": "images/psa10-mf-044.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 675.68,
+      "hk_ask_hkd": 702.9,
+      "volume": 0.0
+    }
+  ]
+}

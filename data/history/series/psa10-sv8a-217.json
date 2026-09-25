@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv8a-217",
+  "name_zh": "ブラッキーex SAR [SV8a 217/187](ハイクラスパック「テラスタルフェスex」)",
+  "name_jp": "ブラッキーex SAR [SV8a 217/187](ハイクラスパック「テラスタルフェスex」)",
+  "kind": "psa10",
+  "set": "SV8a / 217/187",
+  "image": "images/psa10-sv8a-217.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 3366.0,
+      "hk_ask_hkd": 3774.38,
+      "volume": 0.0
+    }
+  ]
+}

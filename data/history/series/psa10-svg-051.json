@@ -1,0 +1,22 @@
+{
+  "id": "psa10-svg-051",
+  "name_zh": "ヒトカゲ :フルイラスト [SVG 051/049](スペシャルデッキセットex「フシギバナ・リザードン・カメックス」)",
+  "name_jp": "ヒトカゲ :フルイラスト [SVG 051/049](スペシャルデッキセットex「フシギバナ・リザードン・カメックス」)",
+  "kind": "psa10",
+  "set": "SVG / 051/049",
+  "image": "images/psa10-svg-051.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 1415.7,
+      "hk_ask_hkd": 1775.03,
+      "volume": 0.0
+    }
+  ]
+}

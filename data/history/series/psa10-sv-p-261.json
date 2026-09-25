@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv-p-261",
+  "name_zh": "ヒロシマのピカチュウ P [SV-P 261](スペシャルBOX「ポケモンセンターヒロシマ」)",
+  "name_jp": "ヒロシマのピカチュウ P [SV-P 261](スペシャルBOX「ポケモンセンターヒロシマ」)",
+  "kind": "psa10",
+  "set": "SV-P / 261",
+  "image": "images/psa10-sv-p-261.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 1329.08,
+      "hk_ask_hkd": 1348.88,
+      "volume": 0.0
+    }
+  ]
+}

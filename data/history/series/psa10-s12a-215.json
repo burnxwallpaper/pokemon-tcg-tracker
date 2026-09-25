@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s12a-215",
+  "name_zh": "スイクンV SAR[s12a 215/172](ハイクラスパック「VSTARユニバース」)",
+  "name_jp": "スイクンV SAR[s12a 215/172](ハイクラスパック「VSTARユニバース」)",
+  "kind": "psa10",
+  "set": "s12a / 215/172",
+  "image": "images/psa10-s12a-215.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 633.6,
+      "hk_ask_hkd": 668.25,
+      "volume": 0.0
+    }
+  ]
+}

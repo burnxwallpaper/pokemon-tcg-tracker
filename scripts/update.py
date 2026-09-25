@@ -826,6 +826,8 @@ def _jp_preserved_from_latest() -> dict[str, dict]:
                 "ask_prices_jpy": it.get("snkrdunk_ask_prices_jpy"),
                 "market_jpy": it.get("snkrdunk_jpy"),
                 "last_sale_jpy": it.get("snkrdunk_last_sale_jpy"),
+                "recent_sold_n": it.get("snkrdunk_recent_sold_n"),
+                "listing_count": it.get("snkrdunk_listing_count"),
                 "image_url": it.get("snkrdunk_image_url"),
             },
         }

@@ -1,0 +1,22 @@
+{
+  "id": "psa10-m4-120",
+  "name_zh": "メガゲッコウガex MUR [M4 120/083](拡張パック「ニンジャスピナー」)",
+  "name_jp": "メガゲッコウガex MUR [M4 120/083](拡張パック「ニンジャスピナー」)",
+  "kind": "psa10",
+  "set": "M4 / 120/083",
+  "image": "images/psa10-m4-120.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 5556.38,
+      "hk_ask_hkd": 5218.53,
+      "volume": 0.0
+    }
+  ]
+}

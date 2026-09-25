@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv11w-174",
+  "name_zh": "レシラムex BWR [SV11W 174/086](拡張パック「ホワイトフレア」)",
+  "name_jp": "レシラムex BWR [SV11W 174/086](拡張パック「ホワイトフレア」)",
+  "kind": "psa10",
+  "set": "SV11W / 174/086",
+  "image": "images/psa10-sv11w-174.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 5940.0,
+      "hk_ask_hkd": 5994.99,
+      "volume": 0.0
+    }
+  ]
+}

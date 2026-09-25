@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-86213",
+  "name_zh": "ポケモンカードゲーム ソード＆シールド 拡張パック ロストアビス ボックス",
+  "name_jp": "ポケモンカードゲーム ソード＆シールド 拡張パック ロストアビス ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-86213.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 2366.1,
+      "hk_ask_hkd": 2415.11,
+      "volume": 0.0
+    }
+  ]
+}

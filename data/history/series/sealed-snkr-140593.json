@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-140593",
+  "name_zh": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「未来の一閃」（PARADOX RIFT） ボックス (未来)",
+  "name_jp": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「未来の一閃」（PARADOX RIFT） ボックス (未来)",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-140593.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 467.78,
+      "hk_ask_hkd": 465.3,
+      "volume": 0.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv2a-183",
+  "name_zh": "ミュウツー AR[SV2a 183/165](強化拡張パック「ポケモンカード151」)",
+  "name_jp": "ミュウツー AR[SV2a 183/165](強化拡張パック「ポケモンカード151」)",
+  "kind": "psa10",
+  "set": "SV2a / 183/165",
+  "image": "images/psa10-sv2a-183.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 542.02,
+      "hk_ask_hkd": 554.81,
+      "volume": 0.0
+    }
+  ]
+}

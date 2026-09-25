@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s-p-144",
+  "name_zh": "カナザワのピカチュウ: プロモ (マークあり) [S-P 144](プロモーションカード「S-P」)",
+  "name_jp": "カナザワのピカチュウ: プロモ (マークあり) [S-P 144](プロモーションカード「S-P」)",
+  "kind": "psa10",
+  "set": "S-P / 144",
+  "image": "images/psa10-s-p-144.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 2779.43,
+      "hk_ask_hkd": 2960.1,
+      "volume": 0.0
+    }
+  ]
+}

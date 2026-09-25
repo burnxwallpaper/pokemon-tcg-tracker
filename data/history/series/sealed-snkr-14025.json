@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-14025",
+  "name_zh": "ポケモンカードゲーム ソード&シールド 拡張パック 25th アニバーサリー コレクション ボックス",
+  "name_jp": "ポケモンカードゲーム ソード&シールド 拡張パック 25th アニバーサリー コレクション ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-14025.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 2861.1,
+      "hk_ask_hkd": 2860.11,
+      "volume": 0.0
+    }
+  ]
+}

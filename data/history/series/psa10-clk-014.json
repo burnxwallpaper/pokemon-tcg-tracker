@@ -1,0 +1,22 @@
+{
+  "id": "psa10-clk-014",
+  "name_zh": "ミュウツー [CLK 014/032](ポケモンカードゲーム Classic)",
+  "name_jp": "ミュウツー [CLK 014/032](ポケモンカードゲーム Classic)",
+  "kind": "psa10",
+  "set": "CLK / 014/032",
+  "image": "images/psa10-clk-014.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history": [
+    {
+      "date": "2026-09-25",
+      "price_hkd": 692.95,
+      "hk_ask_hkd": 712.75,
+      "volume": 0.0
+    }
+  ]
+}
