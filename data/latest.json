@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-09-25T15:32:09+08:00",
+    "updated_at": "2026-09-25T18:33:15+08:00",
     "timezone": "Asia/Hong_Kong",
     "is_sample": false,
     "sample_label": null,
@@ -345,7 +345,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20129%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-storm-emerald",
@@ -679,7 +680,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AB%E3%82%AE%E3%82%A2%20%5BM6a%20142%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-137",
@@ -742,7 +744,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%20%5BM6a%20137%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-135",
@@ -806,7 +809,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20FUR%20%5BM6a%20135%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-134",
@@ -823,7 +827,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 540.78,
       "spread_jp_hk_pct": 10.35,
       "sources": [
@@ -890,7 +894,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-127",
@@ -907,7 +912,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 623.7,
       "spread_jp_hk_pct": 12.0,
       "sources": [
@@ -971,7 +976,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-126",
@@ -1035,7 +1041,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20126%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-289",
@@ -1111,7 +1118,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%AF%E3%82%AA%E3%82%AB%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20289%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%ABBOX%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%AF%E3%82%AA%E3%82%AB%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-132",
@@ -1128,7 +1136,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 209.34,
       "spread_jp_hk_pct": 0.69,
       "sources": [
@@ -1197,7 +1205,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-130",
@@ -1214,7 +1223,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 237.6,
       "spread_jp_hk_pct": 6.67,
       "sources": [
@@ -1276,7 +1285,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-mf-043",
@@ -1293,7 +1303,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 259.88,
       "spread_jp_hk_pct": 10.76,
       "sources": [
@@ -1351,7 +1361,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-128",
@@ -1414,7 +1425,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20SAR%20%5BM6a%20128%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-165",
@@ -1478,7 +1490,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B3%E3%82%A4%E3%82%AD%E3%83%B3%E3%82%B0%20%5BM6a%20165%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-131",
@@ -1495,7 +1508,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 351.44,
       "spread_jp_hk_pct": 5.18,
       "sources": [
@@ -1562,7 +1575,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "sealed-mega-dream",
@@ -2582,7 +2596,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 702.9,
       "spread_jp_hk_pct": 4.03,
       "sources": [
@@ -2648,7 +2662,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-136",
@@ -2665,7 +2680,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 288.34,
       "spread_jp_hk_pct": 3.1,
       "sources": [
@@ -2731,7 +2746,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-m6a-150",
@@ -2748,7 +2764,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 353.92,
       "spread_jp_hk_pct": 6.71,
       "sources": [
@@ -2815,7 +2831,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-sv-p-261",
@@ -2887,7 +2904,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%92%E3%83%AD%E3%82%B7%E3%83%9E%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20261%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%ABBOX%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%92%E3%83%AD%E3%82%B7%E3%83%9E%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-mega-symphonia",
@@ -3593,7 +3611,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM2a%20234%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6-110",
@@ -3672,7 +3691,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6ex%20SAR%20%5BM6%20110%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6a-154",
@@ -3689,7 +3709,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 173.21,
       "spread_jp_hk_pct": 13.72,
       "sources": [
@@ -3754,7 +3774,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-mega-gengar-ex",
@@ -4400,7 +4421,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E8%B6%85%E7%B4%9A%E8%80%BF%E9%AC%BC%20SAR%20PSA10"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s10a-073",
@@ -4476,7 +4498,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20CHR%5BS10a%20073%2F071%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%80%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%BA%E3%83%9E%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-abyss-eye",
@@ -5555,7 +5578,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%20%5BSV8a%20217%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-223",
@@ -5634,7 +5658,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3Xex%20MA%20%5BM2a%20223%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m-p-020",
@@ -5712,7 +5737,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BM-P%20020%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9E%E3%82%AF%E3%83%89%E3%83%8A%E3%83%AB%E3%83%89%20%E3%83%8F%E3%83%83%E3%83%94%E3%83%BC%E3%82%BB%E3%83%83%E3%83%882025%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-260",
@@ -5788,7 +5814,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%88%E3%82%A6%E3%83%9B%E3%82%AF%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20260%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%ABBOX%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%88%E3%82%A6%E3%83%9B%E3%82%AF%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-pikachu-ex-sar-151",
@@ -6433,7 +6460,8 @@
           "label": "Zenox",
           "href": "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-g-001",
@@ -6511,7 +6539,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20%E3%83%93%E3%83%8B%E3%83%BC%E3%83%AB%E3%81%AA%E3%81%97%5BS8a-G%20001%2F015%5D%2825th%20%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-218",
@@ -6588,7 +6617,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20218%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%82%AB%E3%81%AE%E5%A4%8F%E3%81%8C%E3%82%AD%E3%82%BF%21%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89Get%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3%21%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-inferno-x",
@@ -9090,7 +9120,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%AB%E3%82%A4%E3%83%AA%E3%83%A5%E3%83%BCex%20MUR%20%5BM2a%20250%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-007",
@@ -9168,7 +9199,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=_%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%28%E3%81%8A%E8%AA%95%E7%94%9F%E6%97%A5%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%29%20%5BS8a-P%20007%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m5-114",
@@ -9250,7 +9282,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4ex%20SAR%20%5BM5%20114%2F081%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A2%E3%83%93%E3%82%B9%E3%82%A2%E3%82%A4%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-086",
@@ -9328,7 +9361,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E6%B1%BA%E5%BF%83%20SR%20%5BM1L%20086%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-12883",
@@ -9461,7 +9495,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%26%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%20%5BM6a%20160%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-ninja-spinner",
@@ -10561,7 +10596,8 @@
           "label": "Zenox",
           "href": "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-764",
@@ -10640,7 +10676,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%E4%BB%95%E6%A7%98%20%5BMC%20764%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-236",
@@ -10713,7 +10750,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20UR%20%5BSV8a%20236%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m3-114",
@@ -10792,7 +10830,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%A3%E3%83%BC%E3%82%B9ex%20SAR%20%5BM3%20114%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A0%E3%83%8B%E3%82%AD%E3%82%B9%E3%82%BC%E3%83%AD%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-001",
@@ -10864,7 +10903,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5Bs8a%20001%2F028%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C25th%20%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m5-118",
@@ -10944,7 +10984,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4ex%20MUR%20%5BM5%20118%2F081%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A2%E3%83%93%E3%82%B9%E3%82%A2%E3%82%A4%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv11b-174",
@@ -11023,7 +11064,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0ex%20BWR%20%5BSV11B%20174%2F086%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-svg-051",
@@ -11097,7 +11139,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%92%E3%83%88%E3%82%AB%E3%82%B2%20%3A%E3%83%95%E3%83%AB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%20%5BSVG%20051%2F049%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88ex%E3%80%8C%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%E3%83%BB%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AB%E3%83%A1%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-munikis-zero",
@@ -11805,7 +11848,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E6%B1%BA%E5%BF%83%20SAR%20%5BM1L%20091%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m4-114",
@@ -11886,7 +11930,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B2%E3%83%83%E3%82%B3%E3%82%A6%E3%82%ACex%20SAR%20%5BM4%20114%2F083%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8B%E3%83%B3%E3%82%B8%E3%83%A3%E3%82%B9%E3%83%94%E3%83%8A%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-584772",
@@ -12035,7 +12080,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20AR%5Bs12a%20205%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-wcs23-001-snkr-131236",
@@ -12113,7 +12159,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20%5BWCS23%20001%2F030%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%83%81%E3%83%A3%E3%83%B3%E3%83%94%E3%82%AA%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97%E3%82%B92023%E6%A8%AA%E6%B5%9C%20%E8%A8%98%E5%BF%B5%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m1s-090",
@@ -12200,7 +12247,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A2%E3%82%BB%E3%83%AD%E3%83%A9%E3%81%AE%E3%81%84%E3%81%9F%E3%81%9A%E3%82%89%20SAR%20%5BM1S%20090%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%82%B7%E3%83%B3%E3%83%95%E3%82%A9%E3%83%8B%E3%82%A2%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-054",
@@ -12275,7 +12323,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20CHR%5Bsm11b%20054%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-270",
@@ -12351,7 +12400,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%83%89%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20270%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-237",
@@ -12425,7 +12475,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E5%9B%A3%E3%81%AE%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20SAR%20%5BM2a%20237%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-765",
@@ -12505,7 +12556,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E3%83%94%E3%83%83%E3%83%94ex%20SAR%E4%BB%95%E6%A7%98%20%5BMC%20765%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-189",
@@ -12586,7 +12638,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3VMAX%3A%20SA%2F%E3%83%97%E3%83%AD%E3%83%A2%5BS-P%20189%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-shiny-treasure",
@@ -13269,7 +13322,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E5%90%8D%E6%8E%A2%E5%81%B5%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%5BSV-P%20098%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSV-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-183",
@@ -13346,7 +13400,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%20AR%5Bs12a%20183%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-063",
@@ -13432,7 +13487,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BD%E3%83%AB%E3%82%AC%E3%83%AC%E3%82%AA%26%E3%83%AB%E3%83%8A%E3%82%A2%E3%83%BC%E3%83%A9GX%20%28%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%29%20SR%20%3ASA%20%28%E3%82%BD%E3%83%AB%E3%83%AB%E3%83%8AGX%29%20%5BSM11b%20063%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-245",
@@ -13508,7 +13564,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCVMAX%20CSR%5BS8b%20245%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m3-117",
@@ -13587,7 +13644,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B8%E3%82%AC%E3%83%AB%E3%83%87ex%20MUR%20%5BM3%20117%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A0%E3%83%8B%E3%82%AD%E3%82%B9%E3%82%BC%E3%83%AD%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-mew-ex-sar",
@@ -14203,7 +14261,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E5%A4%A2%E5%B9%BB%20SAR%20PSA10%20%E9%96%83"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-024",
@@ -14282,7 +14341,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20024%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2-116",
@@ -14366,7 +14426,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3Xex%20MUR%20%5BM2%20116%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A7%E3%83%AB%E3%83%8EX%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-black-bolt",
@@ -15032,7 +15093,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6VMAX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20P%20%5BS-P%20265%5D%28%E6%9C%88%E5%88%8A%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF2022%E5%B9%B42%E6%9C%88%E5%8F%B7%E4%BB%98%E9%8C%B2%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m3-115",
@@ -15113,7 +15175,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%A4%E3%81%AE%E3%81%AF%E3%81%92%E3%81%BE%E3%81%97%20SAR%20%5BM3%20115%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A0%E3%83%8B%E3%82%AD%E3%82%B9%E3%82%BC%E3%83%AD%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m1s-087",
@@ -15192,7 +15255,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B5%E3%83%BC%E3%83%8A%E3%82%A4%E3%83%88ex%20SAR%20%5BM1S%20087%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%82%B7%E3%83%B3%E3%83%95%E3%82%A9%E3%83%8B%E3%82%A2%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv4a-327",
@@ -15274,7 +15338,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SSR%20%5BSV4a%20327%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BCex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv1a-080",
@@ -15355,7 +15420,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B3%E3%82%A4%E3%82%AD%E3%83%B3%E3%82%B0%20AR%5BSV1a%20080%2F073%5D%28%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88%26%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%88%E3%83%AA%E3%83%97%E3%83%AC%E3%83%83%E3%83%88%E3%83%93%E3%83%BC%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-134104",
@@ -15498,7 +15564,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SR%20%5BSV8%20122%2F106%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E8%B6%85%E9%9B%BB%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AB%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv11w-174",
@@ -15576,7 +15643,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0ex%20BWR%20%5BSV11W%20174%2F086%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%95%E3%83%AC%E3%82%A2%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-087",
@@ -15653,7 +15721,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8Aex%20SAR%20%5BM1L%20087%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-226",
@@ -15728,7 +15797,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A6%E3%83%83%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS-P%20226%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E5%88%87%E6%89%8BBOX%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%20%E8%A6%8B%E8%BF%94%E3%82%8A%E7%BE%8E%E4%BA%BA%E3%83%BB%E6%9C%88%E3%81%AB%E9%9B%81%E3%80%8CS-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-283",
@@ -15806,7 +15876,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A8%E3%82%B3%E3%83%8F%E3%83%9E%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20283%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-208",
@@ -15888,7 +15959,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%E3%83%97%E3%83%AD%E3%83%A2%20%5BS-P%20208%5D%28%E3%80%8CYU%20NAGABA%C3%97%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%E3%80%8D%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-205",
@@ -15971,7 +16043,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SAR%5BSV2a%20205%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m4-120",
@@ -16051,7 +16124,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B2%E3%83%83%E3%82%B3%E3%82%A6%E3%82%ACex%20MUR%20%5BM4%20120%2F083%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8B%E3%83%B3%E3%82%B8%E3%83%A3%E3%82%B9%E3%83%94%E3%83%8A%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-226",
@@ -16130,7 +16204,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAVSTAR%20SAR%5Bs12a%20226%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-228",
@@ -16205,7 +16280,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4VSTAR%20SAR%5Bs12a%20228%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-211",
@@ -16283,7 +16359,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%20%5BSV8a%20211%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sn-001",
@@ -16359,7 +16436,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20%5BSN%20001%2F024%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%20%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AFver.%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-223",
@@ -16438,7 +16516,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6VMAX%20CSR%5Bs8b%20223%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-144",
@@ -16517,7 +16596,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%8A%E3%82%B6%E3%83%AF%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%28%E3%83%9E%E3%83%BC%E3%82%AF%E3%81%82%E3%82%8A%29%20%5BS-P%20144%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-038",
@@ -16591,7 +16671,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%26%E3%83%9F%E3%83%9F%E3%83%83%E3%82%AD%E3%83%A5GX%20RR%20%5BSM9%20038%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m5-115",
@@ -16666,7 +16747,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A2%E3%83%AB%E3%83%9A%E3%82%B3ex%20SAR%20%5BM5%20115%2F081%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A2%E3%83%93%E3%82%B9%E3%82%A2%E3%82%A4%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m6-108",
@@ -16683,7 +16765,7 @@
       "volume_today": 0,
       "volume_7d_avg": 1.0,
       "volume_ratio": 0.0,
-      "liquidity_score": 99,
+      "liquidity_score": 0,
       "hk_ask_hkd": 219.95,
       "spread_jp_hk_pct": 11.09,
       "sources": [
@@ -16750,7 +16832,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": false
     },
     {
       "id": "psa10-sn-007",
@@ -16827,7 +16910,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4V%20%5BSN%20007%2F024%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%20%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AFver.%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-407",
@@ -16903,7 +16987,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E6%BC%AB%E6%89%8D%E3%81%94%E3%81%A3%E3%81%93%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20407%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-cp3-012",
@@ -16976,7 +17061,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%87%E3%83%87%E3%83%B3%E3%83%8D%20U%20%3A1ED%20%5BCP3%20012%2F032%5D%28%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%82%AD%E3%83%A5%E3%83%B3%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-101885",
@@ -17125,7 +17211,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%AB%E3%82%A4%E3%83%AA%E3%83%A5%E3%83%BCex%20SAR%20%5BM2a%20246%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-755",
@@ -17205,7 +17292,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%20AR%E4%BB%95%E6%A7%98%20%5BMC%20755%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2d-091",
@@ -17283,7 +17371,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8A%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%A2%20SR%5BSV2D%20091%2F071%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%90%E3%83%BC%E3%82%B9%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-211",
@@ -17366,7 +17455,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3V%20SAR%5Bs12a%20211%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-208",
@@ -17443,7 +17533,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20UR%5BSV2a%20208%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-248",
@@ -17515,7 +17606,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%8A%E3%83%AA%E3%82%A3%20SAR%20%5BM2a%20248%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8-132",
@@ -17597,7 +17689,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BSV8%20132%2F106%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E8%B6%85%E9%9B%BB%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AB%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-236",
@@ -17670,7 +17763,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8A%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%A2%E3%81%AE%E3%83%8F%E3%83%A9%E3%83%90%E3%83%AA%E3%83%BCex%20SAR%20%5BM2a%20236%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-clk-014",
@@ -17747,7 +17841,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BC%20%5BCLK%20014%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-222",
@@ -17824,7 +17919,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20CSR%5BS8b%20222%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-005",
@@ -17901,7 +17997,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%8F%E3%82%8B%E3%81%84%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%89%E3%82%B9%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20005%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12-110",
@@ -17985,7 +18082,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AB%E3%82%AE%E3%82%A2V%20SR%3ASA%5Bs12%20110%2F098%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%83%A0%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8-136",
@@ -18060,7 +18158,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20UR%20%5BSV8%20136%2F106%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E8%B6%85%E9%9B%BB%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AB%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-cll-003",
@@ -18138,7 +18237,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%20%5BCLL%20003%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s-p-227",
@@ -18216,7 +18316,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS-P%20227%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%20%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E5%88%87%E6%89%8BBOX%20%E8%A6%8B%E8%BF%94%E3%82%8A%E7%BE%8E%E4%BA%BA%E3%83%BB%E6%9C%88%E3%81%AB%E9%9B%81%E3%82%BB%E3%83%83%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-284",
@@ -18294,7 +18395,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6VMAX%20UR%5BS8b%20284%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-006",
@@ -18368,7 +18470,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E5%9B%A3%E5%8F%82%E4%B8%8A%21%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20006%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-lisia-appeal-sar",
@@ -18857,7 +18960,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E9%9C%B2%E7%90%AA%E4%BA%9E%20SAR%20PSA10"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-244",
@@ -18937,7 +19041,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCV%20CSR%5BS8b%20244%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-101",
@@ -19023,7 +19128,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%26%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%20SR%3A%20SA%20%5BSM9%20101%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm8b-219",
@@ -19105,7 +19211,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCGX%20SSR%5BSM8b%20219%2F150%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CGX%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv11w-168",
@@ -19181,7 +19288,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0ex%20SAR%20%5BSV11W%20168%2F086%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%95%E3%83%AC%E3%82%A2%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv-p-288",
@@ -19263,7 +19371,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%93%E3%82%AF%E3%83%86%E3%82%A3%E3%83%8B%20P%20%5BSV-P%20288%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8C%E3%83%93%E3%82%AF%E3%83%86%E3%82%A3%E3%83%8BBWR%E4%BA%89%E5%A5%AA%E6%88%A6%20%E4%B8%8A%E4%BD%8D%E8%B3%9E%20%2F%20%E3%81%8A%E3%81%86%E3%81%A1%E3%81%A7%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%9C%E3%83%AB%E3%83%88%E3%83%BB%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%95%E3%83%AC%E3%82%A2%20%E3%83%87%E3%83%83%E3%82%AD%E6%A7%8B%E7%AF%89%E6%88%A6%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-214",
@@ -19339,7 +19448,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%90%E3%82%AA%E3%83%83%E3%82%AD%E3%83%BCVSTAR%20SAR%5Bs12a%20214%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sc-007",
@@ -19419,7 +19529,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20U%20%3A1ED%20%5BSC%20007%2F020%5D%28%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-svg-050",
@@ -19495,7 +19606,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%B7%E3%82%AE%E3%83%80%E3%83%8D%20%3A%E3%83%95%E3%83%AB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%20%5BSVG%20050%2F049%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88ex%E3%80%8C%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%E3%83%BB%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AB%E3%83%A1%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-106",
@@ -19571,7 +19683,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%26%E3%82%AB%E3%83%93%E3%82%B4%E3%83%B3GX%20SR%20%5BSM9%20106%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-001",
@@ -19656,7 +19769,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20001%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-012",
@@ -19742,7 +19856,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E2%98%86%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20012%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv1v-105",
@@ -19823,7 +19938,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A2%E3%82%B6%20SAR%5BSV1V%20105%2F078%5D%28%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88%EF%BC%86%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s4a-308",
@@ -19905,7 +20021,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3VMAX%20SSR%5BS4a%20308%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BCV%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv4a-236",
@@ -19986,7 +20103,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20S%20%5BSV4a%20236%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BCex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-212",
@@ -20064,7 +20182,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BSV8a%20212%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-p-022",
@@ -20145,7 +20264,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCEX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20022%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-252",
@@ -20224,7 +20344,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6VMAX%20CSR%5BS8b%20252%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-221",
@@ -20299,7 +20420,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCVSTAR%20SAR%5Bs12a%20221%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-210",
@@ -20376,7 +20498,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%95%E3%82%A3%E3%82%A2VSTAR%20SAR%5Bs12a%20210%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-mc-085",
@@ -20456,7 +20579,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3Yex%20%3A%E3%83%9F%E3%83%A9%E3%83%BC%20%5BMC%20085%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv9-126",
@@ -20533,7 +20657,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E3%83%94%E3%83%83%E3%83%94ex%20SAR%20%5BSV9%20126%2F100%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%83%91%E3%83%BC%E3%83%88%E3%83%8A%E3%83%BC%E3%82%BA%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m2a-243",
@@ -20608,7 +20733,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9E%E3%83%AA%E3%82%A3%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%AD%E3%83%B3%E3%82%B2ex%20SAR%20%5BM2a%20243%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv4a-349",
@@ -20697,7 +20823,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3ex%20SAR%20%5BSV4a%20349%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BCex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-025",
@@ -20776,7 +20903,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20C%3A%20%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%AB%E3%83%9F%E3%83%A9%E3%83%BC%20%28%E3%83%9E%E3%82%B9%E3%83%9C%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%29%20%5BSV2a%20025%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-111467",
@@ -20924,7 +21052,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20020%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s10b-074",
@@ -21003,7 +21132,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCV%20SR%3A%20SA%5BS10b%20074%2F071%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CPokemon%20GO%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-092",
@@ -21093,7 +21223,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAex%20MUR%20%5BM1L%20092%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8b-279",
@@ -21167,7 +21298,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6VMAX%20UR%5BS8b%20279%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-195",
@@ -21244,7 +21376,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SR%5BSV2a%20195%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-170",
@@ -21321,7 +21454,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BC%E3%83%8B%E3%82%AC%E3%83%A1%20AR%5BSV2a%20170%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-12889",
@@ -21470,7 +21604,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20P%20%5BS-P%20126%5D%28%E3%83%94%E3%82%AB%E3%83%94%E3%82%AB%EF%BC%81%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%EF%BC%81%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-392",
@@ -21552,7 +21687,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E6%B5%B7%E3%81%A7%E9%81%8A%E3%81%B6%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%5BSM-P%20392%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s6a-073",
@@ -21634,7 +21770,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BCV%20SR%3A%20SA%5BS6a%20073%2F069%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%BA%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-064",
@@ -21723,7 +21860,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0%26%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%20%28N%29%20SR%20%3ASA%20%5BSM11b%20064%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s6a-089",
@@ -21807,7 +21945,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%95%E3%82%A3%E3%82%A2VMAX%20HR%3A%20SA%5BS6a%20089%2F069%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%BA%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm12a-182",
@@ -21891,7 +22030,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%26%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4GX%20SR%3A%20SA%5BSM12a%20182%2F173%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CTAG%20TEAM%20GX%20%E3%82%BF%E3%83%83%E3%82%B0%E3%82%AA%E3%83%BC%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BA%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-259",
@@ -21966,7 +22106,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%B3%E3%83%91%E3%83%AB%E3%82%AD%E3%82%A2VSTAR%20UR%5Bs12a%20259%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-215",
@@ -22047,7 +22188,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B9%E3%82%A4%E3%82%AF%E3%83%B3V%20SAR%5Bs12a%20215%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm11b-052",
@@ -22129,7 +22271,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9D%E3%83%83%E3%83%81%E3%83%A3%E3%83%9E%20CHR%5Bsm11b%20052%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-clk-003",
@@ -22201,7 +22344,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%A1%E3%83%83%E3%82%AF%E3%82%B9%20%5BCLK%20003%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm12a-175",
@@ -22279,7 +22423,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%87%E3%83%87%E3%83%B3%E3%83%8DGX%20SR%20%5BSM12a%20175%2F173%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CTAG%20TEAM%20GX%20%E3%82%BF%E3%83%83%E3%82%B0%E3%82%AA%E3%83%BC%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BA%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-218",
@@ -22357,7 +22502,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6V%20SAR%5Bs12a%20218%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-238",
@@ -22438,7 +22584,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%5BSM-P%20238%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-xy-105",
@@ -22519,7 +22666,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BXY%20105%2F171%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CTHE%20BEST%20OF%20XY%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm9-104",
@@ -22597,7 +22745,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%26%E3%83%A9%E3%83%86%E3%82%A3%E3%82%AA%E3%82%B9GX%20SR%20%5BSM9%20104%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sm-p-073",
@@ -22673,7 +22822,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B5%E3%83%88%E3%82%B7%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20073%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-xy4-097",
@@ -22747,7 +22897,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-550896",
@@ -22891,7 +23042,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BCLL%20008%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv2a-183",
@@ -22973,7 +23125,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BC%20AR%5BSV2a%20183%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s8a-030",
@@ -23056,7 +23209,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%20%E3%81%B5%E3%81%97%E3%81%8E%E3%81%AA%E3%81%97%E3%81%A3%E3%81%BD%20UR%5BS8a%20030%2F028%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C25th%20ANNIVERSARY%20COLLECTION%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-15595",
@@ -23204,7 +23358,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20014%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s11a-081",
@@ -23281,7 +23436,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BB%E3%83%AC%E3%83%8A%20SR%20%5Bs11a%20081%2F068%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8E%E7%99%BD%E7%86%B1%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%AB%E3%83%8A%E3%80%8F%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-m1l-088",
@@ -23362,7 +23518,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAex%20SAR%20%5BM1L%20088%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s12a-246",
@@ -23441,7 +23598,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%9F%E3%83%84%E3%83%AC%E3%81%AE%E3%81%8D%E3%82%89%E3%82%81%E3%81%8D%20SR%5Bs12a%20246%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-charizard-ex-sar-151",
@@ -23876,7 +24034,8 @@
           "label": "Zenox",
           "href": "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-140593",
@@ -24094,7 +24253,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20002%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-218",
@@ -24170,7 +24330,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%88%E3%83%89%E3%83%AD%E3%82%AF%E3%83%84%E3%82%ADex%20SAR%20%5BSV8a%20218%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-s10a-074",
@@ -24250,7 +24411,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20CHR%5Bs10a%20074%2F071%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%80%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%BA%E3%83%9E%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv5a-078",
@@ -24334,7 +24496,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%20AR%20%5BSV5a%20078%2F066%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%AF%E3%83%AA%E3%83%A0%E3%82%BE%E3%83%B3%E3%83%98%E3%82%A4%E3%82%BA%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "psa10-sv8a-224",
@@ -24410,7 +24573,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4ex%20SAR%20%5BSV8a%20224%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
         }
-      ]
+      ],
+      "psa10_market": true
     },
     {
       "id": "sealed-snkr-171882",
@@ -25235,7 +25399,8 @@
           "label": "HKCardLink 徵求",
           "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E6%A2%B5%E9%AB%98%E6%AF%94%E5%8D%A1%E8%B6%85%20PSA10"
         }
-      ]
+      ],
+      "psa10_market": true
     }
   ],
   "sections": {
@@ -26776,155 +26941,6 @@
         ]
       },
       {
-        "id": "psa10-m6a-134",
-        "name_zh": "超夢ex FUR [M6a 134/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ミュウツーex FUR [M6a 134/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 134/103",
-        "image": "images/psa10-m6a-134.webp",
-        "tcgdex_id": null,
-        "price_hkd": 490.05,
-        "price_jpy": 9900,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 540.78,
-        "spread_jp_hk_pct": 10.35,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881428",
-        "snkrdunk_ask_jpy": 9500,
-        "snkrdunk_ask_min_jpy": 9500,
-        "snkrdunk_ask_median_jpy": 10950,
-        "snkrdunk_ask_max_jpy": 18888,
-        "snkrdunk_ask_prices_jpy": [
-          9500,
-          9800,
-          9900,
-          9990,
-          9999,
-          10800,
-          10900,
-          11000,
-          12000,
-          12999,
-          13000,
-          13500,
-          15000,
-          18888
-        ],
-        "snkrdunk_jpy": 9500,
-        "snkrdunk_last_sale_jpy": 9900,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/433c88d9-e3d7-47c1-a98e-b25b81ec698d.webp",
-        "hk_ask_low_hkd": 470.25,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881428"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex+FUR+%5BM6a+134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20FUR%20%5BM6a%20134%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-m6a-127",
-        "name_zh": "皮卡丘ex SAR [M6a 127/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ピカチュウex SAR [M6a 127/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 127/103",
-        "image": "images/psa10-m6a-127.webp",
-        "tcgdex_id": null,
-        "price_hkd": 556.88,
-        "price_jpy": 11250,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 623.7,
-        "spread_jp_hk_pct": 12.0,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/882280",
-        "snkrdunk_ask_jpy": 11000,
-        "snkrdunk_ask_min_jpy": 11000,
-        "snkrdunk_ask_median_jpy": 12600,
-        "snkrdunk_ask_max_jpy": 15500,
-        "snkrdunk_ask_prices_jpy": [
-          11000,
-          11400,
-          11500,
-          11600,
-          12500,
-          12600,
-          13000,
-          13333,
-          14000,
-          15000,
-          15500
-        ],
-        "snkrdunk_jpy": 11000,
-        "snkrdunk_last_sale_jpy": 11250,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a0163a22-6e45-41dc-8203-a5dd647af7ef.webp",
-        "hk_ask_low_hkd": 544.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/882280"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex+SAR+%5BM6a+127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20127%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
-      },
-      {
         "id": "psa10-sv-p-289",
         "name_zh": "福岡的皮卡丘 P [SV-P 289]",
         "name_jp": "フクオカのピカチュウ P [SV-P 289](スペシャルBOX「ポケモンセンターフクオカ」)",
@@ -26990,525 +27006,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%AF%E3%82%AA%E3%82%AB%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20289%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%ABBOX%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%AF%E3%82%AA%E3%82%AB%E3%80%8D%29"
           }
-        ]
-      },
-      {
-        "id": "psa10-m6a-132",
-        "name_zh": "基拉祈ex SAR [M6a 132/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ジラーチex SAR [M6a 132/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 132/103",
-        "image": "images/psa10-m6a-132.webp",
-        "tcgdex_id": null,
-        "price_hkd": 207.9,
-        "price_jpy": 4200,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 209.34,
-        "spread_jp_hk_pct": 0.69,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
         ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891195",
-        "snkrdunk_ask_jpy": 3700,
-        "snkrdunk_ask_min_jpy": 3700,
-        "snkrdunk_ask_median_jpy": 4236,
-        "snkrdunk_ask_max_jpy": 5000,
-        "snkrdunk_ask_prices_jpy": [
-          3700,
-          3800,
-          3850,
-          3900,
-          3999,
-          4000,
-          4200,
-          4222,
-          4250,
-          4300,
-          4400,
-          4500,
-          4665,
-          4666,
-          4999,
-          5000
-        ],
-        "snkrdunk_jpy": 3700,
-        "snkrdunk_last_sale_jpy": 4200,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/1f01e4b4-9b34-434c-949c-b44c988300d9.webp",
-        "hk_ask_low_hkd": 183.15,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/891195"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex+SAR+%5BM6a+132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B8%E3%83%A9%E3%83%BC%E3%83%81ex%20SAR%20%5BM6a%20132%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-m6a-130",
-        "name_zh": "仙子伊布ex SAR [M6a 130/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ニンフィアex SAR [M6a 130/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 130/103",
-        "image": "images/psa10-m6a-130.webp",
-        "tcgdex_id": null,
-        "price_hkd": 222.75,
-        "price_jpy": 4500,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 237.6,
-        "spread_jp_hk_pct": 6.67,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/891194",
-        "snkrdunk_ask_jpy": 4100,
-        "snkrdunk_ask_min_jpy": 4100,
-        "snkrdunk_ask_median_jpy": 4800,
-        "snkrdunk_ask_max_jpy": 6000,
-        "snkrdunk_ask_prices_jpy": [
-          4100,
-          4300,
-          4500,
-          4600,
-          4800,
-          4900,
-          5000,
-          5400,
-          6000
-        ],
-        "snkrdunk_jpy": 4100,
-        "snkrdunk_last_sale_jpy": 4500,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/db1fb87a-852a-4735-90f4-e8ae1218ac20.webp",
-        "hk_ask_low_hkd": 202.95,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/891194"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex+SAR+%5BM6a+130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BM6a%20130%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-mf-043",
-        "name_zh": "太陽伊布ex SAR樣式 [MF 043/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
-        "name_jp": "エーフィex SAR仕様 [MF 043/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
-        "kind": "psa10",
-        "set": "MF / 043/040",
-        "image": "images/psa10-mf-043.webp",
-        "tcgdex_id": null,
-        "price_hkd": 234.63,
-        "price_jpy": 4740,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 259.88,
-        "spread_jp_hk_pct": 10.76,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881430",
-        "snkrdunk_ask_jpy": 4999,
-        "snkrdunk_ask_min_jpy": 4999,
-        "snkrdunk_ask_median_jpy": 5250,
-        "snkrdunk_ask_max_jpy": 6000,
-        "snkrdunk_ask_prices_jpy": [
-          4999,
-          5200,
-          5250,
-          5700,
-          6000
-        ],
-        "snkrdunk_jpy": 4999,
-        "snkrdunk_last_sale_jpy": 4740,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/73acd0cb-07fc-499e-b2e2-59e10c8e26e2.webp",
-        "hk_ask_low_hkd": 247.45,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881430"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex+SAR%E4%BB%95%E6%A7%98+%5BMF+043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th+CELEBRATION+%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88+%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20043%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-m6a-131",
-        "name_zh": "耿鬼ex SAR [M6a 131/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ゲンガーex SAR [M6a 131/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 131/103",
-        "image": "images/psa10-m6a-131.webp",
-        "tcgdex_id": null,
-        "price_hkd": 334.12,
-        "price_jpy": 6750,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 351.44,
-        "spread_jp_hk_pct": 5.18,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/896992",
-        "snkrdunk_ask_jpy": 6500,
-        "snkrdunk_ask_min_jpy": 6500,
-        "snkrdunk_ask_median_jpy": 7200,
-        "snkrdunk_ask_max_jpy": 18000,
-        "snkrdunk_ask_prices_jpy": [
-          6500,
-          6799,
-          6800,
-          6899,
-          6900,
-          6999,
-          7000,
-          7399,
-          7500,
-          7980,
-          7999,
-          8888,
-          9999,
-          18000
-        ],
-        "snkrdunk_jpy": 6500,
-        "snkrdunk_last_sale_jpy": 6750,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f803b03b-76e1-4148-a0f0-8ccc062112ba.webp",
-        "hk_ask_low_hkd": 321.75,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/896992"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex+SAR+%5BM6a+131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCex%20SAR%20%5BM6a%20131%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-mf-044",
-        "name_zh": "月亮伊布ex SAR樣式 [MF 044/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
-        "name_jp": "ブラッキーex SAR仕様 [MF 044/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
-        "kind": "psa10",
-        "set": "MF / 044/040",
-        "image": "images/psa10-mf-044.webp",
-        "tcgdex_id": null,
-        "price_hkd": 675.68,
-        "price_jpy": 13650,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 702.9,
-        "spread_jp_hk_pct": 4.03,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/881431",
-        "snkrdunk_ask_jpy": 13000,
-        "snkrdunk_ask_min_jpy": 13000,
-        "snkrdunk_ask_median_jpy": 14200,
-        "snkrdunk_ask_max_jpy": 29800,
-        "snkrdunk_ask_prices_jpy": [
-          13000,
-          13500,
-          13600,
-          13900,
-          13980,
-          14000,
-          14200,
-          14500,
-          14800,
-          14999,
-          15777,
-          17500,
-          29800
-        ],
-        "snkrdunk_jpy": 13000,
-        "snkrdunk_last_sale_jpy": 13650,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/f078d5c7-085f-4e12-bfc0-144b3e61cb9d.webp",
-        "hk_ask_low_hkd": 643.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/881431"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex+SAR%E4%BB%95%E6%A7%98+%5BMF+044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th+CELEBRATION+%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88+%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%E4%BB%95%E6%A7%98%20%5BMF%20044%2F040%5D%28%E6%A7%8B%E7%AF%89%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C30th%20CELEBRATION%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88%20%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BB%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-m6a-136",
-        "name_zh": "皮卡丘 [M6a 136/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ピカチュウ [M6a 136/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 136/103",
-        "image": "images/psa10-m6a-136.webp",
-        "tcgdex_id": null,
-        "price_hkd": 279.68,
-        "price_jpy": 5650,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 288.34,
-        "spread_jp_hk_pct": 3.1,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/886016",
-        "snkrdunk_ask_jpy": 5000,
-        "snkrdunk_ask_min_jpy": 5000,
-        "snkrdunk_ask_median_jpy": 5850,
-        "snkrdunk_ask_max_jpy": 1000000,
-        "snkrdunk_ask_prices_jpy": [
-          5000,
-          5494,
-          5500,
-          5650,
-          5700,
-          5800,
-          5900,
-          5999,
-          6000,
-          7500,
-          7777,
-          9999,
-          1000000
-        ],
-        "snkrdunk_jpy": 5000,
-        "snkrdunk_last_sale_jpy": 5650,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/8987def8-62c9-4f2b-8174-29bd6c2729a7.webp",
-        "hk_ask_low_hkd": 247.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/886016"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6+%5BM6a+136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BM6a%20136%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
-      },
-      {
-        "id": "psa10-m6a-150",
-        "name_zh": "耿鬼 [M6a 150/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "ゲンガー [M6a 150/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 150/103",
-        "image": "images/psa10-m6a-150.webp",
-        "tcgdex_id": null,
-        "price_hkd": 331.65,
-        "price_jpy": 6700,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 353.92,
-        "spread_jp_hk_pct": 6.71,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892648",
-        "snkrdunk_ask_jpy": 6600,
-        "snkrdunk_ask_min_jpy": 6600,
-        "snkrdunk_ask_median_jpy": 7200,
-        "snkrdunk_ask_max_jpy": 13000,
-        "snkrdunk_ask_prices_jpy": [
-          6600,
-          6700,
-          6780,
-          6800,
-          6999,
-          7000,
-          7100,
-          7300,
-          7400,
-          7500,
-          8000,
-          9000,
-          12450,
-          13000
-        ],
-        "snkrdunk_jpy": 6600,
-        "snkrdunk_last_sale_jpy": 6700,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/3407cc6f-adb3-484e-a6eb-a8dcf6bb4f60.webp",
-        "hk_ask_low_hkd": 326.7,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/892648"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC+%5BM6a+150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20%5BM6a%20150%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-261",
@@ -27572,7 +27071,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%92%E3%83%AD%E3%82%B7%E3%83%9E%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20261%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%ABBOX%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%92%E3%83%AD%E3%82%B7%E3%83%9E%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-234",
@@ -27648,7 +27148,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM2a%20234%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6-110",
@@ -27719,81 +27220,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6ex%20SAR%20%5BM6%20110%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
           }
-        ]
-      },
-      {
-        "id": "psa10-m6a-154",
-        "name_zh": "烈空坐EX [M6a 154/103](擴充包「30th CELEBRATION」)",
-        "name_jp": "レックウザEX [M6a 154/103](拡張パック「30th CELEBRATION」)",
-        "kind": "psa10",
-        "set": "M6a / 154/103",
-        "image": "images/psa10-m6a-154.webp",
-        "tcgdex_id": null,
-        "price_hkd": 152.31,
-        "price_jpy": 3077,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 173.21,
-        "spread_jp_hk_pct": 13.72,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
         ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/892652",
-        "snkrdunk_ask_jpy": 3000,
-        "snkrdunk_ask_min_jpy": 3000,
-        "snkrdunk_ask_median_jpy": 3500,
-        "snkrdunk_ask_max_jpy": 4500,
-        "snkrdunk_ask_prices_jpy": [
-          3000,
-          3060,
-          3200,
-          3300,
-          3400,
-          3499,
-          3500,
-          3600,
-          3680,
-          3999,
-          4000,
-          4500
-        ],
-        "snkrdunk_jpy": 3000,
-        "snkrdunk_last_sale_jpy": 3077,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/b98c4231-6c88-4e6e-af0c-c8387aea9f14.webp",
-        "hk_ask_low_hkd": 148.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/892652"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX+%5BM6a+154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th+CELEBRATION%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BM6a%20154%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
-          }
-        ]
+        "psa10_market": true
       },
       {
         "id": "psa10-mega-gengar-ex",
@@ -27897,7 +27325,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E8%B6%85%E7%B4%9A%E8%80%BF%E9%AC%BC%20SAR%20PSA10"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s10a-073",
@@ -27965,7 +27394,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20CHR%5BS10a%20073%2F071%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%80%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%BA%E3%83%9E%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-rulers-black-flame",
@@ -28131,7 +27561,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCex%20SAR%20%5BSV8a%20217%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-223",
@@ -28202,7 +27633,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3Xex%20MA%20%5BM2a%20223%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m-p-020",
@@ -28272,7 +27704,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BM-P%20020%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9E%E3%82%AF%E3%83%89%E3%83%8A%E3%83%AB%E3%83%89%20%E3%83%8F%E3%83%83%E3%83%94%E3%83%BC%E3%82%BB%E3%83%83%E3%83%882025%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-260",
@@ -28340,7 +27773,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%88%E3%82%A6%E3%83%9B%E3%82%AF%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20260%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%ABBOX%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%88%E3%82%A6%E3%83%9B%E3%82%AF%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-pikachu-ex-sar-151",
@@ -28449,7 +27883,8 @@
             "label": "Zenox",
             "href": "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-g-001",
@@ -28519,7 +27954,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20%E3%83%93%E3%83%8B%E3%83%BC%E3%83%AB%E3%81%AA%E3%81%97%5BS8a-G%20001%2F015%5D%2825th%20%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%20%E3%82%B4%E3%83%BC%E3%83%AB%E3%83%87%E3%83%B3%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-218",
@@ -28588,7 +28024,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20P%20%5BSV-P%20218%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%82%AB%E3%81%AE%E5%A4%8F%E3%81%8C%E3%82%AD%E3%82%BF%21%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89Get%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3%21%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-151-box",
@@ -28973,7 +28410,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%AB%E3%82%A4%E3%83%AA%E3%83%A5%E3%83%BCex%20MUR%20%5BM2a%20250%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-007",
@@ -29043,7 +28481,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=_%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%28%E3%81%8A%E8%AA%95%E7%94%9F%E6%97%A5%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%29%20%5BS8a-P%20007%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m5-114",
@@ -29117,7 +28556,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4ex%20SAR%20%5BM5%20114%2F081%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A2%E3%83%93%E3%82%B9%E3%82%A2%E3%82%A4%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-086",
@@ -29187,7 +28627,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E6%B1%BA%E5%BF%83%20SR%20%5BM1L%20086%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-12883",
@@ -29366,7 +28807,8 @@
             "label": "Zenox",
             "href": "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-mc-764",
@@ -29437,7 +28879,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%E4%BB%95%E6%A7%98%20%5BMC%20764%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-236",
@@ -29502,7 +28945,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20UR%20%5BSV8a%20236%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m3-114",
@@ -29573,7 +29017,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%A3%E3%83%BC%E3%82%B9ex%20SAR%20%5BM3%20114%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A0%E3%83%8B%E3%82%AD%E3%82%B9%E3%82%BC%E3%83%AD%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-001",
@@ -29637,7 +29082,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5Bs8a%20001%2F028%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C25th%20%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m5-118",
@@ -29709,7 +29155,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4ex%20MUR%20%5BM5%20118%2F081%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A2%E3%83%93%E3%82%B9%E3%82%A2%E3%82%A4%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv11b-174",
@@ -29780,7 +29227,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0ex%20BWR%20%5BSV11B%20174%2F086%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-svg-051",
@@ -29846,7 +29294,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%92%E3%83%88%E3%82%AB%E3%82%B2%20%3A%E3%83%95%E3%83%AB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%20%5BSVG%20051%2F049%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88ex%E3%80%8C%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%E3%83%BB%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AB%E3%83%A1%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-091",
@@ -29918,7 +29367,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E6%B1%BA%E5%BF%83%20SAR%20%5BM1L%20091%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m4-114",
@@ -29991,7 +29441,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B2%E3%83%83%E3%82%B3%E3%82%A6%E3%82%ACex%20SAR%20%5BM4%20114%2F083%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8B%E3%83%B3%E3%82%B8%E3%83%A3%E3%82%B9%E3%83%94%E3%83%8A%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-205",
@@ -30062,7 +29513,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20AR%5Bs12a%20205%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-wcs23-001-snkr-131236",
@@ -30132,7 +29584,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20%5BWCS23%20001%2F030%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%83%81%E3%83%A3%E3%83%B3%E3%83%94%E3%82%AA%E3%83%B3%E3%82%B7%E3%83%83%E3%83%97%E3%82%B92023%E6%A8%AA%E6%B5%9C%20%E8%A8%98%E5%BF%B5%E3%83%87%E3%83%83%E3%82%AD%E3%80%8C%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-054",
@@ -30199,7 +29652,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20CHR%5Bsm11b%20054%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-270",
@@ -30267,7 +29721,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%83%89%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20270%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-237",
@@ -30333,7 +29788,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E5%9B%A3%E3%81%AE%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20SAR%20%5BM2a%20237%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-mc-765",
@@ -30405,7 +29861,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E3%83%94%E3%83%83%E3%83%94ex%20SAR%E4%BB%95%E6%A7%98%20%5BMC%20765%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-189",
@@ -30478,7 +29935,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3VMAX%3A%20SA%2F%E3%83%97%E3%83%AD%E3%83%A2%5BS-P%20189%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-shiny-treasure",
@@ -30647,7 +30105,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E5%90%8D%E6%8E%A2%E5%81%B5%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%5BSV-P%20098%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSV-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-183",
@@ -30716,7 +30175,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%20AR%5Bs12a%20183%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-245",
@@ -30784,7 +30244,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCVMAX%20CSR%5BS8b%20245%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m3-117",
@@ -30855,7 +30316,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B8%E3%82%AC%E3%83%AB%E3%83%87ex%20MUR%20%5BM3%20117%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A0%E3%83%8B%E3%82%AD%E3%82%B9%E3%82%BC%E3%83%AD%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-mew-ex-sar",
@@ -30959,7 +30421,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E5%A4%A2%E5%B9%BB%20SAR%20PSA10%20%E9%96%83"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-024",
@@ -31030,7 +30493,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20024%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2-116",
@@ -31106,7 +30570,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3Xex%20MUR%20%5BM2%20116%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A7%E3%83%AB%E3%83%8EX%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-265",
@@ -31180,7 +30645,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6VMAX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20P%20%5BS-P%20265%5D%28%E6%9C%88%E5%88%8A%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF2022%E5%B9%B42%E6%9C%88%E5%8F%B7%E4%BB%98%E9%8C%B2%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1s-087",
@@ -31251,7 +30717,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B5%E3%83%BC%E3%83%8A%E3%82%A4%E3%83%88ex%20SAR%20%5BM1S%20087%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%82%B7%E3%83%B3%E3%83%95%E3%82%A9%E3%83%8B%E3%82%A2%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv4a-327",
@@ -31325,7 +30792,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SSR%20%5BSV4a%20327%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BCex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv1a-080",
@@ -31398,7 +30866,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B3%E3%82%A4%E3%82%AD%E3%83%B3%E3%82%B0%20AR%5BSV1a%20080%2F073%5D%28%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88%26%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%88%E3%83%AA%E3%83%97%E3%83%AC%E3%83%83%E3%83%88%E3%83%93%E3%83%BC%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8-122",
@@ -31463,7 +30932,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SR%20%5BSV8%20122%2F106%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E8%B6%85%E9%9B%BB%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AB%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv11w-174",
@@ -31533,7 +31003,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0ex%20BWR%20%5BSV11W%20174%2F086%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%95%E3%83%AC%E3%82%A2%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-087",
@@ -31602,7 +31073,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8Aex%20SAR%20%5BM1L%20087%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-208",
@@ -31676,7 +31148,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%E3%83%97%E3%83%AD%E3%83%A2%20%5BS-P%20208%5D%28%E3%80%8CYU%20NAGABA%C3%97%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%E3%80%8D%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-205",
@@ -31751,7 +31224,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SAR%5BSV2a%20205%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-226",
@@ -31822,7 +31296,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAVSTAR%20SAR%5Bs12a%20226%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-228",
@@ -31889,7 +31364,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4VSTAR%20SAR%5Bs12a%20228%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-211",
@@ -31959,7 +31435,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A8%E3%83%BC%E3%83%95%E3%82%A3ex%20SAR%20%5BSV8a%20211%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sn-001",
@@ -32027,7 +31504,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20%5BSN%20001%2F024%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%20%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AFver.%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-144",
@@ -32098,7 +31576,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%8A%E3%82%B6%E3%83%AF%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%28%E3%83%9E%E3%83%BC%E3%82%AF%E3%81%82%E3%82%8A%29%20%5BS-P%20144%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-038",
@@ -32164,83 +31643,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%26%E3%83%9F%E3%83%9F%E3%83%83%E3%82%AD%E3%83%A5GX%20RR%20%5BSM9%20038%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
           }
-        ]
-      },
-      {
-        "id": "psa10-m6-108",
-        "name_zh": "雷公ex SAR [M6 108/076](擴充包「綠寶石風暴」)",
-        "name_jp": "ライコウex SAR [M6 108/076](拡張パック「ストームエメラルダ」)",
-        "kind": "psa10",
-        "set": "M6 / 108/076",
-        "image": "images/psa10-m6-108.webp",
-        "tcgdex_id": null,
-        "price_hkd": 198.0,
-        "price_jpy": 4000,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 99,
-        "hk_ask_hkd": 219.95,
-        "spread_jp_hk_pct": 11.09,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
         ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/868610",
-        "snkrdunk_ask_jpy": 3800,
-        "snkrdunk_ask_min_jpy": 3800,
-        "snkrdunk_ask_median_jpy": 4444,
-        "snkrdunk_ask_max_jpy": 7500,
-        "snkrdunk_ask_prices_jpy": [
-          3800,
-          3999,
-          4000,
-          4100,
-          4200,
-          4300,
-          4443,
-          4445,
-          4500,
-          5000,
-          5500,
-          5600,
-          6000,
-          7500
-        ],
-        "snkrdunk_jpy": 3800,
-        "snkrdunk_last_sale_jpy": 4000,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/5c6d127c-a14d-4511-a9d5-4a9203084181.webp",
-        "hk_ask_low_hkd": 188.1,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/868610"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex+SAR+%5BM6+108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29&ei=UTF-8"
-          },
-          {
-            "label": "Carousell 搜尋",
-            "href": "https://www.carousell.com.hk/search/%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29/"
-          },
-          {
-            "label": "HKCardLink 搜尋",
-            "href": "https://www.hkcardlink.com/marketplace?q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
-          },
-          {
-            "label": "HKCardLink 徵求",
-            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6ex%20SAR%20%5BM6%20108%2F076%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%A8%E3%83%A1%E3%83%A9%E3%83%AB%E3%83%80%E3%80%8D%29"
-          }
-        ]
+        "psa10_market": true
       },
       {
         "id": "psa10-sn-007",
@@ -32309,7 +31713,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4V%20%5BSN%20007%2F024%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%20%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%AD%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AFver.%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-101885",
@@ -32442,7 +31847,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%AB%E3%82%A4%E3%83%AA%E3%83%A5%E3%83%BCex%20SAR%20%5BM2a%20246%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2d-091",
@@ -32512,7 +31918,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8A%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%A2%20SR%5BSV2D%20091%2F071%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%90%E3%83%BC%E3%82%B9%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-208",
@@ -32581,7 +31988,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20UR%5BSV2a%20208%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-248",
@@ -32645,7 +32053,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%8A%E3%83%AA%E3%82%A3%20SAR%20%5BM2a%20248%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8-132",
@@ -32719,7 +32128,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BSV8%20132%2F106%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E8%B6%85%E9%9B%BB%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AB%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-236",
@@ -32784,7 +32194,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8A%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%A2%E3%81%AE%E3%83%8F%E3%83%A9%E3%83%90%E3%83%AA%E3%83%BCex%20SAR%20%5BM2a%20236%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-222",
@@ -32853,7 +32264,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6V%20CSR%5BS8b%20222%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-005",
@@ -32922,7 +32334,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%8F%E3%82%8B%E3%81%84%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%89%E3%82%B9%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20005%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12-110",
@@ -32998,7 +32411,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AB%E3%82%AE%E3%82%A2V%20SR%3ASA%5Bs12%20110%2F098%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%91%E3%83%A9%E3%83%80%E3%82%A4%E3%83%A0%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8-136",
@@ -33065,7 +32479,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20UR%20%5BSV8%20136%2F106%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E8%B6%85%E9%9B%BB%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AB%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-227",
@@ -33135,7 +32550,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS-P%20227%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%20%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E5%88%87%E6%89%8BBOX%20%E8%A6%8B%E8%BF%94%E3%82%8A%E7%BE%8E%E4%BA%BA%E3%83%BB%E6%9C%88%E3%81%AB%E9%9B%81%E3%82%BB%E3%83%83%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv11w-168",
@@ -33203,7 +32619,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0ex%20SAR%20%5BSV11W%20168%2F086%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%95%E3%83%AC%E3%82%A2%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-001",
@@ -33280,7 +32697,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20001%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-012",
@@ -33358,7 +32776,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%E2%98%86%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20012%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-212",
@@ -33428,7 +32847,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%8B%E3%83%B3%E3%83%95%E3%82%A3%E3%82%A2ex%20SAR%20%5BSV8a%20212%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-022",
@@ -33501,7 +32921,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCEX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20022%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-252",
@@ -33572,7 +32993,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6VMAX%20CSR%5BS8b%20252%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-221",
@@ -33639,7 +33061,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCVSTAR%20SAR%5Bs12a%20221%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-210",
@@ -33708,7 +33131,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%95%E3%82%A3%E3%82%A2VSTAR%20SAR%5Bs12a%20210%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv9-126",
@@ -33777,7 +33201,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%E3%81%AE%E3%83%94%E3%83%83%E3%83%94ex%20SAR%20%5BSV9%20126%2F100%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%83%91%E3%83%BC%E3%83%88%E3%83%8A%E3%83%BC%E3%82%BA%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m2a-243",
@@ -33844,7 +33269,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9E%E3%83%AA%E3%82%A3%E3%81%AE%E3%82%AA%E3%83%BC%E3%83%AD%E3%83%B3%E3%82%B2ex%20SAR%20%5BM2a%20243%2F193%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CMEGA%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-020",
@@ -33914,7 +33340,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20020%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-279",
@@ -33980,7 +33407,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6VMAX%20UR%5BS8b%20279%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-170",
@@ -34049,7 +33477,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BC%E3%83%8B%E3%82%AC%E3%83%A1%20AR%5BSV2a%20170%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-126",
@@ -34120,7 +33549,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20P%20%5BS-P%20126%5D%28%E3%83%94%E3%82%AB%E3%83%94%E3%82%AB%EF%BC%81%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%EF%BC%81%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-clk-003",
@@ -34184,7 +33614,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%A1%E3%83%83%E3%82%AF%E3%82%B9%20%5BCLK%20003%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-cll-008",
@@ -34250,7 +33681,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20%5BCLL%20008%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-183",
@@ -34324,7 +33756,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BC%20AR%5BSV2a%20183%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-030",
@@ -34399,7 +33832,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%20%E3%81%B5%E3%81%97%E3%81%8E%E3%81%AA%E3%81%97%E3%81%A3%E3%81%BD%20UR%5BS8a%20030%2F028%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C25th%20ANNIVERSARY%20COLLECTION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-014",
@@ -34469,7 +33903,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20014%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-088",
@@ -34542,7 +33977,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAex%20SAR%20%5BM1L%20088%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-charizard-ex-sar-151",
@@ -34657,7 +34093,8 @@
             "label": "Zenox",
             "href": "https://www.zenoxstore.com/collections/booster-packs-collection-box-jp"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-002",
@@ -34727,7 +34164,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20002%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-218",
@@ -34795,7 +34233,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%88%E3%83%89%E3%83%AD%E3%82%AF%E3%83%84%E3%82%ADex%20SAR%20%5BSV8a%20218%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv8a-224",
@@ -34863,7 +34302,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4ex%20SAR%20%5BSV8a%20224%2F187%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%86%E3%83%A9%E3%82%B9%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A7%E3%82%B9ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-van-gogh-pikachu",
@@ -34970,7 +34410,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E6%A2%B5%E9%AB%98%E6%AF%94%E5%8D%A1%E8%B6%85%20PSA10"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-584772",
@@ -35102,7 +34543,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%20%5BCLL%20003%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-svg-050",
@@ -35170,7 +34612,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%95%E3%82%B7%E3%82%AE%E3%83%80%E3%83%8D%20%3A%E3%83%95%E3%83%AB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%20%5BSVG%20050%2F049%5D%28%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%87%E3%83%83%E3%82%AD%E3%82%BB%E3%83%83%E3%83%88ex%E3%80%8C%E3%83%95%E3%82%B7%E3%82%AE%E3%83%90%E3%83%8A%E3%83%BB%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%E3%83%BB%E3%82%AB%E3%83%A1%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-881423",
@@ -35307,7 +34750,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A2%E3%82%B6%20SAR%5BSV1V%20105%2F078%5D%28%E3%82%B9%E3%82%AB%E3%83%BC%E3%83%AC%E3%83%83%E3%83%88%EF%BC%86%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88%20%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AC%E3%83%83%E3%83%88ex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-mc-085",
@@ -35379,7 +34823,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3Yex%20%3A%E3%83%9F%E3%83%A9%E3%83%BC%20%5BMC%20085%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-15595",
@@ -35826,7 +35271,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BC%20%5BCLK%20014%2F032%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%82%B2%E3%83%BC%E3%83%A0%20Classic%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv4a-349",
@@ -35907,7 +35353,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3ex%20SAR%20%5BSV4a%20349%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BCex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-550896",
@@ -36244,7 +35691,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%A4%E3%81%AE%E3%81%AF%E3%81%92%E3%81%BE%E3%81%97%20SAR%20%5BM3%20115%2F080%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A0%E3%83%8B%E3%82%AD%E3%82%B9%E3%82%BC%E3%83%AD%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-407",
@@ -36312,7 +35760,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E6%BC%AB%E6%89%8D%E3%81%94%E3%81%A3%E3%81%93%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20407%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CS-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-211",
@@ -36387,7 +35836,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3V%20SAR%5Bs12a%20211%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-025",
@@ -36458,7 +35908,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20C%3A%20%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%AB%E3%83%9F%E3%83%A9%E3%83%BC%20%28%E3%83%9E%E3%82%B9%E3%83%9C%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%29%20%5BSV2a%20025%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-abyss-eye",
@@ -36639,7 +36090,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BD%E3%83%AB%E3%82%AC%E3%83%AC%E3%82%AA%26%E3%83%AB%E3%83%8A%E3%82%A2%E3%83%BC%E3%83%A9GX%20%28%E3%83%AA%E3%83%BC%E3%83%AA%E3%82%A8%29%20SR%20%3ASA%20%28%E3%82%BD%E3%83%AB%E3%83%AB%E3%83%8AGX%29%20%5BSM11b%20063%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s-p-226",
@@ -36706,7 +36158,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A6%E3%83%83%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS-P%20226%5D%28%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E5%88%87%E6%89%8BBOX%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%20%E8%A6%8B%E8%BF%94%E3%82%8A%E7%BE%8E%E4%BA%BA%E3%83%BB%E6%9C%88%E3%81%AB%E9%9B%81%E3%80%8CS-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-284",
@@ -36776,7 +36229,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6VMAX%20UR%5BS8b%20284%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-101",
@@ -36854,7 +36308,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%26%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%20SR%3A%20SA%20%5BSM9%20101%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv4a-236",
@@ -36927,7 +36382,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20S%20%5BSV4a%20236%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%83%88%E3%83%AC%E3%82%B8%E3%83%A3%E3%83%BCex%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-ninja-spinner",
@@ -37263,7 +36719,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A2%E3%83%AB%E3%83%9A%E3%82%B3ex%20SAR%20%5BM5%20115%2F081%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A2%E3%83%93%E3%82%B9%E3%82%A2%E3%82%A4%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8b-244",
@@ -37335,7 +36792,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BCV%20CSR%5BS8b%20244%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv2a-195",
@@ -37404,7 +36862,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SR%5BSV2a%20195%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-259",
@@ -37471,7 +36930,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%B3%E3%83%91%E3%83%AB%E3%82%AD%E3%82%A2VSTAR%20UR%5Bs12a%20259%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s11a-081",
@@ -37540,7 +37000,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BB%E3%83%AC%E3%83%8A%20SR%20%5Bs11a%20081%2F068%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8E%E7%99%BD%E7%86%B1%E3%81%AE%E3%82%A2%E3%83%AB%E3%82%AB%E3%83%8A%E3%80%8F%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-mc-755",
@@ -37612,7 +37073,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%20AR%E4%BB%95%E6%A7%98%20%5BMC%20755%2F742%5D%28%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88%E3%83%87%E3%83%83%E3%82%AD100%E3%80%8C%E3%83%90%E3%83%88%E3%83%AB%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s8a-p-006",
@@ -37678,7 +37140,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E5%9B%A3%E5%8F%82%E4%B8%8A%21%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BS8a-P%20006%2F025%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%82%AB%E3%83%BC%E3%83%89%E3%83%91%E3%83%83%E3%82%AF%2025th%20ANNIVERSARY%20edition%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm8b-219",
@@ -37752,7 +37215,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCGX%20SSR%5BSM8b%20219%2F150%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CGX%E3%82%A6%E3%83%AB%E3%83%88%E3%83%A9%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sv-p-288",
@@ -37826,7 +37290,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%93%E3%82%AF%E3%83%86%E3%82%A3%E3%83%8B%20P%20%5BSV-P%20288%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8C%E3%83%93%E3%82%AF%E3%83%86%E3%82%A3%E3%83%8BBWR%E4%BA%89%E5%A5%AA%E6%88%A6%20%E4%B8%8A%E4%BD%8D%E8%B3%9E%20%2F%20%E3%81%8A%E3%81%86%E3%81%A1%E3%81%A7%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%83%9C%E3%83%AB%E3%83%88%E3%83%BB%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%95%E3%83%AC%E3%82%A2%20%E3%83%87%E3%83%83%E3%82%AD%E6%A7%8B%E7%AF%89%E6%88%A6%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%9A%E3%83%BC%E3%83%B3%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-214",
@@ -37894,7 +37359,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%90%E3%82%AA%E3%83%83%E3%82%AD%E3%83%BCVSTAR%20SAR%5Bs12a%20214%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s6a-089",
@@ -37970,7 +37436,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%83%BC%E3%83%95%E3%82%A3%E3%82%A2VMAX%20HR%3A%20SA%5BS6a%20089%2F069%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%BA%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-116901",
@@ -38392,7 +37859,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6VMAX%20CSR%5Bs8b%20223%2F184%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVMAX%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%9E%E3%83%83%E3%82%AF%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s4a-308",
@@ -38466,7 +37934,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3VMAX%20SSR%5BS4a%20308%2F190%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BCV%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s10b-074",
@@ -38537,7 +38006,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCV%20SR%3A%20SA%5BS10b%20074%2F071%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CPokemon%20GO%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-064",
@@ -38618,7 +38088,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AC%E3%82%B7%E3%83%A9%E3%83%A0%26%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%20%28N%29%20SR%20%3ASA%20%5BSM11b%20064%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm12a-182",
@@ -38694,7 +38165,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%A9%E3%83%83%E3%82%AD%E3%83%BC%26%E3%83%80%E3%83%BC%E3%82%AF%E3%83%A9%E3%82%A4GX%20SR%3A%20SA%5BSM12a%20182%2F173%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CTAG%20TEAM%20GX%20%E3%82%BF%E3%83%83%E3%82%B0%E3%82%AA%E3%83%BC%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BA%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm12a-175",
@@ -38764,7 +38236,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%87%E3%83%87%E3%83%B3%E3%83%8DGX%20SR%20%5BSM12a%20175%2F173%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CTAG%20TEAM%20GX%20%E3%82%BF%E3%83%83%E3%82%B0%E3%82%AA%E3%83%BC%E3%83%AB%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BA%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-246",
@@ -38835,7 +38308,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%AB%E3%83%9F%E3%83%84%E3%83%AC%E3%81%AE%E3%81%8D%E3%82%89%E3%82%81%E3%81%8D%20SR%5Bs12a%20246%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-140593",
@@ -38973,7 +38447,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%20AR%20%5BSV5a%20078%2F066%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%AF%E3%83%AA%E3%83%A0%E3%82%BE%E3%83%B3%E3%83%98%E3%82%A4%E3%82%BA%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-224649",
@@ -39105,7 +38580,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A8%E3%82%B3%E3%83%8F%E3%83%9E%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20283%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-cp3-012",
@@ -39170,7 +38646,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%87%E3%83%87%E3%83%B3%E3%83%8D%20U%20%3A1ED%20%5BCP3%20012%2F032%5D%28%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%82%AD%E3%83%A5%E3%83%B3%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1s-090",
@@ -39249,7 +38726,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A2%E3%82%BB%E3%83%AD%E3%83%A9%E3%81%AE%E3%81%84%E3%81%9F%E3%81%9A%E3%82%89%20SAR%20%5BM1S%20090%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%82%B7%E3%83%B3%E3%83%95%E3%82%A9%E3%83%8B%E3%82%A2%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m4-120",
@@ -39321,7 +38799,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%82%B2%E3%83%83%E3%82%B3%E3%82%A6%E3%82%ACex%20MUR%20%5BM4%20120%2F083%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%8B%E3%83%B3%E3%82%B8%E3%83%A3%E3%82%B9%E3%83%94%E3%83%8A%E3%83%BC%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-lisia-appeal-sar",
@@ -39436,7 +38915,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E9%9C%B2%E7%90%AA%E4%BA%9E%20SAR%20PSA10"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm11b-052",
@@ -39510,7 +38990,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9D%E3%83%83%E3%83%81%E3%83%A3%E3%83%9E%20CHR%5Bsm11b%20052%2F049%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%AA%E3%83%BC%E3%82%B0%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-171882",
@@ -39646,7 +39127,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E6%B5%B7%E3%81%A7%E9%81%8A%E3%81%B6%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%5BSM-P%20392%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s10a-074",
@@ -39718,7 +39200,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BC%20CHR%5Bs10a%20074%2F071%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%80%E3%83%BC%E3%82%AF%E3%83%95%E3%82%A1%E3%83%B3%E3%82%BF%E3%82%BA%E3%83%9E%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sc-007",
@@ -39790,7 +39273,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%20U%20%3A1ED%20%5BSC%20007%2F020%5D%28%E3%82%B3%E3%83%B3%E3%82%BB%E3%83%97%E3%83%88%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%8B%E3%83%BC%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s6a-073",
@@ -39864,7 +39348,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BCV%20SR%3A%20SA%5BS6a%20073%2F069%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%BA%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-s12a-215",
@@ -39937,7 +39422,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B9%E3%82%A4%E3%82%AF%E3%83%B3V%20SAR%5Bs12a%20215%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-32870",
@@ -40255,7 +39741,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%82%A4%E3%82%B3%E3%82%A6V%20SAR%5Bs12a%20218%2F172%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CVSTAR%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B9%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-238",
@@ -40328,7 +39815,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%3A%20%E3%83%97%E3%83%AD%E3%83%A2%20%5BSM-P%20238%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-129",
@@ -40384,7 +39872,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20129%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-135",
@@ -40440,7 +39929,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6ex%20FUR%20%5BM6a%20135%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-165",
@@ -40496,7 +39986,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B3%E3%82%A4%E3%82%AD%E3%83%B3%E3%82%B0%20%5BM6a%20165%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "sealed-snkr-15573",
@@ -40693,7 +40184,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%83%AC%E3%83%83%E3%82%AF%E3%82%A6%E3%82%B6EX%20%5BXY%20105%2F171%5D%28%E3%83%8F%E3%82%A4%E3%82%AF%E3%83%A9%E3%82%B9%E3%83%91%E3%83%83%E3%82%AF%E3%80%8CTHE%20BEST%20OF%20XY%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-142",
@@ -40748,7 +40240,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AB%E3%82%AE%E3%82%A2%20%5BM6a%20142%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-137",
@@ -40803,7 +40296,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%AA%E3%82%B6%E3%83%BC%E3%83%89%E3%83%B3%20%5BM6a%20137%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-126",
@@ -40859,7 +40353,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6ex%20SAR%20%5BM6a%20126%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-128",
@@ -40914,7 +40409,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%9F%E3%83%A5%E3%82%A6%E3%83%84%E3%83%BCex%20SAR%20%5BM6a%20128%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m6a-160",
@@ -40969,7 +40465,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%26%E3%82%BC%E3%82%AF%E3%83%AD%E3%83%A0GX%20%5BM6a%20160%2F103%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C30th%20CELEBRATION%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-m1l-092",
@@ -41051,7 +40548,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A1%E3%82%AC%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAex%20MUR%20%5BM1L%20092%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-104",
@@ -41121,7 +40619,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%83%A9%E3%83%86%E3%82%A3%E3%82%A2%E3%82%B9%26%E3%83%A9%E3%83%86%E3%82%A3%E3%82%AA%E3%82%B9GX%20SR%20%5BSM9%20104%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm-p-073",
@@ -41189,7 +40688,8 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%B5%E3%83%88%E3%82%B7%E3%81%AE%E3%83%94%E3%82%AB%E3%83%81%E3%83%A5%E3%82%A6%3A%20%E3%83%97%E3%83%AD%E3%83%A2%5BSM-P%20073%5D%28%E3%83%97%E3%83%AD%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89%E3%80%8CSM-P%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
       },
       {
         "id": "psa10-sm9-106",
@@ -41257,7 +40757,75 @@
             "label": "HKCardLink 徵求",
             "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=%E3%82%A4%E3%83%BC%E3%83%96%E3%82%A4%26%E3%82%AB%E3%83%93%E3%82%B4%E3%83%B3GX%20SR%20%5BSM9%20106%2F095%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%82%BF%E3%83%83%E3%82%B0%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%29"
           }
-        ]
+        ],
+        "psa10_market": true
+      },
+      {
+        "id": "psa10-xy4-097",
+        "name_zh": "M耿鬼EX UR 初版 [XY4 097/088]",
+        "name_jp": "MゲンガーEX UR :1ED [XY4 097/088](拡張パック「ファントムゲート」)",
+        "kind": "psa10",
+        "set": "XY4 / 097/088",
+        "image": "images/psa10-xy4-097.webp",
+        "tcgdex_id": null,
+        "price_hkd": 17435.14,
+        "price_jpy": 352225,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 0.0,
+        "volume_today": 0,
+        "volume_7d_avg": 1.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 26,
+        "hk_ask_hkd": 15961.27,
+        "spread_jp_hk_pct": -8.45,
+        "sources": [
+          "snkrdunk",
+          "yahoo_auctions_jp"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
+        "price_source": "snkrdunk_last_sale",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/91538",
+        "snkrdunk_ask_jpy": 300000,
+        "snkrdunk_ask_min_jpy": 300000,
+        "snkrdunk_ask_median_jpy": 324900,
+        "snkrdunk_ask_max_jpy": 600000,
+        "snkrdunk_ask_prices_jpy": [
+          300000,
+          320000,
+          329800,
+          600000
+        ],
+        "snkrdunk_jpy": 324900,
+        "snkrdunk_last_sale_jpy": 352225,
+        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/7fe888cb-dd1a-453a-b5ae-4147a7ea64b8.webp",
+        "hk_ask_low_hkd": 14850.0,
+        "hk_bid_hkd": null,
+        "links": [
+          {
+            "label": "SNKRDUNK",
+            "href": "https://snkrdunk.com/en/trading-cards/91538"
+          },
+          {
+            "label": "Yahoo 已結束拍賣",
+            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX+UR+%3A1ED+%5BXY4+097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29&ei=UTF-8"
+          },
+          {
+            "label": "Carousell 搜尋",
+            "href": "https://www.carousell.com.hk/search/M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29/"
+          },
+          {
+            "label": "HKCardLink 搜尋",
+            "href": "https://www.hkcardlink.com/marketplace?q=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29"
+          },
+          {
+            "label": "HKCardLink 徵求",
+            "href": "https://www.hkcardlink.com/marketplace?mode=wtb&q=M%E3%82%B2%E3%83%B3%E3%82%AC%E3%83%BCEX%20UR%20%3A1ED%20%5BXY4%20097%2F088%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%95%E3%82%A1%E3%83%B3%E3%83%88%E3%83%A0%E3%82%B2%E3%83%BC%E3%83%88%E3%80%8D%29"
+          }
+        ],
+        "psa10_market": true
       }
     ],
     "價差": [
