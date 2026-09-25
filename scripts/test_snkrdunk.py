@@ -27,6 +27,7 @@ from sources.snkrdunk import (  # noqa: E402
     parse_tiles,
     build_ask_quote,
     has_psa10_quote,
+    latest_psa10_sale_jpy,
     psa10_active_ask_prices,
     psa10_last_sale_jpy,
     psa10_quote_present,
@@ -95,10 +96,10 @@ def test_psa10_ask_and_sales_median() -> None:
     asks = parse_condition_asks(_CONDS)
     assert asks["PSA10"] == 58500
     assert "PSA9" not in asks
-    mid = parse_sales_history(
-        {"history": [{"price": 8000}, {"price": 8200}, {"price": 7900}, {"price": 40000}]}
+    newest = parse_sales_history(
+        {"history": [{"price": 15000}, {"price": 8000}, {"price": 8200}, {"price": 7900}, {"price": 40000}]}
     )
-    assert mid == 8000
+    assert newest == 15000
 
 
 def test_last_sale_replaces_yahoo_and_far_ask_blanks_it() -> None:
@@ -223,8 +224,53 @@ def test_psa10_last_sale_ignores_raw_and_active_asks() -> None:
         {"wearCount": PSA10_WEAR, "isDisplaySold": True, "price": 15800},
     ]
     assert psa10_active_ask_prices(rows) == [8100]
-    assert psa10_last_sale_jpy(rows) == 15900
+    assert psa10_last_sale_jpy(rows) == 16000
     assert chart_last_sale_jpy({"points": [[1, 9000], [2, 8150]]}) == 8150
+
+
+def test_last_sale_is_the_newest_print_not_an_average() -> None:
+    hkt = timezone(timedelta(hours=8))
+    rows = [
+        {
+            "wearCount": PSA10_WEAR,
+            "isDisplaySold": True,
+            "price": 12980,
+            "updatedAt": "2026-09-24T11:00:13Z",
+        },
+        {
+            "wearCount": PSA10_WEAR,
+            "isDisplaySold": True,
+            "price": 9700,
+            "updatedAt": "2026-09-25T06:11:01Z",
+        },
+        {
+            "wearCount": "tradingCardSingleConditionNearlyUnused",
+            "isDisplaySold": True,
+            "price": 500,
+            "updatedAt": "2026-09-25T12:00:00Z",
+        },
+        {
+            "wearCount": PSA10_WEAR,
+            "isDisplaySold": False,
+            "price": 99900,
+            "updatedAt": "2026-09-25T14:00:00Z",
+        },
+    ]
+    assert psa10_last_sale_jpy(rows) == 9700
+    daily_mean = int(datetime(2026, 9, 25, 23, 0, tzinfo=hkt).timestamp() * 1000)
+    tape_old = int(datetime(2026, 9, 24, 21, 24, tzinfo=hkt).timestamp() * 1000)
+    tape_new = int(datetime(2026, 9, 25, 22, 1, tzinfo=hkt).timestamp() * 1000)
+    assert latest_psa10_sale_jpy(
+        rows,
+        [(tape_old, 99000), (tape_new, 99900), (daily_mean, 130750)],
+    ) == 99900
+    rows.append({
+        "wearCount": PSA10_WEAR,
+        "isDisplaySold": True,
+        "price": 8500,
+        "updatedAt": "2026-09-25T14:38:53Z",
+    })
+    assert latest_psa10_sale_jpy(rows, [(tape_new, 99900)]) == 8500
 
 
 def test_sealed_history_drops_multi_box_lots() -> None:
@@ -435,6 +481,7 @@ if __name__ == "__main__":
     test_exact_snkrdunk_title_is_the_same_print()
     test_raw_grades_do_not_fill_an_empty_psa10_quote()
     test_psa10_last_sale_ignores_raw_and_active_asks()
+    test_last_sale_is_the_newest_print_not_an_average()
     test_sealed_history_drops_multi_box_lots()
     test_min_list_price_prefers_ask_then_sold()
     test_ur_does_not_match_sar()

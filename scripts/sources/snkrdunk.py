@@ -2,10 +2,12 @@
 
 Search HTML and apparel pages are readable without a login. PSA10 asks and
 recent sales come from the used feed filtered to condition 22 (PSA10). When
-that feed and the PSA10 chart are both empty, last sale and asks stay empty.
-Condition A/B/C/D never fills a PSA10 card. The apparel sales-history feed is
-for sealed boxes and is empty for slabs.
-A last sale replaces Yahoo. An ask that is far from Yahoo blanks the Yahoo figure.
+that feed and the one-week PSA10 chart are both empty, last sale and asks stay
+empty. Condition A/B/C/D never fills a PSA10 card. The apparel sales-history
+feed is for sealed boxes and is empty for slabs.
+Last sale is the single newest PSA10 print, or the newest single-unit sealed
+sale. It is never a mean, median, or ask. A last sale replaces Yahoo. An ask
+that is far from Yahoo blanks the Yahoo figure.
 Multi-box lot sizes (2個 and up) and multi-copy lots (2枚 and up) are not this SKU.
 """
 from __future__ import annotations
@@ -507,22 +509,17 @@ def single_sku_sale(row: dict) -> bool:
 
 
 def parse_sales_history(payload: dict) -> int | None:
+    """Newest single-unit sale. The history feed is newest-first. Lots of 2+ stay out."""
     history = payload.get("history") if isinstance(payload, dict) else None
     if not isinstance(history, list):
         return None
-    prices: list[int] = []
     for row in history:
         if not isinstance(row, dict) or not single_sku_sale(row):
             continue
-        try:
-            price = int(row.get("price"))
-        except (TypeError, ValueError):
-            continue
-        if price > 0:
-            prices.append(price)
-        if len(prices) >= 12:
-            break
-    return robust_median_jpy(prices)
+        price = _pos_int(row.get("price"))
+        if price is not None:
+            return price
+    return None
 
 
 def prices_disagree(left: int, right: int) -> bool:
@@ -627,9 +624,79 @@ def psa10_sold_prices(rows: list[dict]) -> list[int]:
     return prices
 
 
+def _is_daily_chart_bucket(epoch_ms: int) -> bool:
+    """True for a oneMonth/all point pinned at 23:00:00 HKT.
+
+    Those points are one averaged yen for the day, not a single sale.
+    """
+    stamped = datetime.fromtimestamp(epoch_ms / 1000, HKT)
+    return stamped.hour == 23 and stamped.minute == 0 and stamped.second == 0
+
+
+def newest_sale_jpy(sales: list[tuple[datetime | None, int]]) -> int | None:
+    """The latest positive sale. A timestamp beats feed order. No mean or median."""
+    dated: list[tuple[datetime, int]] = []
+    undated: list[int] = []
+    for stamped, price in sales:
+        yen = _pos_int(price)
+        if yen is None:
+            continue
+        if stamped is None:
+            undated.append(yen)
+            continue
+        dated.append((stamped, yen))
+    if dated:
+        dated.sort(key=lambda pair: pair[0])
+        return dated[-1][1]
+    if undated:
+        return undated[0]
+    return None
+
+
+def psa10_sold_sales(rows: list[dict]) -> list[tuple[datetime | None, int]]:
+    """Completed PSA10 sales as ``(sold_at, yen)``. Active asks stay out."""
+    sales: list[tuple[datetime | None, int]] = []
+    for row in rows:
+        if row.get("wearCount") != PSA10_WEAR or not row.get("isDisplaySold"):
+            continue
+        price = _pos_int(row.get("price"))
+        if price is None:
+            continue
+        stamped = _parse_iso(row.get("updatedAt")) or _parse_iso(row.get("createdAt"))
+        sales.append((stamped, price))
+    return sales
+
+
+def chart_individual_sales(points: list[tuple[int, int]]) -> list[tuple[datetime, int]]:
+    """Chart points that are one sale. Daily 23:00 averages are dropped."""
+    sales: list[tuple[datetime, int]] = []
+    for epoch_ms, yen in points:
+        if _is_daily_chart_bucket(epoch_ms):
+            continue
+        price = _pos_int(yen)
+        if price is None:
+            continue
+        sales.append((datetime.fromtimestamp(epoch_ms / 1000, HKT), price))
+    return sales
+
+
 def psa10_last_sale_jpy(rows: list[dict]) -> int | None:
-    """Robust median of the newest PSA10 sales on the filtered used feed."""
-    return robust_median_jpy(psa10_sold_prices(rows)[:12])
+    """Newest completed PSA10 sale on the used feed. Not a mean or median."""
+    return newest_sale_jpy(psa10_sold_sales(rows))
+
+
+def latest_psa10_sale_jpy(
+    rows: list[dict],
+    chart_points: list[tuple[int, int]] | None = None,
+) -> int | None:
+    """Newest PSA10 sale on the used feed or the individual sales chart.
+
+    The one-week chart is the tape. A newer sold row fills in when the chart lags.
+    Daily averages and active asks never become the last sale.
+    """
+    sales = psa10_sold_sales(rows)
+    sales.extend(chart_individual_sales(chart_points or []))
+    return newest_sale_jpy(sales)
 
 
 def has_psa10_quote(
@@ -678,9 +745,13 @@ def read_psa10_market(apparel_id: str, *, min_interval: float) -> bool | None:
     try:
         asks = parse_condition_asks(page.text)
         rows = _psa10_used_rows(apparel_id, min_interval=min_interval)
-        last_sale = psa10_last_sale_jpy(rows)
-        if last_sale is None:
-            last_sale = _chart_last_sale(apparel_id, min_interval=min_interval)
+        points = _used_chart_points(
+            apparel_id,
+            min_interval=min_interval,
+            option_id=PSA10_CONDITION_IDS,
+            range_key="oneWeek",
+        )
+        last_sale = latest_psa10_sale_jpy(rows, points)
         return has_psa10_quote(rows, floor_jpy=asks.get("PSA10"), last_sale_jpy=last_sale)
     except Exception:
         return None
@@ -970,13 +1041,14 @@ def fetch_sealed_90d_points(
     return filter_points_to_window(hist, days=days, now=now_dt)
 
 
-def _chart_last_sale(
+def _used_chart_points(
     apparel_id: str,
     *,
     min_interval: float,
     option_id: str = PSA10_CONDITION_IDS,
-    range_key: str = "oneMonth",
-) -> int | None:
+    range_key: str = "oneWeek",
+) -> list[tuple[int, int]]:
+    """Used-sales chart points. ``oneWeek`` is one point per sale; longer ranges average the day."""
     try:
         chart = polite_get(
             SALES_CHART_USED_URL.format(apparel_id=apparel_id),
@@ -986,10 +1058,13 @@ def _chart_last_sale(
             headers={"Accept": "application/json"},
         )
         if chart.status_code != 200:
-            return None
-        return chart_last_sale_jpy(chart.json())
+            return []
+        payload = chart.json()
     except (json.JSONDecodeError, TypeError, ValueError, Exception):
-        return None
+        return []
+    if not isinstance(payload, dict):
+        return []
+    return parse_chart_points(payload)
 
 
 def _sales_payload(apparel_id: str, *, min_interval: float) -> dict:
@@ -1067,31 +1142,6 @@ def recent_used_sold_count(rows: list[dict], *, wear: str, days: int = 7) -> int
         if stamped is not None and stamped >= cutoff:
             sold += 1
     return sold
-
-
-def _week_sold_count(apparel_id: str, *, min_interval: float, option_id: str) -> int:
-    """Points on the one-week used sales chart for one condition."""
-    try:
-        chart = polite_get(
-            SALES_CHART_USED_URL.format(apparel_id=apparel_id),
-            params={"salesChartOptionId": option_id, "range": "oneWeek"},
-            min_interval=min_interval,
-            timeout=20,
-            headers={"Accept": "application/json"},
-        )
-        if chart.status_code != 200:
-            return 0
-        payload = chart.json()
-    except (json.JSONDecodeError, TypeError, ValueError, Exception):
-        return 0
-    points = payload.get("points") if isinstance(payload, dict) else None
-    if not isinstance(points, list):
-        return 0
-    return sum(
-        1
-        for point in points
-        if isinstance(point, (list, tuple)) and len(point) >= 2 and _pos_int(point[1])
-    )
 
 
 def _count_field(data: dict, key: str) -> int:
@@ -1296,12 +1346,14 @@ def _quote_fields(
 
     ask = asks.get("PSA10")
     used_rows = _psa10_used_rows(apparel_id, min_interval=min_interval)
-    last_sale = psa10_last_sale_jpy(used_rows)
-    if last_sale is None:
-        last_sale = _chart_last_sale(apparel_id, min_interval=min_interval)
-    week_sold = _week_sold_count(
-        apparel_id, min_interval=min_interval, option_id=PSA10_CONDITION_IDS
+    week_points = _used_chart_points(
+        apparel_id,
+        min_interval=min_interval,
+        option_id=PSA10_CONDITION_IDS,
+        range_key="oneWeek",
     )
+    last_sale = latest_psa10_sale_jpy(used_rows, week_points)
+    week_sold = len(week_points)
     if week_sold <= 0:
         week_sold = recent_used_sold_count(used_rows, wear=PSA10_WEAR)
     if has_psa10_quote(used_rows, floor_jpy=ask, last_sale_jpy=last_sale):

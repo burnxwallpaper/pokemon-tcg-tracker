@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-09-25T23:37:33+08:00",
+    "updated_at": "2026-09-25T23:49:21+08:00",
     "timezone": "Asia/Hong_Kong",
     "is_sample": false,
     "sample_label": null,
@@ -203,8 +203,8 @@
       "set": "M6a / 129/103",
       "image": "images/psa10-m6a-129.webp",
       "tcgdex_id": null,
-      "price_hkd": 561.33,
-      "price_jpy": 11340,
+      "price_hkd": 420.75,
+      "price_jpy": 8500,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
@@ -224,7 +224,7 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 561.33,
+          "price_hkd": 420.75,
           "hk_ask_hkd": null,
           "volume": 0.0
         }
@@ -232,7 +232,7 @@
       "price_source": "snkrdunk_last_sale",
       "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/896991",
       "snkrdunk_jpy": 11340,
-      "snkrdunk_last_sale_jpy": 11340,
+      "snkrdunk_last_sale_jpy": 8500,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/1be22cfc-b301-4083-971d-06fc5878c844.webp",
       "hk_ask_low_hkd": null,
       "hk_bid_hkd": null,
@@ -19286,8 +19286,8 @@
       "set": "M1L / 092/063",
       "image": "images/psa10-m1l-092.webp",
       "tcgdex_id": null,
-      "price_hkd": 6472.12,
-      "price_jpy": 130750,
+      "price_hkd": 4945.05,
+      "price_jpy": 99900,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
@@ -19295,7 +19295,7 @@
       "volume_ratio": 0.0,
       "liquidity_score": 37,
       "hk_ask_hkd": 6138.0,
-      "spread_jp_hk_pct": -5.16,
+      "spread_jp_hk_pct": 24.12,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -19307,7 +19307,7 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 6472.12,
+          "price_hkd": 4945.05,
           "hk_ask_hkd": 6138.0,
           "volume": 0.0
         }
@@ -19341,7 +19341,7 @@
         180000
       ],
       "snkrdunk_jpy": 125000,
-      "snkrdunk_last_sale_jpy": 130750,
+      "snkrdunk_last_sale_jpy": 99900,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a27e93a8-5cdd-4af5-b1ea-6561c82eeaaa.webp",
       "hk_ask_low_hkd": 4945.05,
       "hk_bid_hkd": null,
@@ -19432,8 +19432,8 @@
       "set": "SV2a / 195/165",
       "image": "images/psa10-sv2a-195.webp",
       "tcgdex_id": null,
-      "price_hkd": 492.53,
-      "price_jpy": 9950,
+      "price_hkd": 445.5,
+      "price_jpy": 9000,
       "short_change_pct": 0.0,
       "medium_change_pct": 0.0,
       "volume_today": 0,
@@ -19441,7 +19441,7 @@
       "volume_ratio": 0.0,
       "liquidity_score": 58,
       "hk_ask_hkd": 490.02,
-      "spread_jp_hk_pct": -0.51,
+      "spread_jp_hk_pct": 9.99,
       "sources": [
         "snkrdunk",
         "yahoo_auctions_jp"
@@ -19453,7 +19453,7 @@
       "history": [
         {
           "date": "2026-09-25",
-          "price_hkd": 492.53,
+          "price_hkd": 445.5,
           "hk_ask_hkd": 490.02,
           "volume": 0.0
         }
@@ -19474,7 +19474,7 @@
         33500
       ],
       "snkrdunk_jpy": 9900,
-      "snkrdunk_last_sale_jpy": 9950,
+      "snkrdunk_last_sale_jpy": 9000,
       "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/31475ca6-5665-4554-af54-2fdd51e57ba9.webp",
       "hk_ask_low_hkd": 445.5,
       "hk_bid_hkd": null,
@@ -33344,8 +33344,8 @@
         "set": "SV2a / 195/165",
         "image": "images/psa10-sv2a-195.webp",
         "tcgdex_id": null,
-        "price_hkd": 492.53,
-        "price_jpy": 9950,
+        "price_hkd": 445.5,
+        "price_jpy": 9000,
         "short_change_pct": 0.0,
         "medium_change_pct": 0.0,
         "volume_today": 0,
@@ -33353,7 +33353,7 @@
         "volume_ratio": 0.0,
         "liquidity_score": 58,
         "hk_ask_hkd": 490.02,
-        "spread_jp_hk_pct": -0.51,
+        "spread_jp_hk_pct": 9.99,
         "sources": [
           "snkrdunk",
           "yahoo_auctions_jp"
@@ -33378,7 +33378,7 @@
           33500
         ],
         "snkrdunk_jpy": 9900,
-        "snkrdunk_last_sale_jpy": 9950,
+        "snkrdunk_last_sale_jpy": 9000,
         "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/31475ca6-5665-4554-af54-2fdd51e57ba9.webp",
         "hk_ask_low_hkd": 445.5,
         "hk_bid_hkd": null,
@@ -35781,8 +35781,8 @@
         "set": "M1L / 092/063",
         "image": "images/psa10-m1l-092.webp",
         "tcgdex_id": null,
-        "price_hkd": 6472.12,
-        "price_jpy": 130750,
+        "price_hkd": 4945.05,
+        "price_jpy": 99900,
         "short_change_pct": 0.0,
         "medium_change_pct": 0.0,
         "volume_today": 0,
@@ -35790,7 +35790,7 @@
         "volume_ratio": 0.0,
         "liquidity_score": 37,
         "hk_ask_hkd": 6138.0,
-        "spread_jp_hk_pct": -5.16,
+        "spread_jp_hk_pct": 24.12,
         "sources": [
           "snkrdunk",
           "yahoo_auctions_jp"
@@ -35828,7 +35828,7 @@
           180000
         ],
         "snkrdunk_jpy": 125000,
-        "snkrdunk_last_sale_jpy": 130750,
+        "snkrdunk_last_sale_jpy": 99900,
         "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a27e93a8-5cdd-4af5-b1ea-6561c82eeaaa.webp",
         "hk_ask_low_hkd": 4945.05,
         "hk_bid_hkd": null,
@@ -35911,8 +35911,8 @@
         "set": "M6a / 129/103",
         "image": "images/psa10-m6a-129.webp",
         "tcgdex_id": null,
-        "price_hkd": 561.33,
-        "price_jpy": 11340,
+        "price_hkd": 420.75,
+        "price_jpy": 8500,
         "short_change_pct": 0.0,
         "medium_change_pct": 0.0,
         "volume_today": 0,
@@ -35932,7 +35932,7 @@
         "price_source": "snkrdunk_last_sale",
         "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/896991",
         "snkrdunk_jpy": 11340,
-        "snkrdunk_last_sale_jpy": 11340,
+        "snkrdunk_last_sale_jpy": 8500,
         "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/1be22cfc-b301-4083-971d-06fc5878c844.webp",
         "hk_ask_low_hkd": null,
         "hk_bid_hkd": null,
@@ -37179,6 +37179,79 @@
         ],
         "snkrdunk_recent_sold_n": 7,
         "snkrdunk_listing_count": 110,
+        "psa10_market": true
+      },
+      {
+        "id": "psa10-m1l-092",
+        "name_zh": "超級路卡利歐ex MUR [M1L 092/063](擴充包「超級勇氣」)",
+        "name_jp": "メガルカリオex MUR [M1L 092/063](拡張パック「メガブレイブ」)",
+        "kind": "psa10",
+        "set": "M1L / 092/063",
+        "image": "images/psa10-m1l-092.webp",
+        "tcgdex_id": null,
+        "price_hkd": 4945.05,
+        "price_jpy": 99900,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 0.0,
+        "volume_today": 0,
+        "volume_7d_avg": 1.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 37,
+        "hk_ask_hkd": 6138.0,
+        "spread_jp_hk_pct": 24.12,
+        "sources": [
+          "snkrdunk",
+          "yahoo_auctions_jp"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
+        "price_source": "snkrdunk_last_sale",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/663638",
+        "snkrdunk_ask_jpy": 99900,
+        "snkrdunk_ask_min_jpy": 99900,
+        "snkrdunk_ask_median_jpy": 124000,
+        "snkrdunk_ask_max_jpy": 180000,
+        "snkrdunk_ask_prices_jpy": [
+          99900,
+          99999,
+          100000,
+          105000,
+          109000,
+          110000,
+          117000,
+          118500,
+          118999,
+          123000,
+          125000,
+          130000,
+          131000,
+          132000,
+          133333,
+          135000,
+          138000,
+          150000,
+          160000,
+          180000
+        ],
+        "snkrdunk_jpy": 125000,
+        "snkrdunk_last_sale_jpy": 99900,
+        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a27e93a8-5cdd-4af5-b1ea-6561c82eeaaa.webp",
+        "hk_ask_low_hkd": 4945.05,
+        "hk_bid_hkd": null,
+        "links": [
+          {
+            "label": "SNKRDUNK",
+            "href": "https://snkrdunk.com/en/trading-cards/663638"
+          },
+          {
+            "label": "Yahoo 已結束拍賣",
+            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%A1%E3%82%AC%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAex+MUR+%5BM1L+092%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29&ei=UTF-8"
+          }
+        ],
+        "snkrdunk_recent_sold_n": 1,
+        "snkrdunk_listing_count": 122,
         "psa10_market": true
       },
       {
@@ -39754,6 +39827,66 @@
         "psa10_market": true
       },
       {
+        "id": "psa10-sv2a-195",
+        "name_zh": "夢幻ex SR[SV2a 195/165](強化擴充包「寶可夢卡牌151」)",
+        "name_jp": "ミュウex SR[SV2a 195/165](強化拡張パック「ポケモンカード151」)",
+        "kind": "psa10",
+        "set": "SV2a / 195/165",
+        "image": "images/psa10-sv2a-195.webp",
+        "tcgdex_id": null,
+        "price_hkd": 445.5,
+        "price_jpy": 9000,
+        "short_change_pct": 0.0,
+        "medium_change_pct": 0.0,
+        "volume_today": 0,
+        "volume_7d_avg": 1.0,
+        "volume_ratio": 0.0,
+        "liquidity_score": 58,
+        "hk_ask_hkd": 490.02,
+        "spread_jp_hk_pct": 9.99,
+        "sources": [
+          "snkrdunk",
+          "yahoo_auctions_jp"
+        ],
+        "is_sample": false,
+        "jp_comps_n": 0,
+        "hk_listings_n": 0,
+        "hk_backend": null,
+        "price_source": "snkrdunk_last_sale",
+        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128111",
+        "snkrdunk_ask_jpy": 9000,
+        "snkrdunk_ask_min_jpy": 9000,
+        "snkrdunk_ask_median_jpy": 9900,
+        "snkrdunk_ask_max_jpy": 33500,
+        "snkrdunk_ask_prices_jpy": [
+          9000,
+          9800,
+          9899,
+          9900,
+          10000,
+          10400,
+          33500
+        ],
+        "snkrdunk_jpy": 9900,
+        "snkrdunk_last_sale_jpy": 9000,
+        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/31475ca6-5665-4554-af54-2fdd51e57ba9.webp",
+        "hk_ask_low_hkd": 445.5,
+        "hk_bid_hkd": null,
+        "links": [
+          {
+            "label": "SNKRDUNK",
+            "href": "https://snkrdunk.com/en/trading-cards/128111"
+          },
+          {
+            "label": "Yahoo 已結束拍賣",
+            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%9F%E3%83%A5%E3%82%A6ex+SR%5BSV2a+195%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29&ei=UTF-8"
+          }
+        ],
+        "snkrdunk_recent_sold_n": 10,
+        "snkrdunk_listing_count": 88,
+        "psa10_market": true
+      },
+      {
         "id": "psa10-sm11b-064",
         "name_zh": "萊希拉姆&捷克羅姆GX (N) SR :SA [SM11b 064/049](強化擴充包「夢之聯盟」)",
         "name_jp": "レシラム&ゼクロムGX (N) SR :SA [SM11b 064/049](強化拡張パック「ドリームリーグ」)",
@@ -42030,79 +42163,6 @@
         ],
         "snkrdunk_recent_sold_n": 18,
         "snkrdunk_listing_count": 345
-      },
-      {
-        "id": "psa10-m1l-092",
-        "name_zh": "超級路卡利歐ex MUR [M1L 092/063](擴充包「超級勇氣」)",
-        "name_jp": "メガルカリオex MUR [M1L 092/063](拡張パック「メガブレイブ」)",
-        "kind": "psa10",
-        "set": "M1L / 092/063",
-        "image": "images/psa10-m1l-092.webp",
-        "tcgdex_id": null,
-        "price_hkd": 6472.12,
-        "price_jpy": 130750,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 37,
-        "hk_ask_hkd": 6138.0,
-        "spread_jp_hk_pct": -5.16,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/663638",
-        "snkrdunk_ask_jpy": 99900,
-        "snkrdunk_ask_min_jpy": 99900,
-        "snkrdunk_ask_median_jpy": 124000,
-        "snkrdunk_ask_max_jpy": 180000,
-        "snkrdunk_ask_prices_jpy": [
-          99900,
-          99999,
-          100000,
-          105000,
-          109000,
-          110000,
-          117000,
-          118500,
-          118999,
-          123000,
-          125000,
-          130000,
-          131000,
-          132000,
-          133333,
-          135000,
-          138000,
-          150000,
-          160000,
-          180000
-        ],
-        "snkrdunk_jpy": 125000,
-        "snkrdunk_last_sale_jpy": 130750,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/a27e93a8-5cdd-4af5-b1ea-6561c82eeaaa.webp",
-        "hk_ask_low_hkd": 4945.05,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/663638"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%A1%E3%82%AC%E3%83%AB%E3%82%AB%E3%83%AA%E3%82%AAex+MUR+%5BM1L+092%2F063%5D%28%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%A1%E3%82%AC%E3%83%96%E3%83%AC%E3%82%A4%E3%83%96%E3%80%8D%29&ei=UTF-8"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 1,
-        "snkrdunk_listing_count": 122,
-        "psa10_market": true
       },
       {
         "id": "psa10-sv1v-105",
@@ -47062,66 +47122,6 @@
         ],
         "snkrdunk_recent_sold_n": 7,
         "snkrdunk_listing_count": 159
-      },
-      {
-        "id": "psa10-sv2a-195",
-        "name_zh": "夢幻ex SR[SV2a 195/165](強化擴充包「寶可夢卡牌151」)",
-        "name_jp": "ミュウex SR[SV2a 195/165](強化拡張パック「ポケモンカード151」)",
-        "kind": "psa10",
-        "set": "SV2a / 195/165",
-        "image": "images/psa10-sv2a-195.webp",
-        "tcgdex_id": null,
-        "price_hkd": 492.53,
-        "price_jpy": 9950,
-        "short_change_pct": 0.0,
-        "medium_change_pct": 0.0,
-        "volume_today": 0,
-        "volume_7d_avg": 1.0,
-        "volume_ratio": 0.0,
-        "liquidity_score": 58,
-        "hk_ask_hkd": 490.02,
-        "spread_jp_hk_pct": -0.51,
-        "sources": [
-          "snkrdunk",
-          "yahoo_auctions_jp"
-        ],
-        "is_sample": false,
-        "jp_comps_n": 0,
-        "hk_listings_n": 0,
-        "hk_backend": null,
-        "price_source": "snkrdunk_last_sale",
-        "snkrdunk_url": "https://snkrdunk.com/en/trading-cards/128111",
-        "snkrdunk_ask_jpy": 9000,
-        "snkrdunk_ask_min_jpy": 9000,
-        "snkrdunk_ask_median_jpy": 9900,
-        "snkrdunk_ask_max_jpy": 33500,
-        "snkrdunk_ask_prices_jpy": [
-          9000,
-          9800,
-          9899,
-          9900,
-          10000,
-          10400,
-          33500
-        ],
-        "snkrdunk_jpy": 9900,
-        "snkrdunk_last_sale_jpy": 9950,
-        "snkrdunk_image_url": "https://cdn.snkrdunk.com/upload_bg_removed/31475ca6-5665-4554-af54-2fdd51e57ba9.webp",
-        "hk_ask_low_hkd": 445.5,
-        "hk_bid_hkd": null,
-        "links": [
-          {
-            "label": "SNKRDUNK",
-            "href": "https://snkrdunk.com/en/trading-cards/128111"
-          },
-          {
-            "label": "Yahoo 已結束拍賣",
-            "href": "https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=%E3%83%9F%E3%83%A5%E3%82%A6ex+SR%5BSV2a+195%2F165%5D%28%E5%BC%B7%E5%8C%96%E6%8B%A1%E5%BC%B5%E3%83%91%E3%83%83%E3%82%AF%E3%80%8C%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%AB%E3%83%BC%E3%83%89151%E3%80%8D%29&ei=UTF-8"
-          }
-        ],
-        "snkrdunk_recent_sold_n": 10,
-        "snkrdunk_listing_count": 88,
-        "psa10_market": true
       },
       {
         "id": "sealed-snkr-881424-b",
