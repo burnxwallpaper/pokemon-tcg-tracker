@@ -216,9 +216,16 @@ def write_catalog_item(
     if hist:
         history_points = max(history_points, len(hist))
 
+    from zh_names import stamp_display_name
+
+    named = {
+        "name_jp": field("name_jp"),
+        "name_zh": field("name_zh"),
+    }
+    stamp_display_name(named)
     doc = {
         "id": iid,
-        "name_zh": field("name_zh"),
+        "name_zh": named.get("name_zh"),
         "name_jp": field("name_jp"),
         "name_en": field("name_en"),
         "kind": field("kind"),
@@ -238,6 +245,8 @@ def write_catalog_item(
     }
     if wl.get("identity_review"):
         doc["identity_review"] = True
+    if named.get("name_zh_fallback"):
+        doc["name_zh_fallback"] = True
     path = CATALOG_DIR / f"{iid}.json"
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return path

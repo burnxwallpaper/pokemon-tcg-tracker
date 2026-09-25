@@ -33,6 +33,7 @@ from sources import hk_asks, snkrdunk, yahoo_auctions_jp  # noqa: E402
 from sources.hk_match import unified_sell_asks  # noqa: E402
 from sources.reference_links import attach_public_quotes  # noqa: E402
 from sources.yahoo_auctions_jp import comps_to_daily_history  # noqa: E402
+from zh_names import stamp_display_name  # noqa: E402
 from series_io import (  # noqa: E402
     load_series_points,
     merge_history_by_date,
@@ -632,6 +633,7 @@ def merge_and_compute(
             lowest_hkd=hk_low,
             bid_hkd=hk_bid,
         )
+        stamp_display_name(row)
         items.append(row)
     return items
 
