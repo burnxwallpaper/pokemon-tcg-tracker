@@ -423,6 +423,10 @@
       font-weight: 700;
       font-variant-numeric: tabular-nums;
     }
+    .m-line.primary strong { font-size: 1.02rem; }
+    .m-line.secondary strong { font-weight: 600; color: var(--muted); }
+    td.quote-main { font-weight: 700; color: var(--text); }
+    td.quote-side { font-weight: 500; font-size: 0.78rem; color: var(--muted); }
     .m-chg {
       display: flex;
       flex-wrap: wrap;
@@ -722,7 +726,7 @@
 </head>
 <body>
   <header>
-    <p class="site-version" id="siteVersion">版 2026-09-26.1258</p>
+    <p class="site-version" id="siteVersion">版 2026-09-26.1326</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
@@ -746,7 +750,7 @@
         <h2>流動性</h2>
         <span class="hint">預設只顯示卡（PSA10）· 盒要撳上面「盒」· 點擊列看詳情 · 參考連結另開來源頁</span>
       </div>
-      <p class="legend">最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝SNKRDUNK 現時放售換算港元後的中位數；沒有放售就留空。最低賣出價＝呢個池入面最低。詳情有 SNKRDUNK 同 Yahoo 連結。</p>
+      <p class="legend">主價係最低賣出價（有放售先顯示；沒有放售就顯示最近成交價）。最近成交價＝SNKRDUNK 公開成交（沒有成交時，Yahoo 已結束拍賣要和叫價接近才保留），以港元顯示。最新賣出價＝SNKRDUNK 現時放售換算港元後的中位數；沒有放售就留空。最低賣出價＝呢個池入面最低。近1日／近7日／近30日同大異動仍然用最近成交價。詳情有 SNKRDUNK 同 Yahoo 連結。</p>
       <div class="liq-search">
         <input id="liqSearch" type="search" placeholder="搜尋名稱（中文／日文／英文）" autocomplete="off" enterkeyhint="search" aria-label="搜尋品項名稱" />
         <span id="liqSearchCount" class="hint"></span>
@@ -950,13 +954,13 @@
         : `<span class="price-sub">暫無 SNKRDUNK</span>`;
       return `<div class="m-stack">
         <div class="m-name">${escapeHtml(name)}</div>
-        <div class="m-line"><span>最近成交</span><strong>${fmtHkd(it.price_hkd)}</strong></div>
+        ${mobileQuoteHtml(it)}
         <div class="m-chg">
           <span>近1日 ${pctHtml(it.short_change_pct)}</span>
           <span>近7日 ${pctHtml(it.medium_change_pct)}</span>
           <span>近30日 ${pctHtml(it.long_change_pct)}</span>
         </div>
-        <div class="m-line"><span>最新賣出價</span><strong>${fmtAskRange(it)}</strong></div>
+        <div class="m-line"><span>最新賣出價</span><strong>${fmtAsk(it)}</strong></div>
         <div class="m-line"><span>流動性</span><strong>${it.liquidity_score ?? "—"}</strong></div>
         <div class="m-line"><span>參考連結</span>${link}</div>
       </div>`;
@@ -1052,8 +1056,7 @@
               </div>
               <span class="kind ${it.kind === "sealed" ? "sealed" : ""}">${kind}</span>
             </div>
-            <div class="price">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
-            <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
+            ${quoteBlockHtml(it)}
             ${linksHtml(it)}
             <div class="row">
               <span>1日 ${pctHtml(it.short_change_pct)}</span>
@@ -1211,6 +1214,43 @@
       return null;
     }
 
+    function saleText(it) {
+      const sale = finiteNumber(it && it.price_hkd);
+      return sale == null ? "—" : fmtHkd(sale);
+    }
+
+    function primaryQuote(it) {
+      const low = lowestAskValue(it);
+      if (low != null) return { kind: "ask", text: fmtHkd(low) };
+      return { kind: "sale", text: saleText(it) };
+    }
+
+    function quoteBlockHtml(it) {
+      const primary = primaryQuote(it);
+      if (primary.kind === "ask") {
+        return `<div class="price">${primary.text}<span>最低賣出價</span></div><div class="price-sub">最近成交價 ${saleText(it)} · 最新賣出價 ${fmtAsk(it)}</div>`;
+      }
+      return `<div class="price">${primary.text}<span>最近成交價</span></div><div class="price-sub">最低賣出價 — · 最新賣出價 ${fmtAsk(it)}</div>`;
+    }
+
+    function mobileQuoteHtml(it) {
+      const primary = primaryQuote(it);
+      if (primary.kind === "ask") {
+        return `<div class="m-line primary"><span>最低賣出價</span><strong>${primary.text}</strong></div><div class="m-line secondary"><span>最近成交</span><strong>${saleText(it)}</strong></div>`;
+      }
+      return `<div class="m-line primary"><span>最近成交</span><strong>${primary.text}</strong></div><div class="m-line secondary"><span>最低賣出價</span><strong>—</strong></div>`;
+    }
+
+    function tableQuoteCells(it) {
+      const primary = primaryQuote(it);
+      const askTitle = "SNKRDUNK 放售池入面最低；只有一筆時等於最新賣出價";
+      const saleTitle = "SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD";
+      if (primary.kind === "ask") {
+        return `<td class="num desk-only quote-main" title="${askTitle}">${primary.text}</td><td class="num desk-only quote-side" title="${saleTitle}">${saleText(it)}</td>`;
+      }
+      return `<td class="num desk-only" title="${askTitle}">—</td><td class="num desk-only quote-main" title="${saleTitle}">${primary.text}</td>`;
+    }
+
     function liquiditySortValue(it) {
       if (liqSortKey === "price") return finiteNumber(it && it.price_hkd);
       if (liqSortKey === "ask") return latestAskValue(it);
@@ -1279,11 +1319,10 @@
               </div>
             </div>
           </td>
-          <td class="num desk-only" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
+          ${tableQuoteCells(it)}
           <td class="num pct-col desk-only" title="最近成交價對上約1日內的成交">${pctHtml(it.short_change_pct)}</td>
           <td class="num pct-col desk-only" title="最近成交價對上約7日前的成交">${pctHtml(it.medium_change_pct)}</td>
           <td class="num pct-col desk-only" title="最近成交價對上約30日前的成交">${pctHtml(it.long_change_pct)}</td>
-          <td class="num desk-only" title="SNKRDUNK 放售池入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
           <td class="num desk-only" title="SNKRDUNK 放售換算港元後的中位數">${fmtAsk(it)}</td>
           <td class="num desk-only"><strong>${it.liquidity_score ?? "—"}</strong></td>
           <td class="desk-only">${linksHtml(it)}</td>
@@ -1298,11 +1337,11 @@
               <th class="col-rank">#</th>
               <th class="col-img">圖</th>
               <th>品項</th>
+              <th class="desk-only">最低賣出價</th>
               <th class="desk-only">最近成交價</th>
               <th class="num pct-col desk-only">近1日</th>
               <th class="num pct-col desk-only">近7日</th>
               <th class="num pct-col desk-only">近30日</th>
-              <th class="desk-only">最低賣出價</th>
               <th class="desk-only">最新賣出價</th>
               <th class="desk-only">流動性</th>
               <th class="desk-only">參考連結</th>
@@ -1459,18 +1498,38 @@
       destroyCharts();
       closeChartZoom(false);
       const labels = history.map((p) => String(p.date));
+      const hkAsk = history.map((p) => finitePrice(p.hk_ask_hkd));
       const sold = history.map((p) => finitePrice(p.price_hkd));
-      const priceDatasets = [{
+      const hasAsk = hkAsk.some((v) => v != null);
+      const priceDatasets = [];
+      if (hasAsk) {
+        priceDatasets.push({
+          label: "最新賣出價",
+          data: hkAsk,
+          yAxisID: "y",
+          borderColor: "#5b9fd4",
+          backgroundColor: "rgba(91,159,212,0.12)",
+          borderWidth: 2,
+          pointRadius: hkAsk.map((v) => (v == null ? 0 : 3)),
+          pointHoverRadius: 4,
+          tension: 0,
+          spanGaps: false,
+          order: 0,
+        });
+      }
+      priceDatasets.push({
         label: "最近成交價",
         data: sold,
         yAxisID: "y",
-        borderColor: "#5b9fd4",
+        borderColor: hasAsk ? "#8b9bb0" : "#5b9fd4",
         backgroundColor: "transparent",
-        borderWidth: 2,
+        borderWidth: hasAsk ? 1.5 : 2,
+        borderDash: hasAsk ? [4, 3] : [],
         pointRadius: 0,
         tension: 0.25,
         spanGaps: false,
-      }];
+        order: hasAsk ? 1 : 0,
+      });
       priceChartModel = { labels, datasets: priceDatasets };
 
       const priceCtx = document.getElementById("priceChart");
@@ -1563,8 +1622,7 @@
               ${it.name_zh_fallback ? `<span class="badge">待譯</span>` : ""}
               ${it.identity_review ? `<span class="badge">待核對</span>` : ""}
             </div>
-            <div class="price" style="margin:0.2rem 0">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
-            <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
+            ${quoteBlockHtml(it)}
             <div class="row" style="margin-top:0.5rem">
               <span>1日 ${pctHtml(it.short_change_pct)}</span>
               <span>7日 ${pctHtml(it.medium_change_pct)}</span>
@@ -1573,17 +1631,17 @@
           </div>
         </div>
         <div class="detail-stats">
-          <div class="stat primary">
+          <div class="stat${primaryQuote(it).kind === "ask" ? " primary" : ""}">
+            <div class="label">最低賣出價</div>
+            <div class="value">${fmtLow(it)}</div>
+          </div>
+          <div class="stat${primaryQuote(it).kind === "ask" ? "" : " primary"}">
             <div class="label">最近成交價</div>
-            <div class="value">${fmtHkd(it.price_hkd)}</div>
+            <div class="value">${saleText(it)}</div>
           </div>
           <div class="stat">
             <div class="label">最新賣出價</div>
             <div class="value">${fmtAsk(it)}</div>
-          </div>
-          <div class="stat">
-            <div class="label">最低賣出價</div>
-            <div class="value">${fmtLow(it)}</div>
           </div>
           <div class="stat">
             <div class="label">量能 vs 7日均</div>
