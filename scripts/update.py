@@ -523,8 +523,8 @@ def merge_and_compute(
             })
             history.sort(key=lambda p: str(p.get("date") or ""))
 
-        # 1日 and 7日 are separate sold-price windows. A missing window stays null.
-        short_pct, med_pct = change_windows(history, today=today, current=price)
+        # 1日, 7日, and 30日 are separate sold-price windows. A missing window stays null.
+        short_pct, med_pct, long_pct = change_windows(history, today=today, current=price)
 
         vol_7d = avg_volume(history[:-1], 7) if len(history) > 1 else float(
             jp.get("volume_7d_est") or 0
@@ -594,6 +594,7 @@ def merge_and_compute(
             "price_jpy": price_jpy,
             "short_change_pct": short_pct,
             "medium_change_pct": med_pct,
+            "long_change_pct": long_pct,
             "volume_today": vol_today,
             "volume_7d_avg": vol_7d,
             "volume_ratio": vol_ratio,
@@ -672,6 +673,7 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
     th = cfg["thresholds"]
     short_t = th["short_move_pct"]
     med_t = th["medium_move_pct"]
+    long_t = th.get("long_move_pct", 50.0)
     vol_t = th["volume_vs_7d_avg"]
 
     big_moves = []
@@ -681,12 +683,18 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
             reasons.append(f"1日 {it['short_change_pct']:+.1f}%")
         if abs(it.get("medium_change_pct") or 0) >= med_t:
             reasons.append(f"7日 {it['medium_change_pct']:+.1f}%")
+        if abs(it.get("long_change_pct") or 0) >= long_t:
+            reasons.append(f"30日 {it['long_change_pct']:+.1f}%")
         if (it.get("volume_ratio") or 0) >= vol_t:
             reasons.append(f"量能 {it['volume_ratio']:.1f}×7日均")
         if reasons:
             big_moves.append({**it, "move_reasons": reasons})
     big_moves.sort(
-        key=lambda x: max(abs(x.get("short_change_pct") or 0), abs(x.get("medium_change_pct") or 0)),
+        key=lambda x: max(
+            abs(x.get("short_change_pct") or 0),
+            abs(x.get("medium_change_pct") or 0),
+            abs(x.get("long_change_pct") or 0),
+        ),
         reverse=True,
     )
 
@@ -738,13 +746,14 @@ def write_series_files(items: list[dict], meta: dict) -> int:
 
 def _apply_windows(items: list[dict], today: str) -> None:
     for it in items:
-        short_pct, med_pct = change_windows(
+        short_pct, med_pct, long_pct = change_windows(
             it.get("history") or [],
             today=today,
             current=_sold_price(it.get("price_hkd")),
         )
         it["short_change_pct"] = short_pct
         it["medium_change_pct"] = med_pct
+        it["long_change_pct"] = long_pct
 
 
 def _section_payload(items: list[dict], cfg: dict) -> dict:
@@ -757,7 +766,7 @@ def _section_payload(items: list[dict], cfg: dict) -> dict:
 
 
 def attach_series_history(items: list[dict], *, today: str, history_days: int) -> None:
-    """Merge on-disk sold series into each item, then set 1日 / 7日 from that series."""
+    """Merge on-disk sold series into each item, then set 1日 / 7日 / 30日 from that series."""
     for it in items:
         iid = it.get("id")
         if not isinstance(iid, str) or not iid:

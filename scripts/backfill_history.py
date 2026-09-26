@@ -85,6 +85,7 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
     th = cfg["thresholds"]
     short_t = th["short_move_pct"]
     med_t = th["medium_move_pct"]
+    long_t = th.get("long_move_pct", 50.0)
     vol_t = th["volume_vs_7d_avg"]
 
     big_moves = []
@@ -94,13 +95,17 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
             reasons.append(f"1日 {it['short_change_pct']:+.1f}%")
         if abs(it.get("medium_change_pct") or 0) >= med_t:
             reasons.append(f"7日 {it['medium_change_pct']:+.1f}%")
+        if abs(it.get("long_change_pct") or 0) >= long_t:
+            reasons.append(f"30日 {it['long_change_pct']:+.1f}%")
         if (it.get("volume_ratio") or 0) >= vol_t:
             reasons.append(f"量能 {it['volume_ratio']:.1f}×7日均")
         if reasons:
             big_moves.append({**it, "move_reasons": reasons})
     big_moves.sort(
         key=lambda x: max(
-            abs(x.get("short_change_pct") or 0), abs(x.get("medium_change_pct") or 0)
+            abs(x.get("short_change_pct") or 0),
+            abs(x.get("medium_change_pct") or 0),
+            abs(x.get("long_change_pct") or 0),
         ),
         reverse=True,
     )
@@ -246,7 +251,7 @@ def main() -> None:
 
         hist_before_today = [p for p in history if p.get("date") != today]
         sold_now = price if isinstance(price, (int, float)) and not isinstance(price, bool) else None
-        short_pct, med_pct = change_windows(history, today=today, current=sold_now)
+        short_pct, med_pct, long_pct = change_windows(history, today=today, current=sold_now)
 
         # Re-resolve today_point after merge
         today_point = next((p for p in history if p.get("date") == today), None)
@@ -315,6 +320,7 @@ def main() -> None:
                 "price_jpy": price_jpy,
                 "short_change_pct": short_pct,
                 "medium_change_pct": med_pct,
+                "long_change_pct": long_pct,
                 "volume_today": int(vol_today),
                 "volume_7d_avg": vol_7d,
                 "volume_ratio": vol_ratio,

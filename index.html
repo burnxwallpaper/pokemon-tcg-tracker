@@ -360,7 +360,7 @@
     }
     table.compact {
       width: 100%;
-      min-width: 920px;
+      min-width: 1080px;
       border-collapse: collapse;
       font-size: 0.85rem;
       background: var(--panel);
@@ -422,6 +422,14 @@
       color: var(--text);
       font-weight: 700;
       font-variant-numeric: tabular-nums;
+    }
+    .m-chg {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.12rem 0.55rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      line-height: 1.35;
     }
     .m-link,
     .m-link:visited,
@@ -714,7 +722,7 @@
 </head>
 <body>
   <header>
-    <p class="site-version" id="siteVersion">版 2026-09-26.0857</p>
+    <p class="site-version" id="siteVersion">版 2026-09-26.1258</p>
     <h1>寶可夢 TCG 行情追蹤</h1>
     <div class="meta-bar" id="metaBar">
       <span>載入中…</span>
@@ -749,7 +757,7 @@
     <section id="sec-moves" class="section" aria-label="大異動">
       <div class="section-head">
         <h2>大異動</h2>
-        <span class="hint">1日／7日最近成交價變動或量能異常 · 日子不夠顯示 — · 跟上面卡／盒 · 點擊卡片看詳情</span>
+        <span class="hint">1日／7日／30日最近成交價變動或量能異常 · 日子不夠顯示 — · 跟上面卡／盒 · 點擊卡片看詳情</span>
       </div>
       <div id="movesGrid"></div>
     </section>
@@ -808,7 +816,7 @@
 
     const DEFAULTS = {
       fx_jpy_to_hkd: 0.0495,
-      thresholds: { short_move_pct: 5, medium_move_pct: 12, volume_vs_7d_avg: 1.5 },
+      thresholds: { short_move_pct: 15, medium_move_pct: 25, long_move_pct: 50, volume_vs_7d_avg: 1.5 },
     };
 
     /** @type {Record<string, object>} */
@@ -848,6 +856,10 @@
       return sign + pct.toFixed(1) + "%";
     }
 
+    function pctHtml(pct) {
+      return `<span class="chg ${chgClass(pct)}">${fmtPct(pct)}</span>`;
+    }
+
     function kindLabel(kind) {
       return kind === "sealed" ? "盒" : "卡";
     }
@@ -870,7 +882,7 @@
         ${sample}
         <span>最後更新：<strong>${escapeHtml(meta.updated_at || "—")}</strong></span>
         <span>匯率：<strong>1 JPY = ${fx} HKD</strong></span>
-        <span>大異動門檻：1日 ±${th.short_move_pct}% · 7日 ±${th.medium_move_pct}% · 量能 ≥${th.volume_vs_7d_avg}×7日均</span>
+        <span>大異動門檻：1日 ±${th.short_move_pct}% · 7日 ±${th.medium_move_pct}% · 30日 ±${th.long_move_pct ?? 50}% · 量能 ≥${th.volume_vs_7d_avg}×7日均</span>
         <span>項目：<strong id="itemCount">${meta.item_count ?? "—"}</strong></span>
       `;
     }
@@ -939,6 +951,11 @@
       return `<div class="m-stack">
         <div class="m-name">${escapeHtml(name)}</div>
         <div class="m-line"><span>最近成交</span><strong>${fmtHkd(it.price_hkd)}</strong></div>
+        <div class="m-chg">
+          <span>近1日 ${pctHtml(it.short_change_pct)}</span>
+          <span>近7日 ${pctHtml(it.medium_change_pct)}</span>
+          <span>近30日 ${pctHtml(it.long_change_pct)}</span>
+        </div>
         <div class="m-line"><span>最新賣出價</span><strong>${fmtAskRange(it)}</strong></div>
         <div class="m-line"><span>流動性</span><strong>${it.liquidity_score ?? "—"}</strong></div>
         <div class="m-line"><span>參考連結</span>${link}</div>
@@ -1039,8 +1056,9 @@
             <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
             ${linksHtml(it)}
             <div class="row">
-              <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
-              <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
+              <span>1日 ${pctHtml(it.short_change_pct)}</span>
+              <span>7日 ${pctHtml(it.medium_change_pct)}</span>
+              <span>30日 ${pctHtml(it.long_change_pct)}</span>
               <span>量能 vs 7日均 ${it.volume_ratio != null ? it.volume_ratio.toFixed(1) + "×" : "—"}</span>
             </div>
             <div class="row">
@@ -1262,6 +1280,9 @@
             </div>
           </td>
           <td class="num desk-only" title="SNKRDUNK 成交；沒有成交時才用接近的 Yahoo 拍賣，換算 HKD"><strong>${fmtHkd(it.price_hkd)}</strong></td>
+          <td class="num pct-col desk-only" title="最近成交價對上約1日內的成交">${pctHtml(it.short_change_pct)}</td>
+          <td class="num pct-col desk-only" title="最近成交價對上約7日前的成交">${pctHtml(it.medium_change_pct)}</td>
+          <td class="num pct-col desk-only" title="最近成交價對上約30日前的成交">${pctHtml(it.long_change_pct)}</td>
           <td class="num desk-only" title="SNKRDUNK 放售池入面最低；只有一筆時等於最新賣出價">${fmtLow(it)}</td>
           <td class="num desk-only" title="SNKRDUNK 放售換算港元後的中位數">${fmtAsk(it)}</td>
           <td class="num desk-only"><strong>${it.liquidity_score ?? "—"}</strong></td>
@@ -1278,6 +1299,9 @@
               <th class="col-img">圖</th>
               <th>品項</th>
               <th class="desk-only">最近成交價</th>
+              <th class="num pct-col desk-only">近1日</th>
+              <th class="num pct-col desk-only">近7日</th>
+              <th class="num pct-col desk-only">近30日</th>
               <th class="desk-only">最低賣出價</th>
               <th class="desk-only">最新賣出價</th>
               <th class="desk-only">流動性</th>
@@ -1372,7 +1396,7 @@
       return fromFile;
     }
 
-    function priceChartOptions(large, hasAsk) {
+    function priceChartOptions(large) {
       const tickSize = large ? 12 : 10;
       const moneyTick = {
         color: "#8b9bb0",
@@ -1393,13 +1417,6 @@
           grid: { color: "rgba(46,61,82,0.5)" },
         },
       };
-      if (hasAsk) {
-        scales.y1 = {
-          position: "right",
-          ticks: { ...moneyTick, color: "#5b9fd4" },
-          grid: { drawOnChartArea: false },
-        };
-      }
       return {
         responsive: true,
         maintainAspectRatio: false,
@@ -1442,39 +1459,19 @@
       destroyCharts();
       closeChartZoom(false);
       const labels = history.map((p) => String(p.date));
-      // Ask is only a real observation. A missing ask stays null — never the sold price.
-      const hkAsk = history.map((p) => finitePrice(p.hk_ask_hkd));
-      const jpRef = history.map((p) => finitePrice(p.price_hkd));
-
-      const hasHk = hkAsk.some((v) => v != null);
-      const priceDatasets = [];
-      if (hasHk) {
-        priceDatasets.push({
-          label: "最新賣出價",
-          data: hkAsk,
-          yAxisID: "y1",
-          borderColor: "#5b9fd4",
-          backgroundColor: "rgba(91,159,212,0.12)",
-          borderWidth: 2,
-          pointRadius: hkAsk.map((v) => (v == null ? 0 : 3)),
-          pointHoverRadius: 4,
-          tension: 0,
-          spanGaps: false,
-        });
-      }
-      priceDatasets.push({
+      const sold = history.map((p) => finitePrice(p.price_hkd));
+      const priceDatasets = [{
         label: "最近成交價",
-        data: jpRef,
+        data: sold,
         yAxisID: "y",
-        borderColor: hasHk ? "#8b9bb0" : "#5b9fd4",
+        borderColor: "#5b9fd4",
         backgroundColor: "transparent",
-        borderWidth: hasHk ? 1.5 : 2,
-        borderDash: hasHk ? [4, 3] : [],
+        borderWidth: 2,
         pointRadius: 0,
         tension: 0.25,
         spanGaps: false,
-      });
-      priceChartModel = { labels, datasets: priceDatasets, hasAsk: hasHk };
+      }];
+      priceChartModel = { labels, datasets: priceDatasets };
 
       const priceCtx = document.getElementById("priceChart");
       if (!priceCtx || typeof Chart === "undefined") return;
@@ -1490,7 +1487,7 @@
         new Chart(priceCtx, {
           type: "line",
           data: cloneChartData(priceChartModel),
-          options: priceChartOptions(false, hasHk),
+          options: priceChartOptions(false),
         })
       );
     }
@@ -1529,7 +1526,7 @@
         zoomChart = new Chart(canvas, {
           type: "line",
           data: cloneChartData(model),
-          options: priceChartOptions(true, !!(model && model.hasAsk)),
+          options: priceChartOptions(true),
         });
         const closeBtn = document.getElementById("chartZoomClose");
         if (closeBtn) closeBtn.focus();
@@ -1569,8 +1566,9 @@
             <div class="price" style="margin:0.2rem 0">${fmtHkd(it.price_hkd)}<span>最近成交價</span></div>
             <div class="price-sub">最新賣出價 ${fmtAsk(it)} · 最低賣出價 ${fmtLow(it)}</div>
             <div class="row" style="margin-top:0.5rem">
-              <span>1日 <span class="chg ${chgClass(it.short_change_pct)}">${fmtPct(it.short_change_pct)}</span></span>
-              <span>7日 <span class="chg ${chgClass(it.medium_change_pct)}">${fmtPct(it.medium_change_pct)}</span></span>
+              <span>1日 ${pctHtml(it.short_change_pct)}</span>
+              <span>7日 ${pctHtml(it.medium_change_pct)}</span>
+              <span>30日 ${pctHtml(it.long_change_pct)}</span>
             </div>
           </div>
         </div>

@@ -296,23 +296,30 @@ def compute_sections(items: list[dict], cfg: dict) -> dict:
     th = cfg["thresholds"]
     short_t = th["short_move_pct"]
     med_t = th["medium_move_pct"]
+    long_t = th.get("long_move_pct", 50.0)
     vol_t = th["volume_vs_7d_avg"]
 
     big_moves = []
     for it in items:
         reasons = []
-        if abs(it["short_change_pct"]) >= short_t:
+        if abs(it.get("short_change_pct") or 0) >= short_t:
             reasons.append(f"1日 {it['short_change_pct']:+.1f}%")
-        if abs(it["medium_change_pct"]) >= med_t:
+        if abs(it.get("medium_change_pct") or 0) >= med_t:
             reasons.append(f"7日 {it['medium_change_pct']:+.1f}%")
-        if it["volume_ratio"] >= vol_t:
+        if abs(it.get("long_change_pct") or 0) >= long_t:
+            reasons.append(f"30日 {it['long_change_pct']:+.1f}%")
+        if (it.get("volume_ratio") or 0) >= vol_t:
             reasons.append(f"量能 {it['volume_ratio']:.1f}×7日均")
         if reasons:
             # sections keep full item incl. history for click-through
             big_moves.append({**it, "move_reasons": reasons})
 
     big_moves.sort(
-        key=lambda x: max(abs(x["short_change_pct"]), abs(x["medium_change_pct"])),
+        key=lambda x: max(
+            abs(x.get("short_change_pct") or 0),
+            abs(x.get("medium_change_pct") or 0),
+            abs(x.get("long_change_pct") or 0),
+        ),
         reverse=True,
     )
 
