@@ -10,14 +10,8 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 90,
-  "updated_at": "2026-09-25T23:37:33+08:00",
+  "updated_at": "2026-09-26T08:57:45+08:00",
   "history": [
-    {
-      "date": "2026-06-28",
-      "price_hkd": 8776.35,
-      "hk_ask_hkd": null,
-      "volume": 1.0
-    },
     {
       "date": "2026-06-29",
       "price_hkd": 8385.3,
@@ -356,9 +350,9 @@
     },
     {
       "date": "2026-08-24",
-      "price_hkd": 8510.44,
+      "price_hkd": 8365.5,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 3.0
     },
     {
       "date": "2026-08-25",
@@ -386,27 +380,27 @@
     },
     {
       "date": "2026-08-29",
-      "price_hkd": 8362.33,
+      "price_hkd": 8118.0,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
     {
       "date": "2026-08-30",
-      "price_hkd": 8417.03,
+      "price_hkd": 7870.5,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 2.0
     },
     {
       "date": "2026-08-31",
-      "price_hkd": 8290.9,
+      "price_hkd": 7771.5,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 3.0
     },
     {
       "date": "2026-09-01",
-      "price_hkd": 8574.04,
+      "price_hkd": 7920.0,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 3.0
     },
     {
       "date": "2026-09-02",
@@ -416,19 +410,19 @@
     },
     {
       "date": "2026-09-03",
-      "price_hkd": 8000.34,
+      "price_hkd": 7994.25,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
     {
       "date": "2026-09-04",
-      "price_hkd": 7487.91,
+      "price_hkd": 7796.25,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
     {
       "date": "2026-09-05",
-      "price_hkd": 7431.73,
+      "price_hkd": 7672.5,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -440,9 +434,9 @@
     },
     {
       "date": "2026-09-07",
-      "price_hkd": 7533.85,
+      "price_hkd": 7920.0,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 3.0
     },
     {
       "date": "2026-09-08",
@@ -452,13 +446,13 @@
     },
     {
       "date": "2026-09-09",
-      "price_hkd": 6726.06,
+      "price_hkd": 6920.1,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
     {
       "date": "2026-09-10",
-      "price_hkd": 6791.4,
+      "price_hkd": 6633.0,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -476,9 +470,9 @@
     },
     {
       "date": "2026-09-13",
-      "price_hkd": 5929.36,
+      "price_hkd": 6435.0,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 3.0
     },
     {
       "date": "2026-09-14",
@@ -500,21 +494,21 @@
     },
     {
       "date": "2026-09-17",
-      "price_hkd": 6392.08,
+      "price_hkd": 6009.3,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 4.0
     },
     {
       "date": "2026-09-18",
-      "price_hkd": 6236.95,
+      "price_hkd": 6286.5,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
     {
       "date": "2026-09-19",
-      "price_hkd": 6001.13,
+      "price_hkd": 6464.7,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 2.0
     },
     {
       "date": "2026-09-20",
@@ -524,25 +518,25 @@
     },
     {
       "date": "2026-09-21",
-      "price_hkd": 5706.81,
+      "price_hkd": 6642.9,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
     {
       "date": "2026-09-22",
-      "price_hkd": 5564.05,
+      "price_hkd": 6063.75,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 4.0
     },
     {
       "date": "2026-09-23",
-      "price_hkd": 5732.4,
+      "price_hkd": 5940.0,
       "hk_ask_hkd": null,
-      "volume": 1.0
+      "volume": 3.0
     },
     {
       "date": "2026-09-24",
-      "price_hkd": 5733.63,
+      "price_hkd": 6435.0,
       "hk_ask_hkd": 7000.0,
       "volume": 1.0
     },
@@ -550,7 +544,13 @@
       "date": "2026-09-25",
       "price_hkd": 5692.5,
       "hk_ask_hkd": 5952.38,
-      "volume": 3.0
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-26",
+      "price_hkd": 5692.5,
+      "hk_ask_hkd": 5989.5,
+      "volume": 1.0
     }
   ],
   "backfill": "snkrdunk_sales_chart"

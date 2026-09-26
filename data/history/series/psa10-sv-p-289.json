@@ -9,8 +9,8 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 89,
-  "updated_at": "2026-09-25T18:38:30+08:00",
+  "history_days": 90,
+  "updated_at": "2026-09-26T08:57:45+08:00",
   "history": [
     {
       "date": "2026-06-28",
@@ -134,7 +134,7 @@
     },
     {
       "date": "2026-07-18",
-      "price_hkd": 2028.36,
+      "price_hkd": 2074.05,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -206,7 +206,7 @@
     },
     {
       "date": "2026-07-31",
-      "price_hkd": 2195.77,
+      "price_hkd": 1890.9,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -254,7 +254,7 @@
     },
     {
       "date": "2026-08-08",
-      "price_hkd": 1937.08,
+      "price_hkd": 1905.75,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -296,7 +296,7 @@
     },
     {
       "date": "2026-08-15",
-      "price_hkd": 1720.32,
+      "price_hkd": 1777.05,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -458,7 +458,7 @@
     },
     {
       "date": "2026-09-11",
-      "price_hkd": 1174.29,
+      "price_hkd": 1212.75,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -544,6 +544,12 @@
       "date": "2026-09-25",
       "price_hkd": 1178.05,
       "hk_ask_hkd": 1200.38,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-26",
+      "price_hkd": 1187.01,
+      "hk_ask_hkd": 1188.0,
       "volume": 0.0
     }
   ],

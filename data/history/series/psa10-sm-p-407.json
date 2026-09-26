@@ -9,8 +9,8 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 61,
-  "updated_at": "2026-09-25T18:38:30+08:00",
+  "history_days": 62,
+  "updated_at": "2026-09-26T08:57:45+08:00",
   "history": [
     {
       "date": "2026-06-28",
@@ -290,7 +290,7 @@
     },
     {
       "date": "2026-09-09",
-      "price_hkd": 7124.29,
+      "price_hkd": 9504.0,
       "hk_ask_hkd": null,
       "volume": 1.0
     },
@@ -376,6 +376,12 @@
       "date": "2026-09-25",
       "price_hkd": 5890.5,
       "hk_ask_hkd": 6930.0,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-26",
+      "price_hkd": 6138.0,
+      "hk_ask_hkd": 6311.25,
       "volume": 0.0
     }
   ],

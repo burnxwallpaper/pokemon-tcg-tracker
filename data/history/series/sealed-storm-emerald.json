@@ -9,8 +9,8 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 72,
-  "updated_at": "2026-09-25T23:37:33+08:00",
+  "history_days": 73,
+  "updated_at": "2026-09-26T08:57:45+08:00",
   "history": [
     {
       "date": "2026-07-04",
@@ -442,7 +442,13 @@
       "date": "2026-09-25",
       "price_hkd": 544.5,
       "hk_ask_hkd": 549.99,
-      "volume": 23.0
+      "volume": 21.0
+    },
+    {
+      "date": "2026-09-26",
+      "price_hkd": 544.4,
+      "hk_ask_hkd": 544.45,
+      "volume": 26.0
     }
   ],
   "backfill": "snkrdunk_sales_chart"

@@ -1,6 +1,6 @@
 {
   "id": "psa10-mf-043",
-  "name_zh": "エーフィex SAR仕様 [MF 043/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
+  "name_zh": "太陽伊布ex SAR樣式 [MF 043/040](構築牌組「30th CELEBRATION 高級牌組組合 太陽伊布・月亮伊布」)",
   "name_jp": "エーフィex SAR仕様 [MF 043/040](構築デッキ「30th CELEBRATION プレミアムデッキセット エーフィ・ブラッキー」)",
   "kind": "psa10",
   "set": "MF / 043/040",
@@ -9,11 +9,17 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T15:32:09+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-26T08:57:45+08:00",
   "history": [
     {
       "date": "2026-09-25",
+      "price_hkd": null,
+      "hk_ask_hkd": null,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-26",
       "price_hkd": null,
       "hk_ask_hkd": null,
       "volume": 0.0
