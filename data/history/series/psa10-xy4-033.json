@@ -1,0 +1,22 @@
+{
+  "id": "psa10-xy4-033",
+  "name_zh": "耿鬼EX RR 初版 [XY4 033/088]",
+  "name_jp": "ゲンガーEX RR :1ED [XY4 033/088](拡張パック「ファントムゲート」)",
+  "kind": "psa10",
+  "set": "XY4 / 033/088",
+  "image": "images/psa10-xy4-033.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "price_hkd": 2969.95,
+      "hk_ask_hkd": 3464.97,
+      "volume": 0.0
+    }
+  ]
+}

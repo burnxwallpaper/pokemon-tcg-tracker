@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-140591",
+  "name_zh": "寶可夢卡牌遊戲 朱&紫 擴充包 「古代的咆哮」（PARADOX RIFT） 盒",
+  "name_jp": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック 「古代の咆哮」（PARADOX RIFT） ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-140591.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 494.01,
+      "volume": 0.0,
+      "price_hkd": 485.1
+    }
+  ]
+}

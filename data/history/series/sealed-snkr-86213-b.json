@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-86213-b",
+  "name_zh": "寶可夢卡牌遊戲 劍&盾 擴充包 迷途深淵 盒",
+  "name_jp": "ポケモンカードゲーム ソード＆シールド 拡張パック ロストアビス ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-86213-b.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 2285.91,
+      "volume": 0.0,
+      "price_hkd": 2212.65
+    }
+  ]
+}

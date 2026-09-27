@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s-p-124",
+  "name_zh": "皮卡丘: 特典 P [S-P 124]",
+  "name_jp": "ピカチュウ: プロモ P [S-P 124](ピカピカ！ピカチュウ！プロモカードキャンペーン)",
+  "kind": "psa10",
+  "set": "S-P / 124",
+  "image": "images/psa10-s-p-124.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 1163.25,
+      "volume": 0.0,
+      "price_hkd": 1039.5
+    }
+  ]
+}

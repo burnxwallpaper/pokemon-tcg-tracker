@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s8b-187",
+  "name_zh": "噴火龍 CHR[s8b 187/184](高級擴充包「VMAX絕群壓軸」)",
+  "name_jp": "リザードン CHR[s8b 187/184](ハイクラスパック「VMAXクライマックス」)",
+  "kind": "psa10",
+  "set": "s8b / 187/184",
+  "image": "images/psa10-s8b-187.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 445.45,
+      "volume": 0.0,
+      "price_hkd": 430.65
+    }
+  ]
+}

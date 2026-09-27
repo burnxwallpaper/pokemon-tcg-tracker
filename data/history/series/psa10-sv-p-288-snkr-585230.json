@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv-p-288-snkr-585230",
+  "name_zh": "比克提尼 P [SV-P 288]",
+  "name_jp": "ビクティニ P [SV-P 288](プロモーションカード「ビクティニBWR争奪戦 上位賞 / おうちでブラックボルト・ホワイトフレア デッキ構築戦キャンペーン)",
+  "kind": "psa10",
+  "set": "SV-P / 288",
+  "image": "images/psa10-sv-p-288-snkr-585230.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 12870.0,
+      "volume": 0.0,
+      "price_hkd": 10889.95
+    }
+  ]
+}

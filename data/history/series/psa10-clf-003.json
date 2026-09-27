@@ -1,0 +1,46 @@
+{
+  "id": "psa10-clf-003",
+  "name_zh": "妙蛙花 [CLF 003/032](寶可夢卡牌遊戲 Classic)",
+  "name_jp": "フシギバナ [CLF 003/032](ポケモンカードゲーム Classic)",
+  "kind": "psa10",
+  "set": "CLF / 003/032",
+  "image": "images/psa10-clf-003.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 5,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-08-22",
+      "price_hkd": 633.6,
+      "hk_ask_hkd": null,
+      "volume": 2.0
+    },
+    {
+      "date": "2026-08-26",
+      "price_hkd": 589.05,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-29",
+      "price_hkd": 638.55,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-01",
+      "price_hkd": 544.5,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 495.0,
+      "volume": 0.0,
+      "price_hkd": 494.5
+    }
+  ]
+}

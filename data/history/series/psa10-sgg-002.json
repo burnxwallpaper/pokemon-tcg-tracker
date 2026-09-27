@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sgg-002",
+  "name_zh": "耿鬼VMAX [SGG 002/019]",
+  "name_jp": "ゲンガーVMAX [SGG 002/019](ハイクラスデッキ「ゲンガーVMAX」)",
+  "kind": "psa10",
+  "set": "SGG / 002/019",
+  "image": "images/psa10-sgg-002.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 631.12,
+      "volume": 0.0,
+      "price_hkd": 576.68
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "psa10-cp6-090",
+  "name_zh": "噴火龍EX SR 初版 [CP6 090/087]",
+  "name_jp": "リザードンEX SR :1ED [CP6 090/087](コンセプトパック「ポケットモンスターカードゲーム 拡張パック 20th Anniversary」)",
+  "kind": "psa10",
+  "set": "CP6 / 090/087",
+  "image": "images/psa10-cp6-090.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "price_hkd": 22621.5,
+      "hk_ask_hkd": 27225.0,
+      "volume": 0.0
+    }
+  ]
+}

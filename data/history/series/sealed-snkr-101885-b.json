@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-101885-b",
+  "name_zh": "寶可夢卡牌遊戲 劍&盾 高級擴充包 天地萬物VSTAR 盒",
+  "name_jp": "ポケモンカードゲーム ソード＆シールド ハイクラスパック VSTARユニバース ボックス (Vユニ)",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-101885-b.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 1252.35,
+      "volume": 0.0,
+      "price_hkd": 1252.35
+    }
+  ]
+}

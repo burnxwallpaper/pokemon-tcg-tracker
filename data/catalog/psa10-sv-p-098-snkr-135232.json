@@ -1,0 +1,20 @@
+{
+  "id": "psa10-sv-p-098-snkr-135232",
+  "name_zh": "名偵探皮卡丘: 特典 [SV-P 098](特典卡「SV-P」)",
+  "name_jp": "名探偵ピカチュウ: プロモ [SV-P 098](プロモーションカード「SV-P」)",
+  "name_en": null,
+  "kind": "psa10",
+  "set": "SV-P / 098",
+  "search_jp": "名探偵ピカチュウ: プロモ [SV-P 098](プロモーションカード「SV-P」)",
+  "search_hk": "名探偵ピカチュウ: プロモ [SV-P 098](プロモーションカード「SV-P」)",
+  "tcgdex_id": null,
+  "image": "images/psa10-sv-p-098-snkr-135232.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/fefa8a9a-35f9-4634-9844-dd5d55dcfcbb.webp",
+  "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
+  "image_source": "official",
+  "series_path": "history/series/psa10-sv-p-098-snkr-135232.json",
+  "history_points": 7,
+  "first_seen": "2026-07-02",
+  "last_seen": "2026-09-27",
+  "updated_at": "2026-09-27T09:02:56+08:00"
+}

@@ -1,0 +1,34 @@
+{
+  "id": "psa10-sm-p-381",
+  "name_zh": "皮皮 (莉莉艾) : 特典[SM-P 381](特典卡「SM-P」)",
+  "name_jp": "ピッピ (リーリエ) : プロモ[SM-P 381](プロモーションカード「SM-P」)",
+  "kind": "psa10",
+  "set": "SM-P / 381",
+  "image": "images/psa10-sm-p-381.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 3,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-08-15",
+      "price_hkd": 4846.05,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-27",
+      "price_hkd": 4752.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 3687.75,
+      "volume": 0.0,
+      "price_hkd": 3118.5
+    }
+  ]
+}

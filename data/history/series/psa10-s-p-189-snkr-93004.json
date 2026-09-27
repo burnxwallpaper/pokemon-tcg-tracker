@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s-p-189-snkr-93004",
+  "name_zh": "太陽伊布VMAX: SA/特典[S-P 189](特典卡「S-P」)",
+  "name_jp": "エーフィVMAX: SA/プロモ[S-P 189](プロモーションカード「S-P」)",
+  "kind": "psa10",
+  "set": "S-P / 189",
+  "image": "images/psa10-s-p-189-snkr-93004.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 2970.0,
+      "volume": 0.0,
+      "price_hkd": 2514.6
+    }
+  ]
+}

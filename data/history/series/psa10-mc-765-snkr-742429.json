@@ -1,0 +1,28 @@
+{
+  "id": "psa10-mc-765-snkr-742429",
+  "name_zh": "莉莉艾的皮皮ex SAR樣式 [MC 765/742]",
+  "name_jp": "リーリエのピッピex SAR仕様 [MC 765/742](スタートデッキ100「バトルコレクション」)",
+  "kind": "psa10",
+  "set": "MC / 765/742",
+  "image": "images/psa10-mc-765-snkr-742429.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-07-28",
+      "price_hkd": 7623.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 3489.72,
+      "volume": 0.0,
+      "price_hkd": 3415.5
+    }
+  ]
+}

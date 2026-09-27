@@ -1,0 +1,28 @@
+{
+  "id": "psa10-s-p-265-snkr-328774",
+  "name_zh": "皮卡丘VMAX: 特典 P [S-P 265](月刊快樂快樂2022年2月號附錄)",
+  "name_jp": "ピカチュウVMAX: プロモ P [S-P 265](月刊コロコロコミック2022年2月号付録)",
+  "kind": "psa10",
+  "set": "S-P / 265",
+  "image": "images/psa10-s-p-265-snkr-328774.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-09",
+      "price_hkd": 519.75,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 524.7,
+      "volume": 0.0,
+      "price_hkd": 544.45
+    }
+  ]
+}

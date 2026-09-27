@@ -1,0 +1,20 @@
+{
+  "id": "psa10-cll-008-snkr-115274",
+  "name_zh": "皮卡丘 [CLL 008/032](寶可夢卡牌遊戲 Classic)",
+  "name_jp": "ピカチュウ [CLL 008/032](ポケモンカードゲーム Classic)",
+  "name_en": null,
+  "kind": "psa10",
+  "set": "CLL / 008/032",
+  "search_jp": "ピカチュウ [CLL 008/032](ポケモンカードゲーム Classic)",
+  "search_hk": "ピカチュウ [CLL 008/032](ポケモンカードゲーム Classic)",
+  "tcgdex_id": null,
+  "image": "images/psa10-cll-008-snkr-115274.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/b7976b6f-01f1-44b6-aec1-afaa9bace54c.webp",
+  "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
+  "image_source": "official",
+  "series_path": "history/series/psa10-cll-008-snkr-115274.json",
+  "history_points": 8,
+  "first_seen": "2026-08-19",
+  "last_seen": "2026-09-27",
+  "updated_at": "2026-09-27T09:02:56+08:00"
+}

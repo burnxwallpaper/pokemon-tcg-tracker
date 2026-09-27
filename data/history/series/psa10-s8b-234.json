@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s8b-234",
+  "name_zh": "謎擬ＱVMAX (阿塞蘿拉) CSR[S8b 234/184](高級擴充包「VMAX絕群壓軸」)",
+  "name_jp": "ミミッキュVMAX (アセロラ) CSR[S8b 234/184](ハイクラスパック「VMAXクライマックス」)",
+  "kind": "psa10",
+  "set": "S8b / 234/184",
+  "image": "images/psa10-s8b-234.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "price_hkd": 816.75,
+      "hk_ask_hkd": 977.62,
+      "volume": 0.0
+    }
+  ]
+}

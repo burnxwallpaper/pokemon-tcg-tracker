@@ -1,0 +1,52 @@
+{
+  "id": "psa10-mc-085-snkr-740244",
+  "name_zh": "超級噴火龍Yex :鏡 [MC 085/742]",
+  "name_jp": "メガリザードンYex :ミラー [MC 085/742](スタートデッキ100「バトルコレクション」)",
+  "kind": "psa10",
+  "set": "MC / 085/742",
+  "image": "images/psa10-mc-085-snkr-740244.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 6,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-07-22",
+      "price_hkd": 1336.45,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-27",
+      "price_hkd": 1287.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-28",
+      "price_hkd": 1287.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-10",
+      "price_hkd": 866.15,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-19",
+      "price_hkd": 569.25,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 732.6,
+      "volume": 0.0,
+      "price_hkd": 623.7
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "id": "psa10-s12a-217",
-  "name_zh": "グレイシアVSTAR SAR[s12a 217/172](ハイクラスパック「VSTARユニバース」)",
+  "name_zh": "冰伊布VSTAR SAR[s12a 217/172](高級擴充包「天地萬物VSTAR」)",
   "name_jp": "グレイシアVSTAR SAR[s12a 217/172](ハイクラスパック「VSTARユニバース」)",
   "kind": "psa10",
   "set": "s12a / 217/172",
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 494.95,
       "hk_ask_hkd": 637.32,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 594.0,
+      "volume": 0.0,
+      "price_hkd": 519.75
     }
   ]
 }

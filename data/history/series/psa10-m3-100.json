@@ -1,6 +1,6 @@
 {
   "id": "psa10-m3-100",
-  "name_zh": "ニャースex SR [M3 100/080](拡張パック「ムニキスゼロ」)",
+  "name_zh": "喵喵ex SR [M3 100/080](擴充包「虛無歸零」)",
   "name_jp": "ニャースex SR [M3 100/080](拡張パック「ムニキスゼロ」)",
   "kind": "psa10",
   "set": "M3 / 100/080",
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 311.55,
       "hk_ask_hkd": 494.25,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 494.48,
+      "volume": 0.0,
+      "price_hkd": 296.95
     }
   ]
 }

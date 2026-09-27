@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-12883-b",
+  "name_zh": "寶可夢卡牌遊戲 劍&盾 強化擴充包 伊布英雄 盒",
+  "name_jp": "ポケモンカードゲーム ソード ＆ シールド 強化拡張パック イーブイヒーローズ ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-12883-b.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 6435.0,
+      "volume": 0.0,
+      "price_hkd": 6435.0
+    }
+  ]
+}

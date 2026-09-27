@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s8b-255",
+  "name_zh": "阿塞蘿拉的予感 SR[S8b 255/184](高級擴充包「VMAX絕群壓軸」)",
+  "name_jp": "アセロラの予感 SR[S8b 255/184](ハイクラスパック「VMAXクライマックス」)",
+  "kind": "psa10",
+  "set": "S8b / 255/184",
+  "image": "images/psa10-s8b-255.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 738.77,
+      "volume": 0.0,
+      "price_hkd": 594.0
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "psa10-clk-001",
+  "name_zh": "傑尼龜 [CLK 001/032](寶可夢卡牌遊戲 Classic)",
+  "name_jp": "ゼニガメ [CLK 001/032](ポケモンカードゲーム Classic)",
+  "name_en": null,
+  "kind": "psa10",
+  "set": "CLK / 001/032",
+  "search_jp": "ゼニガメ [CLK 001/032](ポケモンカードゲーム Classic)",
+  "search_hk": "ゼニガメ [CLK 001/032](ポケモンカードゲーム Classic)",
+  "tcgdex_id": null,
+  "image": "images/psa10-clk-001.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/549e7cd2-3816-4838-9809-f7a2c3de16e2.webp",
+  "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
+  "image_source": "official",
+  "series_path": "history/series/psa10-clk-001.json",
+  "history_points": 1,
+  "first_seen": "2026-09-27",
+  "last_seen": "2026-09-27",
+  "updated_at": "2026-09-27T09:02:56+08:00"
+}

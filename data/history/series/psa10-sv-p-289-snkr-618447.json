@@ -1,0 +1,52 @@
+{
+  "id": "psa10-sv-p-289-snkr-618447",
+  "name_zh": "福岡的皮卡丘 P [SV-P 289]",
+  "name_jp": "フクオカのピカチュウ P [SV-P 289](スペシャルBOX「ポケモンセンターフクオカ」)",
+  "kind": "psa10",
+  "set": "SV-P / 289",
+  "image": "images/psa10-sv-p-289-snkr-618447.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 6,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-07-18",
+      "price_hkd": 2074.05,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-07-31",
+      "price_hkd": 1890.9,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-08",
+      "price_hkd": 1905.75,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-15",
+      "price_hkd": 1777.05,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-11",
+      "price_hkd": 1212.75,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 1187.95,
+      "volume": 0.0,
+      "price_hkd": 1178.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-204134",
+  "name_zh": "寶可夢卡牌遊戲 朱&紫 強化擴充包「緋紅薄霧」盒",
+  "name_jp": "ポケモンカードゲーム スカーレット&バイオレット 強化拡張パック「クリムゾンヘイズ」ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-204134.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 549.05,
+      "volume": 0.0,
+      "price_hkd": 554.4
+    }
+  ]
+}

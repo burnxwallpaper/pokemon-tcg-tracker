@@ -1,0 +1,58 @@
+{
+  "id": "psa10-sv-p-098-snkr-135232",
+  "name_zh": "名偵探皮卡丘: 特典 [SV-P 098](特典卡「SV-P」)",
+  "name_jp": "名探偵ピカチュウ: プロモ [SV-P 098](プロモーションカード「SV-P」)",
+  "kind": "psa10",
+  "set": "SV-P / 098",
+  "image": "images/psa10-sv-p-098-snkr-135232.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 7,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-07-02",
+      "price_hkd": 2772.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-23",
+      "price_hkd": 2970.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-26",
+      "price_hkd": 2821.45,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-08-30",
+      "price_hkd": 2722.5,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-08",
+      "price_hkd": 2598.75,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-25",
+      "price_hkd": 2291.85,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 2425.47,
+      "volume": 0.0,
+      "price_hkd": 2326.45
+    }
+  ]
+}

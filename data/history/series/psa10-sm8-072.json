@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sm8-072",
+  "name_zh": "洛奇亞GX RR [SM8 072/095]",
+  "name_jp": "ルギアGX RR [SM8 072/095](拡張パック「超爆インパクト」)",
+  "kind": "psa10",
+  "set": "SM8 / 072/095",
+  "image": "images/psa10-sm8-072.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "price_hkd": 608.85,
+      "hk_ask_hkd": 611.33,
+      "volume": 0.0
+    }
+  ]
+}

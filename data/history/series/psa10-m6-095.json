@@ -1,6 +1,6 @@
 {
   "id": "psa10-m6-095",
-  "name_zh": "メガレックウザex SR [M6 095/076](拡張パック「ストームエメラルダ」)",
+  "name_zh": "超級烈空坐ex SR [M6 095/076](擴充包「綠寶石風暴」)",
   "name_jp": "メガレックウザex SR [M6 095/076](拡張パック「ストームエメラルダ」)",
   "kind": "psa10",
   "set": "M6 / 095/076",
@@ -9,13 +9,19 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 128.7,
       "hk_ask_hkd": 148.5,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-27",
+      "price_hkd": null,
+      "hk_ask_hkd": null,
       "volume": 0.0
     }
   ]

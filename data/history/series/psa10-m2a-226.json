@@ -1,7 +1,7 @@
 {
   "id": "psa10-m2a-226",
-  "name_zh": "メガサーナイトex MA [M2a 226/193](ハイクラスパック「MEGAドリームex」)",
-  "name_jp": "メガサーナイトex MA [M2a 226/193](ハイクラスパック「MEGAドリームex」)",
+  "name_zh": "メガサーナイトex MA :中国語箔押しエラー [M2a 226/193](ハイクラスパック「MEGAドリームex」)",
+  "name_jp": "メガサーナイトex MA :中国語箔押しエラー [M2a 226/193](ハイクラスパック「MEGAドリームex」)",
   "kind": "psa10",
   "set": "M2a / 226/193",
   "image": "images/psa10-m2a-226.webp",
@@ -9,13 +9,19 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 221.76,
       "hk_ask_hkd": 227.68,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-27",
+      "price_hkd": 544.5,
+      "hk_ask_hkd": 1037.03,
       "volume": 0.0
     }
   ]

@@ -1,6 +1,6 @@
 {
   "id": "sealed-snkr-881424",
-  "name_zh": "ポケモンカードゲームMEGA 特別セット「30th CELEBRATION FUTURISTIC BOX」",
+  "name_zh": "寶可夢卡牌遊戲MEGA 特別組合「30th CELEBRATION FUTURISTIC BOX」",
   "name_jp": "ポケモンカードゲームMEGA 特別セット「30th CELEBRATION FUTURISTIC BOX」",
   "kind": "sealed",
   "set": null,
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-27T09:02:56+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 3118.5,
       "hk_ask_hkd": 3118.5,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 3217.45,
+      "volume": 0.0,
+      "price_hkd": 3192.75
     }
   ]
 }

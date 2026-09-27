@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv10-124",
+  "name_zh": "火箭隊的火焰鳥ex SAR [SV10 124/098](擴充包「火箭隊的榮耀」)",
+  "name_jp": "ロケット団のファイヤーex SAR [SV10 124/098](拡張パック「ロケット団の栄光」)",
+  "kind": "psa10",
+  "set": "SV10 / 124/098",
+  "image": "images/psa10-sv10-124.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "hk_ask_hkd": 1457.78,
+      "volume": 0.0,
+      "price_hkd": 1291.9
+    }
+  ]
+}

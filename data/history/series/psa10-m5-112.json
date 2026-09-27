@@ -1,0 +1,22 @@
+{
+  "id": "psa10-m5-112",
+  "name_zh": "超級捷拉奧拉ex SAR [M5 112/081](擴充包「深淵之瞳」)",
+  "name_jp": "メガゼラオラex SAR [M5 112/081](拡張パック「アビスアイ」)",
+  "kind": "psa10",
+  "set": "M5 / 112/081",
+  "image": "images/psa10-m5-112.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history": [
+    {
+      "date": "2026-09-27",
+      "price_hkd": 714.98,
+      "hk_ask_hkd": 688.05,
+      "volume": 0.0
+    }
+  ]
+}

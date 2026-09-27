@@ -8,13 +8,13 @@
   "search_jp": "ピカチュウV ビニールなし[S8a-G 001/015](25th アニバーサリー ゴールデンボックス)",
   "search_hk": "ピカチュウV ビニールなし[S8a-G 001/015](25th アニバーサリー ゴールデンボックス)",
   "tcgdex_id": null,
-  "image": "images/psa10-s8a-g-001.webp",
-  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/737543c9-7aa9-49a4-aea1-699044d64b0a.webp",
+  "image": null,
+  "image_official_url": null,
   "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
-  "image_source": "official",
+  "image_source": "none",
   "series_path": "history/series/psa10-s8a-g-001.json",
-  "history_points": 89,
+  "history_points": 90,
   "first_seen": "2026-06-28",
-  "last_seen": "2026-09-26",
-  "updated_at": "2026-09-26T08:57:45+08:00"
+  "last_seen": "2026-09-27",
+  "updated_at": "2026-09-27T09:02:56+08:00"
 }

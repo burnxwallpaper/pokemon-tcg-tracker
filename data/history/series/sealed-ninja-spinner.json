@@ -10,14 +10,8 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 90,
-  "updated_at": "2026-09-26T08:57:45+08:00",
+  "updated_at": "2026-09-27T09:02:56+08:00",
   "history": [
-    {
-      "date": "2026-06-29",
-      "price_hkd": 495.05,
-      "hk_ask_hkd": null,
-      "volume": 1.0
-    },
     {
       "date": "2026-06-30",
       "price_hkd": 494.95,
@@ -548,9 +542,15 @@
     },
     {
       "date": "2026-09-26",
-      "price_hkd": 396.0,
+      "price_hkd": 386.1,
       "hk_ask_hkd": 400.95,
-      "volume": 1.0
+      "volume": 3.0
+    },
+    {
+      "date": "2026-09-27",
+      "price_hkd": 415.8,
+      "hk_ask_hkd": 415.8,
+      "volume": 3.0
     }
   ],
   "backfill": "snkrdunk_sales_chart"
