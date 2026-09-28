@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sm7-104",
+  "name_zh": "露琪亞 SR[SM7 104/096]",
+  "name_jp": "ルチア SR[SM7 104/096](拡張パック「裂空のカリスマ」)",
+  "kind": "psa10",
+  "set": "SM7 / 104/096",
+  "image": "images/psa10-sm7-104.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 10766.25,
+      "volume": 0.0,
+      "price_hkd": 9899.95
+    }
+  ]
+}

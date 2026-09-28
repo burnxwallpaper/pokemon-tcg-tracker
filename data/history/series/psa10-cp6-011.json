@@ -1,6 +1,6 @@
 {
   "id": "psa10-cp6-011",
-  "name_zh": "リザードン R :1ED [CP6 011/087](コンセプトパック「ポケットモンスターカードゲーム 拡張パック 20th Anniversary」)",
+  "name_zh": "噴火龍 R 初版 [CP6 011/087]",
   "name_jp": "リザードン R :1ED [CP6 011/087](コンセプトパック「ポケットモンスターカードゲーム 拡張パック 20th Anniversary」)",
   "kind": "psa10",
   "set": "CP6 / 011/087",
@@ -9,12 +9,18 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 5499.99,
+      "hk_ask_hkd": 7326.0,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-28",
+      "price_hkd": 5717.25,
       "hk_ask_hkd": 7326.0,
       "volume": 0.0
     }

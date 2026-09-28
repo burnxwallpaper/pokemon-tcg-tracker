@@ -1,0 +1,34 @@
+{
+  "id": "psa10-sv-p-062",
+  "name_zh": "伊布: 特典 [SV-P 062](「YU NAGABA×寶可夢卡牌遊戲」特典卡「SV-P」)",
+  "name_jp": "イーブイ: プロモ [SV-P 062](「YU NAGABA×ポケモンカードゲーム」プロモーションカード「SV-P」)",
+  "kind": "psa10",
+  "set": "SV-P / 062",
+  "image": "images/psa10-sv-p-062.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 3,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-01",
+      "price_hkd": 1782.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-22",
+      "price_hkd": 1089.0,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1237.47,
+      "volume": 0.0,
+      "price_hkd": 1113.75
+    }
+  ]
+}

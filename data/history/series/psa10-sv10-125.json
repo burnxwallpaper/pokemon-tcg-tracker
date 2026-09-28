@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv10-125",
+  "name_zh": "火箭隊的超夢ex SAR [SV10 125/098](擴充包「火箭隊的榮耀」)",
+  "name_jp": "ロケット団のミュウツーex SAR [SV10 125/098](拡張パック「ロケット団の栄光」)",
+  "kind": "psa10",
+  "set": "SV10 / 125/098",
+  "image": "images/psa10-sv10-125.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 3945.15,
+      "volume": 0.0,
+      "price_hkd": 3712.5
+    }
+  ]
+}

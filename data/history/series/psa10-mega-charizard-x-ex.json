@@ -10,14 +10,8 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 90,
-  "updated_at": "2026-09-27T09:02:56+08:00",
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
-    {
-      "date": "2026-06-30",
-      "price_hkd": 8425.35,
-      "hk_ask_hkd": null,
-      "volume": 1.0
-    },
     {
       "date": "2026-07-01",
       "price_hkd": 8439.06,
@@ -346,7 +340,7 @@
       "date": "2026-08-24",
       "price_hkd": 8365.5,
       "hk_ask_hkd": null,
-      "volume": 3.0
+      "volume": 1.0
     },
     {
       "date": "2026-08-25",
@@ -548,9 +542,15 @@
     },
     {
       "date": "2026-09-27",
-      "price_hkd": 5741.95,
+      "price_hkd": 5815.26,
       "hk_ask_hkd": 5940.0,
-      "volume": 0.0
+      "volume": 2.0
+    },
+    {
+      "date": "2026-09-28",
+      "price_hkd": 5667.75,
+      "hk_ask_hkd": 5890.5,
+      "volume": 2.0
     }
   ],
   "backfill": "snkrdunk_sales_chart"

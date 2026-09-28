@@ -1,0 +1,28 @@
+{
+  "id": "psa10-sv-p-065",
+  "name_zh": "火伊布: 特典 [SV-P 065](「YU NAGABA×寶可夢卡牌遊戲」特典卡「SV-P」)",
+  "name_jp": "ブースター: プロモ [SV-P 065](「YU NAGABA×ポケモンカードゲーム」プロモーションカード「SV-P」)",
+  "kind": "psa10",
+  "set": "SV-P / 065",
+  "image": "images/psa10-sv-p-065.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-08-14",
+      "price_hkd": 1375.11,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1113.75,
+      "volume": 0.0,
+      "price_hkd": 1113.75
+    }
+  ]
+}

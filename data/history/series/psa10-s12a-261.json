@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s12a-261",
+  "name_zh": "騎拉帝納VSTAR UR[s12a 261/172](高級擴充包「天地萬物VSTAR」)",
+  "name_jp": "ギラティナVSTAR UR[s12a 261/172](ハイクラスパック「VSTARユニバース」)",
+  "kind": "psa10",
+  "set": "s12a / 261/172",
+  "image": "images/psa10-s12a-261.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 2058.7,
+      "volume": 0.0,
+      "price_hkd": 1980.0
+    }
+  ]
+}

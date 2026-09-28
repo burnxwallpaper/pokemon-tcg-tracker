@@ -1,6 +1,6 @@
 {
   "id": "psa10-s4a-307",
-  "name_zh": "リザードンV SSR[S4a 307/190](ハイクラスパック「シャイニースターV」)",
+  "name_zh": "噴火龍V SSR[S4a 307/190](高級擴充包「閃色明星V」)",
   "name_jp": "リザードンV SSR[S4a 307/190](ハイクラスパック「シャイニースターV」)",
   "kind": "psa10",
   "set": "S4a / 307/190",
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1898.33,
       "hk_ask_hkd": 1732.45,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1682.76,
+      "volume": 0.0,
+      "price_hkd": 1732.01
     }
   ]
 }

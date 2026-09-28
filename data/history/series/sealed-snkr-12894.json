@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-12894",
+  "name_zh": "ポケモンカードゲーム サン＆ムーン ハイクラスパック タッグチームGX タッグオールスターズ ボックス",
+  "name_jp": "ポケモンカードゲーム サン＆ムーン ハイクラスパック タッグチームGX タッグオールスターズ ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-12894.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "price_hkd": 9058.5,
+      "hk_ask_hkd": 9009.0,
+      "volume": 0.0
+    }
+  ]
+}

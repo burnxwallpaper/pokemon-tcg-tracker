@@ -1,6 +1,6 @@
 {
   "id": "psa10-sv2a-204",
-  "name_zh": "サンダーex SAR[SV2a 204/165](強化拡張パック「ポケモンカード151」)",
+  "name_zh": "閃電鳥ex SAR[SV2a 204/165](強化擴充包「寶可夢卡牌151」)",
   "name_jp": "サンダーex SAR[SV2a 204/165](強化拡張パック「ポケモンカード151」)",
   "kind": "psa10",
   "set": "SV2a / 204/165",
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1188.0,
       "hk_ask_hkd": 1240.6,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1237.01,
+      "volume": 0.0,
+      "price_hkd": 1163.25
     }
   ]
 }

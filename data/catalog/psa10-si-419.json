@@ -1,0 +1,21 @@
+{
+  "id": "psa10-si-419",
+  "name_zh": "マリィのプライド[SI 419/414](スタートデッキ100)",
+  "name_jp": "マリィのプライド[SI 419/414](スタートデッキ100)",
+  "name_en": null,
+  "kind": "psa10",
+  "set": "SI / 419/414",
+  "search_jp": "マリィのプライド[SI 419/414](スタートデッキ100)",
+  "search_hk": "マリィのプライド[SI 419/414](スタートデッキ100)",
+  "tcgdex_id": null,
+  "image": "images/psa10-si-419.webp",
+  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/b4d11c9c-53f7-457c-b085-4423b62247a4.webp",
+  "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
+  "image_source": "official",
+  "series_path": "history/series/psa10-si-419.json",
+  "history_points": 2,
+  "first_seen": "2026-07-05",
+  "last_seen": "2026-09-28",
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "name_zh_fallback": true
+}

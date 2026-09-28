@@ -1,6 +1,6 @@
 {
   "id": "psa10-s12a-262",
-  "name_zh": "アルセウスVSTAR UR[s12a 262/172](ハイクラスパック「VSTARユニバース」)",
+  "name_zh": "阿爾宙斯VSTAR UR[s12a 262/172](高級擴充包「天地萬物VSTAR」)",
   "name_jp": "アルセウスVSTAR UR[s12a 262/172](ハイクラスパック「VSTARユニバース」)",
   "kind": "psa10",
   "set": "s12a / 262/172",
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 1435.5,
       "hk_ask_hkd": 1484.95,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1509.72,
+      "volume": 0.0,
+      "price_hkd": 1386.0
     }
   ]
 }

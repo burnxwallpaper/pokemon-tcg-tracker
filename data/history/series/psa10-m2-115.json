@@ -1,6 +1,6 @@
 {
   "id": "psa10-m2-115",
-  "name_zh": "ヒカリ SAR [M2 115/080](拡張パック「インフェルノX」)",
+  "name_zh": "小光 SAR [M2 115/080](擴充包「烈獄狂火X」)",
   "name_jp": "ヒカリ SAR [M2 115/080](拡張パック「インフェルノX」)",
   "kind": "psa10",
   "set": "M2 / 115/080",
@@ -9,14 +9,20 @@
   "tcgdex_id": null,
   "is_sample": false,
   "real_points": true,
-  "history_days": 1,
-  "updated_at": "2026-09-25T14:37:22+08:00",
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
     {
       "date": "2026-09-25",
       "price_hkd": 396.0,
       "hk_ask_hkd": 396.0,
       "volume": 0.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 467.77,
+      "volume": 0.0,
+      "price_hkd": 393.53
     }
   ]
 }

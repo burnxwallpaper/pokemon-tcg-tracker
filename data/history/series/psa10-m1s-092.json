@@ -1,0 +1,28 @@
+{
+  "id": "psa10-m1s-092",
+  "name_zh": "超級沙奈朵ex MUR [M1S 092/063](擴充包「超級交響樂」)",
+  "name_jp": "メガサーナイトex MUR [M1S 092/063](拡張パック「メガシンフォニア」)",
+  "kind": "psa10",
+  "set": "M1S / 092/063",
+  "image": "images/psa10-m1s-092.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-07-06",
+      "price_hkd": 5435.1,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 6878.02,
+      "volume": 0.0,
+      "price_hkd": 6336.0
+    }
+  ]
+}

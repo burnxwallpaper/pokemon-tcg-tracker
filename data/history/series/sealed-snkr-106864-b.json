@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-106864-b",
+  "name_zh": "寶可夢卡牌遊戲 朱&紫 擴充包「紫ex」盒",
+  "name_jp": "ポケモンカードゲーム スカーレット&バイオレット 拡張パック「バイオレットex」ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-106864-b.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 495.0,
+      "volume": 0.0,
+      "price_hkd": 494.95
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "sealed-snkr-105218",
+  "name_zh": "ポケモンカードゲーム ソード&シールド プレシャス コレクターボックス ソード&シールド",
+  "name_jp": "ポケモンカードゲーム ソード&シールド プレシャス コレクターボックス ソード&シールド",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-105218.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-07-20",
+      "price_hkd": 3702.6,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 2625.38,
+      "volume": 0.0,
+      "price_hkd": 2623.5
+    }
+  ]
+}

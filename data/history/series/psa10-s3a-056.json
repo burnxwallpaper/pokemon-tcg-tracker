@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s3a-056",
+  "name_zh": "烈空坐 AR[S3a 056/076](強化擴充包「伝説的鼓動」)",
+  "name_jp": "レックウザ AR[S3a 056/076](強化拡張パック「伝説の鼓動」)",
+  "kind": "psa10",
+  "set": "S3a / 056/076",
+  "image": "images/psa10-s3a-056.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1261.76,
+      "volume": 0.0,
+      "price_hkd": 1079.1
+    }
+  ]
+}

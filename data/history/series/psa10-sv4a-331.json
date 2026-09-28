@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv4a-331",
+  "name_zh": "噴火龍ex SSR[SV4a 331/190](高級擴充包「閃色寶藏ex」)",
+  "name_jp": "リザードンex SSR[SV4a 331/190](ハイクラスパック「シャイニートレジャーex」)",
+  "kind": "psa10",
+  "set": "SV4a / 331/190",
+  "image": "images/psa10-sv4a-331.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 419.76,
+      "volume": 0.0,
+      "price_hkd": 420.75
+    }
+  ]
+}

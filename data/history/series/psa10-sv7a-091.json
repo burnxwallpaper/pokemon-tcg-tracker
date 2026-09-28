@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv7a-091",
+  "name_zh": "露琪亞的吸引力 SAR [SV7a 091/064](強化擴充包「樂園騰龍」)",
+  "name_jp": "ルチアのアピール SAR [SV7a 091/064](強化拡張パック「楽園ドラゴーナ」)",
+  "kind": "psa10",
+  "set": "SV7a / 091/064",
+  "image": "images/psa10-sv7a-091.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1633.5,
+      "volume": 0.0,
+      "price_hkd": 1485.0
+    }
+  ]
+}

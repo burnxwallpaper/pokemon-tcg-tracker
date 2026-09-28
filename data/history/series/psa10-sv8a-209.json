@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv8a-209",
+  "name_zh": "雷伊布ex SAR [SV8a 209/187](高級擴充包「太晶慶典ex」)",
+  "name_jp": "サンダースex SAR [SV8a 209/187](ハイクラスパック「テラスタルフェスex」)",
+  "kind": "psa10",
+  "set": "SV8a / 209/187",
+  "image": "images/psa10-sv8a-209.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 569.2,
+      "volume": 0.0,
+      "price_hkd": 569.25
+    }
+  ]
+}

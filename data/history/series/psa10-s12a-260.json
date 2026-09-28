@@ -1,0 +1,22 @@
+{
+  "id": "psa10-s12a-260",
+  "name_zh": "起源帝牙盧卡VSTAR UR[s12a 260/172](高級擴充包「天地萬物VSTAR」)",
+  "name_jp": "オリジンディアルガVSTAR UR[s12a 260/172](ハイクラスパック「VSTARユニバース」)",
+  "kind": "psa10",
+  "set": "s12a / 260/172",
+  "image": "images/psa10-s12a-260.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1088.95,
+      "volume": 0.0,
+      "price_hkd": 990.0
+    }
+  ]
+}

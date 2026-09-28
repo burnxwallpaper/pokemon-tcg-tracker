@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-55866",
+  "name_zh": "ポケモンカードゲーム ソード＆シールド 強化拡張パック バトルリージョン ボックス",
+  "name_jp": "ポケモンカードゲーム ソード＆シールド 強化拡張パック バトルリージョン ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-55866.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 589.05,
+      "volume": 0.0,
+      "price_hkd": 579.15
+    }
+  ]
+}

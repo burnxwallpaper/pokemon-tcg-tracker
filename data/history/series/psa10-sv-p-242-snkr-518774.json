@@ -1,0 +1,28 @@
+{
+  "id": "psa10-sv-p-242-snkr-518774",
+  "name_zh": "皮卡丘 [SV-P 242]",
+  "name_jp": "ピカチュウ [SV-P 242](プロモカードパック「イラストレーションコンテスト 2024 受賞作品プロモカード化記念キャンペーン」)",
+  "kind": "psa10",
+  "set": "SV-P / 242",
+  "image": "images/psa10-sv-p-242-snkr-518774.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-12",
+      "price_hkd": 544.5,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 534.6,
+      "volume": 0.0,
+      "price_hkd": 509.8
+    }
+  ]
+}

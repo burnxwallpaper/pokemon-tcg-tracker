@@ -1,0 +1,28 @@
+{
+  "id": "psa10-s-p-343",
+  "name_zh": "ミュウ エクストラバトルの日: プロモ P [S-P 343](プロモーションカード「S-P」)",
+  "name_jp": "ミュウ エクストラバトルの日: プロモ P [S-P 343](プロモーションカード「S-P」)",
+  "kind": "psa10",
+  "set": "S-P / 343",
+  "image": "images/psa10-s-p-343.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 2,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-09",
+      "price_hkd": 1534.45,
+      "hk_ask_hkd": null,
+      "volume": 1.0
+    },
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1366.17,
+      "volume": 0.0,
+      "price_hkd": 1039.5
+    }
+  ]
+}

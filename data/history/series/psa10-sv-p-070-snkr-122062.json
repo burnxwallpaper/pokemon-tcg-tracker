@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sv-p-070-snkr-122062",
+  "name_zh": "仙子伊布: 特典 [SV-P 070](「YU NAGABA×寶可夢卡牌遊戲」特典卡「SV-P」)",
+  "name_jp": "ニンフィア: プロモ [SV-P 070](「YU NAGABA×ポケモンカードゲーム」プロモーションカード「SV-P」)",
+  "kind": "psa10",
+  "set": "SV-P / 070",
+  "image": "images/psa10-sv-p-070-snkr-122062.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 1284.53,
+      "volume": 0.0,
+      "price_hkd": 1128.6
+    }
+  ]
+}

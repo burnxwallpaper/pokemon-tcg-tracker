@@ -1,0 +1,22 @@
+{
+  "id": "psa10-sm11-029-snkr-321540",
+  "name_zh": "超夢&夢幻GX RR [SM11 029/094]",
+  "name_jp": "ミュウツー&ミュウGX RR [SM11 029/094](拡張パック「ミラクルツイン」)",
+  "kind": "psa10",
+  "set": "SM11 / 029/094",
+  "image": "images/psa10-sm11-029-snkr-321540.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 964.75,
+      "volume": 0.0,
+      "price_hkd": 787.05
+    }
+  ]
+}

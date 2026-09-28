@@ -8,13 +8,13 @@
   "search_jp": "フシギバナ: プロモ[S8a-P 002/025](プロモカードパック 25th ANNIVERSARY edition)",
   "search_hk": "フシギバナ: プロモ[S8a-P 002/025](プロモカードパック 25th ANNIVERSARY edition)",
   "tcgdex_id": null,
-  "image": "images/psa10-s8a-p-002-snkr-91157.webp",
-  "image_official_url": "https://cdn.snkrdunk.com/upload_bg_removed/acccc166-e4f3-4fb0-96c8-d9720f278b5d.webp",
+  "image": null,
+  "image_official_url": null,
   "image_note": "SNKRDUNK hottest catalog; official face stays empty until the URL encodes this print",
-  "image_source": "official",
+  "image_source": "none",
   "series_path": "history/series/psa10-s8a-p-002-snkr-91157.json",
-  "history_points": 1,
+  "history_points": 2,
   "first_seen": "2026-09-27",
-  "last_seen": "2026-09-27",
-  "updated_at": "2026-09-27T09:02:56+08:00"
+  "last_seen": "2026-09-28",
+  "updated_at": "2026-09-28T09:00:55+08:00"
 }

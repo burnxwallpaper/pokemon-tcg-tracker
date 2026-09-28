@@ -1,0 +1,22 @@
+{
+  "id": "sealed-snkr-12879",
+  "name_zh": "寶可夢卡牌遊戲 劍&盾 擴充包 驚天伏特攻擊 盒",
+  "name_jp": "ポケモンカードゲーム ソード & シールド 拡張パック 仰天のボルテッカー ボックス",
+  "kind": "sealed",
+  "set": null,
+  "image": "images/sealed-snkr-12879.webp",
+  "image_source": "official",
+  "tcgdex_id": null,
+  "is_sample": false,
+  "real_points": true,
+  "history_days": 1,
+  "updated_at": "2026-09-28T09:00:55+08:00",
+  "history": [
+    {
+      "date": "2026-09-28",
+      "hk_ask_hkd": 2574.0,
+      "volume": 0.0,
+      "price_hkd": 2301.7
+    }
+  ]
+}

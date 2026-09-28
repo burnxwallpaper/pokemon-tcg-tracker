@@ -10,14 +10,8 @@
   "is_sample": false,
   "real_points": true,
   "history_days": 90,
-  "updated_at": "2026-09-27T09:02:56+08:00",
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
-    {
-      "date": "2026-06-30",
-      "price_hkd": 396.54,
-      "hk_ask_hkd": null,
-      "volume": 1.0
-    },
     {
       "date": "2026-07-01",
       "price_hkd": 406.49,
@@ -548,8 +542,14 @@
     },
     {
       "date": "2026-09-27",
-      "price_hkd": 384.96,
+      "price_hkd": 371.25,
       "hk_ask_hkd": 393.53,
+      "volume": 2.0
+    },
+    {
+      "date": "2026-09-28",
+      "price_hkd": 393.53,
+      "hk_ask_hkd": 413.28,
       "volume": 2.0
     }
   ],

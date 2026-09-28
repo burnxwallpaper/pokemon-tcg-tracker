@@ -9,8 +9,8 @@
   "tcgdex_id": "SVP-085",
   "is_sample": false,
   "real_points": true,
-  "history_days": 87,
-  "updated_at": "2026-09-27T09:02:56+08:00",
+  "history_days": 88,
+  "updated_at": "2026-09-28T09:00:55+08:00",
   "history": [
     {
       "date": "2026-06-28",
@@ -532,6 +532,12 @@
       "date": "2026-09-27",
       "price_hkd": 20790.0,
       "hk_ask_hkd": 21651.3,
+      "volume": 0.0
+    },
+    {
+      "date": "2026-09-28",
+      "price_hkd": 19800.0,
+      "hk_ask_hkd": 22022.55,
       "volume": 0.0
     }
   ],
